@@ -3,47 +3,49 @@ import Base from '../layouts/Base.astro';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
 import { courses, lodging } from '../data/content.js';
+
+const HERO_IMG = 'https://nakomaresort.com/wp-content/uploads/the-dragon-golf-overview-tahoe-truckee-plumas-1639x1080.jpg';
 ---
 <Base
   title="Golf Graeagle — Five Championship Courses in the Sierra Nevada"
   description="Plan your Graeagle golf trip. Five world-class courses within 25 minutes of each other. Stay-and-play packages, tee times, lodging, and dining — all in one valley."
+  preloadImage={HERO_IMG}
 >
 <Nav />
 
 <!-- ══════ HERO ══════ -->
-<section style="position:relative;height:100vh;min-height:640px;overflow:hidden;display:flex;align-items:center;">
-  <!-- REAL Nakoma Dragon hero image -->
-  <div id="hero-bg" style="position:absolute;inset:-10%;background:url('https://nakomaresort.com/wp-content/uploads/the-dragon-golf-overview-tahoe-truckee-plumas-1639x1080.jpg') center/cover no-repeat;will-change:transform;"></div>
-  <div style="position:absolute;inset:0;background:linear-gradient(160deg,rgba(13,26,14,0.45) 0%,rgba(13,26,14,0.72) 55%,rgba(13,26,14,0.97) 100%);"></div>
-  <!-- grain -->
-  <div style="position:absolute;inset:0;opacity:0.03;background-image:url('data:image/svg+xml,%3Csvg viewBox%3D%220 0 256 256%22 xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cfilter id%3D%22n%22%3E%3CfeTurbulence type%3D%22fractalNoise%22 baseFrequency%3D%220.9%22 numOctaves%3D%224%22/%3E%3C/filter%3E%3Crect width%3D%22100%25%22 height%3D%22100%25%22 filter%3D%22url(%23n)%22/%3E%3C/svg%3E');pointer-events:none;"></div>
+<section class="hero-section">
+  <!-- LCP-critical: eager + fetchpriority=high, inline img not CSS bg -->
+  <img
+    src={HERO_IMG}
+    alt="Nakoma Dragon Golf Course — aerial view of the fairway"
+    class="hero-img"
+    loading="eager"
+    fetchpriority="high"
+    decoding="sync"
+  />
+  <div class="hero-overlay"></div>
 
-  <div style="position:relative;z-index:2;padding:0 10%;max-width:1400px;width:100%;">
+  <div class="hero-content">
     <div class="reveal" style="margin-bottom:20px;">
       <span style="font-size:11px;color:rgba(232,168,80,0.75);letter-spacing:0.2em;text-transform:uppercase;">Graeagle, California · Sierra Nevada</span>
     </div>
-    <h1 class="reveal delay-100" style="font-family:'Playfair Display',serif;font-size:clamp(48px,7vw,96px);font-weight:500;color:#f0f8f2;line-height:1.0;margin:0 0 24px;max-width:900px;">
+    <h1 class="reveal delay-100 hero-h1">
       Five Courses.<br/>
       <span id="hero-shimmer" style="color:#e8a850;">One Valley.</span>
     </h1>
-    <p class="reveal delay-200" style="font-size:clamp(16px,1.8vw,20px);color:rgba(240,248,242,0.6);max-width:560px;line-height:1.7;margin:0 0 48px;">
+    <p class="reveal delay-200 hero-sub">
       The most concentrated mountain golf destination in California — five championship courses within 25 minutes of each other, from $$ to Golf Digest Top 75.
     </p>
-    <div class="reveal delay-300" style="display:flex;gap:16px;flex-wrap:wrap;align-items:center;">
-      <a href="/quote" style="background:#e8a850;color:#0d1a0e;font-size:15px;font-weight:600;padding:16px 36px;border-radius:100px;text-decoration:none;transition:all 0.3s;box-shadow:0 8px 32px rgba(232,168,80,0.25);"
-      onmouseover="this.style.background='#f2c878';this.style.transform='translateY(-2px)';this.style.boxShadow='0 16px 48px rgba(232,168,80,0.4)'"
-      onmouseout="this.style.background='#e8a850';this.style.transform='translateY(0)';this.style.boxShadow='0 8px 32px rgba(232,168,80,0.25)'">
-        Plan My Trip →
-      </a>
-      <a href="/courses" style="color:rgba(240,248,242,0.7);font-size:15px;text-decoration:none;display:flex;align-items:center;gap:8px;transition:color 0.2s;"
-      onmouseover="this.style.color='#f0f8f2'" onmouseout="this.style.color='rgba(240,248,242,0.7)'">
+    <div class="reveal delay-300 hero-ctas">
+      <a href="/quote" class="btn-gold">Plan My Trip →</a>
+      <a href="/courses" class="btn-ghost-hero">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
         Compare all 5 courses
       </a>
     </div>
 
-    <!-- Stats row -->
-    <div class="reveal delay-500" style="display:flex;gap:48px;margin-top:72px;flex-wrap:wrap;">
+    <div class="reveal delay-500 hero-stats">
       {[['5','Championship Courses'],['25 min','Between Furthest Courses'],['147','Highest Slope Rating'],['1968','Original Course Opened']].map(([n,l])=>(
         <div>
           <div style="font-family:'Playfair Display',serif;font-size:clamp(28px,3vw,40px);color:#e8a850;font-weight:500;">{n}</div>
@@ -53,73 +55,60 @@ import { courses, lodging } from '../data/content.js';
     </div>
   </div>
 
-  <!-- Scroll hint -->
-  <div style="position:absolute;bottom:40px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;opacity:0.4;">
+  <div class="scroll-hint" aria-hidden="true">
     <span style="font-size:10px;letter-spacing:0.15em;text-transform:uppercase;color:#f0f8f2;">Scroll</span>
     <div style="width:1px;height:40px;background:linear-gradient(to bottom,rgba(240,248,242,0.5),transparent);"></div>
   </div>
 </section>
 
-<!-- ══════ COURSES GRID — REAL PHOTOS ══════ -->
-<section style="background:#0d1a0e;padding:100px 0;">
-  <div style="max-width:1400px;margin:0 auto;padding:0 48px;">
-    <div class="reveal" style="margin-bottom:64px;display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:24px;">
+<!-- ══════ COURSES GRID ══════ -->
+<section style="background:#0d1a0e;padding:clamp(60px,10vw,100px) 0;">
+  <div class="container">
+    <div class="reveal section-header">
       <div>
         <p style="font-size:11px;color:#e8a850;letter-spacing:0.16em;text-transform:uppercase;margin:0 0 12px;">The Courses</p>
-        <h2 style="font-family:'Playfair Display',serif;font-size:clamp(36px,4.5vw,56px);font-weight:500;color:#f0f8f2;margin:0;line-height:1.1;">Five courses.<br/>Zero compromises.</h2>
+        <h2 style="font-family:'Playfair Display',serif;font-size:clamp(32px,4.5vw,56px);font-weight:500;color:#f0f8f2;margin:0;line-height:1.1;">Five courses.<br/>Zero compromises.</h2>
       </div>
-      <a href="/courses" style="font-size:14px;color:rgba(232,168,80,0.7);text-decoration:none;transition:color 0.2s;white-space:nowrap;"
-      onmouseover="this.style.color='#e8a850'" onmouseout="this.style.color='rgba(232,168,80,0.7)'">Compare all →</a>
+      <a href="/courses" class="link-gold-sm" style="white-space:nowrap;">Compare all →</a>
     </div>
 
-    <!-- Course cards with REAL photos -->
-    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:2px;">
-      <!-- Big feature card — Nakoma -->
-      <div class="reveal" style="grid-column:1/3;grid-row:1/2;position:relative;height:520px;overflow:hidden;border-radius:20px 4px 4px 20px;cursor:pointer;"
-      onclick="window.location='/courses/nakoma-dragon'">
-        <img src={courses[4].hero} alt="Nakoma Dragon Golf Course — The Dragon fairway" loading="lazy"
-          style="width:100%;height:100%;object-fit:cover;transition:transform 7s ease;display:block;"
-          onmouseover="this.style.transform='scale(1.06)'" onmouseout="this.style.transform='scale(1)'"/>
-        <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(13,26,14,0.92) 0%,rgba(13,26,14,0.3) 50%,transparent 100%);"></div>
-        <div style="position:absolute;bottom:0;left:0;right:0;padding:36px 40px;">
+    <div class="courses-feature-row">
+      <div class="reveal course-card-big" onclick="window.location='/courses/nakoma-dragon'" style="cursor:pointer;">
+        <img src={courses[4].hero} alt="Nakoma Dragon Golf Course — The Dragon fairway" loading="lazy" class="course-card-img"/>
+        <div class="card-gradient"></div>
+        <div class="course-card-body">
           <div style="display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap;">
-            <span style="background:rgba(232,168,80,0.15);border:1px solid rgba(232,168,80,0.3);color:#e8a850;font-size:10px;padding:4px 12px;border-radius:100px;letter-spacing:0.08em;">Golf World Top 75</span>
-            <span style="background:rgba(232,168,80,0.15);border:1px solid rgba(232,168,80,0.3);color:#e8a850;font-size:10px;padding:4px 12px;border-radius:100px;letter-spacing:0.08em;">FLW Clubhouse</span>
-            <span style="background:rgba(232,168,80,0.15);border:1px solid rgba(232,168,80,0.3);color:#e8a850;font-size:10px;padding:4px 12px;border-radius:100px;letter-spacing:0.08em;">Slope 147</span>
+            <span class="badge">Golf World Top 75</span>
+            <span class="badge">FLW Clubhouse</span>
+            <span class="badge">Slope 147</span>
           </div>
-          <h3 style="font-family:'Playfair Display',serif;font-size:36px;font-weight:500;color:#f0f8f2;margin:0 0 8px;">Nakoma — The Dragon</h3>
+          <h3 style="font-family:'Playfair Display',serif;font-size:clamp(24px,2.5vw,36px);font-weight:500;color:#f0f8f2;margin:0 0 8px;">Nakoma — The Dragon</h3>
           <p style="font-size:14px;color:rgba(240,248,242,0.55);margin:0 0 20px;">Robin Nelson design · The only FLW golf clubhouse in existence</p>
-          <a href="/courses/nakoma-dragon" style="font-size:13px;color:#e8a850;text-decoration:none;display:inline-flex;align-items:center;gap:6px;">View course →</a>
+          <a href="/courses/nakoma-dragon" class="link-gold-sm">View course →</a>
         </div>
       </div>
 
-      <!-- Grizzly Ranch -->
-      <div class="reveal delay-100" style="position:relative;height:520px;overflow:hidden;border-radius:4px 20px 20px 4px;cursor:pointer;"
-      onclick="window.location='/courses/grizzly-ranch'">
-        <img src={courses[3].hero} alt="Grizzly Ranch Golf Club" loading="lazy"
-          style="width:100%;height:100%;object-fit:cover;transition:transform 7s ease;"
-          onmouseover="this.style.transform='scale(1.06)'" onmouseout="this.style.transform='scale(1)'"/>
-        <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(13,26,14,0.92) 0%,transparent 60%);"></div>
-        <div style="position:absolute;bottom:0;left:0;right:0;padding:28px 32px;">
+      <div class="reveal delay-100 course-card-side" onclick="window.location='/courses/grizzly-ranch'" style="cursor:pointer;">
+        <img src={courses[3].hero} alt="Grizzly Ranch Golf Club" loading="lazy" class="course-card-img"/>
+        <div class="card-gradient"></div>
+        <div class="course-card-body">
           <span style="font-size:10px;color:rgba(232,168,80,0.7);letter-spacing:0.1em;text-transform:uppercase;">7,411 yards · Bob Cupp</span>
-          <h3 style="font-family:'Playfair Display',serif;font-size:26px;color:#f0f8f2;margin:8px 0 4px;">Grizzly Ranch</h3>
+          <h3 style="font-family:'Playfair Display',serif;font-size:clamp(20px,2vw,26px);color:#f0f8f2;margin:8px 0 4px;">Grizzly Ranch</h3>
           <p style="font-size:12px;color:rgba(240,248,242,0.45);margin:0 0 14px;">The valley's biggest challenge</p>
-          <a href="/courses/grizzly-ranch" style="font-size:12px;color:#e8a850;text-decoration:none;">View course →</a>
+          <a href="/courses/grizzly-ranch" class="link-gold-sm">View course →</a>
         </div>
       </div>
+    </div>
 
-      <!-- Row 2 — 3 smaller cards -->
+    <div class="courses-small-row">
       {courses.slice(0,3).map((c,i)=>(
-        <div class={`reveal delay-${(i+1)*100}`} style="position:relative;height:340px;overflow:hidden;border-radius:12px;cursor:pointer;"
-        onclick={`window.location='/courses/${c.slug}'`}>
-          <img src={c.hero} alt={`${c.name} Golf Course`} loading="lazy"
-            style="width:100%;height:100%;object-fit:cover;transition:transform 7s ease;"
-            onmouseover="this.style.transform='scale(1.06)'" onmouseout="this.style.transform='scale(1)'"/>
-          <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(13,26,14,0.92) 0%,transparent 55%);"></div>
-          <div style="position:absolute;bottom:0;left:0;right:0;padding:24px 28px;">
+        <div class={`reveal delay-${(i+1)*100} course-card-small`} onclick={`window.location='/courses/${c.slug}'`} style="cursor:pointer;">
+          <img src={c.hero} alt={`${c.name} Golf Course`} loading="lazy" class="course-card-img"/>
+          <div class="card-gradient"></div>
+          <div class="course-card-body">
             <span style="font-size:10px;color:rgba(232,168,80,0.65);letter-spacing:0.1em;text-transform:uppercase;">{c.par} par · {c.yards.toLocaleString()} yds · {c.designer}</span>
-            <h3 style="font-family:'Playfair Display',serif;font-size:22px;color:#f0f8f2;margin:6px 0 12px;">{c.name}</h3>
-            <a href={`/courses/${c.slug}`} style="font-size:12px;color:#e8a850;text-decoration:none;">View course →</a>
+            <h3 style="font-family:'Playfair Display',serif;font-size:clamp(18px,1.8vw,22px);color:#f0f8f2;margin:6px 0 12px;">{c.name}</h3>
+            <a href={`/courses/${c.slug}`} class="link-gold-sm">View course →</a>
           </div>
         </div>
       ))}
@@ -127,13 +116,13 @@ import { courses, lodging } from '../data/content.js';
   </div>
 </section>
 
-<!-- ══════ WHY GRAEAGLE BEATS EVERYTHING ══════ -->
-<section style="background:rgba(10,18,10,0.98);padding:100px 0;overflow:hidden;">
-  <div style="max-width:1400px;margin:0 auto;padding:0 48px;">
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;">
+<!-- ══════ WHY GRAEAGLE ══════ -->
+<section style="background:rgba(10,18,10,0.98);padding:clamp(60px,10vw,100px) 0;overflow:hidden;">
+  <div class="container">
+    <div class="two-col-section">
       <div>
         <p class="reveal" style="font-size:11px;color:#e8a850;letter-spacing:0.16em;text-transform:uppercase;margin:0 0 16px;">Why Graeagle</p>
-        <h2 class="reveal delay-100" style="font-family:'Playfair Display',serif;font-size:clamp(32px,4vw,52px);color:#f0f8f2;margin:0 0 32px;line-height:1.15;">Every other California golf region forces a compromise.</h2>
+        <h2 class="reveal delay-100" style="font-family:'Playfair Display',serif;font-size:clamp(28px,4vw,52px);color:#f0f8f2;margin:0 0 32px;line-height:1.15;">Every other California golf region forces a compromise.</h2>
         <div class="reveal delay-200" style="display:flex;flex-direction:column;gap:0;">
           {[
             ['Monterey','Elite — but extremely expensive'],
@@ -150,7 +139,7 @@ import { courses, lodging } from '../data/content.js';
             </div>
           ))}
           <div style="display:flex;align-items:flex-start;gap:16px;padding:20px 0;background:rgba(232,168,80,0.04);margin:8px -16px 0;padding-left:16px;border-radius:12px;border:1px solid rgba(232,168,80,0.08);">
-            <span style="color:#e8a850;font-size:20px;flex-shrink:0;margin-top:0px;">✓</span>
+            <span style="color:#e8a850;font-size:20px;flex-shrink:0;">✓</span>
             <div>
               <span style="font-size:15px;font-weight:600;color:#e8a850;">Graeagle: </span>
               <span style="font-size:15px;color:rgba(240,248,242,0.7);">5 elite courses · predictable drives · no city congestion · lower green fees than Tahoe · altitude advantage</span>
@@ -159,20 +148,18 @@ import { courses, lodging } from '../data/content.js';
         </div>
       </div>
 
-      <!-- Real Whitehawk image -->
-      <div class="reveal-right" style="position:relative;">
+      <div class="reveal-right why-image-wrap">
         <div style="border-radius:24px;overflow:hidden;aspect-ratio:4/5;">
           <img src="https://golf-pass.brightspotcdn.com/fb/c0/25fb1031420d23ab00595c5024f0/84464.jpg"
             alt="Whitehawk Ranch Golf Course — Mohawk Valley"
             loading="lazy" style="width:100%;height:100%;object-fit:cover;"/>
         </div>
-        <!-- Floating badge -->
-        <div style="position:absolute;bottom:-20px;left:-20px;background:rgba(13,26,14,0.97);border:1px solid rgba(232,168,80,0.2);border-radius:16px;padding:18px 22px;backdrop-filter:blur(12px);box-shadow:0 16px 48px rgba(0,0,0,0.4);">
+        <div class="float-badge float-bottom-left">
           <div style="font-size:11px;color:rgba(240,248,242,0.4);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:4px;">Valley Altitude</div>
           <div style="font-size:22px;font-family:'Playfair Display',serif;color:#e8a850;">4,400 ft</div>
           <div style="font-size:11px;color:rgba(240,248,242,0.35);margin-top:2px;">Longer carry · faster greens</div>
         </div>
-        <div style="position:absolute;top:-16px;right:-16px;background:rgba(13,26,14,0.97);border:1px solid rgba(232,168,80,0.12);border-radius:12px;padding:14px 18px;backdrop-filter:blur(12px);">
+        <div class="float-badge float-top-right">
           <div style="font-size:11px;color:rgba(240,248,242,0.4);margin-bottom:3px;">Whitehawk Ranch</div>
           <div style="font-size:13px;color:#f0f8f2;font-weight:500;">Golf Digest Top 20 CA</div>
         </div>
@@ -181,54 +168,44 @@ import { courses, lodging } from '../data/content.js';
   </div>
 </section>
 
-<!-- ══════ LODGING — REAL PHOTOS ══════ -->
-<section style="background:#0d1a0e;padding:100px 0;">
-  <div style="max-width:1400px;margin:0 auto;padding:0 48px;">
-    <div class="reveal" style="margin-bottom:64px;">
+<!-- ══════ LODGING ══════ -->
+<section style="background:#0d1a0e;padding:clamp(60px,10vw,100px) 0;">
+  <div class="container">
+    <div class="reveal" style="margin-bottom:clamp(36px,5vw,64px);">
       <p style="font-size:11px;color:#e8a850;letter-spacing:0.16em;text-transform:uppercase;margin:0 0 12px;">Where to Stay</p>
-      <h2 style="font-family:'Playfair Display',serif;font-size:clamp(32px,4vw,52px);color:#f0f8f2;margin:0;line-height:1.1;">Stay on the courses.<br/>Wake up ready to play.</h2>
+      <h2 style="font-family:'Playfair Display',serif;font-size:clamp(28px,4vw,52px);color:#f0f8f2;margin:0;line-height:1.1;">Stay on the courses.<br/>Wake up ready to play.</h2>
     </div>
 
-    <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:3px;">
-      <!-- Nakoma Inn — feature card with real photo -->
-      <div class="reveal" style="position:relative;height:500px;overflow:hidden;border-radius:20px 4px 4px 20px;cursor:pointer;"
-      onclick="window.location='/lodging'">
+    <div class="lodging-grid">
+      <div class="reveal lodging-feature" onclick="window.location='/lodging'" style="cursor:pointer;">
         <img src="https://nakomaresort.com/wp-content/uploads/inn-at-nakoma-lobby-fireplace.jpg"
-          alt="The Inn at Nakoma — lobby fireplace" loading="lazy"
-          style="width:100%;height:100%;object-fit:cover;transition:transform 7s ease;"
-          onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'"/>
-        <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(13,26,14,0.95) 0%,rgba(13,26,14,0.2) 60%,transparent 100%);"></div>
-        <div style="position:absolute;bottom:0;padding:36px 40px;">
-          <span style="background:rgba(232,168,80,0.15);border:1px solid rgba(232,168,80,0.25);color:#e8a850;font-size:10px;padding:4px 12px;border-radius:100px;display:inline-block;margin-bottom:12px;">Most Unique Stay</span>
-          <h3 style="font-family:'Playfair Display',serif;font-size:30px;color:#f0f8f2;margin:0 0 8px;">The Inn at Nakoma</h3>
+          alt="The Inn at Nakoma — lobby fireplace" loading="lazy" class="course-card-img"/>
+        <div class="card-gradient-heavy"></div>
+        <div class="course-card-body">
+          <span class="badge" style="display:inline-block;margin-bottom:12px;">Most Unique Stay</span>
+          <h3 style="font-family:'Playfair Display',serif;font-size:clamp(22px,2.5vw,30px);color:#f0f8f2;margin:0 0 8px;">The Inn at Nakoma</h3>
           <p style="font-size:13px;color:rgba(240,248,242,0.5);margin:0 0 18px;">Sleep in a Frank Lloyd Wright building. Wake up 50 yards from The Dragon first tee.</p>
-          <a href="/lodging" style="font-size:13px;color:#e8a850;text-decoration:none;">View lodging →</a>
+          <a href="/lodging" class="link-gold-sm">View lodging →</a>
         </div>
       </div>
 
-      <div style="display:grid;grid-template-rows:1fr 1fr;gap:3px;">
-        <!-- Nakoma villa exterior -->
-        <div class="reveal delay-100" style="position:relative;overflow:hidden;border-radius:4px 20px 4px 4px;cursor:pointer;" onclick="window.location='/lodging'">
+      <div class="lodging-side-grid">
+        <div class="reveal delay-100 lodging-side-card" onclick="window.location='/lodging'" style="cursor:pointer;">
           <img src="https://nakomaresort.com/wp-content/uploads/2Bedroom-Villa-EXTERIOR.jpg"
-            alt="Nakoma 2-Bedroom Villa" loading="lazy"
-            style="width:100%;height:100%;object-fit:cover;transition:transform 7s ease;"
-            onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'"/>
-          <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(13,26,14,0.88) 0%,transparent 55%);"></div>
-          <div style="position:absolute;bottom:0;padding:24px 28px;">
-            <h3 style="font-family:'Playfair Display',serif;font-size:22px;color:#f0f8f2;margin:0 0 4px;">Nakoma Villas</h3>
+            alt="Nakoma 2-Bedroom Villa" loading="lazy" class="course-card-img"/>
+          <div class="card-gradient"></div>
+          <div class="course-card-body">
+            <h3 style="font-family:'Playfair Display',serif;font-size:clamp(18px,1.8vw,22px);color:#f0f8f2;margin:0 0 4px;">Nakoma Villas</h3>
             <p style="font-size:12px;color:rgba(240,248,242,0.45);margin:0;">2-bedroom resort villas on site</p>
           </div>
         </div>
-        <!-- Plumas Pines Clubhouse — real photo -->
-        <div class="reveal delay-200" style="position:relative;overflow:hidden;border-radius:4px 4px 20px 4px;cursor:pointer;" onclick="window.location='/lodging'">
+        <div class="reveal delay-200 lodging-side-card" onclick="window.location='/lodging'" style="cursor:pointer;">
           <img src="https://www.plumaspinesgolf.com/wp-content/uploads/sites/9383/2024/04/Clubhouse-from-9th-Tee-25x38-1.jpg"
-            alt="Townhomes at Plumas Pines — on the golf course" loading="lazy"
-            style="width:100%;height:100%;object-fit:cover;transition:transform 7s ease;"
-            onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'"/>
-          <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(13,26,14,0.88) 0%,transparent 55%);"></div>
-          <div style="position:absolute;bottom:0;padding:24px 28px;">
+            alt="Townhomes at Plumas Pines — on the golf course" loading="lazy" class="course-card-img"/>
+          <div class="card-gradient"></div>
+          <div class="course-card-body">
             <span style="font-size:10px;color:rgba(232,168,80,0.65);text-transform:uppercase;letter-spacing:0.1em;display:block;margin-bottom:6px;">Best for Groups</span>
-            <h3 style="font-family:'Playfair Display',serif;font-size:22px;color:#f0f8f2;margin:0 0 4px;">Townhomes at Plumas Pines</h3>
+            <h3 style="font-family:'Playfair Display',serif;font-size:clamp(18px,1.8vw,22px);color:#f0f8f2;margin:0 0 4px;">Townhomes at Plumas Pines</h3>
             <p style="font-size:12px;color:rgba(240,248,242,0.45);margin:0;">Multi-bedroom. On the course. Pool access.</p>
           </div>
         </div>
@@ -236,22 +213,16 @@ import { courses, lodging } from '../data/content.js';
     </div>
 
     <div class="reveal" style="text-align:center;margin-top:48px;">
-      <a href="/lodging" style="display:inline-flex;align-items:center;gap:8px;background:rgba(240,248,242,0.04);border:1px solid rgba(240,248,242,0.1);color:rgba(240,248,242,0.6);font-size:14px;padding:14px 32px;border-radius:100px;text-decoration:none;transition:all 0.3s;"
-      onmouseover="this.style.background='rgba(240,248,242,0.08)';this.style.color='#f0f8f2'"
-      onmouseout="this.style.background='rgba(240,248,242,0.04)';this.style.color='rgba(240,248,242,0.6)'">
-        See all lodging options →
-      </a>
+      <a href="/lodging" class="btn-ghost">See all lodging options →</a>
     </div>
   </div>
 </section>
 
 <!-- ══════ DINING SNAPSHOT ══════ -->
-<section style="background:rgba(10,18,10,0.98);padding:100px 0;">
-  <div style="max-width:1400px;margin:0 auto;padding:0 48px;">
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;">
-
-      <!-- Real Nakoma dining photo -->
-      <div class="reveal-left" style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+<section style="background:rgba(10,18,10,0.98);padding:clamp(60px,10vw,100px) 0;">
+  <div class="container">
+    <div class="two-col-section">
+      <div class="reveal-left dining-photos">
         <div style="border-radius:16px;overflow:hidden;aspect-ratio:3/4;grid-row:1/3;">
           <img src="https://nakomaresort.com/wp-content/uploads/fifty44-dining-at-nakoma-lodge-1631x1080.jpg"
             alt="Fifty44 Restaurant at Nakoma — fine dining" loading="lazy"
@@ -271,9 +242,9 @@ import { courses, lodging } from '../data/content.js';
 
       <div>
         <p class="reveal" style="font-size:11px;color:#e8a850;letter-spacing:0.16em;text-transform:uppercase;margin:0 0 16px;">After Your Round</p>
-        <h2 class="reveal delay-100" style="font-family:'Playfair Display',serif;font-size:clamp(32px,4vw,48px);color:#f0f8f2;margin:0 0 24px;line-height:1.15;">13 restaurants.<br/>Something for every night.</h2>
+        <h2 class="reveal delay-100" style="font-family:'Playfair Display',serif;font-size:clamp(28px,4vw,48px);color:#f0f8f2;margin:0 0 24px;line-height:1.15;">13 restaurants.<br/>Something for every night.</h2>
         <p class="reveal delay-200" style="font-size:15px;color:rgba(240,248,242,0.5);line-height:1.75;margin:0 0 36px;">From the Frank Lloyd Wright dining room at Nakoma to cold craft beers at Eureka Peak Brewing — the valley has every post-round moment covered.</p>
-        <div class="reveal delay-300" style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:36px;">
+        <div class="reveal delay-300 dining-grid">
           {[
             ['Fine Dining','Longboards, Sardine Lake, Iron Door, Fifty44'],
             ['Craft Breweries','Eureka Peak, The Brewing Lair, Mohawk Tavern'],
@@ -286,8 +257,7 @@ import { courses, lodging } from '../data/content.js';
             </div>
           ))}
         </div>
-        <a href="/dining" class="reveal delay-400" style="display:inline-flex;align-items:center;gap:8px;color:#e8a850;font-size:14px;text-decoration:none;transition:opacity 0.2s;"
-        onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">
+        <a href="/dining" class="reveal delay-400 link-gold-sm" style="display:inline-flex;align-items:center;gap:8px;margin-top:36px;">
           See all 13 restaurants →
         </a>
       </div>
@@ -296,8 +266,7 @@ import { courses, lodging } from '../data/content.js';
 </section>
 
 <!-- ══════ CTA STRIP ══════ -->
-<section style="position:relative;padding:120px 48px;overflow:hidden;">
-  <!-- Real Nakoma FLW building photo as background -->
+<section style="position:relative;padding:clamp(80px,12vw,120px) clamp(24px,6vw,48px);overflow:hidden;">
   <div style="position:absolute;inset:0;">
     <img src="https://nakomaresort.com/wp-content/uploads/fodge-at-nakoma-exterior-frank-lloyd-wright-1620x1080.jpg"
       alt="Frank Lloyd Wright Nakoma Clubhouse" loading="lazy"
@@ -308,19 +277,11 @@ import { courses, lodging } from '../data/content.js';
     <div class="reveal" style="display:inline-flex;align-items:center;gap:8px;background:rgba(232,168,80,0.1);border:1px solid rgba(232,168,80,0.2);border-radius:100px;padding:8px 18px;margin-bottom:28px;">
       <span style="font-size:12px;color:#e8a850;">⛳ 2025 season reservations open</span>
     </div>
-    <h2 class="reveal delay-100" style="font-family:'Playfair Display',serif;font-size:clamp(36px,5vw,60px);color:#f0f8f2;margin:0 0 20px;line-height:1.1;">Ready to plan your round?</h2>
-    <p class="reveal delay-200" style="font-size:16px;color:rgba(240,248,242,0.55);margin:0 0 40px;line-height:1.7;">Tell us your dates, group size, and which courses call to you. We'll handle the rest — tee times, lodging, dining reservations.</p>
-    <div class="reveal delay-300" style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;">
-      <a href="/quote" style="background:#e8a850;color:#0d1a0e;font-size:15px;font-weight:600;padding:16px 40px;border-radius:100px;text-decoration:none;transition:all 0.3s;box-shadow:0 8px 32px rgba(232,168,80,0.3);"
-      onmouseover="this.style.background='#f2c878';this.style.transform='translateY(-2px)'" 
-      onmouseout="this.style.background='#e8a850';this.style.transform='translateY(0)'">
-        Request a Free Quote
-      </a>
-      <a href="/courses" style="background:rgba(240,248,242,0.06);border:1px solid rgba(240,248,242,0.15);color:rgba(240,248,242,0.75);font-size:15px;padding:16px 40px;border-radius:100px;text-decoration:none;transition:all 0.3s;"
-      onmouseover="this.style.background='rgba(240,248,242,0.1)';this.style.color='#f0f8f2'"
-      onmouseout="this.style.background='rgba(240,248,242,0.06)';this.style.color='rgba(240,248,242,0.75)'">
-        Browse Courses
-      </a>
+    <h2 class="reveal delay-100" style="font-family:'Playfair Display',serif;font-size:clamp(32px,5vw,60px);color:#f0f8f2;margin:0 0 20px;line-height:1.1;">Ready to plan your round?</h2>
+    <p class="reveal delay-200" style="font-size:clamp(14px,1.5vw,16px);color:rgba(240,248,242,0.55);margin:0 0 40px;line-height:1.7;">Tell us your dates, group size, and which courses call to you. We'll handle the rest — tee times, lodging, dining reservations.</p>
+    <div class="reveal delay-300 cta-buttons">
+      <a href="/quote" class="btn-gold">Request a Free Quote</a>
+      <a href="/courses" class="btn-ghost">Browse Courses</a>
     </div>
     <p class="reveal delay-400" style="font-size:12px;color:rgba(240,248,242,0.22);margin:20px 0 0;">No obligation · 72-hour cancellation · Response within 24 hours</p>
   </div>
@@ -330,6 +291,322 @@ import { courses, lodging } from '../data/content.js';
 </Base>
 
 <style>
+  /* ═══ HERO ═══ */
+  .hero-section {
+    position: relative;
+    height: 100vh;
+    min-height: 600px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+  }
+  .hero-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(160deg,rgba(13,26,14,0.45) 0%,rgba(13,26,14,0.72) 55%,rgba(13,26,14,0.97) 100%);
+  }
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    padding: 0 clamp(24px, 10%, 140px);
+    max-width: 1400px;
+    width: 100%;
+    margin-top: 68px; /* nav height */
+  }
+  .hero-h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(40px, 7vw, 96px);
+    font-weight: 500;
+    color: #f0f8f2;
+    line-height: 1.0;
+    margin: 0 0 24px;
+    max-width: 900px;
+  }
+  .hero-sub {
+    font-size: clamp(15px, 1.8vw, 20px);
+    color: rgba(240,248,242,0.6);
+    max-width: 560px;
+    line-height: 1.7;
+    margin: 0 0 48px;
+  }
+  .hero-ctas {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  .hero-stats {
+    display: flex;
+    gap: clamp(20px, 4vw, 48px);
+    margin-top: clamp(40px, 7vw, 72px);
+    flex-wrap: wrap;
+  }
+  .scroll-hint {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    opacity: 0.4;
+  }
+
+  /* ═══ BUTTONS ═══ */
+  .btn-gold {
+    background: #e8a850;
+    color: #0d1a0e;
+    font-size: 15px;
+    font-weight: 600;
+    padding: 16px 36px;
+    border-radius: 100px;
+    text-decoration: none;
+    transition: all 0.3s;
+    box-shadow: 0 8px 32px rgba(232,168,80,0.25);
+    display: inline-block;
+  }
+  .btn-gold:hover {
+    background: #f2c878;
+    transform: translateY(-2px);
+    box-shadow: 0 16px 48px rgba(232,168,80,0.4);
+  }
+  .btn-ghost {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(240,248,242,0.04);
+    border: 1px solid rgba(240,248,242,0.1);
+    color: rgba(240,248,242,0.6);
+    font-size: 14px;
+    padding: 14px 32px;
+    border-radius: 100px;
+    text-decoration: none;
+    transition: all 0.3s;
+  }
+  .btn-ghost:hover {
+    background: rgba(240,248,242,0.08);
+    color: #f0f8f2;
+  }
+  .btn-ghost-hero {
+    color: rgba(240,248,242,0.7);
+    font-size: 15px;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: color 0.2s;
+  }
+  .btn-ghost-hero:hover { color: #f0f8f2; }
+  .link-gold-sm {
+    font-size: 13px;
+    color: #e8a850;
+    text-decoration: none;
+    transition: opacity 0.2s;
+  }
+  .link-gold-sm:hover { opacity: 0.7; }
+  .badge {
+    background: rgba(232,168,80,0.15);
+    border: 1px solid rgba(232,168,80,0.3);
+    color: #e8a850;
+    font-size: 10px;
+    padding: 4px 12px;
+    border-radius: 100px;
+    letter-spacing: 0.08em;
+  }
+
+  /* ═══ LAYOUT ═══ */
+  .container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 clamp(20px, 4vw, 48px);
+  }
+  .section-header {
+    margin-bottom: clamp(36px,5vw,64px);
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 24px;
+  }
+
+  /* ═══ COURSE CARDS ═══ */
+  .courses-feature-row {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 2px;
+    margin-bottom: 2px;
+  }
+  .course-card-big {
+    position: relative;
+    height: 520px;
+    overflow: hidden;
+    border-radius: 20px 4px 4px 20px;
+  }
+  .course-card-side {
+    position: relative;
+    height: 520px;
+    overflow: hidden;
+    border-radius: 4px 20px 20px 4px;
+  }
+  .courses-small-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+  }
+  .course-card-small {
+    position: relative;
+    height: 340px;
+    overflow: hidden;
+    border-radius: 12px;
+  }
+  .course-card-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 7s ease;
+    display: block;
+  }
+  .course-card-big:hover .course-card-img,
+  .course-card-side:hover .course-card-img,
+  .course-card-small:hover .course-card-img,
+  .lodging-feature:hover .course-card-img,
+  .lodging-side-card:hover .course-card-img { transform: scale(1.06); }
+  .card-gradient {
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(13,26,14,0.92) 0%, transparent 55%);
+  }
+  .card-gradient-heavy {
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(13,26,14,0.95) 0%, rgba(13,26,14,0.2) 60%, transparent 100%);
+  }
+  .course-card-body {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    padding: clamp(20px, 3vw, 36px) clamp(20px, 3vw, 40px);
+  }
+
+  /* ═══ TWO COL ═══ */
+  .two-col-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(40px, 6vw, 80px);
+    align-items: center;
+  }
+  .why-image-wrap { position: relative; }
+  .float-badge {
+    position: absolute;
+    background: rgba(13,26,14,0.97);
+    border: 1px solid rgba(232,168,80,0.2);
+    border-radius: 16px;
+    padding: 18px 22px;
+    backdrop-filter: blur(12px);
+    box-shadow: 0 16px 48px rgba(0,0,0,0.4);
+  }
+  .float-bottom-left { bottom: -20px; left: -20px; }
+  .float-top-right {
+    top: -16px; right: -16px;
+    border-color: rgba(232,168,80,0.12);
+    border-radius: 12px;
+    padding: 14px 18px;
+  }
+
+  /* ═══ LODGING ═══ */
+  .lodging-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3px;
+  }
+  .lodging-feature {
+    position: relative;
+    height: 500px;
+    overflow: hidden;
+    border-radius: 20px 4px 4px 20px;
+  }
+  .lodging-side-grid {
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    gap: 3px;
+  }
+  .lodging-side-card { position: relative; overflow: hidden; }
+  .lodging-side-card:first-child { border-radius: 4px 20px 4px 4px; }
+  .lodging-side-card:last-child  { border-radius: 4px 4px 20px 4px; }
+
+  /* ═══ DINING ═══ */
+  .dining-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+  .dining-photos {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+
+  /* ═══ CTA BUTTONS ═══ */
+  .cta-buttons {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  /* ═══════════════════════════════════
+     MOBILE BREAKPOINTS
+  ════════════════════════════════════ */
+  @media (max-width: 860px) {
+    .scroll-hint { display: none; }
+
+    /* Course grids → single col */
+    .courses-feature-row {
+      grid-template-columns: 1fr;
+    }
+    .course-card-big { height: 360px; border-radius: 16px; }
+    .course-card-side { height: 260px; border-radius: 16px; }
+    .courses-small-row { grid-template-columns: 1fr 1fr; }
+    .course-card-small { height: 240px; }
+
+    /* Two-col → single col */
+    .two-col-section { grid-template-columns: 1fr; }
+    /* Image after text on mobile */
+    .why-image-wrap { margin-top: 0; }
+    .float-badge { display: none; }
+
+    /* Lodging */
+    .lodging-grid { grid-template-columns: 1fr; }
+    .lodging-feature { height: 340px; border-radius: 16px; }
+    .lodging-side-grid {
+      grid-template-rows: auto;
+      grid-template-columns: 1fr 1fr;
+    }
+    .lodging-side-card { height: 200px; }
+    .lodging-side-card:first-child,
+    .lodging-side-card:last-child { border-radius: 12px; }
+
+    /* Dining photos hidden on mobile — text content is enough */
+    .dining-photos { display: none; }
+    .dining-grid { grid-template-columns: 1fr; }
+  }
+
+  @media (max-width: 540px) {
+    .courses-small-row { grid-template-columns: 1fr; }
+    .course-card-small { height: 220px; }
+    .lodging-side-grid { grid-template-columns: 1fr; }
+    .lodging-side-card { height: 180px; }
+    .hero-ctas { flex-direction: column; align-items: flex-start; }
+    .btn-gold { width: 100%; text-align: center; }
+    .hero-stats { gap: 16px; }
+  }
+
+  /* ═══ ANIMATIONS ═══ */
   @keyframes shimmer {
     0%,100% { opacity:1; }
     50% { opacity:0.7; text-shadow: 0 0 40px rgba(232,168,80,0.4); }
@@ -338,13 +615,6 @@ import { courses, lodging } from '../data/content.js';
 </style>
 
 <script>
-  // Parallax hero
-  const bg = document.getElementById('hero-bg');
-  window.addEventListener('scroll', () => {
-    if (bg) bg.style.transform = `translateY(${window.scrollY * 0.28}px)`;
-  }, { passive: true });
-
-  // Nav scroll
   const nav = document.getElementById('sitenav');
   window.addEventListener('scroll', () => {
     if (nav) nav.classList.toggle('scrolled', window.scrollY > 60);

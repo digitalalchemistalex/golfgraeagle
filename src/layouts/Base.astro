@@ -9,6 +9,7 @@ const {
   ogImage = siteConfig.social.og_image,
   schema = null,
   noindex = false,
+  preloadImage = null,
 } = Astro.props;
 
 const canonicalUrl = canonical || new URL(Astro.url.pathname, siteConfig.url).href;
@@ -59,6 +60,7 @@ const baseSchema = {
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600&family=Libre+Baskerville:ital@0;1&display=swap" rel="stylesheet" />
+  {preloadImage && <link rel="preload" as="image" href={preloadImage} />}
   <script type="application/ld+json" set:html={JSON.stringify(baseSchema)} />
 </head>
 <body style="background:#0d1a0e; color:#f0f8f2; font-family:'Inter',system-ui,sans-serif; -webkit-font-smoothing:antialiased;">
