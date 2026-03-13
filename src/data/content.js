@@ -16,10 +16,7 @@ export const siteConfig = {
   url: 'https://golfgraeagle.com',
   operator: 'Zoomaway Technologies Inc.',
   email: 'sean@zoomaway.com',
-  quoteUrl: '/quote',
-  hubspot: { portalId: '20743417', formId: '8ac29a68-a31f-41d4-9c5b-6c4549dd5dcf' },
-  hubspotPortal: '20743417',
-  hubspotForm: '8ac29a68-a31f-41d4-9c5b-6c4549dd5dcf',
+  quoteUrl: '/request-a-quote',
   social: {
     og_image: 'https://images.unsplash.com/photo-1593111774240-d529f12cf4bb?w=1200&q=80&auto=format',
   },
