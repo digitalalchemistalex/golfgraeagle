@@ -65,6 +65,8 @@ export const courses = [
     ],
     description: 'Graeagle Meadows Golf Course opened in 1968, making it the original championship course in the valley. Designed by Ellis Van Gorder, the layout winds through open Sierra meadows and tall ponderosa pines along the Middle Fork of the Feather River. At 6,759 yards with a slope of 120, it\'s the most approachable of the five Graeagle courses and perfect for groups with a range of handicaps.',
     bestFor: 'First-timers, mixed-handicap groups, value rounds',
+    facilities: ['Pro Shop', 'Full-Service Restaurant', 'Snack Bar', 'Driving Range', 'Putting Green'],
+    onSiteDining: ['meadows-restaurant'],
   },
   {
     slug: 'whitehawk-ranch',
@@ -100,6 +102,8 @@ export const courses = [
     ],
     description: 'Whitehawk Ranch Golf Course opened in 1996, designed by Dick Bailey on 550 acres of pristine Mohawk Valley land. Twelve holes play through open meadows along meandering streams; six more climb through forested hillside terrain. Water features, native wildflowers, and elevation changes create a constantly varied round. Winner of four major regional awards including Golf Digest Top 20 in California.',
     bestFor: 'Competitive players, award-winning scenery, serious rounds',
+    facilities: ['Pro Shop', 'All-Grass Driving Range (complimentary balls)', 'Putting Green', 'Snack Bar', 'Full Bar'],
+    onSiteDining: [],
   },
   {
     slug: 'plumas-pines',
@@ -136,6 +140,8 @@ export const courses = [
     ],
     description: 'Plumas Pines Golf Resort, designed by Homer Flint and opened in 1980, sits deep in the pines with tighter fairways than its Graeagle neighbors. Despite playing just 6,504 yards, a slope of 132 means every shot demands precision. The signature second hole features a dramatic green complex looking west over the valley. Outstanding value among the five Graeagle courses.',
     bestFor: 'Shot-makers, value seekers, golfers who want a tough test',
+    facilities: ['Pro Shop', 'Putting Green', 'On-Site Vacation Rentals & Condos'],
+    onSiteDining: [],
   },
   {
     slug: 'grizzly-ranch',
@@ -169,6 +175,8 @@ export const courses = [
     ],
     description: 'Grizzly Ranch Golf Club, designed by Bob Cupp and opened in 2005, is the region\'s most demanding course. At 7,411 yards with a slope of 140 and course rating of 74.9, it plays every inch of its length through dramatic mountain terrain with significant elevation changes, exposed ridgeline holes, and panoramic Sierra views. Semi-private — access is through packages.',
     bestFor: 'Scratch and low-handicap golfers, bucket-list rounds, groups wanting a serious challenge',
+    facilities: ['Pro Shop', '30-Station Natural Turf Practice Range', 'Putting Green', 'Chipping Area', 'Bunker Practice Area'],
+    onSiteDining: ['grizzly-grill'],
   },
   {
     slug: 'nakoma',
@@ -205,6 +213,8 @@ export const courses = [
     ],
     description: 'Nakoma Resort\'s Dragon course, designed by Robin Nelson (creator of the famous Dunes at Mauna Lani) and opened in 1998, debuted as one of Golf World\'s America\'s Top 75 Courses. The course plays 7,015 yards with a fearsome slope of 147 — the most challenging rating in the valley. The Frank Lloyd Wright-designed clubhouse is the only golf clubhouse in the world built to his design.',
     bestFor: 'Architecture enthusiasts, bucket-list golfers, those seeking the most unique experience in Northern California',
+    facilities: ['Frank Lloyd Wright Clubhouse', 'Pro Shop', 'Driving Range', 'Heated Pool', '2 Hot Tubs', 'Spa', 'Gym', 'Arcade / Game Room'],
+    onSiteDining: ['fifty44-restaurant', 'middle-fork-bistro'],
   },
 ];
 
