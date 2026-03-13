@@ -1,341 +1,536 @@
 ---
 import Base from '../layouts/Base.astro';
-import { courses, siteConfig } from '../data/content.js';
+import { courses } from '../data/content.js';
 
-const title = "Golf Graeagle | 5 Championship Courses, One Sierra Valley";
-const description = "Plan your Graeagle golf trip. Five championship courses — Graeagle Meadows, Whitehawk Ranch, Plumas Pines, Grizzly Ranch, and Nakoma The Dragon — all within 25 minutes of each other in the Sierra Nevada.";
+const title = "Golf Graeagle | 5 Championship Courses · Sierra Nevada, California";
+const description = "Plan your Graeagle golf trip. Five championship courses — Graeagle Meadows, Whitehawk Ranch, Plumas Pines, Grizzly Ranch, and Nakoma The Dragon — all within 25 minutes. Golf Digest Top 100. Frank Lloyd Wright clubhouse.";
+
+const courseImages = {
+  'graeagle-meadows': 'https://images.unsplash.com/photo-1587174486073-ae5e5cff23aa?w=800&q=80&auto=format',
+  'whitehawk-ranch':  'https://images.unsplash.com/photo-1535131749006-b7f58c99034b?w=800&q=80&auto=format',
+  'plumas-pines':     'https://images.unsplash.com/photo-1601978810700-bc1c7e0b0292?w=800&q=80&auto=format',
+  'grizzly-ranch':    'https://images.unsplash.com/photo-1592919505780-303950717480?w=800&q=80&auto=format',
+  'nakoma-dragon':    'https://images.unsplash.com/photo-1547347298-4074fc3086f0?w=800&q=80&auto=format',
+};
+const courseBadges = {
+  'graeagle-meadows': { label: 'Golf Digest Best Places to Play', icon: '⭐' },
+  'whitehawk-ranch':  { label: 'Golf Digest Undiscovered Gem', icon: '💎' },
+  'plumas-pines':     { label: 'Same Slope as Augusta National', icon: '🏆' },
+  'grizzly-ranch':    { label: 'Golf Digest Top 100 Nationally', icon: '🥇' },
+  'nakoma-dragon':    { label: 'Frank Lloyd Wright Clubhouse', icon: '🏛️' },
+};
+const priceTier = {
+  'graeagle-meadows': '$$',
+  'whitehawk-ranch':  '$$$',
+  'plumas-pines':     '$$$',
+  'grizzly-ranch':    '$$$$',
+  'nakoma-dragon':    '$$$',
+};
+const diffPill = (d) => {
+  if (d.includes('Beginner')) return 'background:rgba(82,168,98,0.15);color:#78c488;border-color:rgba(82,168,98,0.3)';
+  if (d.includes('Intermediate')) return 'background:rgba(200,136,64,0.15);color:#e8a850;border-color:rgba(200,136,64,0.3)';
+  if (d.includes('Expert')) return 'background:rgba(160,40,40,0.2);color:#f07060;border-color:rgba(160,40,40,0.4)';
+  return 'background:rgba(220,80,60,0.15);color:#f08070;border-color:rgba(220,80,60,0.3)';
+};
 ---
 <Base title={title} description={description}>
 
-  <!-- NAV -->
-  <nav class="fixed top-0 left-0 right-0 z-50 px-6 py-4 flex items-center justify-between backdrop-blur-md bg-slate-950/80 border-b border-white/5">
-    <a href="/" class="font-display text-xl text-white tracking-wide">
-      Golf <span class="text-gold-400">Graeagle</span>
+<!-- NAV -->
+<nav id="sitenav" style="position:fixed;top:0;left:0;right:0;z-index:100;padding:18px 48px;display:flex;align-items:center;justify-content:space-between;transition:all 0.4s ease;">
+  <a href="/" style="font-family:'Playfair Display',serif;font-size:22px;color:#f0f8f2;text-decoration:none;letter-spacing:0.01em;">
+    Golf <span style="color:#e8a850;">Graeagle</span>
+  </a>
+  <div style="display:flex;align-items:center;gap:36px;">
+    <div style="display:flex;gap:28px;font-size:14px;color:rgba(240,248,242,0.65);">
+      <a href="/courses" style="color:inherit;text-decoration:none;transition:color 0.2s" onmouseover="this.style.color='#e8a850'" onmouseout="this.style.color='rgba(240,248,242,0.65)'">Courses</a>
+      <a href="/lodging" style="color:inherit;text-decoration:none;transition:color 0.2s" onmouseover="this.style.color='#e8a850'" onmouseout="this.style.color='rgba(240,248,242,0.65)'">Lodging</a>
+      <a href="/dining" style="color:inherit;text-decoration:none;transition:color 0.2s" onmouseover="this.style.color='#e8a850'" onmouseout="this.style.color='rgba(240,248,242,0.65)'">Dining</a>
+    </div>
+    <a href="/quote" style="background:#e8a850;color:#0d1a0e;font-size:13px;font-weight:600;padding:11px 26px;border-radius:100px;text-decoration:none;transition:all 0.3s;box-shadow:0 4px 16px rgba(232,168,80,0.2);"
+    onmouseover="this.style.background='#f2c878';this.style.transform='translateY(-1px)';this.style.boxShadow='0 8px 24px rgba(232,168,80,0.4)'"
+    onmouseout="this.style.background='#e8a850';this.style.transform='translateY(0)';this.style.boxShadow='0 4px 16px rgba(232,168,80,0.2)'">
+      Plan My Trip →
     </a>
-    <div class="hidden md:flex items-center gap-8 text-sm text-white/70">
-      <a href="/courses" class="hover:text-white transition-colors">Courses</a>
-      <a href="/lodging" class="hover:text-white transition-colors">Lodging</a>
-      <a href="/dining" class="hover:text-white transition-colors">Dining</a>
-      <a href="/blog" class="hover:text-white transition-colors">Blog</a>
-    </div>
-    <a href="/quote" class="bg-gold-500 hover:bg-gold-400 text-slate-950 text-sm font-medium px-5 py-2.5 rounded-full transition-all hover:shadow-lg hover:shadow-gold-500/20">
-      Plan My Trip
-    </a>
-  </nav>
+  </div>
+</nav>
+<script>
+  const nav=document.getElementById('sitenav');
+  window.addEventListener('scroll',()=>{
+    if(window.scrollY>80){
+      nav.style.background='rgba(13,26,14,0.92)';
+      nav.style.backdropFilter='blur(20px)';
+      nav.style.borderBottom='1px solid rgba(232,168,80,0.1)';
+    } else {
+      nav.style.background='transparent';
+      nav.style.backdropFilter='none';
+      nav.style.borderBottom='none';
+    }
+  },{passive:true});
+</script>
 
-  <!-- HERO -->
-  <section class="relative min-h-screen flex items-center justify-center overflow-hidden">
-    <!-- Gradient BG simulating mountain atmosphere -->
-    <div class="absolute inset-0 bg-gradient-to-b from-slate-950 via-forest-900/40 to-slate-950"></div>
-    <div class="absolute inset-0" style="background: radial-gradient(ellipse 80% 60% at 50% 40%, rgba(15,48,15,0.6) 0%, transparent 70%)"></div>
 
-    <!-- Animated grain texture -->
-    <div class="absolute inset-0 opacity-20" style="background-image: url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22200%22 height=%22200%22><filter id=%22noise%22><feTurbulence type=%22fractalNoise%22 baseFrequency=%220.9%22 numOctaves=%224%22 stitchTiles=%22stitch%22/><feColorMatrix type=%22saturate%22 values=%220%22/></filter><rect width=%22200%22 height=%22200%22 filter=%22url(%23noise)%22 opacity=%221%22/></svg>')"></div>
+<!-- ══════════════════════════ HERO ══════════════════════════ -->
+<section style="position:relative;min-height:100vh;display:flex;align-items:center;overflow:hidden;">
 
-    <!-- Decorative circles -->
-    <div class="absolute top-1/3 left-1/4 w-96 h-96 rounded-full bg-forest-600/10 blur-3xl"></div>
-    <div class="absolute bottom-1/3 right-1/4 w-64 h-64 rounded-full bg-gold-500/5 blur-3xl"></div>
+  <!-- BG image with parallax -->
+  <div id="hero-bg" style="position:absolute;inset:-20%;background-image:url('https://images.unsplash.com/photo-1593111774240-d529f12cf4bb?w=1920&q=85&auto=format');background-size:cover;background-position:center 35%;will-change:transform;"></div>
 
-    <div class="relative z-10 text-center px-6 max-w-5xl mx-auto pt-24">
-      <!-- Eyebrow -->
-      <div class="inline-flex items-center gap-2 bg-white/5 border border-white/10 rounded-full px-4 py-1.5 text-xs text-white/60 tracking-widest uppercase mb-8 backdrop-blur-sm">
-        <span class="w-1.5 h-1.5 rounded-full bg-gold-400 animate-pulse"></span>
-        Graeagle, California · Sierra Nevada
-      </div>
+  <!-- Atmospheric overlays — Sierra greens and dawn gold, NOT pure black -->
+  <div style="position:absolute;inset:0;background:linear-gradient(160deg,rgba(13,26,14,0.6) 0%,rgba(22,40,22,0.25) 40%,rgba(13,26,14,0.82) 80%,rgba(13,26,14,1) 100%);"></div>
+  <div style="position:absolute;inset:0;background:radial-gradient(ellipse 100% 60% at 55% 25%,rgba(35,77,44,0.4) 0%,transparent 65%);"></div>
+  <div style="position:absolute;bottom:0;left:0;right:0;height:35%;background:linear-gradient(to top,rgba(42,28,14,0.55),transparent);"></div>
 
-      <!-- Main headline -->
-      <h1 class="font-display text-6xl md:text-8xl lg:text-9xl font-light text-white leading-none mb-6 tracking-tight">
-        Five Courses.<br />
-        <em class="text-gold-400 not-italic">One Valley.</em>
-      </h1>
+  <!-- Grain -->
+  <div style="position:absolute;inset:0;opacity:0.03;background-image:url('data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22n%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.9%22 numOctaves=%224%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23n)%22/%3E%3C/svg%3E');pointer-events:none;"></div>
 
-      <!-- Sub -->
-      <p class="text-lg md:text-xl text-white/60 max-w-2xl mx-auto mb-12 leading-relaxed font-light speakable-intro">
-        Graeagle is Northern California's most concentrated mountain golf destination. 
-        Five championship courses — all within 25 minutes of each other — at a fraction of Tahoe prices.
-      </p>
+  <div style="position:relative;z-index:10;max-width:1200px;margin:0 auto;padding:120px 48px 80px;">
 
-      <!-- CTAs -->
-      <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
-        <a href="/quote" class="group bg-gold-500 hover:bg-gold-400 text-slate-950 font-medium px-8 py-4 rounded-full transition-all duration-300 hover:shadow-2xl hover:shadow-gold-500/30 hover:scale-105 text-base">
-          Plan My Golf Trip
-          <span class="inline-block ml-2 transition-transform group-hover:translate-x-1">→</span>
-        </a>
-        <a href="/courses" class="group border border-white/20 hover:border-white/40 text-white/80 hover:text-white px-8 py-4 rounded-full transition-all duration-300 text-base backdrop-blur-sm">
-          Explore Courses
-        </a>
-      </div>
-
-      <!-- Stats bar -->
-      <div class="mt-20 grid grid-cols-2 md:grid-cols-4 gap-px bg-white/5 rounded-2xl overflow-hidden border border-white/5">
-        {[
-          { num: '5', label: 'Championship Courses' },
-          { num: '25min', label: 'Max Drive Between Courses' },
-          { num: '4,500ft', label: 'Avg Elevation' },
-          { num: '10%', label: 'Extra Distance at Altitude' },
-        ].map(stat => (
-          <div class="bg-slate-950/60 backdrop-blur-sm px-6 py-6 text-center">
-            <div class="font-display text-3xl md:text-4xl text-gold-400 font-light">{stat.num}</div>
-            <div class="text-xs text-white/40 mt-1 tracking-wide">{stat.label}</div>
-          </div>
-        ))}
-      </div>
+    <!-- Eyebrow -->
+    <div class="reveal" style="display:inline-flex;align-items:center;gap:10px;background:rgba(232,168,80,0.1);border:1px solid rgba(232,168,80,0.22);border-radius:100px;padding:8px 18px;margin-bottom:36px;font-size:11px;color:rgba(232,168,80,0.85);letter-spacing:0.12em;text-transform:uppercase;">
+      <span style="width:6px;height:6px;border-radius:50%;background:#e8a850;animation:navpulse 2s infinite;"></span>
+      Sierra Nevada · Graeagle, California · 3,500–5,000 ft
     </div>
 
-    <!-- Scroll indicator -->
-    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-white/20 text-xs tracking-widest uppercase">
-      <span>Scroll</span>
-      <div class="w-px h-12 bg-gradient-to-b from-white/20 to-transparent animate-pulse"></div>
-    </div>
-  </section>
+    <!-- Main headline -->
+    <h1 class="reveal" style="font-family:'Playfair Display',serif;font-size:clamp(60px,8.5vw,116px);font-weight:500;line-height:1.0;color:#f0f8f2;margin:0 0 28px;letter-spacing:-0.025em;transition-delay:0.1s;">
+      Five Courses.<br>
+      <em id="hero-shimmer" style="font-style:italic;">One Valley.</em>
+    </h1>
 
-  <!-- COURSES SECTION -->
-  <section class="py-24 px-6">
-    <div class="max-w-7xl mx-auto">
+    <p class="reveal" style="font-size:clamp(17px,2vw,21px);color:rgba(240,248,242,0.6);max-width:560px;line-height:1.65;margin:0 0 44px;font-weight:300;transition-delay:0.2s;">
+      Northern California's most concentrated mountain golf destination. Championship courses, Sierra altitude, none of the Tahoe crowds or prices.
+    </p>
 
-      <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
-        <div>
-          <p class="text-gold-400 text-sm tracking-widest uppercase mb-3">The Courses</p>
-          <h2 class="font-display text-5xl md:text-6xl text-white font-light leading-tight">
-            Every course.<br />A different world.
-          </h2>
-        </div>
-        <a href="/courses" class="text-white/50 hover:text-white text-sm transition-colors border-b border-white/20 hover:border-white/40 pb-0.5 self-end">
-          View all courses →
-        </a>
-      </div>
-
-      <!-- Course grid -->
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-        {courses.map((course, i) => (
-          <a
-            href={`/courses/${course.slug}`}
-            class={`group relative rounded-2xl overflow-hidden border border-white/5 bg-white/[0.02] hover:bg-white/[0.04] transition-all duration-500 hover:border-white/10 hover:shadow-xl hover:shadow-black/50 ${i === 0 ? 'md:col-span-2' : ''}`}
-          >
-            <!-- Color band by difficulty -->
-            <div class={`absolute top-0 left-0 right-0 h-0.5 ${
-              course.difficulty === 'Advanced–Expert' ? 'bg-red-500' :
-              course.difficulty === 'Advanced' ? 'bg-orange-500' :
-              course.difficulty === 'Intermediate–Advanced' ? 'bg-yellow-500' :
-              'bg-forest-400'
-            }`}></div>
-
-            <div class="p-8">
-              <!-- Header -->
-              <div class="flex items-start justify-between mb-6">
-                <div>
-                  <p class="text-white/30 text-xs tracking-widest uppercase mb-1">{course.type}</p>
-                  <h3 class="font-display text-2xl md:text-3xl text-white font-light group-hover:text-gold-300 transition-colors">
-                    {course.name}
-                  </h3>
-                  <p class="text-white/40 text-sm mt-1">{course.tagline}</p>
-                </div>
-                <div class="text-right shrink-0 ml-4">
-                  <div class="text-xs text-white/30 uppercase tracking-wider">Green Fees</div>
-                  <div class="text-gold-400 font-medium text-sm mt-0.5">{course.greenFeeRange}</div>
-                </div>
-              </div>
-
-              <!-- Stats row -->
-              <div class="grid grid-cols-4 gap-3 mb-6">
-                {[
-                  { label: 'Par', value: course.par },
-                  { label: 'Yards', value: course.yards.toLocaleString() },
-                  { label: 'Slope', value: course.slope },
-                  { label: 'Rating', value: course.rating },
-                ].map(s => (
-                  <div class="bg-white/[0.03] rounded-xl p-3 text-center border border-white/5">
-                    <div class="font-display text-lg text-white">{s.value}</div>
-                    <div class="text-white/30 text-xs mt-0.5">{s.label}</div>
-                  </div>
-                ))}
-              </div>
-
-              <!-- Designer + year -->
-              <div class="flex items-center justify-between text-xs text-white/30">
-                <span>Designed by {course.designer}</span>
-                <span>Est. {course.opened}</span>
-              </div>
-
-              <!-- Hover CTA -->
-              <div class="mt-6 flex items-center gap-2 text-gold-400 text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                <span>View course details</span>
-                <span class="transition-transform group-hover:translate-x-1">→</span>
-              </div>
-            </div>
-          </a>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <!-- WHY GRAEAGLE — AEO COMPARISON -->
-  <section class="py-24 px-6 border-t border-white/5">
-    <div class="max-w-6xl mx-auto">
-      <div class="text-center mb-16">
-        <p class="text-gold-400 text-sm tracking-widest uppercase mb-3">Why Graeagle</p>
-        <h2 class="font-display text-5xl md:text-6xl text-white font-light">
-          The honest comparison.
-        </h2>
-        <p class="text-white/40 mt-4 max-w-xl mx-auto">How Graeagle stacks up against other California golf destinations.</p>
-      </div>
-
-      <div class="overflow-x-auto rounded-2xl border border-white/5">
-        <table class="w-full text-sm">
-          <thead>
-            <tr class="border-b border-white/5">
-              <th class="text-left px-6 py-4 text-white/40 font-normal">Destination</th>
-              <th class="px-6 py-4 text-white/40 font-normal text-center">Avg Green Fee</th>
-              <th class="px-6 py-4 text-white/40 font-normal text-center">Courses Near Each Other</th>
-              <th class="px-6 py-4 text-white/40 font-normal text-center">Summer Heat</th>
-              <th class="px-6 py-4 text-white/40 font-normal text-center">Traffic</th>
-            </tr>
-          </thead>
-          <tbody>
-            {[
-              { dest: 'Graeagle', fee: '$75–$175', density: '5 in 25 min', heat: 'Cool', traffic: 'None', highlight: true },
-              { dest: 'Monterey / Pebble Beach', fee: '$250–$600+', density: 'Spread out', heat: 'Mild', traffic: 'Moderate', highlight: false },
-              { dest: 'Palm Springs', fee: '$75–$350', density: 'Many, spread', heat: '110°F+', traffic: 'Low', highlight: false },
-              { dest: 'Truckee / North Tahoe', fee: '$150–$350', density: 'Scattered', heat: 'Cool', traffic: 'Heavy weekends', highlight: false },
-              { dest: 'Sacramento Valley', fee: '$50–$120', density: 'Moderate', heat: '105°F+', traffic: 'Moderate', highlight: false },
-            ].map(row => (
-              <tr class={`border-b border-white/5 transition-colors ${row.highlight ? 'bg-forest-900/20' : 'hover:bg-white/[0.02]'}`}>
-                <td class="px-6 py-4">
-                  <span class={`font-medium ${row.highlight ? 'text-gold-400' : 'text-white/70'}`}>
-                    {row.highlight && '★ '}{row.dest}
-                  </span>
-                </td>
-                <td class={`px-6 py-4 text-center ${row.highlight ? 'text-white' : 'text-white/50'}`}>{row.fee}</td>
-                <td class={`px-6 py-4 text-center ${row.highlight ? 'text-green-400' : 'text-white/50'}`}>{row.density}</td>
-                <td class={`px-6 py-4 text-center ${row.heat.includes('°') ? 'text-red-400' : row.highlight ? 'text-green-400' : 'text-white/50'}`}>{row.heat}</td>
-                <td class={`px-6 py-4 text-center ${row.traffic.includes('Heavy') ? 'text-red-400' : row.highlight ? 'text-green-400' : 'text-white/50'}`}>{row.traffic}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </section>
-
-  <!-- ALTITUDE CALCULATOR CALLOUT -->
-  <section class="py-16 px-6">
-    <div class="max-w-4xl mx-auto">
-      <div class="rounded-3xl border border-gold-500/20 bg-gradient-to-br from-forest-900/20 to-transparent p-10 md:p-16 text-center relative overflow-hidden">
-        <div class="absolute inset-0 bg-gradient-radial from-gold-500/5 to-transparent"></div>
-        <div class="relative z-10">
-          <p class="text-gold-400 text-sm tracking-widest uppercase mb-4">Altitude Advantage</p>
-          <h2 class="font-display text-4xl md:text-5xl text-white font-light mb-4">
-            Hit it 10% further.<br />Every round.
-          </h2>
-          <p class="text-white/50 max-w-xl mx-auto mb-8">
-            At 3,500–5,000 feet elevation, thinner air means longer carry distances on every shot. 
-            A 150-yard club at sea level plays like 165 yards in Graeagle.
-          </p>
-          <div class="inline-flex items-center gap-6 bg-white/5 rounded-2xl px-8 py-5 border border-white/5 mb-8">
-            <div class="text-center">
-              <div class="font-display text-3xl text-white/50">150<span class="text-sm ml-1">yds</span></div>
-              <div class="text-xs text-white/30 mt-1">At sea level</div>
-            </div>
-            <div class="text-gold-400 text-2xl font-light">→</div>
-            <div class="text-center">
-              <div class="font-display text-3xl text-gold-400">163<span class="text-sm ml-1">yds</span></div>
-              <div class="text-xs text-white/30 mt-1">In Graeagle</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- LODGING TEASER -->
-  <section class="py-24 px-6 border-t border-white/5">
-    <div class="max-w-7xl mx-auto">
-      <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
-        <div>
-          <p class="text-gold-400 text-sm tracking-widest uppercase mb-3">Where To Stay</p>
-          <h2 class="font-display text-5xl md:text-6xl text-white font-light leading-tight">
-            Stay on the fairway.<br />Wake up ready.
-          </h2>
-        </div>
-        <a href="/lodging" class="text-white/50 hover:text-white text-sm transition-colors border-b border-white/20 hover:border-white/40 pb-0.5 self-end">
-          View all lodging →
-        </a>
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-        {[
-          { name: 'River Pines Resort', tagline: 'Family-owned. 62 units. Steps from Plumas Pines.', tag: 'Best for Groups', href: '/lodging/river-pines-resort' },
-          { name: 'Chalet View Lodge', tagline: 'Boutique resort with spa, brewery & mountain views.', tag: 'Best Amenities', href: '/lodging/chalet-view-lodge' },
-          { name: 'The Inn at Nakoma', tagline: 'FLW-designed villas on the Dragon fairway.', tag: 'Most Unique', href: '/lodging/inn-at-nakoma' },
-          { name: 'Townhomes at Plumas Pines', tagline: 'Spacious 2–4BR units with golf course views.', tag: 'Best for Large Groups', href: '/lodging/townhomes-at-plumas-pines' },
-        ].map(lodge => (
-          <a href={lodge.href} class="group rounded-2xl border border-white/5 bg-white/[0.02] hover:bg-white/[0.04] p-8 transition-all duration-300 hover:border-white/10">
-            <div class="inline-block bg-forest-800/50 border border-forest-600/20 text-forest-300 text-xs px-3 py-1 rounded-full mb-4">{lodge.tag}</div>
-            <h3 class="font-display text-2xl text-white font-light group-hover:text-gold-300 transition-colors">{lodge.name}</h3>
-            <p class="text-white/40 text-sm mt-2">{lodge.tagline}</p>
-            <div class="mt-6 text-gold-400 text-sm flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
-              View property →
-            </div>
-          </a>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <!-- FAQ — AEO SECTION -->
-  <section class="py-24 px-6 border-t border-white/5">
-    <div class="max-w-3xl mx-auto">
-      <p class="text-gold-400 text-sm tracking-widest uppercase mb-3 text-center">Common Questions</p>
-      <h2 class="font-display text-5xl text-white font-light text-center mb-16">Plan your trip.</h2>
-
-      <div class="space-y-0 divide-y divide-white/5">
-        {[
-          { q: 'How many golf courses are in Graeagle, California?', a: 'There are five main championship golf courses in the Graeagle area: Graeagle Meadows, Whitehawk Ranch, Plumas Pines, Grizzly Ranch, and Nakoma (The Dragon). All five are within 5–25 minutes of each other.' },
-          { q: 'What is the best golf course in Graeagle?', a: 'Grizzly Ranch Golf Club is ranked in Golf Digest\'s Top 100 courses in the nation and is generally considered the most prestigious. Whitehawk Ranch is often called "the undiscovered gem" and rated 4.2/5 by Golf Digest panelists. Nakoma\'s Dragon course is the most dramatic, with a Frank Lloyd Wright clubhouse and slope rating of 147.' },
-          { q: 'When is the best time to golf in Graeagle?', a: 'The golf season in Graeagle runs from approximately April through November, with peak conditions in June through September. Summer temperatures are mild — typically 75–85°F — making it one of the most comfortable golf destinations in California.' },
-          { q: 'Is Graeagle cheaper than Tahoe for golf?', a: 'Yes. Green fees in Graeagle range from $45–$175, compared to $150–$350+ at comparable courses in the Truckee/Tahoe area. You get equivalent or better course quality at significantly lower cost.' },
-          { q: 'How far is Graeagle from Reno and Lake Tahoe?', a: 'Graeagle is approximately 45–50 minutes from Reno and about 45–55 miles north of Lake Tahoe via Highway 89. It\'s an easy drive from both.' },
-        ].map(faq => (
-          <details class="group py-6 cursor-pointer">
-            <summary class="flex items-center justify-between text-white/80 hover:text-white transition-colors list-none">
-              <h3 class="font-sans text-base font-medium pr-4">{faq.q}</h3>
-              <span class="shrink-0 w-6 h-6 rounded-full border border-white/20 flex items-center justify-center text-white/40 group-open:rotate-45 transition-transform duration-200 text-lg leading-none">+</span>
-            </summary>
-            <p class="mt-4 text-white/50 text-sm leading-relaxed">{faq.a}</p>
-          </details>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <!-- FINAL CTA -->
-  <section class="py-32 px-6">
-    <div class="max-w-3xl mx-auto text-center">
-      <p class="text-gold-400 text-sm tracking-widest uppercase mb-4">Ready to Play</p>
-      <h2 class="font-display text-6xl md:text-7xl text-white font-light mb-6 leading-tight">
-        Your round is<br /><em class="text-gold-400 not-italic">waiting.</em>
-      </h2>
-      <p class="text-white/40 mb-10 text-lg">Tell us your dates, group size, and preferred courses. We'll handle the rest.</p>
-      <a href="/quote" class="group inline-flex items-center gap-3 bg-gold-500 hover:bg-gold-400 text-slate-950 font-medium px-10 py-5 rounded-full transition-all duration-300 hover:shadow-2xl hover:shadow-gold-500/30 hover:scale-105 text-lg">
-        Request a Free Quote
-        <span class="transition-transform group-hover:translate-x-1">→</span>
+    <div class="reveal" style="display:flex;gap:16px;align-items:center;flex-wrap:wrap;margin-bottom:80px;transition-delay:0.3s;">
+      <a href="/quote" style="background:#e8a850;color:#0d1a0e;font-weight:600;font-size:16px;padding:17px 40px;border-radius:100px;text-decoration:none;display:inline-flex;align-items:center;gap:10px;transition:all 0.3s;box-shadow:0 8px 32px rgba(232,168,80,0.25);"
+      onmouseover="this.style.background='#f2c878';this.style.transform='translateY(-2px)';this.style.boxShadow='0 14px 44px rgba(232,168,80,0.45)'"
+      onmouseout="this.style.background='#e8a850';this.style.transform='translateY(0)';this.style.boxShadow='0 8px 32px rgba(232,168,80,0.25)'">
+        Plan My Golf Trip
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
       </a>
-      <p class="text-white/20 text-xs mt-6">No obligation. Response within 24 hours.</p>
+      <a href="/courses" style="border:1px solid rgba(240,248,242,0.22);color:rgba(240,248,242,0.75);font-size:15px;padding:17px 34px;border-radius:100px;text-decoration:none;backdrop-filter:blur(8px);background:rgba(240,248,242,0.04);transition:all 0.3s;"
+      onmouseover="this.style.borderColor='rgba(240,248,242,0.45)';this.style.color='#f0f8f2';this.style.background='rgba(240,248,242,0.08)'"
+      onmouseout="this.style.borderColor='rgba(240,248,242,0.22)';this.style.color='rgba(240,248,242,0.75)';this.style.background='rgba(240,248,242,0.04)'">
+        Explore 5 Courses
+      </a>
     </div>
-  </section>
 
-  <!-- FOOTER -->
-  <footer class="border-t border-white/5 py-12 px-6">
-    <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6 text-white/30 text-sm">
-      <div class="font-display text-base text-white/50">Golf <span class="text-gold-400/70">Graeagle</span></div>
-      <div class="flex gap-6">
-        <a href="/courses" class="hover:text-white/60 transition-colors">Courses</a>
-        <a href="/lodging" class="hover:text-white/60 transition-colors">Lodging</a>
-        <a href="/dining" class="hover:text-white/60 transition-colors">Dining</a>
-        <a href="/quote" class="hover:text-white/60 transition-colors">Get a Quote</a>
-      </div>
-      <div>© 2025 Zoomaway Technologies Inc.</div>
+    <!-- Stats bar -->
+    <div class="reveal" style="display:grid;grid-template-columns:repeat(4,auto);gap:1px;background:rgba(232,168,80,0.1);border:1px solid rgba(232,168,80,0.14);border-radius:18px;overflow:hidden;width:fit-content;transition-delay:0.4s;">
+      {[
+        {num:'5',     suf:'',    label:'Championship Courses'},
+        {num:'25',    suf:' min',label:'Max Between Courses'},
+        {num:'4500',  suf:'ft',  label:'Avg Elevation'},
+        {num:'10',    suf:'%',   label:'Extra Carry Distance'},
+      ].map(s=>(
+        <div style="background:rgba(13,26,14,0.55);padding:22px 30px;text-align:center;backdrop-filter:blur(12px);">
+          <div style="font-family:'Playfair Display',serif;font-size:30px;font-weight:500;color:#e8a850;line-height:1;">
+            <span data-count={s.num}>{s.num}</span>{s.suf}
+          </div>
+          <div style="font-size:10px;color:rgba(240,248,242,0.32);margin-top:6px;letter-spacing:0.07em;text-transform:uppercase;white-space:nowrap;">{s.label}</div>
+        </div>
+      ))}
     </div>
-  </footer>
+  </div>
+
+  <!-- Scroll cue -->
+  <div style="position:absolute;bottom:36px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;color:rgba(240,248,242,0.22);font-size:10px;letter-spacing:0.14em;text-transform:uppercase;z-index:10;">
+    <span>Scroll</span>
+    <div style="width:1px;height:52px;background:linear-gradient(to bottom,rgba(232,168,80,0.45),transparent);animation:navpulse 2s infinite;"></div>
+  </div>
+</section>
+
+<style>
+  @keyframes navpulse{0%,100%{opacity:0.6}50%{opacity:1}}
+  @keyframes shimmer{0%{background-position:0% center}100%{background-position:200% center}}
+  #hero-shimmer{
+    background:linear-gradient(90deg,#e8a850,#f2c878,#c88840,#e8a850);
+    background-size:200% auto;
+    -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+    animation:shimmer 4s linear infinite;
+  }
+</style>
+<script>
+  const bg=document.getElementById('hero-bg');
+  if(bg) window.addEventListener('scroll',()=>{bg.style.transform=`translateY(${window.scrollY*0.28}px)`;},{passive:true});
+</script>
+
+
+<!-- ══════════════ SOCIAL PROOF MARQUEE ══════════════ -->
+<div style="border-top:1px solid rgba(232,168,80,0.1);border-bottom:1px solid rgba(232,168,80,0.1);padding:14px 0;overflow:hidden;background:rgba(42,28,14,0.25);">
+  <div style="display:flex;gap:56px;white-space:nowrap;width:max-content;animation:marqueeScroll 35s linear infinite;">
+    {[
+      '⭐ Golf Digest Best Places to Play','🥇 Golf Digest Top 100 — Grizzly Ranch',
+      '💎 Golf Digest Undiscovered Gem — Whitehawk Ranch','🏛️ Frank Lloyd Wright Clubhouse — Nakoma',
+      '⛳ 5 Championship Courses · 25 Minutes Apart','🏔️ Sierra Nevada · Cool Summers · No Crowds',
+      '🌿 Better value than Tahoe. Better golf than Sacramento.',
+      '⭐ Golf Digest Best Places to Play','🥇 Golf Digest Top 100 — Grizzly Ranch',
+      '💎 Golf Digest Undiscovered Gem — Whitehawk Ranch','🏛️ Frank Lloyd Wright Clubhouse — Nakoma',
+      '⛳ 5 Championship Courses · 25 Minutes Apart','🏔️ Sierra Nevada · Cool Summers · No Crowds',
+      '🌿 Better value than Tahoe. Better golf than Sacramento.',
+    ].map(item=>(
+      <span style="font-size:11px;color:rgba(232,168,80,0.65);letter-spacing:0.09em;text-transform:uppercase;">{item}</span>
+    ))}
+  </div>
+</div>
+<style>
+  @keyframes marqueeScroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+</style>
+
+
+<!-- ══════════════════════ COURSES SECTION ══════════════════════ -->
+<section style="padding:100px 48px;max-width:1480px;margin:0 auto;">
+
+  <div class="reveal" style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:60px;flex-wrap:wrap;gap:24px;">
+    <div>
+      <p style="font-size:11px;color:#e8a850;letter-spacing:0.15em;text-transform:uppercase;margin:0 0 14px;">The Courses</p>
+      <h2 style="font-family:'Playfair Display',serif;font-size:clamp(40px,5.5vw,68px);font-weight:500;color:#f0f8f2;margin:0;line-height:1.05;">
+        Every course,<br><em style="font-style:italic;color:rgba(240,248,242,0.5);">a different world.</em>
+      </h2>
+    </div>
+    <a href="/courses" style="color:rgba(232,168,80,0.75);text-decoration:none;font-size:14px;border-bottom:1px solid rgba(232,168,80,0.25);padding-bottom:4px;transition:all 0.2s;white-space:nowrap;"
+    onmouseover="this.style.color='#e8a850';this.style.borderColor='rgba(232,168,80,0.7)'"
+    onmouseout="this.style.color='rgba(232,168,80,0.75)';this.style.borderColor='rgba(232,168,80,0.25)'">
+      Full comparison table →
+    </a>
+  </div>
+
+  <!-- 5-course layout: 2 top large, 3 bottom medium -->
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:20px;">
+    {courses.slice(0,2).map((course,i)=>{
+      const img=courseImages[course.slug];
+      const badge=courseBadges[course.slug];
+      const tier=priceTier[course.slug];
+      const dp=diffPill(course.difficulty);
+      return(
+      <a href={`/courses/${course.slug}`} class={`reveal ${i===1?'reveal-right':''}`} style={`display:block;text-decoration:none;position:relative;border-radius:22px;overflow:hidden;height:500px;transition:transform 0.4s ease,box-shadow 0.4s ease;box-shadow:0 4px 24px rgba(0,0,0,0.5);transition-delay:${i*0.1}s;`}
+      onmouseover="this.style.transform='translateY(-5px)';this.style.boxShadow='0 24px 64px rgba(0,0,0,0.65)'"
+      onmouseout="this.style.transform='translateY(0)';this.style.boxShadow='0 4px 24px rgba(0,0,0,0.5)'">
+        <img src={img} alt={`${course.name} golf course Graeagle California`} loading="lazy"
+          style="position:absolute;inset:0;width:100%;height:115%;object-fit:cover;object-position:center 40%;transition:transform 7s ease;"
+          onmouseover="this.style.transform='scale(1.07)'" onmouseout="this.style.transform='scale(1)'" />
+        <div style="position:absolute;inset:0;background:linear-gradient(to bottom,rgba(13,26,14,0.04) 0%,rgba(13,26,14,0.12) 30%,rgba(13,26,14,0.6) 60%,rgba(13,26,14,0.97) 100%);"></div>
+        <div style="position:absolute;top:20px;left:20px;right:20px;display:flex;justify-content:space-between;z-index:5;">
+          <span style={`font-size:10px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;padding:5px 13px;border-radius:100px;border:1px solid;${dp}`}>{course.difficulty}</span>
+          <div style="display:flex;gap:8px;">
+            <span style="background:rgba(13,26,14,0.65);border:1px solid rgba(240,248,242,0.08);color:rgba(240,248,242,0.45);font-size:11px;padding:4px 10px;border-radius:100px;backdrop-filter:blur(8px);">{course.type}</span>
+            <span style="background:rgba(232,168,80,0.12);border:1px solid rgba(232,168,80,0.22);color:#e8a850;font-size:13px;font-weight:700;padding:4px 13px;border-radius:100px;">{tier}</span>
+          </div>
+        </div>
+        <div style="position:absolute;bottom:0;left:0;right:0;padding:28px;z-index:5;">
+          <div style="display:inline-flex;align-items:center;gap:7px;background:rgba(13,26,14,0.6);border:1px solid rgba(232,168,80,0.18);border-radius:100px;padding:5px 13px;margin-bottom:14px;backdrop-filter:blur(8px);">
+            <span style="font-size:13px;">{badge.icon}</span>
+            <span style="font-size:10px;color:rgba(232,168,80,0.88);letter-spacing:0.05em;">{badge.label}</span>
+          </div>
+          <h3 style="font-family:'Playfair Display',serif;font-size:clamp(24px,2.8vw,34px);font-weight:500;color:#f0f8f2;margin:0 0 6px;line-height:1.15;">{course.name}</h3>
+          <p style="font-size:13px;color:rgba(240,248,242,0.5);margin:0 0 18px;font-style:italic;">{course.tagline}</p>
+          <div style="display:flex;gap:20px;align-items:center;">
+            {[{l:'Par',v:course.par},{l:'Yards',v:course.yards.toLocaleString()},{l:'Slope',v:course.slope},{l:'Rating',v:course.rating}].map(s=>(
+              <div style="text-align:center;">
+                <div style="font-family:'Playfair Display',serif;font-size:20px;color:#f0f8f2;font-weight:500;line-height:1;">{s.v}</div>
+                <div style="font-size:9px;color:rgba(240,248,242,0.3);text-transform:uppercase;letter-spacing:0.08em;margin-top:2px;">{s.l}</div>
+              </div>
+            ))}
+            <span style="margin-left:auto;font-size:11px;color:rgba(232,168,80,0.65);">View →</span>
+          </div>
+        </div>
+      </a>
+      );
+    })}
+  </div>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px;">
+    {courses.slice(2).map((course,i)=>{
+      const img=courseImages[course.slug];
+      const badge=courseBadges[course.slug];
+      const tier=priceTier[course.slug];
+      const dp=diffPill(course.difficulty);
+      return(
+      <a href={`/courses/${course.slug}`} class={`reveal delay-${i*100}`} style="display:block;text-decoration:none;position:relative;border-radius:20px;overflow:hidden;height:420px;transition:transform 0.4s ease,box-shadow 0.4s ease;box-shadow:0 4px 20px rgba(0,0,0,0.45);"
+      onmouseover="this.style.transform='translateY(-5px)';this.style.boxShadow='0 22px 56px rgba(0,0,0,0.65)'"
+      onmouseout="this.style.transform='translateY(0)';this.style.boxShadow='0 4px 20px rgba(0,0,0,0.45)'">
+        <img src={img} alt={`${course.name} golf course`} loading="lazy"
+          style="position:absolute;inset:0;width:100%;height:115%;object-fit:cover;object-position:center 40%;transition:transform 7s ease;"
+          onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'" />
+        <div style="position:absolute;inset:0;background:linear-gradient(to bottom,rgba(13,26,14,0.04) 0%,rgba(13,26,14,0.55) 55%,rgba(13,26,14,0.97) 100%);"></div>
+        <div style="position:absolute;top:18px;left:18px;right:18px;display:flex;justify-content:space-between;z-index:5;">
+          <span style={`font-size:10px;font-weight:600;letter-spacing:0.09em;text-transform:uppercase;padding:4px 11px;border-radius:100px;border:1px solid;${dp}`}>{course.difficulty}</span>
+          <span style="background:rgba(232,168,80,0.12);border:1px solid rgba(232,168,80,0.22);color:#e8a850;font-size:12px;font-weight:700;padding:4px 12px;border-radius:100px;">{tier}</span>
+        </div>
+        {/* Featured badge for Grizzly (i=1 in slice(2)) */}
+        {i===1&&(
+          <div style="position:absolute;top:50%;right:20px;transform:translateY(-50%);background:rgba(232,168,80,0.12);border:1px solid rgba(232,168,80,0.28);border-radius:14px;padding:14px 18px;z-index:5;backdrop-filter:blur(12px);text-align:center;animation:floatBadge 5s ease-in-out infinite;">
+            <div style="font-size:20px;margin-bottom:5px;">🥇</div>
+            <div style="font-size:9px;color:#e8a850;letter-spacing:0.1em;text-transform:uppercase;font-weight:600;max-width:72px;line-height:1.4;">Golf Digest Top 100</div>
+          </div>
+        )}
+        <div style="position:absolute;bottom:0;left:0;right:0;padding:22px;z-index:5;">
+          <div style="display:inline-flex;align-items:center;gap:6px;background:rgba(13,26,14,0.6);border:1px solid rgba(232,168,80,0.16);border-radius:100px;padding:4px 12px;margin-bottom:10px;backdrop-filter:blur(8px);">
+            <span style="font-size:12px;">{badge.icon}</span>
+            <span style="font-size:9px;color:rgba(232,168,80,0.85);letter-spacing:0.05em;">{badge.label}</span>
+          </div>
+          <h3 style="font-family:'Playfair Display',serif;font-size:clamp(18px,2vw,24px);font-weight:500;color:#f0f8f2;margin:0 0 5px;">{course.name}</h3>
+          <p style="font-size:12px;color:rgba(240,248,242,0.48);margin:0 0 14px;font-style:italic;">{course.tagline}</p>
+          <div style="display:flex;gap:14px;align-items:center;">
+            {[{l:'Par',v:course.par},{l:'Slope',v:course.slope},{l:'Rating',v:course.rating}].map(s=>(
+              <div style="text-align:center;">
+                <div style="font-family:'Playfair Display',serif;font-size:17px;color:#f0f8f2;font-weight:500;line-height:1;">{s.v}</div>
+                <div style="font-size:9px;color:rgba(240,248,242,0.28);text-transform:uppercase;letter-spacing:0.07em;margin-top:2px;">{s.l}</div>
+              </div>
+            ))}
+            <span style="margin-left:auto;font-size:11px;color:rgba(232,168,80,0.6);">View →</span>
+          </div>
+        </div>
+      </a>
+      );
+    })}
+  </div>
+</section>
+<style>
+  @keyframes floatBadge{0%,100%{transform:translateY(-50%) translateY(0)}50%{transform:translateY(-50%) translateY(-8px)}}
+</style>
+
+
+<!-- ══════════════════════ ALTITUDE ══════════════════════ -->
+<section style="position:relative;overflow:hidden;margin:0 48px 80px;border-radius:28px;min-height:480px;">
+  <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=1600&q=80&auto=format"
+    alt="Sierra Nevada mountains" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 60%;" />
+  <div style="position:absolute;inset:0;background:linear-gradient(135deg,rgba(13,26,14,0.94) 0%,rgba(13,26,14,0.75) 50%,rgba(42,28,14,0.88) 100%);"></div>
+
+  <div style="position:relative;z-index:5;padding:72px 64px;display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center;">
+    <div class="reveal-left">
+      <p style="font-size:11px;color:#e8a850;letter-spacing:0.15em;text-transform:uppercase;margin:0 0 16px;">The Altitude Advantage</p>
+      <h2 style="font-family:'Playfair Display',serif;font-size:clamp(34px,4vw,54px);font-weight:500;color:#f0f8f2;margin:0 0 20px;line-height:1.15;">Hit it further.<br>Every single round.</h2>
+      <p style="font-size:15px;color:rgba(240,248,242,0.55);line-height:1.75;margin:0 0 28px;">Thinner Sierra air means 8–10% more carry distance on every shot. That 150-yard approach plays like 163 here. Real distance, every time.</p>
+      <div style="display:flex;flex-direction:column;gap:14px;">
+        {[{c:'7-iron',s:150,g:163},{c:'Driver',s:250,g:272},{c:'5-iron',s:180,g:196}].map(r=>(
+          <div style="display:grid;grid-template-columns:68px 1fr 72px;align-items:center;gap:16px;">
+            <span style="font-size:12px;color:rgba(240,248,242,0.4);text-transform:uppercase;letter-spacing:0.07em;">{r.c}</span>
+            <div style="position:relative;height:3px;background:rgba(240,248,242,0.07);border-radius:2px;">
+              <div style={`width:${(r.s/300)*100}%;height:100%;border-radius:2px;background:rgba(232,168,80,0.35);position:absolute;left:0;top:0;`}></div>
+              <div style={`width:${(r.g/300)*100}%;height:100%;border-radius:2px;background:#e8a850;position:absolute;left:0;top:0;opacity:0.8;`}></div>
+            </div>
+            <span style="font-size:14px;color:#e8a850;font-weight:600;text-align:right;">{r.g} yds</span>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <div class="reveal-right" style="display:flex;justify-content:center;">
+      <div style="position:relative;background:rgba(13,26,14,0.55);border:1px solid rgba(232,168,80,0.14);border-radius:24px;padding:52px 60px;backdrop-filter:blur(16px);text-align:center;">
+        <div style="font-size:11px;color:rgba(240,248,242,0.35);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:28px;">Sea Level vs Graeagle</div>
+        <div style="display:flex;align-items:center;gap:28px;margin-bottom:24px;">
+          <div>
+            <div style="font-family:'Playfair Display',serif;font-size:52px;font-weight:400;color:rgba(240,248,242,0.28);line-height:1;">150</div>
+            <div style="font-size:10px;color:rgba(240,248,242,0.28);text-transform:uppercase;letter-spacing:0.1em;margin-top:4px;">sea level</div>
+          </div>
+          <div style="font-size:24px;color:rgba(232,168,80,0.4);">→</div>
+          <div>
+            <div style="font-family:'Playfair Display',serif;font-size:68px;font-weight:500;color:#e8a850;line-height:1;">163</div>
+            <div style="font-size:10px;color:#e8a850;text-transform:uppercase;letter-spacing:0.1em;margin-top:4px;">in Graeagle</div>
+          </div>
+        </div>
+        <div style="background:rgba(232,168,80,0.08);border:1px solid rgba(232,168,80,0.18);border-radius:12px;padding:12px 20px;">
+          <span style="font-size:13px;color:rgba(232,168,80,0.85);">+8–10% carry at 3,500–5,000 ft elevation</span>
+        </div>
+        <div style="position:absolute;top:-22px;right:-22px;background:#e8a850;color:#0d1a0e;border-radius:50%;width:66px;height:66px;display:flex;flex-direction:column;align-items:center;justify-content:center;font-weight:800;font-size:16px;line-height:1;box-shadow:0 8px 24px rgba(232,168,80,0.45);animation:floatBadge 5s ease-in-out infinite;">
+          <span>+10%</span>
+          <span style="font-size:9px;letter-spacing:0.04em;">CARRY</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════ COMPARISON TABLE ══════════════════════ -->
+<section style="padding:60px 48px 80px;max-width:1100px;margin:0 auto;">
+  <div class="reveal" style="text-align:center;margin-bottom:48px;">
+    <p style="font-size:11px;color:#e8a850;letter-spacing:0.15em;text-transform:uppercase;margin:0 0 14px;">The Honest Comparison</p>
+    <h2 style="font-family:'Playfair Display',serif;font-size:clamp(34px,4.5vw,54px);font-weight:500;color:#f0f8f2;margin:0;line-height:1.15;">
+      Why golfers choose Graeagle<br><em style="font-style:italic;color:rgba(240,248,242,0.48);">over Tahoe and Monterey.</em>
+    </h2>
+  </div>
+  <div class="reveal" style="border:1px solid rgba(232,168,80,0.12);border-radius:20px;overflow:hidden;background:rgba(26,42,26,0.25);">
+    <table style="width:100%;border-collapse:collapse;font-size:14px;">
+      <thead>
+        <tr style="background:rgba(42,28,14,0.55);border-bottom:1px solid rgba(232,168,80,0.1);">
+          <th style="text-align:left;padding:16px 24px;color:rgba(240,248,242,0.4);font-weight:400;font-size:11px;text-transform:uppercase;letter-spacing:0.09em;">Destination</th>
+          <th style="padding:16px 20px;color:rgba(240,248,242,0.4);font-weight:400;font-size:11px;text-transform:uppercase;letter-spacing:0.09em;text-align:center;">Value</th>
+          <th style="padding:16px 20px;color:rgba(240,248,242,0.4);font-weight:400;font-size:11px;text-transform:uppercase;letter-spacing:0.09em;text-align:center;">Course Density</th>
+          <th style="padding:16px 20px;color:rgba(240,248,242,0.4);font-weight:400;font-size:11px;text-transform:uppercase;letter-spacing:0.09em;text-align:center;">Summer Heat</th>
+          <th style="padding:16px 20px;color:rgba(240,248,242,0.4);font-weight:400;font-size:11px;text-transform:uppercase;letter-spacing:0.09em;text-align:center;">Crowds</th>
+        </tr>
+      </thead>
+      <tbody>
+        {[
+          {dest:'★ Graeagle, CA',v:'Exceptional',d:'5 in 25 min',h:'75–85°F',c:'None',hi:true},
+          {dest:'Pebble Beach / Monterey',v:'Expensive',d:'Spread out',h:'Mild & Foggy',c:'Moderate',hi:false},
+          {dest:'Palm Springs',v:'Moderate',d:'Spread out',h:'100–115°F',c:'Low',hi:false},
+          {dest:'Truckee / North Tahoe',v:'Expensive',d:'Scattered',h:'Cool',c:'Very Heavy',hi:false},
+          {dest:'Sacramento Valley',v:'Budget',d:'Moderate',h:'105°F+',c:'Moderate',hi:false},
+        ].map(r=>(
+          <tr style={`border-bottom:1px solid rgba(240,248,242,0.04);${r.hi?'background:rgba(35,77,44,0.2);':''}`}
+            onmouseover={!r.hi?`this.style.background='rgba(240,248,242,0.02)'`:``}
+            onmouseout={!r.hi?`this.style.background='transparent'`:``}>
+            <td style="padding:15px 24px;"><span style={`font-weight:${r.hi?600:400};color:${r.hi?'#e8a850':'rgba(240,248,242,0.65)'};`}>{r.dest}</span></td>
+            <td style={`padding:15px 20px;text-align:center;color:${r.hi?'#78c488':r.v==='Expensive'?'#f08070':'rgba(240,248,242,0.45)'};`}>{r.v}</td>
+            <td style={`padding:15px 20px;text-align:center;color:${r.d.includes('25')?'#78c488':'rgba(240,248,242,0.4)'};`}>{r.d}</td>
+            <td style={`padding:15px 20px;text-align:center;color:${r.h.includes('°')&&parseInt(r.h)>90?'#f08070':r.hi?'#78c488':'rgba(240,248,242,0.4)'};`}>{r.h}</td>
+            <td style={`padding:15px 20px;text-align:center;color:${r.c.includes('Very')?'#f08070':r.hi?'#78c488':'rgba(240,248,242,0.4)'};`}>{r.c}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+</section>
+
+
+<!-- ══════════════════════ LODGING CARDS ══════════════════════ -->
+<section style="padding:60px 48px 80px;max-width:1480px;margin:0 auto;">
+  <div class="reveal" style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:52px;flex-wrap:wrap;gap:20px;">
+    <div>
+      <p style="font-size:11px;color:#e8a850;letter-spacing:0.15em;text-transform:uppercase;margin:0 0 14px;">Where To Stay</p>
+      <h2 style="font-family:'Playfair Display',serif;font-size:clamp(34px,4.5vw,56px);font-weight:500;color:#f0f8f2;margin:0;line-height:1.1;">
+        Stay on the fairway.<br><em style="font-style:italic;color:rgba(240,248,242,0.5);">Wake up ready.</em>
+      </h2>
+    </div>
+    <a href="/lodging" style="color:rgba(232,168,80,0.75);text-decoration:none;font-size:14px;border-bottom:1px solid rgba(232,168,80,0.25);padding-bottom:4px;" onmouseover="this.style.color='#e8a850'" onmouseout="this.style.color='rgba(232,168,80,0.75)'">All lodging →</a>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:18px;">
+    {[
+      {name:'River Pines Resort',tag:'Best for Groups',tc:'rgba(82,168,98,0.18)',tb:'rgba(82,168,98,0.28)',tt:'#78c488',desc:'62 units, pool & hot tub. Home of the Roadhouse Bar & Grill.',img:'https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?w=600&q=80&auto=format'},
+      {name:'Chalet View Lodge',tag:'Best Amenities',tc:'rgba(200,136,64,0.18)',tb:'rgba(200,136,64,0.28)',tt:'#e8a850',desc:'Boutique lodge with full spa, Eureka Peak Brewing, mountain views.',img:'https://images.unsplash.com/photo-1582719508461-905c673771fd?w=600&q=80&auto=format'},
+      {name:'The Inn at Nakoma',tag:'Most Unique',tc:'rgba(80,144,176,0.18)',tb:'rgba(80,144,176,0.28)',tt:'#78b4cc',desc:'FLW-inspired villas on the Dragon\'s 10th fairway. Private hot tubs.',img:'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&q=80&auto=format'},
+      {name:'Townhomes at Plumas Pines',tag:'Best for Large Groups',tc:'rgba(82,168,98,0.14)',tb:'rgba(82,168,98,0.22)',tt:'#78c488',desc:'Spacious 2–4BR. Full kitchens, pools, tennis. Golf views included.',img:'https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=600&q=80&auto=format'},
+    ].map((l,i)=>(
+      <a href="/lodging" class={`reveal delay-${i*100}`} style="display:block;text-decoration:none;border-radius:18px;overflow:hidden;position:relative;height:380px;transition:transform 0.3s ease,box-shadow 0.3s ease;"
+      onmouseover="this.style.transform='translateY(-5px)';this.style.boxShadow='0 20px 50px rgba(0,0,0,0.55)'"
+      onmouseout="this.style.transform='translateY(0)';this.style.boxShadow='none'">
+        <img src={l.img} alt={l.name} loading="lazy" style="position:absolute;inset:0;width:100%;height:115%;object-fit:cover;transition:transform 6s ease;" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'" />
+        <div style="position:absolute;inset:0;background:linear-gradient(to bottom,rgba(13,26,14,0.04) 0%,rgba(13,26,14,0.65) 55%,rgba(13,26,14,0.97) 100%);"></div>
+        <div style="position:absolute;bottom:0;left:0;right:0;padding:22px;z-index:5;">
+          <span style={`display:inline-block;background:${l.tc};border:1px solid ${l.tb};color:${l.tt};font-size:10px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;padding:4px 12px;border-radius:100px;margin-bottom:10px;`}>{l.tag}</span>
+          <h3 style="font-family:'Playfair Display',serif;font-size:20px;font-weight:500;color:#f0f8f2;margin:0 0 6px;">{l.name}</h3>
+          <p style="font-size:12px;color:rgba(240,248,242,0.48);margin:0;line-height:1.5;">{l.desc}</p>
+        </div>
+      </a>
+    ))}
+  </div>
+</section>
+
+
+<!-- ══════════════════ TRIP IDENTITY SECTION ══════════════════ -->
+<section style="padding:60px 48px 80px;max-width:1100px;margin:0 auto;">
+  <div class="reveal" style="text-align:center;margin-bottom:52px;">
+    <p style="font-size:11px;color:#e8a850;letter-spacing:0.15em;text-transform:uppercase;margin:0 0 14px;">Find Your Trip</p>
+    <h2 style="font-family:'Playfair Display',serif;font-size:clamp(32px,4vw,50px);font-weight:500;color:#f0f8f2;margin:0 0 14px;line-height:1.2;">
+      What kind of golfer are you?
+    </h2>
+    <p style="font-size:15px;color:rgba(240,248,242,0.42);margin:0 auto;max-width:440px;">Every trip is different. Tell us yours.</p>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;">
+    {[
+      {icon:'🏌️',type:'The Bucket List Round',desc:'Grizzly Ranch + Nakoma. Two of America\'s most acclaimed courses. Courses that demand your best golf.',courses:'Grizzly Ranch · Nakoma Dragon',href:'/quote?type=bucket-list'},
+      {icon:'👥',type:'The Group Weekend',desc:'4 rounds, 2 days. Built for 8–24 golfers. We handle tee times, lodging, and everything in between.',courses:'All 5 courses available',href:'/quote?type=group'},
+      {icon:'🎯',type:'The First-Timer',desc:'Graeagle Meadows to start easy, Whitehawk Ranch to get hooked. Perfect intro to Sierra golf.',courses:'Graeagle Meadows · Whitehawk Ranch',href:'/quote?type=first-timer'},
+      {icon:'🏆',type:'The Competitor',desc:'Grizzly Ranch slope 140. Dragon slope 147. Every shot tested. No easy holes.',courses:'Grizzly Ranch · Nakoma · Whitehawk',href:'/quote?type=competitive'},
+      {icon:'🎊',type:'The Bachelor Trip',desc:'Golf all day, Eureka Peak Brewing all night. The Inn at Nakoma for the inner circle.',courses:'Custom itinerary',href:'/quote?type=bachelor'},
+      {icon:'🌅',type:'The Quick Getaway',desc:'2 nights, 2 rounds. Graeagle Meadows at sunrise, Whitehawk for the afternoon challenge.',courses:'Graeagle Meadows · Whitehawk Ranch',href:'/quote?type=quick'},
+    ].map((t,i)=>(
+      <a href={t.href} class={`reveal delay-${(i%3)*100}`} style="display:block;text-decoration:none;background:rgba(26,42,26,0.28);border:1px solid rgba(240,248,242,0.055);border-radius:16px;padding:28px;transition:all 0.3s ease;"
+      onmouseover="this.style.background='rgba(26,42,26,0.55)';this.style.borderColor='rgba(232,168,80,0.18)';this.style.transform='translateY(-3px)'"
+      onmouseout="this.style.background='rgba(26,42,26,0.28)';this.style.borderColor='rgba(240,248,242,0.055)';this.style.transform='translateY(0)'">
+        <div style="font-size:28px;margin-bottom:16px;">{t.icon}</div>
+        <h3 style="font-family:'Playfair Display',serif;font-size:18px;font-weight:500;color:#f0f8f2;margin:0 0 10px;">{t.type}</h3>
+        <p style="font-size:13px;color:rgba(240,248,242,0.48);line-height:1.65;margin:0 0 16px;">{t.desc}</p>
+        <div style="font-size:11px;color:rgba(232,168,80,0.6);letter-spacing:0.04em;">{t.courses}</div>
+      </a>
+    ))}
+  </div>
+</section>
+
+
+<!-- ══════════════════════ FAQ ══════════════════════ -->
+<section style="padding:60px 48px 80px;max-width:800px;margin:0 auto;">
+  <div class="reveal" style="text-align:center;margin-bottom:52px;">
+    <p style="font-size:11px;color:#e8a850;letter-spacing:0.15em;text-transform:uppercase;margin:0 0 14px;">Before You Book</p>
+    <h2 style="font-family:'Playfair Display',serif;font-size:clamp(32px,4vw,50px);font-weight:500;color:#f0f8f2;margin:0;">Questions, answered.</h2>
+  </div>
+  <div class="reveal" style="border-top:1px solid rgba(240,248,242,0.06);">
+    {[
+      {q:'How many golf courses are in Graeagle, California?',a:'Five championship courses: Graeagle Meadows, Whitehawk Ranch, Plumas Pines, Grizzly Ranch, and Nakoma (The Dragon). All five are within 5–25 minutes of each other — making Graeagle one of the most golf-dense destinations in California.'},
+      {q:'What is the best golf course in Graeagle?',a:'Grizzly Ranch is ranked in Golf Digest\'s Top 100 nationwide and is the most prestigious. Whitehawk Ranch is Golf Digest\'s "undiscovered gem" with a 4.2/5 panelist rating. Nakoma\'s Dragon course is the most dramatic, with the world\'s only Frank Lloyd Wright golf clubhouse and a slope of 147.'},
+      {q:'Is Graeagle golf cheaper than Lake Tahoe?',a:'Significantly. Comparable courses in Truckee/Tahoe cost $150–$350+. Graeagle\'s courses deliver equivalent or better quality at a lower price point — making it the smarter choice for multi-round group trips.'},
+      {q:'When is the best time to golf in Graeagle?',a:'June through September offers peak conditions — 75–85°F, low wind, dry fairways. The full season runs April through November. Most courses close for winter once snow arrives.'},
+      {q:'How far is Graeagle from Reno and Lake Tahoe?',a:'About 45–50 minutes from Reno via US-395 and CA-70. Approximately 55 miles north of Lake Tahoe via Highway 89 — a scenic 50-minute drive through the Sierra Nevada.'},
+      {q:'Can I play multiple courses in one trip?',a:'Absolutely — it\'s the whole point. Most golf groups play 2–4 courses over a weekend. Because all five courses are within a 25-minute radius, there\'s no wasted driving time between rounds.'},
+    ].map((faq,i)=>(
+      <details class="reveal" style={`border-bottom:1px solid rgba(240,248,242,0.06);transition-delay:${i*40}ms;`}>
+        <summary style="display:flex;align-items:center;justify-content:space-between;padding:22px 0;cursor:pointer;list-style:none;color:rgba(240,248,242,0.78);transition:color 0.2s;"
+        onmouseover="this.style.color='#f0f8f2'" onmouseout="this.style.color='rgba(240,248,242,0.78)'">
+          <h3 style="font-size:15px;font-weight:500;margin:0;padding-right:20px;line-height:1.4;">{faq.q}</h3>
+          <span class="faq-plus" style="flex-shrink:0;width:28px;height:28px;border-radius:50%;border:1px solid rgba(232,168,80,0.22);display:flex;align-items:center;justify-content:center;color:rgba(232,168,80,0.55);font-size:18px;line-height:1;transition:transform 0.3s;">+</span>
+        </summary>
+        <p style="font-size:14px;color:rgba(240,248,242,0.48);line-height:1.78;padding:0 0 22px;margin:0;">{faq.a}</p>
+      </details>
+    ))}
+  </div>
+</section>
+<style>details[open]>.faq-plus,details[open] summary .faq-plus{transform:rotate(45deg);}</style>
+
+
+<!-- ══════════════════════ FINAL CTA ══════════════════════ -->
+<section style="position:relative;overflow:hidden;margin:0 48px 80px;border-radius:28px;min-height:500px;display:flex;align-items:center;justify-content:center;">
+  <img src="https://images.unsplash.com/photo-1540979388789-6cee28a1cdc9?w=1600&q=80&auto=format"
+    alt="Sierra Nevada golf sunset" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 35%;" />
+  <div style="position:absolute;inset:0;background:linear-gradient(135deg,rgba(13,26,14,0.94) 0%,rgba(42,28,14,0.88) 100%);"></div>
+  <div style="position:relative;z-index:5;text-align:center;padding:80px 40px;max-width:640px;">
+    <div class="reveal" style="display:inline-flex;align-items:center;gap:8px;background:rgba(232,168,80,0.1);border:1px solid rgba(232,168,80,0.2);border-radius:100px;padding:8px 18px;margin-bottom:28px;font-size:11px;color:rgba(232,168,80,0.82);letter-spacing:0.1em;text-transform:uppercase;animation:floatBadge 5s ease-in-out infinite;">
+      <span style="width:5px;height:5px;border-radius:50%;background:#e8a850;animation:navpulse 2s infinite;"></span>
+      2025 season reservations open
+    </div>
+    <h2 class="reveal delay-100" style="font-family:'Playfair Display',serif;font-size:clamp(40px,6vw,72px);font-weight:500;color:#f0f8f2;margin:0 0 20px;line-height:1.08;letter-spacing:-0.01em;">
+      Your round is<br><em style="font-style:italic;color:#e8a850;">waiting.</em>
+    </h2>
+    <p class="reveal delay-200" style="font-size:16px;color:rgba(240,248,242,0.48);line-height:1.7;margin:0 0 40px;">Tell us your dates, group size, and dream courses.<br>We handle tee times, lodging, and everything between.</p>
+    <a class="reveal delay-300" href="/quote" style="display:inline-flex;align-items:center;gap:10px;background:#e8a850;color:#0d1a0e;font-weight:600;font-size:16px;padding:18px 46px;border-radius:100px;text-decoration:none;transition:all 0.3s;box-shadow:0 8px 32px rgba(232,168,80,0.3);"
+    onmouseover="this.style.background='#f2c878';this.style.transform='translateY(-3px)';this.style.boxShadow='0 16px 48px rgba(232,168,80,0.5)'"
+    onmouseout="this.style.background='#e8a850';this.style.transform='translateY(0)';this.style.boxShadow='0 8px 32px rgba(232,168,80,0.3)'">
+      Request a Free Quote
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
+    <p class="reveal delay-400" style="font-size:12px;color:rgba(240,248,242,0.2);margin-top:18px;">No obligation · Response within 24 hours · Free trip planning</p>
+  </div>
+</section>
+
+
+<!-- ══════════════════════ FOOTER ══════════════════════ -->
+<footer style="border-top:1px solid rgba(240,248,242,0.05);padding:52px 48px;">
+  <div style="max-width:1200px;margin:0 auto;">
+    <div style="display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:40px;margin-bottom:40px;">
+      <div>
+        <div style="font-family:'Playfair Display',serif;font-size:24px;color:#f0f8f2;margin-bottom:10px;">Golf <span style="color:#e8a850;">Graeagle</span></div>
+        <p style="font-size:13px;color:rgba(240,248,242,0.32);max-width:240px;line-height:1.65;margin:0;">Your guide to the best golf in California's Sierra Nevada mountains.</p>
+      </div>
+      <div style="display:flex;gap:64px;flex-wrap:wrap;">
+        <div>
+          <p style="font-size:11px;color:rgba(232,168,80,0.55);text-transform:uppercase;letter-spacing:0.1em;margin:0 0 14px;font-weight:600;">Courses</p>
+          {courses.map(c=>(<a href={`/courses/${c.slug}`} style="display:block;font-size:13px;color:rgba(240,248,242,0.35);text-decoration:none;margin-bottom:9px;transition:color 0.2s;" onmouseover="this.style.color='rgba(240,248,242,0.75)'" onmouseout="this.style.color='rgba(240,248,242,0.35)'">{c.name}</a>))}
+        </div>
+        <div>
+          <p style="font-size:11px;color:rgba(232,168,80,0.55);text-transform:uppercase;letter-spacing:0.1em;margin:0 0 14px;font-weight:600;">Plan</p>
+          {[['Lodging','/lodging'],['Dining','/dining'],['Request Quote','/quote']].map(([l,h])=>(<a href={h} style="display:block;font-size:13px;color:rgba(240,248,242,0.35);text-decoration:none;margin-bottom:9px;transition:color 0.2s;" onmouseover="this.style.color='rgba(240,248,242,0.75)'" onmouseout="this.style.color='rgba(240,248,242,0.35)'">{l}</a>))}
+        </div>
+      </div>
+    </div>
+    <div style="border-top:1px solid rgba(240,248,242,0.05);padding-top:24px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;">
+      <p style="font-size:12px;color:rgba(240,248,242,0.18);margin:0;">© 2025 Zoomaway Technologies Inc. All rights reserved.</p>
+      <div style="display:flex;gap:20px;">
+        {[['Privacy','/privacy-policy'],['Terms','/terms-and-conditions'],['Cancellation','/cancellation-policy']].map(([l,h])=>(<a href={h} style="font-size:12px;color:rgba(240,248,242,0.18);text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='rgba(240,248,242,0.45)'" onmouseout="this.style.color='rgba(240,248,242,0.18)'">{l}</a>))}
+      </div>
+    </div>
+  </div>
+</footer>
 
 </Base>

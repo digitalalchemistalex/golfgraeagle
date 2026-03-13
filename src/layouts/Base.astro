@@ -24,21 +24,12 @@ const baseSchema = {
       "description": siteConfig.description,
       "email": siteConfig.email,
       "areaServed": "Graeagle, California",
-      "sameAs": [
-        "https://golfgraeagle.com"
-      ]
     },
     {
       "@type": "WebSite",
       "@id": `${siteConfig.url}/#website`,
       "url": siteConfig.url,
       "name": siteConfig.name,
-      "publisher": { "@id": `${siteConfig.url}/#organization` },
-      "potentialAction": {
-        "@type": "SearchAction",
-        "target": `${siteConfig.url}/courses?q={search_term_string}`,
-        "query-input": "required name=search_term_string"
-      }
     },
     ...(schema ? [schema] : [])
   ]
@@ -54,33 +45,90 @@ const baseSchema = {
   <link rel="canonical" href={canonicalUrl} />
   {noindex && <meta name="robots" content="noindex, nofollow" />}
   {!noindex && <meta name="robots" content="index, follow" />}
-
-  <!-- Open Graph -->
   <meta property="og:title" content={title} />
   <meta property="og:description" content={description} />
   <meta property="og:url" content={canonicalUrl} />
   <meta property="og:type" content="website" />
   <meta property="og:image" content={ogImage} />
-  <meta property="og:image:width" content="1200" />
-  <meta property="og:image:height" content="630" />
   <meta property="og:site_name" content={siteConfig.name} />
-  <meta property="og:locale" content="en_US" />
-
-  <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content={title} />
   <meta name="twitter:description" content={description} />
   <meta name="twitter:image" content={ogImage} />
-
-  <!-- Fonts -->
+  <!-- Fonts: Playfair Display for headlines, Inter for body -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
-
-  <!-- Schema -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600&family=Libre+Baskerville:ital@0;1&display=swap" rel="stylesheet" />
   <script type="application/ld+json" set:html={JSON.stringify(baseSchema)} />
 </head>
-<body class="bg-slate-950 text-white font-sans antialiased">
+<body style="background:#0d1a0e; color:#f0f8f2; font-family:'Inter',system-ui,sans-serif; -webkit-font-smoothing:antialiased;">
   <slot />
+
+  <!-- Scroll reveal engine -->
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+
+    document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => {
+      observer.observe(el);
+    });
+
+    // Parallax on scroll
+    const parallaxEls = document.querySelectorAll('[data-parallax]');
+    if (parallaxEls.length) {
+      window.addEventListener('scroll', () => {
+        const scrollY = window.scrollY;
+        parallaxEls.forEach(el => {
+          const speed = parseFloat(el.dataset.parallax) || 0.3;
+          const rect = el.getBoundingClientRect();
+          const offset = (rect.top + scrollY) * speed * -1;
+          el.style.transform = `translateY(${offset * 0.15}px)`;
+        });
+      }, { passive: true });
+    }
+
+    // Cursor glow follow
+    document.querySelectorAll('.glow-card').forEach(card => {
+      card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        const glow = card.querySelector('.glow-card::before');
+        card.style.setProperty('--glow-x', x + 'px');
+        card.style.setProperty('--glow-y', y + 'px');
+      });
+    });
+
+    // Counter animation
+    const counters = document.querySelectorAll('[data-count]');
+    const countObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && !entry.target.dataset.counted) {
+          entry.target.dataset.counted = 'true';
+          const target = parseFloat(entry.target.dataset.count);
+          const duration = 2000;
+          const isDecimal = entry.target.dataset.count.includes('.');
+          const start = performance.now();
+          const animate = (now) => {
+            const elapsed = now - start;
+            const progress = Math.min(elapsed / duration, 1);
+            const eased = 1 - Math.pow(1 - progress, 3);
+            const current = target * eased;
+            entry.target.textContent = isDecimal
+              ? current.toFixed(1)
+              : Math.floor(current).toLocaleString();
+            if (progress < 1) requestAnimationFrame(animate);
+          };
+          requestAnimationFrame(animate);
+        }
+      });
+    }, { threshold: 0.5 });
+    counters.forEach(c => countObserver.observe(c));
+  </script>
 </body>
 </html>
