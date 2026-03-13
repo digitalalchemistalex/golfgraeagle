@@ -331,6 +331,69 @@ export const lodging = [
   },
 ];
 
+// ─────────────────────────────────────────────────────────────
+// PROXIMITY MAP — bidirectional course ↔ lodging relationships
+// Used by course pages (where to stay) and lodging page (nearby courses)
+// ─────────────────────────────────────────────────────────────
+export const courseToLodging = {
+  'graeagle-meadows': [
+    { slug: 'river-pines-resort',        dist: 'Walking distance',  distNote: '~5 min on foot' },
+    { slug: 'chalet-view-lodge',         dist: '5 min drive',       distNote: 'Via Hwy 89 S' },
+    { slug: 'townhomes-at-plumas-pines', dist: '10 min drive',      distNote: 'Via CA-89 S' },
+  ],
+  'whitehawk-ranch': [
+    { slug: 'chalet-view-lodge',         dist: '8 min drive',       distNote: 'Via Hwy 89' },
+    { slug: 'river-pines-resort',        dist: '10 min drive',      distNote: 'Via Hwy 89' },
+    { slug: 'townhomes-at-plumas-pines', dist: '12 min drive',      distNote: 'Via CA-89' },
+  ],
+  'plumas-pines': [
+    { slug: 'townhomes-at-plumas-pines', dist: 'On property',       distNote: 'Steps from 1st tee' },
+    { slug: 'river-pines-resort',        dist: '5 min drive',       distNote: 'Via Hwy 89' },
+    { slug: 'chalet-view-lodge',         dist: '10 min drive',      distNote: 'Via Hwy 89 S' },
+  ],
+  'grizzly-ranch': [
+    { slug: 'inn-at-nakoma',             dist: '20 min drive',      distNote: 'Via Hwy 89 S' },
+    { slug: 'chalet-view-lodge',         dist: '22 min drive',      distNote: 'Via Grizzly Rd' },
+    { slug: 'river-pines-resort',        dist: '20 min drive',      distNote: 'Via Hwy 70 W' },
+  ],
+  'nakoma': [
+    { slug: 'inn-at-nakoma',             dist: 'On property',       distNote: 'Walk to 1st tee' },
+    { slug: 'chalet-view-lodge',         dist: '15 min drive',      distNote: 'Via Hwy 89 N' },
+    { slug: 'river-pines-resort',        dist: '18 min drive',      distNote: 'Via Hwy 89 N' },
+  ],
+};
+
+export const lodgingToCourses = {
+  'river-pines-resort': [
+    { slug: 'graeagle-meadows', dist: 'Walking distance', distNote: '~5 min on foot' },
+    { slug: 'plumas-pines',     dist: '5 min drive',      distNote: 'Via Hwy 89' },
+    { slug: 'whitehawk-ranch',  dist: '10 min drive',     distNote: 'Via Hwy 89 N' },
+    { slug: 'nakoma',           dist: '18 min drive',     distNote: 'Via Hwy 89 S' },
+    { slug: 'grizzly-ranch',    dist: '20 min drive',     distNote: 'Via Hwy 70 E' },
+  ],
+  'chalet-view-lodge': [
+    { slug: 'graeagle-meadows', dist: '5 min drive',      distNote: 'Via Hwy 89 N' },
+    { slug: 'whitehawk-ranch',  dist: '8 min drive',      distNote: 'Via Hwy 89 N' },
+    { slug: 'plumas-pines',     dist: '10 min drive',     distNote: 'Via CA-89 N' },
+    { slug: 'nakoma',           dist: '15 min drive',     distNote: 'Via Hwy 89 S' },
+    { slug: 'grizzly-ranch',    dist: '22 min drive',     distNote: 'Via Grizzly Rd' },
+  ],
+  'inn-at-nakoma': [
+    { slug: 'nakoma',           dist: 'On property',      distNote: 'Walk to 1st tee' },
+    { slug: 'grizzly-ranch',    dist: '20 min drive',     distNote: 'Via Hwy 89 N' },
+    { slug: 'whitehawk-ranch',  dist: '20 min drive',     distNote: 'Via Hwy 89 N' },
+    { slug: 'plumas-pines',     dist: '22 min drive',     distNote: 'Via Hwy 89 N' },
+    { slug: 'graeagle-meadows', dist: '25 min drive',     distNote: 'Via Hwy 89 N' },
+  ],
+  'townhomes-at-plumas-pines': [
+    { slug: 'plumas-pines',     dist: 'Steps away',       distNote: 'On the course property' },
+    { slug: 'graeagle-meadows', dist: '10 min drive',     distNote: 'Via CA-89 N' },
+    { slug: 'whitehawk-ranch',  dist: '12 min drive',     distNote: 'Via CA-89 N' },
+    { slug: 'nakoma',           dist: '18 min drive',     distNote: 'Via Hwy 89 S' },
+    { slug: 'grizzly-ranch',    dist: '22 min drive',     distNote: 'Via Hwy 70 E' },
+  ],
+};
+
 export const dining = [
   // ─── Fine Dining ───────────────────────────────────────
   {

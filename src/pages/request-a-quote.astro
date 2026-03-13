@@ -3,14 +3,50 @@ export const prerender = true;
 import Base from '../layouts/Base.astro';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
+import { siteConfig } from '../data/content.js';
 
 const preselected = Astro.url.searchParams.get('course') || '';
 const courseName  = Astro.url.searchParams.get('courseName') || '';
+
+const breadcrumbSchema = {
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": siteConfig.url },
+    { "@type": "ListItem", "position": 2, "name": "Request a Quote", "item": `${siteConfig.url}/request-a-quote` }
+  ]
+};
+
+const faqSchema = {
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How much does a Graeagle golf package cost?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Graeagle golf packages from GolfGraeagle.com start from $299 per golfer and vary based on courses selected, lodging type, group size, and number of nights. Request a quote for a custom price based on your specific trip." }
+    },
+    {
+      "@type": "Question",
+      "name": "How quickly will I get a quote response?",
+      "acceptedAnswer": { "@type": "Answer", "text": "GolfGraeagle responds to all quote requests within 24 hours. For urgent or last-minute bookings, call directly at +1-888-586-1157." }
+    },
+    {
+      "@type": "Question",
+      "name": "What is included in a Graeagle stay-and-play package?",
+      "acceptedAnswer": { "@type": "Answer", "text": "GolfGraeagle stay-and-play packages include guaranteed tee times at your chosen courses, lodging coordination, and full trip planning. Transportation and dining coordination are available as add-ons." }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the cancellation policy?",
+      "acceptedAnswer": { "@type": "Answer", "text": "GolfGraeagle offers a 72-hour cancellation window for standard bookings. Large group outings are governed by individual group contracts. Vendor cancellation policies are passed through to customers." }
+    }
+  ]
+};
 ---
 
 <Base
-  title="Request a Graeagle Golf Package Quote | GolfGraeagle.com"
+  title="Request a Quote | Graeagle Golf Packages | Stay & Play from $299 and up per golfer"
   description="Plan your Graeagle golf trip. Group size, dates, courses, lodging — tell us everything and we'll build a custom stay-and-play package. Free, no obligation, 24-hour response."
+  schema={[breadcrumbSchema, faqSchema]}
 >
   <Nav />
 
