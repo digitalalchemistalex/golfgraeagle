@@ -38,7 +38,7 @@ All five courses are within 5–25 minutes of each other.
    Golf Digest Top 100 Greatest Public Courses in US (2021)
    Address: 250 Clubhouse Dr, Portola, CA
 
-5. Nakoma — The Dragon Golf Course — /courses/nakoma-dragon
+5. Nakoma — The Dragon Golf Course — /courses/nakoma
    Par 72 | 7,015 yards | Slope 147 | Rating 73.4
    Designer: Robin Nelson & Neil Haworth | Opened: 1998 | Type: Public/Resort
    Golf World America's Top 75 Courses at debut.
@@ -82,7 +82,7 @@ All five courses are within 5–25 minutes of each other.
 - /courses/whitehawk-ranch — Whitehawk Ranch detail page
 - /courses/plumas-pines — Plumas Pines detail page
 - /courses/grizzly-ranch — Grizzly Ranch detail page
-- /courses/nakoma-dragon — Nakoma Dragon detail page
+- /courses/nakoma — Nakoma Dragon detail page
 - /lodging — All lodging options with comparison
 - /dining — Restaurants, breweries, and bars near courses
 - /quote — Request a free golf trip quote
