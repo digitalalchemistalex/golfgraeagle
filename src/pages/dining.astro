@@ -142,11 +142,33 @@ const quickBites  = dining.filter(d => d.category === 'quick');
   /* ── Utility ── */
   .page-wrap { max-width: 1280px; margin: 0 auto; padding: 0 48px; }
   .divider { border: none; border-top: 1px solid rgba(240,248,242,0.05); margin: 0; }
+  /* grid utility classes — responsive */
+  .grid-fine-dining { display: grid; grid-template-columns: 1.3fr 1fr 1fr; gap: 14px; }
+  .grid-on-course   { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .grid-casual      { display: grid; grid-template-columns: repeat(3,1fr); gap: 14px; }
+  .grid-brewery     { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .grid-quick       { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .grid-matrix      { display: grid; grid-template-columns: repeat(5,1fr); gap: 10px; }
+
+  @media (max-width: 860px) {
+    .grid-fine-dining { grid-template-columns: 1fr 1fr; }
+    .grid-casual      { grid-template-columns: 1fr 1fr; }
+    .grid-matrix      { grid-template-columns: repeat(3,1fr); }
+  }
   @media (max-width: 768px) {
-    .decision-rail { grid-template-columns: 1fr; padding: 40px 24px; }
-    .page-wrap { padding: 0 24px; }
+    .decision-rail    { grid-template-columns: 1fr; padding: 40px 24px; }
+    .page-wrap        { padding: 0 24px; }
     .dining-hero-content { padding: 0 24px 56px; }
-    .cta-band { padding: 72px 24px; }
+    .cta-band         { padding: 72px 24px; }
+    .grid-fine-dining { grid-template-columns: 1fr; }
+    .grid-on-course   { grid-template-columns: 1fr; }
+    .grid-casual      { grid-template-columns: 1fr; }
+    .grid-brewery     { grid-template-columns: 1fr; }
+    .grid-quick       { grid-template-columns: 1fr; }
+    .grid-matrix      { grid-template-columns: repeat(2,1fr); }
+  }
+  @media (max-width: 480px) {
+    .grid-matrix      { grid-template-columns: 1fr; }
   }
 </style>
 
@@ -215,7 +237,7 @@ const quickBites  = dining.filter(d => d.category === 'quick');
       </div>
       <p style="font-size:13px;color:rgba(240,248,242,0.28);max-width:300px;text-align:right;line-height:1.6;">Book ahead. These fill up fast in summer. Worth every mile.</p>
     </div>
-    <div style="display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:14px;" class="reveal">
+    <div class="grid-fine-dining reveal">
       {fineDining.map((v, i) => (
         <div class="img-card" style={i === 0 ? 'grid-row: span 1' : ''}>
           <img class="thumb" src={v.hero} alt={v.name} style={`height:${i===0?'260px':'220px'}`} loading={i===0?'eager':'lazy'} />
@@ -243,7 +265,7 @@ const quickBites  = dining.filter(d => d.category === 'quick');
       <h2 class="sec-h2" style="margin-bottom:10px;">Don't even change your shoes.</h2>
       <p style="font-size:15px;color:rgba(240,248,242,0.38);max-width:500px;line-height:1.7;">Two restaurants are physically on the courses you're already playing. Walk off the 18th and walk straight in.</p>
     </div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;" class="reveal">
+    <div class="grid-on-course reveal">
       {[
         {
           name:'Grizzly Grill', sub:'At Grizzly Ranch Golf Club',
@@ -293,7 +315,7 @@ const quickBites  = dining.filter(d => d.category === 'quick');
       <h2 class="sec-h2" style="margin-bottom:10px;">The everyday favourites.</h2>
       <p style="font-size:15px;color:rgba(240,248,242,0.38);max-width:500px;line-height:1.7;">Local staples that have been feeding golfers for years. No fuss, no reservation — just good food and a cold drink.</p>
     </div>
-    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px;" class="reveal">
+    <div class="grid-casual reveal">
       {casual.filter(v=>v.slug!=='meadows-restaurant').map(v=>(
         <div class="img-card">
           <img class="thumb" src={v.hero} alt={v.name} loading="lazy" />
@@ -318,7 +340,7 @@ const quickBites  = dining.filter(d => d.category === 'quick');
       <h2 class="sec-h2" style="margin-bottom:10px;">The après-golf scene.</h2>
       <p style="font-size:15px;color:rgba(240,248,242,0.38);max-width:500px;line-height:1.7;">Four options from craft brewery to century-old mountain tavern. All cold, all welcome, all post-round perfect.</p>
     </div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;" class="reveal">
+    <div class="grid-brewery reveal">
       {breweries.map(v=>(
         <div class="brewery-row">
           <img class="thumb" src={v.hero} alt={v.name} style="height:100%;min-height:120px;" loading="lazy" />
@@ -345,7 +367,7 @@ const quickBites  = dining.filter(d => d.category === 'quick');
       <p class="sec-label">Quick Bites</p>
       <h2 class="sec-h2">Fuel for the round.</h2>
     </div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;" class="reveal">
+    <div class="grid-quick reveal">
       {quickBites.map(v=>(
         <div style="display:flex;align-items:center;gap:16px;padding:18px 20px;border-radius:14px;background:rgba(240,248,242,0.02);border:1px solid rgba(240,248,242,0.05);">
           <img src={v.hero} alt={v.name} style="width:68px;height:68px;border-radius:10px;object-fit:cover;flex-shrink:0;" loading="lazy" />
@@ -371,7 +393,7 @@ const quickBites  = dining.filter(d => d.category === 'quick');
       <h2 class="sec-h2" style="font-size:clamp(32px,4vw,46px);margin-bottom:12px;">Where to eat after each course.</h2>
       <p style="font-size:15px;color:rgba(240,248,242,0.32);max-width:440px;margin:0 auto;line-height:1.7;">Every course has perfect nearby dining. Here's the play for each round.</p>
     </div>
-    <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:10px;" class="reveal">
+    <div class="grid-matrix reveal">
       {[
         { emoji:'🌿', course:'Graeagle Meadows', slug:'graeagle-meadows', dining:["Meadows Restaurant","Roadhouse at River Pines","Longboards"] },
         { emoji:'🦅', course:'Whitehawk Ranch',  slug:'whitehawk-ranch',  dining:["Sardine Lake Resort","Iron Door Restaurant","The Brewing Lair"] },

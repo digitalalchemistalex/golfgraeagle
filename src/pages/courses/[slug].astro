@@ -57,8 +57,27 @@ const { course: c } = Astro.props;
   </div>
 </div>
 
-<div style="background:#0d1a0e;padding:80px 10%;">
-  <div style="max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 380px;gap:64px;">
+<style>
+  .course-body { background: #0d1a0e; padding: clamp(40px, 8vw, 80px) clamp(20px, 10%, 10%); }
+  .course-layout { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 380px; gap: 64px; }
+  .photo-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 8px; }
+  @media (max-width: 900px) {
+    .course-layout { grid-template-columns: 1fr; }
+    /* Sidebar goes below content on mobile */
+    .course-sidebar { order: -1; }
+    /* Unstick the sidebar */
+    .course-sidebar-inner { position: static !important; }
+  }
+  @media (max-width: 640px) {
+    .photo-grid { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 400px) {
+    .photo-grid { grid-template-columns: 1fr; }
+  }
+</style>
+
+<div class="course-body">
+  <div class="course-layout">
 
     <!-- LEFT: Content -->
     <div>
@@ -85,7 +104,7 @@ const { course: c } = Astro.props;
       {c.images.length > 1 && (
         <div class="reveal" style="margin-bottom:56px;">
           <h2 style="font-family:'Playfair Display',serif;font-size:24px;color:#f0f8f2;margin:0 0 20px;">Course Photos</h2>
-          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;">
+          <div class="photo-grid">
             {c.images.slice(0,6).map((img,i) => (
               <div style={`border-radius:${i===0?'16px 4px 4px 4px':i===2?'4px 16px 4px 4px':i===3?'4px 4px 4px 16px':i===5?'4px 4px 16px 4px':'4px'};overflow:hidden;aspect-ratio:4/3;`}>
                 <img src={img} alt={`${c.name} — hole ${i+1}`} loading="lazy"
