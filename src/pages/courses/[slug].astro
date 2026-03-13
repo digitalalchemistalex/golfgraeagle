@@ -94,51 +94,136 @@ const faqSchema = {
 >
 <Nav />
 
-<!-- HERO with real course photo -->
-<section style="position:relative;height:90vh;min-height:560px;overflow:hidden;display:flex;align-items:flex-end;">
-  <div style="position:absolute;inset:0;">
-    <img src={c.hero} alt={`${c.name} Golf Course — Graeagle, California`}
-      style="width:100%;height:100%;object-fit:cover;" loading="eager"/>
-    <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(13,26,14,1) 0%,rgba(13,26,14,0.5) 40%,rgba(13,26,14,0.15) 70%,transparent 100%);"></div>
+<!-- ═══ HERO — FILM STRIP + MAIN HERO ═══ -->
+<section style="background:#090f09;">
+
+  <!-- Film strip: all 5 courses, active one expanded -->
+  <div id="course-strip" style="display:flex;gap:3px;padding:3px;padding-top:68px;">
+    {courses.map((course, i) => {
+      const isActive = course.slug === c.slug;
+      return (
+        <a
+          href={`/courses/${course.slug}`}
+          data-slug={course.slug}
+          data-active={isActive ? 'true' : 'false'}
+          style={`flex:${isActive ? '2.8' : '1'};height:88px;overflow:hidden;border-radius:6px;position:relative;text-decoration:none;display:block;transition:flex 0.4s ease;`}
+          aria-label={`View ${course.name}`}
+        >
+          <img
+            src={course.hero}
+            alt={course.name}
+            style="width:100%;height:100%;object-fit:cover;display:block;"
+            loading={isActive ? 'eager' : 'lazy'}
+            fetchpriority={isActive ? 'high' : 'auto'}
+          />
+          <div style={`position:absolute;inset:0;background:${isActive ? 'rgba(0,0,0,0.08)' : 'rgba(0,0,0,0.52)'};transition:background 0.35s;`}></div>
+          <div style={`position:absolute;bottom:7px;left:9px;font-size:9px;color:rgba(255,255,255,${isActive ? '0.95' : '0.45'});font-weight:${isActive ? '600' : '400'};letter-spacing:0.04em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:90%;`}>
+            {course.name.replace(' — The Dragon', '').replace('Graeagle ', '')}
+          </div>
+        </a>
+      );
+    })}
   </div>
-  <div style="position:relative;z-index:2;padding:0 10% 72px;max-width:1400px;width:100%;">
-    <!-- Breadcrumb — visible + crawlable -->
-    <nav aria-label="Breadcrumb" style="margin-bottom:20px;">
-      <a href="/courses" style="display:inline-flex;align-items:center;gap:6px;font-size:12px;color:rgba(240,248,242,0.4);text-decoration:none;transition:color 0.2s;"
-      onmouseover="this.style.color='rgba(240,248,242,0.7)'" onmouseout="this.style.color='rgba(240,248,242,0.4)'">
-        ← All Courses
-      </a>
-    </nav>
-    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px;">
-      {c.awards?.map(a => (
-        <span style="background:rgba(232,168,80,0.15);border:1px solid rgba(232,168,80,0.25);color:#e8a850;font-size:10px;padding:4px 12px;border-radius:100px;letter-spacing:0.06em;">{a}</span>
-      ))}
-      <span style="background:rgba(232,168,80,0.15);border:1px solid rgba(232,168,80,0.25);color:#e8a850;font-size:10px;padding:4px 12px;border-radius:100px;">{c.tier} Green Fees</span>
+
+  <!-- Main hero -->
+  <div style="position:relative;height:clamp(420px,55vh,640px);overflow:hidden;">
+    <!-- LCP image — eager, high priority -->
+    <img
+      src={c.hero}
+      alt={`${c.name} Golf Course — Graeagle, California`}
+      style="width:100%;height:115%;object-fit:cover;position:absolute;top:0;left:0;object-position:center 40%;"
+      loading="eager"
+      fetchpriority="high"
+      width="1600"
+      height="900"
+    />
+    <!-- Gradient -->
+    <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(9,15,9,0.18) 0%,transparent 30%,transparent 40%,rgba(9,15,9,0.92) 80%,rgba(9,15,9,1) 100%);"></div>
+
+    <!-- Bottom content area -->
+    <div id="hero-bottom-grid" style="position:absolute;bottom:0;left:0;right:0;padding:clamp(20px,4vw,40px) clamp(20px,5vw,52px);display:grid;grid-template-columns:1fr auto;gap:24px;align-items:flex-end;">
+
+      <!-- Left: identity -->
+      <div>
+        <!-- Breadcrumb -->
+        <nav aria-label="Breadcrumb" style="margin-bottom:14px;">
+          <a href="/courses" style="font-size:11px;color:rgba(240,248,242,0.35);text-decoration:none;letter-spacing:0.06em;transition:color 0.2s;"
+            onmouseover="this.style.color='rgba(240,248,242,0.65)'" onmouseout="this.style.color='rgba(240,248,242,0.35)'">
+            ← All Courses
+          </a>
+        </nav>
+
+        <!-- Award badges -->
+        {(c.awards?.length > 0 || c.tier) && (
+          <div style="display:flex;gap:7px;flex-wrap:wrap;margin-bottom:14px;">
+            {c.awards?.map(a => (
+              <span style="background:rgba(232,168,80,0.14);border:1px solid rgba(232,168,80,0.28);color:#e8a850;font-size:9px;padding:4px 12px;border-radius:100px;letter-spacing:0.08em;">{a}</span>
+            ))}
+            <span style="background:rgba(240,248,242,0.07);border:1px solid rgba(240,248,242,0.12);color:rgba(240,248,242,0.5);font-size:9px;padding:4px 12px;border-radius:100px;">{c.tier} Green Fees</span>
+          </div>
+        )}
+
+        <!-- Course name — H1, LCP text -->
+        <h1 class="speakable" style="font-family:'Playfair Display',serif;font-size:clamp(32px,5.5vw,68px);color:#f0f8f2;margin:0 0 10px;line-height:1.0;letter-spacing:-0.01em;">{c.name}</h1>
+        <p class="page-intro" style="font-size:clamp(13px,1.6vw,16px);color:rgba(240,248,242,0.45);margin:0 0 22px;max-width:560px;line-height:1.55;">{c.tagline}</p>
+
+        <!-- CTAs -->
+        <div style="display:flex;gap:10px;flex-wrap:wrap;">
+          <a href="/request-a-quote"
+            style="display:inline-flex;align-items:center;gap:7px;background:#f0f8f2;color:#090f09;font-size:12px;font-weight:700;padding:13px 24px;border-radius:100px;text-decoration:none;letter-spacing:0.01em;transition:all 0.2s;"
+            onmouseover="this.style.background='#fff';this.style.transform='translateY(-1px)'"
+            onmouseout="this.style.background='#f0f8f2';this.style.transform='translateY(0)'">
+            Book a Package →
+          </a>
+          <a href={c.website || '#'}
+            style="display:inline-flex;align-items:center;gap:7px;background:rgba(240,248,242,0.07);border:1px solid rgba(240,248,242,0.14);color:rgba(240,248,242,0.65);font-size:12px;font-weight:500;padding:13px 24px;border-radius:100px;text-decoration:none;transition:all 0.2s;"
+            onmouseover="this.style.background='rgba(240,248,242,0.12)'" onmouseout="this.style.background='rgba(240,248,242,0.07)'"
+            target="_blank" rel="noopener">
+            Course Website ↗
+          </a>
+        </div>
+      </div>
+
+      <!-- Right: stats card -->
+      <div id="hero-stats-card" style="background:rgba(9,15,9,0.7);border:1px solid rgba(240,248,242,0.08);border-radius:14px;padding:20px 24px;min-width:170px;flex-shrink:0;backdrop-filter:blur(12px);">
+        <div style="font-size:9px;color:rgba(240,248,242,0.25);text-transform:uppercase;letter-spacing:0.12em;margin-bottom:14px;">Quick Stats</div>
+        {[
+          ['Par', `${c.par}`],
+          ['Yards', c.yards.toLocaleString()],
+          ['Slope', `${c.slope}`],
+          ['Rating', `${c.rating}`],
+        ].map(([k, v]) => (
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:7px 0;border-bottom:1px solid rgba(240,248,242,0.05);">
+            <span style="font-size:10px;color:rgba(240,248,242,0.28);text-transform:uppercase;letter-spacing:0.1em;">{k}</span>
+            <span style="font-size:15px;font-weight:500;color:#f0f8f2;">{v}</span>
+          </div>
+        ))}
+        <div style="margin-top:7px;padding-top:7px;border-top:1px solid rgba(240,248,242,0.05);">
+          <div style="font-size:10px;color:rgba(240,248,242,0.28);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:3px;">Designer</div>
+          <div style="font-size:13px;font-weight:500;color:rgba(240,248,242,0.8);">{c.designer}</div>
+          <div style="font-size:11px;color:rgba(240,248,242,0.3);">Est. {c.year}</div>
+        </div>
+      </div>
     </div>
-    <h1 class="speakable" style="font-family:'Playfair Display',serif;font-size:clamp(42px,6vw,80px);color:#f0f8f2;margin:0 0 12px;line-height:1.0;">{c.name}</h1>
-    <p class="page-intro" style="font-size:18px;color:rgba(240,248,242,0.55);margin:0;">{c.tagline}</p>
+  </div>
+
+  <!-- Bottom info bar -->
+  <div style="padding:14px clamp(20px,5vw,52px);background:rgba(9,15,9,0.97);border-bottom:1px solid rgba(232,168,80,0.07);display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;">
+    <div style="display:flex;gap:24px;flex-wrap:wrap;">
+      {[
+        ['Altitude', c.altitude],
+        ['Open', 'May – November'],
+        ['Location', c.address?.split(',')[1]?.trim() || 'Graeagle, CA'],
+      ].map(([k, v]) => (
+        <div>
+          <span style="font-size:9px;color:rgba(240,248,242,0.25);text-transform:uppercase;letter-spacing:0.1em;margin-right:8px;">{k}</span>
+          <span style="font-size:12px;color:rgba(240,248,242,0.55);font-weight:500;">{v}</span>
+        </div>
+      ))}
+    </div>
+    <div style="font-size:11px;color:rgba(240,248,242,0.2);">5 courses · All within 25 min of Graeagle</div>
   </div>
 </section>
-
-<!-- QUICK STATS BAR -->
-<div style="background:rgba(13,26,14,0.97);border-bottom:1px solid rgba(232,168,80,0.08);padding:0 10%;">
-  <div style="display:flex;gap:0;overflow-x:auto;">
-    {[
-      ['Par', `${c.par}`],
-      ['Yards', c.yards.toLocaleString()],
-      ['Slope', `${c.slope}`],
-      ['Rating', `${c.rating}`],
-      ['Designer', c.designer],
-      ['Opened', `${c.year}`],
-      ['Altitude', c.altitude],
-    ].map(([k,v]) => (
-      <div style="padding:24px 32px;border-right:1px solid rgba(240,248,242,0.05);flex-shrink:0;">
-        <div style="font-size:10px;color:rgba(240,248,242,0.3);text-transform:uppercase;letter-spacing:0.12em;margin-bottom:6px;">{k}</div>
-        <div style="font-size:16px;font-weight:500;color:#f0f8f2;white-space:nowrap;">{v}</div>
-      </div>
-    ))}
-  </div>
-</div>
 
 <style>
   .course-body { background: #0d1a0e; padding: clamp(40px, 8vw, 80px) clamp(20px, 10%, 10%); }
@@ -151,6 +236,19 @@ const faqSchema = {
   }
   @media (max-width: 640px) { .photo-grid { grid-template-columns: 1fr 1fr; } }
   @media (max-width: 400px) { .photo-grid { grid-template-columns: 1fr; } }
+
+  /* Hero mobile */
+  @media (max-width: 700px) {
+    #hero-bottom-grid {
+      grid-template-columns: 1fr !important;
+    }
+    #hero-stats-card {
+      display: none !important;
+    }
+    #course-strip a {
+      height: 64px !important;
+    }
+  }
 </style>
 
 <div class="course-body">
