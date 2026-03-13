@@ -91,7 +91,7 @@ import { courses } from '../data/content.js';
         <p style="font-size:10px;color:#a06c30;text-transform:uppercase;letter-spacing:0.14em;font-weight:700;margin:0 0 14px;">5 Championship Courses · All within 25 minutes</p>
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:18px;">
           {courses.map(c => (
-            <a href={`/portfolio/${c.slug === 'nakoma' ? 'nakoma-dragon-golf-packages' : c.slug + '-golf-packages'}/`}
+            <a href={`/courses/${c.slug}/`}
               style="display:flex;align-items:flex-start;gap:12px;padding:12px 14px;border-radius:12px;text-decoration:none;background:rgba(26,48,32,0.02);border:1px solid rgba(168,140,90,0.1);transition:all 0.18s;"
               onmouseover="this.style.background='rgba(232,168,80,0.08)';this.style.borderColor='rgba(168,140,90,0.3)'"
               onmouseout="this.style.background='rgba(26,48,32,0.02)';this.style.borderColor='rgba(168,140,90,0.1)'">
@@ -119,10 +119,10 @@ import { courses } from '../data/content.js';
         <p style="font-size:10px;color:#a06c30;text-transform:uppercase;letter-spacing:0.14em;font-weight:700;margin:0 0 14px;">Where to Stay</p>
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:16px;">
           {[
-            {name:'River Pines Resort', tag:'Best for Groups', icon:'🏨', href:'/portfolio/river-pines-resort-graeagle-ca/'},
-            {name:'Chalet View Lodge', tag:'Best Amenities', icon:'🏔️', href:'/portfolio/chalet-view-lodge-graeagle-ca/'},
-            {name:'The Inn at Nakoma', tag:'Most Unique', icon:'🏛️', href:'/portfolio/the-inn-at-nakoma-clio-ca/'},
-            {name:'Townhomes at Plumas Pines', tag:'Best for Large Groups', icon:'🏠', href:'/portfolio/the-townhomes-at-plumas-pines/'},
+            {name:'River Pines Resort', tag:'Best for Groups', icon:'🏨', href:'/lodging#river-pines'},
+            {name:'Chalet View Lodge', tag:'Best Amenities', icon:'🏔️', href:'/lodging#chalet-view'},
+            {name:'The Inn at Nakoma', tag:'Most Unique', icon:'🏛️', href:'/lodging#inn-at-nakoma'},
+            {name:'Townhomes at Plumas Pines', tag:'Best for Large Groups', icon:'🏠', href:'/lodging#townhomes'},
           ].map(l => (
             <a href={l.href} style="display:flex;align-items:flex-start;gap:11px;padding:12px 13px;border-radius:10px;text-decoration:none;background:rgba(26,48,32,0.02);border:1px solid rgba(168,140,90,0.1);transition:all 0.18s;"
             onmouseover="this.style.background='rgba(232,168,80,0.08)';this.style.borderColor='rgba(168,140,90,0.3)'"
@@ -153,9 +153,9 @@ import { courses } from '../data/content.js';
           <div>
             <p style="font-size:10px;color:#a06c30;text-transform:uppercase;letter-spacing:0.12em;font-weight:700;margin:0 0 11px;">Fine Dining</p>
             {[
-              {name:'Longboards Bar & Grill', href:'/portfolio/longboards-bar-and-grill/'},
-              {name:'Sardine Lake Resort', href:'/portfolio/sardine-lake-resort/'},
-              {name:'Iron Door Restaurant', href:'/portfolio/iron-door-restaurant/'},
+              {name:'Longboards Bar & Grill', href:'/dining'},
+              {name:'Sardine Lake Resort', href:'/dining'},
+              {name:'Iron Door Restaurant', href:'/dining'},
             ].map(r=>(
               <a href={r.href} style="display:block;font-size:13px;color:#5a7060;text-decoration:none;margin-bottom:7px;padding:5px 7px;border-radius:6px;transition:all 0.15s;font-weight:500;" onmouseover="this.style.color='#1a3020';this.style.background='rgba(26,48,32,0.05)'" onmouseout="this.style.color='#5a7060';this.style.background='transparent'">{r.name}</a>
             ))}
@@ -163,11 +163,11 @@ import { courses } from '../data/content.js';
           <div>
             <p style="font-size:10px;color:#a06c30;text-transform:uppercase;letter-spacing:0.12em;font-weight:700;margin:0 0 11px;">Casual</p>
             {[
-              {name:'Grizzly Grill', href:'/portfolio/grizzly-grill/'},
-              {name:'Roadhouse at River Pines', href:'/portfolio/roadhouse-at-river-pines/'},
-              {name:"Cuccia's", href:'/portfolio/cuccias/'},
-              {name:'Sierra SmokeShow', href:'/portfolio/sierra-smokeshow/'},
-              {name:"Gumba's II Go", href:'/portfolio/gumbas-ii-go/'},
+              {name:'Grizzly Grill', href:'/dining'},
+              {name:'Roadhouse at River Pines', href:'/dining'},
+              {name:"Cuccia's", href:'/dining'},
+              {name:'Sierra SmokeShow', href:'/dining'},
+              {name:"Gumba's II Go", href:'/dining'},
             ].map(r=>(
               <a href={r.href} style="display:block;font-size:13px;color:#5a7060;text-decoration:none;margin-bottom:7px;padding:5px 7px;border-radius:6px;transition:all 0.15s;font-weight:500;" onmouseover="this.style.color='#1a3020';this.style.background='rgba(26,48,32,0.05)'" onmouseout="this.style.color='#5a7060';this.style.background='transparent'">{r.name}</a>
             ))}
@@ -175,10 +175,10 @@ import { courses } from '../data/content.js';
           <div>
             <p style="font-size:10px;color:#a06c30;text-transform:uppercase;letter-spacing:0.12em;font-weight:700;margin:0 0 11px;">Brews &amp; Bars</p>
             {[
-              {name:'Eureka Peak Brewing', href:'/portfolio/eureka-peak-brewing-co/'},
-              {name:'The Brewing Lair', href:'/portfolio/the-brewing-lair/'},
-              {name:'Mohawk Tavern', href:'/portfolio/mohawk-tavern/'},
-              {name:'Knotty Pine Tavern', href:'/portfolio/the-knotty-pine-tavern/'},
+              {name:'Eureka Peak Brewing', href:'/dining'},
+              {name:'The Brewing Lair', href:'/dining'},
+              {name:'Mohawk Tavern', href:'/dining'},
+              {name:'Knotty Pine Tavern', href:'/dining'},
             ].map(r=>(
               <a href={r.href} style="display:block;font-size:13px;color:#5a7060;text-decoration:none;margin-bottom:7px;padding:5px 7px;border-radius:6px;transition:all 0.15s;font-weight:500;" onmouseover="this.style.color='#1a3020';this.style.background='rgba(26,48,32,0.05)'" onmouseout="this.style.color='#5a7060';this.style.background='transparent'">{r.name}</a>
             ))}
