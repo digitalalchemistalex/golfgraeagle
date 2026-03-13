@@ -15,24 +15,14 @@ import { courses } from '../data/content.js';
 
   .nav-item { position: relative; }
 
-  /* Key fix: invisible bridge between trigger and dropdown so mouse doesn't lose hover */
-  .nav-item::after {
-    content: '';
-    position: absolute;
-    top: 100%;
-    left: 0; right: 0;
-    height: 20px;
-  }
-
   .mega-menu {
-    position: absolute; top: calc(100% + 12px); left: 50%;
-    transform: translateX(-50%) translateY(-6px);
+    position: absolute; top: calc(100% + 8px); left: 50%;
+    transform: translateX(-50%) translateY(-4px);
     opacity: 0; pointer-events: none;
-    transition: opacity 0.2s ease, transform 0.2s ease;
+    transition: opacity 0.18s ease, transform 0.18s ease;
     z-index: 300;
   }
-  .nav-item:hover .mega-menu,
-  .mega-menu:hover {
+  .mega-menu.open {
     opacity: 1; pointer-events: all;
     transform: translateX(-50%) translateY(0);
   }
@@ -46,7 +36,8 @@ import { courses } from '../data/content.js';
   }
   .nav-link:hover, .nav-link.active { color: #e8a850; }
   .nav-link .chevron { transition: transform 0.2s; }
-  .nav-item:hover .chevron { transform: rotate(180deg); }
+  .nav-item.open .chevron { transform: rotate(180deg); }
+  .nav-item.open .nav-link { color: #e8a850; }
 
   /* Mobile hamburger */
   #mobile-toggle { display: none; }
@@ -224,8 +215,64 @@ import { courses } from '../data/content.js';
 </div>
 
 <script>
+  // Scroll effect
   const nav = document.getElementById('sitenav');
   window.addEventListener('scroll', () => {
     nav.classList.toggle('scrolled', window.scrollY > 60);
   }, { passive: true });
+
+  // ── Mega menu: JS-controlled with close delay ──────────────────────────
+  // Pure CSS :hover is unreliable — the gap between trigger and panel
+  // causes mouseleave to fire before the user reaches the menu.
+  // Fix: use mouseenter/mouseleave on BOTH the nav-item and the mega-menu,
+  // with a short close delay so crossing the gap never closes the menu.
+
+  const CLOSE_DELAY = 120; // ms — enough time to cross the gap
+
+  document.querySelectorAll('.nav-item').forEach(item => {
+    const menu = item.querySelector('.mega-menu');
+    if (!menu) return;
+
+    let closeTimer = null;
+
+    const open = () => {
+      // Close any other open menus first
+      document.querySelectorAll('.nav-item.open').forEach(other => {
+        if (other !== item) {
+          other.classList.remove('open');
+          other.querySelector('.mega-menu')?.classList.remove('open');
+        }
+      });
+      clearTimeout(closeTimer);
+      item.classList.add('open');
+      menu.classList.add('open');
+    };
+
+    const scheduleClose = () => {
+      closeTimer = setTimeout(() => {
+        item.classList.remove('open');
+        menu.classList.remove('open');
+      }, CLOSE_DELAY);
+    };
+
+    const cancelClose = () => clearTimeout(closeTimer);
+
+    // Trigger: hover the nav-item (button + its area)
+    item.addEventListener('mouseenter', open);
+    item.addEventListener('mouseleave', scheduleClose);
+
+    // Panel: keep open while mouse is inside
+    menu.addEventListener('mouseenter', cancelClose);
+    menu.addEventListener('mouseleave', scheduleClose);
+  });
+
+  // Click outside closes all
+  document.addEventListener('click', e => {
+    if (!e.target.closest('.nav-item')) {
+      document.querySelectorAll('.nav-item.open').forEach(item => {
+        item.classList.remove('open');
+        item.querySelector('.mega-menu')?.classList.remove('open');
+      });
+    }
+  });
 </script>
