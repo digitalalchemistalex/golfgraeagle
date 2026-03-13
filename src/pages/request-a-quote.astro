@@ -1,0 +1,636 @@
+---
+export const prerender = true;
+import Base from '../layouts/Base.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+
+const preselected = Astro.url.searchParams.get('course') || '';
+const courseName  = Astro.url.searchParams.get('courseName') || '';
+---
+
+<Base
+  title="Request a Graeagle Golf Package Quote | GolfGraeagle.com"
+  description="Plan your Graeagle golf trip. Group size, dates, courses, lodging — tell us everything and we'll build a custom stay-and-play package. Free, no obligation, 24-hour response."
+>
+  <Nav />
+
+  <div id="quote-page" style="background:#f5f0e8; min-height:100vh; padding-top:72px;">
+
+    <!-- PAGE HERO -->
+    <div style="background:linear-gradient(135deg,#1a3020 0%,#234d2c 50%,#1a3020 100%);padding:60px 24px 52px;position:relative;overflow:hidden;">
+      <div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,transparent,#e8a850 30%,#e8a850 70%,transparent);"></div>
+      <div style="max-width:860px;margin:0 auto;text-align:center;position:relative;z-index:1;">
+        <div style="display:inline-flex;align-items:center;gap:8px;background:rgba(232,168,80,0.18);border:1px solid rgba(232,168,80,0.35);border-radius:100px;padding:5px 16px;margin-bottom:20px;">
+          <span style="width:5px;height:5px;border-radius:50%;background:#e8a850;flex-shrink:0;"></span>
+          <span style="font-size:11px;color:#e8a850;letter-spacing:0.14em;text-transform:uppercase;font-weight:600;">Free · No Obligation · 24-Hour Response</span>
+        </div>
+        <h1 style="font-family:'Playfair Display',serif;font-size:clamp(32px,5.5vw,56px);font-weight:500;color:#f5f0e8;line-height:1.08;margin:0 0 16px;">
+          Build Your <em style="color:#e8a850;font-style:italic;">Graeagle Golf Package</em>
+        </h1>
+        <p style="font-size:16px;color:rgba(245,240,232,0.58);max-width:500px;margin:0 auto 30px;line-height:1.72;">
+          Tell us your group, dates, and which courses call to you. We handle tee times, lodging, and every detail — one package, one call.
+        </p>
+        <div style="display:flex;justify-content:center;gap:36px;flex-wrap:wrap;">
+          {[{n:'5',l:'Championship Courses'},{n:'672+',l:'Verified Reviews'},{n:'24hr',l:'Response Guarantee'},{n:'72hr',l:'Free Cancellation'}].map(t=>(
+            <div style="text-align:center;">
+              <div style="font-family:'Playfair Display',serif;font-size:23px;color:#e8a850;font-weight:500;">{t.n}</div>
+              <div style="font-size:10px;color:rgba(245,240,232,0.42);margin-top:4px;letter-spacing:0.05em;">{t.l}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+
+    <!-- FORM AREA -->
+    <div style="max-width:880px;margin:0 auto;padding:44px 20px 80px;">
+
+      <!-- SUCCESS STATE -->
+      <div id="success-state" style="display:none;text-align:center;padding:72px 28px;background:#fff;border-radius:22px;box-shadow:0 4px 32px rgba(26,48,32,0.08);">
+        <div style="width:68px;height:68px;border-radius:50%;background:#e8f5ec;border:2px solid #4caf70;display:flex;align-items:center;justify-content:center;margin:0 auto 24px;font-size:28px;">✓</div>
+        <h2 id="success-name" style="font-family:'Playfair Display',serif;font-size:34px;color:#1a3020;margin:0 0 12px;">Thank You!</h2>
+        <p style="font-size:16px;color:#5a7060;line-height:1.7;max-width:440px;margin:0 auto 10px;">Your quote request is in. One of our Graeagle specialists will contact you within 24 hours with a custom package proposal.</p>
+        <p id="success-email" style="font-size:14px;color:#a06c30;margin:0 0 36px;"></p>
+        <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+          <button onclick="resetForm()" style="background:#f0ebe0;border:1px solid #d4c89a;color:#3a4a3e;font-size:14px;font-weight:600;padding:13px 26px;border-radius:12px;cursor:pointer;" onmouseover="this.style.background='#e8e0cc'" onmouseout="this.style.background='#f0ebe0'">Submit Another Request</button>
+          <a href="tel:+18885861157" style="background:#e8a850;color:#1a3020;font-size:14px;font-weight:700;padding:13px 26px;border-radius:12px;text-decoration:none;" onmouseover="this.style.background='#d4922a'" onmouseout="this.style.background='#e8a850'">📞 Call: (888) 586-1157</a>
+        </div>
+      </div>
+
+      <form id="quote-form" novalidate>
+        <div id="form-error" style="display:none;background:#fdf0f0;border:1px solid #f0a0a0;border-radius:12px;padding:14px 18px;margin-bottom:18px;color:#8b3030;font-size:14px;font-weight:500;"></div>
+
+        <!-- ══ SECTION 1: CONTACT ══ -->
+        <div class="qs">
+          <div class="qs-head">
+            <div class="qs-icon" style="background:#e8f0ec;">👤</div>
+            <div>
+              <h2 class="qs-title">Contact Information</h2>
+              <p class="qs-sub">Who should we reach out to with your custom quote?</p>
+            </div>
+          </div>
+          <div class="fg2">
+            <div class="fg"><label class="fl">First Name <span class="req">*</span></label><input type="text" name="firstName" class="fi" placeholder="John" required autocomplete="given-name"/></div>
+            <div class="fg"><label class="fl">Last Name <span class="req">*</span></label><input type="text" name="lastName" class="fi" placeholder="Smith" required autocomplete="family-name"/></div>
+          </div>
+          <div class="fg2">
+            <div class="fg"><label class="fl">Email Address <span class="req">*</span></label><input type="email" name="email" class="fi" placeholder="john@email.com" required autocomplete="email"/></div>
+            <div class="fg"><label class="fl">Phone Number <span class="req">*</span></label><input type="tel" name="phone" class="fi" placeholder="(555) 555-5555" required autocomplete="tel"/></div>
+          </div>
+          <div class="fg2">
+            <div class="fg"><label class="fl">City</label><input type="text" name="city" class="fi" placeholder="Sacramento" autocomplete="address-level2"/></div>
+            <div class="fg">
+              <label class="fl">How did you hear about us?</label>
+              <select name="howHeard" class="fs">
+                <option value="">Select one...</option>
+                <option value="google">Google Search</option>
+                <option value="referral">Friend / Referral</option>
+                <option value="social">Social Media</option>
+                <option value="golf-course">Golf Course Recommendation</option>
+                <option value="returning">Returning Customer</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <!-- ══ SECTION 2: TRIP DETAILS ══ -->
+        <div class="qs">
+          <div class="qs-head">
+            <div class="qs-icon" style="background:#f5ecd8;">📅</div>
+            <div>
+              <h2 class="qs-title">Trip Details</h2>
+              <p class="qs-sub">When are you coming and how big is your group?</p>
+            </div>
+          </div>
+          <div class="fg2">
+            <div class="fg"><label class="fl">Arrival Date <span class="req">*</span></label><input type="date" name="arrivalDate" class="fi" required/></div>
+            <div class="fg"><label class="fl">Departure Date <span class="req">*</span></label><input type="date" name="departureDate" class="fi" required/></div>
+          </div>
+          <div class="fg2">
+            <div class="fg"><label class="fl">Number of Golfers <span class="req">*</span></label><input type="number" name="partySize" class="fi" min="1" max="200" placeholder="8" required/></div>
+            <div class="fg"><label class="fl">Number of Nights</label><input type="number" name="numNights" class="fi" min="1" max="30" placeholder="3"/></div>
+          </div>
+          <div class="fg">
+            <label class="fl">Are your dates flexible?</label>
+            <div class="rr">
+              <label class="rl"><input type="radio" name="datesFlexible" value="yes"/> Yes, flexible by a few days</label>
+              <label class="rl"><input type="radio" name="datesFlexible" value="no"/> No, fixed dates</label>
+            </div>
+          </div>
+
+          <!-- Lodging cards — real photos, real properties -->
+          <div class="fg" style="margin-bottom:0;">
+            <label class="fl" style="margin-bottom:10px;">Lodging Preference</label>
+            <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:10px;">
+              {[
+                {
+                  val:'river-pines',
+                  name:'River Pines Resort',
+                  tag:'Best for Groups',
+                  note:'Pool · Roadhouse restaurant on-site · 5 min to Graeagle Meadows',
+                  photo:'https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?w=600&q=80&auto=format',
+                },
+                {
+                  val:'chalet-view',
+                  name:'Chalet View Lodge',
+                  tag:'Best Amenities',
+                  note:'Boutique resort · Spa · Brewery · Event spaces',
+                  photo:'https://static.wixstatic.com/media/b638ee_d34c79535086422bbd9e982155dbffeb~mv2.jpg',
+                },
+                {
+                  val:'inn-nakoma',
+                  name:'The Inn at Nakoma',
+                  tag:'Most Unique',
+                  note:'Frank Lloyd Wright architecture · Walk to Dragon tee box',
+                  photo:'https://nakomaresort.com/wp-content/uploads/inn-at-nakoma-lobby-fireplace.jpg',
+                },
+                {
+                  val:'townhomes',
+                  name:'Townhomes at Plumas Pines',
+                  tag:'Best for Large Groups',
+                  note:'Multi-bedroom · Full kitchens · Pool · Tennis · Steps from Plumas Pines',
+                  photo:'https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=600&q=85&auto=format',
+                },
+              ].map(l => (
+                <label class="lc" data-val={l.val}>
+                  <input type="radio" name="lodgingType" value={l.val} class="lc-rb" style="display:none;"/>
+                  <div style="height:100px;overflow:hidden;border-radius:8px 8px 0 0;flex-shrink:0;">
+                    <img src={l.photo} alt={l.name} style="width:100%;height:100%;object-fit:cover;display:block;"/>
+                  </div>
+                  <div style="padding:11px 13px 10px;">
+                    <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:6px;margin-bottom:4px;">
+                      <span style="font-size:13px;font-weight:600;color:#1a3020;line-height:1.2;">{l.name}</span>
+                      <span style="font-size:9px;font-weight:700;color:#3a8a48;background:#e8f5ec;padding:2px 7px;border-radius:10px;white-space:nowrap;flex-shrink:0;">{l.tag}</span>
+                    </div>
+                    <p style="font-size:11px;color:#7a8a7e;margin:0;line-height:1.4;">{l.note}</p>
+                    <div class="lc-ind" style="margin-top:9px;font-size:11px;font-weight:600;color:#a0a898;transition:color 0.15s;">○ Select</div>
+                  </div>
+                </label>
+              ))}
+            </div>
+            <div style="margin-top:8px;">
+              <label class="rl">
+                <input type="radio" name="lodgingType" value="no-preference"/> <span style="font-size:13px;color:#5a7060;">Help me decide — recommend based on my group</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="fg" style="margin-top:16px;">
+            <label class="fl">Room Configuration</label>
+            <div class="rr">
+              <label class="rl"><input type="radio" name="roomConfig" value="double"/> Double Occupancy (2 per room)</label>
+              <label class="rl"><input type="radio" name="roomConfig" value="single"/> Single Occupancy (own room)</label>
+              <label class="rl"><input type="radio" name="roomConfig" value="mix"/> Mix of both</label>
+            </div>
+          </div>
+        </div>
+
+        <!-- ══ SECTION 3: GOLF PREFERENCES ══ -->
+        <div class="qs">
+          <div class="qs-head">
+            <div class="qs-icon" style="background:#e8f0ec;">⛳</div>
+            <div>
+              <h2 class="qs-title">Golf Preferences</h2>
+              <p class="qs-sub">Help us build the right tee sheet for your group</p>
+            </div>
+          </div>
+          <div class="fg2">
+            <div class="fg"><label class="fl">Total Rounds Wanted <span class="req">*</span></label><input type="number" name="totalRounds" class="fi" min="1" max="20" placeholder="4" required/></div>
+            <div class="fg">
+              <label class="fl">Preferred Tee Times</label>
+              <select name="idealTeeTimes" class="fs">
+                <option value="">No preference</option>
+                <option value="early">Early morning (before 8am)</option>
+                <option value="mid-morning">Mid-morning (8–10am)</option>
+                <option value="midday">Midday (10am–noon)</option>
+                <option value="afternoon">Afternoon (noon+)</option>
+              </select>
+            </div>
+          </div>
+          <div class="fg2">
+            <div class="fg">
+              <label class="fl">Group's average handicap</label>
+              <select name="groupHandicap" class="fs">
+                <option value="">Select range...</option>
+                <option value="scratch-10">Scratch to 10 — low handicap</option>
+                <option value="10-20">10–20 — mid handicap</option>
+                <option value="20-plus">20+ — high handicap</option>
+                <option value="mixed">Mixed — all skill levels</option>
+              </select>
+            </div>
+            <div class="fg">
+              <label class="fl">Cart or walking?</label>
+              <select name="cartPreference" class="fs">
+                <option value="">No preference</option>
+                <option value="cart">Cart preferred</option>
+                <option value="walk">Walking preferred</option>
+                <option value="mixed">Mixed in the group</option>
+              </select>
+            </div>
+          </div>
+          <div class="fg2">
+            <div class="fg">
+              <label class="fl">Play on arrival day?</label>
+              <div class="rr">
+                <label class="rl"><input type="radio" name="playOnArrival" value="yes"/> Yes</label>
+                <label class="rl"><input type="radio" name="playOnArrival" value="no"/> No</label>
+              </div>
+            </div>
+            <div class="fg">
+              <label class="fl">Play on departure day?</label>
+              <div class="rr">
+                <label class="rl"><input type="radio" name="playOnDeparture" value="yes"/> Yes</label>
+                <label class="rl"><input type="radio" name="playOnDeparture" value="no"/> No</label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ══ SECTION 4: COURSE SELECTION ══ -->
+        <div class="qs">
+          <div class="qs-head">
+            <div class="qs-icon" style="background:#f5ecd8;">🗺️</div>
+            <div>
+              <h2 class="qs-title">Course Selection</h2>
+              <p class="qs-sub">Check every course that interests you. We'll build the best lineup based on your group's schedule and skill level.</p>
+            </div>
+          </div>
+
+          <div id="course-grid">
+            {[
+              {
+                id:'graeagle-meadows',
+                name:'Graeagle Meadows',
+                year:1968, designer:'Ellis Van Gorder',
+                par:72, yards:6759, slope:120, rating:70.7,
+                distance:'In Graeagle village — 0 mi',
+                distanceMin:'Walk or 2-min drive',
+                altitude:'4,400 ft',
+                difficulty:'Accessible', diffC:'#2e7d32', diffBg:'#e8f5ec',
+                tier:'$$', mustPlay:false,
+                tags:['Best for groups','All skill levels','Open meadow fairways'],
+                note:'The original Graeagle course (1968). Feather River views, open fairways, welcoming for all handicaps. The perfect warm-up round.',
+                photo:'https://graeaglemeadows.com/wp-content/uploads/sites/86/2026/03/DJI_0629-2-Edit-scaled.jpg',
+              },
+              {
+                id:'whitehawk-ranch',
+                name:'Whitehawk Ranch',
+                year:1996, designer:'Dick Bailey',
+                par:71, yards:6983, slope:132, rating:72.3,
+                distance:'7 miles south — 12-min drive',
+                distanceMin:'12 min via Hwy 89',
+                altitude:'4,400 ft',
+                difficulty:'Challenging', diffC:'#e65100', diffBg:'#fff3e0',
+                tier:'$$$', mustPlay:true,
+                tags:['Golf Digest Top 20 California','GolfWeek #10 in CA','Streams & wildflowers'],
+                note:'The crowd favorite. 12 open meadow holes + 6 forested hillside holes. Award-winning conditions year after year.',
+                photo:'https://whitehawkranch.com/wp-content/uploads/sites/88/2026/02/popup-home.webp',
+              },
+              {
+                id:'plumas-pines',
+                name:'Plumas Pines',
+                year:1980, designer:'Homer Flint',
+                par:72, yards:6504, slope:132, rating:71.3,
+                distance:'2 miles from town — 5-min drive',
+                distanceMin:'5 min via Poplar Valley Rd',
+                altitude:'4,400 ft',
+                difficulty:'Challenging', diffC:'#e65100', diffBg:'#fff3e0',
+                tier:'$$', mustPlay:false,
+                tags:['Best value in the valley','Dense pine forest','Water hazards throughout'],
+                note:'"Jewel of the Sierra." Slope 132 despite shorter yardage — tight pines demand precision on every approach. Outstanding value.',
+                photo:'https://www.plumaspinesgolf.com/wp-content/uploads/sites/9383/2024/04/Owen-Drone-2.jpg?w=1920&h=700&crop=1',
+              },
+              {
+                id:'grizzly-ranch',
+                name:'Grizzly Ranch',
+                year:2005, designer:'Bob Cupp',
+                par:72, yards:7411, slope:140, rating:74.9,
+                distance:'11 miles east — 18-min drive',
+                distanceMin:'18 min via Grizzly Rd',
+                altitude:'4,600 ft',
+                difficulty:'Very Difficult', diffC:'#c62828', diffBg:'#ffebee',
+                tier:'$$$$', mustPlay:true,
+                tags:['#1 Sierra Nevada public course','Top 10 in California','Exposed ridgeline views'],
+                note:'Bob Cupp\'s mountain masterwork. 7,411 yards, slope 140, rating 74.9. Semi-private — group access through our packages only.',
+                photo:'https://grizzlyranchgolfclub.com/wp-content/uploads/2025/06/IMG_0666-2-scaled.jpg',
+              },
+              {
+                id:'nakoma-dragon',
+                name:'Nakoma — The Dragon',
+                year:1998, designer:'Robin Nelson & Neil Haworth',
+                par:72, yards:7015, slope:147, rating:73.4,
+                distance:'8 miles via Hwy 89 — 14-min drive',
+                distanceMin:'14 min via Hwy 89',
+                altitude:'4,500 ft',
+                difficulty:'Expert', diffC:'#6a1111', diffBg:'#ffebee',
+                tier:'$$$$', mustPlay:true,
+                tags:['Golf World Top 75','Frank Lloyd Wright clubhouse','Feather River canyon views'],
+                note:'Slope 147 — steepest in the valley. The only FLW-designed golf clubhouse on earth. Robin Nelson\'s most celebrated design.',
+                photo:'https://nakomaresort.com/wp-content/uploads/the-dragon-golf-at-nakoma-feather-river-1639x1080.jpg',
+              },
+            ].map(c => (
+              <label class="cc" id={`card-${c.id}`} data-id={c.id}>
+                <input type="checkbox" name="coursesInterested" value={c.id} class="cc-cb" style="display:none;" checked={preselected === c.id}/>
+
+                <!-- PHOTO — real, verified 200 OK -->
+                <div style="position:relative;height:170px;overflow:hidden;flex-shrink:0;">
+                  <img
+                    src={c.photo}
+                    alt={`${c.name} golf course`}
+                    style="width:100%;height:100%;object-fit:cover;display:block;"
+                    loading="lazy"
+                  />
+                  <!-- Subtle gradient for badge readability only -->
+                  <div style="position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,0.18) 0%,transparent 40%,rgba(0,0,0,0.28) 100%);pointer-events:none;"></div>
+                  <!-- Difficulty -->
+                  <div style={`position:absolute;top:10px;left:10px;background:${c.diffBg};color:${c.diffC};font-size:10px;font-weight:700;padding:3px 9px;border-radius:20px;`}>{c.difficulty}</div>
+                  <!-- Must-play -->
+                  {c.mustPlay && <div style="position:absolute;top:10px;right:10px;background:#e8a850;color:#1a3020;font-size:10px;font-weight:700;padding:3px 9px;border-radius:20px;">⭐ Must-Play</div>}
+                  <!-- Distance overlay -->
+                  <div style="position:absolute;bottom:9px;left:10px;background:rgba(0,0,0,0.58);color:rgba(255,255,255,0.9);font-size:10px;padding:3px 8px;border-radius:5px;backdrop-filter:blur(3px);">📍 {c.distance}</div>
+                </div>
+
+                <!-- CARD BODY -->
+                <div style="padding:16px 16px 14px;flex:1;display:flex;flex-direction:column;">
+
+                  <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:11px;gap:8px;">
+                    <h3 style="font-family:'Playfair Display',serif;font-size:16px;font-weight:600;color:#1a3020;line-height:1.2;margin:0;">{c.name}</h3>
+                    <span style="font-size:15px;font-weight:700;color:#a06c30;flex-shrink:0;">{c.tier}</span>
+                  </div>
+
+                  <!-- GOLFER SPECS — 4 key numbers in a clean grid -->
+                  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:5px;margin-bottom:11px;">
+                    {[
+                      {label:'Par', val:String(c.par)},
+                      {label:'Yards', val:c.yards.toLocaleString()},
+                      {label:'Slope', val:String(c.slope)},
+                      {label:'Rating', val:String(c.rating)},
+                    ].map(s=>(
+                      <div style="text-align:center;background:#f5f0e8;border-radius:7px;padding:6px 3px;border:1px solid #ede8da;">
+                        <div style="font-size:13px;font-weight:700;color:#1a3020;line-height:1;">{s.val}</div>
+                        <div style="font-size:9px;color:#8a9a8e;text-transform:uppercase;letter-spacing:0.06em;margin-top:2px;">{s.label}</div>
+                      </div>
+                    ))}
+                  </div>
+
+                  <!-- Secondary specs row -->
+                  <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:9px;padding-bottom:9px;border-bottom:1px solid #ede8da;">
+                    <span style="font-size:11px;color:#7a8a7e;">✏️ {c.designer}</span>
+                    <span style="font-size:11px;color:#7a8a7e;">📅 {c.year}</span>
+                    <span style="font-size:11px;color:#7a8a7e;">⛰️ {c.altitude}</span>
+                  </div>
+
+                  <!-- Tags -->
+                  <div style="display:flex;gap:5px;flex-wrap:wrap;margin-bottom:9px;">
+                    {c.tags.map((t:string)=>(
+                      <span style="font-size:10px;background:#edf2ed;color:#3a5a40;border-radius:4px;padding:2px 7px;font-weight:500;">{t}</span>
+                    ))}
+                  </div>
+
+                  <!-- Note -->
+                  <p style="font-size:12px;color:#5a7060;line-height:1.55;margin:0 0 12px;flex:1;">{c.note}</p>
+
+                  <!-- Select button -->
+                  <div class="cc-ind" style="display:flex;align-items:center;justify-content:center;gap:6px;padding:8px;border-radius:8px;background:#f5f0e8;border:1.5px solid #d8d0be;transition:all 0.18s;font-size:12px;font-weight:600;color:#7a8a7e;">
+                    <div class="cc-check" style="width:15px;height:15px;border-radius:50%;border:1.5px solid #c8d0c8;display:flex;align-items:center;justify-content:center;font-size:9px;transition:all 0.18s;flex-shrink:0;"></div>
+                    <span class="cc-text">Add to my trip</span>
+                  </div>
+                </div>
+              </label>
+            ))}
+          </div>
+          <p style="font-size:11px;color:#8a9a8e;margin-top:12px;text-align:center;">Select as many as you like — we'll recommend the ideal 3–4 courses for your group size, skill level, and days available.</p>
+        </div>
+
+        <!-- ══ SECTION 5: ADDITIONAL SERVICES ══ -->
+        <div class="qs">
+          <div class="qs-head">
+            <div class="qs-icon" style="background:#f0ebe0;">✨</div>
+            <div>
+              <h2 class="qs-title">Additional Services</h2>
+              <p class="qs-sub">Anything else that would make this trip exceptional?</p>
+            </div>
+          </div>
+
+          <div class="fg">
+            <label class="fl">Transportation coordination needed?</label>
+            <div class="rr">
+              <label class="rl"><input type="radio" name="transportationNeeded" value="yes"/> Yes — help coordinating transport between courses</label>
+              <label class="rl"><input type="radio" name="transportationNeeded" value="no"/> No — we have our own</label>
+            </div>
+          </div>
+
+          <div class="fg">
+            <label class="fl">Include dining reservations?</label>
+            <div class="rr">
+              <label class="rl"><input type="radio" name="diningHelp" value="yes"/> Yes — include restaurant recs &amp; reservations</label>
+              <label class="rl"><input type="radio" name="diningHelp" value="no"/> No — we'll handle dining ourselves</label>
+            </div>
+          </div>
+
+          <div class="fg">
+            <label class="fl">Is this a special occasion? (bachelor party, corporate outing, birthday, etc.)</label>
+            <div class="rr">
+              <label class="rl"><input type="radio" name="specialFBEvent" value="yes" id="special-yes"/> Yes</label>
+              <label class="rl"><input type="radio" name="specialFBEvent" value="no"/> No</label>
+            </div>
+          </div>
+
+          <div id="fb-event-detail" style="display:none;" class="fg">
+            <label class="fl">Tell us about the occasion</label>
+            <input type="text" name="fbEventWhen" class="fi" placeholder="e.g. Bachelor party for 16, July 18–20 — need group dinner night 1, cart signs, and morning tee times"/>
+          </div>
+
+          <div class="fg">
+            <label class="fl">Anything else — special requests, questions, non-golfers in the group, accessibility needs</label>
+            <textarea name="specialRequests" class="ft" rows="4" placeholder="e.g. We have 2 non-golfers joining us. One player needs an accessible cart. Looking for a group dinner spot each night with a private dining room...">{courseName ? `Interested in ${courseName} as part of our package.` : ''}</textarea>
+          </div>
+        </div>
+
+        <!-- SUBMIT -->
+        <div style="text-align:center;padding:8px 0 0;">
+          <button type="submit" id="submit-btn"
+            style="background:linear-gradient(135deg,#234d2c 0%,#1a3020 100%);color:#f5f0e8;font-size:16px;font-weight:700;padding:20px 64px;border-radius:100px;border:none;cursor:pointer;transition:all 0.3s;box-shadow:0 6px 28px rgba(26,48,32,0.22);letter-spacing:0.02em;min-width:290px;"
+            onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 12px 40px rgba(26,48,32,0.32)'"
+            onmouseout="this.style.transform='translateY(0)';this.style.boxShadow='0 6px 28px rgba(26,48,32,0.22)'">
+            Send My Quote Request →
+          </button>
+          <p style="font-size:12px;color:#8a9a8e;margin-top:12px;">No payment required. Free quote, no obligation. We respond within 24 hours.</p>
+          <p style="font-size:12px;color:#8a9a8e;margin-top:4px;">Questions? Call <a href="tel:+18885861157" style="color:#a06c30;text-decoration:none;font-weight:600;">(888) 586-1157</a></p>
+        </div>
+
+      </form>
+    </div>
+  </div>
+
+  <Footer />
+</Base>
+
+<style>
+.qs{background:#fff;border:1px solid #e0d8c8;border-radius:20px;padding:30px 30px 26px;margin-bottom:14px;box-shadow:0 2px 14px rgba(26,48,32,0.05);}
+.qs-head{display:flex;align-items:center;gap:15px;margin-bottom:24px;padding-bottom:18px;border-bottom:1px solid #ede8da;}
+.qs-icon{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;border:1px solid rgba(0,0,0,0.05);}
+.qs-title{font-family:'Playfair Display',serif;font-size:19px;font-weight:600;color:#1a3020;margin:0 0 2px;}
+.qs-sub{font-size:13px;color:#7a8a7e;margin:0;}
+.fg2{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px;}
+.fg{display:flex;flex-direction:column;gap:6px;margin-bottom:14px;}
+.fg2 .fg{margin-bottom:0;}
+.fl{font-size:13px;font-weight:600;color:#3a4a3e;letter-spacing:0.01em;}
+.req{color:#c0392b;}
+.fi,.fs,.ft{background:#f7f4ee;border:1.5px solid #d8d0be;border-radius:11px;padding:12px 15px;font-size:14px;color:#1a3020;outline:none;transition:border-color 0.2s,background 0.2s,box-shadow 0.2s;font-family:'Inter',sans-serif;width:100%;box-sizing:border-box;}
+.fi::placeholder,.ft::placeholder{color:#a8b0a8;}
+.fi:focus,.fs:focus,.ft:focus{border-color:#3a8a48;background:#fff;box-shadow:0 0 0 3px rgba(58,138,72,0.1);}
+.fi.err,.fs.err{border-color:#e74c3c;box-shadow:0 0 0 3px rgba(231,76,60,0.1);}
+.fs option{background:#fff;color:#1a3020;}
+.ft{resize:vertical;min-height:90px;}
+.rr{display:flex;gap:18px;flex-wrap:wrap;}
+.rl{display:flex;align-items:center;gap:7px;font-size:14px;color:#4a6050;cursor:pointer;transition:color 0.15s;}
+.rl:hover{color:#1a3020;}
+.rl input[type="radio"]{accent-color:#3a8a48;width:15px;height:15px;cursor:pointer;}
+
+/* Lodging cards */
+.lc{display:flex;flex-direction:column;border-radius:10px;border:2px solid #e0d8c8;background:#fff;cursor:pointer;transition:all 0.18s;overflow:hidden;}
+.lc:hover{border-color:#3a8a48;box-shadow:0 3px 14px rgba(26,48,32,0.1);}
+.lc.sel{border-color:#3a8a48;background:#f5fbf5;}
+.lc.sel .lc-ind{color:#2e7d32 !important;font-weight:700;}
+
+/* Course cards */
+#course-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.cc{display:flex;flex-direction:column;border-radius:14px;border:2px solid #e0d8c8;background:#fff;cursor:pointer;transition:border-color 0.2s,box-shadow 0.2s,transform 0.15s;overflow:hidden;}
+.cc:hover{border-color:#3a8a48;box-shadow:0 4px 20px rgba(26,48,32,0.1);transform:translateY(-2px);}
+.cc.selected{border-color:#3a8a48;box-shadow:0 4px 22px rgba(58,138,72,0.15);}
+.cc.selected .cc-ind{background:#e8f5ec !important;border-color:#3a8a48 !important;color:#1a5c28 !important;}
+.cc.selected .cc-check{background:#3a8a48 !important;border-color:#3a8a48 !important;color:#fff !important;}
+.cc.selected .cc-text{color:#1a5c28 !important;}
+
+@media(max-width:620px){
+  #course-grid{grid-template-columns:1fr !important;}
+  .fg2{grid-template-columns:1fr !important;}
+  .qs{padding:20px 16px 18px;}
+  #lodging-grid{grid-template-columns:1fr !important;}
+}
+</style>
+
+<script define:vars={{ preselected }}>
+// Course card toggle
+document.querySelectorAll('.cc').forEach(card=>{
+  const cb  = card.querySelector('.cc-cb');
+  const chk = card.querySelector('.cc-check');
+  const txt = card.querySelector('.cc-text');
+  const sync=()=>{
+    if(cb.checked){
+      card.classList.add('selected');
+      chk.textContent='✓';
+      if(txt) txt.textContent='Added ✓';
+    } else {
+      card.classList.remove('selected');
+      chk.textContent='';
+      if(txt) txt.textContent='Add to my trip';
+    }
+  };
+  if(cb.checked) sync();
+  card.addEventListener('click',e=>{if(e.target.tagName==='A') return; cb.checked=!cb.checked; sync();});
+});
+
+// Lodging card toggle (radio)
+document.querySelectorAll('.lc').forEach(card=>{
+  const rb = card.querySelector('.lc-rb');
+  const ind= card.querySelector('.lc-ind');
+  card.addEventListener('click',()=>{
+    document.querySelectorAll('.lc').forEach(c=>{
+      c.classList.remove('sel');
+      const i=c.querySelector('.lc-ind');
+      if(i) i.textContent='○ Select';
+    });
+    rb.checked=true;
+    card.classList.add('sel');
+    if(ind) ind.textContent='✓ Selected';
+  });
+});
+
+// Special event conditional
+document.querySelectorAll('input[name="specialFBEvent"]').forEach(r=>{
+  r.addEventListener('change',()=>{
+    const v=document.querySelector('input[name="specialFBEvent"]:checked')?.value;
+    document.getElementById('fb-event-detail').style.display=v==='yes'?'block':'none';
+  });
+});
+
+// Submit
+document.getElementById('quote-form').addEventListener('submit',async e=>{
+  e.preventDefault();
+  document.querySelectorAll('.err').forEach(el=>el.classList.remove('err'));
+  const errEl=document.getElementById('form-error');
+  errEl.style.display='none';
+
+  const form=e.target;
+  const fd=new FormData(form);
+  const data={};
+  for(const [k,v] of fd.entries()){
+    if(k==='coursesInterested'){
+      if(!data.coursesInterested) data.coursesInterested=[];
+      data.coursesInterested.push(v);
+    } else { data[k]=v; }
+  }
+
+  const errors=[];
+  ['firstName','lastName','email','phone','arrivalDate','departureDate','partySize','totalRounds'].forEach(field=>{
+    const el=form.querySelector(`[name="${field}"]`);
+    if(!data[field]||!String(data[field]).trim()){
+      errors.push(field);
+      el?.classList.add('err');
+    }
+  });
+
+  if(errors.length){
+    errEl.style.display='block';
+    errEl.textContent='Please complete the required fields highlighted above.';
+    form.querySelector('.err')?.scrollIntoView({behavior:'smooth',block:'center'});
+    return;
+  }
+
+  const btn=document.getElementById('submit-btn');
+  btn.disabled=true;
+  btn.textContent='Sending your request…';
+
+  try {
+    const res=await fetch('/api/leads',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({...data,source:'golfgraeagle.com',destination:'graeagle',status:'new'}),
+    });
+    if(!res.ok) throw new Error('server');
+    form.style.display='none';
+    const succ=document.getElementById('success-state');
+    succ.style.display='block';
+    document.getElementById('success-name').textContent=`Thank You, ${data.firstName}!`;
+    document.getElementById('success-email').textContent=`We'll be in touch at ${data.email} within 24 hours.`;
+    window.scrollTo({top:0,behavior:'smooth'});
+  } catch(err){
+    errEl.style.display='block';
+    errEl.textContent='Something went wrong. Please try again or call (888) 586-1157.';
+    btn.disabled=false;
+    btn.textContent='Send My Quote Request →';
+  }
+});
+
+window.resetForm=function(){
+  const form=document.getElementById('quote-form');
+  form.reset(); form.style.display='block';
+  document.getElementById('success-state').style.display='none';
+  document.querySelectorAll('.cc').forEach(c=>{
+    c.classList.remove('selected');
+    c.querySelector('.cc-cb').checked=false;
+    c.querySelector('.cc-check').textContent='';
+    const t=c.querySelector('.cc-text');
+    if(t) t.textContent='Add to my trip';
+  });
+  document.querySelectorAll('.lc').forEach(c=>{
+    c.classList.remove('sel');
+    const i=c.querySelector('.lc-ind');
+    if(i) i.textContent='○ Select';
+  });
+  const btn=document.getElementById('submit-btn');
+  btn.disabled=false; btn.textContent='Send My Quote Request →';
+};
+</script>

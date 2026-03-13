@@ -1,0 +1,27 @@
+---
+export const prerender = true;
+import Base from '../layouts/Base.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+---
+<Base title="Graeagle Golf Blog — Trip Planning, Course Guides & Local Tips | GolfGraeagle.com" description="Golf trip planning guides, course reviews, and local tips for Graeagle, California. Expert advice from the team at GolfGraeagle.com.">
+  <Nav />
+  <section style="min-height:80vh;padding:140px 10% 100px;max-width:1100px;margin:0 auto;">
+    <p style="font-size:11px;color:#e8a850;letter-spacing:0.16em;text-transform:uppercase;font-weight:600;margin:0 0 16px;">Blog</p>
+    <h1 style="font-family:'Playfair Display',serif;font-size:clamp(32px,5vw,52px);font-weight:500;color:#f0f8f2;margin:0 0 20px;">Graeagle Golf <span style="color:#e8a850;font-style:italic;">Trip Guides</span></h1>
+    <p style="font-size:17px;color:rgba(240,248,242,0.5);max-width:560px;line-height:1.75;margin:0 0 60px;">Course breakdowns, trip planning advice, dining picks, and local knowledge from the Graeagle golf specialists.</p>
+    <div style="display:grid;gap:20px;max-width:720px;">
+      {[
+        {title:'Best Golf Courses in Graeagle, California (Complete Guide)', slug:'best-golf-courses-graeagle', date:'2025'},
+        {title:'Ultimate Guide to Golfing in Graeagle', slug:'ultimate-guide-to-golfing-in-graeagle', date:'2025'},
+        {title:"Mountain Dining Near Lake Tahoe: Graeagle's Best Kept Restaurant Secrets", slug:'mountain-dining-near-lake-tahoe-graeagles-best-kept-restaurant-secrets', date:'2025'},
+      ].map(p=>(
+        <a href={`/blog/${p.slug}/`} style="display:block;padding:24px 28px;border-radius:14px;background:rgba(240,248,242,0.02);border:1px solid rgba(240,248,242,0.07);text-decoration:none;transition:all 0.2s;" onmouseover="this.style.borderColor='rgba(232,168,80,0.25)';this.style.background='rgba(232,168,80,0.03)'" onmouseout="this.style.borderColor='rgba(240,248,242,0.07)';this.style.background='rgba(240,248,242,0.02)'">
+          <h2 style="font-family:'Playfair Display',serif;font-size:20px;color:#f0f8f2;margin:0 0 8px;line-height:1.3;">{p.title}</h2>
+          <span style="font-size:12px;color:rgba(240,248,242,0.3);">{p.date} · GolfGraeagle.com</span>
+        </a>
+      ))}
+    </div>
+  </section>
+  <Footer />
+</Base>

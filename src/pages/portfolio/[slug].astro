@@ -1,0 +1,195 @@
+---
+export const prerender = true;
+import Base from '../../layouts/Base.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+import { courses, lodging, dining } from '../../data/content.js';
+
+// Map WP portfolio slugs → our data
+const wpSlugMap = {
+  // Courses
+  'graeagle-meadows-golf-packages': { type: 'course', data: courses.find(c => c.slug === 'graeagle-meadows') },
+  'whitehawk-ranch-golf-packages':  { type: 'course', data: courses.find(c => c.slug === 'whitehawk-ranch') },
+  'plumas-pines-golf-packages':     { type: 'course', data: courses.find(c => c.slug === 'plumas-pines') },
+  'grizzly-ranch-golf-packages':    { type: 'course', data: courses.find(c => c.slug === 'grizzly-ranch') },
+  'nakoma-dragon-golf-packages':    { type: 'course', data: courses.find(c => c.slug === 'nakoma') },
+  // Also handle the /portfolio/plumas-pines-golf-resort/ style from search results
+  'plumas-pines-golf-resort':       { type: 'course', data: courses.find(c => c.slug === 'plumas-pines') },
+  'graeagle-meadows-golf-course':   { type: 'course', data: courses.find(c => c.slug === 'graeagle-meadows') },
+  'whitehawk-ranch-golf-course':    { type: 'course', data: courses.find(c => c.slug === 'whitehawk-ranch') },
+  'grizzly-ranch-golf-club':        { type: 'course', data: courses.find(c => c.slug === 'grizzly-ranch') },
+  // Lodging
+  'river-pines-resort-graeagle-ca': { type: 'lodging', data: lodging.find(l => l.slug === 'river-pines-resort') },
+  'chalet-view-lodge-graeagle-ca':  { type: 'lodging', data: lodging.find(l => l.slug === 'chalet-view-lodge') },
+  'the-inn-at-nakoma-clio-ca':      { type: 'lodging', data: lodging.find(l => l.slug === 'inn-at-nakoma') },
+  'the-townhomes-at-plumas-pines':  { type: 'lodging', data: lodging.find(l => l.slug === 'townhomes-at-plumas-pines') },
+  // Dining
+  'longboards-bar-and-grill':       { type: 'dining', data: dining.find(d => d.slug === 'longboards') },
+  'sardine-lake-resort':            { type: 'dining', data: dining.find(d => d.slug === 'sardine-lake') },
+  'iron-door-restaurant':           { type: 'dining', data: dining.find(d => d.slug === 'iron-door') },
+  'grizzly-grill':                  { type: 'dining', data: dining.find(d => d.slug === 'grizzly-grill') },
+  'roadhouse-at-river-pines':       { type: 'dining', data: dining.find(d => d.slug === 'roadhouse') },
+  'graeagle-meadows-golf-course-restaurant': { type: 'dining', data: dining.find(d => d.slug === 'meadows-restaurant') },
+  'cuccias':                        { type: 'dining', data: dining.find(d => d.slug === 'cuccias') },
+  'sierra-smokeshow':               { type: 'dining', data: dining.find(d => d.slug === 'sierra-smokeshow') },
+  'gumbas-ii-go':                   { type: 'dining', data: dining.find(d => d.slug === 'gumbas') },
+  'eureka-peak-brewing-co':         { type: 'dining', data: dining.find(d => d.slug === 'eureka-peak-brewing') },
+  'the-brewing-lair':               { type: 'dining', data: dining.find(d => d.slug === 'brewing-lair') },
+  'mohawk-tavern':                  { type: 'dining', data: dining.find(d => d.slug === 'mohawk-tavern') },
+  'the-knotty-pine-tavern':         { type: 'dining', data: dining.find(d => d.slug === 'knotty-pine') },
+  'little-bite-deli':               { type: 'dining', data: dining.find(d => d.slug === 'little-bite-deli') },
+  'graeagle-mountain-frostee':      { type: 'dining', data: dining.find(d => d.slug === 'mountain-frostee') },
+  'graeagle-restaurant':            { type: 'dining', data: dining.find(d => d.slug === 'graeagle-restaurant') },
+};
+
+export function getStaticPaths() {
+  return Object.keys({
+  'graeagle-meadows-golf-packages': 1,'whitehawk-ranch-golf-packages':1,'plumas-pines-golf-packages':1,
+  'grizzly-ranch-golf-packages':1,'nakoma-dragon-golf-packages':1,'plumas-pines-golf-resort':1,
+  'graeagle-meadows-golf-course':1,'whitehawk-ranch-golf-course':1,'grizzly-ranch-golf-club':1,
+  'river-pines-resort-graeagle-ca':1,'chalet-view-lodge-graeagle-ca':1,'the-inn-at-nakoma-clio-ca':1,
+  'the-townhomes-at-plumas-pines':1,'longboards-bar-and-grill':1,'sardine-lake-resort':1,
+  'iron-door-restaurant':1,'grizzly-grill':1,'roadhouse-at-river-pines':1,
+  'graeagle-meadows-golf-course-restaurant':1,'cuccias':1,'sierra-smokeshow':1,'gumbas-ii-go':1,
+  'eureka-peak-brewing-co':1,'the-brewing-lair':1,'mohawk-tavern':1,'the-knotty-pine-tavern':1,
+  'little-bite-deli':1,'graeagle-mountain-frostee':1,'graeagle-restaurant':1,
+  }).map(slug => ({ params: { slug } }));
+}
+
+const { slug } = Astro.params;
+const entry = wpSlugMap[slug];
+const item = entry?.data;
+const type = entry?.type;
+
+// Fallback title/desc
+const pageTitle = item
+  ? `${item.name} — Graeagle Golf Packages & Info | GolfGraeagle.com`
+  : `${slug} | GolfGraeagle.com`;
+const pageDesc = item?.description || item?.tagline || `Graeagle golf packages and information for ${slug}.`;
+---
+<Base title={pageTitle} description={pageDesc}>
+  <Nav />
+
+  {item && type === 'course' && (
+    <>
+    <!-- COURSE HERO -->
+    <section style="position:relative;height:80vh;min-height:520px;overflow:hidden;display:flex;align-items:flex-end;">
+      <div style="position:absolute;inset:0;">
+        <img src={item.hero} alt={`${item.name} Golf Course`} style="width:100%;height:100%;object-fit:cover;" loading="eager"/>
+        <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(13,26,14,1) 0%,rgba(13,26,14,0.5) 40%,transparent 80%);"></div>
+      </div>
+      <div style="position:relative;z-index:2;padding:0 10% 64px;max-width:1400px;width:100%;">
+        <a href="/all-golf-courses/" style="display:inline-flex;align-items:center;gap:6px;font-size:12px;color:rgba(240,248,242,0.4);text-decoration:none;margin-bottom:20px;transition:color 0.2s;" onmouseover="this.style.color='rgba(240,248,242,0.7)'" onmouseout="this.style.color='rgba(240,248,242,0.4)'">← All Courses</a>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px;">
+          {item.awards?.map((a:string) => <span style="font-size:11px;background:rgba(232,168,80,0.15);color:#e8a850;border:1px solid rgba(232,168,80,0.3);padding:4px 12px;border-radius:20px;">{a}</span>)}
+        </div>
+        <h1 style="font-family:'Playfair Display',serif;font-size:clamp(36px,5vw,62px);font-weight:500;color:#f0f8f2;margin:0 0 14px;line-height:1.1;">{item.name}</h1>
+        <p style="font-size:16px;color:rgba(240,248,242,0.5);margin:0 0 28px;">{item.tagline}</p>
+        <div style="display:flex;gap:20px;flex-wrap:wrap;">
+          {[`Par ${item.par}`,`${item.yards?.toLocaleString()} Yards`,`Slope ${item.slope}`,`Rating ${item.rating}`,item.designer,String(item.year)].filter(Boolean).map((s:string)=>(
+            <span style="font-size:13px;color:rgba(240,248,242,0.55);">{s}</span>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- COURSE CONTENT -->
+    <section style="max-width:900px;margin:0 auto;padding:64px 10% 80px;">
+      <p style="font-size:17px;color:rgba(240,248,242,0.65);line-height:1.85;margin-bottom:40px;">{item.description}</p>
+
+      {item.highlights && (
+        <div style="background:rgba(232,168,80,0.04);border:1px solid rgba(232,168,80,0.12);border-radius:16px;padding:28px;margin-bottom:48px;">
+          <h3 style="font-family:'Playfair Display',serif;font-size:18px;color:#f0f8f2;margin:0 0 18px;">Course Highlights</h3>
+          <ul style="margin:0;padding:0;list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+            {item.highlights.map((h:string) => (
+              <li style="display:flex;align-items:flex-start;gap:10px;font-size:14px;color:rgba(240,248,242,0.6);">
+                <span style="color:#e8a850;margin-top:2px;flex-shrink:0;">✓</span>{h}
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+
+      <div style="background:rgba(13,26,14,0.8);border:1px solid rgba(240,248,242,0.07);border-radius:20px;padding:36px;text-align:center;">
+        <p style="font-size:11px;color:#e8a850;letter-spacing:0.14em;text-transform:uppercase;font-weight:600;margin:0 0 12px;">Ready to Play?</p>
+        <h2 style="font-family:'Playfair Display',serif;font-size:28px;color:#f0f8f2;margin:0 0 14px;">Book {item.name} in a Package</h2>
+        <p style="font-size:15px;color:rgba(240,248,242,0.4);margin:0 0 24px;">We coordinate tee times, lodging, and the full itinerary. Free quote, 24-hour response.</p>
+        <a href={`/request-a-quote/?course=${item.slug}&courseName=${encodeURIComponent(item.name)}`}
+          style="display:inline-block;background:#e8a850;color:#0d1a0e;font-weight:700;font-size:15px;padding:16px 40px;border-radius:100px;text-decoration:none;transition:all 0.25s;"
+          onmouseover="this.style.background='#f2c878';this.style.transform='translateY(-2px)'"
+          onmouseout="this.style.background='#e8a850';this.style.transform='translateY(0)'">
+          Request a Package Quote →
+        </a>
+      </div>
+    </section>
+    </>
+  )}
+
+  {item && type === 'lodging' && (
+    <>
+    <section style="position:relative;height:70vh;min-height:460px;overflow:hidden;display:flex;align-items:flex-end;">
+      <div style="position:absolute;inset:0;">
+        <img src={item.hero} alt={item.name} style="width:100%;height:100%;object-fit:cover;" loading="eager"/>
+        <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(13,26,14,1) 0%,rgba(13,26,14,0.45) 50%,transparent 80%);"></div>
+      </div>
+      <div style="position:relative;z-index:2;padding:0 10% 60px;max-width:1400px;width:100%;">
+        <a href="/lodging/" style="display:inline-flex;align-items:center;gap:6px;font-size:12px;color:rgba(240,248,242,0.4);text-decoration:none;margin-bottom:20px;">← All Lodging</a>
+        <h1 style="font-family:'Playfair Display',serif;font-size:clamp(32px,5vw,56px);font-weight:500;color:#f0f8f2;margin:0 0 12px;">{item.name}</h1>
+        <p style="font-size:16px;color:rgba(240,248,242,0.5);margin:0;">{item.tagline}</p>
+      </div>
+    </section>
+    <section style="max-width:860px;margin:0 auto;padding:60px 10% 80px;">
+      <p style="font-size:17px;color:rgba(240,248,242,0.65);line-height:1.85;margin-bottom:40px;">{item.description}</p>
+      {item.highlights && (
+        <ul style="margin:0 0 48px;padding:0;list-style:none;">
+          {item.highlights.map((h:string) => (
+            <li style="display:flex;align-items:flex-start;gap:10px;font-size:14px;color:rgba(240,248,242,0.6);margin-bottom:10px;">
+              <span style="color:#e8a850;">✓</span>{h}
+            </li>
+          ))}
+        </ul>
+      )}
+      <div style="text-align:center;background:rgba(232,168,80,0.04);border:1px solid rgba(232,168,80,0.12);border-radius:20px;padding:36px;">
+        <h2 style="font-family:'Playfair Display',serif;font-size:26px;color:#f0f8f2;margin:0 0 12px;">Stay Here + Play Golf</h2>
+        <p style="font-size:15px;color:rgba(240,248,242,0.4);margin:0 0 24px;">We'll pair your stay with tee times at all 5 Graeagle courses.</p>
+        <a href="/request-a-quote/" style="display:inline-block;background:#e8a850;color:#0d1a0e;font-weight:700;font-size:15px;padding:16px 40px;border-radius:100px;text-decoration:none;" onmouseover="this.style.background='#f2c878'" onmouseout="this.style.background='#e8a850'">Request a Stay & Play Quote →</a>
+      </div>
+    </section>
+    </>
+  )}
+
+  {item && type === 'dining' && (
+    <>
+    <section style="position:relative;height:60vh;min-height:380px;overflow:hidden;display:flex;align-items:flex-end;">
+      <div style="position:absolute;inset:0;">
+        <img src={item.hero} alt={item.name} style="width:100%;height:100%;object-fit:cover;" loading="eager"/>
+        <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(13,26,14,1) 0%,rgba(13,26,14,0.4) 60%,transparent 90%);"></div>
+      </div>
+      <div style="position:relative;z-index:2;padding:0 10% 52px;max-width:1400px;width:100%;">
+        <a href="/dining/" style="display:inline-flex;align-items:center;gap:6px;font-size:12px;color:rgba(240,248,242,0.4);text-decoration:none;margin-bottom:20px;">← All Dining</a>
+        <h1 style="font-family:'Playfair Display',serif;font-size:clamp(30px,5vw,52px);font-weight:500;color:#f0f8f2;margin:0 0 12px;">{item.name}</h1>
+        <p style="font-size:15px;color:rgba(240,248,242,0.5);margin:0;">{item.tagline}</p>
+      </div>
+    </section>
+    <section style="max-width:800px;margin:0 auto;padding:52px 10% 80px;text-align:center;">
+      <p style="font-size:16px;color:rgba(240,248,242,0.55);line-height:1.85;margin-bottom:40px;">{item.tagline}</p>
+      <div style="background:rgba(232,168,80,0.04);border:1px solid rgba(232,168,80,0.12);border-radius:20px;padding:32px;">
+        <p style="font-size:15px;color:rgba(240,248,242,0.5);margin:0 0 20px;">Add dining reservations to your Graeagle golf package.</p>
+        <a href="/request-a-quote/" style="display:inline-block;background:#e8a850;color:#0d1a0e;font-weight:700;font-size:14px;padding:14px 36px;border-radius:100px;text-decoration:none;" onmouseover="this.style.background='#f2c878'" onmouseout="this.style.background='#e8a850'">Include in My Golf Package →</a>
+      </div>
+    </section>
+    </>
+  )}
+
+  {!item && (
+    <section style="min-height:60vh;display:flex;align-items:center;justify-content:center;padding:80px 24px;text-align:center;">
+      <div>
+        <h1 style="font-family:'Playfair Display',serif;font-size:40px;color:#f0f8f2;margin:0 0 16px;">Graeagle Golf</h1>
+        <p style="font-size:16px;color:rgba(240,248,242,0.5);margin:0 0 28px;">This page is being updated with fresh content.</p>
+        <a href="/request-a-quote/" style="display:inline-block;background:#e8a850;color:#0d1a0e;font-weight:700;padding:14px 36px;border-radius:100px;text-decoration:none;">Plan Your Trip →</a>
+      </div>
+    </section>
+  )}
+
+  <Footer />
+</Base>
