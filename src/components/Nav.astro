@@ -1,0 +1,189 @@
+---
+import { courses } from '../data/content.js';
+---
+
+<style>
+  #sitenav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+    transition: all 0.4s ease;
+  }
+  #sitenav.scrolled {
+    background: rgba(13,26,14,0.94);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(232,168,80,0.1);
+  }
+
+  /* Mega menu */
+  .nav-item { position: relative; }
+  .mega-menu {
+    position: absolute; top: calc(100% + 16px); left: 50%;
+    transform: translateX(-50%) translateY(-8px);
+    opacity: 0; pointer-events: none;
+    transition: all 0.25s ease;
+    z-index: 300;
+  }
+  .nav-item:hover .mega-menu {
+    opacity: 1; pointer-events: all;
+    transform: translateX(-50%) translateY(0);
+  }
+  .mega-menu::before {
+    content: ''; position: absolute; top: -8px; left: 50%;
+    transform: translateX(-50%);
+    border: 6px solid transparent;
+    border-bottom-color: rgba(232,168,80,0.12);
+  }
+
+  .nav-link {
+    font-size: 14px; color: rgba(240,248,242,0.65);
+    text-decoration: none; padding: 6px 2px;
+    transition: color 0.2s; cursor: pointer;
+    display: flex; align-items: center; gap: 5px;
+    white-space: nowrap;
+  }
+  .nav-link:hover, .nav-link.active { color: #e8a850; }
+  .nav-link svg { transition: transform 0.2s; }
+  .nav-item:hover .nav-link svg { transform: rotate(180deg); }
+
+  @keyframes navpulse { 0%,100%{opacity:0.6} 50%{opacity:1} }
+</style>
+
+<nav id="sitenav" style="padding: 16px 48px; display: flex; align-items: center; justify-content: space-between;">
+
+  <!-- Logo -->
+  <a href="/" style="font-family:'Playfair Display',serif; font-size: 22px; color: #f0f8f2; text-decoration: none; letter-spacing: 0.01em; flex-shrink:0;">
+    Golf <span style="color:#e8a850;">Graeagle</span>
+  </a>
+
+  <!-- Nav items -->
+  <div style="display: flex; align-items: center; gap: 8px;">
+
+    <!-- COURSES mega -->
+    <div class="nav-item" style="padding: 6px 14px;">
+      <span class="nav-link">
+        Courses
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+      </span>
+      <div class="mega-menu" style="width: 680px; background: rgba(13,26,14,0.97); border: 1px solid rgba(232,168,80,0.12); border-radius: 20px; padding: 28px; backdrop-filter: blur(24px); box-shadow: 0 24px 64px rgba(0,0,0,0.6);">
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 20px;">
+          {courses.map(c => (
+            <a href={`/courses/${c.slug}`} style="display: flex; align-items: flex-start; gap: 14px; padding: 14px 16px; border-radius: 12px; text-decoration: none; background: rgba(240,248,242,0.02); border: 1px solid transparent; transition: all 0.2s;"
+            onmouseover="this.style.background='rgba(232,168,80,0.06)';this.style.borderColor='rgba(232,168,80,0.15)'"
+            onmouseout="this.style.background='rgba(240,248,242,0.02)';this.style.borderColor='transparent'">
+              <div style="width: 36px; height: 36px; border-radius: 8px; background: rgba(232,168,80,0.1); border: 1px solid rgba(232,168,80,0.15); display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 16px;">⛳</div>
+              <div>
+                <div style="font-size: 13px; font-weight: 500; color: #f0f8f2; margin-bottom: 3px;">{c.name}</div>
+                <div style="font-size: 11px; color: rgba(240,248,242,0.38); line-height: 1.4;">{c.tagline}</div>
+              </div>
+            </a>
+          ))}
+        </div>
+        <div style="border-top: 1px solid rgba(240,248,242,0.06); padding-top: 16px; display: flex; justify-content: space-between; align-items: center;">
+          <span style="font-size: 11px; color: rgba(240,248,242,0.3);">5 championship courses · All within 25 minutes</span>
+          <a href="/courses" style="font-size: 12px; color: #e8a850; text-decoration: none; display: flex; align-items: center; gap: 5px;"
+          onmouseover="this.style.opacity='0.8'" onmouseout="this.style.opacity='1'">
+            Compare all courses →
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- LODGING mega -->
+    <div class="nav-item" style="padding: 6px 14px;">
+      <span class="nav-link">
+        Lodging
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+      </span>
+      <div class="mega-menu" style="width: 520px; background: rgba(13,26,14,0.97); border: 1px solid rgba(232,168,80,0.12); border-radius: 20px; padding: 28px; backdrop-filter: blur(24px); box-shadow: 0 24px 64px rgba(0,0,0,0.6);">
+        <p style="font-size: 11px; color: rgba(232,168,80,0.6); text-transform: uppercase; letter-spacing: 0.12em; margin: 0 0 16px;">Where to Stay</p>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 20px;">
+          {[
+            {name:'River Pines Resort', tag:'Best for Groups', icon:'🏨', href:'/lodging'},
+            {name:'Chalet View Lodge', tag:'Best Amenities', icon:'🏔️', href:'/lodging'},
+            {name:'The Inn at Nakoma', tag:'Most Unique', icon:'🏛️', href:'/lodging'},
+            {name:'Townhomes at Plumas Pines', tag:'Best for Large Groups', icon:'🏠', href:'/lodging'},
+          ].map(l => (
+            <a href={l.href} style="display:flex;align-items:flex-start;gap:12px;padding:12px 14px;border-radius:10px;text-decoration:none;background:rgba(240,248,242,0.02);border:1px solid transparent;transition:all 0.2s;"
+            onmouseover="this.style.background='rgba(232,168,80,0.06)';this.style.borderColor='rgba(232,168,80,0.15)'"
+            onmouseout="this.style.background='rgba(240,248,242,0.02)';this.style.borderColor='transparent'">
+              <span style="font-size:18px;flex-shrink:0;margin-top:1px;">{l.icon}</span>
+              <div>
+                <div style="font-size:13px;font-weight:500;color:#f0f8f2;margin-bottom:2px;">{l.name}</div>
+                <div style="font-size:11px;color:rgba(240,248,242,0.35);">{l.tag}</div>
+              </div>
+            </a>
+          ))}
+        </div>
+        <div style="border-top:1px solid rgba(240,248,242,0.06);padding-top:16px;display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+          <a href="/lodging" style="text-align:center;padding:9px;border-radius:8px;background:rgba(240,248,242,0.03);border:1px solid rgba(240,248,242,0.06);font-size:12px;color:rgba(240,248,242,0.5);text-decoration:none;transition:all 0.2s;"
+          onmouseover="this.style.background='rgba(240,248,242,0.06)';this.style.color='#f0f8f2'"
+          onmouseout="this.style.background='rgba(240,248,242,0.03)';this.style.color='rgba(240,248,242,0.5)'">Hotels & Resorts</a>
+          <a href="/lodging" style="text-align:center;padding:9px;border-radius:8px;background:rgba(240,248,242,0.03);border:1px solid rgba(240,248,242,0.06);font-size:12px;color:rgba(240,248,242,0.5);text-decoration:none;transition:all 0.2s;"
+          onmouseover="this.style.background='rgba(240,248,242,0.06)';this.style.color='#f0f8f2'"
+          onmouseout="this.style.background='rgba(240,248,242,0.03)';this.style.color='rgba(240,248,242,0.5)'">Private Homes & Townhomes</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- DINING mega -->
+    <div class="nav-item" style="padding: 6px 14px;">
+      <span class="nav-link">
+        Dining
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+      </span>
+      <div class="mega-menu" style="width: 540px; background: rgba(13,26,14,0.97); border: 1px solid rgba(232,168,80,0.12); border-radius: 20px; padding: 28px; backdrop-filter: blur(24px); box-shadow: 0 24px 64px rgba(0,0,0,0.6);">
+        <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px;">
+          <div>
+            <p style="font-size:10px;color:rgba(232,168,80,0.6);text-transform:uppercase;letter-spacing:0.12em;margin:0 0 12px;font-weight:600;">Fine Dining</p>
+            {['Longboards Bar and Grill','Sardine Lake Resort','Iron Door Restaurant'].map(r=>(
+              <a href="/dining" style="display:block;font-size:13px;color:rgba(240,248,242,0.55);text-decoration:none;margin-bottom:9px;padding:6px 8px;border-radius:7px;transition:all 0.15s;"
+              onmouseover="this.style.color='#f0f8f2';this.style.background='rgba(240,248,242,0.04)'"
+              onmouseout="this.style.color='rgba(240,248,242,0.55)';this.style.background='transparent'">{r}</a>
+            ))}
+          </div>
+          <div>
+            <p style="font-size:10px;color:rgba(232,168,80,0.6);text-transform:uppercase;letter-spacing:0.12em;margin:0 0 12px;font-weight:600;">Casual</p>
+            {["Grizzly Grill","Roadhouse at River Pines","Graeagle Meadows Restaurant","Cuccia's","Sierra SmokeShow","Gumba's II Go"].map(r=>(
+              <a href="/dining" style="display:block;font-size:13px;color:rgba(240,248,242,0.55);text-decoration:none;margin-bottom:9px;padding:6px 8px;border-radius:7px;transition:all 0.15s;"
+              onmouseover="this.style.color='#f0f8f2';this.style.background='rgba(240,248,242,0.04)'"
+              onmouseout="this.style.color='rgba(240,248,242,0.55)';this.style.background='transparent'">{r}</a>
+            ))}
+          </div>
+          <div>
+            <p style="font-size:10px;color:rgba(232,168,80,0.6);text-transform:uppercase;letter-spacing:0.12em;margin:0 0 12px;font-weight:600;">Breweries & Bars</p>
+            {['Eureka Peak Brewing Co.','The Brewing Lair','Mohawk Tavern','The Knotty Pine Tavern'].map(r=>(
+              <a href="/dining" style="display:block;font-size:13px;color:rgba(240,248,242,0.55);text-decoration:none;margin-bottom:9px;padding:6px 8px;border-radius:7px;transition:all 0.15s;"
+              onmouseover="this.style.color='#f0f8f2';this.style.background='rgba(240,248,242,0.04)'"
+              onmouseout="this.style.color='rgba(240,248,242,0.55)';this.style.background='transparent'">{r}</a>
+            ))}
+            <div style="margin-top:12px;padding-top:12px;border-top:1px solid rgba(240,248,242,0.05);">
+              {['Little Bite Deli','Graeagle Mountain Frostee'].map(r=>(
+                <a href="/dining" style="display:block;font-size:13px;color:rgba(240,248,242,0.55);text-decoration:none;margin-bottom:9px;padding:6px 8px;border-radius:7px;transition:all 0.15s;"
+                onmouseover="this.style.color='#f0f8f2';this.style.background='rgba(240,248,242,0.04)'"
+                onmouseout="this.style.color='rgba(240,248,242,0.55)';this.style.background='transparent'">{r}</a>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Simple links -->
+    <a href="/about" class="nav-link" style="padding: 6px 14px;">About</a>
+    <a href="/blog" class="nav-link" style="padding: 6px 14px;">Blog</a>
+
+  </div>
+
+  <!-- CTA -->
+  <a href="/quote" style="background:#e8a850;color:#0d1a0e;font-size:13px;font-weight:600;padding:11px 26px;border-radius:100px;text-decoration:none;transition:all 0.3s;box-shadow:0 4px 16px rgba(232,168,80,0.2);flex-shrink:0;"
+  onmouseover="this.style.background='#f2c878';this.style.transform='translateY(-1px)';this.style.boxShadow='0 8px 24px rgba(232,168,80,0.4)'"
+  onmouseout="this.style.background='#e8a850';this.style.transform='translateY(0)';this.style.boxShadow='0 4px 16px rgba(232,168,80,0.2)'">
+    Plan My Trip →
+  </a>
+</nav>
+
+<script>
+  const nav = document.getElementById('sitenav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 60);
+  }, { passive: true });
+</script>
