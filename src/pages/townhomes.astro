@@ -1,0 +1,222 @@
+---
+export const prerender = true;
+import Base from '../layouts/Base.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import { lodging, courses, siteConfig } from '../data/content.js';
+
+const property = lodging.find(l => l.slug === 'townhomes-at-plumas-pines');
+
+const nearbyCourses = [
+  { name: 'Plumas Pines', slug: 'plumas-pines', dist: 'Steps away', note: 'On the course property' },
+  { name: 'Graeagle Meadows', slug: 'graeagle-meadows', dist: '10 min drive', note: 'Via CA-89 N' },
+  { name: 'Whitehawk Ranch', slug: 'whitehawk-ranch', dist: '12 min drive', note: 'Via CA-89 N' },
+  { name: 'Nakoma — The Dragon', slug: 'nakoma', dist: '18 min drive', note: 'Via Hwy 89 S' },
+  { name: 'Grizzly Ranch', slug: 'grizzly-ranch', dist: '22 min drive', note: 'Via Hwy 70 E' },
+];
+
+const lodgingSchema = {
+  "@type": "LodgingBusiness",
+  "name": "Townhomes at Plumas Pines",
+  "description": "2–4 bedroom vacation townhomes adjacent to Plumas Pines Golf Resort in Graeagle, California. Full kitchens, golf course views, community pool and tennis courts. Ideal for golf groups and families.",
+  "url": `${siteConfig.url}/townhomes`,
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Graeagle",
+    "addressRegion": "CA",
+    "postalCode": "96103",
+    "addressCountry": "US"
+  },
+  "geo": { "@type": "GeoCoordinates", "latitude": 39.7505, "longitude": -120.6170 },
+  "amenityFeature": [
+    { "@type": "LocationFeatureSpecification", "name": "2–4 bedroom units", "value": true },
+    { "@type": "LocationFeatureSpecification", "name": "Full kitchens", "value": true },
+    { "@type": "LocationFeatureSpecification", "name": "Golf course views", "value": true },
+    { "@type": "LocationFeatureSpecification", "name": "Community pool", "value": true },
+    { "@type": "LocationFeatureSpecification", "name": "Tennis courts", "value": true },
+    { "@type": "LocationFeatureSpecification", "name": "Adjacent to golf course", "value": true },
+  ]
+};
+
+const breadcrumbSchema = {
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": siteConfig.url },
+    { "@type": "ListItem", "position": 2, "name": "Lodging", "item": `${siteConfig.url}/lodging` },
+    { "@type": "ListItem", "position": 3, "name": "Townhomes at Plumas Pines", "item": `${siteConfig.url}/townhomes` }
+  ]
+};
+
+const faqSchema = {
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Where are the Townhomes at Plumas Pines located?",
+      "acceptedAnswer": { "@type": "Answer", "text": "The Townhomes at Plumas Pines are located adjacent to Plumas Pines Golf Resort in Graeagle, California. They are steps from the first tee at Plumas Pines and within 10–22 minutes of all other Graeagle area courses." }
+    },
+    {
+      "@type": "Question",
+      "name": "How many bedrooms do the Graeagle townhomes have?",
+      "acceptedAnswer": { "@type": "Answer", "text": "The Townhomes at Plumas Pines offer 2–4 bedroom units, making them suitable for groups of 4–12 golfers depending on configuration. All units include full kitchens, golf course views, and access to community pool and tennis courts." }
+    },
+    {
+      "@type": "Question",
+      "name": "Are the townhomes good for golf groups?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Yes — the Townhomes at Plumas Pines are one of the best options for golf groups in Graeagle. Multiple bedrooms, full kitchens, and proximity to five championship courses make them practical for groups of 4–12. All five Graeagle courses are within 22 minutes." }
+    },
+    {
+      "@type": "Question",
+      "name": "Can GolfGraeagle book the townhomes with tee times?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Yes. GolfGraeagle packages the Townhomes at Plumas Pines with tee times at any combination of Graeagle's five courses. Request a quote to get a custom stay-and-play package." }
+    }
+  ]
+};
+---
+
+<style>
+  .hero-img { width:100%;height:55vh;object-fit:cover;border-radius:20px;margin-bottom:48px; }
+  .highlight-grid { display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:28px 0 40px; }
+  .highlight-card { padding:16px 20px;background:rgba(232,168,80,0.04);border:1px solid rgba(232,168,80,0.1);border-radius:14px; }
+  .course-row { display:flex;justify-content:space-between;align-items:center;padding:16px 0;border-bottom:1px solid rgba(255,255,255,0.04); }
+  .faq-item { border-bottom:1px solid rgba(255,255,255,0.06);padding:20px 0; }
+  .faq-q { font-size:16px;color:#f0f8f2;font-weight:500; }
+  .faq-a { font-size:15px;color:rgba(240,248,242,0.55);line-height:1.75;margin-top:10px; }
+  @media (max-width:640px) { .highlight-grid { grid-template-columns:1fr 1fr; } .hero-img { height:40vh; } }
+</style>
+
+<Base
+  title="Townhomes at Plumas Pines — Graeagle Golf Lodging for Groups"
+  description="Spacious 2–4 bedroom vacation townhomes adjacent to Plumas Pines Golf Resort in Graeagle, CA. Full kitchens, pool, tennis, golf course views. Ideal for golf groups and families."
+  schema={[lodgingSchema, breadcrumbSchema, faqSchema]}
+>
+  <Nav />
+
+  <div style="max-width:900px;margin:0 auto;padding:140px 5% 100px;">
+
+    <!-- Breadcrumb -->
+    <nav style="font-size:12px;color:rgba(240,248,242,0.3);margin-bottom:32px;">
+      <a href="/" style="color:rgba(240,248,242,0.3);text-decoration:none;">Home</a>
+      <span style="margin:0 8px;">›</span>
+      <a href="/lodging" style="color:rgba(240,248,242,0.3);text-decoration:none;">Lodging</a>
+      <span style="margin:0 8px;">›</span>
+      <span style="color:#e8a850;">Townhomes at Plumas Pines</span>
+    </nav>
+
+    <!-- Label + H1 -->
+    <p style="font-size:11px;color:#e8a850;letter-spacing:0.16em;text-transform:uppercase;font-weight:600;margin:0 0 16px;">Golf Lodging · Graeagle, CA</p>
+    <h1 class="speakable" style="font-family:'Playfair Display',serif;font-size:clamp(32px,5vw,52px);font-weight:400;color:#f0f8f2;line-height:1.1;margin:0 0 16px;">
+      Townhomes at<br/><span style="color:#e8a850;font-style:italic;">Plumas Pines</span>
+    </h1>
+    <p style="font-size:13px;color:rgba(240,248,242,0.3);margin:0 0 40px;">📍 Adjacent to Plumas Pines Golf Resort · Graeagle, CA 96103</p>
+
+    <!-- Hero image -->
+    <img
+      class="hero-img"
+      src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=1200&q=85&auto=format"
+      alt="Townhomes at Plumas Pines golf lodging in Graeagle California"
+      loading="eager"
+    />
+
+    <!-- Two-col intro -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:40px;margin-bottom:48px;">
+      <div>
+        <p class="page-intro" style="font-size:17px;color:rgba(240,248,242,0.6);line-height:1.85;margin:0;">
+          The Townhomes at Plumas Pines offer multi-bedroom vacation rentals directly adjacent to Plumas Pines Golf Resort — the closest on-course accommodation in the Graeagle area outside of Nakoma Resort. For golf groups who want the comforts of home without giving up proximity to the course, these townhomes are the practical choice.
+        </p>
+      </div>
+      <div>
+        <p style="font-size:17px;color:rgba(240,248,242,0.5);line-height:1.85;margin:0;">
+          Units run 2–4 bedrooms with full kitchens, golf course views, and access to community pools and tennis courts. Whitehawk Ranch is 12 minutes away. Graeagle Meadows is 10 minutes. All five championship courses are within 22 minutes — making this the most efficient base for a multi-course golf trip.
+        </p>
+      </div>
+    </div>
+
+    <!-- Highlights grid -->
+    <h2 style="font-family:'Playfair Display',serif;font-size:clamp(20px,2.5vw,28px);font-weight:400;color:#f0f8f2;margin:0 0 8px;">Property Highlights</h2>
+    <div class="highlight-grid">
+      {[
+        { icon: '🏠', label: '2–4 Bedrooms', note: 'Multiple unit sizes for any group' },
+        { icon: '🍳', label: 'Full Kitchens', note: 'Cook meals between rounds' },
+        { icon: '⛳', label: 'On the Course', note: 'Steps from Plumas Pines 1st tee' },
+        { icon: '🏊', label: 'Pool Access', note: 'Community pool on property' },
+        { icon: '🎾', label: 'Tennis Courts', note: 'On-site recreational courts' },
+        { icon: '👥', label: 'Groups of 4–12', note: 'Best for multi-room parties' },
+      ].map(h => (
+        <div class="highlight-card">
+          <div style="font-size:22px;margin-bottom:6px;">{h.icon}</div>
+          <div style="font-size:14px;color:#f0f8f2;font-weight:500;margin-bottom:2px;">{h.label}</div>
+          <div style="font-size:12px;color:rgba(240,248,242,0.35);">{h.note}</div>
+        </div>
+      ))}
+    </div>
+
+    <!-- Who it's for -->
+    <h2 style="font-family:'Playfair Display',serif;font-size:clamp(20px,2.5vw,28px);font-weight:400;color:#f0f8f2;margin:0 0 20px;">Who the Townhomes Are Best For</h2>
+    <p style="font-size:17px;color:rgba(240,248,242,0.55);line-height:1.85;margin-bottom:16px;">
+      The Townhomes at Plumas Pines work best for golf groups of 4–12 who want to share costs, cook some meals, and stay directly at the course. Full kitchens mean you can handle breakfast in-unit before an early tee time and skip the restaurant scramble. Groups playing Plumas Pines get the added bonus of walking to the first tee.
+    </p>
+    <p style="font-size:17px;color:rgba(240,248,242,0.55);line-height:1.85;margin-bottom:40px;">
+      They're also a strong choice for extended stays of 3–5 nights, where the kitchen savings compound and having a proper living space matters more than hotel amenities. Families visiting Graeagle for a mix of golf and outdoor activities will find the space and practical layout more comfortable than a single hotel room setup.
+    </p>
+
+    <!-- Course proximity -->
+    <h2 style="font-family:'Playfair Display',serif;font-size:clamp(20px,2.5vw,28px);font-weight:400;color:#f0f8f2;margin:0 0 8px;">Golf Courses From the Townhomes</h2>
+    <p style="font-size:14px;color:rgba(240,248,242,0.3);margin:0 0 20px;">All five Graeagle courses within 22 minutes.</p>
+    <div>
+      {nearbyCourses.map(c => (
+        <div class="course-row">
+          <div>
+            <a href={`/courses/${c.slug}`} style="font-size:16px;color:#f0f8f2;text-decoration:none;font-weight:500;">{c.name}</a>
+            <div style="font-size:12px;color:rgba(240,248,242,0.3);margin-top:2px;">{c.note}</div>
+          </div>
+          <span style="font-size:14px;color:#e8a850;font-weight:500;white-space:nowrap;">{c.dist}</span>
+        </div>
+      ))}
+    </div>
+
+    <!-- Compare lodging -->
+    <div style="margin:48px 0;padding:28px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.06);border-radius:16px;">
+      <h3 style="font-family:'Playfair Display',serif;font-size:18px;font-weight:400;color:#f0f8f2;margin:0 0 16px;">Compare Graeagle Lodging Options</h3>
+      {[
+        { name: 'Townhomes at Plumas Pines', best: 'Groups of 4–12, budget-friendly', note: 'Full kitchens, on-course location', link: '/townhomes', current: true },
+        { name: 'River Pines Resort', best: 'Mixed groups, on-site dining', note: 'Cabins, suites, rooms — Roadhouse restaurant', link: '/lodging' },
+        { name: 'Chalet View Lodge', best: 'Amenity-focused groups', note: '9-hole exec course, Eureka Peak Brewing on-site', link: '/lodging' },
+        { name: 'Inn at Nakoma', best: 'Premium / bucket-list trips', note: 'FLW lodge, Fifty44 Restaurant, on Dragon course', link: '/lodging' },
+      ].map(p => (
+        <div style={`display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid rgba(255,255,255,0.04);${p.current ? 'opacity:0.5;' : ''}`}>
+          <div>
+            <div style={`font-size:14px;font-weight:500;color:${p.current ? '#e8a850' : '#f0f8f2'};margin-bottom:2px;`}>{p.name}{p.current ? ' ← you are here' : ''}</div>
+            <div style="font-size:12px;color:rgba(240,248,242,0.3);">{p.note}</div>
+          </div>
+          <div style="text-align:right;">
+            <div style="font-size:12px;color:rgba(240,248,242,0.4);margin-bottom:4px;">{p.best}</div>
+            {!p.current && <a href={p.link} style="font-size:12px;color:#e8a850;text-decoration:none;">View →</a>}
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- FAQ -->
+    <h2 style="font-family:'Playfair Display',serif;font-size:clamp(20px,2.5vw,28px);font-weight:400;color:#f0f8f2;margin:0 0 24px;">Frequently Asked Questions</h2>
+    <div>
+      {faqSchema.mainEntity.map(item => (
+        <details class="faq-item" style="cursor:pointer;">
+          <summary class="faq-q">{item.name}</summary>
+          <p class="faq-a">{item.acceptedAnswer.text}</p>
+        </details>
+      ))}
+    </div>
+
+    <!-- CTA -->
+    <div style="margin-top:64px;padding:40px;background:rgba(232,168,80,0.04);border:1px solid rgba(232,168,80,0.12);border-radius:20px;text-align:center;">
+      <h2 style="font-family:'Playfair Display',serif;font-size:clamp(20px,2.5vw,28px);font-weight:400;color:#f0f8f2;margin:0 0 12px;">Book the Townhomes with Tee Times</h2>
+      <p style="font-size:16px;color:rgba(240,248,242,0.5);margin:0 auto 28px;max-width:480px;">GolfGraeagle packages lodging and tee times together. Tell us your dates and group size — we'll handle the rest.</p>
+      <a href="/quote?lodging=townhomes-at-plumas-pines" style="display:inline-block;background:#e8a850;color:#0d1a0e;font-weight:700;font-size:15px;padding:16px 40px;border-radius:100px;text-decoration:none;margin-right:12px;">Request a Package Quote →</a>
+      <a href="/lodging" style="display:inline-block;border:1px solid rgba(232,168,80,0.3);color:#e8a850;font-size:14px;padding:15px 28px;border-radius:100px;text-decoration:none;">Compare All Lodging</a>
+    </div>
+
+  </div>
+
+  <Footer />
+</Base>
