@@ -53,7 +53,7 @@ export const prerender = true;
               <div class="mb-6">
                 <p class="text-white/30 text-xs uppercase tracking-widest mb-3">Room Types</p>
                 <div class="flex flex-wrap gap-2">
-                  {property.roomTypes.map(rt => (
+                  {(property.roomTypes||[]).map(rt => (
                     <span class="text-xs border border-white/10 text-white/50 px-3 py-1 rounded-full">{rt}</span>
                   ))}
                 </div>
@@ -63,7 +63,7 @@ export const prerender = true;
               <div>
                 <p class="text-white/30 text-xs uppercase tracking-widest mb-3">Amenities</p>
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-1.5">
-                  {property.amenities.slice(0, 6).map(a => (
+                  {(property.amenities||[]).slice(0,6).map(a => (
                     <div class="flex items-center gap-2 text-xs text-white/40">
                       <span class="text-forest-400">✓</span> {a}
                     </div>
