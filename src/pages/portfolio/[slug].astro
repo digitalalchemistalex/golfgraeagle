@@ -134,8 +134,10 @@ const pageDesc = item?.description || item?.tagline || `Graeagle golf packages a
       </div>
       <div style="position:relative;z-index:2;padding:0 10% 60px;max-width:1400px;width:100%;">
         <a href="/lodging/" style="display:inline-flex;align-items:center;gap:6px;font-size:12px;color:rgba(240,248,242,0.4);text-decoration:none;margin-bottom:20px;">← All Lodging</a>
+        {item.subtitle && <div style="font-size:11px;color:#e8a850;letter-spacing:0.14em;text-transform:uppercase;margin-bottom:10px;">{item.subtitle}</div>}
         <h1 style="font-family:'Playfair Display',serif;font-size:clamp(32px,5vw,56px);font-weight:500;color:#f0f8f2;margin:0 0 12px;">{item.name}</h1>
         <p style="font-size:16px;color:rgba(240,248,242,0.5);margin:0;">{item.tagline}</p>
+        {item.distanceFromGraeagle && <p style="font-size:13px;color:rgba(232,168,80,0.65);margin:10px 0 0;">📍 {item.distanceFromGraeagle}</p>}
       </div>
     </section>
     <section style="max-width:860px;margin:0 auto;padding:60px 10% 80px;">
@@ -167,14 +169,32 @@ const pageDesc = item?.description || item?.tagline || `Graeagle golf packages a
       </div>
       <div style="position:relative;z-index:2;padding:0 10% 52px;max-width:1400px;width:100%;">
         <a href="/dining/" style="display:inline-flex;align-items:center;gap:6px;font-size:12px;color:rgba(240,248,242,0.4);text-decoration:none;margin-bottom:20px;">← All Dining</a>
+        {item.cuisine && <div style="font-size:11px;color:#e8a850;letter-spacing:0.14em;text-transform:uppercase;margin-bottom:10px;">{item.cuisine}</div>}
         <h1 style="font-family:'Playfair Display',serif;font-size:clamp(30px,5vw,52px);font-weight:500;color:#f0f8f2;margin:0 0 12px;">{item.name}</h1>
         <p style="font-size:15px;color:rgba(240,248,242,0.5);margin:0;">{item.tagline}</p>
       </div>
     </section>
-    <section style="max-width:800px;margin:0 auto;padding:52px 10% 80px;text-align:center;">
-      <p style="font-size:16px;color:rgba(240,248,242,0.55);line-height:1.85;margin-bottom:40px;">{item.tagline}</p>
-      <div style="background:rgba(232,168,80,0.04);border:1px solid rgba(232,168,80,0.12);border-radius:20px;padding:32px;">
-        <p style="font-size:15px;color:rgba(240,248,242,0.5);margin:0 0 20px;">Add dining reservations to your Graeagle golf package.</p>
+    <section style="max-width:860px;margin:0 auto;padding:52px 10% 80px;">
+      {item.location && (
+        <div style="display:inline-flex;align-items:center;gap:8px;font-size:13px;color:rgba(232,168,80,0.7);margin-bottom:32px;">
+          <span>📍</span><span>{item.location}</span>
+        </div>
+      )}
+      <p style="font-size:17px;color:rgba(240,248,242,0.65);line-height:1.85;margin-bottom:40px;">{item.description}</p>
+      {item.highlights && (
+        <div style="background:rgba(232,168,80,0.04);border:1px solid rgba(232,168,80,0.12);border-radius:16px;padding:28px;margin-bottom:48px;">
+          <h3 style="font-family:'Playfair Display',serif;font-size:17px;color:#f0f8f2;margin:0 0 16px;">What to Know</h3>
+          <ul style="margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:10px;">
+            {item.highlights.map((h:string) => (
+              <li style="display:flex;align-items:flex-start;gap:10px;font-size:14px;color:rgba(240,248,242,0.6);">
+                <span style="color:#e8a850;flex-shrink:0;margin-top:2px;">✓</span>{h}
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+      <div style="background:rgba(232,168,80,0.04);border:1px solid rgba(232,168,80,0.12);border-radius:20px;padding:32px;text-align:center;">
+        <p style="font-size:15px;color:rgba(240,248,242,0.5);margin:0 0 20px;">Add dining to your Graeagle golf package — we coordinate group reservations.</p>
         <a href="/request-a-quote/" style="display:inline-block;background:#e8a850;color:#0d1a0e;font-weight:700;font-size:14px;padding:14px 36px;border-radius:100px;text-decoration:none;" onmouseover="this.style.background='#f2c878'" onmouseout="this.style.background='#e8a850'">Include in My Golf Package →</a>
       </div>
     </section>
