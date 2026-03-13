@@ -2,10 +2,7 @@
   "redirects": [
     { "source": "/quote/", "destination": "/request-a-quote/", "permanent": true },
     { "source": "/quote", "destination": "/request-a-quote/", "permanent": true },
-    { "source": "/courses/:slug/", "destination": "/portfolio/:slug-golf-packages/", "permanent": true },
-    { "source": "/courses/", "destination": "/all-golf-courses/", "permanent": true },
-    { "source": "/courses", "destination": "/all-golf-courses/", "permanent": true },
-    { "source": "/lodging/", "destination": "/lodging/", "permanent": false },
-    { "source": "/hotels", "destination": "/hotels/", "permanent": true }
+    { "source": "/all-golf-courses/", "destination": "/courses/", "permanent": true },
+    { "source": "/all-golf-courses", "destination": "/courses/", "permanent": true }
   ]
 }
