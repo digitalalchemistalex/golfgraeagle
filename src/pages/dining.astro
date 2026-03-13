@@ -3,88 +3,420 @@ import Base from '../layouts/Base.astro';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
 import { dining } from '../data/content.js';
-
-const title = "Graeagle Dining | Best Restaurants, Bars & Breweries Near the Golf Courses";
-const description = "The best restaurants in Graeagle, California. Fine dining at Longboards and Sardine Lake, casual eats at Grizzly Grill, craft beer at Eureka Peak Brewing and The Brewing Lair.";
-
-const fineDining = dining.filter(d => d.category === 'fine-dining');
-const variety = dining.filter(d => d.category === 'variety');
-const breweries = dining.filter(d => d.category === 'brewery');
----
 export const prerender = true;
-<Base title={title} description={description}>
 
-  <nav class="fixed top-0 left-0 right-0 z-50 px-6 py-4 flex items-center justify-between backdrop-blur-md bg-slate-950/80 border-b border-white/5">
-    <a href="/" class="font-display text-xl text-white">Golf <span class="text-gold-400">Graeagle</span></a>
-    <div class="hidden md:flex items-center gap-8 text-sm text-white/70">
-      <a href="/courses" class="hover:text-white transition-colors">Courses</a>
-      <a href="/lodging" class="hover:text-white transition-colors">Lodging</a>
-      <a href="/dining" class="text-white">Dining</a>
+const fineDining  = dining.filter(d => d.category === 'fine-dining');
+const casual      = dining.filter(d => ['casual','variety'].includes(d.category));
+const breweries   = dining.filter(d => ['brewery','bar'].includes(d.category));
+const quickBites  = dining.filter(d => d.category === 'quick');
+---
+
+<Base
+  title="Dining in Graeagle CA | Best Restaurants Near Golf Courses"
+  description="The best restaurants near Graeagle's golf courses. Fine dining at Sardine Lake Resort, craft beer at Eureka Peak Brewing, the Grizzly Grill after your round at Grizzly Ranch."
+>
+<Nav />
+
+<style>
+  /* ── Dining page styles ── */
+  .dining-hero {
+    position: relative;
+    min-height: 72vh;
+    display: flex;
+    align-items: flex-end;
+    overflow: hidden;
+  }
+  .dining-hero-bg {
+    position: absolute;
+    inset: 0;
+    background-image: url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1800&q=85&auto=format');
+    background-size: cover;
+    background-position: center;
+    transform: scale(1.08);
+    transition: transform 12s ease;
+  }
+  .dining-hero-bg.loaded { transform: scale(1.0); }
+  .dining-hero-grad {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(0deg, #0d1a0e 0%, rgba(13,26,14,0.55) 50%, rgba(13,26,14,0.1) 100%);
+  }
+  .dining-hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 48px 80px;
+    width: 100%;
+  }
+  /* ── Decision rail ── */
+  .decision-rail {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 56px 48px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  .decision-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 20px 22px;
+    border-radius: 14px;
+    background: rgba(240,248,242,0.02);
+    border: 1px solid rgba(240,248,242,0.06);
+    text-decoration: none;
+    transition: background 0.2s, border-color 0.2s, transform 0.2s;
+  }
+  .decision-card:hover {
+    background: rgba(232,168,80,0.05);
+    border-color: rgba(232,168,80,0.18);
+    transform: translateY(-2px);
+  }
+  /* ── Section header ── */
+  .sec-label {
+    font-size: 11px;
+    color: #e8a850;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    font-weight: 600;
+    margin: 0 0 10px;
+  }
+  .sec-h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(28px, 3.5vw, 42px);
+    font-weight: 400;
+    color: #f0f8f2;
+    margin: 0;
+    line-height: 1.1;
+  }
+  /* ── Image card ── */
+  .img-card {
+    border-radius: 18px;
+    overflow: hidden;
+    background: rgba(240,248,242,0.02);
+    border: 1px solid rgba(240,248,242,0.06);
+    transition: border-color 0.25s, transform 0.25s;
+  }
+  .img-card:hover { border-color: rgba(240,248,242,0.12); transform: translateY(-4px); }
+  .img-card .thumb {
+    display: block;
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    transition: transform 5s ease;
+  }
+  .img-card:hover .thumb { transform: scale(1.05); }
+  .img-card-body { padding: 20px 22px; }
+  /* ── On-course cards ── */
+  .on-course-card { border-radius: 18px; overflow: hidden; background: rgba(240,248,242,0.025); border: 1px solid rgba(240,248,242,0.07); }
+  .on-course-card .thumb { display: block; width: 100%; height: 240px; object-fit: cover; }
+  /* ── Brewery row ── */
+  .brewery-row {
+    display: flex;
+    border-radius: 16px;
+    overflow: hidden;
+    background: rgba(240,248,242,0.02);
+    border: 1px solid rgba(240,248,242,0.06);
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .brewery-row:hover { border-color: rgba(232,168,80,0.15); background: rgba(232,168,80,0.03); }
+  .brewery-row .thumb { display: block; width: 140px; flex-shrink: 0; object-fit: cover; }
+  /* ── Matrix table ── */
+  .matrix { border-radius: 18px; overflow: hidden; border: 1px solid rgba(240,248,242,0.06); }
+  .matrix-col { border-radius: 14px; background: rgba(240,248,242,0.02); border: 1px solid rgba(240,248,242,0.06); overflow: hidden; }
+  .matrix-col-head { padding: 16px; border-bottom: 1px solid rgba(240,248,242,0.05); }
+  /* ── Badge ── */
+  .badge-gold { display: inline-block; font-size: 11px; color: #e8a850; background: rgba(232,168,80,0.08); border: 1px solid rgba(232,168,80,0.15); padding: 5px 12px; border-radius: 100px; }
+  /* ── CTA band ── */
+  .cta-band { padding: 96px 48px; text-align: center; }
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: #e8a850; color: #0d1a0e; font-size: 15px; font-weight: 700;
+    padding: 16px 42px; border-radius: 100px; text-decoration: none;
+    transition: background 0.25s, transform 0.25s, box-shadow 0.25s;
+    box-shadow: 0 4px 24px rgba(232,168,80,0.25);
+  }
+  .btn-primary:hover { background: #f2c878; transform: translateY(-2px); box-shadow: 0 12px 40px rgba(232,168,80,0.4); }
+  /* ── Utility ── */
+  .page-wrap { max-width: 1280px; margin: 0 auto; padding: 0 48px; }
+  .divider { border: none; border-top: 1px solid rgba(240,248,242,0.05); margin: 0; }
+  @media (max-width: 768px) {
+    .decision-rail { grid-template-columns: 1fr; padding: 40px 24px; }
+    .page-wrap { padding: 0 24px; }
+    .dining-hero-content { padding: 0 24px 56px; }
+    .cta-band { padding: 72px 24px; }
+  }
+</style>
+
+<!-- ══════════════════════════════════════════
+     HERO — NO reveal class (above fold)
+══════════════════════════════════════════ -->
+<section class="dining-hero">
+  <div class="dining-hero-bg" id="dhbg"></div>
+  <div class="dining-hero-grad"></div>
+  <div class="dining-hero-content">
+    <p class="sec-label" style="margin-bottom:18px;">Food &amp; Drink · Graeagle, California</p>
+    <h1 style="font-family:'Playfair Display',serif;font-size:clamp(52px,7vw,94px);font-weight:400;color:#f0f8f2;margin:0 0 20px;line-height:1.0;">
+      Eat well.<br/><em style="color:#e8a850;font-style:italic;">Drink even better.</em>
+    </h1>
+    <p style="font-size:18px;color:rgba(240,248,242,0.55);max-width:540px;line-height:1.75;margin:0 0 36px;">
+      Graeagle has no business being this good for food. Remote valley, mountains all around — yet fifteen restaurants and bars, two craft breweries, and one legendary alpine lake restaurant that requires a reservation weeks out.
+    </p>
+    <!-- Stats row — anchoring -->
+    <div style="display:flex;gap:36px;flex-wrap:wrap;">
+      {[
+        {n:'15+', l:'Restaurants & Bars'},
+        {n:'3',   l:'Fine Dining'},
+        {n:'2',   l:'Craft Breweries'},
+        {n:'2',   l:'On-Course Dining'},
+      ].map(s=>(
+        <div>
+          <div style="font-family:'Playfair Display',serif;font-size:30px;color:#e8a850;line-height:1;">{s.n}</div>
+          <div style="font-size:11px;color:rgba(240,248,242,0.32);letter-spacing:0.06em;margin-top:4px;">{s.l}</div>
+        </div>
+      ))}
     </div>
-    <a href="/quote" class="bg-gold-500 hover:bg-gold-400 text-slate-950 text-sm font-medium px-5 py-2.5 rounded-full transition-all">Plan My Trip</a>
-  </nav>
+  </div>
+</section>
 
-  <section class="pt-32 pb-16 px-6">
-    <div class="max-w-6xl mx-auto">
-      <p class="text-gold-400 text-sm tracking-widest uppercase mb-4">Food & Drink</p>
-      <h1 class="font-display text-6xl md:text-8xl text-white font-light leading-none mb-6">
-        Eat well.<br /><em class="text-gold-400 not-italic">Drink better.</em>
-      </h1>
-      <p class="text-white/50 text-xl max-w-2xl">
-        From award-winning dining inside resort lodges to century-old Sierra taverns with cold beer and live music — Graeagle punches well above its size when it comes to food.
-      </p>
-    </div>
-  </section>
-
+<!-- ══════════════════════════════════════════
+     DECISION RAIL — human psychology:
+     match me to a situation, not a category
+══════════════════════════════════════════ -->
+<div class="decision-rail reveal">
   {[
-    { label: 'Fine Dining', items: fineDining, desc: 'Elevated mountain cuisine for the post-round celebration.' },
-    { label: 'Casual & Variety', items: variety, desc: 'Local favorites for quick bites, big breakfasts, and everything in between.' },
-    { label: 'Breweries & Bars', items: breweries, desc: 'Craft beer, mountain taverns, and the best après-golf in the Sierra.' },
-  ].map(section => section.items.length > 0 && (
-    <section class="py-16 px-6 border-t border-white/5">
-      <div class="max-w-6xl mx-auto">
-        <div class="mb-10">
-          <h2 class="font-display text-4xl text-white font-light">{section.label}</h2>
-          <p class="text-white/40 mt-2">{section.desc}</p>
-        </div>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {section.items.map(venue => (
-            <div class="group rounded-2xl border border-white/5 bg-white/[0.02] hover:bg-white/[0.04] hover:border-white/10 transition-all duration-300 p-7">
-              <div class="w-8 h-8 rounded-full bg-gold-500/10 border border-gold-500/20 flex items-center justify-center text-gold-400 text-xs mb-4">
-                {section.label === 'Fine Dining' ? '🍽' : section.label === 'Casual & Variety' ? '🥗' : '🍺'}
-              </div>
-              <h3 class="font-display text-2xl text-white font-light mb-1 group-hover:text-gold-300 transition-colors">{venue.name}</h3>
-              <p class="text-white/40 text-sm mb-3">{venue.tagline}</p>
-              <p class="text-white/25 text-xs">📍 {venue.location}</p>
-            </div>
-          ))}
-        </div>
+    { icon:'🏌️', q:'Just finished 18 holes?',      a:'Grizzly Grill or Roadhouse at River Pines — both are steps from a clubhouse.',    href:'#on-course' },
+    { icon:'🥂', q:'Celebrating something?',          a:'Sardine Lake Resort. Remote alpine. Call weeks ahead. Worth it.',                   href:'#fine-dining' },
+    { icon:'🍺', q:'Cold beers with the group?',      a:'Eureka Peak Brewing or The Brewing Lair — both craft, both Sierra.',               href:'#breweries' },
+    { icon:'🌅', q:'Early tee time, need food first?', a:'Little Bite Deli for pre-round sandwiches. Mountain Frostee after the back nine.', href:'#quick-bites' },
+  ].map(c=>(
+    <a class="decision-card" href={c.href}>
+      <span style="font-size:22px;flex-shrink:0;">{c.icon}</span>
+      <div>
+        <div style="font-size:13px;font-weight:600;color:#f0f8f2;margin-bottom:4px;">{c.q}</div>
+        <div style="font-size:13px;color:rgba(240,248,242,0.38);line-height:1.55;">{c.a}</div>
       </div>
-    </section>
+    </a>
   ))}
+</div>
 
-  <section class="py-24 px-6">
-    <div class="max-w-2xl mx-auto text-center">
-      <h2 class="font-display text-5xl text-white font-light mb-4">Build the full experience.</h2>
-      <p class="text-white/40 mb-8">Golf + lodging + dining recommendations, all packaged together. That's what we do.</p>
-      <a href="/quote" class="inline-flex items-center gap-3 bg-gold-500 hover:bg-gold-400 text-slate-950 font-medium px-10 py-5 rounded-full transition-all duration-300 hover:shadow-2xl hover:shadow-gold-500/30 text-lg group">
-        Plan My Full Trip
-        <span class="transition-transform group-hover:translate-x-1">→</span>
-      </a>
-    </div>
-  </section>
-
-  <footer class="border-t border-white/5 py-12 px-6">
-    <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6 text-white/30 text-sm">
-      <div class="font-display text-base text-white/50">Golf <span class="text-gold-400/70">Graeagle</span></div>
-      <div class="flex gap-6">
-        <a href="/courses" class="hover:text-white/60 transition-colors">Courses</a>
-        <a href="/lodging" class="hover:text-white/60 transition-colors">Lodging</a>
-        <a href="/dining" class="hover:text-white/60 transition-colors">Dining</a>
-        <a href="/quote" class="hover:text-white/60 transition-colors">Get a Quote</a>
+<!-- ══════════════════════════════════════════
+     FINE DINING
+══════════════════════════════════════════ -->
+<hr class="divider" />
+<section id="fine-dining" style="padding:72px 0;">
+  <div class="page-wrap">
+    <div class="reveal" style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:36px;">
+      <div>
+        <p class="sec-label">Fine Dining</p>
+        <h2 class="sec-h2">The special occasion spots.</h2>
       </div>
-      <div>© 2025 Zoomaway Technologies Inc.</div>
+      <p style="font-size:13px;color:rgba(240,248,242,0.28);max-width:300px;text-align:right;line-height:1.6;">Book ahead. These fill up fast in summer. Worth every mile.</p>
     </div>
-  </footer>
+    <div style="display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:14px;" class="reveal">
+      {fineDining.map((v, i) => (
+        <div class="img-card" style={i === 0 ? 'grid-row: span 1' : ''}>
+          <img class="thumb" src={v.hero} alt={v.name} style={`height:${i===0?'260px':'220px'}`} loading={i===0?'eager':'lazy'} />
+          <div class="img-card-body">
+            <h3 style="font-family:'Playfair Display',serif;font-size:21px;font-weight:400;color:#f0f8f2;margin:0 0 5px;">{v.name}</h3>
+            <p style="font-size:13px;color:rgba(240,248,242,0.4);margin:0 0 12px;line-height:1.5;">{v.tagline}</p>
+            {v.slug==='sardine-lake'   && <span class="badge-gold">⚠️ Reservations essential · Remote</span>}
+            {v.slug==='longboards'     && <span class="badge-gold">🏔️ Lakefront · Gold Lake Lodge</span>}
+            {v.slug==='iron-door'      && <span class="badge-gold">🏛️ Historic Johnsville landmark</span>}
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
 
+<!-- ══════════════════════════════════════════
+     ON-COURSE DINING — strongest cross-link
+══════════════════════════════════════════ -->
+<hr class="divider" />
+<section id="on-course" style="padding:72px 0;background:rgba(232,168,80,0.025);">
+  <div class="page-wrap">
+    <div class="reveal" style="margin-bottom:36px;">
+      <p class="sec-label">On-Course &amp; On-Property</p>
+      <h2 class="sec-h2" style="margin-bottom:10px;">Don't even change your shoes.</h2>
+      <p style="font-size:15px;color:rgba(240,248,242,0.38);max-width:500px;line-height:1.7;">Two restaurants are physically on the courses you're already playing. Walk off the 18th and walk straight in.</p>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;" class="reveal">
+      {[
+        {
+          name:'Grizzly Grill', sub:'At Grizzly Ranch Golf Club',
+          desc:'The 19th hole bar and grill at the most challenging course in Graeagle. Cold beers, burgers, and a scoreboard full of stories from the back nine.',
+          img:'https://images.unsplash.com/photo-1544025162-d76694265947?w=900&q=85&auto=format',
+          badge:'⛳ Walk from the 18th green', courseHref:'/courses/grizzly-ranch', course:'Grizzly Ranch'
+        },
+        {
+          name:'Graeagle Meadows Restaurant', sub:"At Graeagle Meadows Golf Course",
+          desc:"The valley's original course has its own clubhouse restaurant. Open for breakfast and lunch — the right way to start or end a round at Graeagle's most storied layout.",
+          img:'https://images.unsplash.com/photo-1424847651672-bf20a4b0982b?w=900&q=85&auto=format',
+          badge:'⛳ Graeagle Meadows clubhouse', courseHref:'/courses/graeagle-meadows', course:'Graeagle Meadows'
+        },
+      ].map(v=>(
+        <div class="on-course-card">
+          <div style="position:relative;overflow:hidden;">
+            <img class="thumb" src={v.img} alt={v.name} loading="lazy" />
+            <div style="position:absolute;inset:0;background:linear-gradient(0deg,rgba(13,26,14,0.8) 0%,transparent 55%);pointer-events:none;"></div>
+            <div style="position:absolute;bottom:14px;left:18px;">
+              <span class="badge-gold">{v.badge}</span>
+            </div>
+          </div>
+          <div style="padding:22px 24px;">
+            <h3 style="font-family:'Playfair Display',serif;font-size:21px;color:#f0f8f2;margin:0 0 4px;">{v.name}</h3>
+            <p style="font-size:12px;color:rgba(232,168,80,0.6);margin:0 0 10px;">{v.sub}</p>
+            <p style="font-size:14px;color:rgba(240,248,242,0.42);line-height:1.65;margin:0 0 16px;">{v.desc}</p>
+            <a href={v.courseHref} style="font-size:12px;color:rgba(240,248,242,0.35);text-decoration:none;border:1px solid rgba(240,248,242,0.08);padding:7px 14px;border-radius:100px;display:inline-flex;align-items:center;gap:6px;transition:color 0.2s,border-color 0.2s;"
+            onmouseover="this.style.color='#e8a850';this.style.borderColor='rgba(232,168,80,0.25)'"
+            onmouseout="this.style.color='rgba(240,248,242,0.35)';this.style.borderColor='rgba(240,248,242,0.08)'">
+              View {v.course} →
+            </a>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     CASUAL DINING
+══════════════════════════════════════════ -->
+<hr class="divider" />
+<section style="padding:72px 0;">
+  <div class="page-wrap">
+    <div class="reveal" style="margin-bottom:36px;">
+      <p class="sec-label">Casual Dining</p>
+      <h2 class="sec-h2" style="margin-bottom:10px;">The everyday favourites.</h2>
+      <p style="font-size:15px;color:rgba(240,248,242,0.38);max-width:500px;line-height:1.7;">Local staples that have been feeding golfers for years. No fuss, no reservation — just good food and a cold drink.</p>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px;" class="reveal">
+      {casual.filter(v=>v.slug!=='meadows-restaurant').map(v=>(
+        <div class="img-card">
+          <img class="thumb" src={v.hero} alt={v.name} loading="lazy" />
+          <div class="img-card-body">
+            <h3 style="font-family:'Playfair Display',serif;font-size:19px;font-weight:400;color:#f0f8f2;margin:0 0 5px;">{v.name}</h3>
+            <p style="font-size:13px;color:rgba(240,248,242,0.38);line-height:1.5;margin:0;">{v.tagline}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     BREWERIES & BARS
+══════════════════════════════════════════ -->
+<hr class="divider" />
+<section id="breweries" style="padding:72px 0;">
+  <div class="page-wrap">
+    <div class="reveal" style="margin-bottom:36px;">
+      <p class="sec-label">Breweries &amp; Bars</p>
+      <h2 class="sec-h2" style="margin-bottom:10px;">The après-golf scene.</h2>
+      <p style="font-size:15px;color:rgba(240,248,242,0.38);max-width:500px;line-height:1.7;">Four options from craft brewery to century-old mountain tavern. All cold, all welcome, all post-round perfect.</p>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;" class="reveal">
+      {breweries.map(v=>(
+        <div class="brewery-row">
+          <img class="thumb" src={v.hero} alt={v.name} style="height:100%;min-height:120px;" loading="lazy" />
+          <div style="padding:20px 22px;display:flex;flex-direction:column;justify-content:center;">
+            <div style="font-size:10px;color:rgba(232,168,80,0.5);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:6px;">
+              {v.category==='brewery'?'Craft Brewery':'Mountain Bar'}
+            </div>
+            <h3 style="font-family:'Playfair Display',serif;font-size:18px;color:#f0f8f2;margin:0 0 5px;">{v.name}</h3>
+            <p style="font-size:13px;color:rgba(240,248,242,0.38);line-height:1.5;margin:0;">{v.tagline}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     QUICK BITES
+══════════════════════════════════════════ -->
+<hr class="divider" />
+<section id="quick-bites" style="padding:72px 0;">
+  <div class="page-wrap">
+    <div class="reveal" style="margin-bottom:32px;">
+      <p class="sec-label">Quick Bites</p>
+      <h2 class="sec-h2">Fuel for the round.</h2>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;" class="reveal">
+      {quickBites.map(v=>(
+        <div style="display:flex;align-items:center;gap:16px;padding:18px 20px;border-radius:14px;background:rgba(240,248,242,0.02);border:1px solid rgba(240,248,242,0.05);">
+          <img src={v.hero} alt={v.name} style="width:68px;height:68px;border-radius:10px;object-fit:cover;flex-shrink:0;" loading="lazy" />
+          <div>
+            <h3 style="font-size:15px;font-weight:600;color:#f0f8f2;margin:0 0 3px;">{v.name}</h3>
+            <p style="font-size:13px;color:rgba(240,248,242,0.35);margin:0;">{v.tagline}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     INTELLIGENCE MATRIX — "after each course, eat here"
+     This is the cross-link intelligence layer
+══════════════════════════════════════════ -->
+<hr class="divider" />
+<section style="padding:80px 0;background:rgba(240,248,242,0.01);">
+  <div class="page-wrap">
+    <div class="reveal" style="text-align:center;margin-bottom:48px;">
+      <p class="sec-label">Smart Planning</p>
+      <h2 class="sec-h2" style="font-size:clamp(32px,4vw,46px);margin-bottom:12px;">Where to eat after each course.</h2>
+      <p style="font-size:15px;color:rgba(240,248,242,0.32);max-width:440px;margin:0 auto;line-height:1.7;">Every course has perfect nearby dining. Here's the play for each round.</p>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:10px;" class="reveal">
+      {[
+        { emoji:'🌿', course:'Graeagle Meadows', slug:'graeagle-meadows', dining:["Meadows Restaurant","Roadhouse at River Pines","Longboards"] },
+        { emoji:'🦅', course:'Whitehawk Ranch',  slug:'whitehawk-ranch',  dining:["Sardine Lake Resort","Iron Door Restaurant","The Brewing Lair"] },
+        { emoji:'🌲', course:'Plumas Pines',     slug:'plumas-pines',     dining:["Cuccia's","Little Bite Deli","Mohawk Tavern"] },
+        { emoji:'🐻', course:'Grizzly Ranch',    slug:'grizzly-ranch',    dining:["Grizzly Grill","Sierra SmokeShow","Eureka Peak Brewing"] },
+        { emoji:'🐉', course:'Nakoma — Dragon',  slug:'nakoma',           dining:["Iron Door Restaurant","Sardine Lake","The Knotty Pine"] },
+      ].map(c=>(
+        <div style="border-radius:14px;background:rgba(240,248,242,0.02);border:1px solid rgba(240,248,242,0.06);overflow:hidden;">
+          <div style="padding:14px 16px 12px;border-bottom:1px solid rgba(240,248,242,0.05);">
+            <div style="font-size:20px;margin-bottom:7px;">{c.emoji}</div>
+            <a href={`/courses/${c.slug}`} style="font-size:12px;font-weight:600;color:#f0f8f2;text-decoration:none;line-height:1.3;display:block;transition:color 0.2s;"
+            onmouseover="this.style.color='#e8a850'" onmouseout="this.style.color='#f0f8f2'">{c.course} →</a>
+          </div>
+          <div style="padding:12px 16px;display:flex;flex-direction:column;gap:8px;">
+            {c.dining.map(d=>(
+              <div style="font-size:11px;color:rgba(240,248,242,0.35);display:flex;align-items:center;gap:6px;line-height:1.4;">
+                <span style="color:#e8a850;font-size:7px;flex-shrink:0;">●</span>{d}
+              </div>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     CTA
+══════════════════════════════════════════ -->
+<section class="cta-band reveal">
+  <h2 style="font-family:'Playfair Display',serif;font-size:clamp(34px,4vw,50px);font-weight:400;color:#f0f8f2;margin:0 0 14px;line-height:1.15;">Golf. Eat. Repeat.</h2>
+  <p style="font-size:15px;color:rgba(240,248,242,0.38);margin:0 0 36px;max-width:460px;margin-inline:auto;line-height:1.7;">We build complete packages — tee times, lodging, and dining all in one. Tell us what you're after.</p>
+  <a href="/quote" class="btn-primary">Plan My Full Trip →</a>
+</section>
+
+<Footer />
+
+<script>
+  // Slow-burn hero parallax (not reveal — always visible)
+  const bg = document.getElementById('dhbg');
+  if (bg) {
+    bg.classList.add('loaded'); // trigger subtle zoom-out on load
+    window.addEventListener('scroll', () => {
+      bg.style.transform = `scale(1.0) translateY(${window.scrollY * 0.12}px)`;
+    }, { passive: true });
+  }
+</script>
 </Base>
