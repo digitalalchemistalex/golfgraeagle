@@ -5,12 +5,17 @@ import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
 import { lodging } from '../data/content.js';
 ---
+<style>
+  .hotels-wrap { padding: clamp(100px,12vw,140px) clamp(20px,10%,10%) 60px; max-width: 1100px; margin: 0 auto; }
+  .hotels-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  @media (max-width: 600px) { .hotels-grid { grid-template-columns: 1fr; } }
+</style>
 <Base title="Hotels in Graeagle, CA – Mountain Lodges & Resorts | GolfGraeagle" description="Stay at Nakoma, Chalet View Lodge, or River Pines with GolfGraeagle stay-and-play packages. Plan with trusted local golf experts.">
   <Nav />
-  <section style="padding:140px 10% 40px;max-width:1100px;margin:0 auto;">
+  <section class="hotels-wrap">
     <h1 style="font-family:'Playfair Display',serif;font-size:clamp(32px,5vw,52px);font-weight:500;color:#f0f8f2;margin:0 0 20px;">Graeagle Hotels, Lodges <span style="color:#e8a850;font-style:italic;">&amp; Resorts</span></h1>
     <p style="font-size:17px;color:rgba(240,248,242,0.5);max-width:600px;line-height:1.75;margin:0 0 60px;">From boutique mountain lodges to on-course resort stays — every option within minutes of all 5 courses.</p>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;">
+    <div class="hotels-grid">
       {lodging.map(l => (
         <a href={`/portfolio/${l.slug === 'river-pines-resort' ? 'river-pines-resort-graeagle-ca' : l.slug === 'chalet-view-lodge' ? 'chalet-view-lodge-graeagle-ca' : l.slug === 'inn-at-nakoma' ? 'the-inn-at-nakoma-clio-ca' : 'the-townhomes-at-plumas-pines'}/`}
           style="border-radius:16px;overflow:hidden;text-decoration:none;background:rgba(240,248,242,0.02);border:1px solid rgba(240,248,242,0.07);transition:all 0.2s;"
