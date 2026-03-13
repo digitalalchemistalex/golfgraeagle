@@ -72,50 +72,87 @@ const homeFaqSchema = {
 
 <!-- ══════ HERO ══════ -->
 <section class="hero-section">
-  <!-- LCP-critical: eager + fetchpriority=high, inline img not CSS bg -->
+
+  <!-- LCP image — full bleed, eager load -->
   <img
     src={HERO_IMG}
-    alt="Nakoma Dragon Golf Course — aerial view of the fairway"
+    alt="Nakoma Dragon Golf Course — aerial view of The Dragon fairway, Graeagle California"
     class="hero-img"
     loading="eager"
     fetchpriority="high"
     decoding="sync"
+    width="1920"
+    height="1080"
   />
+
+  <!-- Gradient overlay: dark top (behind nav), transparent mid, heavy dark bottom -->
   <div class="hero-overlay"></div>
 
-  <div class="hero-content">
-    <div class="reveal" style="margin-bottom:20px;">
-      <span style="font-size:11px;color:rgba(232,168,80,0.75);letter-spacing:0.2em;text-transform:uppercase;">Graeagle, California · Sierra Nevada</span>
-    </div>
-    <h1 class="reveal delay-100 hero-h1">
-      Five Courses.<br/>
-      <span id="hero-shimmer" style="color:#e8a850;">One Valley.</span>
-    </h1>
-    <p class="reveal delay-200 hero-sub speakable page-intro">
-      The most concentrated mountain golf destination in California — five championship courses within 25 minutes of each other, from $$ to Golf Digest Top 75.
-    </p>
-    <div class="reveal delay-300 hero-ctas">
-      <a href="/request-a-quote" class="btn-gold">Plan My Trip →</a>
-      <a href="/courses" class="btn-ghost-hero">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
-        Compare all 5 courses
+  <!-- Film strip: 5 courses, sits just below nav -->
+  <div class="hero-strip">
+    {courses.map((c) => (
+      <a href={`/courses/${c.slug}`} class="strip-item" aria-label={`View ${c.name}`}>
+        <img src={c.hero} alt={c.name} class="strip-thumb" loading="lazy" />
+        <div class="strip-dim"></div>
+        <span class="strip-label">{c.name.replace(' — The Dragon','').replace('Graeagle ','')}</span>
       </a>
+    ))}
+  </div>
+
+  <!-- Main content: left headline + right stat card -->
+  <div class="hero-content">
+
+    <!-- LEFT -->
+    <div class="hero-left">
+      <div class="hero-eyebrow reveal">
+        <span class="eyebrow-line"></span>
+        <span class="eyebrow-text">Sierra Nevada · Plumas County · California</span>
+      </div>
+
+      <h1 class="hero-h1 reveal delay-100 speakable">
+        Five courses.<br/>
+        One <em>unforgettable</em><br/>
+        valley.
+      </h1>
+
+      <p class="hero-sub reveal delay-200 page-intro">
+        Championship golf within 25 minutes of each other — from the only Frank Lloyd Wright golf clubhouse to a Golf Digest Top 100 course. We handle everything.
+      </p>
+
+      <div class="hero-ctas reveal delay-300">
+        <a href="/quote" class="btn-gold">Plan My Trip →</a>
+        <a href="/courses" class="btn-ghost-hero">See all 5 courses ↓</a>
+      </div>
     </div>
 
-    <div class="reveal delay-500 hero-stats">
-      {[['5','Championship Courses'],['25 min','Between Furthest Courses'],['147','Highest Slope Rating'],['1968','Original Course Opened']].map(([n,l])=>(
-        <div>
-          <div style="font-family:'Playfair Display',serif;font-size:clamp(28px,3vw,40px);color:#e8a850;font-weight:500;">{n}</div>
-          <div style="font-size:12px;color:rgba(240,248,242,0.38);text-transform:uppercase;letter-spacing:0.1em;margin-top:4px;">{l}</div>
+    <!-- RIGHT: stat card -->
+    <div class="hero-right reveal delay-200">
+      <div class="stat-card">
+        {[
+          ['Courses', '5 within 25 min'],
+          ['Altitude', '4,300 – 5,400 ft'],
+          ['Season', 'May – November'],
+          ['Reviews', '4.8 / 5 · 672 verified'],
+        ].map(([label, val]) => (
+          <div class="stat-row">
+            <span class="stat-label">{label}</span>
+            <span class="stat-val">{val}</span>
+          </div>
+        ))}
+        <div class="stat-cta">
+          <a href="/quote" class="btn-gold-sm">Request a Free Quote</a>
+          <p class="stat-cta-meta">No obligation · Response within 24 hrs</p>
         </div>
-      ))}
+      </div>
     </div>
+
   </div>
 
+  <!-- Scroll hint -->
   <div class="scroll-hint" aria-hidden="true">
-    <span style="font-size:10px;letter-spacing:0.15em;text-transform:uppercase;color:#f0f8f2;">Scroll</span>
-    <div style="width:1px;height:40px;background:linear-gradient(to bottom,rgba(240,248,242,0.5),transparent);"></div>
+    <div class="scroll-line"></div>
   </div>
+
 </section>
 
 <!-- ══════ COURSES GRID ══════ -->
@@ -352,10 +389,10 @@ const homeFaqSchema = {
   .hero-section {
     position: relative;
     height: 100vh;
-    min-height: 600px;
+    min-height: 640px;
     overflow: hidden;
     display: flex;
-    align-items: center;
+    flex-direction: column;
   }
   .hero-img {
     position: absolute;
@@ -363,36 +400,127 @@ const homeFaqSchema = {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: center;
+    object-position: center 40%;
   }
   .hero-overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(160deg,rgba(13,26,14,0.45) 0%,rgba(13,26,14,0.72) 55%,rgba(13,26,14,0.97) 100%);
+    background: linear-gradient(
+      180deg,
+      rgba(13,26,14,0.55) 0%,
+      transparent 28%,
+      transparent 42%,
+      rgba(13,26,14,0.88) 72%,
+      rgba(13,26,14,0.98) 100%
+    );
+    z-index: 1;
   }
-  .hero-content {
+
+  /* Film strip */
+  .hero-strip {
     position: relative;
     z-index: 2;
-    padding: 0 clamp(24px, 10%, 140px);
-    max-width: 1400px;
+    display: flex;
+    gap: 3px;
+    padding: 3px clamp(20px,4vw,48px);
+    padding-top: calc(68px + 3px); /* nav height + gap */
+  }
+  .strip-item {
+    flex: 1;
+    height: 58px;
+    overflow: hidden;
+    border-radius: 6px;
+    position: relative;
+    text-decoration: none;
+    display: block;
+    transition: flex 0.4s cubic-bezier(0.4,0,0.2,1);
+  }
+  .strip-item:hover { flex: 2; }
+  .strip-thumb {
     width: 100%;
-    margin-top: 68px; /* nav height */
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 6s ease;
+  }
+  .strip-item:hover .strip-thumb { transform: scale(1.08); }
+  .strip-dim {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.42);
+    transition: background 0.3s;
+  }
+  .strip-item:hover .strip-dim { background: rgba(0,0,0,0.12); }
+  .strip-label {
+    position: absolute;
+    bottom: 7px;
+    left: 9px;
+    font-size: 9px;
+    color: rgba(255,255,255,0.85);
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 90%;
+  }
+
+  /* Hero main content — bottom-anchored, two-column */
+  .hero-content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 2;
+    padding: 0 clamp(20px,4vw,52px) clamp(32px,5vh,56px);
+    display: grid;
+    grid-template-columns: 1fr 300px;
+    gap: clamp(24px,3vw,48px);
+    align-items: end;
+    max-width: 1400px;
+    margin: 0 auto;
+    width: 100%;
+  }
+  .hero-left {}
+  .hero-eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+  .eyebrow-line {
+    display: block;
+    width: 28px;
+    height: 1px;
+    background: rgba(232,168,80,0.65);
+    flex-shrink: 0;
+  }
+  .eyebrow-text {
+    font-size: 10px;
+    color: rgba(232,168,80,0.75);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-weight: 500;
   }
   .hero-h1 {
     font-family: 'Playfair Display', serif;
-    font-size: clamp(40px, 7vw, 96px);
+    font-size: clamp(44px, 6.5vw, 88px);
     font-weight: 500;
     color: #f0f8f2;
     line-height: 1.0;
-    margin: 0 0 24px;
-    max-width: 900px;
+    letter-spacing: -0.02em;
+    margin: 0 0 22px;
+  }
+  .hero-h1 em {
+    font-style: italic;
+    color: #e8a850;
   }
   .hero-sub {
-    font-size: clamp(15px, 1.8vw, 20px);
-    color: rgba(240,248,242,0.6);
-    max-width: 560px;
+    font-size: clamp(14px, 1.5vw, 17px);
+    color: rgba(240,248,242,0.52);
+    max-width: 520px;
     line-height: 1.7;
-    margin: 0 0 48px;
+    margin: 0 0 32px;
   }
   .hero-ctas {
     display: flex;
@@ -400,22 +528,81 @@ const homeFaqSchema = {
     flex-wrap: wrap;
     align-items: center;
   }
-  .hero-stats {
-    display: flex;
-    gap: clamp(20px, 4vw, 48px);
-    margin-top: clamp(40px, 7vw, 72px);
-    flex-wrap: wrap;
+
+  /* Stat card (right side of hero) */
+  .hero-right { align-self: end; }
+  .stat-card {
+    background: rgba(13,26,14,0.6);
+    border: 1px solid rgba(240,248,242,0.07);
+    border-radius: 16px;
+    overflow: hidden;
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
   }
+  .stat-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 13px 20px;
+    border-bottom: 1px solid rgba(240,248,242,0.05);
+    gap: 12px;
+  }
+  .stat-label {
+    font-size: 10px;
+    color: rgba(240,248,242,0.3);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    flex-shrink: 0;
+  }
+  .stat-val {
+    font-size: 13px;
+    font-weight: 500;
+    color: #f0f8f2;
+    text-align: right;
+  }
+  .stat-cta {
+    padding: 16px 20px;
+    background: rgba(232,168,80,0.07);
+  }
+  .btn-gold-sm {
+    display: block;
+    background: #e8a850;
+    color: #0d1a0e;
+    font-size: 13px;
+    font-weight: 700;
+    text-align: center;
+    padding: 13px 20px;
+    border-radius: 100px;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.2s;
+  }
+  .btn-gold-sm:hover { background: #f2c878; transform: translateY(-1px); }
+  .stat-cta-meta {
+    font-size: 10px;
+    color: rgba(240,248,242,0.2);
+    text-align: center;
+    margin: 8px 0 0;
+    letter-spacing: 0.03em;
+  }
+
+  /* Scroll hint */
   .scroll-hint {
     position: absolute;
-    bottom: 40px;
+    bottom: 24px;
     left: 50%;
     transform: translateX(-50%);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 8px;
-    opacity: 0.4;
+    z-index: 3;
+    opacity: 0.3;
+  }
+  .scroll-line {
+    width: 1px;
+    height: 36px;
+    background: #f0f8f2;
+    animation: scrollPulse 2s ease-in-out infinite;
+  }
+  @keyframes scrollPulse {
+    0%, 100% { opacity: 0.3; transform: scaleY(1); }
+    50% { opacity: 1; transform: scaleY(0.55); }
   }
 
   /* ═══ BUTTONS ═══ */
@@ -622,6 +809,13 @@ const homeFaqSchema = {
   @media (max-width: 860px) {
     .scroll-hint { display: none; }
 
+    /* Hero → stack vertically */
+    .hero-content {
+      grid-template-columns: 1fr;
+      padding-bottom: clamp(24px,4vh,40px);
+    }
+    .hero-right { display: none; } /* stat card hidden on mobile — too cramped */
+
     /* Course grids → single col */
     .courses-feature-row {
       grid-template-columns: 1fr;
@@ -663,12 +857,10 @@ const homeFaqSchema = {
     .hero-stats { gap: 16px; }
   }
 
-  /* ═══ ANIMATIONS ═══ */
   @keyframes shimmer {
     0%,100% { opacity:1; }
-    50% { opacity:0.7; text-shadow: 0 0 40px rgba(232,168,80,0.4); }
+    50% { opacity:0.7; }
   }
-  #hero-shimmer { animation: shimmer 3s ease-in-out infinite; }
 </style>
 
 <script>
