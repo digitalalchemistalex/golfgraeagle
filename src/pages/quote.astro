@@ -2,201 +2,472 @@
 import Base from '../layouts/Base.astro';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
-import { courses, siteConfig } from '../data/content.js';
-
-const title = "Request a Graeagle Golf Package Quote | Golf Graeagle";
-const description = "Plan your Graeagle golf trip. Tell us your dates, group size, and preferred courses — we'll build a custom stay-and-play package. Free quotes, 24-hour response.";
+import { courses } from '../data/content.js';
 
 const preselected = Astro.url.searchParams.get('course') || '';
-const courseName = Astro.url.searchParams.get('courseName') || '';
+const courseName  = Astro.url.searchParams.get('courseName') || '';
+
+// Course lists from MSG_Quote_Form_Reference.docx — Graeagle region added
+const graeagleCourses = [
+  { id: 'graeagle-meadows',  name: 'Graeagle Meadows Golf Course',  mustPlay: false },
+  { id: 'whitehawk-ranch',   name: 'Whitehawk Ranch Golf Club',      mustPlay: true  },
+  { id: 'plumas-pines',      name: 'Plumas Pines Golf Resort',       mustPlay: false },
+  { id: 'grizzly-ranch',     name: 'Grizzly Ranch Golf Club',        mustPlay: true  },
+  { id: 'nakoma-dragon',     name: 'Nakoma — The Dragon',            mustPlay: true  },
+];
 ---
-<Base title={title} description={description}>
+export const prerender = true;
 
-  <nav class="fixed top-0 left-0 right-0 z-50 px-6 py-4 flex items-center justify-between backdrop-blur-md bg-slate-950/80 border-b border-white/5">
-    <a href="/" class="font-display text-xl text-white">Golf <span class="text-gold-400">Graeagle</span></a>
-    <div class="hidden md:flex items-center gap-8 text-sm text-white/70">
-      <a href="/courses" class="hover:text-white transition-colors">Courses</a>
-      <a href="/lodging" class="hover:text-white transition-colors">Lodging</a>
-      <a href="/dining" class="hover:text-white transition-colors">Dining</a>
-    </div>
-    <a href="/quote" class="bg-gold-500 text-slate-950 text-sm font-medium px-5 py-2.5 rounded-full">Plan My Trip</a>
-  </nav>
+<Base
+  title="Request a Graeagle Golf Package Quote | Golf Graeagle"
+  description="Plan your Graeagle golf trip. Tell us your dates, group size, and preferred courses — we'll build a custom stay-and-play package. Free quotes, 24-hour response."
+>
+  <Nav />
 
-  <section class="min-h-screen pt-32 pb-24 px-6">
-    <div class="max-w-5xl mx-auto">
+  <!-- Hero strip -->
+  <div style="min-height:100vh;padding-top:100px;background:#0d1a0e;position:relative;overflow:hidden;">
 
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+    <!-- BG texture -->
+    <div style="position:absolute;inset:0;background:radial-gradient(ellipse 70% 60% at 60% -10%,rgba(232,168,80,0.06) 0%,transparent 70%),radial-gradient(ellipse 50% 40% at 10% 90%,rgba(82,168,98,0.04) 0%,transparent 70%);pointer-events:none;"></div>
 
-        <!-- Left: pitch -->
-        <div class="lg:sticky lg:top-32">
-          <p class="text-gold-400 text-sm tracking-widest uppercase mb-4">Free. No Obligation.</p>
-          <h1 class="font-display text-5xl md:text-6xl text-white font-light leading-tight mb-6">
-            Your perfect<br /><em class="text-gold-400 not-italic">Graeagle trip</em><br />starts here.
-          </h1>
-          <p class="text-white/50 leading-relaxed mb-10">
-            Tell us your dates, who's coming, and which courses interest you. 
-            We'll send you a custom package with course bookings, lodging options, and pricing — all in one.
-          </p>
+    <div style="max-width:1240px;margin:0 auto;padding:60px 48px 100px;display:grid;grid-template-columns:1fr 1.1fr;gap:80px;align-items:start;position:relative;z-index:1;">
 
-          <!-- What you get -->
-          <div class="space-y-4 mb-10">
-            {[
-              { icon: '⛳', title: 'Tee time coordination', desc: 'We book all courses so you don\'t have to call each one' },
-              { icon: '🏔', title: 'Lodging matched to your group', desc: 'Hotel, resort, townhomes, or villas — we match to your size & budget' },
-              { icon: '📋', title: 'Full itinerary', desc: 'Day-by-day plan including courses, dining recs, and drive times' },
-              { icon: '⚡', title: '24-hour response', desc: 'Real humans, fast turnaround — not a chatbot' },
-            ].map(item => (
-              <div class="flex items-start gap-4">
-                <span class="text-2xl">{item.icon}</span>
-                <div>
-                  <div class="text-white/80 text-sm font-medium">{item.title}</div>
-                  <div class="text-white/30 text-xs mt-0.5">{item.desc}</div>
+      <!-- ═══ LEFT — Pitch ═══ -->
+      <div style="position:sticky;top:120px;">
+        <p style="font-size:11px;color:#e8a850;letter-spacing:0.16em;text-transform:uppercase;margin:0 0 18px;font-weight:600;">Free · No Obligation · 24-Hour Response</p>
+        <h1 style="font-family:'Playfair Display',serif;font-size:clamp(38px,4.5vw,54px);font-weight:500;color:#f0f8f2;margin:0 0 20px;line-height:1.1;">
+          Your perfect<br/><span style="color:#e8a850;font-style:italic;">Graeagle trip</span><br/>starts here.
+        </h1>
+        <p style="font-size:15px;color:rgba(240,248,242,0.45);line-height:1.75;margin:0 0 36px;max-width:380px;">
+          Tell us your dates, group size, and which courses call to you. We handle tee times, lodging, and the full itinerary — all in one package.
+        </p>
+
+        <!-- What you get -->
+        <div style="display:flex;flex-direction:column;gap:16px;margin-bottom:40px;">
+          {[
+            { icon:'⛳', title:'Tee time coordination',     sub:'We book all 5 courses so you never have to call each one separately' },
+            { icon:'🏔',  title:'Lodging matched to your group', sub:'Hotel, resort, townhomes — sized and priced for your group' },
+            { icon:'📋', title:'Full itinerary',            sub:'Day-by-day plan with courses, dining recs, and drive times' },
+            { icon:'⚡', title:'24-hour turnaround',        sub:'Real people, fast response — not a chatbot queue' },
+          ].map(i=>(
+            <div style="display:flex;align-items:flex-start;gap:16px;padding:16px 20px;border-radius:14px;background:rgba(240,248,242,0.02);border:1px solid rgba(240,248,242,0.04);">
+              <span style="font-size:20px;flex-shrink:0;margin-top:1px;">{i.icon}</span>
+              <div>
+                <div style="font-size:13px;font-weight:600;color:rgba(240,248,242,0.8);margin-bottom:3px;">{i.title}</div>
+                <div style="font-size:12px;color:rgba(240,248,242,0.3);line-height:1.5;">{i.sub}</div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <!-- Trust row -->
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;">
+          {[
+            { n:'5',    l:'Championship Courses' },
+            { n:'72hr', l:'Cancellation Policy'  },
+            { n:'24hr', l:'Quote Response'        },
+          ].map(t=>(
+            <div style="text-align:center;padding:14px 8px;border-radius:12px;background:rgba(232,168,80,0.04);border:1px solid rgba(232,168,80,0.1);">
+              <div style="font-family:'Playfair Display',serif;font-size:22px;color:#e8a850;font-weight:500;">{t.n}</div>
+              <div style="font-size:10px;color:rgba(240,248,242,0.3);margin-top:3px;line-height:1.4;">{t.l}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- ═══ RIGHT — Form ═══ -->
+      <div id="quote-form-wrap" style="background:rgba(240,248,242,0.025);border:1px solid rgba(240,248,242,0.06);border-radius:24px;overflow:hidden;">
+
+        <!-- Form progress bar -->
+        <div style="background:rgba(240,248,242,0.03);border-bottom:1px solid rgba(240,248,242,0.05);padding:20px 32px;display:flex;align-items:center;gap:8px;">
+          {['Contact','Trip Details','Golf Preferences','Course Selection','Extras'].map((s,i)=>(
+            <div style="display:flex;align-items:center;gap:8px;flex:1;">
+              <div class={`step-dot step-${i}`} style={`width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;flex-shrink:0;background:${i===0?'#e8a850':'rgba(240,248,242,0.08)'};color:${i===0?'#0d1a0e':'rgba(240,248,242,0.3)'};transition:all 0.3s;`}>{i+1}</div>
+              <div style={`font-size:10px;color:${i===0?'rgba(240,248,242,0.6)':'rgba(240,248,242,0.2)'};white-space:nowrap;flex:1;overflow:hidden;text-overflow:ellipsis;`} class={`step-label step-label-${i}`}>{s}</div>
+              {i<4&&<div class={`step-bar step-bar-${i}`} style="flex:1;height:1px;background:rgba(240,248,242,0.06);margin:0 4px;min-width:8px;"></div>}
+            </div>
+          ))}
+        </div>
+
+        <form id="quote-form" style="padding:32px;" novalidate>
+
+          <!-- ── SECTION 1: Contact ── -->
+          <div class="form-section active" data-section="0">
+            <div style="margin-bottom:28px;">
+              <h2 style="font-family:'Playfair Display',serif;font-size:24px;font-weight:500;color:#f0f8f2;margin:0 0 6px;">Contact Information</h2>
+              <p style="font-size:13px;color:rgba(240,248,242,0.3);margin:0;">We'll use this to send your custom quote.</p>
+            </div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
+              <div class="fld"><label>First Name *</label><input type="text" name="firstName" placeholder="Jack" required /></div>
+              <div class="fld"><label>Last Name *</label><input type="text" name="lastName" placeholder="Nicklaus" required /></div>
+              <div class="fld" style="grid-column:1/-1;"><label>Email *</label><input type="email" name="email" placeholder="you@example.com" required /></div>
+              <div class="fld" style="grid-column:1/-1;"><label>Phone *</label><input type="tel" name="phone" placeholder="(555) 555-5555" required /></div>
+              <div class="fld" style="grid-column:1/-1;"><label>How did you hear about us?</label>
+                <select name="howHeard">
+                  <option value="">Select one...</option>
+                  <option value="google">Google Search</option>
+                  <option value="referral">Friend / Referral</option>
+                  <option value="social">Social Media</option>
+                  <option value="golf-course">Golf Course Recommendation</option>
+                  <option value="returning">Returning Customer</option>
+                  <option value="other">Other</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <!-- ── SECTION 2: Trip Details ── -->
+          <div class="form-section" data-section="1" style="display:none;">
+            <div style="margin-bottom:28px;">
+              <h2 style="font-family:'Playfair Display',serif;font-size:24px;font-weight:500;color:#f0f8f2;margin:0 0 6px;">Trip Details</h2>
+              <p style="font-size:13px;color:rgba(240,248,242,0.3);margin:0;">Tell us when you're planning to visit.</p>
+            </div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
+              <div class="fld"><label>Arrival Date *</label><input type="date" name="arrivalDate" required /></div>
+              <div class="fld"><label>Departure Date *</label><input type="date" name="departureDate" required /></div>
+              <div class="fld"><label>Group Size *</label><input type="number" name="partySize" min="1" max="100" placeholder="4" required /></div>
+              <div class="fld"><label>Number of Nights</label><input type="number" name="numNights" min="1" placeholder="2" /></div>
+              <div class="fld" style="grid-column:1/-1;">
+                <label>Are your dates flexible?</label>
+                <div style="display:flex;gap:12px;margin-top:6px;">
+                  <label class="radio-opt"><input type="radio" name="datesFlexible" value="yes"/> Yes, flexible</label>
+                  <label class="radio-opt"><input type="radio" name="datesFlexible" value="no" checked/> No, fixed dates</label>
                 </div>
               </div>
-            ))}
+              <div class="fld" style="grid-column:1/-1;">
+                <label>Lodging Preference</label>
+                <select name="lodgingType">
+                  <option value="">Select lodging type...</option>
+                  <option value="on-course">On-Course / Stay &amp; Play Resort</option>
+                  <option value="hotel-non-casino">Hotel / Lodge</option>
+                  <option value="vacation-rental">Vacation Rental</option>
+                  <option value="private-residence">Private Home / Townhome</option>
+                  <option value="no-preference">No Preference</option>
+                </select>
+              </div>
+              <div class="fld" style="grid-column:1/-1;">
+                <label>Room Configuration</label>
+                <select name="roomConfig">
+                  <option value="">Select room configuration...</option>
+                  <option value="double">Double Occupancy (Shared Rooms)</option>
+                  <option value="single">Single Occupancy (Own Room)</option>
+                  <option value="mix">Mix of Both</option>
+                </select>
+              </div>
+            </div>
           </div>
 
-          <!-- Courses quick picks -->
-          {preselected && (
-            <div class="rounded-xl border border-gold-500/20 bg-gold-500/5 p-4 text-sm text-gold-400">
-              ✦ {courseName || preselected} pre-selected
+          <!-- ── SECTION 3: Golf Preferences ── -->
+          <div class="form-section" data-section="2" style="display:none;">
+            <div style="margin-bottom:28px;">
+              <h2 style="font-family:'Playfair Display',serif;font-size:24px;font-weight:500;color:#f0f8f2;margin:0 0 6px;">Golf Preferences</h2>
+              <p style="font-size:13px;color:rgba(240,248,242,0.3);margin:0;">Help us plan your rounds.</p>
             </div>
-          )}
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
+              <div class="fld" style="grid-column:1/-1;">
+                <label>Total Rounds Planned *</label>
+                <input type="number" name="totalRounds" min="1" max="20" placeholder="3" required />
+              </div>
+              <div class="fld" style="grid-column:1/-1;">
+                <label>Ideal Tee Times</label>
+                <input type="text" name="idealTeeTimes" placeholder="e.g. 8–10am preferred, avoid afternoon heat" />
+              </div>
+              <div class="fld" style="grid-column:1/-1;">
+                <label>Play on Arrival Day?</label>
+                <div style="display:flex;gap:12px;margin-top:6px;">
+                  <label class="radio-opt"><input type="radio" name="playOnArrival" value="yes"/> Yes</label>
+                  <label class="radio-opt"><input type="radio" name="playOnArrival" value="no" checked/> No</label>
+                </div>
+              </div>
+              <div class="fld" style="grid-column:1/-1;">
+                <label>Play on Departure Day?</label>
+                <div style="display:flex;gap:12px;margin-top:6px;">
+                  <label class="radio-opt"><input type="radio" name="playOnDeparture" value="yes"/> Yes</label>
+                  <label class="radio-opt"><input type="radio" name="playOnDeparture" value="no" checked/> No</label>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ── SECTION 4: Course Selection ── -->
+          <div class="form-section" data-section="3" style="display:none;">
+            <div style="margin-bottom:28px;">
+              <h2 style="font-family:'Playfair Display',serif;font-size:24px;font-weight:500;color:#f0f8f2;margin:0 0 6px;">Course Selection</h2>
+              <p style="font-size:13px;color:rgba(240,248,242,0.3);margin:0;">Which courses are on your wish list? ⭐ = Must-play.</p>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:10px;">
+              {graeagleCourses.map(c=>(
+                <label class="course-check" data-id={c.id}>
+                  <input type="checkbox" name="coursesInterested" value={c.id} checked={preselected===c.id||undefined} />
+                  <div class="course-card">
+                    <span style="font-size:13px;font-weight:500;color:#f0f8f2;">{c.name}</span>
+                    {c.mustPlay && <span style="font-size:10px;background:rgba(232,168,80,0.15);color:#e8a850;padding:2px 8px;border-radius:100px;letter-spacing:0.06em;border:1px solid rgba(232,168,80,0.2);">⭐ Must-Play</span>}
+                    <svg class="check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#e8a850" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                  </div>
+                </label>
+              ))}
+            </div>
+          </div>
+
+          <!-- ── SECTION 5: Extras ── -->
+          <div class="form-section" data-section="4" style="display:none;">
+            <div style="margin-bottom:28px;">
+              <h2 style="font-family:'Playfair Display',serif;font-size:24px;font-weight:500;color:#f0f8f2;margin:0 0 6px;">Additional Services</h2>
+              <p style="font-size:13px;color:rgba(240,248,242,0.3);margin:0;">Almost done — any special requirements?</p>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:14px;">
+              <div class="fld">
+                <label>Transportation Needed?</label>
+                <div style="display:flex;gap:12px;margin-top:6px;">
+                  <label class="radio-opt"><input type="radio" name="transportationNeeded" value="yes"/> Yes, please arrange</label>
+                  <label class="radio-opt"><input type="radio" name="transportationNeeded" value="no" checked/> No, we have our own</label>
+                </div>
+              </div>
+              <div class="fld">
+                <label>Planning a special event? (birthday, bachelor party, corporate outing…)</label>
+                <div style="display:flex;gap:12px;margin-top:6px;">
+                  <label class="radio-opt"><input type="radio" name="specialFBEvent" value="yes" id="special-yes"/> Yes</label>
+                  <label class="radio-opt"><input type="radio" name="specialFBEvent" value="no" checked/> No</label>
+                </div>
+              </div>
+              <div class="fld" id="special-event-field" style="display:none;">
+                <label>Tell us about the event</label>
+                <input type="text" name="fbEventWhen" placeholder="e.g. Birthday dinner Saturday evening for 8 guests" />
+              </div>
+              <div class="fld">
+                <label>Special Requests or Notes</label>
+                <textarea name="specialRequests" rows="4" placeholder="Anything else we should know — dietary needs, mobility requirements, skill levels, specific hole requests..."></textarea>
+              </div>
+            </div>
+          </div>
+
+          <!-- ── Nav buttons ── -->
+          <div style="margin-top:28px;display:flex;justify-content:space-between;align-items:center;gap:12px;" id="form-nav">
+            <button type="button" id="btn-prev" style="display:none;background:rgba(240,248,242,0.05);border:1px solid rgba(240,248,242,0.1);color:rgba(240,248,242,0.6);font-size:14px;padding:13px 28px;border-radius:100px;cursor:pointer;transition:all 0.2s;" onmouseover="this.style.background='rgba(240,248,242,0.09)'" onmouseout="this.style.background='rgba(240,248,242,0.05)'">← Back</button>
+            <button type="button" id="btn-next" style="margin-left:auto;background:#e8a850;color:#0d1a0e;font-size:14px;font-weight:700;padding:13px 36px;border-radius:100px;cursor:pointer;border:none;transition:all 0.3s;box-shadow:0 4px 16px rgba(232,168,80,0.2);" onmouseover="this.style.transform='translateY(-1px)';this.style.boxShadow='0 8px 24px rgba(232,168,80,0.4)'" onmouseout="this.style.transform='translateY(0)';this.style.boxShadow='0 4px 16px rgba(232,168,80,0.2)'">Continue →</button>
+            <button type="submit" id="btn-submit" style="display:none;margin-left:auto;background:#e8a850;color:#0d1a0e;font-size:14px;font-weight:700;padding:13px 36px;border-radius:100px;cursor:pointer;border:none;transition:all 0.3s;box-shadow:0 4px 16px rgba(232,168,80,0.2);">Send My Quote Request ✓</button>
+          </div>
+
+          <!-- error -->
+          <div id="form-error" style="display:none;margin-top:16px;padding:12px 16px;border-radius:10px;background:rgba(248,113,113,0.08);border:1px solid rgba(248,113,113,0.2);color:#f87171;font-size:13px;"></div>
+
+        </form>
+
+        <!-- ── SUCCESS STATE ── -->
+        <div id="success-state" style="display:none;padding:64px 32px;text-align:center;">
+          <div style="width:72px;height:72px;border-radius:50%;background:rgba(82,168,98,0.12);border:2px solid rgba(82,168,98,0.3);display:flex;align-items:center;justify-content:center;margin:0 auto 24px;font-size:28px;">✓</div>
+          <h2 style="font-family:'Playfair Display',serif;font-size:28px;font-weight:500;color:#f0f8f2;margin:0 0 12px;">Thank You, <span id="success-name"></span>!</h2>
+          <p style="font-size:14px;color:rgba(240,248,242,0.5);margin:0 0 8px;">Your quote request has been received.</p>
+          <p style="font-size:13px;color:rgba(240,248,242,0.3);margin:0 0 32px;">One of our golf trip specialists will contact you within 24 hours. Check your email — a confirmation is headed to <strong id="success-email" style="color:rgba(240,248,242,0.5);"></strong>.</p>
+          <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+            <button id="btn-reset" style="background:rgba(240,248,242,0.05);border:1px solid rgba(240,248,242,0.1);color:rgba(240,248,242,0.6);font-size:13px;padding:11px 24px;border-radius:100px;cursor:pointer;">Submit Another Request</button>
+            <a href="/" style="background:#e8a850;color:#0d1a0e;font-size:13px;font-weight:600;padding:11px 24px;border-radius:100px;text-decoration:none;">← Back to Home</a>
+          </div>
         </div>
 
-        <!-- Right: HubSpot form -->
-        <div class="rounded-3xl border border-white/5 bg-white/[0.02] p-8 md:p-10">
-          <h2 class="font-display text-2xl text-white font-light mb-2">Request Your Free Quote</h2>
-          <p class="text-white/30 text-sm mb-8">We respond within 24 hours, typically same-day.</p>
-
-          <!-- HubSpot form embed -->
-          <div id="hubspot-form-container" class="hubspot-form-wrapper">
-            <div id="hs-loading" class="flex items-center gap-2 text-white/30 text-sm py-8">
-              <div class="w-4 h-4 border-2 border-white/20 border-t-gold-400 rounded-full animate-spin"></div>
-              Loading form...
-            </div>
-          </div>
-
-          <script
-            src={`https://js.hsforms.net/forms/embed/${siteConfig.hubspotPortal}.js`}
-            defer
-          ></script>
-          <script define:vars={{ portalId: siteConfig.hubspotPortal, formId: siteConfig.hubspotForm, preselected, courseName }}>
-            window.addEventListener('load', () => {
-              const loader = document.getElementById('hs-loading');
-              if (window.hbspt) {
-                if (loader) loader.remove();
-                window.hbspt.forms.create({
-                  region: 'na1',
-                  portalId,
-                  formId,
-                  target: '#hubspot-form-container',
-                  onFormReady: ($form) => {
-                    if (preselected) {
-                      const field = $form.find(`input[name="course"], select[name="course"]`);
-                      if (field.length) field.val(courseName || preselected).trigger('change');
-                    }
-                  }
-                });
-              } else {
-                setTimeout(() => {
-                  if (loader) loader.remove();
-                  if (window.hbspt) {
-                    window.hbspt.forms.create({
-                      region: 'na1',
-                      portalId,
-                      formId,
-                      target: '#hubspot-form-container',
-                    });
-                  }
-                }, 1500);
-              }
-            });
-          </script>
-        </div>
-      </div>
-
-      <!-- Trust signals -->
-      <div class="mt-20 grid grid-cols-2 md:grid-cols-4 gap-4">
-        {[
-          { n: '5', label: 'Courses Available' },
-          { n: '4', label: 'Lodging Properties' },
-          { n: '72hr', label: 'Cancellation Policy' },
-          { n: '24hr', label: 'Quote Response' },
-        ].map(t => (
-          <div class="text-center border border-white/5 rounded-2xl p-6">
-            <div class="font-display text-3xl text-gold-400">{t.n}</div>
-            <div class="text-white/30 text-xs mt-1">{t.label}</div>
-          </div>
-        ))}
       </div>
     </div>
-  </section>
+  </div>
 
-  <footer class="border-t border-white/5 py-12 px-6">
-    <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6 text-white/30 text-sm">
-      <div class="font-display text-base text-white/50">Golf <span class="text-gold-400/70">Graeagle</span></div>
-      <div class="flex gap-6">
-        <a href="/courses" class="hover:text-white/60 transition-colors">Courses</a>
-        <a href="/lodging" class="hover:text-white/60 transition-colors">Lodging</a>
-        <a href="/dining" class="hover:text-white/60 transition-colors">Dining</a>
-      </div>
-      <div>© 2025 Zoomaway Technologies Inc.</div>
-    </div>
-  </footer>
-
+  <Footer />
 </Base>
 
 <style is:global>
-  .hubspot-form-wrapper .hs-form fieldset {
-    max-width: 100% !important;
+  /* Field styles */
+  .fld { display: flex; flex-direction: column; }
+  .fld label { font-size: 11px; color: rgba(240,248,242,0.4); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 7px; font-weight: 500; }
+  .fld input, .fld select, .fld textarea {
+    background: rgba(240,248,242,0.03);
+    border: 1px solid rgba(240,248,242,0.08);
+    border-radius: 12px;
+    color: #f0f8f2;
+    padding: 13px 16px;
+    font-size: 14px;
+    font-family: 'Inter', sans-serif;
+    outline: none;
+    transition: border-color 0.2s, background 0.2s;
+    -webkit-appearance: none;
   }
-  .hubspot-form-wrapper .hs-form input,
-  .hubspot-form-wrapper .hs-form select,
-  .hubspot-form-wrapper .hs-form textarea {
-    background: rgba(255,255,255,0.04) !important;
-    border: 1px solid rgba(255,255,255,0.1) !important;
-    border-radius: 12px !important;
-    color: white !important;
-    padding: 12px 16px !important;
-    width: 100% !important;
-    font-family: 'DM Sans', sans-serif !important;
-    font-size: 14px !important;
-    outline: none !important;
-    transition: border-color 0.2s !important;
+  .fld input:focus, .fld select:focus, .fld textarea:focus {
+    border-color: rgba(232,168,80,0.35);
+    background: rgba(240,248,242,0.05);
   }
-  .hubspot-form-wrapper .hs-form input:focus,
-  .hubspot-form-wrapper .hs-form select:focus,
-  .hubspot-form-wrapper .hs-form textarea:focus {
-    border-color: rgba(230,168,23,0.4) !important;
+  .fld select option { background: #0d1a0e; }
+  .fld textarea { resize: vertical; min-height: 100px; }
+  .fld input[type="date"] { color-scheme: dark; }
+
+  /* Radio */
+  .radio-opt {
+    display: flex; align-items: center; gap: 8px;
+    font-size: 13px; color: rgba(240,248,242,0.5);
+    cursor: pointer; padding: 8px 14px;
+    border-radius: 10px; border: 1px solid rgba(240,248,242,0.07);
+    background: rgba(240,248,242,0.02);
+    transition: all 0.2s;
   }
-  .hubspot-form-wrapper .hs-form label {
-    color: rgba(255,255,255,0.5) !important;
-    font-size: 12px !important;
-    font-family: 'DM Sans', sans-serif !important;
-    margin-bottom: 6px !important;
-    display: block !important;
+  .radio-opt:has(input:checked) {
+    color: #e8a850; border-color: rgba(232,168,80,0.2);
+    background: rgba(232,168,80,0.05);
   }
-  .hubspot-form-wrapper .hs-form .hs-form-field {
-    margin-bottom: 16px !important;
+  .radio-opt input[type="radio"] { accent-color: #e8a850; }
+
+  /* Course checkboxes */
+  .course-check { display: block; cursor: pointer; }
+  .course-check input { display: none; }
+  .course-card {
+    display: flex; align-items: center; gap: 12px;
+    padding: 16px 18px; border-radius: 14px;
+    border: 1px solid rgba(240,248,242,0.07);
+    background: rgba(240,248,242,0.02);
+    transition: all 0.2s;
   }
-  .hubspot-form-wrapper .hs-form input[type="submit"] {
-    background: #e6a817 !important;
-    color: #0a0f0a !important;
-    font-weight: 600 !important;
-    border: none !important;
-    cursor: pointer !important;
-    padding: 14px 32px !important;
-    border-radius: 50px !important;
-    font-size: 15px !important;
-    transition: background 0.2s !important;
+  .course-card .check-icon { margin-left: auto; opacity: 0; transition: opacity 0.2s; }
+  .course-check:has(input:checked) .course-card {
+    border-color: rgba(232,168,80,0.25);
+    background: rgba(232,168,80,0.06);
   }
-  .hubspot-form-wrapper .hs-form input[type="submit"]:hover {
-    background: #f9c845 !important;
+  .course-check:has(input:checked) .check-icon { opacity: 1; }
+  .course-card:hover {
+    border-color: rgba(240,248,242,0.14);
+    background: rgba(240,248,242,0.04);
   }
-  .hubspot-form-wrapper .hs-error-msgs {
-    color: #f87171 !important;
-    font-size: 11px !important;
-    margin-top: 4px !important;
-  }
+
+  /* Step dots */
+  .step-dot.active  { background: #e8a850 !important; color: #0d1a0e !important; }
+  .step-dot.done    { background: rgba(82,168,98,0.3) !important; color: rgba(82,168,98,0.9) !important; }
+  .step-label.active { color: rgba(240,248,242,0.65) !important; }
+  .step-bar.done    { background: rgba(82,168,98,0.25) !important; }
+
+  /* Required field highlight */
+  .fld input.invalid, .fld select.invalid { border-color: rgba(248,113,113,0.4) !important; }
 </style>
+
+<script define:vars={{ preselected }}>
+  let currentStep = 0;
+  const totalSteps = 5;
+  const form = document.getElementById('quote-form');
+  const sections = document.querySelectorAll('.form-section');
+  const btnNext = document.getElementById('btn-next');
+  const btnPrev = document.getElementById('btn-prev');
+  const btnSubmit = document.getElementById('btn-submit');
+  const errorDiv = document.getElementById('form-error');
+
+  // Pre-check course if URL param set
+  if (preselected) {
+    const cb = form.querySelector(`input[value="${preselected}"]`);
+    if (cb) cb.checked = true;
+  }
+
+  // Special event conditional field
+  document.querySelectorAll('[name="specialFBEvent"]').forEach(r => {
+    r.addEventListener('change', () => {
+      const field = document.getElementById('special-event-field');
+      field.style.display = r.value === 'yes' ? 'flex' : 'none';
+    });
+  });
+
+  function updateNav() {
+    // Update dots
+    document.querySelectorAll('.step-dot').forEach((dot, i) => {
+      dot.classList.remove('active','done');
+      if (i === currentStep) dot.classList.add('active');
+      else if (i < currentStep) dot.classList.add('done');
+    });
+    document.querySelectorAll('.step-label').forEach((lbl, i) => {
+      lbl.classList.toggle('active', i === currentStep);
+    });
+    document.querySelectorAll('.step-bar').forEach((bar, i) => {
+      bar.classList.toggle('done', i < currentStep);
+    });
+    // Update buttons
+    btnPrev.style.display = currentStep > 0 ? 'block' : 'none';
+    btnNext.style.display = currentStep < totalSteps - 1 ? 'block' : 'none';
+    btnSubmit.style.display = currentStep === totalSteps - 1 ? 'block' : 'none';
+    errorDiv.style.display = 'none';
+  }
+
+  function showSection(idx) {
+    sections.forEach((s, i) => s.style.display = i === idx ? 'block' : 'none');
+    currentStep = idx;
+    updateNav();
+    document.getElementById('quote-form-wrap').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  function validateSection(idx) {
+    const section = sections[idx];
+    const required = section.querySelectorAll('[required]');
+    let valid = true;
+    required.forEach(el => {
+      el.classList.remove('invalid');
+      if (!el.value.trim()) { el.classList.add('invalid'); valid = false; }
+    });
+    return valid;
+  }
+
+  btnNext.addEventListener('click', () => {
+    if (!validateSection(currentStep)) {
+      errorDiv.textContent = 'Please fill in all required fields before continuing.';
+      errorDiv.style.display = 'block';
+      return;
+    }
+    showSection(currentStep + 1);
+  });
+
+  btnPrev.addEventListener('click', () => { showSection(currentStep - 1); });
+
+  // Submit — POST to /api/leads (Supabase)
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    if (!validateSection(currentStep)) {
+      errorDiv.textContent = 'Please complete all required fields.';
+      errorDiv.style.display = 'block';
+      return;
+    }
+
+    btnSubmit.textContent = 'Sending...';
+    btnSubmit.disabled = true;
+
+    const data = Object.fromEntries(new FormData(form));
+    // Collect array fields
+    const courses = [...form.querySelectorAll('[name="coursesInterested"]:checked')].map(c => c.value);
+    data.coursesInterested = courses;
+    data.destination = 'graeagle';
+    data.source = 'golfgraeagle.com';
+    data.submittedAt = new Date().toISOString();
+
+    try {
+      const res = await fetch('/api/leads', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      });
+
+      if (!res.ok) throw new Error(await res.text());
+
+      // Success state
+      document.getElementById('quote-form').style.display = 'none';
+      document.getElementById('form-nav').style.display = 'none';
+      document.getElementById('success-state').style.display = 'block';
+      document.getElementById('success-name').textContent = data.firstName || 'there';
+      document.getElementById('success-email').textContent = data.email || '';
+
+    } catch (err) {
+      errorDiv.textContent = 'Something went wrong. Please try again or email sean@zoomaway.com directly.';
+      errorDiv.style.display = 'block';
+      btnSubmit.textContent = 'Send My Quote Request ✓';
+      btnSubmit.disabled = false;
+    }
+  });
+
+  // Reset
+  document.getElementById('btn-reset').addEventListener('click', () => {
+    form.reset();
+    document.getElementById('success-state').style.display = 'none';
+    form.style.display = 'block';
+    document.getElementById('form-nav').style.display = 'flex';
+    showSection(0);
+  });
+
+  // Init
+  updateNav();
+</script>

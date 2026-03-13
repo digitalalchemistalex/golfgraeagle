@@ -11,6 +11,7 @@ const fineDining = dining.filter(d => d.category === 'fine-dining');
 const variety = dining.filter(d => d.category === 'variety');
 const breweries = dining.filter(d => d.category === 'brewery');
 ---
+export const prerender = true;
 <Base title={title} description={description}>
 
   <nav class="fixed top-0 left-0 right-0 z-50 px-6 py-4 flex items-center justify-between backdrop-blur-md bg-slate-950/80 border-b border-white/5">

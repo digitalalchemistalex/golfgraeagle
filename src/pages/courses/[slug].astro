@@ -1,244 +1,154 @@
 ---
+export const prerender = true;
 import Base from '../../layouts/Base.astro';
 import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
-import { courses, siteConfig } from '../../data/content.js';
+import { courses } from '../../data/content.js';
 
 export function getStaticPaths() {
-  return courses.map(course => ({
-    params: { slug: course.slug },
-    props: { course },
-  }));
+  return courses.map(c => ({ params: { slug: c.slug }, props: { course: c } }));
 }
-
-const { course } = Astro.props;
-
-const title = `${course.name} | Graeagle Golf — Par ${course.par}, ${course.yards.toLocaleString()} Yards`;
-const description = `${course.name} is a par-${course.par}, ${course.yards.toLocaleString()}-yard ${course.type.toLowerCase()} course in the Graeagle area, designed by ${course.designer} (${course.opened}). Slope ${course.slope}, rating ${course.rating}. Green fees ${course.greenFeeRange}.`;
-
-const schema = {
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "SportsActivityLocation",
-      "name": course.name,
-      "description": course.description,
-      "url": `${siteConfig.url}/courses/${course.slug}`,
-      "telephone": course.phone,
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": course.address,
-        "addressLocality": "Graeagle",
-        "addressRegion": "CA",
-        "addressCountry": "US"
-      },
-      "sport": "Golf",
-      "numberOfHoles": course.holes,
-      "courseRating": course.rating,
-      "slopeRating": course.slope,
-    },
-    {
-      "@type": "FAQPage",
-      "mainEntity": course.faqs.map(faq => ({
-        "@type": "Question",
-        "name": faq.question,
-        "acceptedAnswer": { "@type": "Answer", "text": faq.answer }
-      }))
-    },
-    {
-      "@type": "BreadcrumbList",
-      "itemListElement": [
-        { "@type": "ListItem", "position": 1, "name": "Home", "item": siteConfig.url },
-        { "@type": "ListItem", "position": 2, "name": "Golf Courses", "item": `${siteConfig.url}/courses` },
-        { "@type": "ListItem", "position": 3, "name": course.name, "item": `${siteConfig.url}/courses/${course.slug}` },
-      ]
-    }
-  ]
-};
-
-const difficultyColor = {
-  'Beginner-Friendly': 'text-green-400 bg-green-400/10 border-green-400/20',
-  'Intermediate–Advanced': 'text-yellow-400 bg-yellow-400/10 border-yellow-400/20',
-  'Advanced': 'text-orange-400 bg-orange-400/10 border-orange-400/20',
-  'Advanced–Expert': 'text-red-400 bg-red-400/10 border-red-400/20',
-}[course.difficulty] || 'text-white/50 bg-white/5 border-white/10';
+const { course: c } = Astro.props;
 ---
+<Base title={`${c.name} Golf Course — Graeagle, California | Golf Graeagle`}
+  description={`${c.name}: Par ${c.par}, ${c.yards.toLocaleString()} yards, Slope ${c.slope}. Designed by ${c.designer} (${c.year}). ${c.tagline}`}>
+<Nav />
 
-<Base title={title} description={description} schema={schema}>
-
-  <!-- NAV -->
-  <nav class="fixed top-0 left-0 right-0 z-50 px-6 py-4 flex items-center justify-between backdrop-blur-md bg-slate-950/80 border-b border-white/5">
-    <a href="/" class="font-display text-xl text-white tracking-wide">
-      Golf <span class="text-gold-400">Graeagle</span>
+<!-- HERO with real course photo -->
+<section style="position:relative;height:90vh;min-height:560px;overflow:hidden;display:flex;align-items:flex-end;">
+  <div style="position:absolute;inset:0;">
+    <img src={c.hero} alt={`${c.name} Golf Course`}
+      style="width:100%;height:100%;object-fit:cover;" loading="eager"/>
+    <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(13,26,14,1) 0%,rgba(13,26,14,0.5) 40%,rgba(13,26,14,0.15) 70%,transparent 100%);"></div>
+  </div>
+  <div style="position:relative;z-index:2;padding:0 10% 72px;max-width:1400px;width:100%;">
+    <a href="/courses" style="display:inline-flex;align-items:center;gap:6px;font-size:12px;color:rgba(240,248,242,0.4);text-decoration:none;margin-bottom:20px;transition:color 0.2s;"
+    onmouseover="this.style.color='rgba(240,248,242,0.7)'" onmouseout="this.style.color='rgba(240,248,242,0.4)'">
+      ← All Courses
     </a>
-    <div class="hidden md:flex items-center gap-8 text-sm text-white/70">
-      <a href="/courses" class="hover:text-white transition-colors text-white">Courses</a>
-      <a href="/lodging" class="hover:text-white transition-colors">Lodging</a>
-      <a href="/dining" class="hover:text-white transition-colors">Dining</a>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px;">
+      {c.awards?.map(a => (
+        <span style="background:rgba(232,168,80,0.15);border:1px solid rgba(232,168,80,0.25);color:#e8a850;font-size:10px;padding:4px 12px;border-radius:100px;letter-spacing:0.06em;">{a}</span>
+      ))}
+      <span style="background:rgba(232,168,80,0.15);border:1px solid rgba(232,168,80,0.25);color:#e8a850;font-size:10px;padding:4px 12px;border-radius:100px;">{c.tier} Green Fees</span>
     </div>
-    <a href="/quote" class="bg-gold-500 hover:bg-gold-400 text-slate-950 text-sm font-medium px-5 py-2.5 rounded-full transition-all">Plan My Trip</a>
-  </nav>
+    <h1 style="font-family:'Playfair Display',serif;font-size:clamp(42px,6vw,80px);color:#f0f8f2;margin:0 0 12px;line-height:1.0;">{c.name}</h1>
+    <p style="font-size:18px;color:rgba(240,248,242,0.55);margin:0;">{c.tagline}</p>
+  </div>
+</section>
 
-  <!-- HERO -->
-  <section class="pt-32 pb-16 px-6">
-    <div class="max-w-6xl mx-auto">
+<!-- QUICK STATS BAR -->
+<div style="background:rgba(13,26,14,0.97);border-bottom:1px solid rgba(232,168,80,0.08);padding:0 10%;">
+  <div style="display:flex;gap:0;overflow-x:auto;">
+    {[
+      ['Par', `${c.par}`],
+      ['Yards', c.yards.toLocaleString()],
+      ['Slope', `${c.slope}`],
+      ['Rating', `${c.rating}`],
+      ['Designer', c.designer],
+      ['Opened', `${c.year}`],
+      ['Altitude', c.altitude],
+    ].map(([k,v]) => (
+      <div style="padding:24px 32px;border-right:1px solid rgba(240,248,242,0.05);flex-shrink:0;">
+        <div style="font-size:10px;color:rgba(240,248,242,0.3);text-transform:uppercase;letter-spacing:0.12em;margin-bottom:6px;">{k}</div>
+        <div style="font-size:16px;font-weight:500;color:#f0f8f2;white-space:nowrap;">{v}</div>
+      </div>
+    ))}
+  </div>
+</div>
 
-      <!-- Breadcrumb -->
-      <nav class="text-xs text-white/30 mb-8 flex items-center gap-2">
-        <a href="/" class="hover:text-white/60 transition-colors">Home</a>
-        <span>/</span>
-        <a href="/courses" class="hover:text-white/60 transition-colors">Courses</a>
-        <span>/</span>
-        <span class="text-white/50">{course.name}</span>
-      </nav>
+<div style="background:#0d1a0e;padding:80px 10%;">
+  <div style="max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 380px;gap:64px;">
 
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-        <div>
-          <!-- Tags -->
-          <div class="flex flex-wrap gap-2 mb-6">
-            <span class={`text-xs px-3 py-1 rounded-full border ${difficultyColor}`}>{course.difficulty}</span>
-            <span class="text-xs px-3 py-1 rounded-full border border-white/10 text-white/40">{course.type}</span>
-            <span class="text-xs px-3 py-1 rounded-full border border-white/10 text-white/40">{course.distanceFromGraeagle} from Graeagle</span>
-          </div>
+    <!-- LEFT: Content -->
+    <div>
+      <!-- Description -->
+      <div class="reveal" style="margin-bottom:56px;">
+        <h2 style="font-family:'Playfair Display',serif;font-size:28px;color:#f0f8f2;margin:0 0 20px;">About {c.name}</h2>
+        <p style="font-size:16px;color:rgba(240,248,242,0.6);line-height:1.85;">{c.description}</p>
+      </div>
 
-          <!-- AEO speakable summary (screen-reader & AI crawler) -->
-          <div class="speakable-summary sr-only" aria-hidden="true">{course.speakable}</div>
-
-          <h1 class="font-display text-5xl md:text-7xl text-white font-light leading-none mb-4">
-            {course.name}
-          </h1>
-          <p class="text-gold-400 text-lg mb-6">{course.tagline}</p>
-          <p class="text-white/60 leading-relaxed mb-8">{course.description}</p>
-
-          <!-- Key stats -->
-          <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-8">
-            {[
-              { label: 'Par', value: course.par },
-              { label: 'Yards', value: course.yards.toLocaleString() },
-              { label: 'Slope', value: course.slope },
-              { label: 'Rating', value: course.rating },
-            ].map(s => (
-              <div class="bg-white/[0.03] border border-white/5 rounded-xl p-4 text-center">
-                <div class="font-display text-2xl text-white">{s.value}</div>
-                <div class="text-white/30 text-xs mt-1">{s.label}</div>
-              </div>
-            ))}
-          </div>
-
-          <!-- CTA -->
-          <a href={`/quote?course=${course.slug}&courseName=${encodeURIComponent(course.name)}`}
-             class="group inline-flex items-center gap-3 bg-gold-500 hover:bg-gold-400 text-slate-950 font-medium px-8 py-4 rounded-full transition-all duration-300 hover:shadow-xl hover:shadow-gold-500/20">
-            Book a Package Including {course.name}
-            <span class="transition-transform group-hover:translate-x-1">→</span>
-          </a>
-        </div>
-
-        <!-- Course info card -->
-        <div class="rounded-2xl border border-white/5 bg-white/[0.02] p-8 space-y-5">
-          <h2 class="font-display text-xl text-white font-light mb-2">Course Information</h2>
-          {[
-            { label: 'Designer', value: course.designer },
-            { label: 'Year Opened', value: course.opened },
-            { label: 'Green Fees', value: course.greenFeeRange },
-            { label: 'Season', value: course.season },
-            { label: 'Address', value: course.address },
-            { label: 'Phone', value: course.phone },
-            { label: 'Elevation', value: `${course.elevationFt.toLocaleString()} ft` },
-          ].map(item => (
-            <div class="flex justify-between items-start gap-4 py-3 border-b border-white/5 last:border-0">
-              <span class="text-white/30 text-sm shrink-0">{item.label}</span>
-              <span class="text-white/70 text-sm text-right">{item.value}</span>
+      <!-- Course Highlights -->
+      <div class="reveal" style="margin-bottom:56px;">
+        <h2 style="font-family:'Playfair Display',serif;font-size:24px;color:#f0f8f2;margin:0 0 20px;">Course Highlights</h2>
+        <div style="display:flex;flex-direction:column;gap:0;">
+          {c.highlights.map(h => (
+            <div style="display:flex;align-items:flex-start;gap:14px;padding:16px 0;border-bottom:1px solid rgba(240,248,242,0.05);">
+              <span style="color:#e8a850;font-size:16px;flex-shrink:0;margin-top:1px;">✓</span>
+              <span style="font-size:15px;color:rgba(240,248,242,0.65);line-height:1.5;">{h}</span>
             </div>
           ))}
         </div>
       </div>
-    </div>
-  </section>
 
-  <!-- HIGHLIGHTS -->
-  <section class="py-16 px-6 border-t border-white/5">
-    <div class="max-w-6xl mx-auto">
-      <h2 class="font-display text-4xl text-white font-light mb-10">Course Highlights</h2>
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-        {course.highlights.map(h => (
-          <div class="flex items-start gap-3 bg-white/[0.02] border border-white/5 rounded-xl p-5">
-            <span class="text-gold-400 mt-0.5 shrink-0">✦</span>
-            <span class="text-white/60 text-sm">{h}</span>
+      <!-- Photo gallery — REAL course photos -->
+      {c.images.length > 1 && (
+        <div class="reveal" style="margin-bottom:56px;">
+          <h2 style="font-family:'Playfair Display',serif;font-size:24px;color:#f0f8f2;margin:0 0 20px;">Course Photos</h2>
+          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;">
+            {c.images.slice(0,6).map((img,i) => (
+              <div style={`border-radius:${i===0?'16px 4px 4px 4px':i===2?'4px 16px 4px 4px':i===3?'4px 4px 4px 16px':i===5?'4px 4px 16px 4px':'4px'};overflow:hidden;aspect-ratio:4/3;`}>
+                <img src={img} alt={`${c.name} — hole ${i+1}`} loading="lazy"
+                  style="width:100%;height:100%;object-fit:cover;transition:transform 0.6s ease;"
+                  onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'"/>
+              </div>
+            ))}
           </div>
-        ))}
+        </div>
+      )}
+
+      <!-- Best for -->
+      <div class="reveal" style="background:rgba(232,168,80,0.05);border:1px solid rgba(232,168,80,0.1);border-radius:16px;padding:28px 32px;">
+        <div style="font-size:11px;color:rgba(232,168,80,0.6);text-transform:uppercase;letter-spacing:0.12em;margin-bottom:10px;">Best For</div>
+        <p style="font-size:16px;color:rgba(240,248,242,0.75);margin:0;">{c.bestFor}</p>
       </div>
     </div>
-  </section>
 
-  <!-- SIGNATURE HOLE -->
-  <section class="py-16 px-6">
-    <div class="max-w-6xl mx-auto">
-      <div class="rounded-3xl border border-gold-500/20 bg-gradient-to-br from-forest-900/20 to-transparent p-10 md:p-12">
-        <p class="text-gold-400 text-xs tracking-widest uppercase mb-3">Signature Hole</p>
-        <p class="text-white/70 text-lg leading-relaxed">{course.signature}</p>
-      </div>
-    </div>
-  </section>
+    <!-- RIGHT: Booking sidebar -->
+    <div>
+      <div style="position:sticky;top:100px;">
+        <div style="background:rgba(240,248,242,0.03);border:1px solid rgba(232,168,80,0.12);border-radius:20px;padding:32px;margin-bottom:20px;">
+          <h3 style="font-family:'Playfair Display',serif;font-size:22px;color:#f0f8f2;margin:0 0 8px;">Book {c.name}</h3>
+          <p style="font-size:13px;color:rgba(240,248,242,0.4);margin:0 0 28px;">Custom packages — tee times + lodging + dining</p>
 
-  <!-- FAQs -->
-  <section class="py-16 px-6 border-t border-white/5">
-    <div class="max-w-3xl mx-auto">
-      <h2 class="font-display text-4xl text-white font-light mb-10">Frequently Asked Questions</h2>
-      <div class="space-y-0 divide-y divide-white/5">
-        {course.faqs.map(faq => (
-          <details class="group py-6 cursor-pointer">
-            <summary class="flex items-center justify-between text-white/80 hover:text-white transition-colors list-none">
-              <h3 class="font-sans text-base font-medium pr-4">{faq.question}</h3>
-              <span class="shrink-0 w-6 h-6 rounded-full border border-white/20 flex items-center justify-center text-white/40 group-open:rotate-45 transition-transform duration-200 text-lg leading-none">+</span>
-            </summary>
-            <p class="mt-4 text-white/50 text-sm leading-relaxed">{faq.answer}</p>
-          </details>
-        ))}
-      </div>
-    </div>
-  </section>
+          <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:28px;">
+            {[['Par',`${c.par}`],['Course Rating',`${c.rating}`],['Slope',`${c.slope}`],['Yardage',`${c.yards.toLocaleString()} yards`]].map(([k,v])=>(
+              <div style="display:flex;justify-content:space-between;font-size:14px;padding:10px 0;border-bottom:1px solid rgba(240,248,242,0.05);">
+                <span style="color:rgba(240,248,242,0.4);">{k}</span>
+                <span style="color:#f0f8f2;font-weight:500;">{v}</span>
+              </div>
+            ))}
+          </div>
 
-  <!-- OTHER COURSES -->
-  <section class="py-16 px-6 border-t border-white/5">
-    <div class="max-w-6xl mx-auto">
-      <h2 class="font-display text-3xl text-white font-light mb-8">Other Graeagle Courses</h2>
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        {courses.filter(c => c.slug !== course.slug).map(c => (
-          <a href={`/courses/${c.slug}`} class="group rounded-xl border border-white/5 bg-white/[0.02] hover:bg-white/[0.04] p-5 transition-all">
-            <div class="font-display text-lg text-white group-hover:text-gold-300 transition-colors font-light">{c.name}</div>
-            <div class="text-white/30 text-xs mt-1">Par {c.par} · {c.yards.toLocaleString()} yds</div>
-            <div class="text-gold-400/60 text-xs mt-3 opacity-0 group-hover:opacity-100 transition-opacity">View →</div>
+          <a href="/quote" style="display:block;text-align:center;background:#e8a850;color:#0d1a0e;font-size:15px;font-weight:600;padding:16px;border-radius:100px;text-decoration:none;transition:all 0.3s;margin-bottom:12px;"
+          onmouseover="this.style.background='#f2c878';this.style.transform='translateY(-1px)'"
+          onmouseout="this.style.background='#e8a850';this.style.transform='translateY(0)'">
+            Request a Quote
           </a>
-        ))}
+          <p style="font-size:11px;color:rgba(240,248,242,0.2);text-align:center;margin:0;">No obligation · 72-hr cancellation · 24hr response</p>
+        </div>
+
+        <!-- Add other courses -->
+        <div style="background:rgba(240,248,242,0.02);border:1px solid rgba(240,248,242,0.06);border-radius:16px;padding:24px;">
+          <p style="font-size:11px;color:rgba(240,248,242,0.35);text-transform:uppercase;letter-spacing:0.1em;margin:0 0 14px;">Add Another Course</p>
+          {courses.filter(x=>x.slug!==c.slug).map(x=>(
+            <a href={`/courses/${x.slug}`} style="display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid rgba(240,248,242,0.04);text-decoration:none;transition:opacity 0.2s;"
+            onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">
+              <div style="width:40px;height:40px;border-radius:8px;overflow:hidden;flex-shrink:0;">
+                <img src={x.hero} alt={x.name} style="width:100%;height:100%;object-fit:cover;"/>
+              </div>
+              <div>
+                <div style="font-size:13px;color:#f0f8f2;font-weight:500;">{x.name}</div>
+                <div style="font-size:11px;color:rgba(240,248,242,0.3);">Par {x.par} · Slope {x.slope}</div>
+              </div>
+            </a>
+          ))}
+        </div>
       </div>
     </div>
-  </section>
 
-  <!-- FINAL CTA -->
-  <section class="py-24 px-6">
-    <div class="max-w-2xl mx-auto text-center">
-      <h2 class="font-display text-5xl text-white font-light mb-4">Ready to play {course.name}?</h2>
-      <p class="text-white/40 mb-8">We'll build a custom trip around your dates, budget, and group size.</p>
-      <a href={`/quote?course=${course.slug}&courseName=${encodeURIComponent(course.name)}`}
-         class="group inline-flex items-center gap-3 bg-gold-500 hover:bg-gold-400 text-slate-950 font-medium px-10 py-5 rounded-full transition-all duration-300 hover:shadow-2xl hover:shadow-gold-500/30 text-lg">
-        Get a Free Quote
-        <span class="transition-transform group-hover:translate-x-1">→</span>
-      </a>
-    </div>
-  </section>
+  </div>
+</div>
 
-  <!-- FOOTER -->
-  <footer class="border-t border-white/5 py-12 px-6">
-    <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6 text-white/30 text-sm">
-      <div class="font-display text-base text-white/50">Golf <span class="text-gold-400/70">Graeagle</span></div>
-      <div class="flex gap-6">
-        <a href="/courses" class="hover:text-white/60 transition-colors">Courses</a>
-        <a href="/lodging" class="hover:text-white/60 transition-colors">Lodging</a>
-        <a href="/dining" class="hover:text-white/60 transition-colors">Dining</a>
-        <a href="/quote" class="hover:text-white/60 transition-colors">Get a Quote</a>
-      </div>
-      <div>© 2025 Zoomaway Technologies Inc.</div>
-    </div>
-  </footer>
-
+<Footer />
 </Base>
