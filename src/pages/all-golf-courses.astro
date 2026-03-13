@@ -5,19 +5,40 @@ import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
 import { courses } from '../data/content.js';
 ---
+<style>
+  .courses-wrap { padding: clamp(100px,12vw,140px) clamp(20px,10%,10%) 60px; max-width: 1200px; margin: 0 auto; }
+  .course-card {
+    display: grid;
+    grid-template-columns: 200px 1fr auto;
+    align-items: center;
+    gap: 28px;
+    padding: 24px 28px;
+    border-radius: 16px;
+    background: rgba(240,248,242,0.02);
+    border: 1px solid rgba(240,248,242,0.07);
+    text-decoration: none;
+    transition: background 0.2s, border-color 0.2s;
+  }
+  .course-card:hover { background: rgba(232,168,80,0.05); border-color: rgba(232,168,80,0.2); }
+  .course-card-img { width: 200px; height: 130px; object-fit: cover; border-radius: 10px; }
+  .course-card-tier { text-align: right; flex-shrink: 0; }
+  @media (max-width: 760px) {
+    .course-card { grid-template-columns: 1fr; gap: 16px; }
+    .course-card-img { width: 100%; height: 200px; }
+    .course-card-tier { text-align: left; }
+  }
+</style>
 <Base title="All Golf Courses in Graeagle, California | GolfGraeagle.com" description="There are 5 championship golf courses in Graeagle, CA: Graeagle Meadows, Whitehawk Ranch, Plumas Pines, Grizzly Ranch, and Nakoma (The Dragon). All within 25 minutes.">
   <Nav />
-  <section style="padding:140px 10% 40px;max-width:1200px;margin:0 auto;">
+  <section class="courses-wrap">
     <p style="font-size:11px;color:#e8a850;letter-spacing:0.16em;text-transform:uppercase;font-weight:600;margin:0 0 16px;">5 Championship Courses</p>
     <h1 style="font-family:'Playfair Display',serif;font-size:clamp(32px,5vw,54px);font-weight:500;color:#f0f8f2;margin:0 0 20px;line-height:1.1;">Golf Courses in <span style="color:#e8a850;font-style:italic;">Graeagle, California</span></h1>
     <p style="font-size:17px;color:rgba(240,248,242,0.5);max-width:640px;line-height:1.75;margin:0 0 60px;">There are five championship golf courses in the Graeagle area, all within 5–25 minutes of each other. Most groups play two to four courses over a weekend.</p>
     <div style="display:grid;gap:16px;">
       {courses.map(c => (
         <a href={`/portfolio/${c.slug === 'nakoma' ? 'nakoma-dragon-golf-packages' : c.slug + '-golf-packages'}/`}
-          style="display:grid;grid-template-columns:200px 1fr auto;align-items:center;gap:28px;padding:24px 28px;border-radius:16px;background:rgba(240,248,242,0.02);border:1px solid rgba(240,248,242,0.07);text-decoration:none;transition:all 0.2s;"
-          onmouseover="this.style.background='rgba(232,168,80,0.05)';this.style.borderColor='rgba(232,168,80,0.2)'"
-          onmouseout="this.style.background='rgba(240,248,242,0.02)';this.style.borderColor='rgba(240,248,242,0.07)'">
-          <img src={c.hero} alt={c.name} style="width:200px;height:130px;object-fit:cover;border-radius:10px;"/>
+          class="course-card">
+          <img src={c.hero} alt={c.name} class="course-card-img"/>
           <div>
             <h2 style="font-family:'Playfair Display',serif;font-size:22px;color:#f0f8f2;margin:0 0 8px;">{c.name}</h2>
             <p style="font-size:13px;color:rgba(240,248,242,0.4);margin:0 0 12px;">{c.tagline}</p>
@@ -27,7 +48,7 @@ import { courses } from '../data/content.js';
               ))}
             </div>
           </div>
-          <div style="text-align:right;flex-shrink:0;">
+          <div class="course-card-tier">
             <span style="font-size:22px;color:#e8a850;font-weight:600;">{c.tier}</span>
             <div style="font-size:12px;color:rgba(240,248,242,0.3);margin-top:4px;">per round</div>
           </div>
