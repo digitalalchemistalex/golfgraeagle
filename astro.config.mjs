@@ -1,14 +1,16 @@
 import { defineConfig } from 'astro/config';
-import tailwind from '@astrojs/tailwind';
 import react from '@astrojs/react';
 import sitemap from '@astrojs/sitemap';
+import tailwindcss from '@tailwindcss/vite';
 
 export default defineConfig({
   site: 'https://golfgraeagle.com',
   integrations: [
-    tailwind(),
     react(),
     sitemap(),
   ],
+  vite: {
+    plugins: [tailwindcss()],
+  },
   output: 'static',
 });
