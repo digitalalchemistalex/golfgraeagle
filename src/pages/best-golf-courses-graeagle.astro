@@ -1,0 +1,237 @@
+---
+export const prerender = true;
+import Base from '../layouts/Base.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import { siteConfig } from '../data/content.js';
+
+const title = "Best Golf Courses in Graeagle, California (Complete Guide)";
+const description = "Discover the best golf courses in Graeagle, California — Whitehawk Ranch, Plumas Pines, Nakoma Dragon, Grizzly Ranch and Graeagle Meadows. Complete guide with course specs, difficulty, and trip planning tips.";
+
+const breadcrumbSchema = {
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": siteConfig.url },
+    { "@type": "ListItem", "position": 2, "name": "Best Golf Courses in Graeagle", "item": `${siteConfig.url}/best-golf-courses-graeagle` }
+  ]
+};
+
+const blogSchema = {
+  "@type": "BlogPosting",
+  "headline": title,
+  "description": description,
+  "url": `${siteConfig.url}/best-golf-courses-graeagle`,
+  "datePublished": "2026-03-13",
+  "dateModified": "2026-03-13",
+  "author": { "@type": "Organization", "name": "GolfGraeagle.com" },
+  "publisher": { "@type": "Organization", "name": "GolfGraeagle.com", "url": siteConfig.url }
+};
+
+const faqSchema = {
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How many golf courses are in Graeagle California?",
+      "acceptedAnswer": { "@type": "Answer", "text": "There are five main golf courses in the Graeagle area of Northern California: Graeagle Meadows Golf Course, Whitehawk Ranch Golf Course, Plumas Pines Golf Resort, Grizzly Ranch Golf Club, and Nakoma (The Dragon) Golf Course. All five courses are within 5–25 minutes of each other." }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the best golf course in Graeagle for beginners?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Graeagle Meadows (slope 120) is the most accessible course in Graeagle for beginners and high-handicap golfers. Plumas Pines (slope 132) is also manageable, rewarding accuracy over distance." }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the hardest golf course in Graeagle?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Nakoma Dragon is the hardest golf course in Graeagle with a slope rating of 147 and course rating of 73.4. Grizzly Ranch is second with a slope of 140 at 7,411 yards from the tips." }
+    },
+    {
+      "@type": "Question",
+      "name": "Can you play multiple golf courses in Graeagle in one trip?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Yes. Most golf groups visiting Graeagle play two to four courses during a single weekend trip. All five courses are within 25 minutes of each other, making multi-course itineraries practical and popular." }
+    }
+  ]
+};
+
+const courses = [
+  { name: "Graeagle Meadows", par: 72, yards: 6759, slope: 120, rating: "70.7", designer: "Ellis Van Gorder", opened: 1968, difficulty: "Moderate", bestFor: "All levels, groups", price: "$$", slug: "graeagle-meadows" },
+  { name: "Whitehawk Ranch", par: 71, yards: 6983, slope: 132, rating: "72.3", designer: "Dick Bailey", opened: 1996, difficulty: "Challenging", bestFor: "Mid–low handicap", price: "$$$", slug: "whitehawk-ranch" },
+  { name: "Plumas Pines", par: 72, yards: 6504, slope: 132, rating: "71.3", designer: "Homer Flint", opened: 1980, difficulty: "Moderate", bestFor: "Seniors, groups", price: "$$", slug: "plumas-pines" },
+  { name: "Grizzly Ranch", par: 72, yards: 7411, slope: 140, rating: "74.9", designer: "Bob Cupp", opened: 2005, difficulty: "Very Hard", bestFor: "Low handicap", price: "$$$$", slug: "grizzly-ranch" },
+  { name: "Nakoma Dragon", par: 72, yards: 7015, slope: 147, rating: "73.4", designer: "Robin Nelson", opened: 1998, difficulty: "Hardest", bestFor: "Low handicap", price: "$$$$", slug: "nakoma" },
+];
+---
+
+<style>
+  .blog-wrap { max-width: 800px; margin: 0 auto; padding: 140px 5% 100px; }
+  .course-table { width: 100%; border-collapse: collapse; font-size: 14px; margin: 32px 0; }
+  .course-table th { text-align: left; padding: 12px 16px; color: rgba(240,248,242,0.4); font-weight: 500; font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; border-bottom: 1px solid rgba(255,255,255,0.06); }
+  .course-table td { padding: 14px 16px; border-bottom: 1px solid rgba(255,255,255,0.04); color: rgba(240,248,242,0.75); vertical-align: top; }
+  .course-table tr:hover td { background: rgba(232,168,80,0.03); }
+  .course-table .name { color: #f0f8f2; font-weight: 500; }
+  .faq-item { border-bottom: 1px solid rgba(255,255,255,0.06); padding: 20px 0; }
+  .faq-q { font-size: 16px; color: #f0f8f2; font-weight: 500; margin-bottom: 8px; }
+  .faq-a { font-size: 15px; color: rgba(240,248,242,0.55); line-height: 1.75; }
+  @media (max-width: 680px) { .course-table { display: block; overflow-x: auto; } }
+</style>
+
+<Base {title} {description} schema={[blogSchema, breadcrumbSchema, faqSchema]}>
+  <Nav />
+
+  <article class="blog-wrap">
+
+    <!-- Breadcrumb -->
+    <nav style="font-size:12px;color:rgba(240,248,242,0.3);margin-bottom:32px;">
+      <a href="/" style="color:rgba(240,248,242,0.3);text-decoration:none;">Home</a>
+      <span style="margin:0 8px;">›</span>
+      <span style="color:#e8a850;">Best Golf Courses in Graeagle</span>
+    </nav>
+
+    <!-- Label -->
+    <p style="font-size:11px;color:#e8a850;letter-spacing:0.16em;text-transform:uppercase;font-weight:600;margin:0 0 16px;">Golf Courses · Graeagle, California</p>
+
+    <!-- H1 -->
+    <h1 class="speakable" style="font-family:'Playfair Display',serif;font-size:clamp(32px,5vw,52px);font-weight:400;color:#f0f8f2;line-height:1.1;margin:0 0 24px;">
+      Best Golf Courses in Graeagle, California
+    </h1>
+
+    <!-- Intro -->
+    <p class="page-intro" style="font-size:18px;color:rgba(240,248,242,0.6);line-height:1.85;margin-bottom:16px;">
+      Graeagle, California has five championship golf courses within 25 minutes of each other in the Sierra Nevada mountains. That density — five top-tier layouts in one valley — is what makes Graeagle one of the most efficient multi-course golf destinations in Northern California.
+    </p>
+    <p style="font-size:17px;color:rgba(240,248,242,0.55);line-height:1.85;margin-bottom:48px;">
+      The five courses are Graeagle Meadows Golf Course, Whitehawk Ranch Golf Course, Plumas Pines Golf Resort, Grizzly Ranch Golf Club, and Nakoma (The Dragon) Golf Course. Most visiting groups play two to four courses over a weekend while staying in nearby lodges, cabins, or resort properties.
+    </p>
+
+    <!-- Course Comparison Table -->
+    <h2 style="font-family:'Playfair Display',serif;font-size:clamp(22px,3vw,32px);font-weight:400;color:#f0f8f2;margin:0 0 8px;">Compare All 5 Courses</h2>
+    <p style="font-size:14px;color:rgba(240,248,242,0.35);margin-bottom:0;">Sorted by slope rating — easiest to hardest.</p>
+
+    <div style="overflow-x:auto;">
+      <table class="course-table">
+        <thead>
+          <tr>
+            <th>Course</th>
+            <th>Par</th>
+            <th>Yards</th>
+            <th>Slope</th>
+            <th>Rating</th>
+            <th>Difficulty</th>
+            <th>Best For</th>
+            <th>Price</th>
+          </tr>
+        </thead>
+        <tbody>
+          {courses.map(c => (
+            <tr>
+              <td><a href={`/courses/${c.slug}`} class="name" style="color:#f0f8f2;text-decoration:none;font-weight:500;">{c.name}</a><div style="font-size:11px;color:rgba(240,248,242,0.3);margin-top:2px;">{c.designer}, {c.opened}</div></td>
+              <td>{c.par}</td>
+              <td>{c.yards.toLocaleString()}</td>
+              <td style="color:#e8a850;font-weight:500;">{c.slope}</td>
+              <td>{c.rating}</td>
+              <td>{c.difficulty}</td>
+              <td>{c.bestFor}</td>
+              <td style="color:#e8a850;">{c.price}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Course Sections -->
+    <h2 style="font-family:'Playfair Display',serif;font-size:clamp(22px,3vw,32px);font-weight:400;color:#f0f8f2;margin:56px 0 24px;">Graeagle Meadows Golf Course</h2>
+    <p style="font-size:17px;color:rgba(240,248,242,0.55);line-height:1.85;margin-bottom:16px;">
+      Graeagle Meadows is the valley's original course, opened in 1968 and designed by Ellis Van Gorder. Playing to 6,759 yards with a slope of 120, it's the most accessible of the five courses and the natural starting point for a Graeagle golf trip.
+    </p>
+    <p style="font-size:17px;color:rgba(240,248,242,0.55);line-height:1.85;margin-bottom:16px;">
+      The course runs through open Sierra meadows along the Feather River, with elevated tees offering views of the Mohawk Valley. It rewards consistent play over power — a layout that works for all handicap levels and holds up well for group outings.
+    </p>
+    <p style="font-size:17px;color:rgba(240,248,242,0.55);line-height:1.85;margin-bottom:8px;">
+      Facilities include a pro shop, restaurant, snack bar, driving range, and putting greens. Open April through November.
+    </p>
+    <p style="margin-bottom:40px;"><a href="/courses/graeagle-meadows" style="color:#e8a850;font-size:15px;text-decoration:none;">Graeagle Meadows packages and tee times →</a></p>
+
+    <h2 style="font-family:'Playfair Display',serif;font-size:clamp(22px,3vw,32px);font-weight:400;color:#f0f8f2;margin:0 0 24px;">Whitehawk Ranch Golf Course</h2>
+    <p style="font-size:17px;color:rgba(240,248,242,0.55);line-height:1.85;margin-bottom:16px;">
+      Whitehawk Ranch was named a Top 20 Golf Course in California by Golf Digest in 1998. Designed by Dick Bailey and opened in 1996, it plays to 6,983 yards with a slope of 132 — the second-longest course in the region.
+    </p>
+    <p style="font-size:17px;color:rgba(240,248,242,0.55);line-height:1.85;margin-bottom:16px;">
+      The layout splits into 12 holes in open meadow and 6 in forested hillsides. Sulphur Creek and multiple lakes come into play throughout the round. The course has four reachable par 5s and at least one driveable par 4, making it engaging for players of different styles.
+    </p>
+    <p style="font-size:17px;color:rgba(240,248,242,0.55);line-height:1.85;margin-bottom:8px;">
+      Pairs well with Grizzly Ranch and Plumas Pines for a multi-course weekend.
+    </p>
+    <p style="margin-bottom:40px;"><a href="/courses/whitehawk-ranch" style="color:#e8a850;font-size:15px;text-decoration:none;">Whitehawk Ranch packages and tee times →</a></p>
+
+    <h2 style="font-family:'Playfair Display',serif;font-size:clamp(22px,3vw,32px);font-weight:400;color:#f0f8f2;margin:0 0 24px;">Plumas Pines Golf Resort</h2>
+    <p style="font-size:17px;color:rgba(240,248,242,0.55);line-height:1.85;margin-bottom:16px;">
+      Plumas Pines is a Top 5 Best Value course in the Sierra Nevada according to California Golf and Travel Magazine. Designed by Homer Flint in 1980, it plays to 6,504 yards with a slope of 132 — shorter than the others but no easier.
+    </p>
+    <p style="font-size:17px;color:rgba(240,248,242,0.55);line-height:1.85;margin-bottom:16px;">
+      Giant pines line every hole, the greens run small, and the Feather River borders the north side of the property. Straight play matters more than length here. On-site condos and vacation homes make it a practical base for golf groups who want to stay at the course.
+    </p>
+    <p style="font-size:17px;color:rgba(240,248,242,0.55);line-height:1.85;margin-bottom:8px;">
+      Located minutes from Grizzly Ranch and Whitehawk Ranch — an easy three-course combination.
+    </p>
+    <p style="margin-bottom:40px;"><a href="/courses/plumas-pines" style="color:#e8a850;font-size:15px;text-decoration:none;">Plumas Pines packages and tee times →</a></p>
+
+    <h2 style="font-family:'Playfair Display',serif;font-size:clamp(22px,3vw,32px);font-weight:400;color:#f0f8f2;margin:0 0 24px;">Grizzly Ranch Golf Club</h2>
+    <p style="font-size:17px;color:rgba(240,248,242,0.55);line-height:1.85;margin-bottom:16px;">
+      Grizzly Ranch was ranked among Golf Digest's Top 100 Greatest Public Courses in the United States in 2021. Designed by Bob Cupp and opened in 2005, it plays to 7,411 yards from the tips with a slope of 140 — the longest course in the Graeagle area and the second most challenging.
+    </p>
+    <p style="font-size:17px;color:rgba(240,248,242,0.55);line-height:1.85;margin-bottom:16px;">
+      The course sits at 4,800 to 5,400 feet elevation, with fescue roughs, natural terrain throughout, and five sets of tees ranging down to 5,374 yards. A 30-station natural turf practice range plus putting, chipping, and bunker practice facilities are on-site.
+    </p>
+    <p style="font-size:17px;color:rgba(240,248,242,0.55);line-height:1.85;margin-bottom:8px;">
+      Located 11 miles east of Graeagle in Portola — an 18-minute drive. Semi-private, but public tee times are available.
+    </p>
+    <p style="margin-bottom:40px;"><a href="/courses/grizzly-ranch" style="color:#e8a850;font-size:15px;text-decoration:none;">Grizzly Ranch packages and tee times →</a></p>
+
+    <h2 style="font-family:'Playfair Display',serif;font-size:clamp(22px,3vw,32px);font-weight:400;color:#f0f8f2;margin:0 0 24px;">Nakoma — The Dragon Golf Course</h2>
+    <p style="font-size:17px;color:rgba(240,248,242,0.55);line-height:1.85;margin-bottom:16px;">
+      Nakoma Dragon is the hardest golf course in Graeagle, with a slope of 147 and course rating of 73.4. Designed by Robin Nelson and Neil Haworth, The Dragon debuted on Golf World's list of America's Top 75 courses and remains the region's signature challenge.
+    </p>
+    <p style="font-size:17px;color:rgba(240,248,242,0.55);line-height:1.85;margin-bottom:16px;">
+      The clubhouse is the only golf facility in the world designed by Frank Lloyd Wright — reason enough to visit even if you never tee it up. On-site at Nakoma Resort: 42 rooms and suites, the Fifty44 Restaurant and Bar inside the FLW lodge, Middle Fork Bistro, spa, heated pool, two hot tubs, and a driving range.
+    </p>
+    <p style="font-size:17px;color:rgba(240,248,242,0.55);line-height:1.85;margin-bottom:8px;">
+      Located in Clio, 8 miles from Graeagle via Hwy 89 — a 14-minute drive. Open May 1 through October 31.
+    </p>
+    <p style="margin-bottom:56px;"><a href="/courses/nakoma" style="color:#e8a850;font-size:15px;text-decoration:none;">Nakoma Dragon packages and tee times →</a></p>
+
+    <!-- Trip planning section -->
+    <h2 style="font-family:'Playfair Display',serif;font-size:clamp(22px,3vw,32px);font-weight:400;color:#f0f8f2;margin:0 0 24px;">How to Plan a Multi-Course Graeagle Golf Trip</h2>
+    <p style="font-size:17px;color:rgba(240,248,242,0.55);line-height:1.85;margin-bottom:16px;">
+      Most golf groups visiting Graeagle plan a 2–3 night stay and play two to four courses. The courses are close enough to each other that you can play a morning round at one course and an afternoon round at another, or spread courses across consecutive days.
+    </p>
+    <p style="font-size:17px;color:rgba(240,248,242,0.55);line-height:1.85;margin-bottom:32px;">
+      A practical 3-day itinerary: Day 1 — Graeagle Meadows (warmup round, all-levels). Day 2 — Whitehawk Ranch (morning) + Plumas Pines (afternoon). Day 3 — Grizzly Ranch or Nakoma Dragon for the big finish. GolfGraeagle coordinates tee times, lodging, and dining for trips of any size.
+    </p>
+
+    <!-- FAQ -->
+    <h2 style="font-family:'Playfair Display',serif;font-size:clamp(22px,3vw,32px);font-weight:400;color:#f0f8f2;margin:0 0 24px;">Frequently Asked Questions</h2>
+    <div>
+      {[
+        { q: "How many golf courses are in Graeagle California?", a: "There are five main golf courses in the Graeagle area: Graeagle Meadows Golf Course, Whitehawk Ranch Golf Course, Plumas Pines Golf Resort, Grizzly Ranch Golf Club, and Nakoma (The Dragon) Golf Course. All five courses are within 5–25 minutes of each other." },
+        { q: "What is the best golf course in Graeagle for beginners?", a: "Graeagle Meadows (slope 120) is the most accessible course for beginners and high-handicap golfers. Plumas Pines (slope 132) is also manageable and rewards accurate, straight play." },
+        { q: "What is the hardest golf course in Graeagle?", a: "Nakoma Dragon is the hardest with a slope of 147 and course rating of 73.4. Grizzly Ranch is second with slope 140 at 7,411 yards from the tips." },
+        { q: "Can you play multiple golf courses in Graeagle in one trip?", a: "Yes — most groups play 2–4 courses per trip. All five courses are within 25 minutes of each other, making multi-course itineraries practical. GolfGraeagle coordinates tee times across all five courses." },
+      ].map(item => (
+        <details class="faq-item" style="cursor:pointer;">
+          <summary class="faq-q">{item.q}</summary>
+          <p class="faq-a" style="margin-top:10px;">{item.a}</p>
+        </details>
+      ))}
+    </div>
+
+    <!-- CTA -->
+    <div style="margin-top:64px;padding:40px;background:rgba(232,168,80,0.04);border:1px solid rgba(232,168,80,0.12);border-radius:20px;text-align:center;">
+      <h2 style="font-family:'Playfair Display',serif;font-size:clamp(22px,3vw,30px);font-weight:400;color:#f0f8f2;margin:0 0 12px;">Ready to Book Your Graeagle Golf Trip?</h2>
+      <p style="font-size:16px;color:rgba(240,248,242,0.5);margin:0 0 28px;max-width:480px;margin-left:auto;margin-right:auto;">Tell us your dates, group size, and which courses you want to play. We'll build a custom package with tee times and lodging.</p>
+      <a href="/quote" style="display:inline-block;background:#e8a850;color:#0d1a0e;font-weight:700;font-size:15px;padding:16px 40px;border-radius:100px;text-decoration:none;">Request a Free Quote →</a>
+    </div>
+
+  </article>
+
+  <Footer />
+</Base>
