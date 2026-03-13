@@ -1,6 +1,8 @@
 User-agent: *
 Allow: /
+Disallow: /api/
 
+# AI crawlers — all allowed for AEO visibility
 User-agent: GPTBot
 Allow: /
 
@@ -16,12 +18,22 @@ Allow: /
 User-agent: anthropic-ai
 Allow: /
 
+User-agent: ClaudeBot
+Allow: /
+
 User-agent: PerplexityBot
 Allow: /
 
 User-agent: Applebot-Extended
 Allow: /
 
-Disallow: /api/
+User-agent: Bytespider
+Allow: /
 
-Sitemap: https://golfgraeagle.com/sitemap-index.xml
+User-agent: cohere-ai
+Allow: /
+
+User-agent: FacebookBot
+Allow: /
+
+Sitemap: https://golfgraeagle.com/sitemap.xml

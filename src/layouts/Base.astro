@@ -18,21 +18,67 @@ const baseSchema = {
   "@context": "https://schema.org",
   "@graph": [
     {
-      "@type": "TravelAgency",
+      "@type": ["TravelAgency", "Organization"],
       "@id": `${siteConfig.url}/#organization`,
-      "name": siteConfig.name,
+      "name": "GolfGraeagle.com",
+      "alternateName": "Golf Graeagle",
       "url": siteConfig.url,
-      "description": siteConfig.description,
+      "description": "Golf trip planning and stay-and-play package booking for Graeagle, California. Five championship courses, custom itineraries, tee time coordination, and lodging for groups of all sizes.",
       "email": siteConfig.email,
-      "areaServed": "Graeagle, California",
+      "foundingDate": "2004",
+      "areaServed": { "@type": "Place", "name": "Graeagle, California, Sierra Nevada" },
+      "parentOrganization": {
+        "@type": "Organization",
+        "name": "Zoomaway Technologies Inc."
+      },
+      "sameAs": [
+        "https://golfthehighsierra.com",
+        "https://groupgolftours.com",
+        "https://mesquitestgeorgegolftours.com"
+      ],
+      "knowsAbout": [
+        "Golf trip planning in Graeagle California",
+        "Stay and play golf packages",
+        "Nakoma Dragon golf course",
+        "Grizzly Ranch Golf Club",
+        "Whitehawk Ranch Golf Course",
+        "Plumas Pines Golf Resort",
+        "Graeagle Meadows Golf Course",
+        "Sierra Nevada golf",
+        "Frank Lloyd Wright golf clubhouse"
+      ]
     },
     {
       "@type": "WebSite",
       "@id": `${siteConfig.url}/#website`,
       "url": siteConfig.url,
-      "name": siteConfig.name,
+      "name": "GolfGraeagle.com",
+      "description": siteConfig.description,
+      "publisher": { "@id": `${siteConfig.url}/#organization` },
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": {
+          "@type": "EntryPoint",
+          "urlTemplate": `${siteConfig.url}/courses?q={search_term_string}`
+        },
+        "query-input": "required name=search_term_string"
+      }
     },
-    ...(schema ? [schema] : [])
+    {
+      "@type": "WebPage",
+      "@id": `${canonicalUrl}#webpage`,
+      "url": canonicalUrl,
+      "name": title,
+      "description": description,
+      "inLanguage": "en-US",
+      "isPartOf": { "@id": `${siteConfig.url}/#website` },
+      "about": { "@id": `${siteConfig.url}/#organization` },
+      "speakable": {
+        "@type": "SpeakableSpecification",
+        "cssSelector": [".speakable", "h1", ".page-intro"]
+      }
+    },
+    ...(schema ? (Array.isArray(schema) ? schema : [schema]) : [])
   ]
 };
 ---
@@ -46,21 +92,29 @@ const baseSchema = {
   <link rel="canonical" href={canonicalUrl} />
   {noindex && <meta name="robots" content="noindex, nofollow" />}
   {!noindex && <meta name="robots" content="index, follow" />}
+  <!-- Open Graph -->
   <meta property="og:title" content={title} />
   <meta property="og:description" content={description} />
   <meta property="og:url" content={canonicalUrl} />
   <meta property="og:type" content="website" />
   <meta property="og:image" content={ogImage} />
-  <meta property="og:site_name" content={siteConfig.name} />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content={title} />
+  <meta property="og:site_name" content="GolfGraeagle.com" />
+  <meta property="og:locale" content="en_US" />
+  <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content={title} />
   <meta name="twitter:description" content={description} />
   <meta name="twitter:image" content={ogImage} />
-  <!-- Fonts: Playfair Display for headlines, Inter for body -->
+  <meta name="twitter:image:alt" content={title} />
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600&family=Libre+Baskerville:ital@0;1&display=swap" rel="stylesheet" />
   {preloadImage && <link rel="preload" as="image" href={preloadImage} />}
+  <!-- JSON-LD -->
   <script type="application/ld+json" set:html={JSON.stringify(baseSchema)} />
 </head>
 <body style="background:#0d1a0e; color:#f0f8f2; font-family:'Inter',system-ui,sans-serif; -webkit-font-smoothing:antialiased;">
@@ -100,7 +154,6 @@ const baseSchema = {
         const rect = card.getBoundingClientRect();
         const x = e.clientX - rect.left;
         const y = e.clientY - rect.top;
-        const glow = card.querySelector('.glow-card::before');
         card.style.setProperty('--glow-x', x + 'px');
         card.style.setProperty('--glow-y', y + 'px');
       });

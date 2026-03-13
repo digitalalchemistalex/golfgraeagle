@@ -2,7 +2,7 @@
 import Base from '../layouts/Base.astro';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
-import { lodging } from '../data/content.js';
+import { lodging, siteConfig } from '../data/content.js';
 export const prerender = true;
 
 const featuredOrder = ['inn-at-nakoma','river-pines-resort','chalet-view-lodge','townhomes-at-plumas-pines'];
@@ -21,11 +21,57 @@ const psychLabel = {
   'inn-at-nakoma':             { tag:'Most Unique',         color:'rgba(232,168,80,0.1)',  border:'rgba(232,168,80,0.25)',  text:'#e8a850' },
   'townhomes-at-plumas-pines': { tag:'Best for Large Groups', color:'rgba(210,160,80,0.08)', border:'rgba(210,160,80,0.2)', text:'rgba(210,168,110,0.9)' },
 };
+
+const lodgingSchemas = lodging.map(l => ({
+  "@type": "LodgingBusiness",
+  "@id": `${siteConfig.url}/lodging#${l.slug}`,
+  "name": l.name,
+  "description": l.tagline,
+  "url": l.website || `${siteConfig.url}/lodging`,
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": l.address,
+    "addressRegion": "CA",
+    "addressCountry": "US"
+  },
+  "amenityFeature": (l.highlights || []).map(h => ({ "@type": "LocationFeatureSpecification", "name": h, "value": true })),
+  "sameAs": l.website
+}));
+
+const lodgingBreadcrumb = {
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": siteConfig.url },
+    { "@type": "ListItem", "position": 2, "name": "Lodging", "item": `${siteConfig.url}/lodging` }
+  ]
+};
+
+const lodgingFaq = {
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Where should a golf group stay in Graeagle?",
+      "acceptedAnswer": { "@type": "Answer", "text": "The best lodging for golf groups in Graeagle depends on group size and preferences. River Pines Resort is ideal for larger groups with multiple room types and on-site dining. The Townhomes at Plumas Pines offer 2–4 bedroom units with full kitchens, great for self-catering groups. Inn at Nakoma is the most luxurious option, located directly on the Nakoma Dragon golf course." }
+    },
+    {
+      "@type": "Question",
+      "name": "Is there lodging on the golf courses in Graeagle?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Yes. The Inn at Nakoma is located on the Nakoma Dragon golf course property. The Townhomes at Plumas Pines are adjacent to Plumas Pines Golf Resort. River Pines Resort is within walking distance of Graeagle Meadows Golf Course." }
+    },
+    {
+      "@type": "Question",
+      "name": "What stay and play golf packages are available in Graeagle?",
+      "acceptedAnswer": { "@type": "Answer", "text": "GolfGraeagle offers custom stay-and-play packages combining lodging at River Pines Resort, Chalet View Lodge, Inn at Nakoma, or Townhomes at Plumas Pines with tee times at any combination of Graeagle's five championship courses. Request a free quote at golfgraeagle.com/quote." }
+    }
+  ]
+};
 ---
 
 <Base
   title="Graeagle Golf Lodging | Stay & Play Packages Near Championship Courses"
   description="Where to stay for a Graeagle golf trip. The Inn at Nakoma for on-course luxury, River Pines Resort for groups, Chalet View Lodge for amenities, Townhomes at Plumas Pines for large groups."
+  schema={[...lodgingSchemas, lodgingBreadcrumb, lodgingFaq]}
 >
 <Nav />
 
@@ -169,7 +215,7 @@ const psychLabel = {
     <h1 style="font-family:'Playfair Display',serif;font-size:clamp(52px,7vw,94px);font-weight:400;color:#f0f8f2;margin:0 0 20px;line-height:1.0;">
       Wake up.<br/><em style="color:#e8a850;font-style:italic;">Tee off.</em>
     </h1>
-    <p style="font-size:18px;color:rgba(240,248,242,0.55);max-width:560px;line-height:1.75;margin:0 0 36px;">
+    <p class="speakable page-intro" style="font-size:18px;color:rgba(240,248,242,0.55);max-width:560px;line-height:1.75;margin:0 0 36px;">
       Every property we recommend puts you within minutes — sometimes steps — of a championship tee. No long drives before your first shot of the day.
     </p>
     <!-- Anchor nav pills -->

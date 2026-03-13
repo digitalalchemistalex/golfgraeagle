@@ -3,37 +3,120 @@ export const prerender = true;
 import Base from '../../layouts/Base.astro';
 import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
-import { courses } from '../../data/content.js';
+import { courses, siteConfig } from '../../data/content.js';
 
 export function getStaticPaths() {
   return courses.map(c => ({ params: { slug: c.slug }, props: { course: c } }));
 }
 const { course: c } = Astro.props;
+const pageUrl = `${siteConfig.url}/courses/${c.slug}`;
+
+// --- SCHEMA ARRAY ---
+const golfCourseSchema = {
+  "@type": "GolfCourse",
+  "@id": `${pageUrl}#golfcourse`,
+  "name": `${c.name} Golf Course`,
+  "description": c.description,
+  "url": pageUrl,
+  "numberOfHoles": 18,
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": c.address,
+    "addressRegion": "CA",
+    "addressCountry": "US"
+  },
+  "designer": { "@type": "Person", "name": c.designer },
+  "dateCreated": `${c.year}`,
+  "amenityFeature": c.highlights.map(h => ({ "@type": "LocationFeatureSpecification", "name": h, "value": true })),
+  "sameAs": c.website,
+  "isPartOf": { "@id": `${siteConfig.url}/#organization` }
+};
+
+const breadcrumbSchema = {
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": siteConfig.url },
+    { "@type": "ListItem", "position": 2, "name": "Golf Courses", "item": `${siteConfig.url}/courses` },
+    { "@type": "ListItem", "position": 3, "name": c.name, "item": pageUrl }
+  ]
+};
+
+const faqSchema = {
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": `Is ${c.name} open to the public?`,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": `${c.name} is open to public play. Tee time availability varies by season. GolfGraeagle can secure guaranteed tee times as part of a stay-and-play package.`
+      }
+    },
+    {
+      "@type": "Question",
+      "name": `What is the slope rating at ${c.name}?`,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": `${c.name} has a slope rating of ${c.slope} and a course rating of ${c.rating}. The course plays to par ${c.par} at ${c.yards.toLocaleString()} yards from the tips.`
+      }
+    },
+    {
+      "@type": "Question",
+      "name": `Who designed ${c.name}?`,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": `${c.name} was designed by ${c.designer} and opened in ${c.year}.`
+      }
+    },
+    {
+      "@type": "Question",
+      "name": `What is the best time to play ${c.name}?`,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": `${c.name} is open approximately May through October, weather permitting. Morning tee times offer cooler temperatures and optimal course conditions.`
+      }
+    },
+    {
+      "@type": "Question",
+      "name": `How do I book a tee time at ${c.name}?`,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": `GolfGraeagle can book tee times at ${c.name} as part of a custom stay-and-play package. Request a free quote at golfgraeagle.com/quote and receive a response within 24 hours.`
+      }
+    }
+  ]
+};
 ---
-<Base title={`${c.name} Golf Course — Graeagle, California | Golf Graeagle`}
-  description={`${c.name}: Par ${c.par}, ${c.yards.toLocaleString()} yards, Slope ${c.slope}. Designed by ${c.designer} (${c.year}). ${c.tagline}`}>
+<Base
+  title={`${c.name} Golf Course — Tee Times & Packages | Graeagle, CA`}
+  description={`${c.name}: Par ${c.par}, ${c.yards.toLocaleString()} yards, Slope ${c.slope}. Designed by ${c.designer} (${c.year}). Book stay-and-play packages through GolfGraeagle.`}
+  schema={[golfCourseSchema, breadcrumbSchema, faqSchema]}
+>
 <Nav />
 
 <!-- HERO with real course photo -->
 <section style="position:relative;height:90vh;min-height:560px;overflow:hidden;display:flex;align-items:flex-end;">
   <div style="position:absolute;inset:0;">
-    <img src={c.hero} alt={`${c.name} Golf Course`}
+    <img src={c.hero} alt={`${c.name} Golf Course — Graeagle, California`}
       style="width:100%;height:100%;object-fit:cover;" loading="eager"/>
     <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(13,26,14,1) 0%,rgba(13,26,14,0.5) 40%,rgba(13,26,14,0.15) 70%,transparent 100%);"></div>
   </div>
   <div style="position:relative;z-index:2;padding:0 10% 72px;max-width:1400px;width:100%;">
-    <a href="/courses" style="display:inline-flex;align-items:center;gap:6px;font-size:12px;color:rgba(240,248,242,0.4);text-decoration:none;margin-bottom:20px;transition:color 0.2s;"
-    onmouseover="this.style.color='rgba(240,248,242,0.7)'" onmouseout="this.style.color='rgba(240,248,242,0.4)'">
-      ← All Courses
-    </a>
+    <!-- Breadcrumb — visible + crawlable -->
+    <nav aria-label="Breadcrumb" style="margin-bottom:20px;">
+      <a href="/courses" style="display:inline-flex;align-items:center;gap:6px;font-size:12px;color:rgba(240,248,242,0.4);text-decoration:none;transition:color 0.2s;"
+      onmouseover="this.style.color='rgba(240,248,242,0.7)'" onmouseout="this.style.color='rgba(240,248,242,0.4)'">
+        ← All Courses
+      </a>
+    </nav>
     <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px;">
       {c.awards?.map(a => (
         <span style="background:rgba(232,168,80,0.15);border:1px solid rgba(232,168,80,0.25);color:#e8a850;font-size:10px;padding:4px 12px;border-radius:100px;letter-spacing:0.06em;">{a}</span>
       ))}
       <span style="background:rgba(232,168,80,0.15);border:1px solid rgba(232,168,80,0.25);color:#e8a850;font-size:10px;padding:4px 12px;border-radius:100px;">{c.tier} Green Fees</span>
     </div>
-    <h1 style="font-family:'Playfair Display',serif;font-size:clamp(42px,6vw,80px);color:#f0f8f2;margin:0 0 12px;line-height:1.0;">{c.name}</h1>
-    <p style="font-size:18px;color:rgba(240,248,242,0.55);margin:0;">{c.tagline}</p>
+    <h1 class="speakable" style="font-family:'Playfair Display',serif;font-size:clamp(42px,6vw,80px);color:#f0f8f2;margin:0 0 12px;line-height:1.0;">{c.name}</h1>
+    <p class="page-intro" style="font-size:18px;color:rgba(240,248,242,0.55);margin:0;">{c.tagline}</p>
   </div>
 </section>
 
@@ -63,17 +146,11 @@ const { course: c } = Astro.props;
   .photo-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 8px; }
   @media (max-width: 900px) {
     .course-layout { grid-template-columns: 1fr; }
-    /* Sidebar goes below content on mobile */
     .course-sidebar { order: -1; }
-    /* Unstick the sidebar */
     .course-sidebar-inner { position: static !important; }
   }
-  @media (max-width: 640px) {
-    .photo-grid { grid-template-columns: 1fr 1fr; }
-  }
-  @media (max-width: 400px) {
-    .photo-grid { grid-template-columns: 1fr; }
-  }
+  @media (max-width: 640px) { .photo-grid { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 400px) { .photo-grid { grid-template-columns: 1fr; } }
 </style>
 
 <div class="course-body">
@@ -81,10 +158,10 @@ const { course: c } = Astro.props;
 
     <!-- LEFT: Content -->
     <div>
-      <!-- Description -->
+      <!-- Description — speakable intro -->
       <div class="reveal" style="margin-bottom:56px;">
         <h2 style="font-family:'Playfair Display',serif;font-size:28px;color:#f0f8f2;margin:0 0 20px;">About {c.name}</h2>
-        <p style="font-size:16px;color:rgba(240,248,242,0.6);line-height:1.85;">{c.description}</p>
+        <p class="speakable" style="font-size:16px;color:rgba(240,248,242,0.6);line-height:1.85;">{c.description}</p>
       </div>
 
       <!-- Course Highlights -->
@@ -100,7 +177,7 @@ const { course: c } = Astro.props;
         </div>
       </div>
 
-      <!-- Photo gallery — REAL course photos -->
+      <!-- Photo gallery -->
       {c.images.length > 1 && (
         <div class="reveal" style="margin-bottom:56px;">
           <h2 style="font-family:'Playfair Display',serif;font-size:24px;color:#f0f8f2;margin:0 0 20px;">Course Photos</h2>
@@ -117,10 +194,33 @@ const { course: c } = Astro.props;
       )}
 
       <!-- Best for -->
-      <div class="reveal" style="background:rgba(232,168,80,0.05);border:1px solid rgba(232,168,80,0.1);border-radius:16px;padding:28px 32px;">
+      <div class="reveal" style="background:rgba(232,168,80,0.05);border:1px solid rgba(232,168,80,0.1);border-radius:16px;padding:28px 32px;margin-bottom:56px;">
         <div style="font-size:11px;color:rgba(232,168,80,0.6);text-transform:uppercase;letter-spacing:0.12em;margin-bottom:10px;">Best For</div>
         <p style="font-size:16px;color:rgba(240,248,242,0.75);margin:0;">{c.bestFor}</p>
       </div>
+
+      <!-- FAQ Section — AEO optimized, answers in DOM (not collapsed) -->
+      <div class="reveal" style="margin-bottom:56px;">
+        <h2 style="font-family:'Playfair Display',serif;font-size:24px;color:#f0f8f2;margin:0 0 28px;">Frequently Asked Questions</h2>
+        <div style="display:flex;flex-direction:column;gap:0;">
+          {[
+            [`Is ${c.name} open to the public?`, `${c.name} is open to public play. Tee time availability varies by season. GolfGraeagle can secure guaranteed tee times as part of a stay-and-play package.`],
+            [`What is the slope rating at ${c.name}?`, `${c.name} has a slope rating of ${c.slope} and a course rating of ${c.rating}. The course plays to par ${c.par} at ${c.yards.toLocaleString()} yards from the tips.`],
+            [`Who designed ${c.name}?`, `${c.name} was designed by ${c.designer} and opened in ${c.year}.`],
+            [`What is the best time to play ${c.name}?`, `${c.name} is open approximately May through October, weather permitting. Morning tee times offer cooler temperatures and optimal course conditions.`],
+            [`How do I book a tee time at ${c.name}?`, `GolfGraeagle can book tee times at ${c.name} as part of a custom stay-and-play package. Request a free quote and receive a response within 24 hours.`],
+          ].map(([q, a]) => (
+            <details style="border-bottom:1px solid rgba(240,248,242,0.06);padding:0;">
+              <summary style="font-size:15px;color:#f0f8f2;font-weight:500;padding:18px 0;cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;">
+                {q}
+                <span style="color:#e8a850;font-size:18px;flex-shrink:0;margin-left:16px;">+</span>
+              </summary>
+              <p style="font-size:14px;color:rgba(240,248,242,0.55);line-height:1.75;padding:0 0 18px;margin:0;">{a}</p>
+            </details>
+          ))}
+        </div>
+      </div>
+
     </div>
 
     <!-- RIGHT: Booking sidebar -->

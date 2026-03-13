@@ -2,18 +2,75 @@
 import Base from '../layouts/Base.astro';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
-import { dining } from '../data/content.js';
+import { dining, siteConfig } from '../data/content.js';
 export const prerender = true;
 
 const fineDining  = dining.filter(d => d.category === 'fine-dining');
 const casual      = dining.filter(d => ['casual','variety'].includes(d.category));
 const breweries   = dining.filter(d => ['brewery','bar'].includes(d.category));
 const quickBites  = dining.filter(d => d.category === 'quick');
+
+// Restaurant schema for fine dining + notable casual venues
+const cuisineMap = {
+  'fine-dining': 'American',
+  'casual': 'American',
+  'brewery': 'American',
+  'bar': 'American',
+  'quick': 'American',
+};
+const priceMap = { 'fine-dining': '$$$', 'casual': '$$', 'brewery': '$$', 'bar': '$', 'quick': '$' };
+
+const restaurantSchemas = dining.map(d => ({
+  "@type": "Restaurant",
+  "@id": `${siteConfig.url}/dining#${d.slug}`,
+  "name": d.name,
+  "description": d.tagline,
+  "url": `${siteConfig.url}/dining`,
+  "servesCuisine": cuisineMap[d.category] || 'American',
+  "priceRange": priceMap[d.category] || '$$',
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Graeagle",
+    "addressRegion": "CA",
+    "addressCountry": "US"
+  },
+  "isPartOf": { "@id": `${siteConfig.url}/#organization` }
+}));
+
+const diningBreadcrumb = {
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": siteConfig.url },
+    { "@type": "ListItem", "position": 2, "name": "Dining", "item": `${siteConfig.url}/dining` }
+  ]
+};
+
+const diningFaq = {
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What are the best restaurants in Graeagle CA?",
+      "acceptedAnswer": { "@type": "Answer", "text": "The top dining options near Graeagle golf courses include: Sardine Lake Resort for fine Sierra dining, Iron Door Restaurant (open since 1961 in a historic 1906 building), Grizzly Grill at Grizzly Ranch, Roadhouse at River Pines for group dinners, Eureka Peak Brewing Co. for craft beer, and The Brewing Lair for après-golf drinks in a forest setting." }
+    },
+    {
+      "@type": "Question",
+      "name": "Are there restaurants near Graeagle golf courses?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Yes. Several restaurants are located directly on or adjacent to Graeagle golf courses. Graeagle Meadows Restaurant is inside the Graeagle Meadows clubhouse. Grizzly Grill serves as the 19th hole at Grizzly Ranch. Roadhouse at River Pines is steps from Plumas Pines Golf Resort." }
+    },
+    {
+      "@type": "Question",
+      "name": "Where can golf groups eat dinner near Graeagle?",
+      "acceptedAnswer": { "@type": "Answer", "text": "The best options for golf group dinners near Graeagle are Roadhouse at River Pines (on-site at River Pines Resort), Iron Door Restaurant in nearby Johnsville, Grizzly Grill at Grizzly Ranch, and Eureka Peak Brewing Co. at Chalet View Lodge. GolfGraeagle can coordinate group dining reservations as part of a stay-and-play package." }
+    }
+  ]
+};
 ---
 
 <Base
   title="Dining in Graeagle CA | Best Restaurants Near Golf Courses"
   description="The best restaurants near Graeagle's golf courses. Fine dining at Sardine Lake Resort, craft beer at Eureka Peak Brewing, the Grizzly Grill after your round at Grizzly Ranch."
+  schema={[...restaurantSchemas, diningBreadcrumb, diningFaq]}
 >
 <Nav />
 
@@ -183,7 +240,7 @@ const quickBites  = dining.filter(d => d.category === 'quick');
     <h1 style="font-family:'Playfair Display',serif;font-size:clamp(52px,7vw,94px);font-weight:400;color:#f0f8f2;margin:0 0 20px;line-height:1.0;">
       Eat well.<br/><em style="color:#e8a850;font-style:italic;">Drink even better.</em>
     </h1>
-    <p style="font-size:18px;color:rgba(240,248,242,0.55);max-width:540px;line-height:1.75;margin:0 0 36px;">
+    <p class="speakable page-intro" style="font-size:18px;color:rgba(240,248,242,0.55);max-width:540px;line-height:1.75;margin:0 0 36px;">
       Graeagle has no business being this good for food. Remote valley, mountains all around — yet fifteen restaurants and bars, two craft breweries, and one legendary alpine lake restaurant that requires a reservation weeks out.
     </p>
     <!-- Stats row — anchoring -->
