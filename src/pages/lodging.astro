@@ -1,0 +1,135 @@
+---
+import Base from '../layouts/Base.astro';
+import { lodging, siteConfig } from '../data/content.js';
+
+const title = "Graeagle Golf Lodging | Hotels, Resorts & Rentals Near the Courses";
+const description = "Stay near the courses. Graeagle lodging options include River Pines Resort, Chalet View Lodge, The Inn at Nakoma, and townhomes at Plumas Pines. All within minutes of 5 championship golf courses.";
+---
+<Base title={title} description={description}>
+
+  <nav class="fixed top-0 left-0 right-0 z-50 px-6 py-4 flex items-center justify-between backdrop-blur-md bg-slate-950/80 border-b border-white/5">
+    <a href="/" class="font-display text-xl text-white">Golf <span class="text-gold-400">Graeagle</span></a>
+    <div class="hidden md:flex items-center gap-8 text-sm text-white/70">
+      <a href="/courses" class="hover:text-white transition-colors">Courses</a>
+      <a href="/lodging" class="text-white">Lodging</a>
+      <a href="/dining" class="hover:text-white transition-colors">Dining</a>
+    </div>
+    <a href="/quote" class="bg-gold-500 hover:bg-gold-400 text-slate-950 text-sm font-medium px-5 py-2.5 rounded-full transition-all">Plan My Trip</a>
+  </nav>
+
+  <section class="pt-32 pb-16 px-6">
+    <div class="max-w-6xl mx-auto">
+      <p class="text-gold-400 text-sm tracking-widest uppercase mb-4">Where to Stay</p>
+      <h1 class="font-display text-6xl md:text-8xl text-white font-light leading-none mb-6">
+        Sleep on the<br /><em class="text-gold-400 not-italic">fairway.</em>
+      </h1>
+      <p class="text-white/50 text-xl max-w-2xl leading-relaxed">
+        Graeagle lodging is part of the experience. From Frank Lloyd Wright villas on the Dragon course
+        to riverside cabins steps from Plumas Pines — every option keeps you close to the game.
+      </p>
+    </div>
+  </section>
+
+  <section class="py-16 px-6">
+    <div class="max-w-6xl mx-auto space-y-8">
+      {lodging.map((property) => (
+        <div class="group rounded-3xl border border-white/5 bg-white/[0.02] hover:bg-white/[0.04] hover:border-white/10 transition-all duration-300 overflow-hidden">
+          <div class="grid grid-cols-1 md:grid-cols-3">
+            <div class="md:col-span-2 p-10">
+              <div class="flex flex-wrap gap-2 mb-4">
+                <span class="text-xs bg-white/[0.04] border border-white/10 text-white/40 px-3 py-1 rounded-full">{property.type}</span>
+                {property.rooms && (
+                  <span class="text-xs bg-white/[0.04] border border-white/10 text-white/40 px-3 py-1 rounded-full">{property.rooms} units</span>
+                )}
+              </div>
+              <h2 class="font-display text-4xl text-white font-light mb-2 group-hover:text-gold-300 transition-colors">{property.name}</h2>
+              <p class="text-gold-400/70 text-sm mb-4">{property.tagline}</p>
+              <p class="text-white/50 text-sm mb-6">{property.highlight}</p>
+
+              <!-- Room types -->
+              <div class="mb-6">
+                <p class="text-white/30 text-xs uppercase tracking-widest mb-3">Room Types</p>
+                <div class="flex flex-wrap gap-2">
+                  {property.roomTypes.map(rt => (
+                    <span class="text-xs border border-white/10 text-white/50 px-3 py-1 rounded-full">{rt}</span>
+                  ))}
+                </div>
+              </div>
+
+              <!-- Amenities -->
+              <div>
+                <p class="text-white/30 text-xs uppercase tracking-widest mb-3">Amenities</p>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-1.5">
+                  {property.amenities.slice(0, 6).map(a => (
+                    <div class="flex items-center gap-2 text-xs text-white/40">
+                      <span class="text-forest-400">✓</span> {a}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            <!-- Info column -->
+            <div class="border-t md:border-t-0 md:border-l border-white/5 p-10 flex flex-col justify-between">
+              <div class="space-y-4">
+                {property.priceRange && (
+                  <div>
+                    <p class="text-white/30 text-xs uppercase tracking-wider mb-1">Rates From</p>
+                    <p class="text-gold-400 text-lg font-medium">{property.priceRange}</p>
+                  </div>
+                )}
+                <div>
+                  <p class="text-white/30 text-xs uppercase tracking-wider mb-1">Golf Access</p>
+                  <p class="text-white/60 text-sm">{property.golf}</p>
+                </div>
+                {property.address && (
+                  <div>
+                    <p class="text-white/30 text-xs uppercase tracking-wider mb-1">Address</p>
+                    <p class="text-white/50 text-xs">{property.address}</p>
+                  </div>
+                )}
+                {property.phone && (
+                  <div>
+                    <p class="text-white/30 text-xs uppercase tracking-wider mb-1">Phone</p>
+                    <a href={`tel:${property.phone}`} class="text-white/60 text-sm hover:text-white transition-colors">{property.phone}</a>
+                  </div>
+                )}
+              </div>
+              <a
+                href={`/quote?lodging=${property.slug}&lodgingName=${encodeURIComponent(property.name)}`}
+                class="mt-8 block text-center bg-gold-500 hover:bg-gold-400 text-slate-950 font-medium px-6 py-3 rounded-full transition-all text-sm"
+              >
+                Include in My Package
+              </a>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section class="py-24 px-6">
+    <div class="max-w-2xl mx-auto text-center">
+      <h2 class="font-display text-5xl text-white font-light mb-4">Not sure where to stay?</h2>
+      <p class="text-white/40 mb-8">Tell us your group size and budget. We'll match you to the right property and book it as part of your golf package.</p>
+      <a href="/quote" class="inline-flex items-center gap-3 bg-gold-500 hover:bg-gold-400 text-slate-950 font-medium px-10 py-5 rounded-full transition-all duration-300 hover:shadow-2xl hover:shadow-gold-500/30 text-lg group">
+        Get Lodging + Golf Quote
+        <span class="transition-transform group-hover:translate-x-1">→</span>
+      </a>
+    </div>
+  </section>
+
+  <footer class="border-t border-white/5 py-12 px-6">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6 text-white/30 text-sm">
+      <div class="font-display text-base text-white/50">Golf <span class="text-gold-400/70">Graeagle</span></div>
+      <div class="flex gap-6">
+        <a href="/courses" class="hover:text-white/60 transition-colors">Courses</a>
+        <a href="/lodging" class="hover:text-white/60 transition-colors">Lodging</a>
+        <a href="/dining" class="hover:text-white/60 transition-colors">Dining</a>
+        <a href="/quote" class="hover:text-white/60 transition-colors">Get a Quote</a>
+      </div>
+      <div>© 2025 Zoomaway Technologies Inc.</div>
+    </div>
+  </footer>
+
+</Base>

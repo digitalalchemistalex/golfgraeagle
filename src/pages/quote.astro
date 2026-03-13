@@ -1,0 +1,200 @@
+---
+import Base from '../layouts/Base.astro';
+import { courses, siteConfig } from '../data/content.js';
+
+const title = "Request a Graeagle Golf Package Quote | Golf Graeagle";
+const description = "Plan your Graeagle golf trip. Tell us your dates, group size, and preferred courses — we'll build a custom stay-and-play package. Free quotes, 24-hour response.";
+
+const preselected = Astro.url.searchParams.get('course') || '';
+const courseName = Astro.url.searchParams.get('courseName') || '';
+---
+<Base title={title} description={description}>
+
+  <nav class="fixed top-0 left-0 right-0 z-50 px-6 py-4 flex items-center justify-between backdrop-blur-md bg-slate-950/80 border-b border-white/5">
+    <a href="/" class="font-display text-xl text-white">Golf <span class="text-gold-400">Graeagle</span></a>
+    <div class="hidden md:flex items-center gap-8 text-sm text-white/70">
+      <a href="/courses" class="hover:text-white transition-colors">Courses</a>
+      <a href="/lodging" class="hover:text-white transition-colors">Lodging</a>
+      <a href="/dining" class="hover:text-white transition-colors">Dining</a>
+    </div>
+    <a href="/quote" class="bg-gold-500 text-slate-950 text-sm font-medium px-5 py-2.5 rounded-full">Plan My Trip</a>
+  </nav>
+
+  <section class="min-h-screen pt-32 pb-24 px-6">
+    <div class="max-w-5xl mx-auto">
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+
+        <!-- Left: pitch -->
+        <div class="lg:sticky lg:top-32">
+          <p class="text-gold-400 text-sm tracking-widest uppercase mb-4">Free. No Obligation.</p>
+          <h1 class="font-display text-5xl md:text-6xl text-white font-light leading-tight mb-6">
+            Your perfect<br /><em class="text-gold-400 not-italic">Graeagle trip</em><br />starts here.
+          </h1>
+          <p class="text-white/50 leading-relaxed mb-10">
+            Tell us your dates, who's coming, and which courses interest you. 
+            We'll send you a custom package with course bookings, lodging options, and pricing — all in one.
+          </p>
+
+          <!-- What you get -->
+          <div class="space-y-4 mb-10">
+            {[
+              { icon: '⛳', title: 'Tee time coordination', desc: 'We book all courses so you don\'t have to call each one' },
+              { icon: '🏔', title: 'Lodging matched to your group', desc: 'Hotel, resort, townhomes, or villas — we match to your size & budget' },
+              { icon: '📋', title: 'Full itinerary', desc: 'Day-by-day plan including courses, dining recs, and drive times' },
+              { icon: '⚡', title: '24-hour response', desc: 'Real humans, fast turnaround — not a chatbot' },
+            ].map(item => (
+              <div class="flex items-start gap-4">
+                <span class="text-2xl">{item.icon}</span>
+                <div>
+                  <div class="text-white/80 text-sm font-medium">{item.title}</div>
+                  <div class="text-white/30 text-xs mt-0.5">{item.desc}</div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <!-- Courses quick picks -->
+          {preselected && (
+            <div class="rounded-xl border border-gold-500/20 bg-gold-500/5 p-4 text-sm text-gold-400">
+              ✦ {courseName || preselected} pre-selected
+            </div>
+          )}
+        </div>
+
+        <!-- Right: HubSpot form -->
+        <div class="rounded-3xl border border-white/5 bg-white/[0.02] p-8 md:p-10">
+          <h2 class="font-display text-2xl text-white font-light mb-2">Request Your Free Quote</h2>
+          <p class="text-white/30 text-sm mb-8">We respond within 24 hours, typically same-day.</p>
+
+          <!-- HubSpot form embed -->
+          <div id="hubspot-form-container" class="hubspot-form-wrapper">
+            <div id="hs-loading" class="flex items-center gap-2 text-white/30 text-sm py-8">
+              <div class="w-4 h-4 border-2 border-white/20 border-t-gold-400 rounded-full animate-spin"></div>
+              Loading form...
+            </div>
+          </div>
+
+          <script
+            src={`https://js.hsforms.net/forms/embed/${siteConfig.hubspotPortal}.js`}
+            defer
+          ></script>
+          <script define:vars={{ portalId: siteConfig.hubspotPortal, formId: siteConfig.hubspotForm, preselected, courseName }}>
+            window.addEventListener('load', () => {
+              const loader = document.getElementById('hs-loading');
+              if (window.hbspt) {
+                if (loader) loader.remove();
+                window.hbspt.forms.create({
+                  region: 'na1',
+                  portalId,
+                  formId,
+                  target: '#hubspot-form-container',
+                  onFormReady: ($form) => {
+                    if (preselected) {
+                      const field = $form.find(`input[name="course"], select[name="course"]`);
+                      if (field.length) field.val(courseName || preselected).trigger('change');
+                    }
+                  }
+                });
+              } else {
+                setTimeout(() => {
+                  if (loader) loader.remove();
+                  if (window.hbspt) {
+                    window.hbspt.forms.create({
+                      region: 'na1',
+                      portalId,
+                      formId,
+                      target: '#hubspot-form-container',
+                    });
+                  }
+                }, 1500);
+              }
+            });
+          </script>
+        </div>
+      </div>
+
+      <!-- Trust signals -->
+      <div class="mt-20 grid grid-cols-2 md:grid-cols-4 gap-4">
+        {[
+          { n: '5', label: 'Courses Available' },
+          { n: '4', label: 'Lodging Properties' },
+          { n: '72hr', label: 'Cancellation Policy' },
+          { n: '24hr', label: 'Quote Response' },
+        ].map(t => (
+          <div class="text-center border border-white/5 rounded-2xl p-6">
+            <div class="font-display text-3xl text-gold-400">{t.n}</div>
+            <div class="text-white/30 text-xs mt-1">{t.label}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <footer class="border-t border-white/5 py-12 px-6">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6 text-white/30 text-sm">
+      <div class="font-display text-base text-white/50">Golf <span class="text-gold-400/70">Graeagle</span></div>
+      <div class="flex gap-6">
+        <a href="/courses" class="hover:text-white/60 transition-colors">Courses</a>
+        <a href="/lodging" class="hover:text-white/60 transition-colors">Lodging</a>
+        <a href="/dining" class="hover:text-white/60 transition-colors">Dining</a>
+      </div>
+      <div>© 2025 Zoomaway Technologies Inc.</div>
+    </div>
+  </footer>
+
+</Base>
+
+<style is:global>
+  .hubspot-form-wrapper .hs-form fieldset {
+    max-width: 100% !important;
+  }
+  .hubspot-form-wrapper .hs-form input,
+  .hubspot-form-wrapper .hs-form select,
+  .hubspot-form-wrapper .hs-form textarea {
+    background: rgba(255,255,255,0.04) !important;
+    border: 1px solid rgba(255,255,255,0.1) !important;
+    border-radius: 12px !important;
+    color: white !important;
+    padding: 12px 16px !important;
+    width: 100% !important;
+    font-family: 'DM Sans', sans-serif !important;
+    font-size: 14px !important;
+    outline: none !important;
+    transition: border-color 0.2s !important;
+  }
+  .hubspot-form-wrapper .hs-form input:focus,
+  .hubspot-form-wrapper .hs-form select:focus,
+  .hubspot-form-wrapper .hs-form textarea:focus {
+    border-color: rgba(230,168,23,0.4) !important;
+  }
+  .hubspot-form-wrapper .hs-form label {
+    color: rgba(255,255,255,0.5) !important;
+    font-size: 12px !important;
+    font-family: 'DM Sans', sans-serif !important;
+    margin-bottom: 6px !important;
+    display: block !important;
+  }
+  .hubspot-form-wrapper .hs-form .hs-form-field {
+    margin-bottom: 16px !important;
+  }
+  .hubspot-form-wrapper .hs-form input[type="submit"] {
+    background: #e6a817 !important;
+    color: #0a0f0a !important;
+    font-weight: 600 !important;
+    border: none !important;
+    cursor: pointer !important;
+    padding: 14px 32px !important;
+    border-radius: 50px !important;
+    font-size: 15px !important;
+    transition: background 0.2s !important;
+  }
+  .hubspot-form-wrapper .hs-form input[type="submit"]:hover {
+    background: #f9c845 !important;
+  }
+  .hubspot-form-wrapper .hs-error-msgs {
+    color: #f87171 !important;
+    font-size: 11px !important;
+    margin-top: 4px !important;
+  }
+</style>

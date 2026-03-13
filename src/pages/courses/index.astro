@@ -1,0 +1,155 @@
+---
+import Base from '../../layouts/Base.astro';
+import { courses, siteConfig } from '../../data/content.js';
+
+const title = "Graeagle Golf Courses | 5 Championship Courses in the Sierra Nevada";
+const description = "Five championship golf courses within 25 minutes of each other in Graeagle, California. Compare Graeagle Meadows, Whitehawk Ranch, Plumas Pines, Grizzly Ranch, and Nakoma The Dragon.";
+---
+<Base title={title} description={description}>
+
+  <nav class="fixed top-0 left-0 right-0 z-50 px-6 py-4 flex items-center justify-between backdrop-blur-md bg-slate-950/80 border-b border-white/5">
+    <a href="/" class="font-display text-xl text-white">Golf <span class="text-gold-400">Graeagle</span></a>
+    <div class="hidden md:flex items-center gap-8 text-sm text-white/70">
+      <a href="/courses" class="text-white">Courses</a>
+      <a href="/lodging" class="hover:text-white transition-colors">Lodging</a>
+      <a href="/dining" class="hover:text-white transition-colors">Dining</a>
+    </div>
+    <a href="/quote" class="bg-gold-500 hover:bg-gold-400 text-slate-950 text-sm font-medium px-5 py-2.5 rounded-full transition-all">Plan My Trip</a>
+  </nav>
+
+  <section class="pt-32 pb-16 px-6">
+    <div class="max-w-6xl mx-auto">
+      <p class="text-gold-400 text-sm tracking-widest uppercase mb-4">Graeagle, California</p>
+      <h1 class="font-display text-6xl md:text-8xl text-white font-light leading-none mb-6">
+        Five Courses.<br /><em class="text-gold-400 not-italic">One Weekend.</em>
+      </h1>
+      <p class="text-white/50 text-xl max-w-2xl leading-relaxed">
+        No California golf destination packs this much quality into a 25-minute radius. 
+        Compare every course — par, yardage, slope, designer, green fees — then build your trip.
+      </p>
+    </div>
+  </section>
+
+  <!-- COMPARISON TABLE -->
+  <section class="py-12 px-6">
+    <div class="max-w-6xl mx-auto">
+      <h2 class="font-display text-3xl text-white font-light mb-6">Compare All 5 Courses</h2>
+      <div class="overflow-x-auto rounded-2xl border border-white/5">
+        <table class="w-full text-sm">
+          <thead>
+            <tr class="border-b border-white/5 bg-white/[0.02]">
+              <th class="text-left px-6 py-4 text-white/50 font-normal">Course</th>
+              <th class="px-4 py-4 text-white/50 font-normal text-center">Par</th>
+              <th class="px-4 py-4 text-white/50 font-normal text-center">Yards</th>
+              <th class="px-4 py-4 text-white/50 font-normal text-center">Slope</th>
+              <th class="px-4 py-4 text-white/50 font-normal text-center">Rating</th>
+              <th class="px-4 py-4 text-white/50 font-normal text-center">Green Fees</th>
+              <th class="px-4 py-4 text-white/50 font-normal text-center">Difficulty</th>
+              <th class="px-4 py-4 text-white/50 font-normal text-center"></th>
+            </tr>
+          </thead>
+          <tbody>
+            {courses.map(course => (
+              <tr class="border-b border-white/5 hover:bg-white/[0.02] transition-colors group">
+                <td class="px-6 py-5">
+                  <div class="font-medium text-white group-hover:text-gold-300 transition-colors">{course.name}</div>
+                  <div class="text-white/30 text-xs mt-0.5">{course.designer}, {course.opened}</div>
+                </td>
+                <td class="px-4 py-5 text-center text-white/70">{course.par}</td>
+                <td class="px-4 py-5 text-center text-white/70">{course.yards.toLocaleString()}</td>
+                <td class="px-4 py-5 text-center">
+                  <span class={`font-medium ${course.slope >= 140 ? 'text-red-400' : course.slope >= 130 ? 'text-yellow-400' : 'text-green-400'}`}>
+                    {course.slope}
+                  </span>
+                </td>
+                <td class="px-4 py-5 text-center text-white/70">{course.rating}</td>
+                <td class="px-4 py-5 text-center text-gold-400">{course.greenFeeRange}</td>
+                <td class="px-4 py-5 text-center">
+                  <span class={`text-xs px-2 py-1 rounded-full ${
+                    course.difficulty === 'Advanced–Expert' ? 'bg-red-500/10 text-red-400' :
+                    course.difficulty === 'Advanced' ? 'bg-orange-500/10 text-orange-400' :
+                    course.difficulty === 'Intermediate–Advanced' ? 'bg-yellow-500/10 text-yellow-400' :
+                    'bg-green-500/10 text-green-400'
+                  }`}>{course.difficulty}</span>
+                </td>
+                <td class="px-4 py-5 text-center">
+                  <a href={`/courses/${course.slug}`} class="text-gold-400 text-xs hover:text-gold-300 transition-colors">View →</a>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- COURSE CARDS -->
+  <section class="py-16 px-6">
+    <div class="max-w-6xl mx-auto space-y-6">
+      {courses.map((course, i) => (
+        <a href={`/courses/${course.slug}`} class="group grid grid-cols-1 md:grid-cols-3 rounded-2xl border border-white/5 bg-white/[0.02] hover:bg-white/[0.04] hover:border-white/10 transition-all duration-300 overflow-hidden">
+          <div class="md:col-span-2 p-8">
+            <div class="flex items-start gap-4 mb-4">
+              <span class="font-display text-5xl text-white/10 font-light leading-none">0{i+1}</span>
+              <div>
+                <h2 class="font-display text-3xl text-white font-light group-hover:text-gold-300 transition-colors">{course.name}</h2>
+                <p class="text-white/40 text-sm mt-1">{course.tagline}</p>
+              </div>
+            </div>
+            <p class="text-white/50 text-sm leading-relaxed line-clamp-2">{course.description}</p>
+            <div class="mt-6 flex flex-wrap gap-2">
+              {course.highlights.slice(0, 3).map(h => (
+                <span class="text-xs bg-white/[0.03] border border-white/5 text-white/40 px-3 py-1 rounded-full">{h}</span>
+              ))}
+            </div>
+          </div>
+          <div class="p-8 border-t md:border-t-0 md:border-l border-white/5 flex flex-col justify-between">
+            <div class="space-y-3">
+              {[
+                ['Par', course.par],
+                ['Yards', course.yards.toLocaleString()],
+                ['Slope', course.slope],
+                ['Green Fees', course.greenFeeRange],
+                ['Designer', course.designer],
+              ].map(([label, value]) => (
+                <div class="flex justify-between text-sm">
+                  <span class="text-white/30">{label}</span>
+                  <span class="text-white/70">{value}</span>
+                </div>
+              ))}
+            </div>
+            <div class="mt-6 text-gold-400 text-sm flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+              Full course details →
+            </div>
+          </div>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-24 px-6">
+    <div class="max-w-2xl mx-auto text-center">
+      <h2 class="font-display text-5xl text-white font-light mb-4">Can't choose just one?</h2>
+      <p class="text-white/40 mb-8">Most groups play 3–4 courses over a long weekend. We'll build the perfect multi-course itinerary for your group.</p>
+      <a href="/quote" class="inline-flex items-center gap-3 bg-gold-500 hover:bg-gold-400 text-slate-950 font-medium px-10 py-5 rounded-full transition-all duration-300 hover:shadow-2xl hover:shadow-gold-500/30 text-lg group">
+        Plan a Multi-Course Trip
+        <span class="transition-transform group-hover:translate-x-1">→</span>
+      </a>
+    </div>
+  </section>
+
+  <footer class="border-t border-white/5 py-12 px-6">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6 text-white/30 text-sm">
+      <div class="font-display text-base text-white/50">Golf <span class="text-gold-400/70">Graeagle</span></div>
+      <div class="flex gap-6">
+        <a href="/courses" class="hover:text-white/60 transition-colors">Courses</a>
+        <a href="/lodging" class="hover:text-white/60 transition-colors">Lodging</a>
+        <a href="/dining" class="hover:text-white/60 transition-colors">Dining</a>
+        <a href="/quote" class="hover:text-white/60 transition-colors">Get a Quote</a>
+      </div>
+      <div>© 2025 Zoomaway Technologies Inc.</div>
+    </div>
+  </footer>
+
+</Base>

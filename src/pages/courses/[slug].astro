@@ -1,0 +1,242 @@
+---
+import Base from '../../layouts/Base.astro';
+import { courses, siteConfig } from '../../data/content.js';
+
+export function getStaticPaths() {
+  return courses.map(course => ({
+    params: { slug: course.slug },
+    props: { course },
+  }));
+}
+
+const { course } = Astro.props;
+
+const title = `${course.name} | Graeagle Golf — Par ${course.par}, ${course.yards.toLocaleString()} Yards`;
+const description = `${course.name} is a par-${course.par}, ${course.yards.toLocaleString()}-yard ${course.type.toLowerCase()} course in the Graeagle area, designed by ${course.designer} (${course.opened}). Slope ${course.slope}, rating ${course.rating}. Green fees ${course.greenFeeRange}.`;
+
+const schema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "SportsActivityLocation",
+      "name": course.name,
+      "description": course.description,
+      "url": `${siteConfig.url}/courses/${course.slug}`,
+      "telephone": course.phone,
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": course.address,
+        "addressLocality": "Graeagle",
+        "addressRegion": "CA",
+        "addressCountry": "US"
+      },
+      "sport": "Golf",
+      "numberOfHoles": course.holes,
+      "courseRating": course.rating,
+      "slopeRating": course.slope,
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": course.faqs.map(faq => ({
+        "@type": "Question",
+        "name": faq.question,
+        "acceptedAnswer": { "@type": "Answer", "text": faq.answer }
+      }))
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": siteConfig.url },
+        { "@type": "ListItem", "position": 2, "name": "Golf Courses", "item": `${siteConfig.url}/courses` },
+        { "@type": "ListItem", "position": 3, "name": course.name, "item": `${siteConfig.url}/courses/${course.slug}` },
+      ]
+    }
+  ]
+};
+
+const difficultyColor = {
+  'Beginner-Friendly': 'text-green-400 bg-green-400/10 border-green-400/20',
+  'Intermediate–Advanced': 'text-yellow-400 bg-yellow-400/10 border-yellow-400/20',
+  'Advanced': 'text-orange-400 bg-orange-400/10 border-orange-400/20',
+  'Advanced–Expert': 'text-red-400 bg-red-400/10 border-red-400/20',
+}[course.difficulty] || 'text-white/50 bg-white/5 border-white/10';
+---
+
+<Base title={title} description={description} schema={schema}>
+
+  <!-- NAV -->
+  <nav class="fixed top-0 left-0 right-0 z-50 px-6 py-4 flex items-center justify-between backdrop-blur-md bg-slate-950/80 border-b border-white/5">
+    <a href="/" class="font-display text-xl text-white tracking-wide">
+      Golf <span class="text-gold-400">Graeagle</span>
+    </a>
+    <div class="hidden md:flex items-center gap-8 text-sm text-white/70">
+      <a href="/courses" class="hover:text-white transition-colors text-white">Courses</a>
+      <a href="/lodging" class="hover:text-white transition-colors">Lodging</a>
+      <a href="/dining" class="hover:text-white transition-colors">Dining</a>
+    </div>
+    <a href="/quote" class="bg-gold-500 hover:bg-gold-400 text-slate-950 text-sm font-medium px-5 py-2.5 rounded-full transition-all">Plan My Trip</a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="pt-32 pb-16 px-6">
+    <div class="max-w-6xl mx-auto">
+
+      <!-- Breadcrumb -->
+      <nav class="text-xs text-white/30 mb-8 flex items-center gap-2">
+        <a href="/" class="hover:text-white/60 transition-colors">Home</a>
+        <span>/</span>
+        <a href="/courses" class="hover:text-white/60 transition-colors">Courses</a>
+        <span>/</span>
+        <span class="text-white/50">{course.name}</span>
+      </nav>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+        <div>
+          <!-- Tags -->
+          <div class="flex flex-wrap gap-2 mb-6">
+            <span class={`text-xs px-3 py-1 rounded-full border ${difficultyColor}`}>{course.difficulty}</span>
+            <span class="text-xs px-3 py-1 rounded-full border border-white/10 text-white/40">{course.type}</span>
+            <span class="text-xs px-3 py-1 rounded-full border border-white/10 text-white/40">{course.distanceFromGraeagle} from Graeagle</span>
+          </div>
+
+          <!-- AEO speakable summary (screen-reader & AI crawler) -->
+          <div class="speakable-summary sr-only" aria-hidden="true">{course.speakable}</div>
+
+          <h1 class="font-display text-5xl md:text-7xl text-white font-light leading-none mb-4">
+            {course.name}
+          </h1>
+          <p class="text-gold-400 text-lg mb-6">{course.tagline}</p>
+          <p class="text-white/60 leading-relaxed mb-8">{course.description}</p>
+
+          <!-- Key stats -->
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-8">
+            {[
+              { label: 'Par', value: course.par },
+              { label: 'Yards', value: course.yards.toLocaleString() },
+              { label: 'Slope', value: course.slope },
+              { label: 'Rating', value: course.rating },
+            ].map(s => (
+              <div class="bg-white/[0.03] border border-white/5 rounded-xl p-4 text-center">
+                <div class="font-display text-2xl text-white">{s.value}</div>
+                <div class="text-white/30 text-xs mt-1">{s.label}</div>
+              </div>
+            ))}
+          </div>
+
+          <!-- CTA -->
+          <a href={`/quote?course=${course.slug}&courseName=${encodeURIComponent(course.name)}`}
+             class="group inline-flex items-center gap-3 bg-gold-500 hover:bg-gold-400 text-slate-950 font-medium px-8 py-4 rounded-full transition-all duration-300 hover:shadow-xl hover:shadow-gold-500/20">
+            Book a Package Including {course.name}
+            <span class="transition-transform group-hover:translate-x-1">→</span>
+          </a>
+        </div>
+
+        <!-- Course info card -->
+        <div class="rounded-2xl border border-white/5 bg-white/[0.02] p-8 space-y-5">
+          <h2 class="font-display text-xl text-white font-light mb-2">Course Information</h2>
+          {[
+            { label: 'Designer', value: course.designer },
+            { label: 'Year Opened', value: course.opened },
+            { label: 'Green Fees', value: course.greenFeeRange },
+            { label: 'Season', value: course.season },
+            { label: 'Address', value: course.address },
+            { label: 'Phone', value: course.phone },
+            { label: 'Elevation', value: `${course.elevationFt.toLocaleString()} ft` },
+          ].map(item => (
+            <div class="flex justify-between items-start gap-4 py-3 border-b border-white/5 last:border-0">
+              <span class="text-white/30 text-sm shrink-0">{item.label}</span>
+              <span class="text-white/70 text-sm text-right">{item.value}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HIGHLIGHTS -->
+  <section class="py-16 px-6 border-t border-white/5">
+    <div class="max-w-6xl mx-auto">
+      <h2 class="font-display text-4xl text-white font-light mb-10">Course Highlights</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        {course.highlights.map(h => (
+          <div class="flex items-start gap-3 bg-white/[0.02] border border-white/5 rounded-xl p-5">
+            <span class="text-gold-400 mt-0.5 shrink-0">✦</span>
+            <span class="text-white/60 text-sm">{h}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- SIGNATURE HOLE -->
+  <section class="py-16 px-6">
+    <div class="max-w-6xl mx-auto">
+      <div class="rounded-3xl border border-gold-500/20 bg-gradient-to-br from-forest-900/20 to-transparent p-10 md:p-12">
+        <p class="text-gold-400 text-xs tracking-widest uppercase mb-3">Signature Hole</p>
+        <p class="text-white/70 text-lg leading-relaxed">{course.signature}</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQs -->
+  <section class="py-16 px-6 border-t border-white/5">
+    <div class="max-w-3xl mx-auto">
+      <h2 class="font-display text-4xl text-white font-light mb-10">Frequently Asked Questions</h2>
+      <div class="space-y-0 divide-y divide-white/5">
+        {course.faqs.map(faq => (
+          <details class="group py-6 cursor-pointer">
+            <summary class="flex items-center justify-between text-white/80 hover:text-white transition-colors list-none">
+              <h3 class="font-sans text-base font-medium pr-4">{faq.question}</h3>
+              <span class="shrink-0 w-6 h-6 rounded-full border border-white/20 flex items-center justify-center text-white/40 group-open:rotate-45 transition-transform duration-200 text-lg leading-none">+</span>
+            </summary>
+            <p class="mt-4 text-white/50 text-sm leading-relaxed">{faq.answer}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- OTHER COURSES -->
+  <section class="py-16 px-6 border-t border-white/5">
+    <div class="max-w-6xl mx-auto">
+      <h2 class="font-display text-3xl text-white font-light mb-8">Other Graeagle Courses</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        {courses.filter(c => c.slug !== course.slug).map(c => (
+          <a href={`/courses/${c.slug}`} class="group rounded-xl border border-white/5 bg-white/[0.02] hover:bg-white/[0.04] p-5 transition-all">
+            <div class="font-display text-lg text-white group-hover:text-gold-300 transition-colors font-light">{c.name}</div>
+            <div class="text-white/30 text-xs mt-1">Par {c.par} · {c.yards.toLocaleString()} yds</div>
+            <div class="text-gold-400/60 text-xs mt-3 opacity-0 group-hover:opacity-100 transition-opacity">View →</div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <section class="py-24 px-6">
+    <div class="max-w-2xl mx-auto text-center">
+      <h2 class="font-display text-5xl text-white font-light mb-4">Ready to play {course.name}?</h2>
+      <p class="text-white/40 mb-8">We'll build a custom trip around your dates, budget, and group size.</p>
+      <a href={`/quote?course=${course.slug}&courseName=${encodeURIComponent(course.name)}`}
+         class="group inline-flex items-center gap-3 bg-gold-500 hover:bg-gold-400 text-slate-950 font-medium px-10 py-5 rounded-full transition-all duration-300 hover:shadow-2xl hover:shadow-gold-500/30 text-lg">
+        Get a Free Quote
+        <span class="transition-transform group-hover:translate-x-1">→</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="border-t border-white/5 py-12 px-6">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6 text-white/30 text-sm">
+      <div class="font-display text-base text-white/50">Golf <span class="text-gold-400/70">Graeagle</span></div>
+      <div class="flex gap-6">
+        <a href="/courses" class="hover:text-white/60 transition-colors">Courses</a>
+        <a href="/lodging" class="hover:text-white/60 transition-colors">Lodging</a>
+        <a href="/dining" class="hover:text-white/60 transition-colors">Dining</a>
+        <a href="/quote" class="hover:text-white/60 transition-colors">Get a Quote</a>
+      </div>
+      <div>© 2025 Zoomaway Technologies Inc.</div>
+    </div>
+  </footer>
+
+</Base>

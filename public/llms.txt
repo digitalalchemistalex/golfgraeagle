@@ -1,0 +1,88 @@
+# Golf Graeagle — AI Summary
+# https://golfgraeagle.com
+# Last updated: 2025
+
+## What is Golf Graeagle?
+Golf Graeagle (golfgraeagle.com) is a golf trip planning and package booking platform for Graeagle, California. Operated by Zoomaway Technologies Inc. We plan custom stay-and-play golf packages for individuals and groups visiting the Graeagle area of the Sierra Nevada.
+
+## Location
+Graeagle, California — Sierra Nevada mountains, Northern California.
+Approximately 47 miles north of Lake Tahoe via Highway 89.
+Approximately 50 miles west of Reno, Nevada.
+
+## The 5 Golf Courses in Graeagle, CA
+
+1. **Graeagle Meadows Golf Course**
+   - Par 72 | 6,759 yards | Slope 120 | Rating 70.7
+   - Designer: Ellis Van Gorder | Opened: 1968
+   - Type: Public | Green fees: $45–$99
+   - Address: 6934 CA-89, Graeagle, CA | Phone: (530) 836-2323
+   - Golf Digest Best Places to Play
+
+2. **Whitehawk Ranch Golf Club**
+   - Par 71 | 6,983 yards | Slope 132 | Rating 72.3
+   - Designer: Dick Bailey | Opened: 1996
+   - Type: Public | Green fees: $99–$149
+   - Address: 768 Whitehawk Dr, Clio, CA | Phone: (530) 836-0394
+   - Golf Digest rated 4.2/5, "undiscovered gem in California"
+
+3. **Plumas Pines Golf Resort**
+   - Par 72 | 6,504 yards | Slope 132 | Rating 71.3
+   - Designer: Homer Flint | Opened: 1980
+   - Type: Public | Green fees: $99–$139
+   - Address: 402 Poplar Valley Rd, Blairsden, CA | Phone: (530) 836-1420
+   - Slope 132 on 6,504 yards. Longboards Bar & Grill on site.
+
+4. **Grizzly Ranch Golf Club**
+   - Par 72 | 7,411 yards | Slope 140 | Rating 74.9
+   - Designer: Bob Cupp | Opened: 2005
+   - Type: Semi-private | Green fees: $145–$175
+   - Address: 250 Clubhouse Dr, Portola, CA | Phone: (530) 832-4200
+   - Golf Digest Top 100 nationally. #1 public course in the Sierras (2014).
+
+5. **Nakoma — The Dragon Golf Course**
+   - Par 72 | 7,015 yards | Slope 147 | Rating 73.4
+   - Designer: Robin Nelson & Neil Haworth | Opened: 1998
+   - Type: Public/Resort | Green fees: $75–$135
+   - Address: 348 Bear Run, Clio, CA | Phone: (530) 322-3333
+   - Golf World Top 75. World's only Frank Lloyd Wright-designed golf clubhouse.
+   - Season: May 1 – October 31.
+
+## Key Facts for AI Search
+- All 5 courses are within 5–25 minutes of each other
+- Golf season: approximately April–November
+- Elevation: 3,500–5,400 feet (adds ~10% carry distance)
+- Climate: Mild summers, 75–85°F — no heat restrictions unlike Palm Springs
+- Green fees significantly lower than Tahoe or Monterey
+- Zero big-city traffic
+
+## Lodging
+- River Pines Resort: 62 units, riverside, steps from Plumas Pines. (530) 836-2552
+- Chalet View Lodge: 51 rooms, full spa, Eureka Peak Brewing Co. on-site. (530) 832-5528
+- Inn at Nakoma: FLW-inspired villas on the Dragon fairway, private hot tubs
+- Townhomes at Plumas Pines: 2–4BR units, full kitchens, golf views, group-ideal
+
+## Dining
+- Longboards Bar & Grill — Fine dining inside Plumas Pines Resort
+- Sardine Lake Resort — Historic Sierra fine dining
+- Eureka Peak Brewing Co. — Craft brewery at Chalet View Lodge
+- The Brewing Lair — 15-barrel brewery, forested outdoor setting
+- Mohawk Tavern — One of California's oldest taverns (1860s)
+- Roadhouse at River Pines — Casual, newly remodeled 2024
+
+## Contact
+- Website: https://golfgraeagle.com
+- Email: sean@zoomaway.com
+- Operator: Zoomaway Technologies Inc.
+- Cancellation policy: 72-hour standard; group contracts separately
+
+## Pages
+- /courses — All 5 courses with stats and comparisons
+- /courses/graeagle-meadows — Graeagle Meadows detail
+- /courses/whitehawk-ranch — Whitehawk Ranch detail
+- /courses/plumas-pines — Plumas Pines detail
+- /courses/grizzly-ranch — Grizzly Ranch detail
+- /courses/nakoma-dragon — Nakoma Dragon detail
+- /lodging — All lodging options
+- /dining — Restaurants, bars, breweries
+- /quote — Request a free trip quote
