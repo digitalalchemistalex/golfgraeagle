@@ -1,0 +1,199 @@
+---
+export const prerender = true;
+import Base from '../../layouts/Base.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+
+const title = "Best Time to Golf in Graeagle, CA: Month-by-Month Guide";
+const description = "When is the best time to golf in Graeagle? Season runs May–November. June, September, and October are the sweet spots. Here's exactly what to expect month by month.";
+const slug = "best-time-to-golf-graeagle";
+const datePublished = "2025-03-08";
+const dateModified = "2025-03-15";
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": title,
+  "datePublished": datePublished,
+  "dateModified": dateModified,
+  "author": { "@type": "Organization", "name": "GolfGraeagle.com" },
+  "publisher": { "@type": "Organization", "name": "Zoomaway Technologies Inc.", "url": "https://golfgraeagle.com" },
+  "mainEntityOfPage": { "@type": "WebPage", "@id": `https://golfgraeagle.com/blog/${slug}` }
+};
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    { "@type": "Question", "name": "When does golf season start in Graeagle?", "acceptedAnswer": { "@type": "Answer", "text": "Golf season in Graeagle typically opens in late April to early May, depending on snowmelt and course conditions. Graeagle Meadows and Whitehawk Ranch often open first. Grizzly Ranch at 4,800 ft may open a week or two later." } },
+    { "@type": "Question", "name": "When does golf season end in Graeagle?", "acceptedAnswer": { "@type": "Answer", "text": "Most Graeagle courses remain open through October, with some extending into early November if weather permits. First frost typically arrives in late October at higher-elevation courses like Grizzly Ranch." } },
+    { "@type": "Question", "name": "Is July or August too hot to golf in Graeagle?", "acceptedAnswer": { "@type": "Answer", "text": "Not at all. Graeagle sits at 3,500–4,800 ft elevation, so summer temperatures are mild — typically 75–90°F during the day with cool mornings and evenings. This is far more comfortable than valley or desert golf in summer." } },
+    { "@type": "Question", "name": "What is the least crowded time to golf in Graeagle?", "acceptedAnswer": { "@type": "Answer", "text": "May, early June, and October see the fewest crowds. Spring conditions are excellent after snowmelt and course preparation. October brings fall colors and very manageable pace of play." } },
+  ]
+};
+
+const months = [
+  { month: 'May', rating: 3, temp: '55–72°F', crowds: 'Low', conditions: 'Good', summary: 'Courses opening, snow still possible at elevation. Fresh fairways. Best for early birds who want deals and solitude.', pros: ['Low crowds', 'Lower prices', 'Fresh course conditions'], cons: ['Some courses still opening', 'Morning frost possible', 'Shorter daylight'] },
+  { month: 'June', rating: 5, temp: '62–85°F', crowds: 'Medium', conditions: 'Excellent', summary: 'The best overall month. Long days, perfect temperatures, courses in prime condition. Book 4–6 weeks ahead for weekends.', pros: ['Perfect temperatures', 'Longest days (most rounds possible)', 'Courses at peak condition'], cons: ['Weekends book fast', 'Slight price premium'] },
+  { month: 'July', rating: 4, temp: '68–90°F', crowds: 'High', conditions: 'Very Good', summary: 'Peak summer. Hot afternoons but manageable at altitude. Book early morning tee times. Most crowded month.', pros: ['Reliable weather', 'All courses fully operational', 'Great evenings after golf'], cons: ['Most crowded', 'Highest prices', 'Hot afternoons 1–4pm'] },
+  { month: 'August', rating: 4, temp: '66–88°F', crowds: 'High', conditions: 'Very Good', summary: 'Similar to July — excellent golf weather, busy courses. Early morning rounds are the move. Strong booking demand.', pros: ['Excellent conditions', 'Long days', 'Great mountain evenings'], cons: ['Crowded', 'Peak pricing', 'Need to book well ahead'] },
+  { month: 'September', rating: 5, temp: '58–80°F', crowds: 'Medium', conditions: 'Excellent', summary: 'The insider pick. Crowds thin, temps cool, courses beautiful. Fall colors start mid-September. Often the best month.', pros: ['Crowds drop significantly', 'Perfect temperature window', 'Fall colors', 'Easier tee times'], cons: ['Days getting shorter', 'Can book fast on fall color weekends'] },
+  { month: 'October', rating: 4, temp: '48–68°F', crowds: 'Low–Medium', conditions: 'Good', summary: 'Fall golf at its finest. Brilliant colors, quiet courses, sharp mountain air. Some courses may close late October.', pros: ['Stunning fall colors', 'Low crowds', 'Peaceful experience'], cons: ['Cool mornings (bring layers)', 'Some courses closing', 'Shorter days'] },
+  { month: 'November', rating: 2, temp: '38–55°F', crowds: 'Very Low', conditions: 'Variable', summary: 'Closing season. Some courses close early November. Check status before booking. Cold and unpredictable.', pros: ['Absolute solitude', 'Very low prices if open'], cons: ['Most courses closed', 'Cold', 'Short days', 'Snow possible'] },
+];
+---
+<Base title={title} description={description} schema={[schema, faqSchema]}>
+  <Nav />
+
+  <div class="bl-hero" style="background-image:url(https://graeaglemeadows.com/wp-content/uploads/sites/86/2026/03/DJI_0629-2-Edit-scaled.jpg)">
+    <div class="bl-hero-fade"></div>
+    <div class="bl-hero-content">
+      <div class="bl-breadcrumb"><a href="/blog">Blog</a> <span>→</span> Best Time to Golf in Graeagle</div>
+      <h1 class="bl-h1">Best Time to Golf in Graeagle:<br/>Month-by-Month Guide</h1>
+      <p class="bl-meta">By GolfGraeagle.com · Updated March 2025 · 7 min read</p>
+    </div>
+  </div>
+
+  <div class="bl-wrap">
+    <article class="bl-article">
+
+      <div class="bl-answer-box">
+        <div class="bl-answer-label">Direct Answer</div>
+        <p>Golf season in Graeagle runs May through October, occasionally into early November. <strong>June and September are the two best months</strong> — peak conditions, manageable crowds, and comfortable temperatures. July and August are excellent but busiest. May and October are the value plays for golfers who want solitude and lower prices.</p>
+      </div>
+
+      <p class="bl-intro">At 3,500–4,800 feet in the Sierra Nevada, Graeagle's climate is mountain golf at its best — cool mornings, warm afternoons, and evenings that require a fleece. Summer doesn't mean heat exhaustion. Winter means closure. The window between those is where this region shines.</p>
+
+      <h2>Month-by-Month Breakdown</h2>
+
+      <div class="bl-months">
+        {months.map(m => (
+          <div class="bl-month-card">
+            <div class="bl-month-header">
+              <div class="bl-month-name">{m.month}</div>
+              <div class="bl-month-stars">{'★'.repeat(m.rating)}{'☆'.repeat(5-m.rating)}</div>
+            </div>
+            <div class="bl-month-stats">
+              <span class="bl-month-stat"><strong>Temp:</strong> {m.temp}</span>
+              <span class="bl-month-stat"><strong>Crowds:</strong> {m.crowds}</span>
+              <span class="bl-month-stat"><strong>Conditions:</strong> {m.conditions}</span>
+            </div>
+            <p class="bl-month-summary">{m.summary}</p>
+            <div class="bl-month-details">
+              <div class="bl-month-pros">
+                <div class="bl-month-detail-label">✓ Pros</div>
+                <ul>{m.pros.map(p => <li>{p}</li>)}</ul>
+              </div>
+              <div class="bl-month-cons">
+                <div class="bl-month-detail-label">✗ Watch out</div>
+                <ul>{m.cons.map(c => <li>{c}</li>)}</ul>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <h2>The Altitude Factor: Why Graeagle Beats Valley Summer Golf</h2>
+      <p>Sacramento in July: 100°F. Phoenix: worse. Even coastal courses can be foggy and cold in summer. At Graeagle's elevation, July and August afternoon highs sit in the mid-80s to low 90s — warm but not punishing. Mornings are genuinely comfortable, often in the 60s. This is why summer mountain golf has become so popular: it's the only time of year where the heat isn't an issue for Northern California golfers.</p>
+      <p>The altitude also affects ball flight — the ball carries 5–8% farther at 3,500–4,800 ft. Club up on approaches, particularly at Grizzly Ranch (4,800 ft peak elevation).</p>
+
+      <h2>The September Sweet Spot</h2>
+      <p>If you're flexible on dates, September is the insider answer. Here's why it beats even June in some respects:</p>
+      <ul class="bl-list">
+        <li><strong>Crowds drop sharply</strong> — kids are back in school, summer vacation season ends, courses feel noticeably more spacious</li>
+        <li><strong>Fall colors begin mid-month</strong> — the Sierra Nevada ponderosa pines and aspens at higher elevations turn gold and amber</li>
+        <li><strong>Temperatures are ideal</strong> — warm enough for shorts, cool enough to not sweat through your round</li>
+        <li><strong>Prices soften</strong> — some courses and lodging properties drop rates after Labor Day</li>
+        <li><strong>Pace of play is faster</strong> — less crowded means you're moving, not waiting</li>
+      </ul>
+
+      <h2>What to Pack for a Graeagle Golf Trip</h2>
+      <div class="bl-callout">
+        <strong>Layer rule:</strong> Whatever the afternoon high is, subtract 20°F for the morning tee time and 25–30°F for the evening. June morning rounds start at 60–65°F. October mornings can be 40°F. Pack a fleece or vest in your bag regardless of month — you won't regret it and you might really need it.
+      </div>
+      <ul class="bl-list">
+        <li>Light rain jacket (afternoon thunderstorms are possible July–August)</li>
+        <li>Layering fleece or vest for morning rounds</li>
+        <li>Sunscreen — altitude means stronger UV than you expect</li>
+        <li>Extra sleeve of balls for Nakoma Dragon and Grizzly Ranch</li>
+      </ul>
+
+      <h2>When to Book Based on When You Want to Go</h2>
+      <div class="bl-comparison-table">
+        <table class="bl-table">
+          <thead><tr><th>Target Month</th><th>Book Tee Times</th><th>Book Lodging</th><th>Why</th></tr></thead>
+          <tbody>
+            <tr><td>June weekends</td><td>5–6 weeks out</td><td>6–8 weeks out</td><td>High demand, limited lodging</td></tr>
+            <tr><td>July / August</td><td>4–6 weeks out</td><td>6–8 weeks out</td><td>Peak season, moves fast</td></tr>
+            <tr><td>September</td><td>2–4 weeks out</td><td>3–4 weeks out</td><td>More flexible, still popular</td></tr>
+            <tr><td>May / October</td><td>1–2 weeks out</td><td>1–2 weeks out</td><td>Lowest demand, best availability</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- FAQ -->
+      <div class="bl-faq">
+        <h2>Frequently Asked Questions</h2>
+        {[
+          { q: "When does golf season start in Graeagle?", a: "Late April to early May, depending on snowmelt. Graeagle Meadows and Whitehawk Ranch typically open first. Grizzly Ranch at 4,800 ft may open a week or two later." },
+          { q: "When does golf season end in Graeagle?", a: "Most courses remain open through October, with some extending to early November. First frost typically arrives late October at higher-elevation courses." },
+          { q: "Is July or August too hot to golf in Graeagle?", a: "No. At 3,500–4,800 ft elevation, summer highs run 75–90°F — far more comfortable than valley golf. Mornings are in the 60s. This is the main reason golfers choose Graeagle in summer." },
+          { q: "What is the least crowded time to golf in Graeagle?", a: "May, early June, and October. Spring conditions are excellent after snowmelt. October brings fall colors and quiet courses." },
+        ].map(item => (
+          <div class="bl-faq-item">
+            <h3>{item.q}</h3>
+            <p>{item.a}</p>
+          </div>
+        ))}
+      </div>
+
+      <!-- CTA -->
+      <div class="bl-cta">
+        <h2>Ready to book your Graeagle golf trip?</h2>
+        <p>Tell us your preferred month, group size, and which courses you want. We'll secure tee times and lodging — and if you're flexible on dates, we'll tell you which week makes the most sense.</p>
+        <a href="/quote" class="bl-cta-btn">Get a free quote →</a>
+        <div class="bl-cta-links">
+          <a href="/courses">Compare all 5 courses →</a>
+          <a href="/blog/how-to-plan-graeagle-golf-trip">Full planning guide →</a>
+        </div>
+      </div>
+
+    </article>
+
+    <aside class="bl-sidebar">
+      <div class="bl-sidebar-card">
+        <div class="bl-sidebar-title">Plan Your Trip</div>
+        <p>Free quote. 24-hour response. Tee times at all 5 courses.</p>
+        <a href="/quote" class="bl-sidebar-btn">Request a Quote →</a>
+      </div>
+      <div class="bl-sidebar-card">
+        <div class="bl-sidebar-title">Season Quick Reference</div>
+        <div style="display:flex;flex-direction:column;gap:8px;margin-top:4px;">
+          {[
+            { m: 'May', r: '⭐⭐⭐', note: 'Opening, value' },
+            { m: 'June', r: '⭐⭐⭐⭐⭐', note: 'Best month' },
+            { m: 'July', r: '⭐⭐⭐⭐', note: 'Peak, book early' },
+            { m: 'August', r: '⭐⭐⭐⭐', note: 'Peak, book early' },
+            { m: 'September', r: '⭐⭐⭐⭐⭐', note: 'Insider favorite' },
+            { m: 'October', r: '⭐⭐⭐⭐', note: 'Fall colors' },
+            { m: 'November', r: '⭐⭐', note: 'Closing' },
+          ].map(r => (
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-bottom:1px solid #f0f4f0;">
+              <span style="font-size:13px;font-weight:600;color:#1a2e1a;">{r.m}</span>
+              <span style="font-size:11px;color:#8a9a8a;">{r.note}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+      <div class="bl-sidebar-card">
+        <div class="bl-sidebar-title">Related Reading</div>
+        <div class="bl-sidebar-links">
+          <a href="/blog/graeagle-vs-lake-tahoe-golf" class="bl-sidebar-post">Graeagle vs Lake Tahoe Golf →</a>
+          <a href="/blog/how-to-plan-graeagle-golf-trip" class="bl-sidebar-post">Full Planning Guide →</a>
+          <a href="/blog/graeagle-golf-trip-itinerary-3-days" class="bl-sidebar-post">3-Day Itinerary →</a>
+        </div>
+      </div>
+    </aside>
+  </div>
+  <Footer />
+</Base>

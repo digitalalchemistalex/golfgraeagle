@@ -1,0 +1,165 @@
+---
+export const prerender = true;
+import Base from '../../layouts/Base.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+
+const title = "Graeagle Golf Courses Ranked: All 5 Compared Honestly";
+const description = "All 5 Graeagle golf courses ranked for different types of golfers. Best course for beginners, best for low handicappers, best value, and what the slope ratings actually mean.";
+const slug = "graeagle-golf-courses-ranked";
+const datePublished = "2025-03-12";
+const dateModified = "2025-03-15";
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": title,
+  "datePublished": datePublished,
+  "dateModified": dateModified,
+  "author": { "@type": "Organization", "name": "GolfGraeagle.com" },
+  "publisher": { "@type": "Organization", "name": "Zoomaway Technologies Inc.", "url": "https://golfgraeagle.com" },
+  "mainEntityOfPage": { "@type": "WebPage", "@id": `https://golfgraeagle.com/blog/${slug}` }
+};
+---
+<Base title={title} description={description} schema={[schema]}>
+  <Nav />
+
+  <div class="bl-hero" style="background-image:url(https://grizzlyranchgolfclub.com/wp-content/uploads/2025/06/IMG_0666-2-scaled.jpg)">
+    <div class="bl-hero-fade"></div>
+    <div class="bl-hero-content">
+      <div class="bl-breadcrumb"><a href="/blog">Blog</a> <span>→</span> Courses Ranked</div>
+      <h1 class="bl-h1">Graeagle Golf Courses Ranked:<br/>All 5, Honestly Compared</h1>
+      <p class="bl-meta">By GolfGraeagle.com · Updated March 2025 · 8 min read</p>
+    </div>
+  </div>
+
+  <div class="bl-wrap">
+    <article class="bl-article">
+
+      <div class="bl-answer-box">
+        <div class="bl-answer-label">Bottom Line Rankings</div>
+        <p><strong>Best overall:</strong> Whitehawk Ranch — works for every golfer, consistently rated highest<br/>
+        <strong>Most challenging:</strong> Nakoma Dragon (slope 147) — the hardest in the valley<br/>
+        <strong>Best accolade:</strong> Grizzly Ranch — Golf Digest Top 100 Public Course<br/>
+        <strong>Best value:</strong> Plumas Pines — slope 132 quality at the lowest price point<br/>
+        <strong>Best for mixed groups:</strong> Graeagle Meadows — slope 120, nobody gets destroyed</p>
+      </div>
+
+      <p class="bl-intro">Every golfer who plans a Graeagle trip asks the same question: which courses are actually worth it, and which should I prioritize? There's no universally correct ranking — it depends on your handicap, your group, and what you're looking for. Here's the honest breakdown across every dimension that matters.</p>
+
+      <h2>#1 Best Overall: Whitehawk Ranch</h2>
+      <div class="bl-course-rank">
+        <div class="bl-course-rank-stats">
+          <span>Par 71 · 6,983 yards · Slope 132 · Rating 72.3</span>
+          <span>Designer: Dick Bailey · Est. 1996</span>
+          <span class="bl-win">Top 20 Golf Courses in California — Golf Digest</span>
+        </div>
+        <p>Whitehawk Ranch earns the top spot not because it's the hardest or the most dramatic, but because it delivers the most consistently satisfying experience for the widest range of golfers. Twelve holes play through open Mohawk Valley meadows along streams and ponds. Six more climb through forested hillside terrain. The variety in a single round is remarkable.</p>
+        <p>Slope 132 provides a genuine test without being punishing to mid-handicappers. The all-grass driving range with complimentary balls is a real amenity — warm up properly and your first-hole nerves evaporate. This is the one course we recommend to every group, regardless of composition.</p>
+        <a href="/courses/whitehawk-ranch" class="bl-article-link">Full Whitehawk Ranch details →</a>
+      </div>
+
+      <h2>#2 Most Acclaimed: Grizzly Ranch</h2>
+      <div class="bl-course-rank">
+        <div class="bl-course-rank-stats">
+          <span>Par 72 · 7,411 yards · Slope 140 · Rating 74.9</span>
+          <span>Designer: Bob Cupp · Est. 2005</span>
+          <span class="bl-win">Golf Digest Top 100 Greatest Public Golf Courses in the US — 2021</span>
+        </div>
+        <p>Grizzly Ranch is the longest, toughest course in the Graeagle valley and the one with the highest national recognition. At 7,411 yards with a slope of 140, it demands accurate driving, course management, and physical endurance. The 4,800-foot elevation compounds everything — you're hitting it farther but the thin air makes a long day feel longer.</p>
+        <p>For low-handicap golfers, this is the obvious bucket-list course. For mid-to-high handicappers, it's still absolutely worth playing — just come with realistic expectations about your score, take in the dramatic ridgeline holes and panoramic Sierra views, and embrace the challenge.</p>
+        <a href="/courses/grizzly-ranch" class="bl-article-link">Full Grizzly Ranch details →</a>
+      </div>
+
+      <h2>#3 The Bucket-List Experience: Nakoma — The Dragon</h2>
+      <div class="bl-course-rank">
+        <div class="bl-course-rank-stats">
+          <span>Par 72 · 7,015 yards · Slope 147 · Rating 73.4</span>
+          <span>Designer: Robin Nelson & Neil Haworth · Est. 1998</span>
+          <span class="bl-win">Golf World America's Top 75 Courses · Only Frank Lloyd Wright golf clubhouse</span>
+        </div>
+        <p>Nakoma Dragon has the highest slope rating in the Graeagle valley at 147 — making it the most statistically difficult course for bogey-plus golfers. Robin Nelson (designer of the famous Dunes at Mauna Lani) built this course with no easy holes. Feather River canyon views appear on multiple holes. The fairways are unforgiving.</p>
+        <p>But the reason Nakoma earns its bucket-list status isn't only the difficulty. It's the Frank Lloyd Wright-designed clubhouse — the only golf clubhouse in the world built to FLW's design. Spend 10 minutes inside before your round. It elevates the entire experience.</p>
+        <p>For handicaps under 15: this is a must-play. For 20+: play it for the experience, not the scorecard.</p>
+        <a href="/courses/nakoma" class="bl-article-link">Full Nakoma Dragon details →</a>
+      </div>
+
+      <h2>#4 Best Value: Plumas Pines</h2>
+      <div class="bl-course-rank">
+        <div class="bl-course-rank-stats">
+          <span>Par 72 · 6,504 yards · Slope 132 · Rating 71.3</span>
+          <span>Designer: Homer Flint · Est. 1980</span>
+          <span class="bl-win">Top 5 Best Values — Sierra Nevada, California Golf + Travel Magazine</span>
+        </div>
+        <p>Plumas Pines is the most underrated course in the valley. At 6,504 yards, it plays shorter than its neighbors — but slope 132 tells a different story. The tight ponderosa pine fairways demand precision that yardage alone doesn't convey. Miss the fairway at Plumas Pines and you're chipping out, not attacking the green.</p>
+        <p>This is the value pick of the five. Comparable slope rating to Whitehawk at a notably lower price point. The on-site vacation rentals and condos also make it a useful lodging option for groups who want to sleep right on the course.</p>
+        <a href="/courses/plumas-pines" class="bl-article-link">Full Plumas Pines details →</a>
+      </div>
+
+      <h2>#5 Best for Mixed Groups: Graeagle Meadows</h2>
+      <div class="bl-course-rank">
+        <div class="bl-course-rank-stats">
+          <span>Par 72 · 6,759 yards · Slope 120 · Rating 70.7</span>
+          <span>Designer: Ellis Van Gorder · Est. 1968</span>
+          <span class="bl-win">The original Graeagle championship course — open since 1968</span>
+        </div>
+        <p>Slope 120 makes Graeagle Meadows the most accessible course in the valley by a meaningful margin. It's the original — opened in 1968 before any of the other four existed. Ellis Van Gorder designed it through open meadows and ponderosa pines along the Middle Fork of the Feather River. Classic parkland golf.</p>
+        <p>Don't mistake "most accessible" for "not worth playing." The layout is genuinely beautiful, the Feather River corridor creates a distinctive setting, and the course holds up well for skilled players too. It just doesn't punish high-handicappers the way the others do — which makes it the right opener for mixed groups or the right addition when one member of your foursome is a beginner.</p>
+        <a href="/courses/graeagle-meadows" class="bl-article-link">Full Graeagle Meadows details →</a>
+      </div>
+
+      <h2>Rankings by Category</h2>
+      <div class="bl-comparison-table">
+        <table class="bl-table">
+          <thead><tr><th>Category</th><th>Winner</th><th>Runner-Up</th></tr></thead>
+          <tbody>
+            <tr><td>Best overall</td><td class="bl-win">Whitehawk Ranch</td><td>Grizzly Ranch</td></tr>
+            <tr><td>Most challenging</td><td class="bl-win">Nakoma Dragon (slope 147)</td><td>Grizzly Ranch (slope 140)</td></tr>
+            <tr><td>Best for beginners / high HCP</td><td class="bl-win">Graeagle Meadows (slope 120)</td><td>Plumas Pines (slope 132)</td></tr>
+            <tr><td>Best accolade</td><td class="bl-win">Grizzly Ranch (Golf Digest Top 100)</td><td>Nakoma Dragon (Golf World Top 75)</td></tr>
+            <tr><td>Most unique experience</td><td class="bl-win">Nakoma Dragon (FLW clubhouse)</td><td>Whitehawk Ranch (550-acre setting)</td></tr>
+            <tr><td>Best value</td><td class="bl-win">Plumas Pines</td><td>Graeagle Meadows</td></tr>
+            <tr><td>Best driving range</td><td class="bl-win">Whitehawk Ranch (complimentary balls)</td><td>Grizzly Ranch (30-station natural turf)</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="bl-cta">
+        <h2>Which courses are right for your group?</h2>
+        <p>Tell us your group's handicap range, how many rounds you want, and your dates. We'll build the right course sequence and secure tee times at all of them.</p>
+        <a href="/quote" class="bl-cta-btn">Get a free quote →</a>
+        <div class="bl-cta-links">
+          <a href="/courses">Full course comparison →</a>
+          <a href="/blog/graeagle-golf-trip-itinerary-3-days">3-day itinerary →</a>
+        </div>
+      </div>
+
+    </article>
+
+    <aside class="bl-sidebar">
+      <div class="bl-sidebar-card">
+        <div class="bl-sidebar-title">Book Your Courses</div>
+        <p>We'll secure tee times across all 5 courses. Free quote, 24-hour response.</p>
+        <a href="/quote" class="bl-sidebar-btn">Request a Quote →</a>
+      </div>
+      <div class="bl-sidebar-card">
+        <div class="bl-sidebar-title">All 5 Courses</div>
+        <div class="bl-sidebar-links">
+          {[
+            { name: 'Whitehawk Ranch', slug: 'whitehawk-ranch', note: 'Best overall · Slope 132' },
+            { name: 'Grizzly Ranch', slug: 'grizzly-ranch', note: 'Top 100 · Slope 140' },
+            { name: 'Nakoma Dragon', slug: 'nakoma', note: 'FLW Clubhouse · Slope 147' },
+            { name: 'Plumas Pines', slug: 'plumas-pines', note: 'Best value · Slope 132' },
+            { name: 'Graeagle Meadows', slug: 'graeagle-meadows', note: 'Most accessible · Slope 120' },
+          ].map(c => (
+            <a href={`/courses/${c.slug}`} class="bl-sidebar-course">
+              <div class="bl-sidebar-course-name">{c.name}</div>
+              <div class="bl-sidebar-course-note">{c.note}</div>
+            </a>
+          ))}
+        </div>
+      </div>
+    </aside>
+  </div>
+  <Footer />
+</Base>

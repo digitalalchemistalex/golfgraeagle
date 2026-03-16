@@ -1,0 +1,215 @@
+---
+export const prerender = true;
+import Base from '../../layouts/Base.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+
+const title = "Graeagle vs Lake Tahoe Golf: Honest Comparison for 2025";
+const description = "Graeagle or Lake Tahoe for your golf trip? We compare courses, green fees, crowds, drive times, and value — from people who book both.";
+const slug = "graeagle-vs-lake-tahoe-golf";
+const datePublished = "2025-03-01";
+const dateModified = "2025-03-15";
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": title,
+  "datePublished": datePublished,
+  "dateModified": dateModified,
+  "author": { "@type": "Organization", "name": "GolfGraeagle.com" },
+  "publisher": { "@type": "Organization", "name": "Zoomaway Technologies Inc.", "url": "https://golfgraeagle.com" },
+  "mainEntityOfPage": { "@type": "WebPage", "@id": `https://golfgraeagle.com/blog/${slug}` }
+};
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    { "@type": "Question", "name": "Is Graeagle closer to Lake Tahoe or Sacramento?", "acceptedAnswer": { "@type": "Answer", "text": "Graeagle is approximately 2.5 hours from Sacramento and about 1.5 hours from North Lake Tahoe. It sits in the Sierra Nevada mountains in Plumas County, between the two." } },
+    { "@type": "Question", "name": "Are Graeagle golf courses cheaper than Tahoe?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Graeagle courses generally run 20–40% less than comparable Truckee-Tahoe courses, while offering equal or better course quality and dramatically fewer crowds." } },
+    { "@type": "Question", "name": "How many golf courses does Graeagle have vs Lake Tahoe?", "acceptedAnswer": { "@type": "Answer", "text": "The Graeagle area has 5 championship courses within 25 minutes of each other. The Truckee-North Tahoe corridor has roughly 8–10 courses spread across a much wider area, making logistics more complicated." } },
+    { "@type": "Question", "name": "What is the best golf course near Lake Tahoe?", "acceptedAnswer": { "@type": "Answer", "text": "Courses like Edgewood Tahoe and Coyote Moon in the Tahoe area are highly rated, but come at premium prices with heavy tourist demand. Graeagle's Grizzly Ranch (Golf Digest Top 100) and Nakoma Dragon (Golf World Top 75) compete directly on quality at lower prices with better tee time availability." } },
+  ]
+};
+---
+<Base title={title} description={description} schema={[schema, faqSchema]}>
+  <Nav />
+
+  <!-- Hero -->
+  <div class="bl-hero" style="background-image:url(https://grizzlyranchgolfclub.com/wp-content/uploads/2025/06/IMG_0666-2-scaled.jpg)">
+    <div class="bl-hero-fade"></div>
+    <div class="bl-hero-content">
+      <div class="bl-breadcrumb"><a href="/blog">Blog</a> <span>→</span> Graeagle vs Tahoe Golf</div>
+      <h1 class="bl-h1">Graeagle vs Lake Tahoe Golf:<br/>An Honest Comparison</h1>
+      <p class="bl-meta">By GolfGraeagle.com · Updated March 2025 · 8 min read</p>
+    </div>
+  </div>
+
+  <div class="bl-wrap">
+    <article class="bl-article">
+
+      <!-- Answer box -->
+      <div class="bl-answer-box">
+        <div class="bl-answer-label">Quick Answer</div>
+        <p>Graeagle wins on value, crowd levels, and course density. Lake Tahoe wins on brand recognition and scenery variety. For a serious golf trip where you want multiple rounds at acclaimed courses without fighting for tee times or paying Tahoe prices, Graeagle is the better call.</p>
+      </div>
+
+      <p class="bl-intro">Most golfers planning a Northern California mountain trip type "Lake Tahoe golf" into Google by default. It's what they know. But if you talk to the golfers who've actually played both regions — and we have, for 20+ years — the conversation shifts pretty fast. Here's the unfiltered comparison.</p>
+
+      <h2>The Course Quality Question</h2>
+      <p>Lake Tahoe has strong courses. Edgewood Tahoe is genuinely excellent — a major championship venue with casino-funded conditioning. Coyote Moon is a legitimate top-tier layout. You won't be disappointed playing Tahoe courses.</p>
+      <p>But Graeagle has <strong>Grizzly Ranch</strong>, a Golf Digest Top 100 Public Course, and <strong>Nakoma (The Dragon)</strong>, which debuted on Golf World's America's Top 75 list. Those aren't second-tier consolation prizes. They're bucket-list courses most California golfers haven't heard of yet — which is exactly why you should go before that changes.</p>
+
+      <div class="bl-comparison-table">
+        <div class="bl-comp-header">Course Quality Head-to-Head</div>
+        <table class="bl-table">
+          <thead>
+            <tr>
+              <th>Factor</th>
+              <th>Graeagle</th>
+              <th>Lake Tahoe Area</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Best course accolade</td><td class="bl-win">Golf Digest Top 100 (Grizzly Ranch)</td><td>Edgewood Tahoe (major venue)</td></tr>
+            <tr><td>Number of top-tier courses</td><td class="bl-win">5 within 25 min</td><td>4–5 spread over 40+ miles</td></tr>
+            <tr><td>Unique features</td><td class="bl-win">Only Frank Lloyd Wright golf clubhouse (Nakoma)</td><td>Lake views on multiple courses</td></tr>
+            <tr><td>Course conditioning</td><td>Excellent (Sierra mountain turf)</td><td class="bl-win">Excellent (casino-funded at Edgewood)</td></tr>
+            <tr><td>Course variety</td><td class="bl-win">Meadow, pine forest, ridgeline, canyon</td><td>Mountain, lakeside, forest</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2>Green Fees: Where Graeagle Pulls Ahead</h2>
+      <p>This is the starkest difference. Tahoe's premium courses charge premium prices — often $200–$350+ for a weekend round at top venues. Edgewood Tahoe can run $500+ during peak season. Even mid-tier Tahoe courses hover at $100–$180.</p>
+      <p>Graeagle courses run meaningfully less for equal or better quality. A round at Grizzly Ranch or Nakoma Dragon — courses with the same caliber accolades as Tahoe's best — will cost you less and give you a quieter, more focused golf experience. Over a 3-round weekend for a group of 8, that difference compounds fast.</p>
+
+      <div class="bl-callout">
+        <strong>The math for a group of 8:</strong> Three rounds per golfer at Tahoe premium prices vs. Graeagle prices can mean a $1,500–$3,000 difference in green fees alone — before lodging. That pays for a very good dinner at the Iron Door, or an extra night at River Pines.
+      </div>
+
+      <h2>Tee Time Availability</h2>
+      <p>Lake Tahoe is a tourist destination. In summer, courses at Tahoe are crowded, slow, and booked weeks in advance for prime slots. If you're planning a group trip for 8+ players, getting back-to-back tee times at a top Tahoe course on a Saturday morning is a genuine logistical challenge.</p>
+      <p>Graeagle doesn't have that problem. It's not undiscovered — but it's not overwhelmed. Groups regularly secure morning tee times with reasonable advance notice. GolfGraeagle can guarantee tee times at all 5 courses because we have relationships and volume at each one. That peace of mind doesn't exist when you're cold-calling Tahoe courses individually.</p>
+
+      <h2>Drive Times From Major Cities</h2>
+      <div class="bl-drive-table">
+        <table class="bl-table">
+          <thead>
+            <tr>
+              <th>From</th>
+              <th>To Graeagle</th>
+              <th>To North Lake Tahoe</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Sacramento</td><td class="bl-win">~2.5 hours</td><td>~2 hours</td></tr>
+            <tr><td>San Francisco Bay Area</td><td>~3.5–4 hours</td><td class="bl-win">~3–3.5 hours</td></tr>
+            <tr><td>Reno / Sparks</td><td>~1 hour</td><td class="bl-win">~45 min</td></tr>
+            <tr><td>Los Angeles</td><td>~7.5 hours</td><td class="bl-win">~7 hours</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>Tahoe is slightly closer for most Bay Area and LA travelers. Graeagle is slightly closer from Sacramento and roughly equidistant from Reno. Neither is a hardship — both are day-trip or weekend-drive territory for Northern California.</p>
+
+      <h2>The Crowds and Pace-of-Play Factor</h2>
+      <p>This matters more than most golfers account for when planning. A slow round at a crowded Tahoe course — 5+ hours, backed-up holes, weekend tourist groups — is a real possibility in peak season. Graeagle's pace is consistently faster. The courses aren't overrun. You're playing golf, not waiting to play golf.</p>
+      <p>For groups where pace matters — senior groups, competitive players, anyone who booked flights and wants to maximize rounds — Graeagle delivers more actual golf per day.</p>
+
+      <h2>When Tahoe Is Still the Right Call</h2>
+      <p>Tahoe makes sense if: you want to combine golf with casino time, the lake and resort scene is part of the appeal, or someone in your group specifically wants to play Edgewood. It's a legitimate world-class venue. We're not dismissing it.</p>
+      <p>But if golf is the primary mission? Graeagle wins the comparison cleanly.</p>
+
+      <h2>The Honest Verdict</h2>
+      <div class="bl-verdict">
+        <div class="bl-verdict-row">
+          <div class="bl-verdict-item">
+            <div class="bl-verdict-label">Choose Graeagle if…</div>
+            <ul>
+              <li>Golf is the primary objective</li>
+              <li>You're bringing 4+ players and budget matters</li>
+              <li>You want multiple acclaimed courses in one trip</li>
+              <li>You value pace of play and availability</li>
+              <li>Bucket-list courses (FLW clubhouse, Golf Digest Top 100) appeal</li>
+            </ul>
+          </div>
+          <div class="bl-verdict-item">
+            <div class="bl-verdict-label">Choose Lake Tahoe if…</div>
+            <ul>
+              <li>Casino/resort experience is part of the plan</li>
+              <li>You specifically want to play Edgewood Tahoe</li>
+              <li>Non-golfing partners want lakeside entertainment</li>
+              <li>You're already based near Tahoe</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- FAQ -->
+      <div class="bl-faq">
+        <h2>Frequently Asked Questions</h2>
+        {[
+          { q: "Is Graeagle closer to Lake Tahoe or Sacramento?", a: "Graeagle is about 1.5 hours from North Lake Tahoe and approximately 2.5 hours from Sacramento. It sits in the Sierra Nevada mountains in Plumas County, northeast of both." },
+          { q: "Are Graeagle golf courses cheaper than Tahoe?", a: "Generally yes — Graeagle courses run 20–40% less than comparable Truckee-Tahoe courses for equal or better quality, with fewer crowds and better tee time availability." },
+          { q: "How many golf courses does Graeagle have?", a: "Five championship courses: Graeagle Meadows, Whitehawk Ranch, Plumas Pines, Grizzly Ranch, and Nakoma (The Dragon). All five are within 25 minutes of each other." },
+          { q: "Can I do a day trip from Tahoe to play Graeagle?", a: "Yes. Graeagle is roughly 1.5 hours from North Lake Tahoe via Highway 89. Some golfers base themselves in Tahoe and do a Graeagle day trip, though staying in Graeagle is more efficient for a multi-round trip." },
+        ].map(item => (
+          <div class="bl-faq-item">
+            <h3>{item.q}</h3>
+            <p>{item.a}</p>
+          </div>
+        ))}
+      </div>
+
+      <!-- CTA -->
+      <div class="bl-cta">
+        <h2>Ready to book your Graeagle trip?</h2>
+        <p>Tell us your dates, group size, and how many rounds you want. We'll build the itinerary, secure tee times at all 5 courses, and match you with the right lodging.</p>
+        <a href="/quote" class="bl-cta-btn">Get a free quote →</a>
+        <div class="bl-cta-links">
+          <a href="/courses">Compare all 5 courses →</a>
+          <a href="/lodging">See lodging options →</a>
+        </div>
+      </div>
+
+    </article>
+
+    <!-- Sidebar -->
+    <aside class="bl-sidebar">
+      <div class="bl-sidebar-card">
+        <div class="bl-sidebar-title">Plan Your Graeagle Trip</div>
+        <p>Free quote. 24-hour response. Tee times at all 5 courses guaranteed.</p>
+        <a href="/quote" class="bl-sidebar-btn">Request a Quote →</a>
+      </div>
+
+      <div class="bl-sidebar-card">
+        <div class="bl-sidebar-title">The 5 Courses</div>
+        <div class="bl-sidebar-links">
+          {[
+            { name: 'Graeagle Meadows', slug: 'graeagle-meadows', note: 'Slope 120 · Most accessible' },
+            { name: 'Whitehawk Ranch', slug: 'whitehawk-ranch', note: 'Slope 132 · Top 20 CA' },
+            { name: 'Plumas Pines', slug: 'plumas-pines', note: 'Slope 132 · Best value' },
+            { name: 'Grizzly Ranch', slug: 'grizzly-ranch', note: 'Slope 140 · Golf Digest Top 100' },
+            { name: 'Nakoma Dragon', slug: 'nakoma', note: 'Slope 147 · FLW Clubhouse' },
+          ].map(c => (
+            <a href={`/courses/${c.slug}`} class="bl-sidebar-course">
+              <div class="bl-sidebar-course-name">{c.name}</div>
+              <div class="bl-sidebar-course-note">{c.note}</div>
+            </a>
+          ))}
+        </div>
+      </div>
+
+      <div class="bl-sidebar-card">
+        <div class="bl-sidebar-title">Related Reading</div>
+        <div class="bl-sidebar-links">
+          <a href="/blog/how-to-plan-graeagle-golf-trip" class="bl-sidebar-post">How to Plan a Graeagle Golf Trip →</a>
+          <a href="/blog/best-time-to-golf-graeagle" class="bl-sidebar-post">Best Time to Golf in Graeagle →</a>
+          <a href="/blog/graeagle-golf-trip-itinerary-3-days" class="bl-sidebar-post">3-Day Graeagle Itinerary →</a>
+        </div>
+      </div>
+    </aside>
+  </div>
+
+  <Footer />
+</Base>

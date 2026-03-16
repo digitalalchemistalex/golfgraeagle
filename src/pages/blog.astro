@@ -3,25 +3,183 @@ export const prerender = true;
 import Base from '../layouts/Base.astro';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
+
+const posts = [
+  {
+    title: 'Graeagle vs Lake Tahoe Golf: Honest Comparison for 2025',
+    slug: 'graeagle-vs-lake-tahoe-golf',
+    excerpt: 'Graeagle or Lake Tahoe for your golf trip? We compare courses, green fees, crowds, and value — from people who book both.',
+    tag: 'Destination Guide',
+    tagColor: '#3b82f6',
+    hero: 'https://grizzlyranchgolfclub.com/wp-content/uploads/2025/06/IMG_0666-2-scaled.jpg',
+    date: 'March 2025',
+    readTime: '8 min',
+  },
+  {
+    title: 'How to Plan a Graeagle Golf Trip: Complete Group Planner',
+    slug: 'how-to-plan-graeagle-golf-trip',
+    excerpt: 'Step-by-step planning guide for groups of 4–20. Which courses to play, where to stay, how to book tee times, and what it actually costs.',
+    tag: 'Trip Planning',
+    tagColor: '#22c55e',
+    hero: 'https://whitehawkranch.com/wp-content/uploads/sites/88/2026/02/popup-home.webp',
+    date: 'March 2025',
+    readTime: '10 min',
+  },
+  {
+    title: '3-Day Graeagle Golf Itinerary: 4 Courses, Done Right',
+    slug: 'graeagle-golf-trip-itinerary-3-days',
+    excerpt: 'Day-by-day schedule for the ideal 3-night Graeagle trip. Which courses to play in which order, where to eat, and what not to skip.',
+    tag: 'Itinerary',
+    tagColor: '#e8a850',
+    hero: 'https://nakomaresort.com/wp-content/uploads/the-dragon-golf-overview-tahoe-truckee-plumas-1639x1080.jpg',
+    date: 'March 2025',
+    readTime: '9 min',
+  },
+  {
+    title: 'Graeagle Golf Courses Ranked: All 5, Honestly Compared',
+    slug: 'graeagle-golf-courses-ranked',
+    excerpt: 'Best overall, hardest, best value, best for beginners — the honest ranking of all 5 Graeagle courses with golfer-readable reasoning.',
+    tag: 'Course Guide',
+    tagColor: '#a855f7',
+    hero: 'https://grizzlyranchgolfclub.com/wp-content/uploads/2025/06/IMG_0666-2-scaled.jpg',
+    date: 'March 2025',
+    readTime: '8 min',
+  },
+  {
+    title: 'Best Time to Golf in Graeagle: Month-by-Month Guide',
+    slug: 'best-time-to-golf-graeagle',
+    excerpt: 'Season runs May through October. June and September are the insider picks. Here is exactly what to expect — and when to book — for each month.',
+    tag: 'When to Go',
+    tagColor: '#ef4444',
+    hero: 'https://graeaglemeadows.com/wp-content/uploads/sites/86/2026/03/DJI_0629-2-Edit-scaled.jpg',
+    date: 'March 2025',
+    readTime: '7 min',
+  },
+  {
+    title: 'Bachelor Party Golf in Graeagle: The Complete Group Guide',
+    slug: 'bachelor-party-golf-graeagle',
+    excerpt: 'Which courses, group lodging that fits 8–16 players, evening plans, and how to coordinate tee times for large groups. From people who plan these regularly.',
+    tag: 'Group Trips',
+    tagColor: '#0ea5e9',
+    hero: 'https://whitehawkranch.com/wp-content/uploads/sites/88/2026/02/popup-home.webp',
+    date: 'March 2025',
+    readTime: '9 min',
+  },
+];
 ---
-<Base title="Graeagle Golf Blog — Trip Planning, Course Guides & Local Tips | GolfGraeagle.com" description="Golf trip planning guides, course reviews, and local tips for Graeagle, California. Expert advice from the team at GolfGraeagle.com.">
+<Base
+  title="Graeagle Golf Blog — Trip Guides, Course Reviews & Local Tips"
+  description="Golf trip planning guides, course rankings, best times to visit, and local knowledge for Graeagle, California. Written for real golfers planning real trips."
+>
   <Nav />
-  <section style="min-height:80vh;padding:140px 10% 100px;max-width:1100px;margin:0 auto;">
-    <p style="font-size:11px;color:#e8a850;letter-spacing:0.16em;text-transform:uppercase;font-weight:600;margin:0 0 16px;">Blog</p>
-    <h1 style="font-family:'Playfair Display',serif;font-size:clamp(32px,5vw,52px);font-weight:500;color:#f0f8f2;margin:0 0 20px;">Graeagle Golf <span style="color:#e8a850;font-style:italic;">Trip Guides</span></h1>
-    <p style="font-size:17px;color:rgba(240,248,242,0.5);max-width:560px;line-height:1.75;margin:0 0 60px;">Course breakdowns, trip planning advice, dining picks, and local knowledge from the Graeagle golf specialists.</p>
-    <div style="display:grid;gap:20px;max-width:720px;">
-      {[
-        {title:'Best Golf Courses in Graeagle, California (Complete Guide)', slug:'best-golf-courses-graeagle', date:'2025'},
-        {title:'Ultimate Guide to Golfing in Graeagle', slug:'ultimate-guide-to-golfing-in-graeagle', date:'2025'},
-        {title:"Mountain Dining Near Lake Tahoe: Graeagle's Best Kept Restaurant Secrets", slug:'mountain-dining-near-lake-tahoe-graeagles-best-kept-restaurant-secrets', date:'2025'},
-      ].map(p=>(
-        <a href={`/blog/${p.slug}/`} style="display:block;padding:24px 28px;border-radius:14px;background:rgba(240,248,242,0.02);border:1px solid rgba(240,248,242,0.07);text-decoration:none;transition:all 0.2s;" onmouseover="this.style.borderColor='rgba(232,168,80,0.25)';this.style.background='rgba(232,168,80,0.03)'" onmouseout="this.style.borderColor='rgba(240,248,242,0.07)';this.style.background='rgba(240,248,242,0.02)'">
-          <h2 style="font-family:'Playfair Display',serif;font-size:20px;color:#f0f8f2;margin:0 0 8px;line-height:1.3;">{p.title}</h2>
-          <span style="font-size:12px;color:rgba(240,248,242,0.3);">{p.date} · GolfGraeagle.com</span>
-        </a>
-      ))}
+
+  <!-- Hero -->
+  <section class="blhub-hero">
+    <div class="blhub-hero-content">
+      <p class="blhub-eyebrow">GolfGraeagle.com</p>
+      <h1 class="blhub-h1">Golf Trip Guides.<br/><span style="color:#e8a850;">For Real Golfers.</span></h1>
+      <p class="blhub-sub">Course breakdowns, itineraries, timing guides, and local knowledge from a team that books Graeagle golf trips year-round. No fluff. No invented superlatives. Just what you need to plan a great trip.</p>
     </div>
   </section>
+
+  <!-- Posts grid -->
+  <section class="blhub-grid-section">
+    <div class="blhub-container">
+
+      <!-- Featured post -->
+      <div class="blhub-featured">
+        <a href={`/blog/${posts[0].slug}`} class="blhub-featured-card">
+          <div class="blhub-featured-img-wrap">
+            <img src={posts[0].hero} alt={posts[0].title} loading="eager" class="blhub-featured-img"/>
+            <div class="blhub-card-fade"></div>
+            <span class="blhub-tag" style={`background:${posts[0].tagColor}`}>{posts[0].tag}</span>
+          </div>
+          <div class="blhub-featured-body">
+            <div class="blhub-meta">{posts[0].date} · {posts[0].readTime} read</div>
+            <h2 class="blhub-featured-title">{posts[0].title}</h2>
+            <p class="blhub-featured-excerpt">{posts[0].excerpt}</p>
+            <span class="blhub-read-link">Read article →</span>
+          </div>
+        </a>
+      </div>
+
+      <!-- Grid of remaining posts -->
+      <div class="blhub-grid">
+        {posts.slice(1).map(post => (
+          <a href={`/blog/${post.slug}`} class="blhub-card">
+            <div class="blhub-card-img-wrap">
+              <img src={post.hero} alt={post.title} loading="lazy" class="blhub-card-img"/>
+              <div class="blhub-card-fade"></div>
+              <span class="blhub-tag" style={`background:${post.tagColor}`}>{post.tag}</span>
+            </div>
+            <div class="blhub-card-body">
+              <div class="blhub-meta">{post.date} · {post.readTime} read</div>
+              <h2 class="blhub-card-title">{post.title}</h2>
+              <p class="blhub-card-excerpt">{post.excerpt}</p>
+              <span class="blhub-read-link">Read article →</span>
+            </div>
+          </a>
+        ))}
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="blhub-cta">
+    <div class="blhub-container">
+      <div class="blhub-cta-inner">
+        <div>
+          <h2 class="blhub-cta-title">Ready to stop reading and start booking?</h2>
+          <p class="blhub-cta-sub">Tell us your dates, group size, and which courses you want. Free quote, 24-hour response.</p>
+        </div>
+        <a href="/quote" class="blhub-cta-btn">Get a free quote →</a>
+      </div>
+    </div>
+  </section>
+
   <Footer />
 </Base>
+
+<style is:global>
+.blhub-hero{background:#1a2e1a;padding:120px clamp(20px,5vw,60px) 80px;text-align:center;}
+.blhub-eyebrow{font-size:11px;color:#e8a850;letter-spacing:.18em;text-transform:uppercase;font-weight:600;margin:0 0 16px;}
+.blhub-h1{font-family:'Playfair Display',serif;font-size:clamp(38px,6vw,64px);font-weight:400;color:#f8faf8;margin:0 0 20px;line-height:1.1;}
+.blhub-sub{font-size:16px;color:rgba(248,250,248,0.5);max-width:600px;margin:0 auto;line-height:1.75;}
+.blhub-grid-section{background:#f0f5f0;padding:80px 0;}
+.blhub-container{max-width:1200px;margin:0 auto;padding:0 clamp(16px,4vw,48px);}
+/* featured */
+.blhub-featured{margin-bottom:32px;}
+.blhub-featured-card{display:grid;grid-template-columns:1.2fr 1fr;border-radius:20px;overflow:hidden;background:#fff;box-shadow:0 4px 24px rgba(0,0,0,0.06);text-decoration:none;transition:box-shadow .3s;}
+.blhub-featured-card:hover{box-shadow:0 12px 48px rgba(0,0,0,0.12);}
+@media(max-width:750px){.blhub-featured-card{grid-template-columns:1fr;}}
+.blhub-featured-img-wrap{position:relative;min-height:340px;overflow:hidden;}
+.blhub-featured-img{width:100%;height:100%;object-fit:cover;transition:transform 8s ease;}
+.blhub-featured-card:hover .blhub-featured-img{transform:scale(1.04);}
+.blhub-card-fade{position:absolute;inset:0;background:linear-gradient(to right,rgba(0,0,0,0.2),transparent);}
+.blhub-tag{position:absolute;top:16px;left:16px;font-size:10px;font-weight:800;color:#fff;padding:4px 12px;border-radius:100px;text-transform:uppercase;letter-spacing:.06em;}
+.blhub-featured-body{padding:36px;display:flex;flex-direction:column;justify-content:center;}
+.blhub-meta{font-size:11px;color:#8a9a8a;text-transform:uppercase;letter-spacing:.08em;margin-bottom:10px;}
+.blhub-featured-title{font-family:'Playfair Display',serif;font-size:clamp(20px,2.5vw,28px);font-weight:400;color:#1a2e1a;margin:0 0 14px;line-height:1.25;}
+.blhub-featured-excerpt{font-size:14px;color:#4a5a4a;line-height:1.7;margin:0 0 20px;}
+.blhub-read-link{font-size:13px;font-weight:700;color:#e8a850;}
+/* grid */
+.blhub-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+@media(max-width:900px){.blhub-grid{grid-template-columns:1fr 1fr;}}
+@media(max-width:580px){.blhub-grid{grid-template-columns:1fr;}}
+.blhub-card{display:block;background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,0.05);text-decoration:none;transition:box-shadow .3s;}
+.blhub-card:hover{box-shadow:0 8px 32px rgba(0,0,0,0.1);}
+.blhub-card-img-wrap{position:relative;height:200px;overflow:hidden;}
+.blhub-card-img{width:100%;height:100%;object-fit:cover;transition:transform 8s ease;}
+.blhub-card:hover .blhub-card-img{transform:scale(1.05);}
+.blhub-card-body{padding:20px;}
+.blhub-card-title{font-family:'Playfair Display',serif;font-size:17px;font-weight:400;color:#1a2e1a;margin:0 0 8px;line-height:1.3;}
+.blhub-card-excerpt{font-size:13px;color:#4a5a4a;line-height:1.6;margin:0 0 14px;}
+/* hub cta */
+.blhub-cta{background:#1a2e1a;padding:80px clamp(20px,5vw,60px);}
+.blhub-cta-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:40px;flex-wrap:wrap;}
+.blhub-cta-title{font-family:'Playfair Display',serif;font-size:clamp(22px,3vw,34px);font-weight:400;color:#f8faf8;margin:0 0 10px;}
+.blhub-cta-sub{font-size:15px;color:rgba(248,250,248,0.45);margin:0;max-width:420px;line-height:1.65;}
+.blhub-cta-btn{flex-shrink:0;background:#e8a850;color:#0d1a0e;font-size:15px;font-weight:700;padding:16px 36px;border-radius:100px;text-decoration:none;transition:all .25s;white-space:nowrap;}
+.blhub-cta-btn:hover{background:#f2c878;transform:translateY(-2px);}
+</style>

@@ -1,0 +1,241 @@
+---
+export const prerender = true;
+import Base from '../../layouts/Base.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+
+const title = "How to Plan a Graeagle Golf Trip: Complete Group Planner (2025)";
+const description = "Step-by-step planning guide for a Graeagle golf trip. Covers when to go, which courses to play, where to stay, how to book tee times, and what a group trip actually costs.";
+const slug = "how-to-plan-graeagle-golf-trip";
+const datePublished = "2025-03-05";
+const dateModified = "2025-03-15";
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": title,
+  "datePublished": datePublished,
+  "dateModified": dateModified,
+  "author": { "@type": "Organization", "name": "GolfGraeagle.com" },
+  "publisher": { "@type": "Organization", "name": "Zoomaway Technologies Inc.", "url": "https://golfgraeagle.com" },
+  "mainEntityOfPage": { "@type": "WebPage", "@id": `https://golfgraeagle.com/blog/${slug}` }
+};
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    { "@type": "Question", "name": "How many days do you need for a Graeagle golf trip?", "acceptedAnswer": { "@type": "Answer", "text": "Two days gets you 2 courses. Three days is the sweet spot for 3–4 courses. Four to five days lets you play all 5 courses comfortably without rushing. Most groups find 3 nights the ideal balance." } },
+    { "@type": "Question", "name": "How far in advance should you book Graeagle tee times?", "acceptedAnswer": { "@type": "Answer", "text": "For summer weekends (June–August), book 4–6 weeks ahead. Spring and fall shoulder seasons can often be booked 2–3 weeks out. GolfGraeagle packages include tee time coordination so you don't need to call each course individually." } },
+    { "@type": "Question", "name": "What is the best month to golf in Graeagle?", "acceptedAnswer": { "@type": "Answer", "text": "June, September, and early October are the best months. June has long days, fresh course conditions, and moderate temperatures. September and October bring fall colors, cooler mornings, and fewer crowds." } },
+    { "@type": "Question", "name": "How much does a Graeagle golf trip cost?", "acceptedAnswer": { "@type": "Answer", "text": "A 3-night, 3-round Graeagle trip for a group of 4 typically runs $400–$700 per golfer all-in depending on lodging choice and courses played. Groups of 8+ often get better per-person rates through package pricing." } },
+  ]
+};
+---
+<Base title={title} description={description} schema={[schema, faqSchema]}>
+  <Nav />
+
+  <div class="bl-hero" style="background-image:url(https://whitehawkranch.com/wp-content/uploads/sites/88/2026/02/popup-home.webp)">
+    <div class="bl-hero-fade"></div>
+    <div class="bl-hero-content">
+      <div class="bl-breadcrumb"><a href="/blog">Blog</a> <span>→</span> How to Plan a Graeagle Golf Trip</div>
+      <h1 class="bl-h1">How to Plan a Graeagle Golf Trip:<br/>Complete Group Planner</h1>
+      <p class="bl-meta">By GolfGraeagle.com · Updated March 2025 · 10 min read</p>
+    </div>
+  </div>
+
+  <div class="bl-wrap">
+    <article class="bl-article">
+
+      <div class="bl-answer-box">
+        <div class="bl-answer-label">The Short Version</div>
+        <p>A Graeagle golf trip takes about 3 nights to do right. Play 3–4 courses, stay in Graeagle or Clio, book 4–6 weeks ahead for summer weekends. Budget $400–$700 per golfer all-in. Grizzly Ranch and Whitehawk Ranch are the two courses no group should skip.</p>
+      </div>
+
+      <p class="bl-intro">Graeagle has 5 championship courses within 25 minutes of each other. That density is the whole point — you drive less, play more. But a Graeagle trip still takes some deliberate planning to get right. This guide covers every decision you'll need to make, in the order you'll need to make it.</p>
+
+      <!-- Step 1 -->
+      <h2>Step 1: Decide How Many Days</h2>
+      <p>This is the foundational decision. Everything else — courses, lodging, budget — flows from it.</p>
+      <div class="bl-comparison-table">
+        <table class="bl-table">
+          <thead><tr><th>Trip Length</th><th>Rounds Possible</th><th>Best For</th></tr></thead>
+          <tbody>
+            <tr><td>2 days / 1 night</td><td>2 rounds</td><td>Weekend escape, first-time visit to Graeagle</td></tr>
+            <tr><td><strong>3 days / 2 nights</strong></td><td><strong>3–4 rounds</strong></td><td><strong>Most popular — sweet spot for groups of 4–12</strong></td></tr>
+            <tr><td>4 days / 3 nights</td><td>4–5 rounds</td><td>Full Graeagle tour, play all 5 courses</td></tr>
+            <tr><td>5 days / 4 nights</td><td>5+ rounds</td><td>Golf immersion — replay favorites, slow pace</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>Most groups land on 3 nights. It gives you 3–4 full rounds, time for a dinner at the Iron Door or Grizzly Grill, and you leave before the group gets too worn down to enjoy the last day.</p>
+
+      <!-- Step 2 -->
+      <h2>Step 2: Pick Your Courses</h2>
+      <p>You don't have to play all 5 — but you should have a plan. Here's how to think through the selection:</p>
+      <div class="bl-tip-grid">
+        {[
+          { icon: '🟢', label: 'Always include', text: 'Whitehawk Ranch — it\'s the crowd favorite for a reason and works for every handicap. Don\'t skip it.' },
+          { icon: '🔴', label: 'For low-handicappers', text: 'Add Grizzly Ranch (slope 140, 7,411 yards) and Nakoma Dragon (slope 147, FLW clubhouse). These are serious courses.' },
+          { icon: '🔵', label: 'For mixed groups', text: 'Graeagle Meadows (slope 120) is the equalizer. Beginners won\'t be destroyed, low handicappers enjoy the layout.' },
+          { icon: '⭐', label: 'Best value add', text: 'Plumas Pines is often underrated — slope 132 in tight pines, dramatically different feel from Whitehawk.' },
+        ].map(t => (
+          <div class="bl-tip">
+            <div class="bl-tip-icon">{t.icon}</div>
+            <div>
+              <div class="bl-tip-label">{t.label}</div>
+              <div class="bl-tip-text">{t.text}</div>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <h3>Recommended Course Combos by Group Type</h3>
+      <div class="bl-comparison-table">
+        <table class="bl-table">
+          <thead><tr><th>Group Type</th><th>Recommended Courses</th><th>Why</th></tr></thead>
+          <tbody>
+            <tr><td>Mixed handicaps (8–24 HC)</td><td>Whitehawk Ranch + Graeagle Meadows + Plumas Pines</td><td>Challenging but not punishing. Everyone can score.</td></tr>
+            <tr><td>Low handicappers (0–8 HC)</td><td>Grizzly Ranch + Nakoma Dragon + Whitehawk Ranch</td><td>The three most acclaimed, most demanding layouts.</td></tr>
+            <tr><td>Bucket-list trip</td><td>All 5 over 4–5 days</td><td>The complete Graeagle circuit. Once in a career.</td></tr>
+            <tr><td>Bachelor party</td><td>Whitehawk Ranch + Grizzly Ranch + Graeagle Meadows</td><td>One big challenge, one classic, one where everyone has fun.</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Step 3 -->
+      <h2>Step 3: Choose Your Lodging</h2>
+      <p>Graeagle has four solid lodging options that we work with regularly. The right choice depends almost entirely on your group size and budget.</p>
+      <div class="bl-comparison-table">
+        <table class="bl-table">
+          <thead><tr><th>Property</th><th>Best For</th><th>Key Selling Point</th><th>Budget Tier</th></tr></thead>
+          <tbody>
+            <tr><td><a href="/portfolio/river-pines-resort-graeagle-ca">River Pines Resort</a></td><td>Groups of 4–12</td><td>Family-owned, on-site restaurant (The Roadhouse), pool</td><td>$$</td></tr>
+            <tr><td><a href="/portfolio/chalet-view-lodge-graeagle-ca">Chalet View Lodge</a></td><td>Couples, smaller groups</td><td>10 acres, spa, Eureka Peak Brewing on-site</td><td>$$$</td></tr>
+            <tr><td><a href="/portfolio/the-inn-at-nakoma-clio-ca">The Inn at Nakoma</a></td><td>Bucket-list experience</td><td>Frank Lloyd Wright building, steps from The Dragon 1st tee</td><td>$$$$</td></tr>
+            <tr><td><a href="/portfolio/the-townhomes-at-plumas-pines">Townhomes at Plumas Pines</a></td><td>Large groups (8–20+)</td><td>2–4 BR units, full kitchens, on the course, pools</td><td>$$–$$$</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p><strong>For groups of 8+:</strong> The townhomes at Plumas Pines are usually the smartest call. Full kitchens mean you're not eating every meal out (big cost savings), multi-bedroom units keep the group together, and you're literally on a golf course.</p>
+      <p><strong>For a special occasion:</strong> The Inn at Nakoma is the experience. Sleeping in a Frank Lloyd Wright-designed building 50 yards from The Dragon first tee is not replicable anywhere else in the world.</p>
+
+      <!-- Step 4 -->
+      <h2>Step 4: Book Tee Times (Or Let Us Do It)</h2>
+      <p>Here's the practical reality of booking tee times for a group across 5 different courses: it's annoying. Each course has its own booking system, their own policies for groups, and their own availability quirks. You'll spend 2–3 hours on calls and websites.</p>
+      <p>GolfGraeagle handles this as part of every package. We have relationships with all 5 courses, know their group minimums and advance booking windows, and can secure coordinated tee sheets across multiple courses for multi-day trips. If you're bringing 8+ players, this alone is worth reaching out to us.</p>
+
+      <div class="bl-callout">
+        <strong>Booking windows to know:</strong> Summer weekends book 4–6 weeks ahead. Spring and fall can be 2–3 weeks. Shoulder season (May, October) has more flexibility. If you have a specific date in mind, don't wait.
+      </div>
+
+      <!-- Step 5 -->
+      <h2>Step 5: Understand What a Trip Actually Costs</h2>
+      <p>People often budget either too low (forgetting the little costs) or too high (assuming Tahoe prices). Here's a realistic framework:</p>
+      <div class="bl-comparison-table">
+        <table class="bl-table">
+          <thead><tr><th>Cost Category</th><th>Budget Tier (per golfer)</th><th>Mid Tier (per golfer)</th><th>Premium Tier (per golfer)</th></tr></thead>
+          <tbody>
+            <tr><td>Green fees (3 rounds)</td><td>$$</td><td>$$$</td><td>$$$$</td></tr>
+            <tr><td>Lodging (2 nights)</td><td>$$</td><td>$$$</td><td>$$$$</td></tr>
+            <tr><td>Meals (all in)</td><td>$50–80/day</td><td>$80–120/day</td><td>$120+/day</td></tr>
+            <tr><td>Cart fees (if not included)</td><td colspan="3" style="text-align:center;">Usually included in green fees at most courses</td></tr>
+            <tr><td>Driving range / practice</td><td colspan="3" style="text-align:center;">Free at Whitehawk (all-grass, complimentary balls)</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>The biggest cost lever is lodging. A large group splitting a townhome at Plumas Pines pays dramatically less per person than a group booking individual hotel rooms at premium properties. If budget matters, optimize lodging before optimizing courses.</p>
+
+      <!-- Step 6 -->
+      <h2>Step 6: Plan Meals and Evenings</h2>
+      <p>Post-round is half the trip. Graeagle has better dining than most golfers expect.</p>
+      <ul class="bl-list">
+        <li><strong>Iron Door Restaurant</strong> — A 1906 general store building in Graeagle serving steaks, prime rib, and scratch pasta. Book a reservation. The timber-beam room fills up on weekend nights.</li>
+        <li><strong>Grizzly Grill</strong> — In the Plumas National Forest. Local game and Sierra-sourced produce. This is the fine dining move for serious food people.</li>
+        <li><strong>The Brewing Lair</strong> — 15-acre craft brewery off Highway 70. Lawn games, outdoor seating, bring layers. The après-golf standard for most groups.</li>
+        <li><strong>Eureka Peak Brewing Co.</strong> — Inside Chalet View Lodge. IPAs and saisons, timber-frame setting. More intimate than The Brewing Lair.</li>
+        <li><strong>Gumba's II Go</strong> — Hand-tossed pizza and subs. The practical choice when the group just wants to eat fast and cheaply after a late round.</li>
+      </ul>
+
+      <!-- Step 7 -->
+      <h2>Step 7: The 30-Day Checklist</h2>
+      <div class="bl-checklist">
+        {[
+          { time: '6–8 weeks out', items: ['Decide dates and headcount', 'Request a GolfGraeagle quote', 'Choose lodging'] },
+          { time: '4–6 weeks out', items: ['Confirm tee times', 'Book lodging', 'Collect deposits from group'] },
+          { time: '2 weeks out', items: ['Finalize who is playing which rounds', 'Make dinner reservations (Iron Door books fast)', 'Pack appropriate layers — evenings are cold'] },
+          { time: 'Day before', items: ['Confirm tee times again', 'Confirm lodging check-in time', 'Load up on snacks — grocery in Portola, 20 min from Graeagle'] },
+        ].map(step => (
+          <div class="bl-checklist-section">
+            <div class="bl-checklist-time">{step.time}</div>
+            <ul>
+              {step.items.map(item => <li>{item}</li>)}
+            </ul>
+          </div>
+        ))}
+      </div>
+
+      <!-- FAQ -->
+      <div class="bl-faq">
+        <h2>Frequently Asked Questions</h2>
+        {[
+          { q: "How many days do you need for a Graeagle golf trip?", a: "Two days gets you 2 courses. Three days is the sweet spot for 3–4 courses. Four to five days lets you play all 5 comfortably. Most groups find 3 nights the ideal balance." },
+          { q: "How far in advance should you book Graeagle tee times?", a: "For summer weekends (June–August), book 4–6 weeks ahead. Spring and fall shoulder seasons can often be booked 2–3 weeks out. GolfGraeagle packages include tee time coordination." },
+          { q: "What is the best month to golf in Graeagle?", a: "June, September, and early October. June has long days and fresh conditions. September and October bring fall colors, cooler mornings, and fewer crowds." },
+          { q: "Is Graeagle good for a bachelor party golf trip?", a: "Yes — it's one of the best destinations for it in Northern California. Multiple serious courses, good nightlife options, and group lodging at the townhomes or River Pines. We plan bachelor golf trips regularly." },
+        ].map(item => (
+          <div class="bl-faq-item">
+            <h3>{item.q}</h3>
+            <p>{item.a}</p>
+          </div>
+        ))}
+      </div>
+
+      <!-- CTA -->
+      <div class="bl-cta">
+        <h2>Ready to stop planning and start booking?</h2>
+        <p>Tell us your dates, group size, and which courses you want. We'll coordinate tee times at all 5 courses, match you with the right lodging, and send a full itinerary. Free quote, 24-hour response.</p>
+        <a href="/quote" class="bl-cta-btn">Get a free quote →</a>
+        <div class="bl-cta-links">
+          <a href="/courses">Compare all 5 courses →</a>
+          <a href="/lodging">See lodging options →</a>
+        </div>
+      </div>
+
+    </article>
+
+    <aside class="bl-sidebar">
+      <div class="bl-sidebar-card">
+        <div class="bl-sidebar-title">Plan Your Trip Now</div>
+        <p>Free quote. Tee times at all 5 courses. 24-hour response.</p>
+        <a href="/quote" class="bl-sidebar-btn">Request a Quote →</a>
+      </div>
+      <div class="bl-sidebar-card">
+        <div class="bl-sidebar-title">The 5 Courses</div>
+        <div class="bl-sidebar-links">
+          {[
+            { name: 'Graeagle Meadows', slug: 'graeagle-meadows', note: 'Slope 120 · Most accessible' },
+            { name: 'Whitehawk Ranch', slug: 'whitehawk-ranch', note: 'Slope 132 · Top 20 CA' },
+            { name: 'Plumas Pines', slug: 'plumas-pines', note: 'Slope 132 · Best value' },
+            { name: 'Grizzly Ranch', slug: 'grizzly-ranch', note: 'Slope 140 · Golf Digest Top 100' },
+            { name: 'Nakoma Dragon', slug: 'nakoma', note: 'Slope 147 · FLW Clubhouse' },
+          ].map(c => (
+            <a href={`/courses/${c.slug}`} class="bl-sidebar-course">
+              <div class="bl-sidebar-course-name">{c.name}</div>
+              <div class="bl-sidebar-course-note">{c.note}</div>
+            </a>
+          ))}
+        </div>
+      </div>
+      <div class="bl-sidebar-card">
+        <div class="bl-sidebar-title">Related Reading</div>
+        <div class="bl-sidebar-links">
+          <a href="/blog/graeagle-vs-lake-tahoe-golf" class="bl-sidebar-post">Graeagle vs Lake Tahoe Golf →</a>
+          <a href="/blog/best-time-to-golf-graeagle" class="bl-sidebar-post">Best Time to Golf in Graeagle →</a>
+          <a href="/blog/graeagle-golf-trip-itinerary-3-days" class="bl-sidebar-post">3-Day Graeagle Itinerary →</a>
+        </div>
+      </div>
+    </aside>
+  </div>
+  <Footer />
+</Base>

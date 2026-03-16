@@ -1,0 +1,216 @@
+---
+export const prerender = true;
+import Base from '../../layouts/Base.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+
+const title = "Graeagle Golf Trip Itinerary: 3 Days, 4 Courses (The Ideal Schedule)";
+const description = "A day-by-day Graeagle golf itinerary covering 4 courses over 3 days. Which courses to play when, where to eat, where to stay, and how to avoid rookie mistakes.";
+const slug = "graeagle-golf-trip-itinerary-3-days";
+const datePublished = "2025-03-10";
+const dateModified = "2025-03-15";
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": title,
+  "datePublished": datePublished,
+  "dateModified": dateModified,
+  "author": { "@type": "Organization", "name": "GolfGraeagle.com" },
+  "publisher": { "@type": "Organization", "name": "Zoomaway Technologies Inc.", "url": "https://golfgraeagle.com" },
+  "mainEntityOfPage": { "@type": "WebPage", "@id": `https://golfgraeagle.com/blog/${slug}` }
+};
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    { "@type": "Question", "name": "How many Graeagle golf courses can you play in 3 days?", "acceptedAnswer": { "@type": "Answer", "text": "Three to four courses in 3 days is comfortable for most groups. Playing two rounds in one day is possible but demanding — most golfers prefer one round per day to enjoy the full experience." } },
+    { "@type": "Question", "name": "Which Graeagle golf course should you play first?", "acceptedAnswer": { "@type": "Answer", "text": "Graeagle Meadows or Whitehawk Ranch work best as openers. Meadows is the most forgiving (slope 120) and helps you calibrate to mountain golf. Whitehawk Ranch is the crowd favorite and builds excitement for the rest of the trip." } },
+    { "@type": "Question", "name": "Should you play Nakoma Dragon or Grizzly Ranch on the last day?", "acceptedAnswer": { "@type": "Answer", "text": "Save Nakoma Dragon for mid-trip when your game is warm but your energy is high. Grizzly Ranch is brutal enough that some groups prefer it on day 2 so they're not exhausted. Either works — just don't make it day 1 before you've calibrated to altitude." } },
+  ]
+};
+---
+<Base title={title} description={description} schema={[schema, faqSchema]}>
+  <Nav />
+
+  <div class="bl-hero" style="background-image:url(https://nakomaresort.com/wp-content/uploads/the-dragon-golf-overview-tahoe-truckee-plumas-1639x1080.jpg)">
+    <div class="bl-hero-fade"></div>
+    <div class="bl-hero-content">
+      <div class="bl-breadcrumb"><a href="/blog">Blog</a> <span>→</span> 3-Day Graeagle Itinerary</div>
+      <h1 class="bl-h1">3 Days in Graeagle:<br/>The Ideal Golf Itinerary</h1>
+      <p class="bl-meta">By GolfGraeagle.com · Updated March 2025 · 9 min read</p>
+    </div>
+  </div>
+
+  <div class="bl-wrap">
+    <article class="bl-article">
+
+      <div class="bl-answer-box">
+        <div class="bl-answer-label">The Itinerary at a Glance</div>
+        <p><strong>Day 1:</strong> Arrive → Whitehawk Ranch → Dinner at The Brewing Lair<br/>
+        <strong>Day 2:</strong> Grizzly Ranch (morning) → Graeagle Meadows (optional afternoon 9) → Dinner at Iron Door<br/>
+        <strong>Day 3:</strong> Nakoma Dragon → drive home or optional round at Plumas Pines</p>
+      </div>
+
+      <p class="bl-intro">Three days in Graeagle is enough to play 3–4 courses, eat well, and not feel like you rushed it. This is the itinerary we'd give a group of 4–8 mid-handicappers who want to play the best the valley has to offer without burning themselves out. Adjust based on your group's handicap range and pain tolerance.</p>
+
+      <!-- Day 1 -->
+      <div class="bl-day-block">
+        <div class="bl-day-header">
+          <div class="bl-day-num">Day 1</div>
+          <div class="bl-day-title">Arrive and Warm Up Right</div>
+        </div>
+
+        <div class="bl-schedule">
+          <div class="bl-schedule-item">
+            <div class="bl-sched-time">Morning</div>
+            <div class="bl-sched-detail"><strong>Drive in.</strong> From Sacramento: 2.5 hours. Bay Area: 3.5–4 hours. Check in to lodging, drop bags. Don't dawdle — you have a tee time.</div>
+          </div>
+          <div class="bl-schedule-item">
+            <div class="bl-sched-time">12:30pm</div>
+            <div class="bl-sched-detail"><strong>Whitehawk Ranch.</strong> The perfect opener. Slope 132, par 71, 550 acres of Mohawk Valley. Twelve holes through open meadows, six through forested hillside. You'll understand why this is everyone's favorite within three holes. The all-grass driving range has complimentary balls — warm up properly.</div>
+          </div>
+          <div class="bl-schedule-item">
+            <div class="bl-sched-time">5:30pm</div>
+            <div class="bl-sched-detail"><strong>Finish up.</strong> Debrief at the Whitehawk bar. Post your Whitehawk score before you play the harder courses and feel smug about it.</div>
+          </div>
+          <div class="bl-schedule-item">
+            <div class="bl-sched-time">7:00pm</div>
+            <div class="bl-sched-detail"><strong>Dinner at The Brewing Lair.</strong> 15-acre craft brewery off Highway 70. Lawn games, outdoor seating, multiple IPAs on tap. This is the first-night vibe. Bring layers — evenings cool fast at elevation.</div>
+          </div>
+        </div>
+        <div class="bl-day-note">Why Whitehawk first? It calibrates you to mountain golf — altitude ball flight, firm fairways, Sierra terrain — without punishing you for being rusty. Save the bruisers for when you're dialed in.</div>
+      </div>
+
+      <!-- Day 2 -->
+      <div class="bl-day-block">
+        <div class="bl-day-header">
+          <div class="bl-day-num">Day 2</div>
+          <div class="bl-day-title">The Big Test</div>
+        </div>
+
+        <div class="bl-schedule">
+          <div class="bl-schedule-item">
+            <div class="bl-sched-time">7:00am</div>
+            <div class="bl-sched-detail"><strong>Early start — Grizzly Ranch.</strong> Golf Digest Top 100 Public Course. Par 72, 7,411 yards, slope 140, at 4,800 ft elevation. Book the earliest tee time you can get. Grizzly Ranch is 18 miles east in Portola — allow 25–30 minutes.</div>
+          </div>
+          <div class="bl-schedule-item">
+            <div class="bl-sched-time">~1:30pm</div>
+            <div class="bl-sched-detail"><strong>Finish Grizzly Ranch.</strong> Assess the damage. The 30-station natural turf practice range is excellent if anyone needs to decompress their swing after Grizzly's ridgeline holes.</div>
+          </div>
+          <div class="bl-schedule-item">
+            <div class="bl-sched-time">3:00pm (optional)</div>
+            <div class="bl-sched-detail"><strong>Optional: 9 holes at Graeagle Meadows.</strong> Slope 120. Completely different feel. If your group has strong legs and wants to use the daylight, Meadows is 20 minutes back toward town and plays relaxed. Skip it if anyone is genuinely worn out.</div>
+          </div>
+          <div class="bl-schedule-item">
+            <div class="bl-sched-time">7:30pm</div>
+            <div class="bl-sched-detail"><strong>Dinner at the Iron Door Restaurant.</strong> Make a reservation. The 1906 general store building in downtown Graeagle. Steaks, prime rib, scratch pasta, jaeger schnitzel. Order the prime rib. This is the dinner on the trip that people talk about later.</div>
+          </div>
+        </div>
+        <div class="bl-day-note">Why Grizzly on Day 2? Your legs are fresh, you've calibrated to altitude from Whitehawk, and you still have energy for the post-round Iron Door dinner that this kind of day deserves.</div>
+      </div>
+
+      <!-- Day 3 -->
+      <div class="bl-day-block">
+        <div class="bl-day-header">
+          <div class="bl-day-num">Day 3</div>
+          <div class="bl-day-title">The Bucket List Finish</div>
+        </div>
+
+        <div class="bl-schedule">
+          <div class="bl-schedule-item">
+            <div class="bl-sched-time">8:00am</div>
+            <div class="bl-sched-detail"><strong>Nakoma — The Dragon.</strong> Par 72, 7,015 yards, slope 147. Designed by Robin Nelson. Only golf clubhouse in the world designed by Frank Lloyd Wright. Debuted on Golf World's America's Top 75 list. Arrive early — spend 10 minutes inside the clubhouse before your round. You'll understand why it matters.</div>
+          </div>
+          <div class="bl-schedule-item">
+            <div class="bl-sched-time">~1:00pm</div>
+            <div class="bl-sched-detail"><strong>Lunch at Middle Fork Bistro.</strong> On-site at Nakoma. Casual, good food, right there when you finish. Worth staying for before the drive home.</div>
+          </div>
+          <div class="bl-schedule-item">
+            <div class="bl-sched-time">3:00pm (optional)</div>
+            <div class="bl-sched-detail"><strong>Optional: Plumas Pines.</strong> If your group has a fourth course in them — slope 132, tight pines, surprisingly different feel. Or just check out and head home on a high note from Nakoma.</div>
+          </div>
+        </div>
+        <div class="bl-day-note">Why Nakoma on the last day? The FLW clubhouse is a genuine visual experience. Ending on something bucket-list sends the group home talking about the trip — which is what brings people back.</div>
+      </div>
+
+      <h2>Alternative: The 2-Day Speed Run</h2>
+      <p>Tight on time? Here's the condensed version:</p>
+      <ul class="bl-list">
+        <li><strong>Day 1:</strong> Morning round at Whitehawk Ranch, afternoon at Plumas Pines (it's fast-playing, fits an afternoon)</li>
+        <li><strong>Day 2:</strong> Morning at Nakoma Dragon, drive home</li>
+      </ul>
+      <p>You'll miss Grizzly Ranch, which is the one genuine regret in a 2-day trip. If you can find 3 days, use them.</p>
+
+      <h2>What to Eat the Rest of the Time</h2>
+      <p>Beyond the Iron Door and Brewing Lair already built into the itinerary:</p>
+      <ul class="bl-list">
+        <li><strong>Grizzly Grill</strong> — Fine dining in the Plumas National Forest. Local game, stone hearth. Book ahead.</li>
+        <li><strong>Gumba's II Go</strong> — Hand-tossed pizza when the group just wants fast food after a late round.</li>
+        <li><strong>Eureka Peak Brewing Co.</strong> — Inside Chalet View Lodge. Good IPAs, more intimate than The Brewing Lair.</li>
+        <li><strong>Roadhouse at River Pines</strong> — If you're staying at River Pines, dinner on-site is convenient and solid.</li>
+      </ul>
+
+      <!-- FAQ -->
+      <div class="bl-faq">
+        <h2>Frequently Asked Questions</h2>
+        {[
+          { q: "How many Graeagle golf courses can you play in 3 days?", a: "Three to four comfortably. One round per day is the standard — adding optional 9-hole afternoon rounds is possible but demanding. Most groups land on 3 full rounds plus one optional 9." },
+          { q: "Which Graeagle golf course should you play first?", a: "Graeagle Meadows or Whitehawk Ranch. Both calibrate you to mountain golf without punishing you for being rusty. Save the slope 140+ courses for Day 2." },
+          { q: "How early should morning tee times be?", a: "7:00–8:00am gives you the best conditions — before afternoon heat at higher elevations, cooler air, dew on the fairways. Early rounds also finish before the afternoon pace slows down on busy days." },
+          { q: "Is it worth driving to Grizzly Ranch from Graeagle?", a: "Absolutely. It's 18 miles east in Portola, roughly 25–30 minutes. A Golf Digest Top 100 course is worth a 30-minute drive from anywhere." },
+        ].map(item => (
+          <div class="bl-faq-item">
+            <h3>{item.q}</h3>
+            <p>{item.a}</p>
+          </div>
+        ))}
+      </div>
+
+      <div class="bl-cta">
+        <h2>Want us to build this itinerary for your group?</h2>
+        <p>Tell us your dates and group size. We'll lock in the tee times, coordinate the lodging, and send you a day-by-day plan. You just show up and play.</p>
+        <a href="/quote" class="bl-cta-btn">Get a free quote →</a>
+        <div class="bl-cta-links">
+          <a href="/courses">Compare all 5 courses →</a>
+          <a href="/blog/how-to-plan-graeagle-golf-trip">Full planning guide →</a>
+        </div>
+      </div>
+
+    </article>
+
+    <aside class="bl-sidebar">
+      <div class="bl-sidebar-card">
+        <div class="bl-sidebar-title">Book This Itinerary</div>
+        <p>We'll secure tee times at all 4 courses and match you with the right lodging. Free quote.</p>
+        <a href="/quote" class="bl-sidebar-btn">Request a Quote →</a>
+      </div>
+      <div class="bl-sidebar-card">
+        <div class="bl-sidebar-title">The 4 Courses in This Itinerary</div>
+        <div class="bl-sidebar-links">
+          {[
+            { name: 'Whitehawk Ranch', slug: 'whitehawk-ranch', note: 'Day 1 · Slope 132' },
+            { name: 'Grizzly Ranch', slug: 'grizzly-ranch', note: 'Day 2 · Slope 140' },
+            { name: 'Graeagle Meadows', slug: 'graeagle-meadows', note: 'Day 2 optional · Slope 120' },
+            { name: 'Nakoma Dragon', slug: 'nakoma', note: 'Day 3 · Slope 147' },
+          ].map(c => (
+            <a href={`/courses/${c.slug}`} class="bl-sidebar-course">
+              <div class="bl-sidebar-course-name">{c.name}</div>
+              <div class="bl-sidebar-course-note">{c.note}</div>
+            </a>
+          ))}
+        </div>
+      </div>
+      <div class="bl-sidebar-card">
+        <div class="bl-sidebar-title">Related Reading</div>
+        <div class="bl-sidebar-links">
+          <a href="/blog/graeagle-vs-lake-tahoe-golf" class="bl-sidebar-post">Graeagle vs Lake Tahoe →</a>
+          <a href="/blog/best-time-to-golf-graeagle" class="bl-sidebar-post">Best Time to Go →</a>
+          <a href="/blog/how-to-plan-graeagle-golf-trip" class="bl-sidebar-post">Full Planning Guide →</a>
+        </div>
+      </div>
+    </aside>
+  </div>
+  <Footer />
+</Base>
