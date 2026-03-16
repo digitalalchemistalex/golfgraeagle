@@ -2,405 +2,282 @@
 import Base from '../layouts/Base.astro';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
-import { lodging, courses, lodgingToCourses, siteConfig } from '../data/content.js';
+import { lodging, courses, siteConfig } from '../data/content.js';
 export const prerender = true;
 
-const featuredOrder = ['inn-at-nakoma','river-pines-resort','chalet-view-lodge','townhomes-at-plumas-pines'];
-const sorted = featuredOrder.map(s => lodging.find(l => l.slug === s)).filter(Boolean);
-
-// Quick name lookup for course slugs
-const courseBySlug = Object.fromEntries(courses.map(c => [c.slug, c]));
-
-// Better descriptions — lead with the compelling hook, not the generic facts
-const propertyIntro = {
-  'inn-at-nakoma':             'The only place in the world where you sleep under a Frank Lloyd Wright roof and walk to your tee time. The Dragon is literally outside the door — no drive, no logistics, just golf.',
-  'river-pines-resort':        'The most group-tested base in the valley. Family-owned 40+ years, The Roadhouse handles group dinners, and every room type scales to fit your headcount. Feather River is 50 steps away.',
-  'chalet-view-lodge':         'Ten forested acres with more on-site than most resort towns. A 9-hole warm-up course, a brewery, spa, pool, and a concierge text service. Groups arrive, unpack once, and don\'t leave until checkout.',
-  'townhomes-at-plumas-pines': '2–4 bedroom units with full kitchens, golf course views, and a community pool — right on the Plumas Pines property. The best option when your group is big enough that hotel rooms stop making sense.',
-};
-
-const psychLabel = {
-  'river-pines-resort':        { tag:'Best for Groups',     color:'rgba(82,168,98,0.1)',   border:'rgba(82,168,98,0.25)',   text:'rgba(120,196,136,0.9)' },
-  'chalet-view-lodge':         { tag:'Best Amenities',      color:'rgba(100,140,232,0.1)', border:'rgba(100,140,232,0.25)', text:'rgba(150,180,245,0.9)' },
-  'inn-at-nakoma':             { tag:'Most Unique',         color:'rgba(232,168,80,0.1)',  border:'rgba(232,168,80,0.25)',  text:'#e8a850' },
-  'townhomes-at-plumas-pines': { tag:'Best for Large Groups', color:'rgba(210,160,80,0.08)', border:'rgba(210,160,80,0.2)', text:'rgba(210,168,110,0.9)' },
-};
-
-const lodgingSchemas = lodging.map(l => ({
-  "@type": "LodgingBusiness",
-  "@id": `${siteConfig.url}/lodging#${l.slug}`,
-  "name": l.name,
-  "description": l.tagline,
-  "url": l.website || `${siteConfig.url}/lodging`,
-  "address": {
-    "@type": "PostalAddress",
-    "streetAddress": l.address,
-    "addressRegion": "CA",
-    "addressCountry": "US"
+const hotels = [
+  {
+    ...lodging.find(l => l.slug === 'river-pines-resort'),
+    badge: 'Best for Golf Groups',
+    badgeColor: '#22c55e',
+    priceRange: '$$',
+    capacity: '4–60 guests',
+    roomTypes: 'Cabins · Suites · Rooms',
+    closestCourse: 'Graeagle Meadows — 5 min',
+    perk: 'On-site Roadhouse restaurant. Pool & hot tub. No logistics for group dinners.',
+    anchor: 'river-pines',
+    portfolioSlug: 'river-pines-resort-graeagle-ca',
   },
-  "amenityFeature": (l.highlights || []).map(h => ({ "@type": "LocationFeatureSpecification", "name": h, "value": true })),
-  "sameAs": l.website
-}));
+  {
+    ...lodging.find(l => l.slug === 'chalet-view-lodge'),
+    badge: 'Best Amenities',
+    badgeColor: '#3b82f6',
+    priceRange: '$$$',
+    capacity: '2–30 guests',
+    roomTypes: 'Lodge rooms · Suites · Cabins',
+    closestCourse: 'Graeagle Meadows — 10 min',
+    perk: '9-hole exec course + Eureka Peak Brewing on-site. Spa. Full event venue.',
+    anchor: 'chalet-view',
+    portfolioSlug: 'chalet-view-lodge-graeagle-ca',
+  },
+  {
+    ...lodging.find(l => l.slug === 'inn-at-nakoma'),
+    badge: 'The Bucket-List Stay',
+    badgeColor: '#a855f7',
+    priceRange: '$$$$',
+    capacity: 'Up to 42 rooms',
+    roomTypes: '42 rooms & suites',
+    closestCourse: 'Nakoma Dragon — walk to 1st tee',
+    perk: 'Only lodging with walk-on Dragon access. Frank Lloyd Wright building. Fifty44 on-site.',
+    anchor: 'inn-at-nakoma',
+    portfolioSlug: 'the-inn-at-nakoma-clio-ca',
+  },
+];
 
-const lodgingBreadcrumb = {
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    { "@type": "ListItem", "position": 1, "name": "Home", "item": siteConfig.url },
-    { "@type": "ListItem", "position": 2, "name": "Lodging", "item": `${siteConfig.url}/lodging` }
-  ]
+const townhomeData = {
+  ...lodging.find(l => l.slug === 'townhomes-at-plumas-pines'),
+  badge: 'Best for Large Groups',
+  badgeColor: '#e8a850',
+  priceRange: '$$',
+  capacity: '8–24+ guests',
+  portfolioSlug: 'the-townhomes-at-plumas-pines',
 };
 
 const lodgingFaq = {
+  "@context": "https://schema.org",
   "@type": "FAQPage",
   "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "Where should a golf group stay in Graeagle?",
-      "acceptedAnswer": { "@type": "Answer", "text": "The best lodging for golf groups in Graeagle depends on group size and preferences. River Pines Resort is ideal for larger groups with multiple room types and on-site dining. The Townhomes at Plumas Pines offer 2–4 bedroom units with full kitchens, great for self-catering groups. Inn at Nakoma is the most luxurious option, located directly on the Nakoma Dragon golf course." }
-    },
-    {
-      "@type": "Question",
-      "name": "Is there lodging on the golf courses in Graeagle?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Yes. The Inn at Nakoma is located on the Nakoma Dragon golf course property. The Townhomes at Plumas Pines are adjacent to Plumas Pines Golf Resort. River Pines Resort is within walking distance of Graeagle Meadows Golf Course." }
-    },
-    {
-      "@type": "Question",
-      "name": "What stay and play golf packages are available in Graeagle?",
-      "acceptedAnswer": { "@type": "Answer", "text": "GolfGraeagle offers custom stay-and-play packages combining lodging at River Pines Resort, Chalet View Lodge, Inn at Nakoma, or Townhomes at Plumas Pines with tee times at any combination of Graeagle's five championship courses. Request a free quote at golfgraeagle.com/quote." }
-    }
+    { "@type": "Question", "name": "Where should a golf group stay in Graeagle?", "acceptedAnswer": { "@type": "Answer", "text": "River Pines Resort is the top choice for most golf groups — multiple room types, on-site dining, pool. For large groups (8+), the Townhomes at Plumas Pines offer multi-bedroom units with full kitchens at the best per-person cost. For the bucket-list stay, the Inn at Nakoma puts you steps from The Dragon." } },
+    { "@type": "Question", "name": "Is there lodging on the golf courses in Graeagle?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. The Inn at Nakoma is on the Nakoma Dragon course property. The Townhomes at Plumas Pines are adjacent to Plumas Pines Golf Resort. River Pines Resort is walking distance from Graeagle Meadows." } },
+    { "@type": "Question", "name": "What is the difference between a Graeagle hotel and townhome rental?", "acceptedAnswer": { "@type": "Answer", "text": "Hotels and lodges (River Pines, Chalet View, Inn at Nakoma) offer traditional hotel service with amenities, on-site dining, and housekeeping. Townhomes at Plumas Pines are multi-bedroom vacation rentals with full kitchens — better for larger groups who want to self-cater and share common spaces." } },
+    { "@type": "Question", "name": "Do Graeagle lodging properties offer stay-and-play golf packages?", "acceptedAnswer": { "@type": "Answer", "text": "GolfGraeagle builds custom stay-and-play packages combining any property with tee times at all 5 courses. Request a free quote with your dates, group size, and preferred courses." } },
   ]
 };
 ---
-
 <Base
-  title="Graeagle Golf Lodging | Stay & Play Packages Near Championship Courses"
-  description="Where to stay for a Graeagle golf trip. The Inn at Nakoma for on-course luxury, River Pines Resort for groups, Chalet View Lodge for amenities, Townhomes at Plumas Pines for large groups."
-  schema={[...lodgingSchemas, lodgingBreadcrumb, lodgingFaq]}
+  title="Graeagle Golf Lodging | Hotels, Resorts & Townhomes Near 5 Courses"
+  description="Where to stay for a Graeagle golf trip. Hotels and resorts (River Pines, Chalet View, Inn at Nakoma) and townhomes at Plumas Pines. All within 25 minutes of every course."
+  schema={[lodgingFaq]}
 >
 <Nav />
 
-<style>
-  .lodge-hero {
-    position: relative;
-    min-height: 72vh;
-    display: flex;
-    align-items: flex-end;
-    overflow: hidden;
-  }
-  .lodge-hero img.bg {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-  .lodge-hero-grad {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(0deg, #0d1a0e 0%, rgba(13,26,14,0.5) 55%, rgba(13,26,14,0.08) 100%);
-  }
-  .lodge-hero-content {
-    position: relative;
-    z-index: 2;
-    max-width: 1280px;
-    margin: 0 auto;
-    padding: 0 48px 80px;
-    width: 100%;
-  }
-  .quick-pick {
-    background: rgba(232,168,80,0.04);
-    border: 1px solid rgba(232,168,80,0.1);
-    border-radius: 20px;
-    padding: 26px 30px;
-    max-width: 1280px;
-    margin: 52px auto 0;
-    padding-inline: 48px;
-  }
-  .pick-grid {
-    display: grid;
-    grid-template-columns: repeat(4,1fr);
-    gap: 10px;
-    margin-top: 16px;
-  }
-  .pick-card {
-    padding: 16px;
-    border-radius: 14px;
-    background: rgba(240,248,242,0.02);
-    border: 1px solid rgba(240,248,242,0.05);
-    text-decoration: none;
-    display: block;
-    transition: background 0.2s, border-color 0.2s, transform 0.2s;
-  }
-  .pick-card:hover {
-    background: rgba(240,248,242,0.05);
-    border-color: rgba(240,248,242,0.12);
-    transform: translateY(-2px);
-  }
-  /* Property section layout */
-  .property-section { padding: 80px 0; border-top: 1px solid rgba(240,248,242,0.05); }
-  .property-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 52px; align-items: start; }
-  .property-grid.flip { direction: rtl; }
-  .property-grid.flip > * { direction: ltr; }
-  /* Gallery */
-  .gallery-main {
-    display: block;
-    width: 100%;
-    height: 340px;
-    object-fit: cover;
-    border-radius: 18px;
-    transition: transform 5s ease;
-  }
-  .gallery-main:hover { transform: scale(1.02); }
-  .gallery-thumbs {
-    display: grid;
-    grid-template-columns: repeat(3,1fr);
-    gap: 8px;
-    margin-top: 8px;
-  }
-  .gallery-thumb {
-    display: block;
-    width: 100%;
-    height: 96px;
-    object-fit: cover;
-    border-radius: 10px;
-    transition: transform 4s ease, opacity 0.2s;
-    opacity: 0.8;
-  }
-  .gallery-thumb:hover { transform: scale(1.06); opacity: 1; }
-  /* Highlight list */
-  .highlight { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 9px; }
-  /* Course link chip */
-  .course-chip {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 13px 18px;
-    border-radius: 14px;
-    background: rgba(232,168,80,0.05);
-    border: 1px solid rgba(232,168,80,0.12);
-    margin-bottom: 22px;
-  }
-  /* Comparison table */
-  .compare-table { width: 100%; border-collapse: collapse; font-size: 13px; }
-  .compare-table th { text-align: center; padding: 11px 12px; font-size: 10px; color: rgba(240,248,242,0.28); text-transform: uppercase; letter-spacing: 0.1em; border-bottom: 1px solid rgba(240,248,242,0.07); }
-  .compare-table th:first-child { text-align: left; }
-  .compare-table td { padding: 13px 12px; text-align: center; border-bottom: 1px solid rgba(240,248,242,0.04); }
-  .compare-table td:first-child { text-align: left; color: #f0f8f2; font-weight: 500; }
-  .compare-table tr:hover td { background: rgba(232,168,80,0.025); }
-  /* Utils */
-  .page-wrap { max-width: 1280px; margin: 0 auto; padding: 0 48px; }
-  .sec-label { font-size: 11px; color: #e8a850; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 600; margin: 0 0 10px; }
-  .sec-h2 { font-family: 'Playfair Display', serif; font-size: clamp(28px,3.5vw,42px); font-weight: 400; color: #f0f8f2; margin: 0; line-height: 1.1; }
-  .badge-pill { display: inline-block; font-size: 11px; font-weight: 600; padding: 5px 14px; border-radius: 100px; }
-  .btn-primary { display: inline-flex; align-items: center; gap: 10px; background: #e8a850; color: #0d1a0e; font-size: 14px; font-weight: 700; padding: 14px 32px; border-radius: 100px; text-decoration: none; transition: background 0.25s, transform 0.25s, box-shadow 0.25s; box-shadow: 0 4px 24px rgba(232,168,80,0.2); }
-  .btn-primary:hover { background: #f2c878; transform: translateY(-1px); box-shadow: 0 10px 36px rgba(232,168,80,0.35); }
-  .btn-ghost { display: inline-flex; align-items: center; gap: 8px; background: transparent; color: rgba(240,248,242,0.45); font-size: 14px; font-weight: 500; padding: 14px 28px; border-radius: 100px; text-decoration: none; border: 1px solid rgba(240,248,242,0.1); transition: color 0.2s, border-color 0.2s; }
-  .btn-ghost:hover { color: #f0f8f2; border-color: rgba(240,248,242,0.25); }
-  @media (max-width: 900px) {
-    .property-grid, .property-grid.flip { grid-template-columns: 1fr; direction: ltr; gap: 30px; }
-    .pick-grid { grid-template-columns: 1fr 1fr; }
-    .page-wrap { padding: 0 24px; }
-    .lodge-hero-content { padding: 0 24px 56px; }
-    .quick-pick { padding-inline: 24px; }
-  }
-  @media (max-width: 540px) {
-    .pick-grid { grid-template-columns: 1fr; }
-  }
-</style>
+<!-- HERO -->
+<section class="ldg-hero">
+  <img src="https://nakomaresort.com/wp-content/uploads/inn-at-nakoma-lobby-fireplace.jpg" alt="Graeagle golf lodging — Inn at Nakoma lobby" class="ldg-hero-img" loading="eager"/>
+  <div class="ldg-hero-overlay"></div>
+  <div class="ldg-hero-content">
+    <p class="ldg-eyebrow">Stay & Play · Graeagle, California</p>
+    <h1 class="ldg-hero-h1">Sleep on the courses.<br/><span style="color:#e8a850;">Wake up ready to play.</span></h1>
+    <p class="ldg-hero-sub">Two lodging types. Four properties. All within 25 minutes of every championship course.</p>
+    <div class="ldg-type-pills">
+      <a href="#hotels-resorts" class="ldg-pill">🏨 Hotels & Resorts</a>
+      <a href="#townhomes" class="ldg-pill">🏘 Townhomes</a>
+      <a href="/quote" class="ldg-pill ldg-pill-gold">Request a quote →</a>
+    </div>
+  </div>
+</section>
 
-<!-- ══════════════════════════════════════════
-     HERO — always visible, no reveal class
-══════════════════════════════════════════ -->
-<section class="lodge-hero">
-  <img class="bg" src="https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?w=1800&q=85&auto=format" alt="Graeagle lodging" />
-  <div class="lodge-hero-grad"></div>
-  <div class="lodge-hero-content">
-    <p class="sec-label" style="margin-bottom:18px;">Where to Stay · Graeagle, California</p>
-    <h1 style="font-family:'Playfair Display',serif;font-size:clamp(52px,7vw,94px);font-weight:400;color:#f0f8f2;margin:0 0 20px;line-height:1.0;">
-      Wake up.<br/><em style="color:#e8a850;font-style:italic;">Tee off.</em>
-    </h1>
-    <p class="speakable page-intro" style="font-size:18px;color:rgba(240,248,242,0.55);max-width:560px;line-height:1.75;margin:0 0 36px;">
-      Every property we recommend puts you within minutes — sometimes steps — of a championship tee. No long drives before your first shot of the day.
-    </p>
-    <!-- Anchor nav pills -->
-    <div style="display:flex;gap:10px;flex-wrap:wrap;">
-      {[
-        {l:'On-course stay', h:'#inn-at-nakoma'},
-        {l:'Best for groups', h:'#river-pines'},
-        {l:'Best amenities', h:'#chalet-view'},
-        {l:'Large groups', h:'#townhomes'},
-      ].map(b=>(
-        <a href={b.h} style="font-size:12px;color:rgba(240,248,242,0.6);border:1px solid rgba(240,248,242,0.14);padding:8px 18px;border-radius:100px;text-decoration:none;background:rgba(240,248,242,0.03);transition:all 0.2s;"
-        onmouseover="this.style.color='#e8a850';this.style.borderColor='rgba(232,168,80,0.3)'"
-        onmouseout="this.style.color='rgba(240,248,242,0.6)';this.style.borderColor='rgba(240,248,242,0.14)'">{b.l}</a>
+<!-- QUICK DECISION GUIDE -->
+<section class="ldg-decision">
+  <div class="ldg-container">
+    <h2 class="ldg-section-title">Which type fits your trip?</h2>
+    <div class="ldg-decision-grid">
+      <div class="ldg-decision-card">
+        <div class="ldg-decision-icon">🏨</div>
+        <h3 class="ldg-decision-type">Hotels & Resorts</h3>
+        <p class="ldg-decision-desc">Traditional hotel service — daily housekeeping, on-site dining, amenities. Three properties from $$ to $$$$.</p>
+        <ul class="ldg-decision-list">
+          <li>✓ Groups of 2–60 in any room configuration</li>
+          <li>✓ On-site restaurants — no coordinating meals</li>
+          <li>✓ Spa, pool, hot tub at most properties</li>
+          <li>✓ One room per couple/pair</li>
+        </ul>
+        <a href="#hotels-resorts" class="ldg-decision-link">See the 3 hotels →</a>
+      </div>
+      <div class="ldg-decision-card">
+        <div class="ldg-decision-icon">🏘</div>
+        <h3 class="ldg-decision-type">Townhomes</h3>
+        <p class="ldg-decision-desc">Multi-bedroom vacation rentals with full kitchens. Best per-person cost for groups of 8+.</p>
+        <ul class="ldg-decision-list">
+          <li>✓ 2–4 bedrooms per unit — whole group together</li>
+          <li>✓ Full kitchens cut meal costs significantly</li>
+          <li>✓ On the Plumas Pines Golf Course</li>
+          <li>✓ Pool and tennis courts</li>
+        </ul>
+        <a href="#townhomes" class="ldg-decision-link">See the townhomes →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOTELS & RESORTS -->
+<section id="hotels-resorts" class="ldg-section ldg-section-light">
+  <div class="ldg-container">
+    <div class="ldg-section-header">
+      <div>
+        <div class="ldg-section-tag">🏨 Hotels & Resorts</div>
+        <h2 class="ldg-section-title">Three hotels. Completely different trips.</h2>
+        <p class="ldg-section-sub">River Pines for groups, Chalet View for amenities, Nakoma for the bucket-list. Each serves a different kind of golfer.</p>
+      </div>
+    </div>
+
+    <div class="ldg-hotel-cards">
+      {hotels.map((h, i) => (
+        <article class="ldg-hotel-card" id={h.anchor}>
+          <div class="ldg-hotel-img-wrap">
+            <img src={h.hero} alt={`${h.name} — Graeagle golf lodging`} loading={i === 0 ? 'eager' : 'lazy'} class="ldg-hotel-img"/>
+            <div class="ldg-hotel-img-fade"></div>
+            <span class="ldg-hotel-badge" style={`background:${h.badgeColor}`}>{h.badge}</span>
+            <span class="ldg-hotel-price">{h.priceRange}</span>
+            {h.images && h.images.length > 1 && (
+              <div class="ldg-hotel-thumbs">
+                {h.images.slice(1, 4).map((img: string, ti: number) => (
+                  <img src={img} alt={`${h.name} ${ti+2}`} loading="lazy" class="ldg-hotel-thumb"/>
+                ))}
+              </div>
+            )}
+          </div>
+          <div class="ldg-hotel-body">
+            <div class="ldg-hotel-meta-row">
+              <div>
+                <h3 class="ldg-hotel-name">{h.name}</h3>
+                <p class="ldg-hotel-tagline">{h.tagline}</p>
+              </div>
+              <a href={`/portfolio/${h.portfolioSlug}`} class="ldg-hotel-details-link">Details →</a>
+            </div>
+            <p class="ldg-hotel-desc">{h.description}</p>
+            <div class="ldg-hotel-stats">
+              <div class="ldg-hstat">
+                <div class="ldg-hstat-l">Capacity</div>
+                <div class="ldg-hstat-v">{h.capacity}</div>
+              </div>
+              <div class="ldg-hstat">
+                <div class="ldg-hstat-l">Rooms</div>
+                <div class="ldg-hstat-v">{h.roomTypes}</div>
+              </div>
+              <div class="ldg-hstat">
+                <div class="ldg-hstat-l">Nearest course</div>
+                <div class="ldg-hstat-v">{h.closestCourse}</div>
+              </div>
+              <div class="ldg-hstat">
+                <div class="ldg-hstat-l">Price tier</div>
+                <div class="ldg-hstat-v" style={`color:${h.badgeColor}`}>{h.priceRange}</div>
+              </div>
+            </div>
+            <div class="ldg-hotel-perk">
+              <span class="ldg-perk-icon">⛳</span>
+              <span>{h.perk}</span>
+            </div>
+            <div class="ldg-hotel-highlights">
+              {(h.highlights || []).slice(0, 5).map((hl: string) => (
+                <span class="ldg-hl-tag">✓ {hl}</span>
+              ))}
+            </div>
+            <a href="/quote" class="ldg-hotel-cta" style={`background:${h.badgeColor}`}>
+              Quote {h.name} →
+            </a>
+          </div>
+        </article>
       ))}
     </div>
   </div>
 </section>
 
-<!-- ══════════════════════════════════════════
-     QUICK PICK — psychology decision aid
-══════════════════════════════════════════ -->
-<div class="quick-pick reveal">
-  <p class="sec-label" style="margin:0 0 4px;">Quick Pick — What kind of trip?</p>
-  <p style="font-size:13px;color:rgba(240,248,242,0.3);margin:0 0 16px;">Match your situation to the right property in one tap.</p>
-  <div class="pick-grid">
-    {[
-      { icon:'🐉', type:'On-course luxury',    rec:'Inn at Nakoma',           why:'Walk from your room to The Dragon tee', href:'#inn-at-nakoma' },
-      { icon:'🏌️', type:'Golf group (4–12)',   rec:'River Pines Resort',       why:'On-site dining, group-friendly rooms', href:'#river-pines' },
-      { icon:'🏊', type:'Family or couples',    rec:'Chalet View Lodge',        why:'Pool, hot tub, mountain atmosphere',   href:'#chalet-view' },
-      { icon:'🏠', type:'Large group (12+)',    rec:'Townhomes at Plumas Pines', why:'Full kitchens, multiple bedrooms, pool', href:'#townhomes' },
-    ].map(c=>(
-      <a class="pick-card" href={c.href}>
-        <div style="font-size:22px;margin-bottom:8px;">{c.icon}</div>
-        <div style="font-size:10px;color:rgba(240,248,242,0.3);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:4px;">{c.type}</div>
-        <div style="font-size:13px;font-weight:600;color:#f0f8f2;margin-bottom:5px;">{c.rec}</div>
-        <div style="font-size:11px;color:rgba(240,248,242,0.3);line-height:1.5;">{c.why}</div>
-      </a>
-    ))}
-  </div>
-</div>
+<!-- TOWNHOMES -->
+<section id="townhomes" class="ldg-section ldg-section-dark">
+  <div class="ldg-container">
+    <div class="ldg-section-header">
+      <div>
+        <div class="ldg-section-tag" style="color:#e8a850;background:rgba(232,168,80,0.1);border-color:rgba(232,168,80,0.2);">🏘 Townhomes</div>
+        <h2 class="ldg-section-title" style="color:#f0f8f2;">Best for groups of 8 or more.</h2>
+        <p class="ldg-section-sub" style="color:rgba(240,248,242,0.5);">Multi-bedroom vacation rentals on the Plumas Pines Golf Course. Full kitchens, shared living spaces, and the best per-person cost in Graeagle.</p>
+      </div>
+    </div>
 
-<!-- ══════════════════════════════════════════
-     PROPERTY CARDS — one per property
-     Alternating layout, real gallery images
-══════════════════════════════════════════ -->
-{sorted.map((property, idx) => {
-  const label  = psychLabel[property.slug];
-  const flip   = idx % 2 !== 0;
-  const anchorMap = {
-    'inn-at-nakoma': 'inn-at-nakoma',
-    'river-pines-resort': 'river-pines',
-    'chalet-view-lodge': 'chalet-view',
-    'townhomes-at-plumas-pines': 'townhomes',
-  };
-  return (
-    <section class="property-section" id={anchorMap[property.slug]}>
-      <div class="page-wrap">
-        <div class={`property-grid reveal${flip?' flip':''}`}>
+    <div class="ldg-townhome-layout">
+      <div class="ldg-townhome-img-wrap">
+        <img src={townhomeData.hero} alt="Townhomes at Plumas Pines — Graeagle group lodging" loading="lazy" class="ldg-townhome-img"/>
+        <span class="ldg-hotel-badge" style="background:#e8a850;top:20px;left:20px;position:absolute;">Best for Large Groups</span>
+        <span class="ldg-hotel-price" style="top:20px;right:20px;position:absolute;">$$</span>
+      </div>
+      <div class="ldg-townhome-body">
+        <h3 class="ldg-townhome-name">Townhomes at Plumas Pines</h3>
+        <p class="ldg-townhome-tagline">{townhomeData.tagline}</p>
+        <p class="ldg-townhome-desc">{townhomeData.description}</p>
 
-          <!-- ── Gallery column ── -->
-          <div>
-            <div style="position:relative;overflow:hidden;border-radius:18px;">
-              <img class="gallery-main" src={property.hero} alt={property.name} loading={idx===0?'eager':'lazy'} />
-              <!-- Psychology badge on image -->
-              <div style={`position:absolute;top:16px;left:16px;background:${label.color};border:1px solid ${label.border};backdrop-filter:blur(10px);padding:6px 14px;border-radius:100px;`}>
-                <span style={`font-size:11px;font-weight:600;color:${label.text};letter-spacing:0.05em;`}>{label.tag}</span>
+        <div class="ldg-townhome-why">
+          <div class="ldg-tw-why-title">Why groups choose townhomes over hotels</div>
+          {[
+            { icon:'💰', point:'Full kitchens', detail:'Breakfast and snacks in-unit. One restaurant dinner vs. three. The savings on a 3-night trip for 12 people are real.' },
+            { icon:'🛋', point:'Everyone in one place', detail:'2–4 bedroom units keep the group together. No splitting into separate hotel rooms across a property.' },
+            { icon:'⛳', point:'Steps from Plumas Pines', detail:'Wake up and walk to the first tee. No morning car shuffle. Grab your clubs and go.' },
+            { icon:'🎯', point:'Best per-person cost', detail:'The more people you split the unit with, the lower your per-night cost. Groups of 12+ get the best value in all of Graeagle.' },
+          ].map(w => (
+            <div class="ldg-tw-why-item">
+              <span class="ldg-tw-why-icon">{w.icon}</span>
+              <div>
+                <div class="ldg-tw-why-point">{w.point}</div>
+                <div class="ldg-tw-why-detail">{w.detail}</div>
               </div>
             </div>
-            <!-- Thumbnail strip — only if we have more images -->
-            {property.images && property.images.length > 1 && (
-              <div class="gallery-thumbs">
-                {property.images.slice(1, 4).map((img, ti) => (
-                  <img class="gallery-thumb" src={img} alt={`${property.name} ${ti+2}`} loading="lazy" />
-                ))}
-              </div>
-            )}
-          </div>
+          ))}
+        </div>
 
-          <!-- ── Content column ── -->
-          <div style="display:flex;flex-direction:column;justify-content:center;">
-            <!-- Pill badge -->
-            <span class="badge-pill" style={`background:${label.color};border:1px solid ${label.border};color:${label.text};margin-bottom:18px;`}>
-              {label.tag}
-            </span>
+        <div class="ldg-townhome-features">
+          {(townhomeData.highlights || []).map((h: string) => (
+            <span class="ldg-tw-feature">✓ {h}</span>
+          ))}
+        </div>
 
-            <h2 style="font-family:'Playfair Display',serif;font-size:clamp(28px,3vw,40px);font-weight:400;color:#f0f8f2;margin:0 0 6px;line-height:1.15;">{property.name}</h2>
-            <p style="font-size:14px;color:#e8a850;margin:0 0 18px;font-style:italic;">{property.tagline}</p>
-
-            <!-- Lead hook — the compelling reason to pick this property -->
-            <p style="font-size:15px;color:rgba(240,248,242,0.55);line-height:1.8;margin:0 0 22px;">{propertyIntro[property.slug]}</p>
-
-            <!-- Highlights -->
-            <div style="margin-bottom:28px;">
-              {(property.highlights||[]).map(h=>(
-                <div class="highlight">
-                  <span style="color:#e8a850;font-size:12px;margin-top:2px;flex-shrink:0;">✓</span>
-                  <span style="font-size:13px;color:rgba(240,248,242,0.52);">{h}</span>
-                </div>
-              ))}
-            </div>
-
-            <!-- All 5 courses with distances — the real value -->
-            <div style="margin-bottom:26px;">
-              <div style="font-size:10px;color:rgba(240,248,242,0.25);text-transform:uppercase;letter-spacing:0.12em;margin-bottom:12px;">Distance to Each Course</div>
-              <div style="display:flex;flex-direction:column;gap:0;border:1px solid rgba(240,248,242,0.06);border-radius:12px;overflow:hidden;">
-                {(lodgingToCourses[property.slug] || []).map((entry, ei) => {
-                  const course = courseBySlug[entry.slug];
-                  if (!course) return null;
-                  const isOnsite = entry.dist === 'On property' || entry.dist === 'Steps away' || entry.dist === 'Walking distance';
-                  return (
-                    <a
-                      href={`/courses/${course.slug}`}
-                      style={`display:flex;justify-content:space-between;align-items:center;padding:10px 14px;gap:12px;text-decoration:none;transition:background 0.15s;${ei > 0 ? 'border-top:1px solid rgba(240,248,242,0.05);' : ''}`}
-                      onmouseover="this.style.background='rgba(240,248,242,0.03)'"
-                      onmouseout="this.style.background='transparent'"
-                    >
-                      <div style="display:flex;align-items:center;gap:10px;">
-                        {isOnsite && <span style="width:6px;height:6px;border-radius:50%;background:#e8a850;flex-shrink:0;display:inline-block;"></span>}
-                        <span style={`font-size:13px;font-weight:500;${isOnsite ? 'color:#f0f8f2;' : 'color:rgba(240,248,242,0.65);'}`}>{course.name}</span>
-                      </div>
-                      <div style="display:flex;align-items:center;gap:10px;flex-shrink:0;">
-                        <span style={`font-size:11px;padding:3px 10px;border-radius:100px;${isOnsite ? 'background:rgba(232,168,80,0.14);color:#e8a850;border:1px solid rgba(232,168,80,0.25);' : 'color:rgba(240,248,242,0.35);'}`}>{entry.dist}</span>
-                        <span style="font-size:10px;color:rgba(240,248,242,0.18);">{entry.distNote}</span>
-                      </div>
-                    </a>
-                  );
-                })}
-              </div>
-            </div>
-
-            <!-- CTAs -->
-            <div style="display:flex;gap:10px;flex-wrap:wrap;">
-              <a class="btn-primary" href="/quote">Include in Package →</a>
-              {property.website && !property.website.includes('golfgraeagle') && (
-                <a class="btn-ghost" href={property.website} target="_blank" rel="noopener">Property Website ↗</a>
-              )}
-            </div>
-          </div>
-
+        <div class="ldg-townhome-ctas">
+          <a href="/quote" class="ldg-tw-cta-primary">Quote the townhomes →</a>
+          <a href="/townhomes" class="ldg-tw-cta-ghost">Full townhome guide →</a>
         </div>
       </div>
-    </section>
-  )
-})}
-
-<!-- ══════════════════════════════════════════
-     COMPARISON TABLE — anchoring psychology
-     Shows all 4 properties side by side
-══════════════════════════════════════════ -->
-<section style="padding:80px 0;border-top:1px solid rgba(240,248,242,0.05);background:rgba(240,248,242,0.005);">
-  <div class="page-wrap">
-    <div class="reveal" style="text-align:center;margin-bottom:44px;">
-      <p class="sec-label">Compare All Properties</p>
-      <h2 class="sec-h2" style="font-size:clamp(30px,4vw,42px);">Side by side.</h2>
     </div>
-    <div class="reveal" style="overflow-x:auto;border-radius:16px;border:1px solid rgba(240,248,242,0.06);">
-      <table class="compare-table">
+  </div>
+</section>
+
+<!-- COMPARE ALL -->
+<section class="ldg-compare-section">
+  <div class="ldg-container">
+    <h2 class="ldg-section-title">All four properties at a glance</h2>
+    <div class="ldg-compare-wrap">
+      <table class="ldg-compare-table">
         <thead>
-          <tr style="background:rgba(240,248,242,0.02);">
-            <th style="text-align:left;padding:13px 18px;">Property</th>
-            {['Best For','Type','Nearest Course','Distance','On-Site Dining','Pool / Spa','Full Kitchen','Group Events'].map(h=>(
-              <th>{h}</th>
+          <tr>
+            <th class="ldg-cth ldg-cth-left">Factor</th>
+            {[...hotels, {name:'Townhomes at Plumas Pines', priceRange:'$$', badgeColor:'#e8a850', badge:'Townhomes'}].map(p => (
+              <th class="ldg-cth">
+                <div style="font-family:'Playfair Display',serif;font-size:13px;color:#1a2e1a;">{p.name}</div>
+                <div style={`font-size:15px;font-weight:700;color:${p.badgeColor};margin-top:2px;`}>{p.priceRange}</div>
+              </th>
             ))}
           </tr>
         </thead>
         <tbody>
           {[
-            { name:'The Inn at Nakoma',         best:'On-Course',  type:'Resort', course:'Nakoma Dragon',  dist:'On-site', dining:'—', pool:'✓', kitchen:'—', events:'✓' },
-            { name:'River Pines Resort',         best:'Groups',     type:'Resort', course:'Graeagle Meadows', dist:'Walk', dining:'✓', pool:'—', kitchen:'—', events:'✓' },
-            { name:'Chalet View Lodge',          best:'Amenities',  type:'Lodge',  course:'Graeagle Meadows', dist:'5 min', dining:'—', pool:'✓', kitchen:'—', events:'✓' },
-            { name:'Townhomes at Plumas Pines',  best:'Large Groups',type:'Rental',course:'Plumas Pines', dist:'Walk', dining:'—', pool:'✓', kitchen:'✓', events:'—' },
-          ].map((r,i)=>(
-            <tr style={i%2===0?'background:rgba(240,248,242,0.01);':''}>
-              <td style="padding:14px 18px;">{r.name}</td>
-              <td style="color:#e8a850;font-size:11px;font-weight:500;">{r.best}</td>
-              <td style="color:rgba(240,248,242,0.38);">{r.type}</td>
-              <td style="color:rgba(240,248,242,0.38);">{r.course}</td>
-              <td style="color:rgba(240,248,242,0.38);">{r.dist}</td>
-              {[r.dining,r.pool,r.kitchen,r.events].map(v=>(
-                <td style={`color:${v==='✓'?'rgba(130,210,140,0.9)':'rgba(240,248,242,0.18)'};font-size:${v==='✓'?'16px':'13px'};`}>{v}</td>
-              ))}
+            { label:'Type', vals:['Resort','Lodge','Resort','Vacation rental'] },
+            { label:'Best for', vals:['Groups 4–60','Amenity seekers','Bucket-list','Groups 8–24+'] },
+            { label:'Room config', vals:['Cabins, suites, rooms','Lodge rooms, cabins','42 hotel rooms','2–4 BR units'] },
+            { label:'Nearest course', vals:['Meadows 5 min','Meadows 10 min','Dragon: walk','Plumas Pines: steps'] },
+            { label:'On-site dining', vals:['The Roadhouse ✓','Kitchen+Bar + Eureka Peak ✓','Fifty44 + Middle Fork ✓','Full kitchen (self-cater)'] },
+            { label:'Pool / hot tub', vals:['Pool + hot tub ✓','Pool + spa ✓','Pool + 2 hot tubs ✓','Community pool ✓'] },
+            { label:'Pet friendly', vals:['Check policy','Check policy','✓ 2 dogs, 75 lbs','Check policy'] },
+          ].map(row => (
+            <tr class="ldg-ctr">
+              <td class="ldg-ctd ldg-ctd-label">{row.label}</td>
+              {row.vals.map(v => <td class="ldg-ctd">{v}</td>)}
             </tr>
           ))}
         </tbody>
@@ -409,15 +286,157 @@ const lodgingFaq = {
   </div>
 </section>
 
-<!-- ══════════════════════════════════════════
-     CTA
-══════════════════════════════════════════ -->
-<section style="padding:96px 48px;text-align:center;" class="reveal">
-  <h2 style="font-family:'Playfair Display',serif;font-size:clamp(34px,4vw,50px);font-weight:400;color:#f0f8f2;margin:0 0 14px;line-height:1.15;">Not sure which fits your group?</h2>
-  <p style="font-size:15px;color:rgba(240,248,242,0.36);margin:0 0 36px;max-width:460px;margin-inline:auto;line-height:1.7;">Tell us your group size, dates, and what matters most. We'll match you with the right property and bundle it with tee times.</p>
-  <a class="btn-primary" href="/quote" style="font-size:16px;padding:18px 48px;">Build My Package →</a>
-  <p style="font-size:12px;color:rgba(240,248,242,0.18);margin:14px 0 0;">Free quote · No obligation · 24-hour response</p>
+<!-- FAQ -->
+<section class="ldg-faq-section">
+  <div class="ldg-container" style="max-width:860px;">
+    <h2 class="ldg-section-title">Lodging FAQ</h2>
+    <div class="ldg-faqs">
+      {[
+        { q:'Where should a golf group stay in Graeagle?', a:'River Pines Resort is the top choice for most golf groups — flexible room types, on-site dining at The Roadhouse, pool and hot tub. For groups of 8+, the Townhomes at Plumas Pines offer multi-bedroom units with full kitchens at the best per-person cost. The Inn at Nakoma is the luxury bucket-list option.' },
+        { q:'What is the difference between a hotel and a townhome in Graeagle?', a:'Hotels and lodges (River Pines, Chalet View, Inn at Nakoma) offer traditional hotel service with on-site dining, housekeeping, and amenities. The Townhomes at Plumas Pines are multi-bedroom vacation rentals with full kitchens — better for larger groups who want to share living space and cut costs by cooking some meals.' },
+        { q:'Is there lodging on the golf courses in Graeagle?', a:'Yes. The Inn at Nakoma sits on the Nakoma Dragon course — guests walk directly to the first tee. The Townhomes at Plumas Pines are adjacent to Plumas Pines Golf Resort. River Pines Resort is a short walk from Graeagle Meadows.' },
+        { q:'Do Graeagle lodging properties offer stay-and-play packages?', a:'GolfGraeagle builds custom stay-and-play packages combining any property with tee times at all 5 courses. Request a free quote with your dates, group size, and preferred courses — we handle the coordination.' },
+      ].map(f => (
+        <div class="ldg-faq-item">
+          <h3 class="ldg-faq-q">{f.q}</h3>
+          <p class="ldg-faq-a">{f.a}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="ldg-cta-section">
+  <div class="ldg-container">
+    <div class="ldg-cta-inner">
+      <div>
+        <h2 class="ldg-cta-title">Not sure which lodging fits?</h2>
+        <p class="ldg-cta-sub">Tell us your group size, dates, and budget. We'll match you to the right property and build a full stay-and-play package with tee times at all 5 courses.</p>
+      </div>
+      <a href="/quote" class="ldg-cta-btn">Get a free quote →</a>
+    </div>
+  </div>
 </section>
 
 <Footer />
 </Base>
+
+<style is:global>
+/* hero */
+.ldg-hero{position:relative;height:80vh;min-height:520px;max-height:780px;overflow:hidden;display:flex;flex-direction:column;justify-content:flex-end;}
+.ldg-hero-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 40%;animation:ldgZoom 16s ease-in-out infinite alternate;}
+@keyframes ldgZoom{0%{transform:scale(1.04);}100%{transform:scale(1);}}
+.ldg-hero-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(5,12,5,0.94) 0%,rgba(5,12,5,0.5) 45%,rgba(5,12,5,0.15) 100%);}
+.ldg-hero-content{position:relative;z-index:2;max-width:1200px;margin:0 auto;width:100%;padding:0 clamp(20px,5vw,60px) 56px;}
+.ldg-eyebrow{font-size:11px;color:#e8a850;letter-spacing:.2em;text-transform:uppercase;font-weight:600;margin:0 0 16px;}
+.ldg-hero-h1{font-family:'Playfair Display',serif;font-size:clamp(40px,6.5vw,82px);font-weight:400;color:#f8faf8;margin:0 0 18px;line-height:1.05;letter-spacing:-.5px;}
+.ldg-hero-sub{font-size:clamp(15px,1.8vw,18px);color:rgba(248,250,248,0.55);margin:0 0 32px;line-height:1.7;}
+.ldg-type-pills{display:flex;gap:10px;flex-wrap:wrap;}
+.ldg-pill{display:inline-block;padding:11px 22px;border:1px solid rgba(248,250,248,0.2);color:rgba(248,250,248,0.75);border-radius:100px;font-size:14px;text-decoration:none;transition:all .2s;}
+.ldg-pill:hover{border-color:rgba(248,250,248,0.5);color:#f8faf8;}
+.ldg-pill-gold{background:#e8a850;border-color:#e8a850;color:#0d1a0e;font-weight:700;}
+.ldg-pill-gold:hover{background:#f2c878;border-color:#f2c878;color:#0d1a0e;}
+/* decision guide */
+.ldg-decision{padding:72px 0;background:#fff;}
+.ldg-container{max-width:1200px;margin:0 auto;padding:0 clamp(20px,5vw,60px);}
+.ldg-section-title{font-family:'Playfair Display',serif;font-size:clamp(24px,3vw,38px);font-weight:400;color:#1a2e1a;margin:0 0 10px;}
+.ldg-section-sub{font-size:15px;color:#6b7c6b;margin:0 0 44px;line-height:1.65;max-width:560px;}
+.ldg-section-header{margin-bottom:44px;}
+.ldg-section-tag{display:inline-block;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:#1a6020;background:#f0fff0;border:1px solid #a0d0a0;padding:4px 12px;border-radius:100px;margin-bottom:12px;}
+.ldg-decision-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
+@media(max-width:700px){.ldg-decision-grid{grid-template-columns:1fr;}}
+.ldg-decision-card{padding:28px;background:#f8fbf8;border:1px solid #e0ece0;border-radius:18px;}
+.ldg-decision-icon{font-size:28px;margin-bottom:12px;}
+.ldg-decision-type{font-family:'Playfair Display',serif;font-size:20px;font-weight:400;color:#1a2e1a;margin:0 0 8px;}
+.ldg-decision-desc{font-size:14px;color:#4a5a4a;line-height:1.65;margin:0 0 16px;}
+.ldg-decision-list{list-style:none;padding:0;margin:0 0 20px;display:flex;flex-direction:column;gap:6px;}
+.ldg-decision-list li{font-size:13px;color:#374137;}
+.ldg-decision-link{font-size:13px;font-weight:700;color:#e8a850;text-decoration:none;}
+.ldg-decision-link:hover{color:#c88840;}
+/* sections */
+.ldg-section{padding:80px 0;}
+.ldg-section-light{background:#f0f5f0;}
+.ldg-section-dark{background:#0d1a0e;}
+/* hotel cards */
+.ldg-hotel-cards{display:flex;flex-direction:column;gap:40px;}
+.ldg-hotel-card{background:#fff;border-radius:22px;overflow:hidden;box-shadow:0 4px 24px rgba(0,0,0,0.06);}
+.ldg-hotel-img-wrap{position:relative;height:360px;overflow:hidden;}
+@media(max-width:650px){.ldg-hotel-img-wrap{height:240px;}}
+.ldg-hotel-img{width:100%;height:100%;object-fit:cover;transition:transform 8s ease;}
+.ldg-hotel-card:hover .ldg-hotel-img{transform:scale(1.04);}
+.ldg-hotel-img-fade{position:absolute;inset:0;background:linear-gradient(to top,rgba(5,12,5,0.4) 0%,transparent 55%);}
+.ldg-hotel-badge{position:absolute;top:18px;left:18px;font-size:11px;font-weight:700;color:#fff;padding:5px 13px;border-radius:100px;letter-spacing:.03em;}
+.ldg-hotel-price{position:absolute;top:18px;right:18px;font-size:14px;font-weight:700;color:#fff;background:rgba(0,0,0,0.45);padding:5px 13px;border-radius:100px;backdrop-filter:blur(4px);}
+.ldg-hotel-thumbs{position:absolute;bottom:0;left:0;right:0;display:flex;gap:2px;height:72px;}
+.ldg-hotel-thumb{flex:1;object-fit:cover;opacity:.7;transition:opacity .2s;}
+.ldg-hotel-thumb:hover{opacity:1;}
+.ldg-hotel-body{padding:32px;}
+@media(max-width:580px){.ldg-hotel-body{padding:22px 18px;}}
+.ldg-hotel-meta-row{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;margin-bottom:14px;}
+.ldg-hotel-name{font-family:'Playfair Display',serif;font-size:clamp(20px,2.5vw,28px);font-weight:400;color:#1a2e1a;margin:0 0 5px;}
+.ldg-hotel-tagline{font-size:13px;color:#6b7c6b;margin:0;}
+.ldg-hotel-details-link{white-space:nowrap;font-size:13px;color:#e8a850;font-weight:600;text-decoration:none;padding:9px 18px;border:1px solid rgba(232,168,80,0.3);border-radius:100px;transition:all .2s;flex-shrink:0;}
+.ldg-hotel-details-link:hover{background:#e8a850;color:#0d1a0e;}
+.ldg-hotel-desc{font-size:15px;color:#4a5a4a;line-height:1.75;margin:0 0 22px;}
+.ldg-hotel-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:#e8ede8;border-radius:12px;overflow:hidden;margin-bottom:16px;}
+@media(max-width:580px){.ldg-hotel-stats{grid-template-columns:repeat(2,1fr);}}
+.ldg-hstat{background:#f8faf4;padding:13px 10px;text-align:center;}
+.ldg-hstat-l{font-size:9px;color:#8a9a8a;text-transform:uppercase;letter-spacing:.08em;font-weight:600;margin-bottom:4px;}
+.ldg-hstat-v{font-size:12px;color:#1a2e1a;font-weight:600;line-height:1.3;}
+.ldg-hotel-perk{display:flex;align-items:flex-start;gap:9px;margin-bottom:16px;padding:11px 15px;background:#fffbf0;border:1px solid #f0e0a0;border-radius:9px;font-size:13px;color:#4a3a10;line-height:1.55;}
+.ldg-perk-icon{flex-shrink:0;margin-top:1px;}
+.ldg-hotel-highlights{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:22px;}
+.ldg-hl-tag{font-size:11px;color:#374137;background:#f0f5f0;border:1px solid #d8e8d8;padding:4px 9px;border-radius:5px;}
+.ldg-hotel-cta{display:inline-block;color:#fff;font-size:14px;font-weight:700;padding:13px 26px;border-radius:100px;text-decoration:none;transition:all .2s;opacity:.93;}
+.ldg-hotel-cta:hover{opacity:1;transform:translateY(-1px);}
+/* townhomes */
+.ldg-townhome-layout{display:grid;grid-template-columns:1fr 1fr;gap:0;background:#1e3020;border-radius:22px;overflow:hidden;box-shadow:0 8px 40px rgba(0,0,0,0.3);}
+@media(max-width:800px){.ldg-townhome-layout{grid-template-columns:1fr;}}
+.ldg-townhome-img-wrap{position:relative;min-height:480px;}
+@media(max-width:800px){.ldg-townhome-img-wrap{min-height:280px;}}
+.ldg-townhome-img{width:100%;height:100%;object-fit:cover;}
+.ldg-townhome-body{padding:40px;}
+@media(max-width:580px){.ldg-townhome-body{padding:28px 20px;}}
+.ldg-townhome-name{font-family:'Playfair Display',serif;font-size:clamp(22px,2.8vw,30px);font-weight:400;color:#f0f8f2;margin:0 0 6px;}
+.ldg-townhome-tagline{font-size:13px;color:rgba(240,248,242,0.45);margin:0 0 16px;}
+.ldg-townhome-desc{font-size:14px;color:rgba(240,248,242,0.6);line-height:1.75;margin:0 0 24px;}
+.ldg-townhome-why{display:flex;flex-direction:column;gap:14px;margin-bottom:24px;}
+.ldg-tw-why-title{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:rgba(232,168,80,0.7);margin-bottom:4px;}
+.ldg-tw-why-item{display:flex;align-items:flex-start;gap:12px;}
+.ldg-tw-why-icon{font-size:16px;flex-shrink:0;margin-top:2px;}
+.ldg-tw-why-point{font-size:13px;font-weight:700;color:#f0f8f2;margin-bottom:2px;}
+.ldg-tw-why-detail{font-size:12px;color:rgba(240,248,242,0.45);line-height:1.5;}
+.ldg-townhome-features{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:24px;}
+.ldg-tw-feature{font-size:11px;color:rgba(240,248,242,0.6);background:rgba(240,248,242,0.07);border:1px solid rgba(240,248,242,0.1);padding:4px 10px;border-radius:5px;}
+.ldg-townhome-ctas{display:flex;gap:10px;flex-wrap:wrap;}
+.ldg-tw-cta-primary{display:inline-block;background:#e8a850;color:#0d1a0e;font-size:14px;font-weight:700;padding:13px 24px;border-radius:100px;text-decoration:none;transition:all .2s;}
+.ldg-tw-cta-primary:hover{background:#f2c878;transform:translateY(-1px);}
+.ldg-tw-cta-ghost{display:inline-block;border:1px solid rgba(240,248,242,0.15);color:rgba(240,248,242,0.6);font-size:14px;padding:13px 22px;border-radius:100px;text-decoration:none;transition:all .2s;}
+.ldg-tw-cta-ghost:hover{border-color:rgba(240,248,242,0.35);color:#f0f8f2;}
+/* compare */
+.ldg-compare-section{padding:80px 0;background:#fff;}
+.ldg-compare-wrap{overflow-x:auto;border-radius:14px;border:1px solid #e0ece0;box-shadow:0 2px 12px rgba(0,0,0,0.04);}
+.ldg-compare-table{width:100%;border-collapse:collapse;font-size:13px;min-width:680px;}
+.ldg-cth{padding:14px 12px;text-align:center;background:#f0f8f0;border-bottom:2px solid #d8e8d8;}
+.ldg-cth-left{text-align:left;}
+.ldg-ctr{border-bottom:1px solid #f0f4f0;}
+.ldg-ctr:hover{background:#f8fbf8;}
+.ldg-ctr:last-child{border-bottom:none;}
+.ldg-ctd{padding:12px 12px;text-align:center;color:#374137;vertical-align:top;font-size:12px;}
+.ldg-ctd-label{text-align:left;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:#6b7c6b;}
+/* faq */
+.ldg-faq-section{padding:80px 0;background:#f8fbf8;}
+.ldg-faqs{display:flex;flex-direction:column;}
+.ldg-faq-item{padding:22px 0;border-bottom:1px solid #e0ece0;}
+.ldg-faq-item:last-child{border-bottom:none;}
+.ldg-faq-q{font-size:17px;font-weight:700;color:#1a2e1a;margin:0 0 8px;}
+.ldg-faq-a{font-size:15px;color:#4a5a4a;line-height:1.75;margin:0;}
+/* cta */
+.ldg-cta-section{padding:80px clamp(20px,5vw,60px);background:#1a2e1a;}
+.ldg-cta-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:40px;flex-wrap:wrap;}
+.ldg-cta-title{font-family:'Playfair Display',serif;font-size:clamp(22px,3vw,36px);font-weight:400;color:#f8faf8;margin:0 0 10px;}
+.ldg-cta-sub{font-size:15px;color:rgba(248,250,248,0.45);margin:0;max-width:480px;line-height:1.65;}
+.ldg-cta-btn{flex-shrink:0;background:#e8a850;color:#0d1a0e;font-size:15px;font-weight:700;padding:16px 36px;border-radius:100px;text-decoration:none;transition:all .25s;white-space:nowrap;}
+.ldg-cta-btn:hover{background:#f2c878;transform:translateY(-2px);}
+</style>

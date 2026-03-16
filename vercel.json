@@ -30,6 +30,10 @@
     { "source": "/golf-guide/",  "destination": "/blogs/", "permanent": true },
     { "source": "/golf-guide",   "destination": "/blogs/", "permanent": true },
     { "source": "/lake-resort/", "destination": "/lodging", "permanent": true },
-    { "source": "/lake-resort",  "destination": "/lodging", "permanent": true }
+    { "source": "/lake-resort",  "destination": "/lodging", "permanent": true },
+    { "source": "/hotels/",      "destination": "/lodging", "permanent": true },
+    { "source": "/hotels",       "destination": "/lodging", "permanent": true },
+    { "source": "/private-homes/","destination": "/lodging", "permanent": true },
+    { "source": "/private-homes", "destination": "/lodging", "permanent": true }
   ]
 }
