@@ -226,11 +226,12 @@ body {
 .bl-meta{font-size:12px;color:rgba(248,250,248,0.35);margin:0;}
 
 /* Layout */
-.bl-wrap{max-width:1200px;margin:0 auto;padding:60px clamp(16px,4vw,48px) 100px;display:grid;grid-template-columns:1fr 340px;gap:60px;align-items:start;}
+.bl-wrap{max-width:1200px;margin:0 auto;padding:60px clamp(16px,4vw,48px) 100px;display:grid;grid-template-columns:1fr 340px;gap:60px;align-items:start;background:#f5f7f5;}
 @media(max-width:900px){.bl-wrap{grid-template-columns:1fr;gap:40px;}}
 
-/* Article */
-.bl-article{min-width:0;}
+/* White article + sidebar panels */
+.bl-article{min-width:0;background:#fff;border-radius:20px;padding:40px;box-shadow:0 2px 16px rgba(0,0,0,0.05);}
+@media(max-width:600px){.bl-article{padding:24px 18px;border-radius:12px;}}
 .bl-article h2{font-family:'Playfair Display',serif;font-size:clamp(22px,2.5vw,30px);font-weight:400;color:#1a2e1a;margin:48px 0 16px;line-height:1.2;}
 .bl-article h2:first-of-type{margin-top:32px;}
 .bl-article h3{font-size:17px;font-weight:700;color:#1a2e1a;margin:28px 0 10px;}
@@ -294,7 +295,7 @@ body {
 
 /* Month cards */
 .bl-months{display:flex;flex-direction:column;gap:12px;margin:20px 0 32px;}
-.bl-month-card{border:1px solid #e0ece0;border-radius:14px;overflow:hidden;}
+.bl-month-card{border:1px solid #e0ece0;border-radius:14px;overflow:hidden;background:#fff;}
 .bl-month-header{display:flex;align-items:center;justify-content:space-between;padding:14px 20px;background:#f0f8f0;}
 .bl-month-name{font-family:'Playfair Display',serif;font-size:20px;font-weight:400;color:#1a2e1a;}
 .bl-month-stars{font-size:14px;color:#e8a850;letter-spacing:2px;}
@@ -346,8 +347,8 @@ body {
 .bl-cta-links a:hover{color:#e8a850;}
 
 /* Sidebar */
-.bl-sidebar{display:flex;flex-direction:column;gap:20px;}
-.bl-sidebar-card{background:#fff;border:1px solid #e0ece0;border-radius:16px;padding:22px;}
+.bl-sidebar{display:flex;flex-direction:column;gap:16px;}
+.bl-sidebar-card{background:#fff;border:1px solid #e0ece0;border-radius:16px;padding:22px;box-shadow:0 2px 12px rgba(0,0,0,0.04);}
 .bl-sidebar-title{font-size:13px;font-weight:800;color:#1a2e1a;text-transform:uppercase;letter-spacing:.06em;margin-bottom:12px;}
 .bl-sidebar-card p{font-size:13px;color:#6b7c6b;line-height:1.6;margin:0 0 16px;}
 .bl-sidebar-btn{display:block;background:#e8a850;color:#0d1a0e;font-size:13px;font-weight:700;padding:12px 20px;border-radius:100px;text-decoration:none;text-align:center;transition:all .2s;}
