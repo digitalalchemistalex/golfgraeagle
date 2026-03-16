@@ -4,205 +4,563 @@ import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
 import { courses, siteConfig } from '../../data/content.js';
 
-const title = "Best Golf Courses in Graeagle, California | Complete Guide";
-const description = "Graeagle has 5 championship golf courses within 25 minutes of each other: Graeagle Meadows, Whitehawk Ranch, Plumas Pines, Grizzly Ranch, and Nakoma (The Dragon). Compare courses, slope, and difficulty.";
+const title = "Graeagle Golf Courses — All 5 Championship Courses Compared";
+const description = "Compare all 5 Graeagle golf courses: Graeagle Meadows, Whitehawk Ranch, Plumas Pines, Grizzly Ranch, and Nakoma (The Dragon). Par, yardage, slope, designer, facilities — everything a real golfer needs.";
 
-const collectionSchema = {
-  "@type": "CollectionPage",
-  "name": "Golf Courses in Graeagle, California",
-  "description": description,
-  "url": `${siteConfig.url}/courses`,
-  "isPartOf": { "@id": `${siteConfig.url}/#website` }
-};
+// Enrich with golfer-readable data not stored in content.js
+const courseData = [
+  {
+    ...courses[0],
+    accolade: 'The Valley Original · Est. 1968',
+    badge: 'Most Accessible',
+    badgeColor: '#22c55e',
+    openedYear: 1968,
+    bestFor: 'Mixed-handicap groups, first-timers to Graeagle',
+    altitudeFt: 3500,
+    walkable: true,
+    slopeContext: 'Easiest in the valley — all handicaps welcome',
+    mustPlay: false,
+  },
+  {
+    ...courses[1],
+    accolade: 'Top 20 California · Golf Digest',
+    badge: 'Everyone\'s Favorite',
+    badgeColor: '#e8a850',
+    openedYear: 1996,
+    bestFor: 'Any golfer — the crowd favorite for a reason',
+    altitudeFt: 4200,
+    walkable: false,
+    slopeContext: 'Solid challenge — rewards straight hitters',
+    mustPlay: true,
+  },
+  {
+    ...courses[2],
+    accolade: 'Top 5 Best Value · Sierra Nevada',
+    badge: 'Best Value',
+    badgeColor: '#3b82f6',
+    openedYear: 1980,
+    bestFor: 'Precision players — tight fairways punish sprayers',
+    altitudeFt: 3800,
+    walkable: false,
+    slopeContext: 'Plays tougher than the yardage suggests',
+    mustPlay: false,
+  },
+  {
+    ...courses[3],
+    accolade: 'Golf Digest Top 100 Public Courses · 2021',
+    badge: 'Longest & Toughest',
+    badgeColor: '#ef4444',
+    openedYear: 2005,
+    bestFor: 'Low-handicap players seeking a real test',
+    altitudeFt: 4800,
+    walkable: false,
+    slopeContext: 'Brutally long — 7,411 yards at elevation',
+    mustPlay: true,
+  },
+  {
+    ...courses[4],
+    accolade: 'Golf World Top 75 · Only FLW Golf Clubhouse',
+    badge: 'The Legend',
+    badgeColor: '#a855f7',
+    openedYear: 1998,
+    bestFor: 'Bucket-list golfers — slope 147 demands respect',
+    altitudeFt: 3900,
+    walkable: false,
+    slopeContext: 'Hardest in the region — slope 147 is serious',
+    mustPlay: true,
+  },
+];
 
-const hubItemListSchema = {
-  "@type": "ItemList",
-  "name": "Golf Courses in Graeagle, California",
-  "numberOfItems": courses.length,
-  "itemListElement": courses.map((c, i) => ({
-    "@type": "ListItem",
-    "position": i + 1,
-    "name": `${c.name} Golf Course`,
-    "url": `${siteConfig.url}/courses/${c.slug}`,
-    "item": {
-      "@type": "GolfCourse",
-      "name": `${c.name} Golf Course`,
-      "url": `${siteConfig.url}/courses/${c.slug}`,
-      "numberOfHoles": 18,
-      "address": { "@type": "PostalAddress", "streetAddress": c.address, "addressRegion": "CA", "addressCountry": "US" }
-    }
-  }))
-};
-
-const breadcrumbSchema = {
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    { "@type": "ListItem", "position": 1, "name": "Home", "item": siteConfig.url },
-    { "@type": "ListItem", "position": 2, "name": "Golf Courses", "item": `${siteConfig.url}/courses` }
-  ]
-};
+const slopeMax = 155; // context for slope bar width
 
 const hubFaqSchema = {
   "@type": "FAQPage",
   "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "How many golf courses are in Graeagle California?",
-      "acceptedAnswer": { "@type": "Answer", "text": "There are 5 championship golf courses in the Graeagle, California area: Graeagle Meadows Golf Course, Whitehawk Ranch Golf Course, Plumas Pines Golf Resort, Grizzly Ranch Golf Club, and Nakoma (The Dragon) Golf Course. All five courses are within 25 minutes of each other." }
-    },
-    {
-      "@type": "Question",
-      "name": "What golf courses are in Plumas County California?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Plumas County, California has five major golf courses: Graeagle Meadows Golf Course (Par 72, 6,759 yards), Whitehawk Ranch Golf Course (Par 71, 6,983 yards), Plumas Pines Golf Resort (Par 72, 6,504 yards), Grizzly Ranch Golf Club (Par 72, 7,411 yards), and Nakoma Dragon Golf Course (Par 72, 7,015 yards)." }
-    },
-    {
-      "@type": "Question",
-      "name": "Which Graeagle golf course is hardest?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Nakoma Dragon is the hardest golf course in Graeagle with a slope rating of 147 and course rating of 73.4. Grizzly Ranch is the longest and second most difficult with a slope of 140 at 7,411 yards." }
-    },
-    {
-      "@type": "Question",
-      "name": "Are the Graeagle golf courses open to the public?",
-      "acceptedAnswer": { "@type": "Answer", "text": "All five Graeagle golf courses accept public play. Graeagle Meadows, Whitehawk Ranch, Plumas Pines, and Nakoma Dragon are fully public. Grizzly Ranch is semi-private but open to public tee times. GolfGraeagle can secure guaranteed tee times at all five courses." }
-    }
+    { "@type": "Question", "name": "How many golf courses are in Graeagle California?", "acceptedAnswer": { "@type": "Answer", "text": "There are 5 championship golf courses in the Graeagle, California area: Graeagle Meadows Golf Course, Whitehawk Ranch Golf Course, Plumas Pines Golf Resort, Grizzly Ranch Golf Club, and Nakoma (The Dragon) Golf Course. All five are within 25 minutes of each other." } },
+    { "@type": "Question", "name": "Which Graeagle golf course is hardest?", "acceptedAnswer": { "@type": "Answer", "text": "Nakoma Dragon is the hardest golf course in Graeagle with a slope rating of 147. Grizzly Ranch is second at slope 140, playing 7,411 yards through dramatic elevation changes." } },
+    { "@type": "Question", "name": "Are Graeagle golf courses open to the public?", "acceptedAnswer": { "@type": "Answer", "text": "All five Graeagle courses accept public play. Grizzly Ranch is semi-private but accessible through our packages. GolfGraeagle guarantees tee times at all five courses." } },
   ]
 };
 ---
 export const prerender = true;
-<Base title={title} description={description} schema={[collectionSchema, hubItemListSchema, breadcrumbSchema, hubFaqSchema]}>
 
-  <nav class="fixed top-0 left-0 right-0 z-50 px-6 py-4 flex items-center justify-between backdrop-blur-md bg-slate-950/80 border-b border-white/5">
-    <a href="/" class="font-display text-xl text-white">Golf <span class="text-gold-400">Graeagle</span></a>
-    <div class="hidden md:flex items-center gap-8 text-sm text-white/70">
-      <a href="/courses" class="text-white">Courses</a>
-      <a href="/lodging" class="hover:text-white transition-colors">Lodging</a>
-      <a href="/dining" class="hover:text-white transition-colors">Dining</a>
+<Base title={title} description={description} schema={[hubFaqSchema]}>
+  <Nav />
+
+  <!-- ══ HERO ══ -->
+  <section class="ch-hero">
+    <!-- background collage of course images -->
+    <div class="ch-hero-bg">
+      {courseData.map((c,i) => (
+        <div class="ch-hero-slice" style={`background-image:url(${c.hero});animation-delay:${i*1.4}s`}></div>
+      ))}
+      <div class="ch-hero-overlay"></div>
     </div>
-    <a href="/request-a-quote" class="bg-gold-500 hover:bg-gold-400 text-slate-950 text-sm font-medium px-5 py-2.5 rounded-full transition-all">Plan My Trip</a>
-  </nav>
-
-  <section class="pt-32 pb-16 px-6">
-    <div class="max-w-6xl mx-auto">
-      <p class="text-gold-400 text-sm tracking-widest uppercase mb-4">Graeagle, California</p>
-      <h1 class="font-display text-6xl md:text-8xl text-white font-light leading-none mb-6">
-        Five Courses.<br /><em class="text-gold-400 not-italic">One Weekend.</em>
-      </h1>
-      <p class="text-white/50 text-xl max-w-2xl leading-relaxed speakable page-intro">
-        No California golf destination packs this much quality into a 25-minute radius. 
-        Compare every course — par, yardage, slope, designer, green fees — then build your trip.
-      </p>
+    <div class="ch-hero-content">
+      <p class="ch-eyebrow">Graeagle, California · Sierra Nevada</p>
+      <h1 class="ch-hero-h1">Five courses.<br/><span class="ch-hero-gold">One valley.</span></h1>
+      <p class="ch-hero-sub">Every championship layout within 25 minutes of each other. Compare par, slope, yardage, and what each course actually demands from your game.</p>
+      <div class="ch-hero-stats">
+        {[
+          { n:'5', l:'Championship Courses' },
+          { n:'25 min', l:'Max Drive Between Courses' },
+          { n:'4,800 ft', l:'Peak Elevation — Grizzly Ranch' },
+          { n:'147', l:'Highest Slope — Nakoma Dragon' },
+        ].map(s=>(
+          <div class="ch-hero-stat">
+            <div class="ch-hero-stat-n">{s.n}</div>
+            <div class="ch-hero-stat-l">{s.l}</div>
+          </div>
+        ))}
+      </div>
+      <a href="#courses" class="ch-hero-cta">Explore the courses ↓</a>
     </div>
   </section>
 
-  <!-- COMPARISON TABLE -->
-  <section class="py-12 px-6">
-    <div class="max-w-6xl mx-auto">
-      <h2 class="font-display text-3xl text-white font-light mb-6">Compare All 5 Courses</h2>
-      <div class="overflow-x-auto rounded-2xl border border-white/5">
-        <table class="w-full text-sm">
+  <!-- ══ ALTITUDE CALLOUT ══ -->
+  <section class="ch-altitude">
+    <div class="ch-container">
+      <div class="ch-altitude-inner">
+        <div class="ch-altitude-icon">⛰</div>
+        <div>
+          <div class="ch-altitude-title">The altitude advantage real golfers notice</div>
+          <div class="ch-altitude-body">At 3,500–4,800 ft elevation, the ball carries 5–8% farther than at sea level. Greens are faster. Air is cleaner. Your 7-iron becomes an 8-iron. Every course in the valley benefits from this — plan your club selection accordingly.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ COMPARISON TABLE ══ -->
+  <section class="ch-table-section">
+    <div class="ch-container">
+      <h2 class="ch-section-title">Quick comparison</h2>
+      <div class="ch-table-wrap">
+        <table class="ch-table">
           <thead>
-            <tr class="border-b border-white/5 bg-white/[0.02]">
-              <th class="text-left px-6 py-4 text-white/50 font-normal">Course</th>
-              <th class="px-4 py-4 text-white/50 font-normal text-center">Par</th>
-              <th class="px-4 py-4 text-white/50 font-normal text-center">Yards</th>
-              <th class="px-4 py-4 text-white/50 font-normal text-center">Slope</th>
-              <th class="px-4 py-4 text-white/50 font-normal text-center">Rating</th>
-              <th class="px-4 py-4 text-white/50 font-normal text-center">Green Fees</th>
-              <th class="px-4 py-4 text-white/50 font-normal text-center">Difficulty</th>
-              <th class="px-4 py-4 text-white/50 font-normal text-center"></th>
+            <tr>
+              <th class="ch-th ch-th-left">Course</th>
+              <th class="ch-th">Par</th>
+              <th class="ch-th">Yards</th>
+              <th class="ch-th">Slope</th>
+              <th class="ch-th">Rating</th>
+              <th class="ch-th">Designer</th>
+              <th class="ch-th">Best For</th>
+              <th class="ch-th"></th>
             </tr>
           </thead>
           <tbody>
-            {courses.map(course => (
-              <tr class="border-b border-white/5 hover:bg-white/[0.02] transition-colors group">
-                <td class="px-6 py-5">
-                  <div class="font-medium text-white group-hover:text-gold-300 transition-colors">{course.name}</div>
-                  <div class="text-white/30 text-xs mt-0.5">{course.designer}, {course.opened}</div>
+            {courseData.map(c => (
+              <tr class="ch-tr">
+                <td class="ch-td ch-td-name">
+                  <div class="ch-td-course-name">{c.name}</div>
+                  <div class="ch-td-accolade">{c.accolade}</div>
                 </td>
-                <td class="px-4 py-5 text-center text-white/70">{course.par}</td>
-                <td class="px-4 py-5 text-center text-white/70">{course.yards.toLocaleString()}</td>
-                <td class="px-4 py-5 text-center">
-                  <span class={`font-medium ${course.slope >= 140 ? 'text-red-400' : course.slope >= 130 ? 'text-yellow-400' : 'text-green-400'}`}>
-                    {course.slope}
+                <td class="ch-td ch-td-center">{c.par}</td>
+                <td class="ch-td ch-td-center">{c.yards.toLocaleString()}</td>
+                <td class="ch-td ch-td-center">
+                  <span class="ch-slope-badge" style={`background:${c.slope>=140?'#fee2e2':c.slope>=130?'#fef3c7':'#dcfce7'};color:${c.slope>=140?'#991b1b':c.slope>=130?'#92400e':'#166534'}`}>
+                    {c.slope}
                   </span>
                 </td>
-                <td class="px-4 py-5 text-center text-white/70">{course.rating}</td>
-                <td class="px-4 py-5 text-center text-gold-400">{course.greenFeeRange}</td>
-                <td class="px-4 py-5 text-center">
-                  <span class={`text-xs px-2 py-1 rounded-full ${
-                    course.difficulty === 'Advanced–Expert' ? 'bg-red-500/10 text-red-400' :
-                    course.difficulty === 'Advanced' ? 'bg-orange-500/10 text-orange-400' :
-                    course.difficulty === 'Intermediate–Advanced' ? 'bg-yellow-500/10 text-yellow-400' :
-                    'bg-green-500/10 text-green-400'
-                  }`}>{course.difficulty}</span>
-                </td>
-                <td class="px-4 py-5 text-center">
-                  <a href={`/courses/${course.slug}`} class="text-gold-400 text-xs hover:text-gold-300 transition-colors">View →</a>
+                <td class="ch-td ch-td-center">{c.rating}</td>
+                <td class="ch-td ch-td-center ch-td-designer">{c.designer}</td>
+                <td class="ch-td ch-td-best">{c.bestFor}</td>
+                <td class="ch-td ch-td-center">
+                  <a href={`/courses/${c.slug}`} class="ch-table-link">View →</a>
                 </td>
               </tr>
             ))}
           </tbody>
         </table>
       </div>
+      <div class="ch-slope-legend">
+        <span class="ch-legend-item"><span style="background:#dcfce7;color:#166534;" class="ch-legend-dot">120</span> Moderate (all skill levels)</span>
+        <span class="ch-legend-item"><span style="background:#fef3c7;color:#92400e;" class="ch-legend-dot">132</span> Challenging (intermediate+)</span>
+        <span class="ch-legend-item"><span style="background:#fee2e2;color:#991b1b;" class="ch-legend-dot">140+</span> Expert level</span>
+      </div>
     </div>
   </section>
 
-  <!-- COURSE CARDS -->
-  <section class="py-16 px-6">
-    <div class="max-w-6xl mx-auto space-y-6">
-      {courses.map((course, i) => (
-        <a href={`/courses/${course.slug}`} class="group grid grid-cols-1 md:grid-cols-3 rounded-2xl border border-white/5 bg-white/[0.02] hover:bg-white/[0.04] hover:border-white/10 transition-all duration-300 overflow-hidden">
-          <div class="md:col-span-2 p-8">
-            <div class="flex items-start gap-4 mb-4">
-              <span class="font-display text-5xl text-white/10 font-light leading-none">0{i+1}</span>
-              <div>
-                <h2 class="font-display text-3xl text-white font-light group-hover:text-gold-300 transition-colors">{course.name}</h2>
-                <p class="text-white/40 text-sm mt-1">{course.tagline}</p>
+  <!-- ══ COURSE CARDS ══ -->
+  <section id="courses" class="ch-cards-section">
+    <div class="ch-container">
+      <h2 class="ch-section-title">Every course, in detail</h2>
+      <div class="ch-cards">
+        {courseData.map((c, i) => (
+          <article class="ch-card reveal">
+            <!-- Photo -->
+            <a href={`/courses/${c.slug}`} class="ch-card-img-wrap">
+              <img src={c.hero} alt={`${c.name} Golf Course — Graeagle, California`} loading={i < 2 ? 'eager' : 'lazy'} class="ch-card-img"/>
+              <div class="ch-card-img-overlay"></div>
+              <div class="ch-card-badges">
+                <span class="ch-card-badge" style={`background:${c.badgeColor};color:#fff;`}>{c.badge}</span>
+                {c.mustPlay && <span class="ch-card-badge" style="background:#e8a850;color:#0d1a0e;">⭐ Must-Play</span>}
               </div>
-            </div>
-            <p class="text-white/50 text-sm leading-relaxed line-clamp-2">{course.description}</p>
-            <div class="mt-6 flex flex-wrap gap-2">
-              {course.highlights.slice(0, 3).map(h => (
-                <span class="text-xs bg-white/[0.03] border border-white/5 text-white/40 px-3 py-1 rounded-full">{h}</span>
-              ))}
-            </div>
-          </div>
-          <div class="p-8 border-t md:border-t-0 md:border-l border-white/5 flex flex-col justify-between">
-            <div class="space-y-3">
-              {[
-                ['Par', course.par],
-                ['Yards', course.yards.toLocaleString()],
-                ['Slope', course.slope],
-                ['Green Fees', course.greenFeeRange],
-                ['Designer', course.designer],
-              ].map(([label, value]) => (
-                <div class="flex justify-between text-sm">
-                  <span class="text-white/30">{label}</span>
-                  <span class="text-white/70">{value}</span>
+              <div class="ch-card-accolade-overlay">{c.accolade}</div>
+            </a>
+
+            <!-- Body -->
+            <div class="ch-card-body">
+              <div class="ch-card-header">
+                <div>
+                  <div class="ch-card-num">0{i+1}</div>
+                  <h2 class="ch-card-name">{c.name}</h2>
+                  <p class="ch-card-tagline">{c.tagline}</p>
                 </div>
-              ))}
+                <a href={`/courses/${c.slug}`} class="ch-card-cta">Full details →</a>
+              </div>
+
+              <p class="ch-card-desc">{c.description}</p>
+
+              <!-- Stats grid — the real golfer data -->
+              <div class="ch-stats-grid">
+                <div class="ch-stat-box">
+                  <div class="ch-stat-label">Par</div>
+                  <div class="ch-stat-val">{c.par}</div>
+                </div>
+                <div class="ch-stat-box">
+                  <div class="ch-stat-label">Yardage (back)</div>
+                  <div class="ch-stat-val">{c.yards.toLocaleString()}</div>
+                </div>
+                <div class="ch-stat-box">
+                  <div class="ch-stat-label">Course Rating</div>
+                  <div class="ch-stat-val">{c.rating}</div>
+                </div>
+                <div class="ch-stat-box">
+                  <div class="ch-stat-label">Elevation</div>
+                  <div class="ch-stat-val">{c.altitudeFt.toLocaleString()} ft</div>
+                </div>
+                <div class="ch-stat-box">
+                  <div class="ch-stat-label">Designer</div>
+                  <div class="ch-stat-val ch-stat-sm">{c.designer}</div>
+                </div>
+                <div class="ch-stat-box">
+                  <div class="ch-stat-label">Est.</div>
+                  <div class="ch-stat-val">{c.openedYear}</div>
+                </div>
+              </div>
+
+              <!-- Slope bar — visual difficulty indicator -->
+              <div class="ch-slope-row">
+                <div class="ch-slope-top">
+                  <span class="ch-slope-label">Slope Rating</span>
+                  <span class="ch-slope-num" style={`color:${c.slope>=140?'#dc2626':c.slope>=130?'#d97706':'#16a34a'}`}>{c.slope}</span>
+                </div>
+                <div class="ch-slope-track">
+                  <div class="ch-slope-fill" style={`width:${Math.round((c.slope/slopeMax)*100)}%;background:${c.slope>=140?'#dc2626':c.slope>=130?'#d97706':'#16a34a'}`}></div>
+                </div>
+                <div class="ch-slope-context">{c.slopeContext}</div>
+              </div>
+
+              <!-- Best for -->
+              <div class="ch-bestfor">
+                <span class="ch-bestfor-label">Best for:</span>
+                <span class="ch-bestfor-val">{c.bestFor}</span>
+              </div>
+
+              <!-- Highlights -->
+              <div class="ch-highlights">
+                {c.highlights.slice(0,4).map(h=>(
+                  <span class="ch-highlight-tag">{h}</span>
+                ))}
+              </div>
+
+              <!-- Facilities -->
+              <div class="ch-facilities">
+                <div class="ch-facilities-label">On-site facilities</div>
+                <div class="ch-facilities-list">
+                  {c.facilities.map(f=>(
+                    <span class="ch-facility">✓ {f}</span>
+                  ))}
+                </div>
+              </div>
+
+              <a href={`/courses/${c.slug}`} class="ch-card-btn">View full course details →</a>
             </div>
-            <div class="mt-6 text-gold-400 text-sm flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
-              Full course details →
-            </div>
-          </div>
-        </a>
-      ))}
+          </article>
+        ))}
+      </div>
     </div>
   </section>
 
-  <!-- CTA -->
-  <section class="py-24 px-6">
-    <div class="max-w-2xl mx-auto text-center">
-      <h2 class="font-display text-5xl text-white font-light mb-4">Can't choose just one?</h2>
-      <p class="text-white/40 mb-8">Most groups play 3–4 courses over a long weekend. We'll build the perfect multi-course itinerary for your group.</p>
-      <a href="/request-a-quote" class="inline-flex items-center gap-3 bg-gold-500 hover:bg-gold-400 text-slate-950 font-medium px-10 py-5 rounded-full transition-all duration-300 hover:shadow-2xl hover:shadow-gold-500/30 text-lg group">
-        Plan a Multi-Course Trip
-        <span class="transition-transform group-hover:translate-x-1">→</span>
-      </a>
+  <!-- ══ SLOPE EXPLAINER ══ -->
+  <section class="ch-explainer">
+    <div class="ch-container">
+      <div class="ch-explainer-inner">
+        <div class="ch-explainer-left">
+          <h2 class="ch-explainer-title">What slope rating actually means for your game</h2>
+          <p class="ch-explainer-body">Slope is the USGA's measure of relative difficulty for bogey golfers vs scratch. A rating of 113 is dead average. Every point above that adds strokes for higher-handicap players. Here's what it means in Graeagle:</p>
+          <div class="ch-slope-examples">
+            {[
+              { slope: 120, course: 'Graeagle Meadows', desc: 'The valley warmup. Forgiving fairways, manageable greens. Play this first.' },
+              { slope: 132, course: 'Whitehawk Ranch & Plumas Pines', desc: 'The sweet spot — a genuine test without punishing the 15-handicapper.' },
+              { slope: 140, course: 'Grizzly Ranch', desc: 'Start counting penalty strokes. 7,411 yards at 4,800 ft is no joke.' },
+              { slope: 147, course: 'Nakoma Dragon', desc: 'Highest in the valley. Robin Nelson designed this to hurt. Plan extra balls.' },
+            ].map(e=>(
+              <div class="ch-slope-ex">
+                <div class="ch-slope-ex-num" style={`background:${e.slope>=140?'#fee2e2':e.slope>=130?'#fef3c7':'#dcfce7'};color:${e.slope>=140?'#991b1b':e.slope>=130?'#92400e':'#166534'}`}>{e.slope}</div>
+                <div>
+                  <div class="ch-slope-ex-course">{e.course}</div>
+                  <div class="ch-slope-ex-desc">{e.desc}</div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+        <div class="ch-explainer-right">
+          <h3 class="ch-explainer-subtitle">Altitude math for golfers</h3>
+          <p class="ch-explainer-body">At Grizzly Ranch's 4,800 ft, the ball flies roughly 8% farther than sea level. That's almost a full club. At Nakoma (3,900 ft) you're gaining about 6%. Factor this into every approach shot — your GPS yardage is correct, your carry is not.</p>
+          <div class="ch-alt-examples">
+            {[
+              { club: '7-iron', sea: 150, graeagle: 160 },
+              { club: '6-iron', sea: 165, graeagle: 177 },
+              { club: '5-iron', sea: 180, graeagle: 194 },
+              { club: 'Driver', sea: 250, graeagle: 268 },
+            ].map(r=>(
+              <div class="ch-alt-row">
+                <div class="ch-alt-club">{r.club}</div>
+                <div class="ch-alt-sea">{r.sea} yds <span class="ch-alt-label">sea level</span></div>
+                <div class="ch-alt-arrow">→</div>
+                <div class="ch-alt-graeagle">~{r.graeagle} yds <span class="ch-alt-label">Graeagle</span></div>
+              </div>
+            ))}
+          </div>
+          <p class="ch-explainer-fine">Estimates based on 6–8% altitude carry increase at 3,500–4,800 ft. Actual carry varies with temperature, humidity, and wind.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ ITINERARY SUGGESTIONS ══ -->
+  <section class="ch-itinerary">
+    <div class="ch-container">
+      <h2 class="ch-section-title">Which courses should you play?</h2>
+      <p class="ch-section-sub">Most groups play 2–4 courses over a long weekend. Here's what we recommend based on skill and time.</p>
+      <div class="ch-itin-grid">
+        {[
+          {
+            label: '2-Day Weekend',
+            icon: '📅',
+            combos: [
+              { title:'Best all-around pair', courses:'Whitehawk Ranch + Graeagle Meadows', why:'Top-rated + most accessible. Works for every handicap.' },
+              { title:'Best value pair', courses:'Plumas Pines + Graeagle Meadows', why:'Two great rounds without the premium price tag.' },
+            ]
+          },
+          {
+            label: '3-Day Trip',
+            icon: '🏌',
+            combos: [
+              { title:'The classic three', courses:'Whitehawk + Plumas Pines + Graeagle Meadows', why:'Covers all terrain types — meadow, pine, open. Suits mid-handicappers.' },
+              { title:'The challenge route', courses:'Grizzly Ranch + Whitehawk Ranch + Nakoma Dragon', why:'Three of the most acclaimed layouts. Bring your A-game.' },
+            ]
+          },
+          {
+            label: '4–5 Day Full Tour',
+            icon: '🏆',
+            combos: [
+              { title:'Play them all', courses:'All 5 courses over 4–5 days', why:'The complete Graeagle experience. We build the tee sheet around your group.' },
+            ]
+          },
+        ].map(block=>(
+          <div class="ch-itin-card">
+            <div class="ch-itin-header">
+              <span class="ch-itin-icon">{block.icon}</span>
+              <span class="ch-itin-label">{block.label}</span>
+            </div>
+            {block.combos.map(combo=>(
+              <div class="ch-itin-combo">
+                <div class="ch-itin-combo-title">{combo.title}</div>
+                <div class="ch-itin-combo-courses">{combo.courses}</div>
+                <div class="ch-itin-combo-why">{combo.why}</div>
+              </div>
+            ))}
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ CTA ══ -->
+  <section class="ch-cta">
+    <div class="ch-container">
+      <div class="ch-cta-inner">
+        <div>
+          <h2 class="ch-cta-title">Ready to build your Graeagle itinerary?</h2>
+          <p class="ch-cta-sub">Tell us your dates, group size, and which courses call to you. We handle the tee times, lodging, and logistics.</p>
+        </div>
+        <a href="/quote" class="ch-cta-btn">Get a free quote →</a>
+      </div>
     </div>
   </section>
 
   <Footer />
-
 </Base>
+
+<style is:global>
+/* ── hero ── */
+.ch-hero{position:relative;min-height:90vh;display:flex;align-items:flex-end;padding-bottom:80px;overflow:hidden;}
+.ch-hero-bg{position:absolute;inset:0;display:grid;grid-template-columns:repeat(5,1fr);}
+.ch-hero-slice{background-size:cover;background-position:center;filter:brightness(0.55);animation:heroKen 20s ease-in-out infinite alternate;}
+@keyframes heroKen{0%{transform:scale(1);}100%{transform:scale(1.08);}}
+.ch-hero-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(5,10,5,0.92) 0%,rgba(5,10,5,0.4) 50%,rgba(5,10,5,0.2) 100%);}
+.ch-hero-content{position:relative;z-index:2;max-width:1200px;margin:0 auto;padding:0 clamp(20px,5vw,60px);}
+.ch-eyebrow{font-size:11px;color:#e8a850;letter-spacing:.2em;text-transform:uppercase;font-weight:600;margin:0 0 20px;}
+.ch-hero-h1{font-family:'Playfair Display',serif;font-size:clamp(52px,8vw,110px);font-weight:400;color:#f8faf8;margin:0 0 24px;line-height:1.0;letter-spacing:-1px;}
+.ch-hero-gold{color:#e8a850;}
+.ch-hero-sub{font-size:clamp(16px,2vw,20px);color:rgba(248,250,248,0.6);max-width:560px;line-height:1.7;margin:0 0 48px;}
+.ch-hero-stats{display:flex;gap:40px;flex-wrap:wrap;margin-bottom:48px;}
+.ch-hero-stat-n{font-family:'Playfair Display',serif;font-size:clamp(28px,3vw,40px);color:#f8faf8;font-weight:400;line-height:1;}
+.ch-hero-stat-l{font-size:11px;color:rgba(248,250,248,0.4);margin-top:4px;line-height:1.4;}
+.ch-hero-cta{display:inline-block;padding:14px 32px;border:1px solid rgba(232,168,80,0.5);color:#e8a850;border-radius:100px;font-size:14px;text-decoration:none;transition:all .25s;}
+.ch-hero-cta:hover{background:#e8a850;color:#0d1a0e;}
+
+/* ── altitude callout ── */
+.ch-altitude{background:#f8faf4;border-bottom:1px solid #e8ede8;}
+.ch-altitude-inner{display:flex;align-items:flex-start;gap:20px;padding:28px 0;}
+.ch-altitude-icon{font-size:28px;flex-shrink:0;margin-top:2px;}
+.ch-altitude-title{font-size:15px;font-weight:700;color:#1a2e1a;margin-bottom:6px;}
+.ch-altitude-body{font-size:14px;color:#4a5a4a;line-height:1.65;}
+
+/* ── shared ── */
+.ch-container{max-width:1200px;margin:0 auto;padding:0 clamp(20px,5vw,60px);}
+.ch-section-title{font-family:'Playfair Display',serif;font-size:clamp(28px,3.5vw,42px);font-weight:400;color:#1a2e1a;margin:0 0 10px;}
+.ch-section-sub{font-size:15px;color:#6b7c6b;margin:0 0 40px;line-height:1.65;}
+
+/* ── comparison table ── */
+.ch-table-section{padding:80px 0;background:#fff;}
+.ch-table-wrap{overflow-x:auto;border-radius:16px;border:1px solid #e8ede8;box-shadow:0 2px 20px rgba(0,0,0,0.04);}
+.ch-table{width:100%;border-collapse:collapse;font-size:13px;}
+.ch-th{padding:14px 16px;text-align:center;font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:#6b7c6b;background:#f8faf4;border-bottom:1px solid #e8ede8;}
+.ch-th-left{text-align:left;}
+.ch-tr{border-bottom:1px solid #f0f4f0;transition:background .15s;}
+.ch-tr:hover{background:#f8faf4;}
+.ch-tr:last-child{border-bottom:none;}
+.ch-td{padding:16px 16px;vertical-align:top;}
+.ch-td-center{text-align:center;color:#374137;}
+.ch-td-name{min-width:180px;}
+.ch-td-course-name{font-weight:700;color:#1a2e1a;font-size:14px;margin-bottom:2px;}
+.ch-td-accolade{font-size:10px;color:#8a9a8a;line-height:1.4;}
+.ch-td-best{max-width:200px;color:#4a5a4a;font-size:12px;}
+.ch-td-designer{font-size:12px;color:#4a5a4a;}
+.ch-slope-badge{display:inline-block;padding:3px 10px;border-radius:100px;font-size:12px;font-weight:700;}
+.ch-table-link{color:#e8a850;font-weight:600;text-decoration:none;font-size:12px;white-space:nowrap;}
+.ch-table-link:hover{color:#c88840;}
+.ch-slope-legend{display:flex;gap:24px;margin-top:16px;flex-wrap:wrap;}
+.ch-legend-item{display:flex;align-items:center;gap:8px;font-size:12px;color:#6b7c6b;}
+.ch-legend-dot{padding:2px 8px;border-radius:100px;font-size:11px;font-weight:700;}
+
+/* ── course cards ── */
+.ch-cards-section{padding:80px 0;background:#f0f5f0;}
+.ch-cards{display:flex;flex-direction:column;gap:40px;}
+.ch-card{background:#fff;border-radius:24px;overflow:hidden;box-shadow:0 4px 24px rgba(0,0,0,0.06);transition:box-shadow .3s;}
+.ch-card:hover{box-shadow:0 12px 48px rgba(0,0,0,0.12);}
+.ch-card-img-wrap{display:block;position:relative;height:360px;overflow:hidden;text-decoration:none;}
+@media(max-width:700px){.ch-card-img-wrap{height:240px;}}
+.ch-card-img{width:100%;height:100%;object-fit:cover;transition:transform 8s ease;}
+.ch-card:hover .ch-card-img{transform:scale(1.04);}
+.ch-card-img-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(5,10,5,0.5) 0%,transparent 50%);}
+.ch-card-badges{position:absolute;top:20px;left:20px;display:flex;gap:8px;flex-wrap:wrap;}
+.ch-card-badge{font-size:11px;font-weight:700;padding:4px 12px;border-radius:100px;letter-spacing:.03em;}
+.ch-card-accolade-overlay{position:absolute;bottom:20px;left:20px;font-size:11px;color:rgba(255,255,255,0.7);letter-spacing:.08em;text-transform:uppercase;}
+.ch-card-body{padding:36px;}
+@media(max-width:600px){.ch-card-body{padding:24px 20px;}}
+.ch-card-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:16px;gap:16px;}
+.ch-card-num{font-family:'Playfair Display',serif;font-size:40px;color:#e8ede8;font-weight:400;line-height:1;margin-bottom:4px;}
+.ch-card-name{font-family:'Playfair Display',serif;font-size:clamp(22px,3vw,32px);font-weight:400;color:#1a2e1a;margin:0 0 6px;}
+.ch-card-tagline{font-size:14px;color:#6b7c6b;margin:0;}
+.ch-card-cta{white-space:nowrap;font-size:13px;color:#e8a850;font-weight:600;text-decoration:none;padding:10px 20px;border:1px solid rgba(232,168,80,0.3);border-radius:100px;transition:all .2s;flex-shrink:0;}
+.ch-card-cta:hover{background:#e8a850;color:#0d1a0e;}
+.ch-card-desc{font-size:15px;color:#4a5a4a;line-height:1.7;margin:0 0 28px;}
+
+/* stats grid */
+.ch-stats-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:1px;background:#e8ede8;border-radius:14px;overflow:hidden;margin-bottom:24px;}
+@media(max-width:700px){.ch-stats-grid{grid-template-columns:repeat(3,1fr);}}
+@media(max-width:420px){.ch-stats-grid{grid-template-columns:repeat(2,1fr);}}
+.ch-stat-box{background:#f8faf4;padding:16px 12px;text-align:center;}
+.ch-stat-label{font-size:9px;color:#8a9a8a;text-transform:uppercase;letter-spacing:.08em;font-weight:600;margin-bottom:6px;}
+.ch-stat-val{font-family:'Playfair Display',serif;font-size:20px;color:#1a2e1a;font-weight:400;line-height:1.1;}
+.ch-stat-sm{font-size:12px;font-family:'Inter',sans-serif;color:#374137;}
+
+/* slope bar */
+.ch-slope-row{margin-bottom:20px;}
+.ch-slope-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;}
+.ch-slope-label{font-size:10px;color:#8a9a8a;text-transform:uppercase;letter-spacing:.08em;font-weight:600;}
+.ch-slope-num{font-family:'Playfair Display',serif;font-size:24px;font-weight:400;}
+.ch-slope-track{height:8px;background:#e8ede8;border-radius:100px;overflow:hidden;margin-bottom:6px;}
+.ch-slope-fill{height:100%;border-radius:100px;transition:width 1s ease;}
+.ch-slope-context{font-size:12px;color:#6b7c6b;}
+
+/* best for */
+.ch-bestfor{display:flex;align-items:baseline;gap:8px;margin-bottom:16px;padding:12px 16px;background:#f8faf4;border-radius:10px;border-left:3px solid #e8a850;}
+.ch-bestfor-label{font-size:10px;font-weight:700;color:#8a9a8a;text-transform:uppercase;letter-spacing:.08em;flex-shrink:0;}
+.ch-bestfor-val{font-size:13px;color:#374137;line-height:1.5;}
+
+/* highlights */
+.ch-highlights{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px;}
+.ch-highlight-tag{font-size:12px;color:#4a5a4a;background:#f0f5f0;border:1px solid #d8e8d8;padding:5px 12px;border-radius:100px;}
+
+/* facilities */
+.ch-facilities{margin-bottom:28px;}
+.ch-facilities-label{font-size:10px;font-weight:700;color:#8a9a8a;text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px;}
+.ch-facilities-list{display:flex;flex-wrap:wrap;gap:6px;}
+.ch-facility{font-size:12px;color:#374137;background:#f8faf4;padding:4px 10px;border-radius:6px;}
+
+/* full details btn */
+.ch-card-btn{display:inline-block;background:#1a2e1a;color:#f8faf8;font-size:14px;font-weight:600;padding:14px 28px;border-radius:100px;text-decoration:none;transition:all .25s;}
+.ch-card-btn:hover{background:#e8a850;color:#0d1a0e;transform:translateY(-1px);}
+
+/* ── slope explainer ── */
+.ch-explainer{padding:80px 0;background:#fff;}
+.ch-explainer-inner{display:grid;grid-template-columns:1fr 1fr;gap:60px;}
+@media(max-width:800px){.ch-explainer-inner{grid-template-columns:1fr;gap:40px;}}
+.ch-explainer-title{font-family:'Playfair Display',serif;font-size:clamp(22px,2.5vw,30px);font-weight:400;color:#1a2e1a;margin:0 0 16px;}
+.ch-explainer-subtitle{font-family:'Playfair Display',serif;font-size:20px;font-weight:400;color:#1a2e1a;margin:0 0 12px;}
+.ch-explainer-body{font-size:14px;color:#4a5a4a;line-height:1.7;margin:0 0 24px;}
+.ch-slope-examples{display:flex;flex-direction:column;gap:14px;}
+.ch-slope-ex{display:flex;align-items:flex-start;gap:14px;}
+.ch-slope-ex-num{font-size:16px;font-weight:800;padding:6px 12px;border-radius:8px;flex-shrink:0;min-width:48px;text-align:center;}
+.ch-slope-ex-course{font-size:13px;font-weight:700;color:#1a2e1a;margin-bottom:2px;}
+.ch-slope-ex-desc{font-size:12px;color:#6b7c6b;line-height:1.5;}
+.ch-alt-examples{display:flex;flex-direction:column;gap:10px;margin-bottom:16px;}
+.ch-alt-row{display:grid;grid-template-columns:70px 1fr 24px 1fr;align-items:center;gap:8px;padding:10px 14px;background:#f8faf4;border-radius:10px;}
+.ch-alt-club{font-size:12px;font-weight:700;color:#1a2e1a;}
+.ch-alt-sea{font-size:13px;color:#6b7c6b;}
+.ch-alt-graeagle{font-size:13px;font-weight:700;color:#16a34a;}
+.ch-alt-arrow{color:#d8e8d8;text-align:center;}
+.ch-alt-label{font-size:10px;display:block;color:#8a9a8a;font-weight:400;}
+.ch-explainer-fine{font-size:11px;color:#8a9a8a;line-height:1.5;}
+
+/* ── itinerary ── */
+.ch-itinerary{padding:80px 0;background:#f0f5f0;}
+.ch-itin-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+@media(max-width:800px){.ch-itin-grid{grid-template-columns:1fr;}}
+.ch-itin-card{background:#fff;border-radius:20px;padding:28px;border:1px solid #e8ede8;}
+.ch-itin-header{display:flex;align-items:center;gap:12px;margin-bottom:20px;padding-bottom:16px;border-bottom:1px solid #e8ede8;}
+.ch-itin-icon{font-size:22px;}
+.ch-itin-label{font-family:'Playfair Display',serif;font-size:18px;color:#1a2e1a;font-weight:400;}
+.ch-itin-combo{margin-bottom:18px;padding-bottom:18px;border-bottom:1px solid #f0f4f0;}
+.ch-itin-combo:last-child{margin-bottom:0;padding-bottom:0;border-bottom:none;}
+.ch-itin-combo-title{font-size:11px;font-weight:700;color:#e8a850;text-transform:uppercase;letter-spacing:.08em;margin-bottom:4px;}
+.ch-itin-combo-courses{font-size:14px;font-weight:600;color:#1a2e1a;margin-bottom:4px;}
+.ch-itin-combo-why{font-size:12px;color:#6b7c6b;line-height:1.5;}
+
+/* ── cta ── */
+.ch-cta{padding:80px 0;background:#1a2e1a;}
+.ch-cta-inner{display:flex;align-items:center;justify-content:space-between;gap:40px;flex-wrap:wrap;}
+.ch-cta-title{font-family:'Playfair Display',serif;font-size:clamp(24px,3vw,38px);font-weight:400;color:#f8faf8;margin:0 0 10px;}
+.ch-cta-sub{font-size:15px;color:rgba(248,250,248,0.5);margin:0;max-width:480px;line-height:1.65;}
+.ch-cta-btn{flex-shrink:0;background:#e8a850;color:#0d1a0e;font-size:15px;font-weight:700;padding:16px 36px;border-radius:100px;text-decoration:none;transition:all .25s;white-space:nowrap;}
+.ch-cta-btn:hover{background:#f2c878;transform:translateY(-2px);box-shadow:0 8px 32px rgba(232,168,80,0.4);}
+
+/* ── reveal animation ── */
+.reveal{opacity:0;transform:translateY(30px);transition:opacity .7s ease,transform .7s ease;}
+.reveal.visible{opacity:1;transform:translateY(0);}
+</style>
+
+<script>
+// scroll reveal
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+}, { threshold: 0.08 });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
