@@ -166,42 +166,14 @@ const homeFaqSchema = {
       <a href="/courses" class="link-gold-sm" style="white-space:nowrap;">Compare all →</a>
     </div>
 
-    <div class="courses-feature-row">
-      <div class="reveal course-card-big" onclick="window.location='/courses/nakoma-dragon'" style="cursor:pointer;">
-        <img src={courses[4].hero} alt="Nakoma Dragon Golf Course — The Dragon fairway" loading="lazy" class="course-card-img"/>
-        <div class="card-gradient"></div>
-        <div class="course-card-body">
-          <div style="display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap;">
-            <span class="badge">Golf World Top 75</span>
-            <span class="badge">FLW Clubhouse</span>
-            <span class="badge">Slope 147</span>
-          </div>
-          <h3 style="font-family:'Playfair Display',serif;font-size:clamp(24px,2.5vw,36px);font-weight:500;color:#f0f8f2;margin:0 0 8px;">Nakoma — The Dragon</h3>
-          <p style="font-size:14px;color:rgba(240,248,242,0.55);margin:0 0 20px;">Robin Nelson design · The only FLW golf clubhouse in existence</p>
-          <a href="/courses/nakoma-dragon" class="link-gold-sm">View course →</a>
-        </div>
-      </div>
-
-      <div class="reveal delay-100 course-card-side" onclick="window.location='/courses/grizzly-ranch'" style="cursor:pointer;">
-        <img src={courses[3].hero} alt="Grizzly Ranch Golf Club" loading="lazy" class="course-card-img"/>
-        <div class="card-gradient"></div>
-        <div class="course-card-body">
-          <span style="font-size:10px;color:rgba(232,168,80,0.7);letter-spacing:0.1em;text-transform:uppercase;">7,411 yards · Bob Cupp</span>
-          <h3 style="font-family:'Playfair Display',serif;font-size:clamp(20px,2vw,26px);color:#f0f8f2;margin:8px 0 4px;">Grizzly Ranch</h3>
-          <p style="font-size:12px;color:rgba(240,248,242,0.45);margin:0 0 14px;">The valley's biggest challenge</p>
-          <a href="/courses/grizzly-ranch" class="link-gold-sm">View course →</a>
-        </div>
-      </div>
-    </div>
-
-    <div class="courses-small-row">
-      {courses.slice(0,3).map((c,i)=>(
-        <div class={`reveal delay-${(i+1)*100} course-card-small`} onclick={`window.location='/courses/${c.slug}'`} style="cursor:pointer;">
+    <div class="courses-five-grid">
+      {[courses[0], courses[1], courses[2], courses[3], courses[4]].map((c,i)=>(
+        <div class={`reveal delay-${i*75} course-card-equal`} onclick={`window.location='/courses/${c.slug}'`} style="cursor:pointer;">
           <img src={c.hero} alt={`${c.name} Golf Course`} loading="lazy" class="course-card-img"/>
           <div class="card-gradient"></div>
           <div class="course-card-body">
             <span style="font-size:10px;color:rgba(232,168,80,0.65);letter-spacing:0.1em;text-transform:uppercase;">{c.par} par · {c.yards.toLocaleString()} yds · {c.designer}</span>
-            <h3 style="font-family:'Playfair Display',serif;font-size:clamp(18px,1.8vw,22px);color:#f0f8f2;margin:6px 0 12px;">{c.name}</h3>
+            <h3 style="font-family:'Playfair Display',serif;font-size:clamp(16px,1.4vw,20px);color:#f0f8f2;margin:6px 0 12px;line-height:1.2;">{c.name}</h3>
             <a href={`/courses/${c.slug}`} class="link-gold-sm">View course →</a>
           </div>
         </div>
@@ -683,32 +655,14 @@ const homeFaqSchema = {
   }
 
   /* ═══ COURSE CARDS ═══ */
-  .courses-feature-row {
+  .courses-five-grid {
     display: grid;
-    grid-template-columns: 2fr 1fr;
-    gap: 2px;
-    margin-bottom: 2px;
-  }
-  .course-card-big {
-    position: relative;
-    height: 520px;
-    overflow: hidden;
-    border-radius: 20px 4px 4px 20px;
-  }
-  .course-card-side {
-    position: relative;
-    height: 520px;
-    overflow: hidden;
-    border-radius: 4px 20px 20px 4px;
-  }
-  .courses-small-row {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(5, 1fr);
     gap: 2px;
   }
-  .course-card-small {
+  .course-card-equal {
     position: relative;
-    height: 340px;
+    height: 420px;
     overflow: hidden;
     border-radius: 12px;
   }
@@ -719,9 +673,7 @@ const homeFaqSchema = {
     transition: transform 7s ease;
     display: block;
   }
-  .course-card-big:hover .course-card-img,
-  .course-card-side:hover .course-card-img,
-  .course-card-small:hover .course-card-img,
+  .course-card-equal:hover .course-card-img,
   .lodging-feature:hover .course-card-img,
   .lodging-side-card:hover .course-card-img { transform: scale(1.06); }
   .card-gradient {
@@ -816,14 +768,11 @@ const homeFaqSchema = {
     }
     .hero-right { display: none; } /* stat card hidden on mobile — too cramped */
 
-    /* Course grids → single col */
-    .courses-feature-row {
-      grid-template-columns: 1fr;
+    /* Course grids → 2 col on tablet */
+    .courses-five-grid {
+      grid-template-columns: 1fr 1fr;
     }
-    .course-card-big { height: 360px; border-radius: 16px; }
-    .course-card-side { height: 260px; border-radius: 16px; }
-    .courses-small-row { grid-template-columns: 1fr 1fr; }
-    .course-card-small { height: 240px; }
+    .course-card-equal { height: 280px; border-radius: 12px; }
 
     /* Two-col → single col */
     .two-col-section { grid-template-columns: 1fr; }
@@ -848,8 +797,8 @@ const homeFaqSchema = {
   }
 
   @media (max-width: 540px) {
-    .courses-small-row { grid-template-columns: 1fr; }
-    .course-card-small { height: 220px; }
+    .courses-five-grid { grid-template-columns: 1fr; }
+    .course-card-equal { height: 240px; }
     .lodging-side-grid { grid-template-columns: 1fr; }
     .lodging-side-card { height: 180px; }
     .hero-ctas { flex-direction: column; align-items: flex-start; }
