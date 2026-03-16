@@ -2,134 +2,106 @@
 import Base from '../layouts/Base.astro';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
-import { courses } from '../data/content.js';
+import { courses, lodging } from '../data/content.js';
 
-const preselected = Astro.url.searchParams.get('course') || '';
-const courseName  = Astro.url.searchParams.get('courseName') || '';
+const preselected  = Astro.url.searchParams.get('course') || '';
 
-// Course lists from MSG_Quote_Form_Reference.docx — Graeagle region added
-const graeagleCourses = [
-  { id: 'graeagle-meadows',  name: 'Graeagle Meadows Golf Course',  mustPlay: false },
-  { id: 'whitehawk-ranch',   name: 'Whitehawk Ranch Golf Club',      mustPlay: true  },
-  { id: 'plumas-pines',      name: 'Plumas Pines Golf Resort',       mustPlay: false },
-  { id: 'grizzly-ranch',     name: 'Grizzly Ranch Golf Club',        mustPlay: true  },
-  { id: 'nakoma-dragon',     name: 'Nakoma — The Dragon',            mustPlay: true  },
+const courseCards = [
+  { ...courses[0], accolade: 'The Valley Original',  mustPlay: false },
+  { ...courses[1], accolade: 'Top 20 CA — 1998',     mustPlay: true  },
+  { ...courses[2], accolade: 'Top 5 Best Value',      mustPlay: false },
+  { ...courses[3], accolade: 'Golf Digest Top 100',   mustPlay: true  },
+  { ...courses[4], accolade: 'Golf World Top 75',     mustPlay: true  },
+];
+
+const lodgingCards = [
+  { ...lodging[0], best:'Groups & Families',  icon:'🏕', desc:'Cabins, suites & rooms · Pool & hot tub · Roadhouse dining on-site' },
+  { ...lodging[1], best:'Best Amenities',     icon:'🏡', desc:'10 forested acres · Spa · 9-hole exec course · Eureka Peak Brewing' },
+  { ...lodging[2], best:'Most Unique',        icon:'🏛', desc:'Frank Lloyd Wright building · Steps from The Dragon · Spa & pool' },
+  { ...lodging[3], best:'Large Golf Groups',  icon:'🏘', desc:'2–4 bedroom units · Full kitchens · On the Plumas Pines course' },
 ];
 ---
 export const prerender = true;
 
-<style>
-  .quote-wrap {
-    max-width: 1240px; margin: 0 auto;
-    padding: 60px clamp(20px,4vw,48px) 100px;
-    display: grid;
-    grid-template-columns: 1fr 1.1fr;
-    gap: 80px;
-    align-items: start;
-    position: relative; z-index: 1;
-  }
-  .quote-pitch { position: sticky; top: 120px; }
-  .quote-stat-row { display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; }
-  .quote-courses-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-  .quote-2col { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-  @media (max-width: 860px) {
-    .quote-wrap { grid-template-columns: 1fr; gap: 40px; }
-    .quote-pitch { position: static; }
-  }
-  @media (max-width: 540px) {
-    .quote-stat-row { grid-template-columns: 1fr 1fr; }
-    .quote-courses-grid { grid-template-columns: 1fr; }
-    .quote-2col { grid-template-columns: 1fr; }
-  }
-</style>
-
 <Base
-  title="Request a Graeagle Golf Package Quote | Golf Graeagle"
-  description="Plan your Graeagle golf trip. Tell us your dates, group size, and preferred courses — we'll build a custom stay-and-play package. Free quotes, 24-hour response."
+  title="Request a Graeagle Golf Package Quote | GolfGraeagle"
+  description="Plan your Graeagle golf trip. Tell us your dates, group size, courses, and lodging — we'll build a custom stay-and-play package. Free quote, 24-hour response."
 >
   <Nav />
 
-  <!-- Hero strip -->
-  <div style="min-height:100vh;padding-top:100px;background:#0d1a0e;position:relative;overflow:hidden;">
+  <div style="min-height:100vh;padding-top:88px;background:#0d1a0e;position:relative;overflow-x:hidden;">
+    <div style="position:fixed;inset:0;pointer-events:none;z-index:0;background:radial-gradient(ellipse 60% 50% at 70% 0%,rgba(232,168,80,0.055) 0%,transparent 65%),radial-gradient(ellipse 40% 40% at 0% 100%,rgba(82,168,98,0.04) 0%,transparent 60%);"></div>
 
-    <!-- BG texture -->
-    <div style="position:absolute;inset:0;background:radial-gradient(ellipse 70% 60% at 60% -10%,rgba(232,168,80,0.06) 0%,transparent 70%),radial-gradient(ellipse 50% 40% at 10% 90%,rgba(82,168,98,0.04) 0%,transparent 70%);pointer-events:none;"></div>
+    <div class="qw" style="position:relative;z-index:1;">
 
-    <div class="quote-wrap">
+      <!-- LEFT PITCH -->
+      <aside class="q-pitch">
+        <p class="q-eyebrow">Free · No Obligation · 24-hr Response</p>
+        <h1 class="q-h1">Build your<br/><em style="color:#e8a850;font-style:italic;">Graeagle</em><br/>golf trip.</h1>
+        <p class="q-sub">Five championship courses. Four handpicked properties. One planning team that's been doing this for 20+ years.</p>
 
-      <!-- ═══ LEFT — Pitch ═══ -->
-      <div class="quote-pitch">
-        <p style="font-size:11px;color:#e8a850;letter-spacing:0.16em;text-transform:uppercase;margin:0 0 18px;font-weight:600;">Free · No Obligation · 24-Hour Response</p>
-        <h1 style="font-family:'Playfair Display',serif;font-size:clamp(38px,4.5vw,54px);font-weight:500;color:#f0f8f2;margin:0 0 20px;line-height:1.1;">
-          Your perfect<br/><span style="color:#e8a850;font-style:italic;">Graeagle trip</span><br/>starts here.
-        </h1>
-        <p style="font-size:15px;color:rgba(240,248,242,0.45);line-height:1.75;margin:0 0 36px;max-width:380px;">
-          Tell us your dates, group size, and which courses call to you. We handle tee times, lodging, and the full itinerary — all in one package.
-        </p>
+        <div id="trip-summary" class="q-summary" style="display:none;">
+          <div class="q-summary-title">📋 Your Trip So Far</div>
+          <div id="summary-lines" class="q-summary-lines"></div>
+        </div>
 
-        <!-- What you get -->
-        <div style="display:flex;flex-direction:column;gap:16px;margin-bottom:40px;">
+        <div id="static-benefits">
           {[
-            { icon:'⛳', title:'Tee time coordination',     sub:'We book all 5 courses so you never have to call each one separately' },
-            { icon:'🏔',  title:'Lodging matched to your group', sub:'Hotel, resort, townhomes — sized and priced for your group' },
-            { icon:'📋', title:'Full itinerary',            sub:'Day-by-day plan with courses, dining recs, and drive times' },
-            { icon:'⚡', title:'24-hour turnaround',        sub:'Real people, fast response — not a chatbot queue' },
-          ].map(i=>(
-            <div style="display:flex;align-items:flex-start;gap:16px;padding:16px 20px;border-radius:14px;background:rgba(240,248,242,0.02);border:1px solid rgba(240,248,242,0.04);">
-              <span style="font-size:20px;flex-shrink:0;margin-top:1px;">{i.icon}</span>
+            { icon:'⛳', t:'Tee time coordination',        s:'All 5 courses booked — no calling around' },
+            { icon:'🏔', t:'Lodging matched to your group', s:'Hotel, resort, or townhomes sized for your crew' },
+            { icon:'📋', t:'Full day-by-day itinerary',    s:'Courses, dining recs, and drive times included' },
+            { icon:'⚡', t:'24-hour turnaround',           s:'Real people — not a chatbot queue' },
+          ].map(b=>(
+            <div class="q-benefit">
+              <span class="q-benefit-icon">{b.icon}</span>
               <div>
-                <div style="font-size:13px;font-weight:600;color:rgba(240,248,242,0.8);margin-bottom:3px;">{i.title}</div>
-                <div style="font-size:12px;color:rgba(240,248,242,0.3);line-height:1.5;">{i.sub}</div>
+                <div class="q-benefit-title">{b.t}</div>
+                <div class="q-benefit-sub">{b.s}</div>
               </div>
             </div>
           ))}
         </div>
 
-        <!-- Trust row -->
-        <div class="quote-stat-row">
-          {[
-            { n:'5',    l:'Championship Courses' },
-            { n:'72hr', l:'Cancellation Policy'  },
-            { n:'24hr', l:'Quote Response'        },
-          ].map(t=>(
-            <div style="text-align:center;padding:14px 8px;border-radius:12px;background:rgba(232,168,80,0.04);border:1px solid rgba(232,168,80,0.1);">
-              <div style="font-family:'Playfair Display',serif;font-size:22px;color:#e8a850;font-weight:500;">{t.n}</div>
-              <div style="font-size:10px;color:rgba(240,248,242,0.3);margin-top:3px;line-height:1.4;">{t.l}</div>
+        <div class="q-trust-row">
+          {[{n:'5',l:'Courses'},{n:'20+',l:'Years'},{n:'24hr',l:'Response'}].map(t=>(
+            <div class="q-trust-item">
+              <div class="q-trust-n">{t.n}</div>
+              <div class="q-trust-l">{t.l}</div>
             </div>
           ))}
         </div>
-      </div>
+      </aside>
 
-      <!-- ═══ RIGHT — Form ═══ -->
-      <div id="quote-form-wrap" style="background:rgba(240,248,242,0.025);border:1px solid rgba(240,248,242,0.06);border-radius:24px;overflow:hidden;">
+      <!-- RIGHT PANEL -->
+      <main class="q-panel">
 
-        <!-- Form progress bar -->
-        <div style="background:rgba(240,248,242,0.03);border-bottom:1px solid rgba(240,248,242,0.05);padding:20px 32px;display:flex;align-items:center;gap:8px;">
-          {['Contact','Trip Details','Golf Preferences','Course Selection','Extras'].map((s,i)=>(
-            <div style="display:flex;align-items:center;gap:8px;flex:1;">
-              <div class={`step-dot step-${i}`} style={`width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;flex-shrink:0;background:${i===0?'#e8a850':'rgba(240,248,242,0.08)'};color:${i===0?'#0d1a0e':'rgba(240,248,242,0.3)'};transition:all 0.3s;`}>{i+1}</div>
-              <div style={`font-size:10px;color:${i===0?'rgba(240,248,242,0.6)':'rgba(240,248,242,0.2)'};white-space:nowrap;flex:1;overflow:hidden;text-overflow:ellipsis;`} class={`step-label step-label-${i}`}>{s}</div>
-              {i<4&&<div class={`step-bar step-bar-${i}`} style="flex:1;height:1px;background:rgba(240,248,242,0.06);margin:0 4px;min-width:8px;"></div>}
+        <!-- Progress -->
+        <div class="q-progress">
+          {['Contact','Trip','Golf','Courses','Lodging','Extras'].map((s,i)=>(
+            <div class="q-prog-item">
+              <div class={`q-dot q-dot-${i}`}>{i+1}</div>
+              <span class={`q-prog-label q-prog-label-${i}`}>{s}</span>
+              {i<5&&<div class={`q-prog-bar q-prog-bar-${i}`}></div>}
             </div>
           ))}
         </div>
 
-        <form id="quote-form" style="padding:32px;" novalidate>
+        <form id="qf" novalidate>
 
-          <!-- ── SECTION 1: Contact ── -->
-          <div class="form-section active" data-section="0">
-            <div style="margin-bottom:28px;">
-              <h2 style="font-family:'Playfair Display',serif;font-size:24px;font-weight:500;color:#f0f8f2;margin:0 0 6px;">Contact Information</h2>
-              <p style="font-size:13px;color:rgba(240,248,242,0.3);margin:0;">We'll use this to send your custom quote.</p>
+          <!-- STEP 0: Contact -->
+          <div class="q-step active" data-step="0">
+            <div class="q-step-hd">
+              <h2 class="q-step-title">Contact Information</h2>
+              <p class="q-step-sub">We'll use this to send your custom package quote.</p>
             </div>
-            <div class="quote-2col">
-              <div class="fld"><label>First Name *</label><input type="text" name="firstName" placeholder="Jack" required /></div>
-              <div class="fld"><label>Last Name *</label><input type="text" name="lastName" placeholder="Nicklaus" required /></div>
-              <div class="fld" style="grid-column:1/-1;"><label>Email *</label><input type="email" name="email" placeholder="you@example.com" required /></div>
-              <div class="fld" style="grid-column:1/-1;"><label>Phone *</label><input type="tel" name="phone" placeholder="(555) 555-5555" required /></div>
-              <div class="fld" style="grid-column:1/-1;"><label>How did you hear about us?</label>
+            <div class="q-2col">
+              <div class="qfld"><label>First Name <span class="req">*</span></label><input type="text" name="firstName" placeholder="Jack" required autocomplete="given-name"/></div>
+              <div class="qfld"><label>Last Name <span class="req">*</span></label><input type="text" name="lastName" placeholder="Nicklaus" required autocomplete="family-name"/></div>
+              <div class="qfld qfull"><label>Email <span class="req">*</span></label><input type="email" name="email" placeholder="you@example.com" required autocomplete="email"/></div>
+              <div class="qfld qfull"><label>Phone <span class="req">*</span></label><input type="tel" name="phone" placeholder="(555) 555-5555" required autocomplete="tel"/></div>
+              <div class="qfld qfull"><label>How did you hear about us?</label>
                 <select name="howHeard">
-                  <option value="">Select one...</option>
+                  <option value="">Select one…</option>
                   <option value="google">Google Search</option>
                   <option value="referral">Friend / Referral</option>
                   <option value="social">Social Media</option>
@@ -141,358 +113,579 @@ export const prerender = true;
             </div>
           </div>
 
-          <!-- ── SECTION 2: Trip Details ── -->
-          <div class="form-section" data-section="1" style="display:none;">
-            <div style="margin-bottom:28px;">
-              <h2 style="font-family:'Playfair Display',serif;font-size:24px;font-weight:500;color:#f0f8f2;margin:0 0 6px;">Trip Details</h2>
-              <p style="font-size:13px;color:rgba(240,248,242,0.3);margin:0;">Tell us when you're planning to visit.</p>
+          <!-- STEP 1: Trip -->
+          <div class="q-step" data-step="1" style="display:none;">
+            <div class="q-step-hd">
+              <h2 class="q-step-title">Trip Details</h2>
+              <p class="q-step-sub">Dates, group size, and how you want to travel.</p>
             </div>
-            <div class="quote-2col">
-              <div class="fld"><label>Arrival Date *</label><input type="date" name="arrivalDate" required /></div>
-              <div class="fld"><label>Departure Date *</label><input type="date" name="departureDate" required /></div>
-              <div class="fld"><label>Group Size *</label><input type="number" name="partySize" min="1" max="100" placeholder="4" required /></div>
-              <div class="fld"><label>Number of Nights</label><input type="number" name="numNights" min="1" placeholder="2" /></div>
-              <div class="fld" style="grid-column:1/-1;">
-                <label>Are your dates flexible?</label>
-                <div style="display:flex;gap:12px;margin-top:6px;">
-                  <label class="radio-opt"><input type="radio" name="datesFlexible" value="yes"/> Yes, flexible</label>
-                  <label class="radio-opt"><input type="radio" name="datesFlexible" value="no" checked/> No, fixed dates</label>
-                </div>
-              </div>
-              <div class="fld" style="grid-column:1/-1;">
-                <label>Lodging Preference</label>
-                <select name="lodgingType">
-                  <option value="">Select lodging type...</option>
-                  <option value="on-course">On-Course / Stay &amp; Play Resort</option>
-                  <option value="hotel-non-casino">Hotel / Lodge</option>
-                  <option value="vacation-rental">Vacation Rental</option>
-                  <option value="private-residence">Private Home / Townhome</option>
-                  <option value="no-preference">No Preference</option>
-                </select>
-              </div>
-              <div class="fld" style="grid-column:1/-1;">
-                <label>Room Configuration</label>
-                <select name="roomConfig">
-                  <option value="">Select room configuration...</option>
-                  <option value="double">Double Occupancy (Shared Rooms)</option>
-                  <option value="single">Single Occupancy (Own Room)</option>
-                  <option value="mix">Mix of Both</option>
-                </select>
+            <div class="q-2col">
+              <div class="qfld"><label>Arrival Date <span class="req">*</span></label><input type="date" name="arrivalDate" id="arrival-date" required/></div>
+              <div class="qfld"><label>Departure Date <span class="req">*</span></label><input type="date" name="departureDate" id="departure-date" required/></div>
+              <div class="qfld"><label>Group Size <span class="req">*</span></label><input type="number" name="partySize" id="party-size" min="1" max="200" placeholder="4" required/></div>
+              <div class="qfld"><label>Number of Nights</label><input type="number" name="numNights" id="num-nights" min="1" placeholder="auto"/></div>
+            </div>
+            <div class="q-radio-group">
+              <div class="q-radio-label">Are your dates flexible?</div>
+              <div class="q-radio-row">
+                <label class="q-radio"><input type="radio" name="datesFlexible" value="yes"/> Yes, we can shift a few days</label>
+                <label class="q-radio"><input type="radio" name="datesFlexible" value="no" checked/> No, these are fixed</label>
               </div>
             </div>
-          </div>
-
-          <!-- ── SECTION 3: Golf Preferences ── -->
-          <div class="form-section" data-section="2" style="display:none;">
-            <div style="margin-bottom:28px;">
-              <h2 style="font-family:'Playfair Display',serif;font-size:24px;font-weight:500;color:#f0f8f2;margin:0 0 6px;">Golf Preferences</h2>
-              <p style="font-size:13px;color:rgba(240,248,242,0.3);margin:0;">Help us plan your rounds.</p>
+            <div class="q-radio-group">
+              <div class="q-radio-label">Budget Tier (per golfer, all-in)</div>
+              <div class="q-tier-row">
+                {[
+                  { v:'budget',  l:'$$',   desc:'Value-focused — great golf, smart lodging' },
+                  { v:'mid',     l:'$$$',  desc:'Comfort & quality — our most popular tier' },
+                  { v:'premium', l:'$$$$', desc:'Resort experience — no compromises' },
+                ].map(t=>(
+                  <label class="q-tier-card">
+                    <input type="radio" name="budgetTier" value={t.v}/>
+                    <div class="q-tier-inner">
+                      <div class="q-tier-price">{t.l}</div>
+                      <div class="q-tier-desc">{t.desc}</div>
+                    </div>
+                  </label>
+                ))}
+              </div>
             </div>
-            <div class="quote-2col">
-              <div class="fld" style="grid-column:1/-1;">
-                <label>Total Rounds Planned *</label>
-                <input type="number" name="totalRounds" min="1" max="20" placeholder="3" required />
-              </div>
-              <div class="fld" style="grid-column:1/-1;">
-                <label>Ideal Tee Times</label>
-                <input type="text" name="idealTeeTimes" placeholder="e.g. 8–10am preferred, avoid afternoon heat" />
-              </div>
-              <div class="fld" style="grid-column:1/-1;">
-                <label>Play on Arrival Day?</label>
-                <div style="display:flex;gap:12px;margin-top:6px;">
-                  <label class="radio-opt"><input type="radio" name="playOnArrival" value="yes"/> Yes</label>
-                  <label class="radio-opt"><input type="radio" name="playOnArrival" value="no" checked/> No</label>
-                </div>
-              </div>
-              <div class="fld" style="grid-column:1/-1;">
-                <label>Play on Departure Day?</label>
-                <div style="display:flex;gap:12px;margin-top:6px;">
-                  <label class="radio-opt"><input type="radio" name="playOnDeparture" value="yes"/> Yes</label>
-                  <label class="radio-opt"><input type="radio" name="playOnDeparture" value="no" checked/> No</label>
-                </div>
+            <div class="q-radio-group">
+              <div class="q-radio-label">Group Skill Level</div>
+              <div class="q-radio-row" style="flex-wrap:wrap;">
+                {[
+                  {v:'beginner',l:'Beginner (30+ HCP)'},{v:'recreational',l:'Recreational (15–29)'},
+                  {v:'mid',l:'Mid (8–14)'},{v:'low',l:'Low (0–7)'},{v:'mixed',l:'Mixed group'},
+                ].map(s=>(
+                  <label class="q-radio"><input type="radio" name="skillLevel" value={s.v}/> {s.l}</label>
+                ))}
               </div>
             </div>
           </div>
 
-          <!-- ── SECTION 4: Course Selection ── -->
-          <div class="form-section" data-section="3" style="display:none;">
-            <div style="margin-bottom:28px;">
-              <h2 style="font-family:'Playfair Display',serif;font-size:24px;font-weight:500;color:#f0f8f2;margin:0 0 6px;">Course Selection</h2>
-              <p style="font-size:13px;color:rgba(240,248,242,0.3);margin:0;">Which courses are on your wish list? ⭐ = Must-play.</p>
+          <!-- STEP 2: Golf -->
+          <div class="q-step" data-step="2" style="display:none;">
+            <div class="q-step-hd">
+              <h2 class="q-step-title">Golf Preferences</h2>
+              <p class="q-step-sub">Help us build the right round schedule.</p>
             </div>
-            <div style="display:flex;flex-direction:column;gap:10px;">
-              {graeagleCourses.map(c=>(
-                <label class="course-check" data-id={c.id}>
-                  <input type="checkbox" name="coursesInterested" value={c.id} checked={preselected===c.id||undefined} />
-                  <div class="course-card">
-                    <span style="font-size:13px;font-weight:500;color:#f0f8f2;">{c.name}</span>
-                    {c.mustPlay && <span style="font-size:10px;background:rgba(232,168,80,0.15);color:#e8a850;padding:2px 8px;border-radius:100px;letter-spacing:0.06em;border:1px solid rgba(232,168,80,0.2);">⭐ Must-Play</span>}
-                    <svg class="check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#e8a850" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            <div class="qfld qfull" style="margin-bottom:20px;">
+              <label>Total Rounds Planned <span class="req">*</span></label>
+              <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:8px;">
+                {[1,2,3,4,5].map(n=>(
+                  <label class="q-num-chip">
+                    <input type="radio" name="totalRounds" value={String(n)}/>
+                    <span>{n} {n===1?'round':'rounds'}</span>
+                  </label>
+                ))}
+                <label class="q-num-chip">
+                  <input type="radio" name="totalRounds" value="other"/>
+                  <span>Other</span>
+                </label>
+              </div>
+            </div>
+            <div class="qfld qfull" id="rounds-other-wrap" style="display:none;margin-bottom:20px;">
+              <label>How many rounds?</label>
+              <input type="number" name="totalRoundsCustom" min="1" max="20" placeholder="6"/>
+            </div>
+            <div class="q-radio-group">
+              <div class="q-radio-label">Preferred Tee Time Window</div>
+              <div class="q-radio-row" style="flex-wrap:wrap;">
+                {[
+                  {v:'early',l:'Early bird (7–9am)'},{v:'mid',l:'Mid-morning (9–11am)'},
+                  {v:'midday',l:'Midday (11am–1pm)'},{v:'flex',l:'Flexible'},
+                ].map(t=>(<label class="q-radio"><input type="radio" name="idealTeeTimes" value={t.v}/> {t.l}</label>))}
+              </div>
+            </div>
+            <div class="q-radio-group">
+              <div class="q-radio-label">Play on arrival day?</div>
+              <div class="q-radio-row">
+                <label class="q-radio"><input type="radio" name="playOnArrival" value="yes"/> Yes — rounds from day one</label>
+                <label class="q-radio"><input type="radio" name="playOnArrival" value="no" checked/> No — settling in first</label>
+              </div>
+            </div>
+            <div class="q-radio-group">
+              <div class="q-radio-label">Play on departure day?</div>
+              <div class="q-radio-row">
+                <label class="q-radio"><input type="radio" name="playOnDeparture" value="yes"/> Yes — morning round before heading out</label>
+                <label class="q-radio"><input type="radio" name="playOnDeparture" value="no" checked/> No — leaving right away</label>
+              </div>
+            </div>
+            <div class="q-radio-group">
+              <div class="q-radio-label">Walk or ride?</div>
+              <div class="q-radio-row">
+                <label class="q-radio"><input type="radio" name="cartPref" value="cart"/> Golf cart preferred</label>
+                <label class="q-radio"><input type="radio" name="cartPref" value="walk"/> Walk when available</label>
+                <label class="q-radio"><input type="radio" name="cartPref" value="either" checked/> Either works</label>
+              </div>
+            </div>
+          </div>
+
+          <!-- STEP 3: Courses -->
+          <div class="q-step" data-step="3" style="display:none;">
+            <div class="q-step-hd">
+              <h2 class="q-step-title">Course Selection</h2>
+              <p class="q-step-sub">Which courses are calling you? Select all that interest you. <span style="color:#e8a850;">⭐ = Must-play</span></p>
+            </div>
+            <div class="q-course-grid">
+              {courseCards.map(c=>(
+                <label class="q-course-card">
+                  <input type="checkbox" name="coursesInterested" value={c.slug} checked={preselected===c.slug||undefined}/>
+                  <div class="q-course-img-wrap">
+                    <img src={c.hero} alt={c.name} loading="lazy" class="q-course-img"/>
+                    <div class="q-course-img-fade"></div>
+                    {c.mustPlay&&<span class="q-must-badge">⭐ Must-Play</span>}
+                    <div class="q-course-check-icon">✓</div>
+                  </div>
+                  <div class="q-course-info">
+                    <div class="q-course-accolade">{c.accolade}</div>
+                    <div class="q-course-name">{c.name}</div>
+                    <div class="q-course-stats">Par {c.par} · {c.yards.toLocaleString()} yds · Slope {c.slope} · {c.designer}</div>
                   </div>
                 </label>
               ))}
             </div>
+            <p style="font-size:11px;color:rgba(240,248,242,0.22);margin-top:14px;">Don't worry about exact numbers — we'll match rounds to your days.</p>
           </div>
 
-          <!-- ── SECTION 5: Extras ── -->
-          <div class="form-section" data-section="4" style="display:none;">
-            <div style="margin-bottom:28px;">
-              <h2 style="font-family:'Playfair Display',serif;font-size:24px;font-weight:500;color:#f0f8f2;margin:0 0 6px;">Additional Services</h2>
-              <p style="font-size:13px;color:rgba(240,248,242,0.3);margin:0;">Almost done — any special requirements?</p>
+          <!-- STEP 4: Lodging -->
+          <div class="q-step" data-step="4" style="display:none;">
+            <div class="q-step-hd">
+              <h2 class="q-step-title">Where to Stay</h2>
+              <p class="q-step-sub">Select your preferred property — or let us recommend based on your group and budget.</p>
             </div>
-            <div style="display:flex;flex-direction:column;gap:14px;">
-              <div class="fld">
-                <label>Transportation Needed?</label>
-                <div style="display:flex;gap:12px;margin-top:6px;">
-                  <label class="radio-opt"><input type="radio" name="transportationNeeded" value="yes"/> Yes, please arrange</label>
-                  <label class="radio-opt"><input type="radio" name="transportationNeeded" value="no" checked/> No, we have our own</label>
+            <label class="q-lodge-any">
+              <input type="checkbox" id="lodge-any" name="lodgingAny" value="yes"/>
+              <div class="q-lodge-any-inner">
+                <span style="font-size:18px;">🎯</span>
+                <div>
+                  <div style="font-size:13px;font-weight:600;color:#f0f8f2;">Let us recommend the best fit</div>
+                  <div style="font-size:11px;color:rgba(240,248,242,0.35);margin-top:2px;">We'll match lodging to your group size, selected courses, and budget tier.</div>
+                </div>
+                <div class="q-lodge-any-check">✓</div>
+              </div>
+            </label>
+            <div class="q-lodge-grid" id="lodge-grid">
+              {lodgingCards.map(l=>(
+                <label class="q-lodge-card">
+                  <input type="checkbox" name="lodgingInterested" value={l.slug}/>
+                  <div class="q-lodge-img-wrap">
+                    <img src={l.hero} alt={l.name} loading="lazy" class="q-lodge-img"/>
+                    <div class="q-lodge-img-fade"></div>
+                    <div class="q-lodge-check-icon">✓</div>
+                  </div>
+                  <div class="q-lodge-info">
+                    <div class="q-lodge-best">{l.icon} Best for: {l.best}</div>
+                    <div class="q-lodge-name">{l.name}</div>
+                    <div class="q-lodge-desc">{l.desc}</div>
+                  </div>
+                </label>
+              ))}
+            </div>
+            <div class="q-radio-group" style="margin-top:24px;">
+              <div class="q-radio-label">Room Configuration</div>
+              <div class="q-radio-row">
+                <label class="q-radio"><input type="radio" name="roomConfig" value="double"/> Double occupancy (shared rooms)</label>
+                <label class="q-radio"><input type="radio" name="roomConfig" value="single"/> Single occupancy (own room)</label>
+                <label class="q-radio"><input type="radio" name="roomConfig" value="mix"/> Mix of both</label>
+              </div>
+            </div>
+          </div>
+
+          <!-- STEP 5: Extras -->
+          <div class="q-step" data-step="5" style="display:none;">
+            <div class="q-step-hd">
+              <h2 class="q-step-title">Final Details</h2>
+              <p class="q-step-sub">Any special requirements or add-ons?</p>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:20px;">
+              <div class="q-radio-group">
+                <div class="q-radio-label">Transportation Needed?</div>
+                <div class="q-radio-row">
+                  <label class="q-radio"><input type="radio" name="transportationNeeded" value="yes"/> Yes — coordinate shuttles or transport</label>
+                  <label class="q-radio"><input type="radio" name="transportationNeeded" value="no" checked/> No — we have our own</label>
                 </div>
               </div>
-              <div class="fld">
-                <label>Planning a special event? (birthday, bachelor party, corporate outing…)</label>
-                <div style="display:flex;gap:12px;margin-top:6px;">
-                  <label class="radio-opt"><input type="radio" name="specialFBEvent" value="yes" id="special-yes"/> Yes</label>
-                  <label class="radio-opt"><input type="radio" name="specialFBEvent" value="no" checked/> No</label>
+              <div class="q-radio-group">
+                <div class="q-radio-label">Is this a special occasion?</div>
+                <div class="q-radio-row" style="flex-wrap:wrap;">
+                  {[
+                    {v:'none',l:'Just golf'},{v:'birthday',l:'Birthday'},{v:'bachelor',l:'Bachelor party'},
+                    {v:'corporate',l:'Corporate outing'},{v:'anniversary',l:'Anniversary'},{v:'other',l:'Other event'},
+                  ].map(e=>(<label class="q-radio"><input type="radio" name="eventType" value={e.v}/> {e.l}</label>))}
                 </div>
               </div>
-              <div class="fld" id="special-event-field" style="display:none;">
+              <div class="qfld" id="event-detail-wrap" style="display:none;">
                 <label>Tell us about the event</label>
-                <input type="text" name="fbEventWhen" placeholder="e.g. Birthday dinner Saturday evening for 8 guests" />
+                <input type="text" name="fbEventWhen" placeholder="e.g. 50th birthday dinner Saturday night for 12"/>
               </div>
-              <div class="fld">
+              <div class="q-radio-group">
+                <div class="q-radio-label">Include dining recommendations & reservations?</div>
+                <div class="q-radio-row">
+                  <label class="q-radio"><input type="radio" name="diningHelp" value="yes"/> Yes please</label>
+                  <label class="q-radio"><input type="radio" name="diningHelp" value="no" checked/> No — we'll handle it</label>
+                </div>
+              </div>
+              <div class="qfld">
                 <label>Special Requests or Notes</label>
-                <textarea name="specialRequests" rows="4" placeholder="Anything else we should know — dietary needs, mobility requirements, skill levels, specific hole requests..."></textarea>
+                <textarea name="specialRequests" rows="4" placeholder="Dietary needs, mobility requirements, pace-of-play preferences, skill mix details, specific requests…"></textarea>
               </div>
             </div>
           </div>
 
-          <!-- ── Nav buttons ── -->
-          <div style="margin-top:28px;display:flex;justify-content:space-between;align-items:center;gap:12px;" id="form-nav">
-            <button type="button" id="btn-prev" style="display:none;background:rgba(240,248,242,0.05);border:1px solid rgba(240,248,242,0.1);color:rgba(240,248,242,0.6);font-size:14px;padding:13px 28px;border-radius:100px;cursor:pointer;transition:all 0.2s;" onmouseover="this.style.background='rgba(240,248,242,0.09)'" onmouseout="this.style.background='rgba(240,248,242,0.05)'">← Back</button>
-            <button type="button" id="btn-next" style="margin-left:auto;background:#e8a850;color:#0d1a0e;font-size:14px;font-weight:700;padding:13px 36px;border-radius:100px;cursor:pointer;border:none;transition:all 0.3s;box-shadow:0 4px 16px rgba(232,168,80,0.2);" onmouseover="this.style.transform='translateY(-1px)';this.style.boxShadow='0 8px 24px rgba(232,168,80,0.4)'" onmouseout="this.style.transform='translateY(0)';this.style.boxShadow='0 4px 16px rgba(232,168,80,0.2)'">Continue →</button>
-            <button type="submit" id="btn-submit" style="display:none;margin-left:auto;background:#e8a850;color:#0d1a0e;font-size:14px;font-weight:700;padding:13px 36px;border-radius:100px;cursor:pointer;border:none;transition:all 0.3s;box-shadow:0 4px 16px rgba(232,168,80,0.2);">Send My Quote Request ✓</button>
+          <!-- Nav -->
+          <div class="q-nav" id="q-nav">
+            <button type="button" id="q-prev" class="q-btn-back" style="display:none;">← Back</button>
+            <div style="display:flex;align-items:center;gap:12px;margin-left:auto;">
+              <span id="q-step-count" class="q-step-count"></span>
+              <button type="button" id="q-next" class="q-btn-next">Continue →</button>
+              <button type="submit" id="q-submit" class="q-btn-next" style="display:none;">Send Quote Request ✓</button>
+            </div>
           </div>
-
-          <!-- error -->
-          <div id="form-error" style="display:none;margin-top:16px;padding:12px 16px;border-radius:10px;background:rgba(248,113,113,0.08);border:1px solid rgba(248,113,113,0.2);color:#f87171;font-size:13px;"></div>
-
+          <div id="q-error" class="q-error" style="display:none;"></div>
         </form>
 
-        <!-- ── SUCCESS STATE ── -->
-        <div id="success-state" style="display:none;padding:64px 32px;text-align:center;">
-          <div style="width:72px;height:72px;border-radius:50%;background:rgba(82,168,98,0.12);border:2px solid rgba(82,168,98,0.3);display:flex;align-items:center;justify-content:center;margin:0 auto 24px;font-size:28px;">✓</div>
-          <h2 style="font-family:'Playfair Display',serif;font-size:28px;font-weight:500;color:#f0f8f2;margin:0 0 12px;">Thank You, <span id="success-name"></span>!</h2>
-          <p style="font-size:14px;color:rgba(240,248,242,0.5);margin:0 0 8px;">Your quote request has been received.</p>
-          <p style="font-size:13px;color:rgba(240,248,242,0.3);margin:0 0 32px;">One of our golf trip specialists will contact you within 24 hours. Check your email — a confirmation is headed to <strong id="success-email" style="color:rgba(240,248,242,0.5);"></strong>.</p>
+        <!-- SUCCESS -->
+        <div id="q-success" style="display:none;padding:64px 32px;text-align:center;">
+          <div style="width:80px;height:80px;border-radius:50%;background:rgba(82,168,98,0.12);border:2px solid rgba(82,168,98,0.3);display:flex;align-items:center;justify-content:center;margin:0 auto 28px;font-size:32px;">✓</div>
+          <h2 style="font-family:'Playfair Display',serif;font-size:30px;font-weight:500;color:#f0f8f2;margin:0 0 12px;">You're all set, <span id="s-name"></span>!</h2>
+          <p style="font-size:15px;color:rgba(240,248,242,0.5);margin:0 0 8px;">Your quote request has been received.</p>
+          <p style="font-size:13px;color:rgba(240,248,242,0.3);margin:0 0 8px;">One of our Graeagle trip specialists will reach out within 24 hours.</p>
+          <p style="font-size:13px;color:rgba(240,248,242,0.3);margin:0 0 36px;">Confirmation heading to <strong id="s-email" style="color:rgba(240,248,242,0.5);"></strong></p>
           <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
-            <button id="btn-reset" style="background:rgba(240,248,242,0.05);border:1px solid rgba(240,248,242,0.1);color:rgba(240,248,242,0.6);font-size:13px;padding:11px 24px;border-radius:100px;cursor:pointer;">Submit Another Request</button>
-            <a href="/" style="background:#e8a850;color:#0d1a0e;font-size:13px;font-weight:600;padding:11px 24px;border-radius:100px;text-decoration:none;">← Back to Home</a>
+            <button id="q-reset" class="q-btn-back">Submit Another Request</button>
+            <a href="/" style="background:#e8a850;color:#0d1a0e;font-size:13px;font-weight:700;padding:12px 26px;border-radius:100px;text-decoration:none;">← Back to Home</a>
           </div>
         </div>
 
-      </div>
+      </main>
     </div>
   </div>
-
   <Footer />
 </Base>
 
 <style is:global>
-  /* Field styles */
-  .fld { display: flex; flex-direction: column; }
-  .fld label { font-size: 11px; color: rgba(240,248,242,0.4); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 7px; font-weight: 500; }
-  .fld input, .fld select, .fld textarea {
-    background: rgba(240,248,242,0.03);
-    border: 1px solid rgba(240,248,242,0.08);
-    border-radius: 12px;
-    color: #f0f8f2;
-    padding: 13px 16px;
-    font-size: 14px;
-    font-family: 'Inter', sans-serif;
-    outline: none;
-    transition: border-color 0.2s, background 0.2s;
-    -webkit-appearance: none;
-  }
-  .fld input:focus, .fld select:focus, .fld textarea:focus {
-    border-color: rgba(232,168,80,0.35);
-    background: rgba(240,248,242,0.05);
-  }
-  .fld select option { background: #0d1a0e; }
-  .fld textarea { resize: vertical; min-height: 100px; }
-  .fld input[type="date"] { color-scheme: dark; }
-
-  /* Radio */
-  .radio-opt {
-    display: flex; align-items: center; gap: 8px;
-    font-size: 13px; color: rgba(240,248,242,0.5);
-    cursor: pointer; padding: 8px 14px;
-    border-radius: 10px; border: 1px solid rgba(240,248,242,0.07);
-    background: rgba(240,248,242,0.02);
-    transition: all 0.2s;
-  }
-  .radio-opt:has(input:checked) {
-    color: #e8a850; border-color: rgba(232,168,80,0.2);
-    background: rgba(232,168,80,0.05);
-  }
-  .radio-opt input[type="radio"] { accent-color: #e8a850; }
-
-  /* Course checkboxes */
-  .course-check { display: block; cursor: pointer; }
-  .course-check input { display: none; }
-  .course-card {
-    display: flex; align-items: center; gap: 12px;
-    padding: 16px 18px; border-radius: 14px;
-    border: 1px solid rgba(240,248,242,0.07);
-    background: rgba(240,248,242,0.02);
-    transition: all 0.2s;
-  }
-  .course-card .check-icon { margin-left: auto; opacity: 0; transition: opacity 0.2s; }
-  .course-check:has(input:checked) .course-card {
-    border-color: rgba(232,168,80,0.25);
-    background: rgba(232,168,80,0.06);
-  }
-  .course-check:has(input:checked) .check-icon { opacity: 1; }
-  .course-card:hover {
-    border-color: rgba(240,248,242,0.14);
-    background: rgba(240,248,242,0.04);
-  }
-
-  /* Step dots */
-  .step-dot.active  { background: #e8a850 !important; color: #0d1a0e !important; }
-  .step-dot.done    { background: rgba(82,168,98,0.3) !important; color: rgba(82,168,98,0.9) !important; }
-  .step-label.active { color: rgba(240,248,242,0.65) !important; }
-  .step-bar.done    { background: rgba(82,168,98,0.25) !important; }
-
-  /* Required field highlight */
-  .fld input.invalid, .fld select.invalid { border-color: rgba(248,113,113,0.4) !important; }
+.qw{max-width:1280px;margin:0 auto;padding:48px clamp(16px,4vw,48px) 100px;display:grid;grid-template-columns:340px 1fr;gap:64px;align-items:start;}
+@media(max-width:960px){.qw{grid-template-columns:1fr;gap:40px;}}
+.q-pitch{position:sticky;top:100px;}
+@media(max-width:960px){.q-pitch{position:static;}}
+.q-eyebrow{font-size:10px;color:#e8a850;letter-spacing:.18em;text-transform:uppercase;font-weight:600;margin:0 0 20px;}
+.q-h1{font-family:'Playfair Display',serif;font-size:clamp(34px,4vw,50px);font-weight:500;color:#f0f8f2;margin:0 0 16px;line-height:1.1;}
+.q-sub{font-size:14px;color:rgba(240,248,242,0.4);line-height:1.75;margin:0 0 28px;max-width:300px;}
+.q-summary{border:1px solid rgba(232,168,80,0.15);border-radius:16px;padding:18px;background:rgba(232,168,80,0.03);margin-bottom:24px;}
+.q-summary-title{font-size:10px;color:#e8a850;letter-spacing:.1em;text-transform:uppercase;font-weight:600;margin-bottom:12px;}
+.q-summary-lines{display:flex;flex-direction:column;gap:7px;}
+.q-sum-line{font-size:12px;color:rgba(240,248,242,0.5);display:flex;gap:8px;}
+#static-benefits{display:flex;flex-direction:column;gap:10px;margin-bottom:28px;}
+.q-benefit{display:flex;align-items:flex-start;gap:12px;padding:12px 14px;border-radius:12px;background:rgba(240,248,242,0.02);border:1px solid rgba(240,248,242,0.04);}
+.q-benefit-icon{font-size:16px;flex-shrink:0;margin-top:1px;}
+.q-benefit-title{font-size:12px;font-weight:600;color:rgba(240,248,242,0.75);margin-bottom:2px;}
+.q-benefit-sub{font-size:11px;color:rgba(240,248,242,0.27);line-height:1.5;}
+.q-trust-row{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;}
+.q-trust-item{text-align:center;padding:12px 8px;border-radius:10px;background:rgba(232,168,80,0.04);border:1px solid rgba(232,168,80,0.1);}
+.q-trust-n{font-family:'Playfair Display',serif;font-size:20px;color:#e8a850;font-weight:500;}
+.q-trust-l{font-size:9px;color:rgba(240,248,242,0.27);margin-top:2px;letter-spacing:.06em;text-transform:uppercase;}
+/* panel */
+.q-panel{background:rgba(240,248,242,0.025);border:1px solid rgba(240,248,242,0.06);border-radius:24px;overflow:hidden;}
+/* progress */
+.q-progress{display:flex;align-items:center;padding:16px 24px;background:rgba(240,248,242,0.02);border-bottom:1px solid rgba(240,248,242,0.05);gap:3px;overflow-x:auto;}
+.q-prog-item{display:flex;align-items:center;gap:3px;flex-shrink:0;}
+.q-dot{width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;background:rgba(240,248,242,0.07);color:rgba(240,248,242,0.3);transition:all .3s;flex-shrink:0;}
+.q-dot.active{background:#e8a850;color:#0d1a0e;}
+.q-dot.done{background:rgba(82,168,98,0.25);color:rgba(82,168,98,0.8);}
+.q-prog-label{font-size:10px;color:rgba(240,248,242,0.2);white-space:nowrap;transition:color .3s;padding:0 4px;}
+.q-prog-label.active{color:rgba(240,248,242,0.6);}
+.q-prog-bar{flex:1;height:1px;background:rgba(240,248,242,0.06);min-width:10px;transition:background .3s;}
+.q-prog-bar.done{background:rgba(82,168,98,0.3);}
+/* step */
+.q-step{padding:28px 32px;}
+@media(max-width:540px){.q-step{padding:20px;}}
+.q-step-hd{margin-bottom:24px;}
+.q-step-title{font-family:'Playfair Display',serif;font-size:21px;font-weight:500;color:#f0f8f2;margin:0 0 6px;}
+.q-step-sub{font-size:13px;color:rgba(240,248,242,0.35);margin:0;line-height:1.6;}
+/* fields */
+.q-2col{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:16px;}
+.qfull{grid-column:1/-1;}
+@media(max-width:540px){.q-2col{grid-template-columns:1fr;}}
+.qfld{display:flex;flex-direction:column;}
+.qfld label{font-size:10px;color:rgba(240,248,242,0.4);text-transform:uppercase;letter-spacing:.08em;margin-bottom:7px;font-weight:500;}
+.req{color:rgba(232,168,80,0.7);}
+.qfld input,.qfld select,.qfld textarea{background:rgba(240,248,242,0.03);border:1px solid rgba(240,248,242,0.08);border-radius:12px;color:#f0f8f2;padding:12px 15px;font-size:14px;font-family:'Inter',sans-serif;outline:none;transition:border-color .2s,background .2s;-webkit-appearance:none;}
+.qfld input:focus,.qfld select:focus,.qfld textarea:focus{border-color:rgba(232,168,80,0.35);background:rgba(240,248,242,0.05);}
+.qfld select option{background:#0d1a0e;}
+.qfld textarea{resize:vertical;min-height:100px;}
+.qfld input[type="date"]{color-scheme:dark;}
+.qfld input.invalid,.qfld select.invalid{border-color:rgba(248,113,113,0.45)!important;}
+/* radio */
+.q-radio-group{margin-bottom:18px;}
+.q-radio-label{font-size:10px;color:rgba(240,248,242,0.4);text-transform:uppercase;letter-spacing:.08em;font-weight:500;margin-bottom:10px;}
+.q-radio-row{display:flex;gap:7px;flex-wrap:wrap;}
+.q-radio{display:flex;align-items:center;gap:7px;font-size:12px;color:rgba(240,248,242,0.5);cursor:pointer;padding:8px 13px;border-radius:10px;border:1px solid rgba(240,248,242,0.07);background:rgba(240,248,242,0.02);transition:all .2s;white-space:nowrap;}
+.q-radio:has(input:checked){color:#e8a850;border-color:rgba(232,168,80,0.22);background:rgba(232,168,80,0.06);}
+.q-radio input[type="radio"]{accent-color:#e8a850;flex-shrink:0;}
+/* tier */
+.q-tier-row{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;}
+@media(max-width:480px){.q-tier-row{grid-template-columns:1fr;}}
+.q-tier-card{cursor:pointer;display:block;}
+.q-tier-card input{display:none;}
+.q-tier-inner{padding:16px;border-radius:14px;border:1px solid rgba(240,248,242,0.08);background:rgba(240,248,242,0.02);text-align:center;transition:all .2s;}
+.q-tier-card:has(input:checked) .q-tier-inner{border-color:rgba(232,168,80,0.3);background:rgba(232,168,80,0.07);}
+.q-tier-price{font-family:'Playfair Display',serif;font-size:22px;color:#e8a850;font-weight:500;margin-bottom:6px;}
+.q-tier-desc{font-size:10px;color:rgba(240,248,242,0.35);line-height:1.5;}
+/* round chips */
+.q-num-chip{cursor:pointer;}
+.q-num-chip input{display:none;}
+.q-num-chip span{display:block;padding:9px 16px;border-radius:100px;border:1px solid rgba(240,248,242,0.1);background:rgba(240,248,242,0.02);font-size:13px;color:rgba(240,248,242,0.5);transition:all .2s;}
+.q-num-chip:has(input:checked) span{background:rgba(232,168,80,0.1);border-color:rgba(232,168,80,0.3);color:#e8a850;}
+/* course cards */
+.q-course-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+@media(max-width:500px){.q-course-grid{grid-template-columns:1fr;}}
+.q-course-card{cursor:pointer;display:block;}
+.q-course-card input{display:none;}
+.q-course-img-wrap{position:relative;height:120px;overflow:hidden;border-radius:12px 12px 0 0;}
+.q-course-img{width:100%;height:100%;object-fit:cover;transition:transform 6s ease;}
+.q-course-card:hover .q-course-img{transform:scale(1.05);}
+.q-course-img-fade{position:absolute;inset:0;background:linear-gradient(to top,rgba(13,26,14,0.85) 0%,transparent 60%);}
+.q-must-badge{position:absolute;top:8px;left:8px;font-size:9px;background:rgba(232,168,80,0.92);color:#0d1a0e;padding:3px 8px;border-radius:100px;font-weight:700;letter-spacing:.04em;}
+.q-course-check-icon{position:absolute;top:8px;right:8px;width:22px;height:22px;border-radius:50%;background:#e8a850;color:#0d1a0e;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;opacity:0;transition:opacity .2s;}
+.q-course-card:has(input:checked) .q-course-check-icon{opacity:1;}
+.q-course-card:has(input:checked) .q-course-img-wrap{box-shadow:0 0 0 2px #e8a850;}
+.q-course-info{padding:11px 13px 13px;background:rgba(240,248,242,0.03);border:1px solid rgba(240,248,242,0.07);border-top:none;border-radius:0 0 12px 12px;transition:all .2s;}
+.q-course-card:has(input:checked) .q-course-info{background:rgba(232,168,80,0.06);border-color:rgba(232,168,80,0.2);}
+.q-course-accolade{font-size:9px;color:#e8a850;text-transform:uppercase;letter-spacing:.1em;margin-bottom:4px;font-weight:600;}
+.q-course-name{font-family:'Playfair Display',serif;font-size:13px;color:#f0f8f2;margin-bottom:4px;}
+.q-course-stats{font-size:10px;color:rgba(240,248,242,0.3);line-height:1.5;}
+/* lodge any */
+.q-lodge-any{display:block;cursor:pointer;margin-bottom:12px;}
+.q-lodge-any input{display:none;}
+.q-lodge-any-inner{display:flex;align-items:center;gap:14px;padding:14px 18px;border-radius:12px;border:1px solid rgba(240,248,242,0.08);background:rgba(240,248,242,0.02);transition:all .2s;}
+.q-lodge-any:has(input:checked) .q-lodge-any-inner{border-color:rgba(232,168,80,0.25);background:rgba(232,168,80,0.06);}
+.q-lodge-any-check{margin-left:auto;width:22px;height:22px;border-radius:50%;background:#e8a850;color:#0d1a0e;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;opacity:0;transition:opacity .2s;}
+.q-lodge-any:has(input:checked) .q-lodge-any-check{opacity:1;}
+/* lodge cards */
+.q-lodge-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+@media(max-width:500px){.q-lodge-grid{grid-template-columns:1fr;}}
+.q-lodge-card{cursor:pointer;display:block;}
+.q-lodge-card input{display:none;}
+.q-lodge-img-wrap{position:relative;height:100px;overflow:hidden;border-radius:12px 12px 0 0;}
+.q-lodge-img{width:100%;height:100%;object-fit:cover;transition:transform 6s ease;}
+.q-lodge-card:hover .q-lodge-img{transform:scale(1.05);}
+.q-lodge-img-fade{position:absolute;inset:0;background:linear-gradient(to top,rgba(13,26,14,0.8) 0%,transparent 60%);}
+.q-lodge-check-icon{position:absolute;top:8px;right:8px;width:22px;height:22px;border-radius:50%;background:#e8a850;color:#0d1a0e;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;opacity:0;transition:opacity .2s;}
+.q-lodge-card:has(input:checked) .q-lodge-check-icon{opacity:1;}
+.q-lodge-card:has(input:checked) .q-lodge-img-wrap{box-shadow:0 0 0 2px #e8a850;}
+.q-lodge-info{padding:11px 13px 13px;background:rgba(240,248,242,0.03);border:1px solid rgba(240,248,242,0.07);border-top:none;border-radius:0 0 12px 12px;transition:all .2s;}
+.q-lodge-card:has(input:checked) .q-lodge-info{background:rgba(232,168,80,0.06);border-color:rgba(232,168,80,0.2);}
+.q-lodge-best{font-size:9px;color:#e8a850;text-transform:uppercase;letter-spacing:.1em;margin-bottom:4px;font-weight:600;}
+.q-lodge-name{font-family:'Playfair Display',serif;font-size:13px;color:#f0f8f2;margin-bottom:4px;}
+.q-lodge-desc{font-size:10px;color:rgba(240,248,242,0.3);line-height:1.5;}
+/* nav */
+.q-nav{padding:20px 32px;border-top:1px solid rgba(240,248,242,0.05);display:flex;align-items:center;}
+.q-btn-back{background:rgba(240,248,242,0.05);border:1px solid rgba(240,248,242,0.1);color:rgba(240,248,242,0.5);font-size:13px;padding:11px 22px;border-radius:100px;cursor:pointer;transition:all .2s;font-family:'Inter',sans-serif;}
+.q-btn-back:hover{background:rgba(240,248,242,0.09);}
+.q-btn-next{background:#e8a850;color:#0d1a0e;font-size:14px;font-weight:700;padding:12px 30px;border-radius:100px;cursor:pointer;border:none;transition:all .25s;box-shadow:0 4px 16px rgba(232,168,80,0.2);font-family:'Inter',sans-serif;}
+.q-btn-next:hover{transform:translateY(-1px);box-shadow:0 8px 24px rgba(232,168,80,0.35);}
+.q-btn-next:disabled{opacity:.5;cursor:not-allowed;transform:none;}
+.q-step-count{font-size:11px;color:rgba(240,248,242,0.25);letter-spacing:.05em;}
+.q-error{margin:0 32px 16px;padding:12px 16px;border-radius:10px;background:rgba(248,113,113,0.08);border:1px solid rgba(248,113,113,0.2);color:#f87171;font-size:13px;}
 </style>
 
 <script define:vars={{ preselected }}>
-  let currentStep = 0;
-  const totalSteps = 5;
-  const form = document.getElementById('quote-form');
-  const sections = document.querySelectorAll('.form-section');
-  const btnNext = document.getElementById('btn-next');
-  const btnPrev = document.getElementById('btn-prev');
-  const btnSubmit = document.getElementById('btn-submit');
-  const errorDiv = document.getElementById('form-error');
+const TOTAL = 6;
+let step = 0;
+const form  = document.getElementById('qf');
+const steps = document.querySelectorAll('.q-step');
+const panel = document.querySelector('.q-panel');
+const $id   = id => document.getElementById(id);
 
-  // Pre-check course if URL param set
-  if (preselected) {
-    const cb = form.querySelector(`input[value="${preselected}"]`);
-    if (cb) cb.checked = true;
+function dot(i)      { return document.querySelector(`.q-dot-${i}`); }
+function progBar(i)  { return document.querySelector(`.q-prog-bar-${i}`); }
+function progLabel(i){ return document.querySelector(`.q-prog-label-${i}`); }
+
+function updateProgress() {
+  for (let i = 0; i < TOTAL; i++) {
+    const d = dot(i), b = progBar(i), l = progLabel(i);
+    d.classList.remove('active','done');
+    if (i === step)     d.classList.add('active');
+    else if (i < step)  d.classList.add('done');
+    if (l) l.classList.toggle('active', i === step);
+    if (b) b.classList.toggle('done', i < step);
   }
+  $id('q-prev').style.display  = step > 0 ? 'block' : 'none';
+  $id('q-next').style.display  = step < TOTAL - 1 ? 'block' : 'none';
+  $id('q-submit').style.display = step === TOTAL - 1 ? 'block' : 'none';
+  $id('q-step-count').textContent = `Step ${step + 1} of ${TOTAL}`;
+  $id('q-error').style.display = 'none';
+}
 
-  // Special event conditional field
-  document.querySelectorAll('[name="specialFBEvent"]').forEach(r => {
-    r.addEventListener('change', () => {
-      const field = document.getElementById('special-event-field');
-      field.style.display = r.value === 'yes' ? 'flex' : 'none';
-    });
+function showStep(n) {
+  steps.forEach((s, i) => s.style.display = i === n ? 'block' : 'none');
+  step = n;
+  updateProgress();
+  updateSummary();
+  panel.scrollIntoView({ behavior:'smooth', block:'start' });
+}
+
+function validate(s) {
+  const sec = steps[s];
+  let ok = true;
+  sec.querySelectorAll('[required]').forEach(el => {
+    el.classList.remove('invalid');
+    if (!el.value.trim()) { el.classList.add('invalid'); ok = false; }
   });
-
-  function updateNav() {
-    // Update dots
-    document.querySelectorAll('.step-dot').forEach((dot, i) => {
-      dot.classList.remove('active','done');
-      if (i === currentStep) dot.classList.add('active');
-      else if (i < currentStep) dot.classList.add('done');
-    });
-    document.querySelectorAll('.step-label').forEach((lbl, i) => {
-      lbl.classList.toggle('active', i === currentStep);
-    });
-    document.querySelectorAll('.step-bar').forEach((bar, i) => {
-      bar.classList.toggle('done', i < currentStep);
-    });
-    // Update buttons
-    btnPrev.style.display = currentStep > 0 ? 'block' : 'none';
-    btnNext.style.display = currentStep < totalSteps - 1 ? 'block' : 'none';
-    btnSubmit.style.display = currentStep === totalSteps - 1 ? 'block' : 'none';
-    errorDiv.style.display = 'none';
-  }
-
-  function showSection(idx) {
-    sections.forEach((s, i) => s.style.display = i === idx ? 'block' : 'none');
-    currentStep = idx;
-    updateNav();
-    document.getElementById('quote-form-wrap').scrollIntoView({ behavior: 'smooth', block: 'start' });
-  }
-
-  function validateSection(idx) {
-    const section = sections[idx];
-    const required = section.querySelectorAll('[required]');
-    let valid = true;
-    required.forEach(el => {
-      el.classList.remove('invalid');
-      if (!el.value.trim()) { el.classList.add('invalid'); valid = false; }
-    });
-    return valid;
-  }
-
-  btnNext.addEventListener('click', () => {
-    if (!validateSection(currentStep)) {
-      errorDiv.textContent = 'Please fill in all required fields before continuing.';
-      errorDiv.style.display = 'block';
-      return;
+  if (s === 1) {
+    const a = $id('arrival-date')?.value, d = $id('departure-date')?.value;
+    if (a && d && d <= a) {
+      $id('departure-date').classList.add('invalid');
+      showError('Departure must be after arrival date.'); return false;
     }
-    showSection(currentStep + 1);
+  }
+  return ok;
+}
+
+function showError(msg) {
+  const e = $id('q-error');
+  e.textContent = msg || 'Please fill in all required fields before continuing.';
+  e.style.display = 'block';
+}
+
+function fv(name) {
+  const checked = form.querySelector(`[name="${name}"]:checked`);
+  if (checked) return checked.value;
+  const el = form.querySelector(`[name="${name}"]`);
+  return el ? el.value : null;
+}
+
+function updateSummary() {
+  const lines = [];
+  const arrive = fv('arrivalDate') || $id('arrival-date')?.value;
+  const depart  = fv('departureDate') || $id('departure-date')?.value;
+  const party   = $id('party-size')?.value;
+  const rounds  = fv('totalRounds');
+  const budget  = fv('budgetTier');
+  const skill   = fv('skillLevel');
+  const tee     = fv('idealTeeTimes');
+  const courses = [...form.querySelectorAll('[name="coursesInterested"]:checked')].map(c=>c.value);
+  const lodge   = [...form.querySelectorAll('[name="lodgingInterested"]:checked')].map(l=>l.value);
+  const fmt = d => { if(!d) return ''; const [y,m,day]=d.split('-'); return `${m}/${day}/${y.slice(2)}`; };
+
+  if (arrive && depart) lines.push({ icon:'📅', text:`${fmt(arrive)} → ${fmt(depart)}` });
+  if (party)            lines.push({ icon:'👥', text:`${party} golfer${party>1?'s':''}` });
+  if (rounds && rounds !== 'other') lines.push({ icon:'⛳', text:`${rounds} round${rounds>1?'s':''}` });
+  if (budget)           lines.push({ icon:'💰', text:`Budget: ${'$'.repeat(budget==='budget'?2:budget==='mid'?3:4)} tier` });
+  if (skill)            lines.push({ icon:'🎯', text:`Skill: ${skill}` });
+  if (tee)              lines.push({ icon:'⏰', text:`Tee times: ${tee}` });
+  if (courses.length)   lines.push({ icon:'🏌', text:`${courses.length} course${courses.length>1?'s':''} selected` });
+  if (lodge.length)     lines.push({ icon:'🏨', text:`${lodge.length} lodging option${lodge.length>1?'s':''} selected` });
+
+  const summary = $id('trip-summary');
+  const summaryLines = $id('summary-lines');
+  const staticBenefits = $id('static-benefits');
+
+  if (lines.length > 0) {
+    summaryLines.innerHTML = lines.map(l=>`<div class="q-sum-line"><span>${l.icon}</span><span>${l.text}</span></div>`).join('');
+    summary.style.display = 'block';
+    staticBenefits.style.display = lines.length > 3 ? 'none' : '';
+  } else {
+    summary.style.display = 'none';
+    staticBenefits.style.display = '';
+  }
+}
+
+// nights auto-calc
+$id('arrival-date')?.addEventListener('change', () => {
+  const a=$id('arrival-date').value, d=$id('departure-date').value;
+  if (a && d && d > a) {
+    const n = Math.round((new Date(d)-new Date(a))/86400000);
+    if ($id('num-nights') && !$id('num-nights').value) $id('num-nights').value = n;
+  }
+  updateSummary();
+});
+$id('departure-date')?.addEventListener('change', () => {
+  const a=$id('arrival-date').value, d=$id('departure-date').value;
+  if (a && d && d > a) {
+    const n = Math.round((new Date(d)-new Date(a))/86400000);
+    if ($id('num-nights')) $id('num-nights').value = n;
+  }
+  updateSummary();
+});
+
+// other rounds
+document.querySelectorAll('[name="totalRounds"]').forEach(r=>{
+  r.addEventListener('change', ()=>{
+    $id('rounds-other-wrap').style.display = r.value === 'other' ? 'flex' : 'none';
+    updateSummary();
   });
+});
 
-  btnPrev.addEventListener('click', () => { showSection(currentStep - 1); });
-
-  // Submit — POST to /api/leads (Supabase)
-  form.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    if (!validateSection(currentStep)) {
-      errorDiv.textContent = 'Please complete all required fields.';
-      errorDiv.style.display = 'block';
-      return;
-    }
-
-    btnSubmit.textContent = 'Sending...';
-    btnSubmit.disabled = true;
-
-    const data = Object.fromEntries(new FormData(form));
-    // Collect array fields
-    const courses = [...form.querySelectorAll('[name="coursesInterested"]:checked')].map(c => c.value);
-    data.coursesInterested = courses;
-    data.destination = 'graeagle';
-    data.source = 'golfgraeagle.com';
-    data.submittedAt = new Date().toISOString();
-
-    try {
-      const res = await fetch('/api/leads', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data),
-      });
-
-      if (!res.ok) throw new Error(await res.text());
-
-      // Success state
-      document.getElementById('quote-form').style.display = 'none';
-      document.getElementById('form-nav').style.display = 'none';
-      document.getElementById('success-state').style.display = 'block';
-      document.getElementById('success-name').textContent = data.firstName || 'there';
-      document.getElementById('success-email').textContent = data.email || '';
-
-    } catch (err) {
-      errorDiv.textContent = 'Something went wrong. Please try again or email sean@zoomaway.com directly.';
-      errorDiv.style.display = 'block';
-      btnSubmit.textContent = 'Send My Quote Request ✓';
-      btnSubmit.disabled = false;
-    }
+// event type
+document.querySelectorAll('[name="eventType"]').forEach(r=>{
+  r.addEventListener('change', ()=>{
+    $id('event-detail-wrap').style.display = ['birthday','bachelor','corporate','anniversary','other'].includes(r.value) ? 'flex' : 'none';
   });
+});
 
-  // Reset
-  document.getElementById('btn-reset').addEventListener('click', () => {
-    form.reset();
-    document.getElementById('success-state').style.display = 'none';
-    form.style.display = 'block';
-    document.getElementById('form-nav').style.display = 'flex';
-    showSection(0);
-  });
+// lodge-any
+$id('lodge-any')?.addEventListener('change', function(){
+  $id('lodge-grid').style.opacity = this.checked ? '0.35' : '1';
+  $id('lodge-grid').style.pointerEvents = this.checked ? 'none' : 'auto';
+  updateSummary();
+});
 
-  // Init
-  updateNav();
+form.addEventListener('change', updateSummary);
+form.addEventListener('input', updateSummary);
+
+$id('q-next').addEventListener('click', ()=>{
+  if (!validate(step)) { showError('Please fill in all required fields before continuing.'); return; }
+  showStep(step+1);
+});
+$id('q-prev').addEventListener('click', ()=> showStep(step-1));
+
+form.addEventListener('submit', async e=>{
+  e.preventDefault();
+  if (!validate(step)) { showError('Please complete all required fields.'); return; }
+  const btn = $id('q-submit');
+  btn.textContent = 'Sending…'; btn.disabled = true;
+
+  const data = Object.fromEntries(new FormData(form));
+  data.coursesInterested = [...form.querySelectorAll('[name="coursesInterested"]:checked')].map(c=>c.value);
+  data.lodgingInterested = [...form.querySelectorAll('[name="lodgingInterested"]:checked')].map(l=>l.value);
+  data.destination = 'graeagle';
+  data.source      = 'golfgraeagle.com';
+  data.submittedAt = new Date().toISOString();
+  if (data.totalRounds === 'other' && data.totalRoundsCustom) data.totalRounds = data.totalRoundsCustom;
+
+  try {
+    const res = await fetch('/api/leads',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)});
+    if (!res.ok) throw new Error(await res.text());
+    form.style.display='none';
+    $id('q-nav').style.display='none';
+    $id('q-error').style.display='none';
+    document.querySelector('.q-progress').style.display='none';
+    $id('q-success').style.display='block';
+    $id('s-name').textContent  = data.firstName || 'there';
+    $id('s-email').textContent = data.email || '';
+  } catch {
+    showError('Something went wrong. Please try again or email sean@zoomaway.com.');
+    btn.textContent = 'Send Quote Request ✓'; btn.disabled = false;
+  }
+});
+
+$id('q-reset').addEventListener('click', ()=>{
+  form.reset();
+  $id('q-success').style.display='none';
+  form.style.display='block';
+  $id('q-nav').style.display='flex';
+  $id('q-error').style.display='none';
+  document.querySelector('.q-progress').style.display='flex';
+  showStep(0); updateSummary();
+});
+
+if (preselected) {
+  const cb = form.querySelector(`input[value="${preselected}"]`);
+  if (cb) cb.checked = true;
+}
+
+updateProgress();
+updateSummary();
 </script>
