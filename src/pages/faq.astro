@@ -1,0 +1,105 @@
+---
+export const prerender = true;
+import Base from '../layouts/Base.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+
+const faqs = [
+  {
+    category: 'The Courses',
+    items: [
+      { q: 'How many golf courses are in Graeagle, California?', a: 'There are five championship golf courses in the Graeagle area: Graeagle Meadows Golf Course, Whitehawk Ranch Golf Course, Plumas Pines Golf Resort, Grizzly Ranch Golf Club, and Nakoma (The Dragon) Golf Course. All five are within 5–25 minutes of each other.' },
+      { q: 'What is the hardest golf course in Graeagle?', a: 'Nakoma Dragon is the hardest course in Graeagle with a slope rating of 147 and course rating of 73.4. Grizzly Ranch is second at slope 140, playing 7,411 yards through dramatic elevation changes at 4,800 ft.' },
+      { q: 'What is the best golf course in Graeagle for beginners?', a: 'Graeagle Meadows (slope 120) is the most accessible course for beginners and high-handicap golfers. It opened in 1968 and winds through open meadows and ponderosa pines — forgiving fairways without being trivial.' },
+      { q: 'Are Graeagle golf courses open to the public?', a: 'All five Graeagle courses accept public play. Grizzly Ranch is semi-private but accessible through GolfGraeagle packages. We secure guaranteed tee times at all five.' },
+      { q: 'What is the Frank Lloyd Wright golf clubhouse in Graeagle?', a: "Nakoma Resort's Dragon course has the only golf clubhouse in the world designed by Frank Lloyd Wright. The FLW Lodge houses the Fifty44 Restaurant & Bar, the Pro Shop, and the main resort lobby. Nakoma is located in Clio, CA — about 15 minutes from Graeagle village." },
+      { q: 'When does golf season start in Graeagle?', a: 'Golf season typically opens late April to early May after snowmelt, and runs through October — sometimes into early November. June, September, and October are the best months for conditions and pace of play.' },
+    ]
+  },
+  {
+    category: 'Planning Your Trip',
+    items: [
+      { q: 'How many days do you need for a Graeagle golf trip?', a: 'Two days gets you 2 courses. Three days is the sweet spot — 3–4 courses, time for a good dinner, nobody burned out. Four to five days lets you play all 5 comfortably.' },
+      { q: 'How far in advance should you book Graeagle tee times?', a: 'For summer weekends (June–August), book 4–6 weeks ahead. Spring and fall shoulder seasons can be booked 2–3 weeks out. GolfGraeagle handles all tee time coordination as part of every package.' },
+      { q: 'How far is Graeagle from Sacramento?', a: 'Graeagle is approximately 2.5 hours northeast of Sacramento via Highway 70.' },
+      { q: 'How far is Graeagle from Lake Tahoe?', a: 'Graeagle is approximately 1.5 hours from North Lake Tahoe via Highway 89. Some golfers base themselves in Tahoe and do a Graeagle day trip, though staying in Graeagle is more efficient for multi-round trips.' },
+      { q: 'How far is Graeagle from San Francisco?', a: 'Graeagle is approximately 3.5–4 hours from San Francisco via I-80 East to Highway 70.' },
+      { q: 'How far is Graeagle from Reno?', a: 'Graeagle is approximately 1 hour west of Reno via Highway 70/89.' },
+      { q: 'Does altitude affect golf ball distance in Graeagle?', a: 'Yes. At 3,500–4,800 ft elevation, the ball carries roughly 6–8% farther than at sea level. A 150-yard 7-iron at sea level becomes a 160-yard carry at Graeagle. Factor this into every approach shot — your GPS yardage is correct, your carry is not.' },
+    ]
+  },
+  {
+    category: 'Packages & Booking',
+    items: [
+      { q: 'What does a GolfGraeagle package include?', a: 'Every GolfGraeagle package includes guaranteed tee times at your selected courses, lodging coordination, and a full day-by-day itinerary. Packages start from $299 per golfer and vary based on courses, lodging type, group size, and nights.' },
+      { q: 'Can GolfGraeagle book tee times for large groups?', a: 'Yes. We book tee times for groups ranging from 4 to 200+ players. Large groups require consecutive tee time blocks — we coordinate directly with each course to secure these. Most large group bookings should be made 6–8 weeks in advance for summer weekends.' },
+      { q: 'What is your cancellation policy?', a: 'GolfGraeagle offers a 72-hour cancellation policy on standard bookings. Large group outings are governed by individual contracts. Vendor cancellation policies (courses, lodging) are passed through to the customer where applicable.' },
+      { q: 'How quickly will I receive a quote?', a: 'All quote requests receive a response within 24 hours. For urgent or last-minute bookings, call directly at (888) 586-1157.' },
+      { q: 'Is GolfGraeagle a golf course?', a: 'No. GolfGraeagle.com is a trip planning and package booking platform operated by Zoomaway Technologies Inc. We are not affiliated with any of the five courses — we are an independent booking service that works with all of them.' },
+    ]
+  },
+  {
+    category: 'Lodging',
+    items: [
+      { q: 'Where should a golf group stay in Graeagle?', a: 'River Pines Resort is the top choice for most golf groups — flexible room types, The Roadhouse restaurant on-site, pool and hot tub. For groups of 8+, the Townhomes at Plumas Pines offer multi-bedroom units with full kitchens at the best per-person cost. The Inn at Nakoma is the bucket-list stay — steps from The Dragon first tee inside the Frank Lloyd Wright lodge.' },
+      { q: 'Is there lodging on the golf courses in Graeagle?', a: 'Yes. The Inn at Nakoma is on the Nakoma Dragon course property — guests walk directly to the first tee. The Townhomes at Plumas Pines are adjacent to Plumas Pines Golf Resort.' },
+    ]
+  },
+];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqs.flatMap(cat => cat.items.map(item => ({
+    "@type": "Question",
+    "name": item.q,
+    "acceptedAnswer": { "@type": "Answer", "text": item.a }
+  })))
+};
+---
+<Base
+  title="Graeagle Golf FAQ — Expert Answers for Planning Your Trip"
+  description="Answers to the most common questions about Graeagle golf courses, trip planning, packages, lodging, and booking. From GolfGraeagle.com."
+  schema={[faqSchema]}
+>
+  <Nav />
+
+  <section style="background:#1a2e1a;padding:120px clamp(20px,8%,10%) 72px;">
+    <div style="max-width:860px;margin:0 auto;">
+      <p style="font-size:11px;color:#e8a850;letter-spacing:.18em;text-transform:uppercase;font-weight:600;margin:0 0 16px;">FAQ</p>
+      <h1 style="font-family:'Playfair Display',serif;font-size:clamp(36px,5vw,58px);font-weight:400;color:#f0f8f2;margin:0 0 20px;line-height:1.1;">Graeagle Golf: <span style="color:#e8a850;font-style:italic;">Common Questions</span></h1>
+      <p style="font-size:17px;color:rgba(240,248,242,0.5);line-height:1.75;margin:0;">Everything you need to know before booking a Graeagle golf trip — courses, timing, packages, and lodging.</p>
+    </div>
+  </section>
+
+  <section style="background:#f0f5f0;padding:72px clamp(20px,8%,10%);">
+    <div style="max-width:860px;margin:0 auto;display:flex;flex-direction:column;gap:56px;">
+      {faqs.map(cat => (
+        <div>
+          <h2 style="font-family:'Playfair Display',serif;font-size:clamp(22px,2.8vw,30px);font-weight:400;color:#1a2e1a;margin:0 0 24px;padding-bottom:16px;border-bottom:2px solid #d8e8d8;">{cat.category}</h2>
+          <div style="display:flex;flex-direction:column;gap:0;">
+            {cat.items.map(item => (
+              <div style="padding:20px 0;border-bottom:1px solid #e0ece0;">
+                <h3 style="font-size:16px;font-weight:700;color:#1a2e1a;margin:0 0 8px;line-height:1.4;">{item.q}</h3>
+                <p style="font-size:15px;color:#4a5a4a;line-height:1.75;margin:0;">{item.a}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section style="background:#1a2e1a;padding:80px clamp(20px,8%,10%);">
+    <div style="max-width:860px;margin:0 auto;text-align:center;">
+      <h2 style="font-family:'Playfair Display',serif;font-size:clamp(24px,3.5vw,38px);font-weight:400;color:#f0f8f2;margin:0 0 12px;">Still have questions?</h2>
+      <p style="font-size:15px;color:rgba(240,248,242,0.45);margin:0 0 32px;line-height:1.65;">Request a quote and we'll answer everything specific to your trip — dates, group size, courses, budget.</p>
+      <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+        <a href="/quote" style="background:#e8a850;color:#0d1a0e;font-weight:700;font-size:15px;padding:15px 36px;border-radius:100px;text-decoration:none;">Get a free quote →</a>
+        <a href="tel:+18885861157" style="border:1px solid rgba(240,248,242,0.2);color:rgba(240,248,242,0.7);font-size:15px;padding:15px 28px;border-radius:100px;text-decoration:none;">(888) 586-1157</a>
+      </div>
+    </div>
+  </section>
+
+  <Footer />
+</Base>

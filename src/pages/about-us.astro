@@ -3,31 +3,155 @@ export const prerender = true;
 import Base from '../layouts/Base.astro';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
+import { courses } from '../data/content.js';
 ---
-<style>
-  .about-stats { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; margin-bottom: 48px; }
-  @media (max-width: 640px) { .about-stats { grid-template-columns: 1fr; } }
-</style>
-<Base title="About GolfGraeagle.com — Graeagle Golf Trip Planners | Zoomaway Technologies" description="GolfGraeagle.com is operated by Zoomaway Technologies Inc. We plan and book custom golf packages for Graeagle, California — tee times, lodging, and full itineraries.">
+<Base
+  title="About GolfGraeagle.com — Graeagle Golf Trip Planners | Zoomaway Technologies"
+  description="GolfGraeagle.com is operated by Zoomaway Technologies Inc. We plan and book custom golf packages for Graeagle, California — tee times, lodging, and full itineraries for groups of any size."
+>
   <Nav />
-  <section style="min-height:100vh;padding:140px 10% 100px;max-width:1100px;margin:0 auto;">
-    <p style="font-size:11px;color:#e8a850;letter-spacing:0.16em;text-transform:uppercase;font-weight:600;margin:0 0 18px;">About Us</p>
-    <h1 style="font-family:'Playfair Display',serif;font-size:clamp(36px,5vw,58px);font-weight:500;color:#f0f8f2;margin:0 0 28px;line-height:1.1;">We Plan <span style="color:#e8a850;font-style:italic;">Golf Trips</span><br/>to Graeagle</h1>
-    <div style="max-width:700px;">
-      <p style="font-size:17px;color:rgba(240,248,242,0.6);line-height:1.85;margin-bottom:24px;">GolfGraeagle.com is operated by Zoomaway Technologies Inc. — a travel technology company specializing in golf trip planning across the High Sierra region.</p>
-      <p style="font-size:17px;color:rgba(240,248,242,0.6);line-height:1.85;margin-bottom:24px;">We coordinate tee times, lodging, and full itineraries across all five championship courses in the Graeagle area: Graeagle Meadows, Whitehawk Ranch, Plumas Pines, Grizzly Ranch, and Nakoma — The Dragon.</p>
-      <p style="font-size:17px;color:rgba(240,248,242,0.6);line-height:1.85;margin-bottom:48px;">GolfGraeagle.com is a product of <strong style="color:#f0f8f2;">Zoomaway Technologies Inc.</strong>, a subsidiary of Golfthehighsierra.com. We also operate Group Golf Tours, and serve golfers planning trips throughout the Sierra Nevada region.</p>
-      <div class="about-stats">
-        {[{n:'5',l:'Championship Courses'},{n:'672+',l:'Verified Reviews'},{n:'24hr',l:'Quote Response'}].map(t=>(
-          <div style="text-align:center;padding:24px 16px;border-radius:16px;background:rgba(232,168,80,0.04);border:1px solid rgba(232,168,80,0.1);">
-            <div style="font-family:'Playfair Display',serif;font-size:28px;color:#e8a850;">{t.n}</div>
-            <div style="font-size:12px;color:rgba(240,248,242,0.35);margin-top:4px;">{t.l}</div>
+
+  <!-- Hero -->
+  <section style="background:#1a2e1a;padding:120px clamp(20px,8%,10%) 80px;">
+    <div style="max-width:1100px;margin:0 auto;">
+      <p style="font-size:11px;color:#e8a850;letter-spacing:.18em;text-transform:uppercase;font-weight:600;margin:0 0 18px;">About Us</p>
+      <h1 style="font-family:'Playfair Display',serif;font-size:clamp(38px,5.5vw,64px);font-weight:400;color:#f0f8f2;margin:0 0 24px;line-height:1.1;">We plan golf trips<br/><span style="color:#e8a850;font-style:italic;">to Graeagle.</span></h1>
+      <p style="font-size:clamp(16px,2vw,19px);color:rgba(240,248,242,0.55);max-width:620px;line-height:1.8;margin:0 0 48px;">GolfGraeagle.com is a golf trip planning and package booking platform for the Graeagle, California region — operated by Zoomaway Technologies Inc. since 2004. We coordinate tee times at all 5 courses, match groups to the right lodging, and handle the full itinerary.</p>
+      <div style="display:flex;gap:14px;flex-wrap:wrap;">
+        <a href="/quote" style="display:inline-block;background:#e8a850;color:#0d1a0e;font-weight:700;font-size:14px;padding:14px 32px;border-radius:100px;text-decoration:none;">Plan your trip →</a>
+        <a href="tel:+18885861157" style="display:inline-block;border:1px solid rgba(240,248,242,0.2);color:rgba(240,248,242,0.7);font-size:14px;padding:14px 28px;border-radius:100px;text-decoration:none;">(888) 586-1157</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Trust stats -->
+  <section style="background:#f0f5f0;padding:0;border-bottom:1px solid #e0ece0;">
+    <div style="max-width:1100px;margin:0 auto;padding:0 clamp(20px,8%,10%);display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:#e0ece0;">
+      {[
+        { n:'2004', l:'Year founded' },
+        { n:'5', l:'Championship courses booked' },
+        { n:'24 hr', l:'Quote turnaround' },
+        { n:'672+', l:'Verified reviews' },
+      ].map(s => (
+        <div style="background:#f8faf4;padding:32px 24px;text-align:center;">
+          <div style="font-family:'Playfair Display',serif;font-size:36px;color:#1a2e1a;font-weight:400;margin-bottom:6px;">{s.n}</div>
+          <div style="font-size:12px;color:#6b7c6b;text-transform:uppercase;letter-spacing:.08em;font-weight:600;">{s.l}</div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- What we do -->
+  <section style="background:#fff;padding:80px clamp(20px,8%,10%);">
+    <div style="max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start;">
+      <div>
+        <h2 style="font-family:'Playfair Display',serif;font-size:clamp(28px,3.5vw,40px);font-weight:400;color:#1a2e1a;margin:0 0 20px;">What we actually do</h2>
+        <p style="font-size:16px;color:#4a5a4a;line-height:1.8;margin:0 0 18px;">GolfGraeagle is not a golf course. We're the planning layer between you and the courses — a team that knows every tee sheet, every lodge, and every post-round dinner spot in the valley.</p>
+        <p style="font-size:16px;color:#4a5a4a;line-height:1.8;margin:0 0 18px;">When you request a quote, a real person builds your itinerary. We book the tee times across however many courses you want, coordinate lodging that fits your group size and budget, and hand you a day-by-day plan.</p>
+        <p style="font-size:16px;color:#4a5a4a;line-height:1.8;margin:0 0 32px;">We serve individual golfers, groups of 4–200+, bachelor parties, corporate outings, and families. Packages start from $299 per golfer.</p>
+        <div style="display:flex;flex-direction:column;gap:12px;">
+          {[
+            'Tee time coordination across all 5 courses',
+            'Lodging matched to group size and budget',
+            'Full day-by-day itinerary with dining recommendations',
+            '72-hour cancellation policy on standard bookings',
+            'Free quotes — 24-hour response',
+          ].map(item => (
+            <div style="display:flex;align-items:center;gap:12px;font-size:15px;color:#374137;">
+              <span style="color:#22a322;font-weight:700;flex-shrink:0;">✓</span>
+              {item}
+            </div>
+          ))}
+        </div>
+      </div>
+      <div>
+        <h2 style="font-family:'Playfair Display',serif;font-size:clamp(28px,3.5vw,40px);font-weight:400;color:#1a2e1a;margin:0 0 20px;">The 5 courses we work with</h2>
+        <div style="display:flex;flex-direction:column;gap:10px;">
+          {courses.map(c => (
+            <a href={`/courses/${c.slug}`} style="display:flex;justify-content:space-between;align-items:center;padding:16px 20px;background:#f8faf4;border:1px solid #e0ece0;border-radius:12px;text-decoration:none;transition:all .2s;"
+              onmouseover="this.style.borderColor='#e8a850';this.style.background='#fffbf0'"
+              onmouseout="this.style.borderColor='#e0ece0';this.style.background='#f8faf4'">
+              <div>
+                <div style="font-size:14px;font-weight:700;color:#1a2e1a;margin-bottom:2px;">{c.name}</div>
+                <div style="font-size:11px;color:#8a9a8a;">Par {c.par} · {c.yards.toLocaleString()} yds · Slope {c.slope}</div>
+              </div>
+              <span style="font-size:12px;color:#e8a850;font-weight:600;">View →</span>
+            </a>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Who we are -->
+  <section style="background:#f0f5f0;padding:80px clamp(20px,8%,10%);">
+    <div style="max-width:1100px;margin:0 auto;">
+      <h2 style="font-family:'Playfair Display',serif;font-size:clamp(28px,3.5vw,40px);font-weight:400;color:#1a2e1a;margin:0 0 40px;">The company behind the site</h2>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;">
+        {[
+          {
+            name: 'Zoomaway Technologies Inc.',
+            role: 'Parent Company',
+            desc: 'GolfGraeagle.com is a product of Zoomaway Technologies Inc. — a travel technology company specializing in golf trip planning across the High Sierra region. Founded in 2004.',
+          },
+          {
+            name: 'Golf the High Sierra',
+            role: 'Sibling Platform',
+            desc: 'golfthehighsierra.com covers the broader Northern California and Nevada region — Reno, Tahoe, Mesquite, and beyond. Same team, wider geography.',
+          },
+          {
+            name: 'Group Golf Tours',
+            role: 'Sibling Platform',
+            desc: 'groupgolftours.com specializes in large-group golf outings across multiple destinations. Corporate events, charity tournaments, and group travel.',
+          },
+          {
+            name: 'Zoomaway Inc. & Tripsee',
+            role: 'Subsidiaries',
+            desc: 'Additional technology and booking subsidiaries under the Zoomaway umbrella, focused on travel automation and trip planning tools.',
+          },
+        ].map(org => (
+          <div style="padding:24px;background:#fff;border:1px solid #e0ece0;border-radius:14px;">
+            <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:#e8a850;margin-bottom:6px;">{org.role}</div>
+            <div style="font-size:16px;font-weight:700;color:#1a2e1a;margin-bottom:8px;">{org.name}</div>
+            <div style="font-size:14px;color:#4a5a4a;line-height:1.65;">{org.desc}</div>
           </div>
         ))}
       </div>
-      <p style="font-size:15px;color:rgba(240,248,242,0.4);margin-bottom:32px;">Contact us: <a href="mailto:sean@zoomaway.com" style="color:#e8a850;text-decoration:none;">sean@zoomaway.com</a> · <a href="tel:+18885861157" style="color:#e8a850;text-decoration:none;">(888) 586-1157</a></p>
-      <a href="/request-a-quote/" style="display:inline-block;background:#e8a850;color:#0d1a0e;font-weight:700;font-size:15px;padding:16px 40px;border-radius:100px;text-decoration:none;" onmouseover="this.style.background='#f2c878'" onmouseout="this.style.background='#e8a850'">Plan Your Graeagle Trip →</a>
     </div>
   </section>
+
+  <!-- Contact + CTA -->
+  <section style="background:#1a2e1a;padding:80px clamp(20px,8%,10%);">
+    <div style="max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:48px;flex-wrap:wrap;">
+      <div>
+        <h2 style="font-family:'Playfair Display',serif;font-size:clamp(26px,3.5vw,40px);font-weight:400;color:#f0f8f2;margin:0 0 12px;">Get in touch</h2>
+        <p style="font-size:15px;color:rgba(240,248,242,0.45);margin:0 0 28px;max-width:420px;line-height:1.65;">For quotes, bookings, or questions about any Graeagle golf trip — reach us directly or request a quote online.</p>
+        <div style="display:flex;flex-direction:column;gap:12px;">
+          <a href="mailto:sean@zoomaway.com" style="display:flex;align-items:center;gap:10px;font-size:14px;color:rgba(240,248,242,0.6);text-decoration:none;">
+            <span style="color:#e8a850;">✉</span> sean@zoomaway.com
+          </a>
+          <a href="tel:+18885861157" style="display:flex;align-items:center;gap:10px;font-size:14px;color:rgba(240,248,242,0.6);text-decoration:none;">
+            <span style="color:#e8a850;">📞</span> (888) 586-1157
+          </a>
+          <div style="font-size:13px;color:rgba(240,248,242,0.3);">
+            Zoomaway Technologies Inc. · Operated since 2004
+          </div>
+        </div>
+      </div>
+      <a href="/quote" style="flex-shrink:0;background:#e8a850;color:#0d1a0e;font-weight:700;font-size:15px;padding:18px 44px;border-radius:100px;text-decoration:none;white-space:nowrap;transition:all .2s;"
+        onmouseover="this.style.background='#f2c878';this.style.transform='translateY(-2px)'"
+        onmouseout="this.style.background='#e8a850';this.style.transform='translateY(0)'">
+        Request a free quote →
+      </a>
+    </div>
+  </section>
+
   <Footer />
 </Base>
+
+<style is:global>
+@media(max-width:700px){
+  section div[style*="grid-template-columns:1fr 1fr"]{grid-template-columns:1fr!important;}
+  section div[style*="grid-template-columns:repeat(4"]{grid-template-columns:repeat(2,1fr)!important;}
+}
+</style>

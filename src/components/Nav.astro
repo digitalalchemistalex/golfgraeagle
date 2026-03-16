@@ -190,6 +190,7 @@ import { courses } from '../data/content.js';
 
     <a href="/about-us/" class="nav-link" style="padding: 8px 12px;">About</a>
     <a href="/blog/" class="nav-link" style="padding: 8px 12px;">Blog</a>
+    <a href="/faq/" class="nav-link" style="padding: 8px 12px;">FAQ</a>
   </div>
 
   <!-- CTA -->
@@ -225,6 +226,7 @@ import { courses } from '../data/content.js';
       {label:'Dining', href:'/dining/'},
       {label:'About', href:'/about-us/'},
       {label:'Blog', href:'/blog/'},
+      {label:'FAQ', href:'/faq/'},
     ].map(l=>(
       <a href={l.href} style="font-size:20px;color:#3a4a3e;text-decoration:none;padding:13px 0;border-bottom:1px solid rgba(168,140,90,0.12);transition:color 0.2s;font-weight:500;" onmouseover="this.style.color='#a06c30'" onmouseout="this.style.color='#3a4a3e'">{l.label}</a>
     ))}
