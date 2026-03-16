@@ -4,33 +4,467 @@ import Base from '../layouts/Base.astro';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
 import { lodging } from '../data/content.js';
+
+// Enrich with golfer-specific data
+const properties = [
+  {
+    ...lodging[0], // River Pines Resort
+    portfolioSlug: 'river-pines-resort-graeagle-ca',
+    badge: 'Best for Golf Groups',
+    badgeColor: '#22c55e',
+    priceRange: '$$',
+    bestFor: 'Groups of 4–16, families, multi-night stays',
+    groupCapacity: '4–60+ guests',
+    roomTypes: 'Cabins · Suites · Standard rooms',
+    closestCourse: 'Graeagle Meadows — 5 min',
+    drivesToAll: 'All 5 courses within 25 min',
+    golferPerk: 'The Roadhouse on-site — group dinners sorted, no logistics',
+    nearbyDining: 'The Roadhouse (on-site), Grizzly Grill (15 min), Iron Door (8 min)',
+    accentColor: '#22c55e',
+  },
+  {
+    ...lodging[1], // Chalet View Lodge
+    portfolioSlug: 'chalet-view-lodge-graeagle-ca',
+    badge: 'Best Amenities',
+    badgeColor: '#3b82f6',
+    priceRange: '$$$',
+    bestFor: 'Couples, smaller groups, amenity-seekers',
+    groupCapacity: '2–30 guests',
+    roomTypes: 'Lodge rooms · Terrace suites · Private cabins',
+    closestCourse: 'Graeagle Meadows — 10 min',
+    drivesToAll: 'All 5 courses within 30 min',
+    golferPerk: '9-hole exec course on property + Eureka Peak Brewing après-golf',
+    nearbyDining: 'Eureka Peak Brewing (on-site), Kitchen+Bar (on-site), Iron Door (10 min)',
+    accentColor: '#3b82f6',
+  },
+  {
+    ...lodging[2], // Inn at Nakoma
+    portfolioSlug: 'the-inn-at-nakoma-clio-ca',
+    badge: 'The Bucket-List Stay',
+    badgeColor: '#a855f7',
+    priceRange: '$$$$',
+    bestFor: 'Bucket-list trips, couples, anyone playing Nakoma Dragon',
+    groupCapacity: 'Up to 42 rooms',
+    roomTypes: '42 rooms · Double queens · King suites',
+    closestCourse: 'Nakoma Dragon — walk to 1st tee',
+    drivesToAll: 'Whitehawk 15 min · Grizzly 20 min · Meadows 20 min',
+    golferPerk: 'Only lodging with direct walk-on access to The Dragon. FLW building.',
+    nearbyDining: 'Fifty44 Restaurant (on-site), Middle Fork Bistro (on-site)',
+    accentColor: '#a855f7',
+  },
+  {
+    ...lodging[3], // Townhomes
+    portfolioSlug: 'the-townhomes-at-plumas-pines',
+    badge: 'Best for Large Groups',
+    badgeColor: '#e8a850',
+    priceRange: '$$',
+    bestFor: 'Large groups 8–24, bachelor parties, families, extended stays',
+    groupCapacity: '8–24+ guests (multiple units)',
+    roomTypes: '2–4 bedroom units with full kitchens',
+    closestCourse: 'Plumas Pines — steps away',
+    drivesToAll: 'Whitehawk 8 min · Meadows 10 min · Grizzly 25 min',
+    golferPerk: 'Steps from Plumas Pines 1st tee. Full kitchens = big cost savings for large groups.',
+    nearbyDining: 'Gumba\'s II Go (5 min), Sierra SmokeShow (3 min), Iron Door (12 min)',
+    accentColor: '#e8a850',
+  },
+];
+
+const comparisonData = [
+  { label: 'Best for',          key: 'bestFor' },
+  { label: 'Group capacity',    key: 'groupCapacity' },
+  { label: 'Room types',        key: 'roomTypes' },
+  { label: 'Closest course',    key: 'closestCourse' },
+  { label: 'Drive to others',   key: 'drivesToAll' },
+  { label: 'Price tier',        key: 'priceRange' },
+  { label: 'Golfer perk',       key: 'golferPerk' },
+];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    { "@type": "Question", "name": "What is the best hotel for a golf group in Graeagle?", "acceptedAnswer": { "@type": "Answer", "text": "River Pines Resort is the most popular choice for golf groups — flexible room types, on-site dining at The Roadhouse, pool and hot tub, and within 5–25 minutes of all 5 courses. For large groups of 8+, the Townhomes at Plumas Pines offer multi-bedroom units with full kitchens and the lowest per-person cost." } },
+    { "@type": "Question", "name": "Is there a hotel at Nakoma Golf Course?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. The Inn at Nakoma is a 42-room resort built inside the only golf clubhouse designed by Frank Lloyd Wright. Guests have direct walk-on access to The Dragon golf course (slope 147). It is the only lodging in the world where you can sleep in an FLW building and walk to a championship tee." } },
+    { "@type": "Question", "name": "How far are Graeagle hotels from the golf courses?", "acceptedAnswer": { "@type": "Answer", "text": "All four major Graeagle lodging properties are within 5–25 minutes of all 5 golf courses. The Townhomes at Plumas Pines are adjacent to Plumas Pines Golf Resort. The Inn at Nakoma sits at the Nakoma Dragon course. River Pines and Chalet View Lodge are 5–15 minutes from Graeagle Meadows and Whitehawk Ranch." } },
+    { "@type": "Question", "name": "Do Graeagle hotels offer stay-and-play golf packages?", "acceptedAnswer": { "@type": "Answer", "text": "GolfGraeagle builds custom stay-and-play packages combining any of the four lodging properties with tee times at all 5 courses. Package pricing includes lodging, guaranteed tee times, and full itinerary coordination. Request a free quote to get pricing for your dates and group size." } },
+  ]
+};
 ---
-<style>
-  .hotels-wrap { padding: clamp(100px,12vw,140px) clamp(20px,10%,10%) 60px; max-width: 1100px; margin: 0 auto; }
-  .hotels-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-  @media (max-width: 600px) { .hotels-grid { grid-template-columns: 1fr; } }
-</style>
-<Base title="Hotels in Graeagle, CA – Mountain Lodges & Resorts | GolfGraeagle" description="Stay at Nakoma, Chalet View Lodge, or River Pines with GolfGraeagle stay-and-play packages. Plan with trusted local golf experts.">
+<Base
+  title="Graeagle Golf Lodging — Hotels, Resorts & Stay and Play Packages"
+  description="Four handpicked lodging properties in Graeagle, CA — all within 25 minutes of 5 championship golf courses. Compare River Pines Resort, Chalet View Lodge, Inn at Nakoma, and Townhomes at Plumas Pines."
+  schema={[faqSchema]}
+>
   <Nav />
-  <section class="hotels-wrap">
-    <h1 style="font-family:'Playfair Display',serif;font-size:clamp(32px,5vw,52px);font-weight:500;color:#f0f8f2;margin:0 0 20px;">Graeagle Hotels, Lodges <span style="color:#e8a850;font-style:italic;">&amp; Resorts</span></h1>
-    <p style="font-size:17px;color:rgba(240,248,242,0.5);max-width:600px;line-height:1.75;margin:0 0 60px;">From boutique mountain lodges to on-course resort stays — every option within minutes of all 5 courses.</p>
-    <div class="hotels-grid">
-      {lodging.map(l => (
-        <a href={`/portfolio/${l.slug === 'river-pines-resort' ? 'river-pines-resort-graeagle-ca' : l.slug === 'chalet-view-lodge' ? 'chalet-view-lodge-graeagle-ca' : l.slug === 'inn-at-nakoma' ? 'the-inn-at-nakoma-clio-ca' : 'the-townhomes-at-plumas-pines'}/`}
-          style="border-radius:16px;overflow:hidden;text-decoration:none;background:rgba(240,248,242,0.02);border:1px solid rgba(240,248,242,0.07);transition:all 0.2s;"
-          onmouseover="this.style.borderColor='rgba(232,168,80,0.2)'" onmouseout="this.style.borderColor='rgba(240,248,242,0.07)'">
-          <img src={l.hero} alt={l.name} style="width:100%;height:200px;object-fit:cover;"/>
-          <div style="padding:20px 22px;">
-            <h2 style="font-family:'Playfair Display',serif;font-size:19px;color:#f0f8f2;margin:0 0 8px;">{l.name}</h2>
-            <p style="font-size:13px;color:rgba(240,248,242,0.4);margin:0;">{l.tagline}</p>
+
+  <!-- HERO -->
+  <section class="lh-hero">
+    <img
+      src="https://nakomaresort.com/wp-content/uploads/inn-at-nakoma-lobby-fireplace.jpg"
+      alt="Inn at Nakoma — Graeagle golf lodging"
+      class="lh-hero-img"
+      loading="eager"
+    />
+    <div class="lh-hero-overlay"></div>
+    <div class="lh-hero-content">
+      <p class="lh-eyebrow">Graeagle, California · Stay & Play</p>
+      <h1 class="lh-hero-h1">Sleep on the courses.<br/><span style="color:#e8a850;">Wake up ready to play.</span></h1>
+      <p class="lh-hero-sub">Four handpicked properties — all within 25 minutes of every championship course. Cabins, resort rooms, townhomes, and a Frank Lloyd Wright lodge.</p>
+      <div class="lh-hero-stats">
+        {[
+          { n:'4', l:'Lodging Properties' },
+          { n:'5 min', l:'Closest to Graeagle Meadows' },
+          { n:'Walk', l:'Inn at Nakoma → Dragon 1st tee' },
+          { n:'8–24+', l:'Group capacity per property' },
+        ].map(s => (
+          <div class="lh-hero-stat">
+            <div class="lh-hero-stat-n">{s.n}</div>
+            <div class="lh-hero-stat-l">{s.l}</div>
           </div>
-        </a>
-      ))}
-    </div>
-    <div style="text-align:center;margin-top:60px;">
-      <a href="/request-a-quote/" style="display:inline-block;background:#e8a850;color:#0d1a0e;font-weight:700;font-size:15px;padding:16px 44px;border-radius:100px;text-decoration:none;" onmouseover="this.style.background='#f2c878'" onmouseout="this.style.background='#e8a850'">Request a Stay & Play Quote →</a>
+        ))}
+      </div>
+      <div class="lh-hero-actions">
+        <a href="/quote" class="lh-btn-primary">Request a stay & play quote →</a>
+        <a href="#compare" class="lh-btn-ghost">Compare properties ↓</a>
+      </div>
     </div>
   </section>
+
+  <!-- PROPERTY CARDS -->
+  <section class="lh-properties">
+    <div class="lh-container">
+      <h2 class="lh-section-title">The four properties</h2>
+      <p class="lh-section-sub">Every property is verified, group-tested, and within 25 minutes of all 5 Graeagle courses. Each one serves a different type of trip.</p>
+
+      <div class="lh-cards">
+        {properties.map((p, i) => (
+          <article class="lh-card" id={p.slug}>
+            <!-- Photo gallery -->
+            <div class="lh-card-img-wrap">
+              <img
+                src={p.hero}
+                alt={`${p.name} — Graeagle golf lodging`}
+                loading={i < 2 ? 'eager' : 'lazy'}
+                class="lh-card-img"
+              />
+              <div class="lh-card-img-overlay"></div>
+              <span class="lh-badge" style={`background:${p.badgeColor}`}>{p.badge}</span>
+              <span class="lh-price-badge">{p.priceRange}</span>
+              {p.images && p.images.length > 1 && (
+                <div class="lh-thumb-strip">
+                  {p.images.slice(1, 4).map((img, ti) => (
+                    <img src={img} alt={`${p.name} photo ${ti+2}`} loading="lazy" class="lh-thumb"/>
+                  ))}
+                </div>
+              )}
+            </div>
+
+            <!-- Body -->
+            <div class="lh-card-body">
+              <div class="lh-card-header">
+                <div>
+                  <div class="lh-card-num">0{i+1}</div>
+                  <h2 class="lh-card-name">{p.name}</h2>
+                  <p class="lh-card-tagline">{p.tagline}</p>
+                </div>
+                <a href={`/portfolio/${p.portfolioSlug}`} class="lh-card-link">Full details →</a>
+              </div>
+
+              <p class="lh-card-desc">{p.description}</p>
+
+              <!-- Key stats grid -->
+              <div class="lh-stats-grid">
+                <div class="lh-stat-box">
+                  <div class="lh-stat-label">Room Types</div>
+                  <div class="lh-stat-val lh-stat-sm">{p.roomTypes}</div>
+                </div>
+                <div class="lh-stat-box">
+                  <div class="lh-stat-label">Group Capacity</div>
+                  <div class="lh-stat-val lh-stat-sm">{p.groupCapacity}</div>
+                </div>
+                <div class="lh-stat-box">
+                  <div class="lh-stat-label">Closest Course</div>
+                  <div class="lh-stat-val lh-stat-sm">{p.closestCourse}</div>
+                </div>
+                <div class="lh-stat-box">
+                  <div class="lh-stat-label">Price Tier</div>
+                  <div class="lh-stat-val" style={`color:${p.accentColor}`}>{p.priceRange}</div>
+                </div>
+              </div>
+
+              <!-- Best for callout -->
+              <div class="lh-bestfor" style={`border-left-color:${p.accentColor}`}>
+                <span class="lh-bestfor-label">Best for:</span>
+                <span class="lh-bestfor-val">{p.bestFor}</span>
+              </div>
+
+              <!-- Golfer perk -->
+              <div class="lh-perk">
+                <span class="lh-perk-icon">⛳</span>
+                <span class="lh-perk-text">{p.golferPerk}</span>
+              </div>
+
+              <!-- Highlights -->
+              <div class="lh-highlights">
+                <div class="lh-highlights-label">Amenities & highlights</div>
+                <div class="lh-highlights-grid">
+                  {p.highlights.map(h => (
+                    <span class="lh-highlight">✓ {h}</span>
+                  ))}
+                </div>
+              </div>
+
+              <!-- Nearby dining -->
+              <div class="lh-dining">
+                <span class="lh-dining-label">🍽 Nearby dining:</span>
+                <span class="lh-dining-val">{p.nearbyDining}</span>
+              </div>
+
+              <!-- CTA -->
+              <div class="lh-card-ctas">
+                <a href="/quote" class="lh-cta-primary" style={`background:${p.accentColor}`}>
+                  Quote this property →
+                </a>
+                <a href={`/portfolio/${p.portfolioSlug}`} class="lh-cta-ghost">Full details →</a>
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- COMPARISON TABLE -->
+  <section id="compare" class="lh-compare-section">
+    <div class="lh-container">
+      <h2 class="lh-section-title">Side-by-side comparison</h2>
+      <p class="lh-section-sub">Use this table to match the right property to your group type and budget.</p>
+      <div class="lh-compare-wrap">
+        <table class="lh-compare-table">
+          <thead>
+            <tr>
+              <th class="lh-th lh-th-left">Factor</th>
+              {properties.map(p => (
+                <th class="lh-th">
+                  <div class="lh-th-name">{p.name}</div>
+                  <div class="lh-th-price" style={`color:${p.accentColor}`}>{p.priceRange}</div>
+                </th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {comparisonData.map(row => (
+              <tr class="lh-tr">
+                <td class="lh-td lh-td-label">{row.label}</td>
+                {properties.map(p => (
+                  <td class="lh-td">{(p as any)[row.key]}</td>
+                ))}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- MATCHING GUIDE -->
+  <section class="lh-match-section">
+    <div class="lh-container">
+      <h2 class="lh-section-title">Which property is right for your trip?</h2>
+      <div class="lh-match-grid">
+        {[
+          {
+            scenario: 'Golf group of 4–8, 3-night trip',
+            winner: 'River Pines Resort',
+            slug: '#river-pines-resort',
+            why: 'Flexible room options, on-site Roadhouse for group dinners, pool and hot tub. The practical, no-stress choice for mid-size golf groups.',
+            color: '#22c55e',
+          },
+          {
+            scenario: 'Bachelor party or large group (8–20+)',
+            winner: 'Townhomes at Plumas Pines',
+            slug: '#townhomes-at-plumas-pines',
+            why: 'Multi-bedroom units with full kitchens keep the group together and cut meal costs. Adjacent to Plumas Pines course. Best per-person value.',
+            color: '#e8a850',
+          },
+          {
+            scenario: 'Couples or small group wanting amenities',
+            winner: 'Chalet View Lodge',
+            slug: '#chalet-view-lodge',
+            why: 'Spa, brewery on-site, 9-hole exec course, private cabins. The most amenity-rich property in the valley. Great for a treat-yourself trip.',
+            color: '#3b82f6',
+          },
+          {
+            scenario: 'Bucket-list trip / playing Nakoma Dragon',
+            winner: 'The Inn at Nakoma',
+            slug: '#inn-at-nakoma',
+            why: 'The only lodging with walk-on access to The Dragon. Sleeping in a Frank Lloyd Wright building is a once-in-a-career experience.',
+            color: '#a855f7',
+          },
+        ].map(m => (
+          <a href={m.slug} class="lh-match-card" style={`border-left-color:${m.color}`}>
+            <div class="lh-match-scenario">{m.scenario}</div>
+            <div class="lh-match-winner" style={`color:${m.color}`}>→ {m.winner}</div>
+            <div class="lh-match-why">{m.why}</div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="lh-faq-section">
+    <div class="lh-container lh-faq-inner">
+      <h2 class="lh-section-title">Lodging FAQ</h2>
+      <div class="lh-faqs">
+        {[
+          { q: 'What is the best hotel for a golf group in Graeagle?', a: 'River Pines Resort is the most popular choice for golf groups — flexible room types, on-site dining at The Roadhouse, pool and hot tub, and within 5–25 minutes of all 5 courses. For large groups of 8+, the Townhomes at Plumas Pines offer multi-bedroom units with full kitchens and the lowest per-person cost.' },
+          { q: 'Is there a hotel at Nakoma Golf Course?', a: 'Yes. The Inn at Nakoma is a 42-room resort built inside the only golf clubhouse designed by Frank Lloyd Wright. Guests have direct walk-on access to The Dragon (slope 147). It\'s the only lodging in the world where you sleep in an FLW building and walk to a championship tee.' },
+          { q: 'How far are Graeagle hotels from the golf courses?', a: 'All four properties are within 5–25 minutes of all 5 courses. The Townhomes are adjacent to Plumas Pines. The Inn at Nakoma is on the Nakoma course. River Pines and Chalet View are 5–15 minutes from Graeagle Meadows and Whitehawk Ranch.' },
+          { q: 'Do Graeagle hotels offer stay-and-play packages?', a: 'GolfGraeagle builds custom stay-and-play packages combining any lodging property with tee times at all 5 courses. Pricing covers lodging, guaranteed tee times, and full itinerary coordination. Request a free quote for your dates and group size.' },
+          { q: 'Can I bring my dog to Graeagle lodging?', a: 'The Inn at Nakoma is pet-friendly for up to 2 dogs (max 75 lbs each). Check individual property policies — River Pines and Chalet View have seasonal pet policies. Mention pets when requesting your quote and we will confirm.' },
+        ].map(f => (
+          <div class="lh-faq-item">
+            <h3 class="lh-faq-q">{f.q}</h3>
+            <p class="lh-faq-a">{f.a}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="lh-cta-section">
+    <div class="lh-container">
+      <div class="lh-cta-inner">
+        <div>
+          <h2 class="lh-cta-title">Not sure which property fits?</h2>
+          <p class="lh-cta-sub">Tell us your group size, dates, budget tier, and which courses you want to play. We'll recommend the right property and build a full stay-and-play package.</p>
+        </div>
+        <a href="/quote" class="lh-cta-btn">Get a free quote →</a>
+      </div>
+    </div>
+  </section>
+
   <Footer />
 </Base>
+
+<style is:global>
+/* ── hero ── */
+.lh-hero{position:relative;height:85vh;min-height:540px;max-height:800px;overflow:hidden;display:flex;flex-direction:column;justify-content:flex-end;}
+.lh-hero-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 40%;animation:lhZoom 16s ease-in-out infinite alternate;}
+@keyframes lhZoom{0%{transform:scale(1.04);}100%{transform:scale(1);}}
+.lh-hero-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(5,12,5,0.93) 0%,rgba(5,12,5,0.5) 45%,rgba(5,12,5,0.15) 100%);}
+.lh-hero-content{position:relative;z-index:2;max-width:1200px;margin:0 auto;width:100%;padding:0 clamp(20px,5vw,60px) 60px;}
+.lh-eyebrow{font-size:11px;color:#e8a850;letter-spacing:.2em;text-transform:uppercase;font-weight:600;margin:0 0 18px;}
+.lh-hero-h1{font-family:'Playfair Display',serif;font-size:clamp(40px,6.5vw,84px);font-weight:400;color:#f8faf8;margin:0 0 20px;line-height:1.05;letter-spacing:-.5px;}
+.lh-hero-sub{font-size:clamp(15px,1.8vw,19px);color:rgba(248,250,248,0.55);max-width:540px;line-height:1.75;margin:0 0 40px;}
+.lh-hero-stats{display:flex;gap:40px;flex-wrap:wrap;margin-bottom:40px;}
+.lh-hero-stat-n{font-family:'Playfair Display',serif;font-size:clamp(24px,2.5vw,34px);color:#f8faf8;font-weight:400;line-height:1;}
+.lh-hero-stat-l{font-size:11px;color:rgba(248,250,248,0.38);margin-top:4px;line-height:1.4;}
+.lh-hero-actions{display:flex;gap:12px;flex-wrap:wrap;}
+.lh-btn-primary{display:inline-block;padding:14px 30px;background:#e8a850;color:#0d1a0e;border-radius:100px;font-size:14px;font-weight:700;text-decoration:none;transition:all .25s;}
+.lh-btn-primary:hover{background:#f2c878;transform:translateY(-1px);}
+.lh-btn-ghost{display:inline-block;padding:14px 28px;border:1px solid rgba(248,250,248,0.25);color:rgba(248,250,248,0.7);border-radius:100px;font-size:14px;text-decoration:none;transition:all .25s;}
+.lh-btn-ghost:hover{border-color:rgba(248,250,248,0.5);color:#f8faf8;}
+
+/* ── shared ── */
+.lh-container{max-width:1200px;margin:0 auto;padding:0 clamp(20px,5vw,60px);}
+.lh-section-title{font-family:'Playfair Display',serif;font-size:clamp(26px,3.5vw,40px);font-weight:400;color:#1a2e1a;margin:0 0 10px;}
+.lh-section-sub{font-size:15px;color:#6b7c6b;margin:0 0 48px;line-height:1.65;max-width:580px;}
+
+/* ── property cards ── */
+.lh-properties{padding:80px 0;background:#f0f5f0;}
+.lh-cards{display:flex;flex-direction:column;gap:48px;}
+.lh-card{background:#fff;border-radius:24px;overflow:hidden;box-shadow:0 4px 28px rgba(0,0,0,0.06);transition:box-shadow .3s;}
+.lh-card:hover{box-shadow:0 12px 52px rgba(0,0,0,0.1);}
+.lh-card-img-wrap{position:relative;height:400px;overflow:hidden;}
+@media(max-width:700px){.lh-card-img-wrap{height:260px;}}
+.lh-card-img{width:100%;height:100%;object-fit:cover;transition:transform 8s ease;}
+.lh-card:hover .lh-card-img{transform:scale(1.04);}
+.lh-card-img-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(5,12,5,0.45) 0%,transparent 55%);}
+.lh-badge{position:absolute;top:20px;left:20px;font-size:11px;font-weight:700;color:#fff;padding:5px 14px;border-radius:100px;letter-spacing:.04em;}
+.lh-price-badge{position:absolute;top:20px;right:20px;font-size:14px;font-weight:700;color:#fff;background:rgba(0,0,0,0.5);padding:5px 14px;border-radius:100px;backdrop-filter:blur(4px);}
+.lh-thumb-strip{position:absolute;bottom:0;left:0;right:0;display:flex;gap:3px;height:80px;}
+.lh-thumb{flex:1;object-fit:cover;opacity:.75;transition:opacity .2s;}
+.lh-thumb:hover{opacity:1;}
+.lh-card-body{padding:36px;}
+@media(max-width:600px){.lh-card-body{padding:24px 20px;}}
+.lh-card-header{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;margin-bottom:16px;}
+.lh-card-num{font-family:'Playfair Display',serif;font-size:38px;color:#e8ede8;font-weight:400;line-height:1;margin-bottom:4px;}
+.lh-card-name{font-family:'Playfair Display',serif;font-size:clamp(22px,2.8vw,30px);font-weight:400;color:#1a2e1a;margin:0 0 6px;}
+.lh-card-tagline{font-size:14px;color:#6b7c6b;margin:0;}
+.lh-card-link{white-space:nowrap;font-size:13px;color:#e8a850;font-weight:600;text-decoration:none;padding:10px 20px;border:1px solid rgba(232,168,80,0.3);border-radius:100px;transition:all .2s;flex-shrink:0;}
+.lh-card-link:hover{background:#e8a850;color:#0d1a0e;}
+.lh-card-desc{font-size:15px;color:#4a5a4a;line-height:1.75;margin:0 0 28px;}
+/* stats */
+.lh-stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:#e8ede8;border-radius:14px;overflow:hidden;margin-bottom:20px;}
+@media(max-width:640px){.lh-stats-grid{grid-template-columns:repeat(2,1fr);}}
+.lh-stat-box{background:#f8faf4;padding:14px 12px;text-align:center;}
+.lh-stat-label{font-size:9px;color:#8a9a8a;text-transform:uppercase;letter-spacing:.08em;font-weight:600;margin-bottom:5px;}
+.lh-stat-val{font-family:'Playfair Display',serif;font-size:18px;color:#1a2e1a;font-weight:400;line-height:1.1;}
+.lh-stat-sm{font-size:12px;font-family:'Inter',sans-serif;color:#374137;}
+/* best for */
+.lh-bestfor{display:flex;align-items:baseline;gap:8px;margin-bottom:14px;padding:11px 16px;background:#f8faf4;border-radius:10px;border-left:3px solid #e8a850;}
+.lh-bestfor-label{font-size:10px;font-weight:700;color:#8a9a8a;text-transform:uppercase;letter-spacing:.08em;flex-shrink:0;}
+.lh-bestfor-val{font-size:13px;color:#374137;line-height:1.5;}
+/* golfer perk */
+.lh-perk{display:flex;align-items:flex-start;gap:10px;margin-bottom:20px;padding:12px 16px;background:#fffbf0;border:1px solid #f0e0a0;border-radius:10px;}
+.lh-perk-icon{font-size:16px;flex-shrink:0;margin-top:1px;}
+.lh-perk-text{font-size:13px;color:#4a3a10;line-height:1.55;font-weight:500;}
+/* highlights */
+.lh-highlights{margin-bottom:18px;}
+.lh-highlights-label{font-size:10px;font-weight:700;color:#8a9a8a;text-transform:uppercase;letter-spacing:.08em;margin-bottom:10px;}
+.lh-highlights-grid{display:flex;flex-wrap:wrap;gap:6px;}
+.lh-highlight{font-size:12px;color:#374137;background:#f0f5f0;border:1px solid #d8e8d8;padding:4px 10px;border-radius:6px;}
+/* dining */
+.lh-dining{display:flex;align-items:baseline;gap:8px;margin-bottom:24px;font-size:13px;color:#4a5a4a;line-height:1.5;}
+.lh-dining-label{font-weight:600;color:#1a2e1a;flex-shrink:0;}
+/* ctas */
+.lh-card-ctas{display:flex;gap:10px;flex-wrap:wrap;}
+.lh-cta-primary{display:inline-block;color:#fff;font-size:14px;font-weight:700;padding:13px 26px;border-radius:100px;text-decoration:none;transition:all .25s;opacity:.95;}
+.lh-cta-primary:hover{opacity:1;transform:translateY(-1px);}
+.lh-cta-ghost{display:inline-block;background:rgba(26,46,26,0.05);border:1px solid rgba(26,46,26,0.12);color:#374137;font-size:14px;padding:13px 24px;border-radius:100px;text-decoration:none;transition:all .2s;}
+.lh-cta-ghost:hover{background:rgba(26,46,26,0.1);}
+
+/* ── comparison table ── */
+.lh-compare-section{padding:80px 0;background:#fff;}
+.lh-compare-wrap{overflow-x:auto;border-radius:16px;border:1px solid #e0ece0;box-shadow:0 2px 16px rgba(0,0,0,0.04);}
+.lh-compare-table{width:100%;border-collapse:collapse;font-size:13px;min-width:700px;}
+.lh-th{padding:16px 14px;text-align:center;background:#f0f8f0;border-bottom:2px solid #d8e8d8;}
+.lh-th-left{text-align:left;}
+.lh-th-name{font-family:'Playfair Display',serif;font-size:14px;color:#1a2e1a;font-weight:400;margin-bottom:3px;}
+.lh-th-price{font-size:16px;font-weight:700;}
+.lh-tr{border-bottom:1px solid #f0f4f0;transition:background .15s;}
+.lh-tr:hover{background:#f8fbf8;}
+.lh-tr:last-child{border-bottom:none;}
+.lh-td{padding:14px 14px;text-align:center;color:#374137;vertical-align:top;font-size:13px;}
+.lh-td-label{text-align:left;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:#6b7c6b;}
+
+/* ── match guide ── */
+.lh-match-section{padding:80px 0;background:#f0f5f0;}
+.lh-match-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+@media(max-width:700px){.lh-match-grid{grid-template-columns:1fr;}}
+.lh-match-card{display:block;background:#fff;border-radius:14px;padding:22px 24px;border-left:4px solid #e8a850;box-shadow:0 2px 12px rgba(0,0,0,0.04);text-decoration:none;transition:box-shadow .2s;}
+.lh-match-card:hover{box-shadow:0 6px 24px rgba(0,0,0,0.08);}
+.lh-match-scenario{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#6b7c6b;margin-bottom:6px;}
+.lh-match-winner{font-family:'Playfair Display',serif;font-size:18px;font-weight:400;margin-bottom:8px;}
+.lh-match-why{font-size:13px;color:#4a5a4a;line-height:1.6;}
+
+/* ── FAQ ── */
+.lh-faq-section{padding:80px 0;background:#fff;}
+.lh-faq-inner{max-width:860px;}
+.lh-faqs{display:flex;flex-direction:column;gap:0;}
+.lh-faq-item{padding:24px 0;border-bottom:1px solid #e8ede8;}
+.lh-faq-item:last-child{border-bottom:none;}
+.lh-faq-q{font-size:17px;font-weight:700;color:#1a2e1a;margin:0 0 8px;}
+.lh-faq-a{font-size:15px;color:#4a5a4a;line-height:1.75;margin:0;}
+
+/* ── CTA ── */
+.lh-cta-section{padding:80px clamp(20px,5vw,60px);background:#1a2e1a;}
+.lh-cta-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:40px;flex-wrap:wrap;}
+.lh-cta-title{font-family:'Playfair Display',serif;font-size:clamp(22px,3vw,36px);font-weight:400;color:#f8faf8;margin:0 0 10px;}
+.lh-cta-sub{font-size:15px;color:rgba(248,250,248,0.45);margin:0;max-width:480px;line-height:1.65;}
+.lh-cta-btn{flex-shrink:0;background:#e8a850;color:#0d1a0e;font-size:15px;font-weight:700;padding:16px 36px;border-radius:100px;text-decoration:none;transition:all .25s;white-space:nowrap;}
+.lh-cta-btn:hover{background:#f2c878;transform:translateY(-2px);box-shadow:0 8px 32px rgba(232,168,80,0.4);}
+</style>
