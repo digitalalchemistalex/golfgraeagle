@@ -242,40 +242,18 @@ const homeFaqSchema = {
       <h2 style="font-family:'Playfair Display',serif;font-size:clamp(28px,4vw,52px);color:#f0f8f2;margin:0;line-height:1.1;">Stay on the courses.<br/>Wake up ready to play.</h2>
     </div>
 
-    <div class="lodging-grid">
-      <div class="reveal lodging-feature" onclick="window.location='/lodging'" style="cursor:pointer;">
-        <img src="https://nakomaresort.com/wp-content/uploads/inn-at-nakoma-lobby-fireplace.jpg"
-          alt="The Inn at Nakoma — lobby fireplace" loading="lazy" class="course-card-img"/>
-        <div class="card-gradient-heavy"></div>
-        <div class="course-card-body">
-          <span class="badge" style="display:inline-block;margin-bottom:12px;">Most Unique Stay</span>
-          <h3 style="font-family:'Playfair Display',serif;font-size:clamp(22px,2.5vw,30px);color:#f0f8f2;margin:0 0 8px;">The Inn at Nakoma</h3>
-          <p style="font-size:13px;color:rgba(240,248,242,0.5);margin:0 0 18px;">Sleep in a Frank Lloyd Wright building. Wake up 50 yards from The Dragon first tee.</p>
-          <a href="/lodging" class="link-gold-sm">View lodging →</a>
-        </div>
-      </div>
-
-      <div class="lodging-side-grid">
-        <div class="reveal delay-100 lodging-side-card" onclick="window.location='/lodging'" style="cursor:pointer;">
-          <img src="https://nakomaresort.com/wp-content/uploads/2Bedroom-Villa-EXTERIOR.jpg"
-            alt="Nakoma 2-Bedroom Villa" loading="lazy" class="course-card-img"/>
+    <div class="lodging-four-grid">
+      {lodging.map((l, i) => (
+        <div class={`reveal delay-${i*75} lodging-equal-card`} onclick={`window.location='/portfolio/${l.slug}'`} style="cursor:pointer;">
+          <img src={l.hero} alt={l.name} loading="lazy" class="course-card-img"/>
           <div class="card-gradient"></div>
           <div class="course-card-body">
-            <h3 style="font-family:'Playfair Display',serif;font-size:clamp(18px,1.8vw,22px);color:#f0f8f2;margin:0 0 4px;">Nakoma Villas</h3>
-            <p style="font-size:12px;color:rgba(240,248,242,0.45);margin:0;">2-bedroom resort villas on site</p>
+            <h3 style="font-family:'Playfair Display',serif;font-size:clamp(16px,1.4vw,20px);color:#f0f8f2;margin:0 0 6px;line-height:1.2;">{l.name}</h3>
+            <p style="font-size:12px;color:rgba(240,248,242,0.45);margin:0 0 12px;">{l.subtitle}</p>
+            <a href={`/portfolio/${l.slug}`} class="link-gold-sm">View →</a>
           </div>
         </div>
-        <div class="reveal delay-200 lodging-side-card" onclick="window.location='/lodging'" style="cursor:pointer;">
-          <img src="https://www.plumaspinesgolf.com/wp-content/uploads/sites/9383/2024/04/Clubhouse-from-9th-Tee-25x38-1.jpg"
-            alt="Townhomes at Plumas Pines — on the golf course" loading="lazy" class="course-card-img"/>
-          <div class="card-gradient"></div>
-          <div class="course-card-body">
-            <span style="font-size:10px;color:rgba(232,168,80,0.65);text-transform:uppercase;letter-spacing:0.1em;display:block;margin-bottom:6px;">Best for Groups</span>
-            <h3 style="font-family:'Playfair Display',serif;font-size:clamp(18px,1.8vw,22px);color:#f0f8f2;margin:0 0 4px;">Townhomes at Plumas Pines</h3>
-            <p style="font-size:12px;color:rgba(240,248,242,0.45);margin:0;">Multi-bedroom. On the course. Pool access.</p>
-          </div>
-        </div>
-      </div>
+      ))}
     </div>
 
     <div class="reveal" style="text-align:center;margin-top:48px;">
@@ -674,8 +652,7 @@ const homeFaqSchema = {
     display: block;
   }
   .course-card-equal:hover .course-card-img,
-  .lodging-feature:hover .course-card-img,
-  .lodging-side-card:hover .course-card-img { transform: scale(1.06); }
+  .lodging-equal-card:hover .course-card-img { transform: scale(1.06); }
   .card-gradient {
     position: absolute; inset: 0;
     background: linear-gradient(to top, rgba(13,26,14,0.92) 0%, transparent 55%);
@@ -715,25 +692,17 @@ const homeFaqSchema = {
   }
 
   /* ═══ LODGING ═══ */
-  .lodging-grid {
+  .lodging-four-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 3px;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2px;
   }
-  .lodging-feature {
+  .lodging-equal-card {
     position: relative;
-    height: 500px;
+    height: 420px;
     overflow: hidden;
-    border-radius: 20px 4px 4px 20px;
+    border-radius: 12px;
   }
-  .lodging-side-grid {
-    display: grid;
-    grid-template-rows: 1fr 1fr;
-    gap: 3px;
-  }
-  .lodging-side-card { position: relative; overflow: hidden; }
-  .lodging-side-card:first-child { border-radius: 4px 20px 4px 4px; }
-  .lodging-side-card:last-child  { border-radius: 4px 4px 20px 4px; }
 
   /* ═══ DINING ═══ */
   .dining-grid {
@@ -781,15 +750,8 @@ const homeFaqSchema = {
     .float-badge { display: none; }
 
     /* Lodging */
-    .lodging-grid { grid-template-columns: 1fr; }
-    .lodging-feature { height: 340px; border-radius: 16px; }
-    .lodging-side-grid {
-      grid-template-rows: auto;
-      grid-template-columns: 1fr 1fr;
-    }
-    .lodging-side-card { height: 200px; }
-    .lodging-side-card:first-child,
-    .lodging-side-card:last-child { border-radius: 12px; }
+    .lodging-four-grid { grid-template-columns: 1fr 1fr; }
+    .lodging-equal-card { height: 280px; border-radius: 12px; }
 
     /* Dining photos hidden on mobile — text content is enough */
     .dining-photos { display: none; }
@@ -799,8 +761,8 @@ const homeFaqSchema = {
   @media (max-width: 540px) {
     .courses-five-grid { grid-template-columns: 1fr; }
     .course-card-equal { height: 240px; }
-    .lodging-side-grid { grid-template-columns: 1fr; }
-    .lodging-side-card { height: 180px; }
+    .lodging-four-grid { grid-template-columns: 1fr; }
+    .lodging-equal-card { height: 240px; }
     .hero-ctas { flex-direction: column; align-items: flex-start; }
     .btn-gold { width: 100%; text-align: center; }
     .hero-stats { gap: 16px; }
