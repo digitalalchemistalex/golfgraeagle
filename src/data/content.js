@@ -164,13 +164,15 @@ export const courses = [
       'Semi-private — limited public access',
     ],
     // Official photos from grizzlyranchgolfclub.com — verified clean course shots
-    hero: 'https://grizzlyranchgolfclub.com/wp-content/uploads/2025/06/2dfdf8_586aabb07dde409db509af8fd0b9da1amv2-1.jpg',
+    hero: '/wp-images/grizzly-ranch-.jpeg',
     images: [
-      'https://grizzlyranchgolfclub.com/wp-content/uploads/2025/06/2dfdf8_586aabb07dde409db509af8fd0b9da1amv2-1.jpg',
-      'https://grizzlyranchgolfclub.com/wp-content/uploads/2025/06/IMG_0666-2-scaled.jpg',
-      'https://grizzlyranchgolfclub.com/wp-content/uploads/2025/06/2dfdf8_9b7f63a906194188b93661b18b351578mv2.jpg',
-      'https://grizzlyranchgolfclub.com/wp-content/uploads/2025/10/2dfdf8_63c6afdb11ea45daa6956e5f61fac942mv2.jpg',
+      '/wp-images/grizzly-ranch-.jpeg',
+      '/wp-images/grizzly-ranch--1024x682.webp',
     ],
+    images: [
+    '/wp-images/grizzly-ranch-.jpeg',
+    '/wp-images/grizzly-ranch--1024x682.webp'
+  ],
     description: 'Grizzly Ranch Golf Club, designed by Bob Cupp and opened in 2005, is the region\'s most demanding course. At 7,411 yards with a slope of 140 and course rating of 74.9, it plays every inch of its length through dramatic mountain terrain with significant elevation changes, exposed ridgeline holes, and panoramic Sierra views. Semi-private — access is through packages.',
     bestFor: 'Scratch and low-handicap golfers, bucket-list rounds, groups wanting a serious challenge',
     facilities: ['Pro Shop', '30-Station Natural Turf Practice Range', 'Putting Green', 'Chipping Area', 'Bunker Practice Area'],
@@ -292,16 +294,17 @@ export const lodging = [
       'Wedding and event venue — sought-after group space',
     ],
     // Real photos from chaletviewlodge.com (Wix CDN) — verified March 2026
-    hero: 'https://static.wixstatic.com/media/b638ee_161386a82a024a4ca602d13cdb18f401~mv2.jpg',
+    hero: '/wp-images/ChaletView-02.webp',
     images: [
-      'https://static.wixstatic.com/media/b638ee_161386a82a024a4ca602d13cdb18f401~mv2.jpg',
-      'https://static.wixstatic.com/media/b638ee_4f8087be64664ac2842076427b6d595e~mv2.jpg',
-      'https://static.wixstatic.com/media/b638ee_72058e2a980141479207d0ab9b8a8a2d~mv2.jpg',
-      'https://static.wixstatic.com/media/b638ee_1129a47da782475ca9eecb9767924a10~mv2.jpg',
-      'https://static.wixstatic.com/media/b638ee_2986c284a74242969a3fcc6595014273~mv2.jpg',
-      'https://static.wixstatic.com/media/b638ee_bbcae26cc66b40b18a9e03748eba5c19~mv2.jpg',
-      'https://static.wixstatic.com/media/b638ee_8c9cfa4720174c64883b7de59fb2ef0b~mv2.jpg',
+      '/wp-images/ChaletView-02.webp',
+      '/wp-images/ChaletView-21.webp',
+      '/wp-images/ChaletView-22.webp',
     ],
+    images: [
+    '/wp-images/ChaletView-02.webp',
+    '/wp-images/ChaletView-21.webp',
+    '/wp-images/ChaletView-22.webp'
+  ],
     onSiteDining: ['eureka-peak-brewing'],
     priceRange: '$299–$499',
     description: 'Chalet View Lodge sits on 10 forested acres, 10 minutes from Graeagle via Highway 89. Room types include lodge rooms, terrace suites, and private cabins — making it one of the most versatile properties in the valley for groups. The 9-hole executive course lets guests warm up without leaving the property. Eureka Peak Brewing Co. is located on-site, serving handcrafted IPAs, stouts, and saisons alongside locally sourced seasonal dishes. Full spa services, a seasonal outdoor pool, volleyball courts, and a fishing pond complete the offering.',
@@ -418,7 +421,17 @@ export const dining = [
     highlights: ['Local game and Sierra-grown produce', 'Stone hearth and exposed beam interior', 'Full bar', '4,800 ft elevation — bring layers for evening'],
     coordinates: { lat: 39.7750, lng: -120.6180 },
     location: 'Off Hwy 70, 5 min from Graeagle',
-    hero: 'https://grizzlyranchgolfclub.com/wp-content/uploads/2025/10/2dfdf8_c82b31666905452f951c34f7ee4b742amv2.jpg',
+    hero: '/wp-images/Grizzly-Grill-.jpg',
+    images: [
+      '/wp-images/Grizzly-Grill-.jpg',
+      '/wp-images/Grizzly-Grill--1024x683.jpg',
+      '/wp-images/grizzlydeck_orig.jpg',
+    ],
+  images: [
+    '/wp-images/Grizzly-Grill-.jpg',
+    '/wp-images/grizzlydeck_orig.jpg',
+    '/wp-images/Grizzly-Grill--1024x683.jpg'
+  ],
   },
   {
     slug: 'iron-door',
@@ -444,7 +457,15 @@ export const dining = [
     coordinates: { lat: 39.6466, lng: -120.6355 },
     location: '990 Sardine Lake Rd, Sierra City — 45 min via Gold Lake Road',
     phone: '(530) 862-1196',
-    hero: 'https://graeaglemeadows.com/wp-content/uploads/sites/86/2025/12/DJI_0230-Edit.jpg',
+    hero: '/wp-images/Sardine-Lake-Resort.jpg',
+    images: [
+      '/wp-images/Sardine-Lake-Resort.jpg',
+      '/wp-images/Sardine-Lake-Resort-1024x682.jpg',
+    ],
+  images: [
+    '/wp-images/Sardine-Lake-Resort.jpg',
+    '/wp-images/Sardine-Lake-Resort-1024x682.jpg'
+  ],
   },
   // ─── Casual Dining ─────────────────────────────────────
   {
@@ -457,7 +478,7 @@ export const dining = [
     highlights: ['On-site at River Pines Resort — no driving required', 'Steaks, ribs, and whisky flights', 'Group-dinner-friendly', 'Just off Hwy 70'],
     coordinates: { lat: 39.7775, lng: -120.6210 },
     location: 'River Pines Resort, off Hwy 70',
-    hero: 'https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?w=1200&q=80&auto=format',
+    hero: '/wp-images/Roadhouse-at-River-Pines-.jpg',
   },
   {
     slug: 'graeagle-restaurant',
@@ -481,7 +502,10 @@ export const dining = [
     highlights: ['Fairway and mountain views from every table', 'Seasonal menu', 'Inside Graeagle Meadows clubhouse', '5 min from Graeagle via CA-89 N'],
     coordinates: { lat: 39.7505, lng: -120.6170 },
     location: 'Graeagle Meadows Golf Course, 5 min via CA-89 N',
-    hero: 'https://images.unsplash.com/photo-1587174486073-ae5e5cff23aa?w=1200&q=80&auto=format',
+    hero: '/wp-images/Graeagle-Meadows-Golf-Course-Restaurant.jpg',
+    images: [
+      '/wp-images/Graeagle-Meadows-Golf-Course-Restaurant.jpg',
+    ],
   },
   {
     slug: 'sierra-smokeshow',
@@ -493,7 +517,13 @@ export const dining = [
     highlights: ['Baby back ribs, brisket, pork shoulder', 'Hickory and applewood smoker', '2 min from Plumas Pines on CA-89', 'Laid-back mountain setting'],
     coordinates: { lat: 39.77003, lng: -120.61092 },
     location: 'CA-89, 2 min from Plumas Pines',
-    hero: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&q=80&auto=format',
+    hero: '/wp-images/Sierra-SmokeShow-.jpg',
+    images: [
+      '/wp-images/Sierra-SmokeShow-.jpg',
+    ],
+  images: [
+    '/wp-images/Graeagle-Meadows-Golf-Course-Restaurant.jpg'
+  ],
   },
   {
     slug: 'gumbas',
@@ -531,7 +561,13 @@ export const dining = [
     highlights: ['On-site at Chalet View Lodge', 'IPAs, stouts, saisons, and fruit-forward ales', 'Locally sourced seasonal food', 'Timber-framed lodge setting'],
     coordinates: { lat: 39.7552, lng: -120.6347 },
     location: 'Inside Chalet View Lodge, 5 min south via CA-89',
-    hero: 'https://images.unsplash.com/photo-1584225064785-c62a8b43d148?w=1200&q=80&auto=format',
+    hero: '/wp-images/eureka-peak-brewing-company.jpg',
+    images: [
+      '/wp-images/eureka-peak-brewing-company.jpg',
+    ],
+  images: [
+    '/wp-images/eureka-peak-brewing-company.jpg'
+  ],
   },
   {
     slug: 'brewing-lair',
@@ -610,5 +646,8 @@ export const dining = [
     location: '402 Poplar Valley Rd, Blairsden-Graeagle, CA 96103',
     phone: '(530) 836-1111',
     hero: 'https://www.plumaspinesgolf.com/wp-content/uploads/sites/9383/2024/06/Longboards-Deck-Photo.png',
+  images: [
+    '/wp-images/Longboards-Deck-Photo.webp'
+  ],
   },
 ];
