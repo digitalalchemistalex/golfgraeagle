@@ -1,13 +1,73 @@
 {
   "redirects": [
     {
-      "source": "/request-a-quote/",
-      "destination": "/quote/",
+      "source": "/quote/",
+      "destination": "/request-a-quote",
       "permanent": true
     },
     {
-      "source": "/request-a-quote",
-      "destination": "/quote/",
+      "source": "/quote",
+      "destination": "/request-a-quote",
+      "permanent": true
+    },
+    {
+      "source": "/request-quote/",
+      "destination": "/request-a-quote",
+      "permanent": true
+    },
+    {
+      "source": "/request-quote",
+      "destination": "/request-a-quote",
+      "permanent": true
+    },
+    {
+      "source": "/courses/graeagle-meadows/",
+      "destination": "/portfolio/graeagle-meadows-golf-packages",
+      "permanent": true
+    },
+    {
+      "source": "/courses/graeagle-meadows",
+      "destination": "/portfolio/graeagle-meadows-golf-packages",
+      "permanent": true
+    },
+    {
+      "source": "/courses/whitehawk-ranch/",
+      "destination": "/portfolio/whitehawk-ranch-golf-packages",
+      "permanent": true
+    },
+    {
+      "source": "/courses/whitehawk-ranch",
+      "destination": "/portfolio/whitehawk-ranch-golf-packages",
+      "permanent": true
+    },
+    {
+      "source": "/courses/plumas-pines/",
+      "destination": "/portfolio/plumas-pines-golf-packages",
+      "permanent": true
+    },
+    {
+      "source": "/courses/plumas-pines",
+      "destination": "/portfolio/plumas-pines-golf-packages",
+      "permanent": true
+    },
+    {
+      "source": "/courses/grizzly-ranch/",
+      "destination": "/portfolio/grizzly-ranch-golf-packages",
+      "permanent": true
+    },
+    {
+      "source": "/courses/grizzly-ranch",
+      "destination": "/portfolio/grizzly-ranch-golf-packages",
+      "permanent": true
+    },
+    {
+      "source": "/courses/nakoma-dragon/",
+      "destination": "/portfolio/nakoma-dragon-golf-packages",
+      "permanent": true
+    },
+    {
+      "source": "/courses/nakoma-dragon",
+      "destination": "/portfolio/nakoma-dragon-golf-packages",
       "permanent": true
     },
     {
@@ -18,96 +78,6 @@
     {
       "source": "/all-golf-courses",
       "destination": "/courses/",
-      "permanent": true
-    },
-    {
-      "source": "/portfolio/the-inn-at-nakoma-clio-ca/",
-      "destination": "/lodging",
-      "permanent": true
-    },
-    {
-      "source": "/portfolio/the-inn-at-nakoma-clio-ca",
-      "destination": "/lodging",
-      "permanent": true
-    },
-    {
-      "source": "/portfolio/river-pines-resort-graeagle-ca/",
-      "destination": "/lodging",
-      "permanent": true
-    },
-    {
-      "source": "/portfolio/river-pines-resort-graeagle-ca",
-      "destination": "/lodging",
-      "permanent": true
-    },
-    {
-      "source": "/portfolio/chalet-view-lodge-graeagle-ca/",
-      "destination": "/lodging",
-      "permanent": true
-    },
-    {
-      "source": "/portfolio/chalet-view-lodge-graeagle-ca",
-      "destination": "/lodging",
-      "permanent": true
-    },
-    {
-      "source": "/portfolio/the-townhomes-at-plumas-pines/",
-      "destination": "/lodging",
-      "permanent": true
-    },
-    {
-      "source": "/portfolio/the-townhomes-at-plumas-pines",
-      "destination": "/lodging",
-      "permanent": true
-    },
-    {
-      "source": "/portfolio/graeagle-meadows-golf-packages/",
-      "destination": "/courses/graeagle-meadows",
-      "permanent": true
-    },
-    {
-      "source": "/portfolio/graeagle-meadows-golf-packages",
-      "destination": "/courses/graeagle-meadows",
-      "permanent": true
-    },
-    {
-      "source": "/portfolio/whitehawk-ranch-golf-packages/",
-      "destination": "/courses/whitehawk-ranch",
-      "permanent": true
-    },
-    {
-      "source": "/portfolio/whitehawk-ranch-golf-packages",
-      "destination": "/courses/whitehawk-ranch",
-      "permanent": true
-    },
-    {
-      "source": "/portfolio/plumas-pines-golf-packages/",
-      "destination": "/courses/plumas-pines",
-      "permanent": true
-    },
-    {
-      "source": "/portfolio/plumas-pines-golf-packages",
-      "destination": "/courses/plumas-pines",
-      "permanent": true
-    },
-    {
-      "source": "/portfolio/grizzly-ranch-golf-packages/",
-      "destination": "/courses/grizzly-ranch",
-      "permanent": true
-    },
-    {
-      "source": "/portfolio/grizzly-ranch-golf-packages",
-      "destination": "/courses/grizzly-ranch",
-      "permanent": true
-    },
-    {
-      "source": "/portfolio/nakoma-dragon-golf-packages/",
-      "destination": "/courses/nakoma-dragon",
-      "permanent": true
-    },
-    {
-      "source": "/portfolio/nakoma-dragon-golf-packages",
-      "destination": "/courses/nakoma-dragon",
       "permanent": true
     },
     {
@@ -168,21 +138,6 @@
     {
       "source": "/blogs",
       "destination": "/blog",
-      "permanent": true
-    },
-    {
-      "source": "/courses/:slug/",
-      "destination": "/courses/:slug",
-      "permanent": true
-    },
-    {
-      "source": "/request-quote/",
-      "destination": "/quote",
-      "permanent": true
-    },
-    {
-      "source": "/request-quote",
-      "destination": "/quote",
       "permanent": true
     },
     {
