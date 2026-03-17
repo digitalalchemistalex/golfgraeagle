@@ -15,7 +15,7 @@ export const siteConfig = {
   description: 'Plan your Graeagle golf trip — 5 championship courses in the Sierra Nevada, stay-and-play packages, tee time coordination, and custom itineraries. Free quotes from Zoomaway Technologies Inc.',
   url: 'https://golfgraeagle.com',
   operator: 'Zoomaway Technologies Inc.',
-  email: 'sean@zoomaway.com',
+  email: 'mike.eskuchen@golfthehighsierra.com',
   quoteUrl: '/request-a-quote',
   social: {
     og_image: 'https://grizzlyranchgolfclub.com/wp-content/uploads/2025/06/2dfdf8_586aabb07dde409db509af8fd0b9da1amv2-1.jpg',
@@ -216,6 +216,31 @@ export const courses = [
 
 export const lodging = [
   {
+    slug: 'townhomes-at-plumas-pines',
+    name: 'Townhomes at Plumas Pines',
+    subtitle: 'Best for Large Groups',
+    type: 'townhomes',
+    address: 'Graeagle, CA 96103',
+    coordinates: { lat: 39.7505, lng: -120.6170 },
+    distanceFromGraeagle: 'Adjacent to Plumas Pines Golf Resort',
+    website: 'https://golfgraeagle.com/lodging',
+    tagline: 'Multi-room townhomes with full kitchens — ideal for families and large groups',
+    highlights: [
+      '2–4 bedroom units with golf course views',
+      'Full kitchens — cook your own meals',
+      'Community pool and tennis courts',
+      'Steps from Plumas Pines Golf Course',
+      'Perfect for groups of 8–24',
+    ],
+    // Townhomes at Plumas Pines — using Plumas Pines Golf course photography (adjacent property)
+    hero: 'https://www.plumaspinesgolf.com/wp-content/uploads/sites/9383/2024/04/Owen-Drone-2.jpg',
+    images: [
+    ],
+    onSiteDining: ['longboards'],
+    priceRange: '$299–$499',
+    description: 'The Townhomes at Plumas Pines offer 2–4 bedroom vacation rentals immediately adjacent to Plumas Pines Golf Resort. Units come with full kitchens, in-unit laundry, private outdoor space, and golf course views. Community amenities include pools and tennis courts. The location puts groups steps from the first tee at Plumas Pines and within 10–15 minutes of Graeagle Meadows, Whitehawk Ranch, and Grizzly Ranch. Ideal for groups of 8–24 who want the comfort of a home rental, shared common spaces, and the flexibility to cook between rounds. Booking is arranged through GolfGraeagle as part of a stay-and-play package.',
+  },
+  {
     slug: 'river-pines-resort',
     name: 'River Pines Resort',
     subtitle: 'Best for Groups',
@@ -238,7 +263,7 @@ export const lodging = [
     // River Pines — using Grizzly Ranch Plumas County Sierra scenery (same region)
     hero: 'https://grizzlyranchgolfclub.com/wp-content/uploads/2025/10/2dfdf8_63c6afdb11ea45daa6956e5f61fac942mv2.jpg',
     images: [
-      'https://grizzlyranchgolfclub.com/wp-content/uploads/2025/10/2dfdf8_63c6afdb11ea45daa6956e5f61fac942mv2.jpg',
+      'https://grizzlyranchgolfclub.com/wp-content/uploads/2025/10/2dfdf8_2652021f2d6f4b8c8ba5ddbe49c8252dmv2.jpg',
       'https://grizzlyranchgolfclub.com/wp-content/uploads/2025/10/2dfdf8_95fd67b644d04d7e8f13da42bb9808f6mv2.jpg',
     ],
     onSiteDining: ['roadhouse'],
@@ -267,7 +292,7 @@ export const lodging = [
       'Wedding and event venue — sought-after group space',
     ],
     // Real photos from chaletviewlodge.com (Wix CDN) — verified March 2026
-    hero: 'https://static.wixstatic.com/media/b638ee_d34c79535086422bbd9e982155dbffeb~mv2.jpg',
+    hero: 'https://static.wixstatic.com/media/b638ee_161386a82a024a4ca602d13cdb18f401~mv2.jpg',
     images: [
       'https://static.wixstatic.com/media/b638ee_161386a82a024a4ca602d13cdb18f401~mv2.jpg',
       'https://static.wixstatic.com/media/b638ee_4f8087be64664ac2842076427b6d595e~mv2.jpg',
@@ -316,31 +341,6 @@ export const lodging = [
     description: 'The Inn at Nakoma is the only place in the world where you can sleep under a roof designed by Frank Lloyd Wright and walk directly to your tee time on The Dragon. The 42-room resort features Frette Italian linens, a lobby fireplace, heated outdoor pool, two hot tubs, and a full spa. Dining options include the Fifty44 Restaurant & Bar inside the historic FLW Lodge serving wood-fired dishes, and the casual Middle Fork Bistro & Bar. The resort is pet-friendly (2 dogs, 75 lbs each) and has an arcade, children\'s club, and on-site driving range.',
     onSiteDining: [],
     priceRange: '$299–$499',
-  },
-  {
-    slug: 'townhomes-at-plumas-pines',
-    name: 'Townhomes at Plumas Pines',
-    subtitle: 'Best for Large Groups',
-    type: 'townhomes',
-    address: 'Graeagle, CA 96103',
-    coordinates: { lat: 39.7505, lng: -120.6170 },
-    distanceFromGraeagle: 'Adjacent to Plumas Pines Golf Resort',
-    website: 'https://golfgraeagle.com/lodging',
-    tagline: 'Multi-room townhomes with full kitchens — ideal for families and large groups',
-    highlights: [
-      '2–4 bedroom units with golf course views',
-      'Full kitchens — cook your own meals',
-      'Community pool and tennis courts',
-      'Steps from Plumas Pines Golf Course',
-      'Perfect for groups of 8–24',
-    ],
-    // Townhomes at Plumas Pines — using Plumas Pines Golf course photography (adjacent property)
-    hero: 'https://www.plumaspinesgolf.com/wp-content/uploads/sites/9383/2024/04/Owen-Drone-2.jpg',
-    images: [
-    ],
-    onSiteDining: ['longboards'],
-    priceRange: '$299–$499',
-    description: 'The Townhomes at Plumas Pines offer 2–4 bedroom vacation rentals immediately adjacent to Plumas Pines Golf Resort. Units come with full kitchens, in-unit laundry, private outdoor space, and golf course views. Community amenities include pools and tennis courts. The location puts groups steps from the first tee at Plumas Pines and within 10–15 minutes of Graeagle Meadows, Whitehawk Ranch, and Grizzly Ranch. Ideal for groups of 8–24 who want the comfort of a home rental, shared common spaces, and the flexibility to cook between rounds. Booking is arranged through GolfGraeagle as part of a stay-and-play package.',
   },
 ];
 
@@ -406,7 +406,6 @@ export const lodgingToCourses = {
     { slug: 'grizzly-ranch',    dist: '22 min drive',     distNote: 'Via Hwy 70 E' },
   ],
 };
-
 export const dining = [
   // ─── Fine Dining ───────────────────────────────────────
   {

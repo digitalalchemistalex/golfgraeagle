@@ -13,7 +13,7 @@ const HUBSPOT_FORM_ID   = '8ac29a68-a31f-41d4-9c5b-6c4549dd5dcf';
 const DEV_EMAIL = { name: 'Dev', email: 'ifyougetlockedout@protonmail.com' };
 
 const ALL_ADMIN_EMAILS = [
-  { name: 'Sean Schaeffer',  email: 'sean@zoomaway.com' },
+  { name: 'Mike Eskuchen',  email: 'mike.eskuchen@golfthehighsierra.com' },
   { name: 'Mike Milligan',   email: 'mike@zoomaway.com' },
   { name: 'Mike Eskuchen',   email: 'MEskuchen@zoomaway.com' },
   DEV_EMAIL,
