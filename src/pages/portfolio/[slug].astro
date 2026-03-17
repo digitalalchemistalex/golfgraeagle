@@ -3,7 +3,7 @@ export const prerender = true;
 import Base from '../../layouts/Base.astro';
 import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
-import { courses, lodging, dining } from '../../data/content.js';
+import { courses, lodging, dining, siteConfig, courseToLodging, lodgingToCourses } from '../../data/content.js';
 
 // Map WP portfolio slugs → our data
 const wpSlugMap = {
@@ -60,6 +60,8 @@ const { slug } = Astro.params;
 const entry = wpSlugMap[slug];
 const item = entry?.data;
 const type = entry?.type;
+const c = item; // alias for rich course template compatibility
+const pageUrl = `${siteConfig.url}/portfolio/${slug}`;
 
 // Fallback title/desc
 const pageTitle = item
@@ -72,56 +74,603 @@ const pageDesc = item?.description || item?.tagline || `Graeagle golf packages a
 
   {item && type === 'course' && (
     <>
-    <!-- COURSE HERO -->
-    <section style="position:relative;height:80vh;min-height:520px;overflow:hidden;display:flex;align-items:flex-end;">
-      <div style="position:absolute;inset:0;">
-        <img src={item.hero} alt={`${item.name} Golf Course`} style="width:100%;height:100%;object-fit:cover;" loading="eager"/>
-        <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(13,26,14,1) 0%,rgba(13,26,14,0.5) 40%,transparent 80%);"></div>
-      </div>
-      <div style="position:relative;z-index:2;padding:0 10% 64px;max-width:1400px;width:100%;">
-        <a href="/all-golf-courses/" style="display:inline-flex;align-items:center;gap:6px;font-size:12px;color:rgba(240,248,242,0.4);text-decoration:none;margin-bottom:20px;transition:color 0.2s;" onmouseover="this.style.color='rgba(240,248,242,0.7)'" onmouseout="this.style.color='rgba(240,248,242,0.4)'">← All Courses</a>
-        <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px;">
-          {item.awards?.map((a:string) => <span style="font-size:11px;background:rgba(232,168,80,0.15);color:#e8a850;border:1px solid rgba(232,168,80,0.3);padding:4px 12px;border-radius:20px;">{a}</span>)}
-        </div>
-        <h1 style="font-family:'Playfair Display',serif;font-size:clamp(36px,5vw,62px);font-weight:500;color:#f0f8f2;margin:0 0 14px;line-height:1.1;">{item.name}</h1>
-        <p style="font-size:16px;color:rgba(240,248,242,0.5);margin:0 0 28px;">{item.tagline}</p>
-        <div style="display:flex;gap:20px;flex-wrap:wrap;">
-          {[`Par ${item.par}`,`${item.yards?.toLocaleString()} Yards`,`Slope ${item.slope}`,`Rating ${item.rating}`,item.designer,String(item.year)].filter(Boolean).map((s:string)=>(
-            <span style="font-size:13px;color:rgba(240,248,242,0.55);">{s}</span>
-          ))}
-        </div>
-      </div>
-    </section>
+<!-- ═══ HERO ═══ -->
+<section class="ch-hero">
 
-    <!-- COURSE CONTENT -->
-    <section style="max-width:900px;margin:0 auto;padding:64px 10% 80px;">
-      <p style="font-size:17px;color:rgba(240,248,242,0.65);line-height:1.85;margin-bottom:40px;">{item.description}</p>
+  <!-- LCP image -->
+  <img
+    src={item.hero}
+    alt={`${item.name} Golf Course — Graeagle, California`}
+    class="ch-bg"
+    loading="eager"
+    fetchpriority="high"
+    decoding="sync"
+    width="1600"
+    height="900"
+  />
+  <div class="ch-overlay"></div>
 
-      {item.highlights && (
-        <div style="background:rgba(232,168,80,0.04);border:1px solid rgba(232,168,80,0.12);border-radius:16px;padding:28px;margin-bottom:48px;">
-          <h3 style="font-family:'Playfair Display',serif;font-size:18px;color:#f0f8f2;margin:0 0 18px;">Course Highlights</h3>
-          <ul style="margin:0;padding:0;list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:10px;">
-            {item.highlights.map((h:string) => (
-              <li style="display:flex;align-items:flex-start;gap:10px;font-size:14px;color:rgba(240,248,242,0.6);">
-                <span style="color:#e8a850;margin-top:2px;flex-shrink:0;">✓</span>{h}
-              </li>
-            ))}
-          </ul>
+  <!-- Film strip -->
+  <div class="ch-strip">
+    {courses.map((course) => {
+      const isActive = course.slug === item.slug;
+      return (
+        <a href={`/courses/${course.slug}`} class={`ch-strip-item${isActive ? ' is-active' : ''}`} aria-label={`View ${course.name}`}>
+          <img src={course.hero} alt={course.name} class="ch-strip-thumb" loading={isActive ? 'eager' : 'lazy'} />
+          <div class="ch-strip-dim"></div>
+          <span class="ch-strip-label">{course.name.replace(' — The Dragon','').replace('Graeagle ','')}</span>
+        </a>
+      );
+    })}
+  </div>
+
+  <!-- Main content -->
+  <div class="ch-content">
+
+    <!-- Left -->
+    <div class="ch-left">
+      <nav aria-label="Breadcrumb" class="ch-breadcrumb">
+        <a href="/courses" class="ch-breadcrumb-link">← All Courses</a>
+      </nav>
+
+      {(item.awards?.length > 0 || item.tier) && (
+        <div class="ch-badges">
+          {item.awards?.map(a => <span class="ch-badge ch-badge-gold">{a}</span>)}
+          <span class="ch-badge ch-badge-dim">{item.tier} Green Fees</span>
         </div>
       )}
 
-      <div style="background:rgba(13,26,14,0.8);border:1px solid rgba(240,248,242,0.07);border-radius:20px;padding:36px;text-align:center;">
-        <p style="font-size:11px;color:#e8a850;letter-spacing:0.14em;text-transform:uppercase;font-weight:600;margin:0 0 12px;">Ready to Play?</p>
-        <h2 style="font-family:'Playfair Display',serif;font-size:28px;color:#f0f8f2;margin:0 0 14px;">Book {item.name} in a Package</h2>
-        <p style="font-size:15px;color:rgba(240,248,242,0.4);margin:0 0 24px;">We coordinate tee times, lodging, and the full itinerary. Free quote, 24-hour response.</p>
-        <a href={`/request-a-quote/?course=${item.slug}&courseName=${encodeURIComponent(item.name)}`}
-          style="display:inline-block;background:#e8a850;color:#0d1a0e;font-weight:700;font-size:15px;padding:16px 40px;border-radius:100px;text-decoration:none;transition:all 0.25s;"
-          onmouseover="this.style.background='#f2c878';this.style.transform='translateY(-2px)'"
-          onmouseout="this.style.background='#e8a850';this.style.transform='translateY(0)'">
-          Request a Package Quote →
-        </a>
+      <h1 class="ch-h1 speakable">{item.name}</h1>
+      <p class="ch-tagline page-intro">{item.tagline}</p>
+
+      <div class="ch-ctas">
+        <a href="/request-a-quote" class="ch-btn-primary">Book a Package →</a>
+        {item.website && (
+          <a href={item.website} class="ch-btn-ghost" target="_blank" rel="noopener">Course Website ↗</a>
+        )}
       </div>
-    </section>
+    </div>
+
+    <!-- Right: stat card -->
+    <div class="ch-right">
+      <div class="ch-stat-card">
+        <div class="ch-stat-heading">Quick Stats</div>
+        {[
+          ['Par', `${item.par}`],
+          ['Yards', item.yards.toLocaleString()],
+          ['Slope', `${item.slope}`],
+          ['Rating', `${item.rating}`],
+        ].map(([k, v]) => (
+          <div class="ch-stat-row">
+            <span class="ch-stat-label">{k}</span>
+            <span class="ch-stat-val">{v}</span>
+          </div>
+        ))}
+        <div class="ch-stat-designer">
+          <span class="ch-stat-label">Designer</span>
+          <div>
+            <div class="ch-stat-designer-name">{item.designer}</div>
+            <div class="ch-stat-year">Est. {item.year}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Info bar -->
+  <div class="ch-infobar">
+    <div class="ch-infobar-items">
+      {[
+        ['Altitude', item.altitude],
+        ['Open', 'May – November'],
+        ['Location', item.address?.split(',')[1]?.trim() || 'Graeagle, CA'],
+      ].map(([k, v]) => (
+        <div class="ch-infobar-item">
+          <span class="ch-infobar-label">{k}</span>
+          <span class="ch-infobar-val">{v}</span>
+        </div>
+      ))}
+    </div>
+    <div class="ch-infobar-aside">5 courses · All within 25 min of Graeagle</div>
+  </div>
+
+</section>
+
+<style>
+  /* ─── COURSE HERO ─── */
+  .ch-hero {
+    position: relative;
+    background: #090f09;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .ch-bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: calc(100% - 48px); /* stop above infobar */
+    object-fit: cover;
+    object-position: center 40%;
+  }
+
+  .ch-overlay {
+    position: absolute;
+    inset: 0;
+    bottom: 48px;
+    background: linear-gradient(
+      180deg,
+      rgba(9,15,9,0.52) 0%,
+      transparent 30%,
+      transparent 42%,
+      rgba(9,15,9,0.9) 75%,
+      rgba(9,15,9,1) 100%
+    );
+    z-index: 1;
+  }
+
+  /* Film strip */
+  .ch-strip {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    gap: 3px;
+    padding: 3px clamp(20px,4vw,52px);
+    padding-top: calc(68px + 3px);
+  }
+
+  .ch-strip-item {
+    flex: 1;
+    height: 72px;
+    overflow: hidden;
+    border-radius: 6px;
+    position: relative;
+    text-decoration: none;
+    display: block;
+    transition: flex 0.4s cubic-bezier(0.4,0,0.2,1);
+  }
+
+  .ch-strip-item.is-active { flex: 2.8; }
+  .ch-strip-item:not(.is-active):hover { flex: 1.6; }
+
+  .ch-strip-thumb {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 6s ease;
+  }
+
+  .ch-strip-item:hover .ch-strip-thumb { transform: scale(1.06); }
+
+  .ch-strip-dim {
+    position: absolute;
+    inset: 0;
+    transition: background 0.3s;
+  }
+
+  .ch-strip-item:not(.is-active) .ch-strip-dim { background: rgba(0,0,0,0.5); }
+  .ch-strip-item.is-active .ch-strip-dim { background: rgba(0,0,0,0.06); }
+  .ch-strip-item:not(.is-active):hover .ch-strip-dim { background: rgba(0,0,0,0.22); }
+
+  .ch-strip-label {
+    position: absolute;
+    bottom: 7px;
+    left: 9px;
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 90%;
+    transition: color 0.3s;
+  }
+
+  .ch-strip-item.is-active .ch-strip-label { color: rgba(255,255,255,0.9); }
+  .ch-strip-item:not(.is-active) .ch-strip-label { color: rgba(255,255,255,0.4); }
+  .ch-strip-item:not(.is-active):hover .ch-strip-label { color: rgba(255,255,255,0.75); }
+
+  /* Main content grid */
+  .ch-content {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    grid-template-columns: 1fr 200px;
+    gap: clamp(20px,3vw,40px);
+    align-items: end;
+    padding: clamp(24px,5vw,56px) clamp(20px,4vw,52px);
+    min-height: clamp(380px,48vh,560px);
+  }
+
+  /* Left */
+  .ch-breadcrumb { margin-bottom: 16px; }
+  .ch-breadcrumb-link {
+    font-size: 11px;
+    color: rgba(240,248,242,0.32);
+    text-decoration: none;
+    letter-spacing: 0.06em;
+    transition: color 0.2s;
+  }
+  .ch-breadcrumb-link:hover { color: rgba(240,248,242,0.65); }
+
+  .ch-badges {
+    display: flex;
+    gap: 7px;
+    flex-wrap: wrap;
+    margin-bottom: 16px;
+  }
+  .ch-badge {
+    font-size: 9px;
+    padding: 4px 12px;
+    border-radius: 100px;
+    letter-spacing: 0.08em;
+  }
+  .ch-badge-gold {
+    background: rgba(232,168,80,0.14);
+    border: 1px solid rgba(232,168,80,0.28);
+    color: #e8a850;
+  }
+  .ch-badge-dim {
+    background: rgba(240,248,242,0.07);
+    border: 1px solid rgba(240,248,242,0.12);
+    color: rgba(240,248,242,0.5);
+  }
+
+  .ch-h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(34px,5.5vw,72px);
+    font-weight: 500;
+    color: #f0f8f2;
+    line-height: 1.0;
+    letter-spacing: -0.01em;
+    margin: 0 0 12px;
+  }
+
+  .ch-tagline {
+    font-size: clamp(13px,1.5vw,16px);
+    color: rgba(240,248,242,0.45);
+    line-height: 1.6;
+    margin: 0 0 24px;
+    max-width: 520px;
+  }
+
+  .ch-ctas {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .ch-btn-primary {
+    display: inline-flex;
+    align-items: center;
+    background: #f0f8f2;
+    color: #090f09;
+    font-size: 12px;
+    font-weight: 700;
+    padding: 13px 24px;
+    border-radius: 100px;
+    text-decoration: none;
+    letter-spacing: 0.01em;
+    transition: background 0.2s, transform 0.2s;
+  }
+  .ch-btn-primary:hover { background: #fff; transform: translateY(-1px); }
+
+  .ch-btn-ghost {
+    display: inline-flex;
+    align-items: center;
+    background: rgba(240,248,242,0.07);
+    border: 1px solid rgba(240,248,242,0.14);
+    color: rgba(240,248,242,0.6);
+    font-size: 12px;
+    font-weight: 500;
+    padding: 13px 22px;
+    border-radius: 100px;
+    text-decoration: none;
+    transition: background 0.2s;
+  }
+  .ch-btn-ghost:hover { background: rgba(240,248,242,0.12); color: #f0f8f2; }
+
+  /* Stat card */
+  .ch-right { align-self: end; }
+
+  .ch-stat-card {
+    background: rgba(9,15,9,0.68);
+    border: 1px solid rgba(240,248,242,0.08);
+    border-radius: 14px;
+    overflow: hidden;
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+  }
+
+  .ch-stat-heading {
+    font-size: 9px;
+    color: rgba(240,248,242,0.22);
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    padding: 14px 18px 10px;
+    border-bottom: 1px solid rgba(240,248,242,0.05);
+  }
+
+  .ch-stat-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 9px 18px;
+    border-bottom: 1px solid rgba(240,248,242,0.04);
+    gap: 10px;
+  }
+
+  .ch-stat-label {
+    font-size: 10px;
+    color: rgba(240,248,242,0.28);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    flex-shrink: 0;
+  }
+
+  .ch-stat-val {
+    font-size: 15px;
+    font-weight: 500;
+    color: #f0f8f2;
+  }
+
+  .ch-stat-designer {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 10px 18px 14px;
+  }
+
+  .ch-stat-designer-name {
+    font-size: 12px;
+    font-weight: 500;
+    color: rgba(240,248,242,0.75);
+    text-align: right;
+  }
+
+  .ch-stat-year {
+    font-size: 10px;
+    color: rgba(240,248,242,0.28);
+    text-align: right;
+  }
+
+  /* Info bar */
+  .ch-infobar {
+    position: relative;
+    z-index: 2;
+    padding: 13px clamp(20px,4vw,52px);
+    background: rgba(9,15,9,0.97);
+    border-bottom: 1px solid rgba(232,168,80,0.07);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .ch-infobar-items {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+
+  .ch-infobar-item { display: flex; gap: 8px; align-items: center; }
+
+  .ch-infobar-label {
+    font-size: 9px;
+    color: rgba(240,248,242,0.25);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  .ch-infobar-val {
+    font-size: 12px;
+    color: rgba(240,248,242,0.55);
+    font-weight: 500;
+  }
+
+  .ch-infobar-aside {
+    font-size: 11px;
+    color: rgba(240,248,242,0.18);
+  }
+
+  /* ─── BODY LAYOUT ─── */
+  .course-body { background: #0d1a0e; padding: clamp(40px, 8vw, 80px) clamp(20px, 10%, 10%); }
+  .course-layout { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 380px; gap: 64px; }
+  .photo-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 8px; }
+
+  /* ─── MOBILE ─── */
+  @media (max-width: 860px) {
+    .ch-content {
+      grid-template-columns: 1fr;
+      min-height: auto;
+    }
+    .ch-right { display: none; }
+    .ch-strip-item { height: 58px; }
+  }
+
+  @media (max-width: 640px) {
+    .ch-infobar-aside { display: none; }
+    .photo-grid { grid-template-columns: 1fr 1fr; }
+  }
+
+  @media (max-width: 900px) {
+    .course-layout { grid-template-columns: 1fr; }
+    .course-sidebar { order: -1; }
+    .course-sidebar-inner { position: static !important; }
+  }
+
+  @media (max-width: 400px) { .photo-grid { grid-template-columns: 1fr; } }
+</style>
+
+<div class="course-body">
+  <div class="course-layout">
+
+    <!-- LEFT: Content -->
+    <div>
+      <!-- Description — speakable intro -->
+      <div class="reveal" style="margin-bottom:56px;">
+        <h2 style="font-family:'Playfair Display',serif;font-size:28px;color:#f0f8f2;margin:0 0 20px;">About {item.name}</h2>
+        <p class="speakable" style="font-size:16px;color:rgba(240,248,242,0.6);line-height:1.85;">{item.description}</p>
+      </div>
+
+      <!-- Course Highlights -->
+      <div class="reveal" style="margin-bottom:56px;">
+        <h2 style="font-family:'Playfair Display',serif;font-size:24px;color:#f0f8f2;margin:0 0 20px;">Course Highlights</h2>
+        <div style="display:flex;flex-direction:column;gap:0;">
+          {item.highlights.map(h => (
+            <div style="display:flex;align-items:flex-start;gap:14px;padding:16px 0;border-bottom:1px solid rgba(240,248,242,0.05);">
+              <span style="color:#e8a850;font-size:16px;flex-shrink:0;margin-top:1px;">✓</span>
+              <span style="font-size:15px;color:rgba(240,248,242,0.65);line-height:1.5;">{h}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Photo gallery -->
+      {item.images.length > 1 && (
+        <div class="reveal" style="margin-bottom:56px;">
+          <h2 style="font-family:'Playfair Display',serif;font-size:24px;color:#f0f8f2;margin:0 0 20px;">Course Photos</h2>
+          <div class="photo-grid">
+            {item.images.slice(0,6).map((img,i) => (
+              <div style={`border-radius:${i===0?'16px 4px 4px 4px':i===2?'4px 16px 4px 4px':i===3?'4px 4px 4px 16px':i===5?'4px 4px 16px 4px':'4px'};overflow:hidden;aspect-ratio:4/3;`}>
+                <img src={img} alt={`${item.name} — hole ${i+1}`} loading="lazy"
+                  style="width:100%;height:100%;object-fit:cover;transition:transform 0.6s ease;"
+                  onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'"/>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+      <!-- Best for -->
+      <div class="reveal" style="background:rgba(232,168,80,0.05);border:1px solid rgba(232,168,80,0.1);border-radius:16px;padding:28px 32px;margin-bottom:56px;">
+        <div style="font-size:11px;color:rgba(232,168,80,0.6);text-transform:uppercase;letter-spacing:0.12em;margin-bottom:10px;">Best For</div>
+        <p style="font-size:16px;color:rgba(240,248,242,0.75);margin:0;">{item.bestFor}</p>
+      </div>
+
+      <!-- Facilities -->
+      {item.facilities?.length > 0 && (
+        <div class="reveal" style="margin-bottom:56px;">
+          <h2 style="font-family:'Playfair Display',serif;font-size:24px;color:#f0f8f2;margin:0 0 20px;">On-Site Facilities</h2>
+          <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px;">
+            {item.facilities.map(f => (
+              <div style="display:flex;align-items:center;gap:12px;padding:14px 16px;background:rgba(240,248,242,0.03);border:1px solid rgba(240,248,242,0.07);border-radius:10px;">
+                <span style="color:#e8a850;font-size:14px;flex-shrink:0;">✦</span>
+                <span style="font-size:13px;color:rgba(240,248,242,0.65);">{f}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+      <!-- Nearest Lodging -->
+      {(() => {
+        const nearby = courseToLodging[item.slug];
+        if (!nearby?.length) return null;
+        return (
+          <div class="reveal" style="margin-bottom:56px;">
+            <h2 style="font-family:'Playfair Display',serif;font-size:24px;color:#f0f8f2;margin:0 0 6px;">Where to Stay</h2>
+            <p style="font-size:14px;color:rgba(240,248,242,0.35);margin:0 0 24px;">Closest lodging to {item.name} — sorted by distance</p>
+            <div style="display:flex;flex-direction:column;gap:0;">
+              {nearby.map(({ slug: lSlug, dist, distNote }) => {
+                const prop = lodging.find(l => l.slug === lSlug);
+                if (!prop) return null;
+                const isOnProperty = dist === 'On property' || dist === 'Steps away' || dist === 'Walking distance';
+                return (
+                  <a href={`/lodging#${lSlug}`} style="display:flex;align-items:center;gap:16px;padding:18px 0;border-bottom:1px solid rgba(240,248,242,0.05);text-decoration:none;transition:opacity 0.2s;" onmouseover="this.style.opacity='0.75'" onmouseout="this.style.opacity='1'">
+                    <div style="width:56px;height:44px;border-radius:8px;overflow:hidden;flex-shrink:0;">
+                      <img src={prop.hero} alt={prop.name} style="width:100%;height:100%;object-fit:cover;" loading="lazy"/>
+                    </div>
+                    <div style="flex:1;min-width:0;">
+                      <div style="font-size:14px;font-weight:600;color:#f0f8f2;margin-bottom:2px;">{prop.name}</div>
+                      <div style="font-size:12px;color:rgba(240,248,242,0.38);">{distNote}</div>
+                    </div>
+                    <div style={`font-size:11px;font-weight:600;padding:4px 12px;border-radius:100px;white-space:nowrap;${isOnProperty ? 'background:rgba(232,168,80,0.15);color:#e8a850;border:1px solid rgba(232,168,80,0.3);' : 'background:rgba(240,248,242,0.05);color:rgba(240,248,242,0.5);border:1px solid rgba(240,248,242,0.1);'}`}>{dist}</div>
+                  </a>
+                );
+              })}
+            </div>
+            <div style="margin-top:20px;">
+              <a href="/lodging" style="font-size:13px;color:#e8a850;text-decoration:none;border-bottom:1px solid rgba(232,168,80,0.3);padding-bottom:2px;">View all lodging options →</a>
+            </div>
+          </div>
+        );
+      })()}
+
+      <!-- FAQ Section — AEO optimized, answers in DOM (not collapsed) -->
+      <div class="reveal" style="margin-bottom:56px;">
+        <h2 style="font-family:'Playfair Display',serif;font-size:24px;color:#f0f8f2;margin:0 0 28px;">Frequently Asked Questions</h2>
+        <div style="display:flex;flex-direction:column;gap:0;">
+          {[
+            [`Is ${item.name} open to the public?`, `${item.name} is open to public play. Tee time availability varies by season. GolfGraeagle can secure guaranteed tee times as part of a stay-and-play package.`],
+            [`What is the slope rating at ${item.name}?`, `${item.name} has a slope rating of ${item.slope} and a course rating of ${item.rating}. The course plays to par ${item.par} at ${item.yards.toLocaleString()} yards from the tips.`],
+            [`Who designed ${item.name}?`, `${item.name} was designed by ${item.designer} and opened in ${item.year}.`],
+            [`What is the best time to play ${item.name}?`, `${item.name} is open approximately May through October, weather permitting. Morning tee times offer cooler temperatures and optimal course conditions.`],
+            [`How do I book a tee time at ${item.name}?`, `GolfGraeagle can book tee times at ${item.name} as part of a custom stay-and-play package. Request a free quote and receive a response within 24 hours.`],
+          ].map(([q, a]) => (
+            <details style="border-bottom:1px solid rgba(240,248,242,0.06);padding:0;">
+              <summary style="font-size:15px;color:#f0f8f2;font-weight:500;padding:18px 0;cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;">
+                {q}
+                <span style="color:#e8a850;font-size:18px;flex-shrink:0;margin-left:16px;">+</span>
+              </summary>
+              <p style="font-size:14px;color:rgba(240,248,242,0.55);line-height:1.75;padding:0 0 18px;margin:0;">{a}</p>
+            </details>
+          ))}
+        </div>
+      </div>
+
+    </div>
+
+    <!-- RIGHT: Booking sidebar -->
+    <div style="align-self:start;">
+      <div style="position:sticky;top:100px;">
+        <div style="background:rgba(240,248,242,0.03);border:1px solid rgba(232,168,80,0.12);border-radius:20px;padding:32px;margin-bottom:20px;">
+          <h3 style="font-family:'Playfair Display',serif;font-size:22px;color:#f0f8f2;margin:0 0 8px;">Book {item.name}</h3>
+          <p style="font-size:13px;color:rgba(240,248,242,0.4);margin:0 0 28px;">Custom packages — tee times + lodging + dining</p>
+
+          <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:28px;">
+            {[['Par',`${item.par}`],['Course Rating',`${item.rating}`],['Slope',`${item.slope}`],['Yardage',`${item.yards.toLocaleString()} yards`]].map(([k,v])=>(
+              <div style="display:flex;justify-content:space-between;font-size:14px;padding:10px 0;border-bottom:1px solid rgba(240,248,242,0.05);">
+                <span style="color:rgba(240,248,242,0.4);">{k}</span>
+                <span style="color:#f0f8f2;font-weight:500;">{v}</span>
+              </div>
+            ))}
+          </div>
+
+          <a href="/request-a-quote" style="display:block;text-align:center;background:#e8a850;color:#0d1a0e;font-size:15px;font-weight:600;padding:16px;border-radius:100px;text-decoration:none;transition:all 0.3s;margin-bottom:12px;"
+          onmouseover="this.style.background='#f2c878';this.style.transform='translateY(-1px)'"
+          onmouseout="this.style.background='#e8a850';this.style.transform='translateY(0)'">
+            Request a Quote
+          </a>
+          <p style="font-size:11px;color:rgba(240,248,242,0.2);text-align:center;margin:0;">No obligation · 72-hr cancellation · 24hr response</p>
+        </div>
+
+        <!-- Add other courses -->
+        <div style="background:rgba(240,248,242,0.02);border:1px solid rgba(240,248,242,0.06);border-radius:16px;padding:24px;">
+          <p style="font-size:11px;color:rgba(240,248,242,0.35);text-transform:uppercase;letter-spacing:0.1em;margin:0 0 14px;">Add Another Course</p>
+          {courses.filter(x=>x.slug!==c.slug).map(x=>(
+            <a href={`/courses/${x.slug}`} style="display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid rgba(240,248,242,0.04);text-decoration:none;transition:opacity 0.2s;"
+            onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">
+              <div style="width:40px;height:40px;border-radius:8px;overflow:hidden;flex-shrink:0;">
+                <img src={x.hero} alt={x.name} style="width:100%;height:100%;object-fit:cover;"/>
+              </div>
+              <div>
+                <div style="font-size:13px;color:#f0f8f2;font-weight:500;">{x.name}</div>
+                <div style="font-size:11px;color:rgba(240,248,242,0.3);">Par {x.par} · Slope {x.slope}</div>
+              </div>
+            </a>
+          ))}
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
     </>
   )}
 

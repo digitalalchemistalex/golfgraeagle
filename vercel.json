@@ -144,6 +144,26 @@
       "source": "/sitemap_index.xml",
       "destination": "/sitemap.xml",
       "permanent": true
+    },
+    {
+      "source": "/project-type/hotels/",
+      "destination": "/lodging",
+      "permanent": true
+    },
+    {
+      "source": "/project-type/hotels",
+      "destination": "/lodging",
+      "permanent": true
+    },
+    {
+      "source": "/project-type/:slug/",
+      "destination": "/lodging",
+      "permanent": true
+    },
+    {
+      "source": "/project-type/:slug",
+      "destination": "/lodging",
+      "permanent": true
     }
   ]
 }
