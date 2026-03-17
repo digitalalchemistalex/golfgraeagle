@@ -724,7 +724,10 @@ const diningSlugMap: Record<string, string> = {
       <!-- Photo gallery with lightbox -->
       {item.images.length > 1 && (
         <div class="reveal" style="margin-bottom:56px;">
-          <h2 style="font-family:'Playfair Display',serif;font-size:24px;color:#f0f8f2;margin:0 0 20px;">Course Photos</h2>
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;">
+            <h2 style="font-family:'Playfair Display',serif;font-size:24px;color:#f0f8f2;margin:0;">Course Photos</h2>
+            <span style="font-size:11px;color:rgba(240,248,242,0.35);text-transform:uppercase;letter-spacing:0.1em;">{item.images.length} photos · click to expand</span>
+          </div>
           <div class="photo-grid">
             {item.images.slice(0,6).map((img,i) => (
               <button class="gallery-btn" data-src={img} data-idx={i} data-total={Math.min(item.images.length,6)}
@@ -892,7 +895,11 @@ const diningSlugMap: Record<string, string> = {
 
     <!-- PHOTO STRIP with lightbox -->
     {item.images && item.images.length > 1 && (
-      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:4px;max-height:220px;overflow:hidden;">
+      <div>
+        <div style="padding:20px 5% 12px;display:flex;align-items:center;justify-content:space-between;">
+          <span style="font-size:11px;color:rgba(240,248,242,0.35);text-transform:uppercase;letter-spacing:0.12em;">Photo Gallery — {item.images.length} photos · click to expand</span>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:3px;height:280px;overflow:hidden;">
         {item.images.slice(0, 5).map((img: string, i: number) => (
           <button class="gallery-btn" data-src={img} data-idx={i} data-total={Math.min(item.images.length,5)}
             style="border:none;padding:0;background:none;cursor:zoom-in;position:relative;display:block;overflow:hidden;">
@@ -902,6 +909,7 @@ const diningSlugMap: Record<string, string> = {
             </span>
           </button>
         ))}
+        </div>
       </div>
     )}
 
