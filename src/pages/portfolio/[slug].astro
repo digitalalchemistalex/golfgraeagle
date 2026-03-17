@@ -223,6 +223,25 @@ const lodgingSlugMap: Record<string, string> = {
   'inn-at-nakoma':            'the-inn-at-nakoma-clio-ca',
   'townhomes-at-plumas-pines':'the-townhomes-at-plumas-pines',
 };
+
+const diningSlugMap: Record<string, string> = {
+  'grizzly-grill':        'grizzly-grill',
+  'iron-door':            'iron-door-restaurant',
+  'sardine-lake':         'sardine-lake-resort',
+  'roadhouse':            'roadhouse-at-river-pines',
+  'graeagle-restaurant':  'graeagle-restaurant',
+  'meadows-restaurant':   'graeagle-meadows-golf-course-restaurant',
+  'sierra-smokeshow':     'sierra-smokeshow',
+  'gumbas':               'gumbas-ii-go',
+  'cuccias':              'cuccias',
+  'eureka-peak-brewing':  'eureka-peak-brewing-co',
+  'brewing-lair':         'the-brewing-lair',
+  'mohawk-tavern':        'mohawk-tavern',
+  'knotty-pine':          'the-knotty-pine-tavern',
+  'little-bite-deli':     'little-bite-deli',
+  'mountain-frostee':     'graeagle-mountain-frostee',
+  'longboards':           'longboards-bar-and-grill',
+};
 ---
 <Base title={pageTitle} description={pageDesc} schema={pageSchema} canonical={pageUrl} ogImage={item?.hero || undefined}>
   <Nav />
@@ -917,7 +936,7 @@ const lodgingSlugMap: Record<string, string> = {
               <h2 style="font-family:'Playfair Display',serif;font-size:22px;color:#f0f8f2;margin:0 0 24px;font-weight:400;">On-Site Dining</h2>
               <div style="display:flex;flex-direction:column;gap:10px;">
                 {onSite.map((d: any) => (
-                  <a href={`/portfolio/${d.slug}/`}
+                  <a href={`/portfolio/${diningSlugMap[d.slug] || d.slug}/`}
                      style="display:flex;gap:16px;align-items:center;padding:16px;background:rgba(240,248,242,0.03);border:1px solid rgba(240,248,242,0.07);border-radius:12px;text-decoration:none;transition:all 0.2s;"
                      onmouseover="this.style.borderColor='rgba(232,168,80,0.3)'" onmouseout="this.style.borderColor='rgba(240,248,242,0.07)'">
                     <img src={d.hero} alt={d.name} style="width:60px;height:60px;object-fit:cover;border-radius:8px;flex-shrink:0;"/>
@@ -938,7 +957,7 @@ const lodgingSlugMap: Record<string, string> = {
           <h2 style="font-family:'Playfair Display',serif;font-size:22px;color:#f0f8f2;margin:0 0 24px;font-weight:400;">Other Graeagle Lodging</h2>
           <div style="display:flex;flex-direction:column;gap:8px;">
             {lodging.filter((l: any) => l.slug !== item.slug).map((l: any) => (
-              <a href={`/portfolio/${l.slug === 'river-pines-resort' ? 'river-pines-resort-graeagle-ca' : l.slug === 'chalet-view-lodge' ? 'chalet-view-lodge-graeagle-ca' : l.slug === 'inn-at-nakoma' ? 'the-inn-at-nakoma-clio-ca' : 'the-townhomes-at-plumas-pines'}/`}
+              <a href={`/portfolio/${lodgingSlugMap[l.slug] || l.slug}/`}
                  style="display:flex;justify-content:space-between;align-items:center;padding:14px 18px;background:rgba(240,248,242,0.02);border:1px solid rgba(240,248,242,0.06);border-radius:10px;text-decoration:none;transition:all 0.2s;"
                  onmouseover="this.style.borderColor='rgba(240,248,242,0.15)'" onmouseout="this.style.borderColor='rgba(240,248,242,0.06)'">
                 <div>
@@ -1087,7 +1106,7 @@ const lodgingSlugMap: Record<string, string> = {
           <h2 style="font-family:'Playfair Display',serif;font-size:22px;color:#f0f8f2;margin:0 0 20px;font-weight:400;">More Dining Near Graeagle</h2>
           <div style="display:flex;flex-direction:column;gap:8px;">
             {otherDining.map((d: any) => (
-              <a href={`/portfolio/${d.slug}/`}
+              <a href={`/portfolio/${diningSlugMap[d.slug] || d.slug}/`}
                  style="display:flex;align-items:center;gap:14px;padding:14px;background:rgba(240,248,242,0.02);border:1px solid rgba(240,248,242,0.06);border-radius:10px;text-decoration:none;transition:all 0.2s;"
                  onmouseover="this.style.borderColor='rgba(240,248,242,0.15)'" onmouseout="this.style.borderColor='rgba(240,248,242,0.06)'">
                 <img src={d.hero} alt={d.name} style="width:52px;height:52px;object-fit:cover;border-radius:8px;flex-shrink:0;" loading="lazy"/>
