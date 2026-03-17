@@ -48,7 +48,6 @@ export const courses = [
     // Official photos from graeaglemeadows.com — drone photography 2025/2026
     hero: 'https://graeaglemeadows.com/wp-content/uploads/sites/86/2026/03/DJI_0629-2-Edit-scaled.jpg',
     images: [
-      'https://graeaglemeadows.com/wp-content/uploads/sites/86/2026/03/DJI_0629-2-Edit-scaled.jpg',
       'https://graeaglemeadows.com/wp-content/uploads/sites/86/2025/12/DJI_0230-Edit.jpg',
       'https://graeaglemeadows.com/wp-content/uploads/sites/86/2026/03/DSC5446-Edit.jpg',
       'https://graeaglemeadows.com/wp-content/uploads/sites/86/2026/03/DJI_0536-2-Edit.jpg',
@@ -95,7 +94,6 @@ export const courses = [
     ],
     hero: 'https://whitehawkranch.com/wp-content/uploads/sites/88/2025/03/P9151812-1.jpg',
     images: [
-      'https://whitehawkranch.com/wp-content/uploads/sites/88/2025/03/P9151812-1.jpg',
       'https://images.unsplash.com/photo-1535131749006-b7f58c99034b?w=1200&q=80&auto=format',
       'https://images.unsplash.com/photo-1611374243147-44a702c2d44c?w=1200&q=80&auto=format',
       'https://images.unsplash.com/photo-1587174486073-ae5e5cff23aa?w=1200&q=80&auto=format',
@@ -130,7 +128,6 @@ export const courses = [
     // Official photos from plumaspinesgolf.com — verified clean course shots
     hero: 'https://www.plumaspinesgolf.com/wp-content/uploads/sites/9383/2024/04/13th-Fairway-from-Tee-22x35-1.jpg',
     images: [
-      'https://www.plumaspinesgolf.com/wp-content/uploads/sites/9383/2024/04/13th-Fairway-from-Tee-22x35-1.jpg',
       'https://www.plumaspinesgolf.com/wp-content/uploads/sites/9383/2024/04/6th-Fairway25x45-copy.jpg',
       'https://www.plumaspinesgolf.com/wp-content/uploads/sites/9383/2024/04/2nd-Green-28x42-Looking-west-copy.jpg',
       'https://www.plumaspinesgolf.com/wp-content/uploads/sites/9383/2024/04/Owen-Drone-2.jpg',
@@ -205,10 +202,8 @@ export const courses = [
     // Official photos from nakomaresort.com
     hero: 'https://nakomaresort.com/wp-content/uploads/the-dragon-golf-at-nakoma-feather-river-1639x1080.jpg',
     images: [
-      'https://nakomaresort.com/wp-content/uploads/the-dragon-golf-at-nakoma-feather-river-1639x1080.jpg',
       'https://nakomaresort.com/wp-content/uploads/draong-golf-at-nakoma-18-hole-1620x1080.jpg',
       'https://nakomaresort.com/wp-content/uploads/outdoor-dining-frank-lloyd-wright-lodge-lawn.jpg',
-      'https://nakomaresort.com/wp-content/uploads/inn-at-nakoma-lobby-fireplace.jpg',
       'https://nakomaresort.com/wp-content/uploads/altitude-recreation-center-dusk.jpg',
     ],
     description: 'Nakoma Resort\'s Dragon course, designed by Robin Nelson (creator of the famous Dunes at Mauna Lani) and opened in 1998, debuted as one of Golf World\'s America\'s Top 75 Courses. The course plays 7,015 yards with a fearsome slope of 147 — the most challenging rating in the valley. The Frank Lloyd Wright-designed clubhouse is the only golf clubhouse in the world built to his design.',
@@ -241,7 +236,6 @@ export const lodging = [
     // Feather River cabin resort — verified Unsplash (River Pines has no public CDN)
     hero: 'https://images.unsplash.com/photo-1571068316344-75bc76f77890?w=1200&q=80&auto=format',
     images: [
-      'https://images.unsplash.com/photo-1571068316344-75bc76f77890?w=1200&q=80&auto=format',
       'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=1200&q=80&auto=format',
       'https://images.unsplash.com/photo-1502126324834-38f8e02d7160?w=1200&q=80&auto=format',
     ],
@@ -273,10 +267,8 @@ export const lodging = [
     // Real photos from chaletviewlodge.com (Wix CDN) — verified March 2026
     hero: 'https://static.wixstatic.com/media/b638ee_d34c79535086422bbd9e982155dbffeb~mv2.jpg',
     images: [
-      'https://static.wixstatic.com/media/b638ee_d34c79535086422bbd9e982155dbffeb~mv2.jpg',
       'https://static.wixstatic.com/media/b638ee_161386a82a024a4ca602d13cdb18f401~mv2.jpg',
       'https://static.wixstatic.com/media/b638ee_4f8087be64664ac2842076427b6d595e~mv2.jpg',
-      'https://static.wixstatic.com/media/b638ee_72058e2a980141479207d0ab9b8a8a2d~mv2.jpg',
       'https://static.wixstatic.com/media/b638ee_72058e2a980141479207d0ab9b8a8a2d~mv2.jpg',
       'https://static.wixstatic.com/media/b638ee_1129a47da782475ca9eecb9767924a10~mv2.jpg',
       'https://static.wixstatic.com/media/b638ee_2986c284a74242969a3fcc6595014273~mv2.jpg',
@@ -313,7 +305,6 @@ export const lodging = [
     // Real photos from nakomaresort.com — verified March 2026
     hero: 'https://nakomaresort.com/wp-content/uploads/inn-at-nakoma-lobby-fireplace.jpg',
     images: [
-      'https://nakomaresort.com/wp-content/uploads/inn-at-nakoma-lobby-fireplace.jpg',
       'https://nakomaresort.com/wp-content/uploads/double-queen-rooms-inn-at-nakoma-resort.jpg',
       'https://nakomaresort.com/wp-content/uploads/King-Suite-Sitting-Area.jpg',
       'https://nakomaresort.com/wp-content/uploads/apex-room-altitude-at-nakoma-meetings_2.jpg',
@@ -343,7 +334,6 @@ export const lodging = [
     ],
     hero: 'https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=1200&q=85&auto=format',
     images: [
-      'https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=1200&q=85&auto=format',
     ],
     onSiteDining: ['longboards'],
     priceRange: '$299–$499',
