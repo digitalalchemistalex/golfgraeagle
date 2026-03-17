@@ -18,7 +18,7 @@ export const siteConfig = {
   email: 'sean@zoomaway.com',
   quoteUrl: '/request-a-quote',
   social: {
-    og_image: 'https://images.unsplash.com/photo-1593111774240-d529f12cf4bb?w=1200&q=80&auto=format',
+    og_image: 'https://grizzlyranchgolfclub.com/wp-content/uploads/2025/06/2dfdf8_586aabb07dde409db509af8fd0b9da1amv2-1.jpg',
   },
 };
 

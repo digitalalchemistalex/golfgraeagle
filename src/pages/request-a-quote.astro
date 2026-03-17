@@ -21,11 +21,30 @@ const lodgingCards = [
   { ...lodging[2], best:'Most Unique',       icon:'🏛', desc:'Frank Lloyd Wright building · Steps from The Dragon · Spa & pool' },
   { ...lodging[3], best:'Large Groups',      icon:'🏘', desc:'2–4 bedroom units · Full kitchens · On the Plumas Pines course' },
 ];
+const quoteSchema = [
+  {
+    '@type': 'ContactPage',
+    '@id': 'https://golfgraeagle.com/request-a-quote#contactpage',
+    name: 'Request a Graeagle Golf Package Quote',
+    description: 'Request a free custom golf package quote for Graeagle, California. Tell us your dates, group size, courses, and lodging preferences.',
+    url: 'https://golfgraeagle.com/request-a-quote',
+  },
+  {
+    '@type': 'FAQPage',
+    mainEntity: [
+      { '@type': 'Question', name: 'How much do Graeagle golf packages cost?', acceptedAnswer: { '@type': 'Answer', text: 'Graeagle golf packages from GolfGraeagle.com start from $299 per golfer. Pricing depends on courses selected, lodging type, group size, and dates. Request a free quote for exact pricing.' } },
+      { '@type': 'Question', name: 'How quickly will I get a quote for a Graeagle golf trip?', acceptedAnswer: { '@type': 'Answer', text: 'GolfGraeagle.com responds to all quote requests within 24 hours. A real trip planner reviews your request and builds a custom itinerary.' } },
+      { '@type': 'Question', name: 'What is the cancellation policy for Graeagle golf packages?', acceptedAnswer: { '@type': 'Answer', text: 'GolfGraeagle.com offers a standard 72-hour cancellation policy on most bookings. Large group outings are governed by individual contracts.' } },
+      { '@type': 'Question', name: 'Can I book just tee times without lodging?', acceptedAnswer: { '@type': 'Answer', text: 'Yes. GolfGraeagle.com can coordinate tee times only, or build full stay-and-play packages including lodging, dining, and transportation. Indicate your preference in the quote form.' } },
+    ],
+  },
+];
 ---
 <Base
   title="Request a Quote | Graeagle Golf Packages | Stay &amp; Play from $299 per golfer"
   description="Plan your Graeagle golf trip. Tell us your dates, group size, courses, and lodging — we'll build a custom stay-and-play package. Free quote, 24-hour response."
   canonical="https://golfgraeagle.com/request-a-quote"
+  schema={quoteSchema}
 >
   <Nav />
 
