@@ -243,6 +243,8 @@ export const lodging = [
     images: [
       'https://nakomaresort.com/wp-content/uploads/inn-at-nakoma-lobby-fireplace.jpg',
     ],
+    onSiteDining: ['roadhouse'],
+    priceRange: '$299–$499',
     description: 'River Pines Resort has been family-owned for over 40 years and sits along the Feather River, 5 minutes from Graeagle village. Accommodation options include cozy cabins, spacious suites, and well-appointed rooms — flexible for groups of any size. The Roadhouse at River Pines handles group dinners with a menu of steaks, ribs, and whisky flights. An outdoor pool, hot tub, and game lounge round out the amenities.',
   },
   {
@@ -279,6 +281,8 @@ export const lodging = [
       'https://static.wixstatic.com/media/b638ee_bbcae26cc66b40b18a9e03748eba5c19~mv2.jpg',
       'https://static.wixstatic.com/media/b638ee_8c9cfa4720174c64883b7de59fb2ef0b~mv2.jpg',
     ],
+    onSiteDining: ['eureka-peak-brewing'],
+    priceRange: '$299–$499',
     description: 'Chalet View Lodge sits on 10 forested acres, 10 minutes from Graeagle via Highway 89. Room types include lodge rooms, terrace suites, and private cabins — making it one of the most versatile properties in the valley for groups. The 9-hole executive course lets guests warm up without leaving the property. Eureka Peak Brewing Co. is located on-site, serving handcrafted IPAs, stouts, and saisons alongside locally sourced seasonal dishes. Full spa services, a seasonal outdoor pool, volleyball courts, and a fishing pond complete the offering.',
   },
   {
@@ -315,6 +319,8 @@ export const lodging = [
       'https://nakomaresort.com/wp-content/uploads/altitude-recreation-center-dusk.jpg',
     ],
     description: 'The Inn at Nakoma is the only place in the world where you can sleep under a roof designed by Frank Lloyd Wright and walk directly to your tee time on The Dragon. The 42-room resort features Frette Italian linens, a lobby fireplace, heated outdoor pool, two hot tubs, and a full spa. Dining options include the Fifty44 Restaurant & Bar inside the historic FLW Lodge serving wood-fired dishes, and the casual Middle Fork Bistro & Bar. The resort is pet-friendly (2 dogs, 75 lbs each) and has an arcade, children\'s club, and on-site driving range.',
+    onSiteDining: [],
+    priceRange: '$299–$499',
   },
   {
     slug: 'townhomes-at-plumas-pines',
@@ -337,6 +343,8 @@ export const lodging = [
     images: [
       'https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=1200&q=85&auto=format',
     ],
+    onSiteDining: ['longboards'],
+    priceRange: '$299–$499',
     description: 'The Townhomes at Plumas Pines offer 2–4 bedroom units with full kitchens, golf course views, and community pool and tennis courts. Adjacent to Plumas Pines Golf Resort, they are the most practical option for large groups who want space, privacy, and the ability to self-cater between rounds.',
   },
 ];

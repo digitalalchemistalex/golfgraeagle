@@ -193,6 +193,21 @@ const buildSchema = () => {
 };
 
 const pageSchema = buildSchema();
+
+const wpCourseSlugMap: Record<string, string> = {
+  'graeagle-meadows': 'graeagle-meadows-golf-packages',
+  'whitehawk-ranch':  'whitehawk-ranch-golf-packages',
+  'plumas-pines':     'plumas-pines-golf-packages',
+  'grizzly-ranch':    'grizzly-ranch-golf-packages',
+  'nakoma-dragon':    'nakoma-dragon-golf-packages',
+};
+
+const lodgingSlugMap: Record<string, string> = {
+  'river-pines-resort':       'river-pines-resort-graeagle-ca',
+  'chalet-view-lodge':        'chalet-view-lodge-graeagle-ca',
+  'inn-at-nakoma':            'the-inn-at-nakoma-clio-ca',
+  'townhomes-at-plumas-pines':'the-townhomes-at-plumas-pines',
+};
 ---
 <Base title={pageTitle} description={pageDesc} schema={pageSchema} canonical={pageUrl}>
   <Nav />
@@ -799,81 +814,322 @@ const pageSchema = buildSchema();
     </>
   )}
 
-  {item && type === 'lodging' && (
+  {item && type === 'lodging' && (() => {
+    const nearbyCourseSlugs = lodgingToCourses[item.slug] || [];
+    const nearbyCourses = nearbyCourseSlugs.map((nc: any) => ({ ...nc, course: courses.find((c: any) => c.slug === nc.slug) })).filter((nc: any) => nc.course);
+    const onSiteDining = dining.filter((d: any) => item.highlights?.some((h: string) => h.toLowerCase().includes(d.name.toLowerCase().split(' ')[0])));
+    return (
     <>
-    <section style="position:relative;height:70vh;min-height:460px;overflow:hidden;display:flex;align-items:flex-end;">
-      <div style="position:absolute;inset:0;">
-        <img src={item.hero} alt={item.name} style="width:100%;height:100%;object-fit:cover;" loading="eager"/>
-        <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(13,26,14,1) 0%,rgba(13,26,14,0.45) 50%,transparent 80%);"></div>
-      </div>
-      <div style="position:relative;z-index:2;padding:0 10% 60px;max-width:1400px;width:100%;">
-        <a href="/lodging/" style="display:inline-flex;align-items:center;gap:6px;font-size:12px;color:rgba(240,248,242,0.4);text-decoration:none;margin-bottom:20px;">← All Lodging</a>
-        {item.subtitle && <div style="font-size:11px;color:#e8a850;letter-spacing:0.14em;text-transform:uppercase;margin-bottom:10px;">{item.subtitle}</div>}
-        <h1 style="font-family:'Playfair Display',serif;font-size:clamp(32px,5vw,56px);font-weight:500;color:#f0f8f2;margin:0 0 12px;">{item.name}</h1>
-        <p style="font-size:16px;color:rgba(240,248,242,0.5);margin:0;">{item.tagline}</p>
-        {item.distanceFromGraeagle && <p style="font-size:13px;color:rgba(232,168,80,0.65);margin:10px 0 0;">📍 {item.distanceFromGraeagle}</p>}
-      </div>
-    </section>
-    <section style="max-width:860px;margin:0 auto;padding:60px 10% 80px;">
-      <p style="font-size:17px;color:rgba(240,248,242,0.65);line-height:1.85;margin-bottom:40px;">{item.description}</p>
-      {item.highlights && (
-        <ul style="margin:0 0 48px;padding:0;list-style:none;">
-          {item.highlights.map((h:string) => (
-            <li style="display:flex;align-items:flex-start;gap:10px;font-size:14px;color:rgba(240,248,242,0.6);margin-bottom:10px;">
-              <span style="color:#e8a850;">✓</span>{h}
-            </li>
-          ))}
-        </ul>
-      )}
-      <div style="text-align:center;background:rgba(232,168,80,0.04);border:1px solid rgba(232,168,80,0.12);border-radius:20px;padding:36px;">
-        <h2 style="font-family:'Playfair Display',serif;font-size:26px;color:#f0f8f2;margin:0 0 12px;">Stay Here + Play Golf</h2>
-        <p style="font-size:15px;color:rgba(240,248,242,0.4);margin:0 0 24px;">We'll pair your stay with tee times at all 5 Graeagle courses.</p>
-        <a href="/request-a-quote/" style="display:inline-block;background:#e8a850;color:#0d1a0e;font-weight:700;font-size:15px;padding:16px 40px;border-radius:100px;text-decoration:none;" onmouseover="this.style.background='#f2c878'" onmouseout="this.style.background='#e8a850'">Request a Stay & Play Quote →</a>
+    <!-- HERO -->
+    <section style="position:relative;height:75vh;min-height:500px;overflow:hidden;display:flex;align-items:flex-end;">
+      <img src={item.hero} alt={item.name} style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" loading="eager" fetchpriority="high"/>
+      <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(13,26,14,1) 0%,rgba(13,26,14,0.55) 45%,transparent 80%);"></div>
+      <div style="position:relative;z-index:2;padding:0 10% 64px;max-width:1400px;width:100%;">
+        <a href="/lodging/" style="display:inline-flex;align-items:center;gap:6px;font-size:12px;color:rgba(240,248,242,0.4);text-decoration:none;margin-bottom:20px;transition:color 0.2s;" onmouseover="this.style.color='rgba(240,248,242,0.7)'" onmouseout="this.style.color='rgba(240,248,242,0.4)'">← All Lodging</a>
+        {item.subtitle && <div style="font-size:11px;color:#e8a850;letter-spacing:0.14em;text-transform:uppercase;margin-bottom:12px;font-weight:700;">{item.subtitle}</div>}
+        <h1 style="font-family:'Playfair Display',serif;font-size:clamp(34px,5vw,60px);font-weight:500;color:#f0f8f2;margin:0 0 14px;line-height:1.1;">{item.name}</h1>
+        <p style="font-size:17px;color:rgba(240,248,242,0.55);margin:0 0 20px;max-width:600px;">{item.tagline}</p>
+        <div style="display:flex;gap:20px;flex-wrap:wrap;align-items:center;">
+          {item.distanceFromGraeagle && <span style="font-size:13px;color:rgba(232,168,80,0.8);">📍 {item.distanceFromGraeagle}</span>}
+          {item.priceRange && <span style="font-size:13px;color:rgba(240,248,242,0.45);">From {item.priceRange} per golfer</span>}
+          <span style="font-size:13px;color:rgba(240,248,242,0.45);">⛳ {nearbyCourses.length} courses nearby</span>
+        </div>
       </div>
     </section>
-    </>
-  )}
 
-  {item && type === 'dining' && (
-    <>
-    <section style="position:relative;height:60vh;min-height:380px;overflow:hidden;display:flex;align-items:flex-end;">
-      <div style="position:absolute;inset:0;">
-        <img src={item.hero} alt={item.name} style="width:100%;height:100%;object-fit:cover;" loading="eager"/>
-        <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(13,26,14,1) 0%,rgba(13,26,14,0.4) 60%,transparent 90%);"></div>
+    <!-- PHOTO STRIP -->
+    {item.images && item.images.length > 1 && (
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:4px;max-height:220px;overflow:hidden;">
+        {item.images.slice(1, 5).map((img: string) => (
+          <img src={img} alt={item.name} style="width:100%;height:220px;object-fit:cover;" loading="lazy"/>
+        ))}
       </div>
-      <div style="position:relative;z-index:2;padding:0 10% 52px;max-width:1400px;width:100%;">
-        <a href="/dining/" style="display:inline-flex;align-items:center;gap:6px;font-size:12px;color:rgba(240,248,242,0.4);text-decoration:none;margin-bottom:20px;">← All Dining</a>
-        {item.cuisine && <div style="font-size:11px;color:#e8a850;letter-spacing:0.14em;text-transform:uppercase;margin-bottom:10px;">{item.cuisine}</div>}
-        <h1 style="font-family:'Playfair Display',serif;font-size:clamp(30px,5vw,52px);font-weight:500;color:#f0f8f2;margin:0 0 12px;">{item.name}</h1>
-        <p style="font-size:15px;color:rgba(240,248,242,0.5);margin:0;">{item.tagline}</p>
-      </div>
-    </section>
-    <section style="max-width:860px;margin:0 auto;padding:52px 10% 80px;">
-      {item.location && (
-        <div style="display:inline-flex;align-items:center;gap:8px;font-size:13px;color:rgba(232,168,80,0.7);margin-bottom:32px;">
-          <span>📍</span><span>{item.location}</span>
-        </div>
-      )}
-      <p style="font-size:17px;color:rgba(240,248,242,0.65);line-height:1.85;margin-bottom:40px;">{item.description}</p>
-      {item.highlights && (
-        <div style="background:rgba(232,168,80,0.04);border:1px solid rgba(232,168,80,0.12);border-radius:16px;padding:28px;margin-bottom:48px;">
-          <h3 style="font-family:'Playfair Display',serif;font-size:17px;color:#f0f8f2;margin:0 0 16px;">What to Know</h3>
-          <ul style="margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:10px;">
-            {item.highlights.map((h:string) => (
-              <li style="display:flex;align-items:flex-start;gap:10px;font-size:14px;color:rgba(240,248,242,0.6);">
-                <span style="color:#e8a850;flex-shrink:0;margin-top:2px;">✓</span>{h}
-              </li>
+    )}
+
+    <!-- MAIN CONTENT -->
+    <div style="max-width:1100px;margin:0 auto;padding:64px 5%;display:grid;grid-template-columns:1fr 380px;gap:60px;align-items:start;">
+
+      <!-- LEFT: Description + Amenities + Courses -->
+      <div>
+        <!-- Description -->
+        <p style="font-size:17px;color:rgba(240,248,242,0.7);line-height:1.85;margin:0 0 48px;">{item.description}</p>
+
+        <!-- Amenities grid -->
+        {item.highlights && (
+          <div style="margin-bottom:52px;">
+            <h2 style="font-family:'Playfair Display',serif;font-size:22px;color:#f0f8f2;margin:0 0 24px;font-weight:400;">What's Included</h2>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+              {item.highlights.map((h: string) => (
+                <div style="display:flex;align-items:flex-start;gap:10px;padding:14px;background:rgba(240,248,242,0.03);border:1px solid rgba(240,248,242,0.07);border-radius:10px;">
+                  <span style="color:#e8a850;flex-shrink:0;font-size:16px;margin-top:1px;">✓</span>
+                  <span style="font-size:13px;color:rgba(240,248,242,0.65);line-height:1.5;">{h}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        <!-- Courses you can play -->
+        {nearbyCourses.length > 0 && (
+          <div style="margin-bottom:52px;">
+            <h2 style="font-family:'Playfair Display',serif;font-size:22px;color:#f0f8f2;margin:0 0 8px;font-weight:400;">Golf Courses From Here</h2>
+            <p style="font-size:14px;color:rgba(240,248,242,0.35);margin:0 0 24px;">All distances from {item.name}</p>
+            <div style="display:flex;flex-direction:column;gap:10px;">
+              {nearbyCourses.map(({ course, dist, distNote }: any) => (
+                <a href={`/portfolio/${wpCourseSlugMap[course.slug]}/`}
+                   style="display:flex;justify-content:space-between;align-items:center;padding:16px 20px;background:rgba(232,168,80,0.04);border:1px solid rgba(232,168,80,0.12);border-radius:12px;text-decoration:none;transition:all 0.2s;"
+                   onmouseover="this.style.borderColor='rgba(232,168,80,0.35)';this.style.background='rgba(232,168,80,0.08)'"
+                   onmouseout="this.style.borderColor='rgba(232,168,80,0.12)';this.style.background='rgba(232,168,80,0.04)'">
+                  <div>
+                    <div style="font-size:14px;font-weight:700;color:#f0f8f2;margin-bottom:3px;">{course.name}</div>
+                    <div style="font-size:12px;color:rgba(240,248,242,0.4);">Par {course.par} · Slope {course.slope} · {course.designer}</div>
+                  </div>
+                  <div style="text-align:right;flex-shrink:0;margin-left:16px;">
+                    <div style="font-size:13px;color:#e8a850;font-weight:600;">{dist}</div>
+                    <div style="font-size:11px;color:rgba(240,248,242,0.3);">{distNote}</div>
+                  </div>
+                </a>
+              ))}
+            </div>
+          </div>
+        )}
+
+        <!-- On-site dining callout (if any dining in highlights) -->
+        {item.onSiteDining && item.onSiteDining.length > 0 && (() => {
+          const onSite = item.onSiteDining.map((s: string) => dining.find((d: any) => d.slug === s)).filter(Boolean);
+          return onSite.length > 0 ? (
+            <div style="margin-bottom:52px;">
+              <h2 style="font-family:'Playfair Display',serif;font-size:22px;color:#f0f8f2;margin:0 0 24px;font-weight:400;">On-Site Dining</h2>
+              <div style="display:flex;flex-direction:column;gap:10px;">
+                {onSite.map((d: any) => (
+                  <a href={`/portfolio/${d.slug}/`}
+                     style="display:flex;gap:16px;align-items:center;padding:16px;background:rgba(240,248,242,0.03);border:1px solid rgba(240,248,242,0.07);border-radius:12px;text-decoration:none;transition:all 0.2s;"
+                     onmouseover="this.style.borderColor='rgba(232,168,80,0.3)'" onmouseout="this.style.borderColor='rgba(240,248,242,0.07)'">
+                    <img src={d.hero} alt={d.name} style="width:60px;height:60px;object-fit:cover;border-radius:8px;flex-shrink:0;"/>
+                    <div>
+                      <div style="font-size:14px;font-weight:700;color:#f0f8f2;margin-bottom:3px;">{d.name}</div>
+                      <div style="font-size:12px;color:rgba(240,248,242,0.4);">{d.cuisine}</div>
+                    </div>
+                    <span style="margin-left:auto;font-size:12px;color:#e8a850;">View →</span>
+                  </a>
+                ))}
+              </div>
+            </div>
+          ) : null;
+        })()}
+
+        <!-- Other lodging options -->
+        <div>
+          <h2 style="font-family:'Playfair Display',serif;font-size:22px;color:#f0f8f2;margin:0 0 24px;font-weight:400;">Other Graeagle Lodging</h2>
+          <div style="display:flex;flex-direction:column;gap:8px;">
+            {lodging.filter((l: any) => l.slug !== item.slug).map((l: any) => (
+              <a href={`/portfolio/${l.slug === 'river-pines-resort' ? 'river-pines-resort-graeagle-ca' : l.slug === 'chalet-view-lodge' ? 'chalet-view-lodge-graeagle-ca' : l.slug === 'inn-at-nakoma' ? 'the-inn-at-nakoma-clio-ca' : 'the-townhomes-at-plumas-pines'}/`}
+                 style="display:flex;justify-content:space-between;align-items:center;padding:14px 18px;background:rgba(240,248,242,0.02);border:1px solid rgba(240,248,242,0.06);border-radius:10px;text-decoration:none;transition:all 0.2s;"
+                 onmouseover="this.style.borderColor='rgba(240,248,242,0.15)'" onmouseout="this.style.borderColor='rgba(240,248,242,0.06)'">
+                <div>
+                  <span style="font-size:13px;font-weight:600;color:#f0f8f2;">{l.name}</span>
+                  <span style="font-size:11px;color:rgba(240,248,242,0.3);margin-left:10px;">{l.distanceFromGraeagle?.split('—')[0]?.trim()}</span>
+                </div>
+                <span style="font-size:12px;color:#e8a850;">View →</span>
+              </a>
             ))}
-          </ul>
+          </div>
         </div>
-      )}
-      <div style="background:rgba(232,168,80,0.04);border:1px solid rgba(232,168,80,0.12);border-radius:20px;padding:32px;text-align:center;">
-        <p style="font-size:15px;color:rgba(240,248,242,0.5);margin:0 0 20px;">Add dining to your Graeagle golf package — we coordinate group reservations.</p>
-        <a href="/request-a-quote/" style="display:inline-block;background:#e8a850;color:#0d1a0e;font-weight:700;font-size:14px;padding:14px 36px;border-radius:100px;text-decoration:none;" onmouseover="this.style.background='#f2c878'" onmouseout="this.style.background='#e8a850'">Include in My Golf Package →</a>
+      </div>
+
+      <!-- RIGHT: Sticky CTA card -->
+      <div style="position:sticky;top:100px;">
+        <div style="background:rgba(232,168,80,0.06);border:1px solid rgba(232,168,80,0.2);border-radius:20px;padding:32px;">
+          <div style="font-size:11px;color:#e8a850;letter-spacing:0.12em;text-transform:uppercase;font-weight:700;margin-bottom:12px;">Stay & Play Package</div>
+          <h3 style="font-family:'Playfair Display',serif;font-size:22px;color:#f0f8f2;margin:0 0 8px;font-weight:500;">Stay at {item.name}</h3>
+          <p style="font-size:14px;color:rgba(240,248,242,0.45);margin:0 0 24px;line-height:1.6;">We pair your stay with guaranteed tee times at any of the 5 Graeagle courses. Free quote, 24-hour response.</p>
+          <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:24px;padding:16px;background:rgba(13,26,14,0.5);border-radius:12px;">
+            {[['From','$299 per golfer'],['Includes','Lodging + tee times'],['Response','Within 24 hours'],['Cancellation','72-hour policy']].map(([k,v]) => (
+              <div style="display:flex;justify-content:space-between;font-size:13px;">
+                <span style="color:rgba(240,248,242,0.4);">{k}</span>
+                <span style="color:#f0f8f2;font-weight:600;">{v}</span>
+              </div>
+            ))}
+          </div>
+          <a href={`/request-a-quote/?lodging=${item.slug}&lodgingName=${encodeURIComponent(item.name)}`}
+             style="display:block;text-align:center;background:#e8a850;color:#0d1a0e;font-weight:700;font-size:15px;padding:16px;border-radius:100px;text-decoration:none;transition:all 0.2s;"
+             onmouseover="this.style.background='#f2c878';this.style.transform='translateY(-2px)'"
+             onmouseout="this.style.background='#e8a850';this.style.transform='translateY(0)'">
+            Request a Stay & Play Quote →
+          </a>
+          {item.website && (
+            <a href={item.website} target="_blank" rel="noopener noreferrer"
+               style="display:block;text-align:center;margin-top:12px;font-size:13px;color:rgba(240,248,242,0.35);text-decoration:none;"
+               onmouseover="this.style.color='rgba(240,248,242,0.7)'" onmouseout="this.style.color='rgba(240,248,242,0.35)'">
+              Visit {item.name} website →
+            </a>
+          )}
+        </div>
+
+        <!-- Quick specs -->
+        <div style="margin-top:20px;padding:20px;background:rgba(240,248,242,0.02);border:1px solid rgba(240,248,242,0.06);border-radius:14px;">
+          <div style="font-size:11px;color:rgba(240,248,242,0.3);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:14px;">Property Details</div>
+          <div style="display:flex;flex-direction:column;gap:10px;">
+            {item.address && <div style="font-size:12px;color:rgba(240,248,242,0.5);">📍 {item.address}</div>}
+            {item.distanceFromGraeagle && <div style="font-size:12px;color:rgba(240,248,242,0.5);">🚗 {item.distanceFromGraeagle}</div>}
+            {item.website && <a href={item.website} target="_blank" rel="noopener noreferrer" style="font-size:12px;color:#e8a850;text-decoration:none;">🌐 {item.website.replace('https://www.','').replace('https://','')}</a>}
+          </div>
+        </div>
+      </div>
+    </div>
+    </>
+  );})()}
+
+  {item && type === 'dining' && (() => {
+    // Find courses that have this restaurant as on-site dining
+    const linkedCourses = courses.filter((c: any) => c.onSiteDining?.includes(item.slug));
+    // Find lodging that has this restaurant as on-site dining
+    const linkedLodging = lodging.filter((l: any) => l.onSiteDining?.includes(item.slug));
+    // All other dining for discovery
+    const otherDining = dining.filter((d: any) => d.slug !== item.slug).slice(0, 5);
+    return (
+    <>
+    <!-- HERO -->
+    <section style="position:relative;height:65vh;min-height:420px;overflow:hidden;display:flex;align-items:flex-end;">
+      <img src={item.hero} alt={item.name} style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" loading="eager" fetchpriority="high"/>
+      <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(13,26,14,1) 0%,rgba(13,26,14,0.5) 50%,transparent 85%);"></div>
+      <div style="position:relative;z-index:2;padding:0 10% 56px;max-width:1400px;width:100%;">
+        <a href="/dining/" style="display:inline-flex;align-items:center;gap:6px;font-size:12px;color:rgba(240,248,242,0.4);text-decoration:none;margin-bottom:20px;transition:color 0.2s;" onmouseover="this.style.color='rgba(240,248,242,0.7)'" onmouseout="this.style.color='rgba(240,248,242,0.4)'">← All Dining</a>
+        {item.cuisine && <div style="font-size:11px;color:#e8a850;letter-spacing:0.14em;text-transform:uppercase;margin-bottom:12px;font-weight:700;">{item.cuisine}</div>}
+        <h1 style="font-family:'Playfair Display',serif;font-size:clamp(30px,5vw,56px);font-weight:500;color:#f0f8f2;margin:0 0 12px;line-height:1.1;">{item.name}</h1>
+        <p style="font-size:16px;color:rgba(240,248,242,0.5);margin:0 0 16px;max-width:560px;">{item.tagline}</p>
+        <div style="display:flex;gap:16px;flex-wrap:wrap;">
+          {item.location && <span style="font-size:13px;color:rgba(232,168,80,0.75);">📍 {item.location}</span>}
+          {item.phone && <span style="font-size:13px;color:rgba(240,248,242,0.4);">📞 {item.phone}</span>}
+        </div>
       </div>
     </section>
+
+    <!-- MAIN CONTENT: 2-col layout -->
+    <div style="max-width:1100px;margin:0 auto;padding:64px 5%;display:grid;grid-template-columns:1fr 340px;gap:56px;align-items:start;">
+
+      <!-- LEFT -->
+      <div>
+        <!-- Description -->
+        <p style="font-size:17px;color:rgba(240,248,242,0.7);line-height:1.85;margin:0 0 48px;">{item.description}</p>
+
+        <!-- What to Know -->
+        {item.highlights && item.highlights.length > 0 && (
+          <div style="margin-bottom:48px;">
+            <h2 style="font-family:'Playfair Display',serif;font-size:22px;color:#f0f8f2;margin:0 0 20px;font-weight:400;">What to Know</h2>
+            <div style="display:flex;flex-direction:column;gap:10px;">
+              {item.highlights.map((h: string) => (
+                <div style="display:flex;align-items:flex-start;gap:12px;padding:14px;background:rgba(240,248,242,0.03);border:1px solid rgba(240,248,242,0.07);border-radius:10px;">
+                  <span style="color:#e8a850;flex-shrink:0;margin-top:1px;">✓</span>
+                  <span style="font-size:14px;color:rgba(240,248,242,0.65);line-height:1.5;">{h}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        <!-- On-site at a course -->
+        {linkedCourses.length > 0 && (
+          <div style="margin-bottom:48px;">
+            <h2 style="font-family:'Playfair Display',serif;font-size:22px;color:#f0f8f2;margin:0 0 8px;font-weight:400;">On-Site at These Courses</h2>
+            <p style="font-size:14px;color:rgba(240,248,242,0.35);margin:0 0 20px;">Book a round and dine here on the same package</p>
+            {linkedCourses.map((c: any) => (
+              <a href={`/portfolio/${wpCourseSlugMap[c.slug]}/`}
+                 style="display:flex;justify-content:space-between;align-items:center;padding:16px 20px;background:rgba(232,168,80,0.04);border:1px solid rgba(232,168,80,0.12);border-radius:12px;text-decoration:none;margin-bottom:8px;transition:all 0.2s;"
+                 onmouseover="this.style.borderColor='rgba(232,168,80,0.35)';this.style.background='rgba(232,168,80,0.08)'"
+                 onmouseout="this.style.borderColor='rgba(232,168,80,0.12)';this.style.background='rgba(232,168,80,0.04)'">
+                <div>
+                  <div style="font-size:14px;font-weight:700;color:#f0f8f2;margin-bottom:3px;">{c.name}</div>
+                  <div style="font-size:12px;color:rgba(240,248,242,0.4);">Par {c.par} · Slope {c.slope} · {c.awards?.[0] || c.designer}</div>
+                </div>
+                <span style="font-size:12px;color:#e8a850;flex-shrink:0;margin-left:12px;">View course →</span>
+              </a>
+            ))}
+          </div>
+        )}
+
+        <!-- On-site at lodging -->
+        {linkedLodging.length > 0 && (
+          <div style="margin-bottom:48px;">
+            <h2 style="font-family:'Playfair Display',serif;font-size:22px;color:#f0f8f2;margin:0 0 8px;font-weight:400;">On-Site at These Properties</h2>
+            <p style="font-size:14px;color:rgba(240,248,242,0.35);margin:0 0 20px;">Stay here and walk to dinner</p>
+            {linkedLodging.map((l: any) => (
+              <a href={`/portfolio/${lodgingSlugMap[l.slug]}/`}
+                 style="display:flex;justify-content:space-between;align-items:center;padding:16px 20px;background:rgba(240,248,242,0.03);border:1px solid rgba(240,248,242,0.07);border-radius:12px;text-decoration:none;margin-bottom:8px;transition:all 0.2s;"
+                 onmouseover="this.style.borderColor='rgba(232,168,80,0.3)'" onmouseout="this.style.borderColor='rgba(240,248,242,0.07)'">
+                <div>
+                  <div style="font-size:14px;font-weight:700;color:#f0f8f2;margin-bottom:3px;">{l.name}</div>
+                  <div style="font-size:12px;color:rgba(240,248,242,0.4);">{l.distanceFromGraeagle}</div>
+                </div>
+                <span style="font-size:12px;color:#e8a850;flex-shrink:0;margin-left:12px;">View lodging →</span>
+              </a>
+            ))}
+          </div>
+        )}
+
+        <!-- More dining options -->
+        <div>
+          <h2 style="font-family:'Playfair Display',serif;font-size:22px;color:#f0f8f2;margin:0 0 20px;font-weight:400;">More Dining Near Graeagle</h2>
+          <div style="display:flex;flex-direction:column;gap:8px;">
+            {otherDining.map((d: any) => (
+              <a href={`/portfolio/${d.slug}/`}
+                 style="display:flex;align-items:center;gap:14px;padding:14px;background:rgba(240,248,242,0.02);border:1px solid rgba(240,248,242,0.06);border-radius:10px;text-decoration:none;transition:all 0.2s;"
+                 onmouseover="this.style.borderColor='rgba(240,248,242,0.15)'" onmouseout="this.style.borderColor='rgba(240,248,242,0.06)'">
+                <img src={d.hero} alt={d.name} style="width:52px;height:52px;object-fit:cover;border-radius:8px;flex-shrink:0;" loading="lazy"/>
+                <div style="flex:1;min-width:0;">
+                  <div style="font-size:13px;font-weight:700;color:#f0f8f2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">{d.name}</div>
+                  <div style="font-size:11px;color:rgba(240,248,242,0.35);margin-top:2px;">{d.cuisine}</div>
+                </div>
+                <span style="font-size:11px;color:#e8a850;flex-shrink:0;">View →</span>
+              </a>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT: Sticky info card -->
+      <div style="position:sticky;top:100px;">
+        <!-- Info card -->
+        <div style="background:rgba(240,248,242,0.03);border:1px solid rgba(240,248,242,0.08);border-radius:20px;padding:28px;margin-bottom:16px;">
+          <div style="font-size:11px;color:rgba(240,248,242,0.3);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:16px;">Restaurant Info</div>
+          <div style="display:flex;flex-direction:column;gap:12px;">
+            {item.location && (
+              <div style="display:flex;gap:10px;">
+                <span style="color:#e8a850;flex-shrink:0;">📍</span>
+                <span style="font-size:13px;color:rgba(240,248,242,0.6);line-height:1.5;">{item.location}</span>
+              </div>
+            )}
+            {item.phone && (
+              <a href={`tel:${item.phone}`} style="display:flex;gap:10px;text-decoration:none;">
+                <span style="color:#e8a850;flex-shrink:0;">📞</span>
+                <span style="font-size:13px;color:rgba(240,248,242,0.6);">{item.phone}</span>
+              </a>
+            )}
+            {item.cuisine && (
+              <div style="display:flex;gap:10px;">
+                <span style="color:#e8a850;flex-shrink:0;">🍽</span>
+                <span style="font-size:13px;color:rgba(240,248,242,0.6);">{item.cuisine}</span>
+              </div>
+            )}
+          </div>
+        </div>
+
+        <!-- CTA card -->
+        <div style="background:rgba(232,168,80,0.06);border:1px solid rgba(232,168,80,0.2);border-radius:20px;padding:28px;">
+          <h3 style="font-family:'Playfair Display',serif;font-size:20px;color:#f0f8f2;margin:0 0 8px;font-weight:500;">Add to Your Golf Package</h3>
+          <p style="font-size:14px;color:rgba(240,248,242,0.4);margin:0 0 20px;line-height:1.6;">We coordinate group dining reservations alongside tee times and lodging — one package, one call.</p>
+          <a href="/request-a-quote/"
+             style="display:block;text-align:center;background:#e8a850;color:#0d1a0e;font-weight:700;font-size:14px;padding:14px;border-radius:100px;text-decoration:none;transition:all 0.2s;"
+             onmouseover="this.style.background='#f2c878';this.style.transform='translateY(-2px)'"
+             onmouseout="this.style.background='#e8a850';this.style.transform='translateY(0)'">
+            Include in My Golf Package →
+          </a>
+          <a href="/dining/" style="display:block;text-align:center;margin-top:10px;font-size:12px;color:rgba(240,248,242,0.3);text-decoration:none;" onmouseover="this.style.color='rgba(240,248,242,0.6)'" onmouseout="this.style.color='rgba(240,248,242,0.3)'">Browse all Graeagle dining →</a>
+        </div>
+      </div>
+    </div>
     </>
-  )}
+  );})()}
 
   {!item && (
     <section style="min-height:60vh;display:flex;align-items:center;justify-content:center;padding:80px 24px;text-align:center;">
