@@ -179,7 +179,7 @@ export const courses = [
     onSiteDining: ['grizzly-grill'],
   },
   {
-    slug: 'nakoma',
+    slug: 'nakoma-dragon',
     name: 'Nakoma — The Dragon',
     subtitle: 'The Legend',
     tagline: 'Frank Lloyd Wright clubhouse. Robin Nelson design. Golf Digest Top 75.',
@@ -366,7 +366,7 @@ export const courseToLodging = {
     { slug: 'chalet-view-lodge',         dist: '22 min drive',      distNote: 'Via Grizzly Rd' },
     { slug: 'river-pines-resort',        dist: '20 min drive',      distNote: 'Via Hwy 70 W' },
   ],
-  'nakoma': [
+  'nakoma-dragon': [
     { slug: 'inn-at-nakoma',             dist: 'On property',       distNote: 'Walk to 1st tee' },
     { slug: 'chalet-view-lodge',         dist: '15 min drive',      distNote: 'Via Hwy 89 N' },
     { slug: 'river-pines-resort',        dist: '18 min drive',      distNote: 'Via Hwy 89 N' },
@@ -378,18 +378,18 @@ export const lodgingToCourses = {
     { slug: 'graeagle-meadows', dist: 'Walking distance', distNote: '~5 min on foot' },
     { slug: 'plumas-pines',     dist: '5 min drive',      distNote: 'Via Hwy 89' },
     { slug: 'whitehawk-ranch',  dist: '10 min drive',     distNote: 'Via Hwy 89 N' },
-    { slug: 'nakoma',           dist: '18 min drive',     distNote: 'Via Hwy 89 S' },
+    { slug: 'nakoma-dragon',           dist: '18 min drive',     distNote: 'Via Hwy 89 S' },
     { slug: 'grizzly-ranch',    dist: '20 min drive',     distNote: 'Via Hwy 70 E' },
   ],
   'chalet-view-lodge': [
     { slug: 'graeagle-meadows', dist: '5 min drive',      distNote: 'Via Hwy 89 N' },
     { slug: 'whitehawk-ranch',  dist: '8 min drive',      distNote: 'Via Hwy 89 N' },
     { slug: 'plumas-pines',     dist: '10 min drive',     distNote: 'Via CA-89 N' },
-    { slug: 'nakoma',           dist: '15 min drive',     distNote: 'Via Hwy 89 S' },
+    { slug: 'nakoma-dragon',           dist: '15 min drive',     distNote: 'Via Hwy 89 S' },
     { slug: 'grizzly-ranch',    dist: '22 min drive',     distNote: 'Via Grizzly Rd' },
   ],
   'inn-at-nakoma': [
-    { slug: 'nakoma',           dist: 'On property',      distNote: 'Walk to 1st tee' },
+    { slug: 'nakoma-dragon',           dist: 'On property',      distNote: 'Walk to 1st tee' },
     { slug: 'grizzly-ranch',    dist: '20 min drive',     distNote: 'Via Hwy 89 N' },
     { slug: 'whitehawk-ranch',  dist: '20 min drive',     distNote: 'Via Hwy 89 N' },
     { slug: 'plumas-pines',     dist: '22 min drive',     distNote: 'Via Hwy 89 N' },
@@ -399,7 +399,7 @@ export const lodgingToCourses = {
     { slug: 'plumas-pines',     dist: 'Steps away',       distNote: 'On the course property' },
     { slug: 'graeagle-meadows', dist: '10 min drive',     distNote: 'Via CA-89 N' },
     { slug: 'whitehawk-ranch',  dist: '12 min drive',     distNote: 'Via CA-89 N' },
-    { slug: 'nakoma',           dist: '18 min drive',     distNote: 'Via Hwy 89 S' },
+    { slug: 'nakoma-dragon',           dist: '18 min drive',     distNote: 'Via Hwy 89 S' },
     { slug: 'grizzly-ranch',    dist: '22 min drive',     distNote: 'Via Hwy 70 E' },
   ],
 };

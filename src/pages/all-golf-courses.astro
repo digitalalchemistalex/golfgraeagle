@@ -36,7 +36,7 @@ import { courses } from '../data/content.js';
     <p style="font-size:17px;color:rgba(240,248,242,0.5);max-width:640px;line-height:1.75;margin:0 0 60px;">There are five championship golf courses in the Graeagle area, all within 5–25 minutes of each other. Most groups play two to four courses over a weekend.</p>
     <div style="display:grid;gap:16px;">
       {courses.map(c => (
-        <a href={`/portfolio/${c.slug === 'nakoma' ? 'nakoma-dragon-golf-packages' : c.slug + '-golf-packages'}/`}
+        <a href={`/portfolio/${c.slug === 'nakoma-dragon' ? 'nakoma-dragon-golf-packages' : c.slug + '-golf-packages'}/`}
           class="course-card">
           <img src={c.hero} alt={c.name} class="course-card-img"/>
           <div>

@@ -8,7 +8,7 @@ const courses = [
   'whitehawk-ranch',
   'plumas-pines',
   'grizzly-ranch',
-  'nakoma',
+  'nakoma-dragon',
 ];
 
 function url(loc: string, priority: string, changefreq: string, lastmod = TODAY) {
