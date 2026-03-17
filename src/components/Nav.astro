@@ -81,6 +81,12 @@ import { courses } from '../data/content.js';
   <!-- Desktop nav -->
   <div id="desktop-nav" style="display: flex; align-items: center; gap: 4px;">
 
+    <!-- HOME -->
+    <a href="/" class="nav-link" style="padding: 8px 12px;">Home</a>
+
+    <!-- ABOUT -->
+    <a href="/about-us/" class="nav-link" style="padding: 8px 12px;">About</a>
+
     <!-- COURSES -->
     <div class="nav-item" style="padding: 4px 12px;">
       <button class="nav-link">
@@ -119,10 +125,10 @@ import { courses } from '../data/content.js';
         <p style="font-size:10px;color:#a06c30;text-transform:uppercase;letter-spacing:0.14em;font-weight:700;margin:0 0 14px;">Where to Stay</p>
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:16px;">
           {[
-            {name:'River Pines Resort', tag:'Best for Groups', icon:'🏨', href:'/lodging#river-pines'},
-            {name:'Chalet View Lodge', tag:'Best Amenities', icon:'🏔️', href:'/lodging#chalet-view'},
-            {name:'The Inn at Nakoma', tag:'Most Unique', icon:'🏛️', href:'/lodging#inn-at-nakoma'},
-            {name:'Townhomes at Plumas Pines', tag:'Best for Large Groups', icon:'🏠', href:'/lodging#townhomes'},
+            {name:'River Pines Resort',        tag:'Best for Groups',      icon:'🏨', href:'/portfolio/river-pines-resort-graeagle-ca/'},
+            {name:'Chalet View Lodge',         tag:'Best Amenities',       icon:'🏔️', href:'/portfolio/chalet-view-lodge-graeagle-ca/'},
+            {name:'The Inn at Nakoma',         tag:'Most Unique',          icon:'🏛️', href:'/portfolio/the-inn-at-nakoma-clio-ca/'},
+            {name:'Townhomes at Plumas Pines', tag:'Best for Large Groups',icon:'🏠', href:'/portfolio/the-townhomes-at-plumas-pines/'},
           ].map(l => (
             <a href={l.href} style="display:flex;align-items:flex-start;gap:11px;padding:12px 13px;border-radius:10px;text-decoration:none;background:rgba(26,48,32,0.02);border:1px solid rgba(168,140,90,0.1);transition:all 0.18s;"
             onmouseover="this.style.background='rgba(232,168,80,0.08)';this.style.borderColor='rgba(168,140,90,0.3)'"
@@ -135,9 +141,8 @@ import { courses } from '../data/content.js';
             </a>
           ))}
         </div>
-        <div style="border-top:1px solid rgba(168,140,90,0.12);padding-top:13px;display:grid;grid-template-columns:1fr 1fr;gap:8px;">
-          <a href="/lodging#hotels-resorts" style="text-align:center;padding:9px;border-radius:8px;background:rgba(26,48,32,0.03);border:1px solid rgba(168,140,90,0.12);font-size:12px;color:#5a7060;text-decoration:none;transition:all 0.18s;font-weight:500;" onmouseover="this.style.color='#1a3020';this.style.background='rgba(26,48,32,0.06)'" onmouseout="this.style.color='#5a7060';this.style.background='rgba(26,48,32,0.03)'">Hotels &amp; Resorts</a>
-          <a href="/lodging#townhomes" style="text-align:center;padding:9px;border-radius:8px;background:rgba(26,48,32,0.03);border:1px solid rgba(168,140,90,0.12);font-size:12px;color:#5a7060;text-decoration:none;transition:all 0.18s;font-weight:500;" onmouseover="this.style.color='#1a3020';this.style.background='rgba(26,48,32,0.06)'" onmouseout="this.style.color='#5a7060';this.style.background='rgba(26,48,32,0.03)'">Townhomes</a>
+        <div style="border-top:1px solid rgba(168,140,90,0.12);padding-top:13px;text-align:right;">
+          <a href="/lodging/" style="font-size:12px;color:#a06c30;text-decoration:none;font-weight:600;transition:opacity 0.2s;" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">View all lodging →</a>
         </div>
       </div>
     </div>
@@ -192,17 +197,20 @@ import { courses } from '../data/content.js';
       </div>
     </div>
 
-    <a href="/about-us/" class="nav-link" style="padding: 8px 12px;">About</a>
-    <a href="/blog/" class="nav-link" style="padding: 8px 12px;">Blog</a>
+    <!-- FAQ -->
     <a href="/faq/" class="nav-link" style="padding: 8px 12px;">FAQ</a>
+
+    <!-- BLOG -->
+    <a href="/blog/" class="nav-link" style="padding: 8px 12px;">Blog</a>
+
   </div>
 
   <!-- CTA -->
   <a id="nav-cta" href="/request-a-quote/"
-    style="background:#1a3020;color:#f5f0e8;font-size:13px;font-weight:700;padding:11px 24px;border-radius:100px;text-decoration:none;transition:all 0.25s;box-shadow:0 3px 14px rgba(26,48,32,0.18);flex-shrink:0;letter-spacing:0.01em;"
-    onmouseover="this.style.background='#234d2c';this.style.transform='translateY(-1px)';this.style.boxShadow='0 7px 24px rgba(26,48,32,0.28)'"
-    onmouseout="this.style.background='#1a3020';this.style.transform='translateY(0)';this.style.boxShadow='0 3px 14px rgba(26,48,32,0.18)'">
-    Plan My Trip →
+    style="background:linear-gradient(135deg,#e8a850,#c87d28);color:#fff;font-size:13px;font-weight:700;padding:11px 22px;border-radius:100px;text-decoration:none;transition:all 0.25s;box-shadow:0 3px 14px rgba(200,125,40,0.35);flex-shrink:0;letter-spacing:0.01em;white-space:nowrap;"
+    onmouseover="this.style.transform='translateY(-1px)';this.style.boxShadow='0 7px 24px rgba(200,125,40,0.5)'"
+    onmouseout="this.style.transform='translateY(0)';this.style.boxShadow='0 3px 14px rgba(200,125,40,0.35)'">
+    Plan Your Trip →
   </a>
 
   <!-- Mobile toggle -->
@@ -224,13 +232,13 @@ import { courses } from '../data/content.js';
   </div>
   <div style="display:flex;flex-direction:column;gap:4px;">
     {[
-      {label:'Home', href:'/'},
-      {label:'All Golf Courses', href:'/all-golf-courses/'},
-      {label:'Lodging', href:'/lodging/'},
-      {label:'Dining', href:'/dining/'},
-      {label:'About', href:'/about-us/'},
-      {label:'Blog', href:'/blog/'},
-      {label:'FAQ', href:'/faq/'},
+      {label:'Home',            href:'/'},
+      {label:'About',           href:'/about-us/'},
+      {label:'Courses',         href:'/all-golf-courses/'},
+      {label:'Lodging',         href:'/lodging/'},
+      {label:'Dining',          href:'/dining/'},
+      {label:'FAQ',             href:'/faq/'},
+      {label:'Blog',            href:'/blog/'},
     ].map(l=>(
       <a href={l.href} style="font-size:20px;color:#3a4a3e;text-decoration:none;padding:13px 0;border-bottom:1px solid rgba(168,140,90,0.12);transition:color 0.2s;font-weight:500;" onmouseover="this.style.color='#a06c30'" onmouseout="this.style.color='#3a4a3e'">{l.label}</a>
     ))}
