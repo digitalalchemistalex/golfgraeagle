@@ -2,7 +2,8 @@
 import Base from '../layouts/Base.astro';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
-import { courses, lodging, siteConfig } from '../data/content.js';
+import { courses, lodging, siteConfig, imageAlts } from '../data/content.js';
+const getImgAlt = (src, fallback) => { const f = (src || '').split('/').pop().split('?')[0]; return (imageAlts || {})[f] || fallback; };
 
 const HERO_IMG = '/wp-images/DJI_0006-Edit.jpg';
 
