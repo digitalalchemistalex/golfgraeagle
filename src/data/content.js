@@ -22,6 +22,91 @@ export const siteConfig = {
   },
 };
 
+
+// ── SEO alt text map — filename → descriptive alt text ───────────────
+// Used by portfolio template: imageAlts[filename] || contextual fallback
+export const imageAlts = {
+  // HOMEPAGE / AERIAL
+  'DJI_0006-Edit.jpg': 'Aerial view of Graeagle California — Feather River winding through Sierra Nevada golf meadows',
+  // GRAEAGLE MEADOWS
+  'DJI_0230-Edit.jpg': 'Graeagle Meadows Golf Course — aerial view of fairways along Feather River, Graeagle CA',
+  'DSC5446-Edit.jpg': 'Graeagle Meadows Golf Course — signature hole with mountain and Sierra pine backdrop',
+  'DJI_0629-2-Edit-scaled.jpg': 'Graeagle Meadows Golf Course — drone aerial of full 18-hole layout, Graeagle CA',
+  // WHITEHAWK RANCH
+  'P9151812-1.jpg': 'Whitehawk Ranch Golf Course — fairway through Sierra Nevada forest, Clio CA',
+  'popup-home.webp': 'Whitehawk Ranch Golf Course — scenic mountain golf hole framed by pines',
+  // PLUMAS PINES
+  '13th-Fairway-from-Tee-22x35-1.jpg': 'Plumas Pines Golf Resort — 13th fairway view from tee box, Graeagle CA',
+  '6th-Fairway25x45-copy.jpg': 'Plumas Pines Golf Resort — 6th fairway lined with towering Sierra pines',
+  '2nd-Green-28x42-Looking-west-copy.jpg': 'Plumas Pines Golf Resort — 2nd green with Sierra Nevada mountain views',
+  'Owen-Drone-2.jpg': 'Plumas Pines Golf Resort — drone aerial of course near Feather River, Graeagle CA',
+  // GRIZZLY RANCH COURSE
+  'grizzly-ranch-.jpeg': 'Grizzly Ranch Golf Club — aerial of championship course at 4800 ft elevation, Portola CA',
+  'grizzly-ranch--1024x682.webp': 'Grizzly Ranch Golf Club — fairway with dramatic elevation change and Sierra forest',
+  'grizzlydeck_orig.jpg': 'Grizzly Ranch Golf Club — clubhouse outdoor deck at night overlooking the course',
+  // NAKOMA DRAGON
+  'the-dragon-golf-at-nakoma-feather-river-1639x1080.jpg': 'Nakoma Dragon Golf Course — aerial view of The Dragon championship course, Clio CA',
+  'draong-golf-at-nakoma-18-hole-1620x1080.jpg': 'The Dragon at Nakoma — 18-hole championship course designed by Robin Nelson',
+  'outdoor-dining-frank-lloyd-wright-lodge-lawn.jpg': 'Frank Lloyd Wright Nakoma Lodge — outdoor lawn dining at Fifty44 Restaurant, Clio CA',
+  'altitude-recreation-center-dusk.jpg': 'Nakoma Resort recreation center at dusk — pool, spa and fitness facilities',
+  // RIVER PINES RESORT
+  'sign.jpg': 'River Pines Resort entrance sign — golf and lodging packages, Graeagle California',
+  'DJI_0949-Edit.jpg': 'River Pines Resort — aerial view of main lodge and entrance, Graeagle CA',
+  'DJI_0013.jpg': 'River Pines Resort — aerial view of pool and hot tub surrounded by Sierra pines',
+  'DJI_0021.jpg': 'River Pines Resort — outdoor swimming pool and patio seating, Graeagle CA',
+  'pool3.jpg': 'River Pines Resort — drone aerial of pool, tennis courts and forested resort grounds',
+  'Bar.jpg': 'River Pines Resort — outdoor poolside bar with red stools under pine trees',
+  'Bar3.jpg': 'River Pines Resort — outdoor bar and pool complex surrounded by Sierra Nevada pines',
+  'Poolside1.jpg': 'River Pines Resort — poolside seating and outdoor bar, Graeagle CA',
+  'Cabin-3-006.webp': 'River Pines Resort — A-frame cabin bedroom with vaulted pine ceiling, Graeagle CA',
+  'Cabin-3-008.webp': 'River Pines Resort — cabin interior with full kitchen, loft stairs and living room',
+  'Cabin-6-005.webp': 'River Pines Resort — cozy pine-wall cabin living room with flat-screen TV',
+  // CHALET VIEW LODGE
+  'ChaletView-02.webp': 'Chalet View Lodge — A-frame entrance at dusk, Graeagle CA golf lodging',
+  'ChaletView-21.webp': 'Chalet View Lodge — outdoor pool and hot tub surrounded by Sierra Nevada pines',
+  'ChaletView-22.webp': 'Chalet View Lodge — main building exterior with Eureka Peak Brewing Co. on-site',
+  'Roadhouse-at-River-Pines-.jpg': 'Roadhouse at River Pines Resort — outdoor dining and bar area, Graeagle CA',
+  // GRIZZLY GRILL
+  'Grizzly-Grill-.jpg': 'Grizzly Grill — interior dining room with exposed beams and mountain rustic decor, Graeagle CA',
+  'Grizzly-Grill--1024x683.jpg': 'Grizzly Grill — cozy dining room with stone hearth inside Plumas National Forest',
+  'unnamed-3.webp': 'Grizzly Grill Restaurant and Bar — exterior at dusk with iconic bear sign, Graeagle CA',
+  // IRON DOOR
+  'unnamed-1.webp': 'Iron Door Restaurant — ribeye steak with mashed potatoes and seasonal vegetables, Graeagle CA',
+  'unnamed-2.webp': 'Iron Door Restaurant — fresh lobster tail with rice and grilled vegetables',
+  'unnamed-5.webp': 'Iron Door Restaurant — house-made clam chowder, a signature dish since 1961',
+  // SARDINE LAKE RESORT
+  'Sardine-Lake-Resort.jpg': 'Sardine Lake Resort — entrance sign with alpine lake and Sierra Nevada peaks, Gold Lake CA',
+  'Sardine-Lake-Resort-1024x682.jpg': 'Sardine Lake Resort — lakeside lodge setting with Sierra mountain backdrop',
+  '5cb616deea137df066021704_gallery-img-v-001-full.jpg': 'Sardine Lake Resort — main log lodge with Boats for Hire sign, Gold Lake CA',
+  '5cb6198f744f42a15ca5ada2_gallery-img-h-002-sq.jpg': 'Sardine Lake — dramatic Sierra Nevada granite peaks above crystal blue alpine lake',
+  '5cb2d8bb2edee088348216da_cabin-4-square.jpg': 'Sardine Lake Resort — Summit Lake cabin with log construction and covered front porch',
+  '5cb61a14c62f06de6789298a_gallery-img-h-004-sq.jpg': 'Sardine Lake Resort — rustic forest cabin nestled among Sierra pines, Gold Lake CA',
+  '5cb61a3aea137dd32d0234aa_gallery-img-h-005-sq.jpg': 'Sardine Lake Resort — traditional log cabin exterior, Sierra Nevada Gold Lake area',
+  // EUREKA PEAK BREWING
+  'eureka-peak-brewing-company.jpg': 'Eureka Peak Brewing Co. — sign with stone wall and flower boxes at Chalet View Lodge, Graeagle CA',
+  'outdoor-seating.jpg': 'Eureka Peak Brewing Co. — outdoor patio at sunset with string lights and Sierra pines',
+  'exterior.jpg': 'Eureka Peak Brewing Co. — exterior building with copper sign and mountain backdrop, Graeagle CA',
+  'interior.jpg': 'Eureka Peak Brewing Co. — panoramic taproom bar with wood details and craft beer on draft',
+  'brewery-bar.jpg': 'Eureka Peak Brewing Co. — bar counter with Edison bulb lighting and multiple draft taps',
+  'brewery-pool-table.jpg': 'Eureka Peak Brewing Co. — game room with pool table, stone fireplace and lounge seating',
+  'caption.jpg': 'Eureka Peak Brewing Co. — full complex with outdoor seating, cornhole lawn and Chalet View Lodge',
+  // LONGBOARDS
+  'Longboards-Deck-Photo.webp': 'Longboards Bar and Grill — deck with Sierra Nevada mountain views, River Pines Resort Graeagle',
+  // SIERRA SMOKESHOW
+  'Sierra-SmokeShow-.jpg': 'Sierra SmokeShow — BBQ restaurant interior, Blairsden-Graeagle CA near golf courses',
+  // CUCCIAS
+  'Cuccias.png': "Cuccia's Restaurant — exterior at dusk with string lights, Pasta Pizza Wine Bar Graeagle CA",
+  'unnamed.webp': "Cuccia's Restaurant — daytime exterior with Pasta-Pizza-Wine Bar signage, Graeagle CA",
+  'unnamed2.jpg': "Cuccia's Restaurant — open deck seating with panoramic Sierra Nevada mountain views",
+  'unnamed1.jpg': "Cuccia's Restaurant — house-made pasta dish served on the mountain-view deck",
+  'unnamed3.jpg': "Cuccia's Restaurant — fresh salmon with pesto, a signature dish in Graeagle CA",
+  // GUMBAS
+  "Gumbas-II-Go.jpg": "Gumba's II Go — Family Pizza storefront exterior, Graeagle CA near golf courses",
+  // MEADOWS RESTAURANT
+  'Graeagle-Meadows-Golf-Course-Restaurant.jpg': 'Graeagle Meadows Golf Course Restaurant — clubhouse dining with fairway and mountain views',
+};
+
+
 export const courses = [
   {
     slug: 'graeagle-meadows',

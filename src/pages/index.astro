@@ -92,7 +92,7 @@ const homeFaqSchema = {
   <div class="hero-strip">
     {courses.map((c) => (
       <a href={`/portfolio/${c.slug === "nakoma-dragon" ? "nakoma-dragon-golf-packages" : c.slug + "-golf-packages"}`} class="strip-item" aria-label={`View ${c.name}`}>
-        <img src={c.hero} alt={c.name} class="strip-thumb" loading="lazy" />
+        <img src={c.hero} alt={getImgAlt(c.hero, `${c.name} Golf Course — Graeagle CA`)} class="strip-thumb" loading="lazy" />
         <div class="strip-dim"></div>
         <span class="strip-label">{c.name.replace(' — The Dragon','').replace('Graeagle ','')}</span>
       </a>
@@ -170,7 +170,7 @@ const homeFaqSchema = {
     <div class="courses-five-grid">
       {[courses[0], courses[1], courses[2], courses[3], courses[4]].map((c,i)=>(
         <div class={`reveal delay-${i*75} course-card-equal`} onclick={`window.location='/courses/${c.slug}'`} style="cursor:pointer;">
-          <img src={c.hero} alt={`${c.name} Golf Course`} loading="lazy" class="course-card-img"/>
+          <img src={c.hero} alt={getImgAlt(c.hero, `${c.name} Golf Course — Graeagle, California`)} loading="lazy" class="course-card-img"/>
           <div class="card-gradient"></div>
           <div class="course-card-body">
             <span style="font-size:10px;color:rgba(232,168,80,0.65);letter-spacing:0.1em;text-transform:uppercase;">{c.par} par · {c.yards.toLocaleString()} yds · {c.designer}</span>
@@ -246,7 +246,7 @@ const homeFaqSchema = {
     <div class="lodging-four-grid">
       {lodging.map((l, i) => (
         <div class={`reveal delay-${i*75} lodging-equal-card`} onclick={`window.location='/portfolio/${l.slug}'`} style="cursor:pointer;">
-          <img src={l.hero} alt={l.name} loading="lazy" class="course-card-img"/>
+          <img src={l.hero} alt={getImgAlt(l.hero, `${l.name} — Graeagle CA lodging for golf groups`)} loading="lazy" class="course-card-img"/>
           <div class="card-gradient"></div>
           <div class="course-card-body">
             <h3 style="font-family:'Playfair Display',serif;font-size:clamp(16px,1.4vw,20px);color:#f0f8f2;margin:0 0 6px;line-height:1.2;">{l.name}</h3>
