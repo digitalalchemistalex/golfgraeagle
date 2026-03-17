@@ -326,22 +326,24 @@ export const POST: APIRoute = async ({ request }) => {
       }
     }
 
-    // 2. Submit to HubSpot (fire and forget — don't block response)
+    // 2. Submit to HubSpot (fire and forget)
     submitToHubspot(body).catch(e => console.error('[hubspot] Error:', e));
 
-    // 3. Send customer confirmation email
+    // 3. Send customer confirmation email (awaited — Vercel kills fire-and-forget)
     const customerSubject = `Your Graeagle Golf Trip Request — We'll be in touch within 24 hours`;
     const customerTo     = TEST_MODE ? DEV_EMAIL.email : body.email;
     const customerToName = TEST_MODE ? DEV_EMAIL.name  : `${body.firstName} ${body.lastName}`;
-    sendEmail(customerTo, customerToName, TEST_MODE ? `[TEST] ${customerSubject}` : customerSubject, customerEmailHtml(body))
-      .catch(e => console.error('[email] Customer email error:', e));
+    try {
+      await sendEmail(customerTo, customerToName, TEST_MODE ? `[TEST] ${customerSubject}` : customerSubject, customerEmailHtml(body));
+    } catch(e: any) { console.error('[email] Customer error:', e.message); }
 
-    // 4. Send admin notifications to all 4
+    // 4. Send admin notifications (awaited)
     const adminSubject = `${TEST_MODE ? '[TEST] ' : ''}🏌️ New GGE Lead: ${body.firstName} ${body.lastName} — ${body.partySize} golfers, ${body.arrivalDate}`;
     const adminHtml = adminEmailHtml(body, leadId);
     for (const admin of ADMIN_EMAILS) {
-      sendEmail(admin.email, admin.name, adminSubject, adminHtml)
-        .catch(e => console.error(`[email] Admin email error (${admin.email}):`, e));
+      try {
+        await sendEmail(admin.email, admin.name, adminSubject, adminHtml);
+      } catch(e: any) { console.error(`[email] Admin error (${admin.email}):`, e.message); }
     }
 
     return new Response(JSON.stringify({ success: true, id: leadId }), {

@@ -23,6 +23,8 @@ export async function sendMail(opts: MailOptions): Promise<void> {
   const transporter = nodemailer.createTransport({
     host, port, secure: port === 465,
     auth: { user, pass },
+    connectionTimeout: 10000,
+    greetingTimeout: 10000,
   });
 
   await transporter.sendMail({
@@ -32,5 +34,5 @@ export async function sendMail(opts: MailOptions): Promise<void> {
     html: opts.html,
   });
 
-  console.log(`[mailer] Sent to ${opts.to}`);
+  console.log(`[mailer] ✅ Sent to ${opts.to}: ${opts.subject}`);
 }
