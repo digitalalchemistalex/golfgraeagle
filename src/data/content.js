@@ -104,6 +104,25 @@ export const imageAlts = {
   "Gumbas-II-Go.jpg": "Gumba's II Go — Family Pizza storefront exterior, Graeagle CA near golf courses",
   // MEADOWS RESTAURANT
   'Graeagle-Meadows-Golf-Course-Restaurant.jpg': 'Graeagle Meadows Golf Course Restaurant — clubhouse dining with fairway and mountain views',
+
+  // ROADHOUSE AT RIVER PINES
+  'unnamed-20.webp': 'Roadhouse at River Pines — dining room interior with wood paneling, bar and golf on TV',
+  // GRAEAGLE RESTAURANT
+  'unnamed-10.webp': 'Graeagle Restaurant — historic dining room interior with mason jar lights and pine wainscoting, since 1958',
+  // MOUNTAIN FROSTEE
+  'unnamed-25.webp': 'Graeagle Mountain Frostee — soft serve ice cream cone with Sierra Nevada mountains and pines in background',
+  // IRON DOOR ADDITIONAL FOOD
+  'unnamed-6.webp': 'Iron Door Restaurant — house salad with tomato and cucumber on white square plate',
+  'unnamed-7.webp': 'Iron Door Restaurant — birthday dessert with whipped cream, chocolate drizzle and fresh strawberries',
+  // INN AT NAKOMA
+  'unnamed-40.webp': 'The Inn at Nakoma — Frank Lloyd Wright designed lodge exterior at golden hour, Clio CA',
+  'unnamed-35.webp': 'The Inn at Nakoma — resort indoor spa pool with decorative mosaic tile, Nakoma CA',
+  // EUREKA PEAK BREWING ADDITIONAL
+  'unnamed-30.webp': 'Eureka Peak Brewing Co. — outdoor patio at sunset with string lights and Sierra Nevada pine backdrop',
+  // TOWNHOMES AT PLUMAS PINES
+  '2024-07-20.webp': 'Townhomes at Plumas Pines — resort pool and recreation area surrounded by Sierra pines, Graeagle CA',
+  '2024-07-20-1.webp': 'Townhomes at Plumas Pines — pool deck with mountain views, Graeagle CA golf vacation rentals',
+  '2024-07-20-2.webp': 'Townhomes at Plumas Pines — outdoor amenities and landscaping, adjacent to Plumas Pines Golf Resort',
 };
 
 
@@ -322,8 +341,11 @@ export const lodging = [
       'Peak season May–October — book early for summer weekends',
     ],
     // Townhomes at Plumas Pines — using Plumas Pines Golf course photography (adjacent property)
-    hero: 'https://www.plumaspinesgolf.com/wp-content/uploads/sites/9383/2024/04/Owen-Drone-2.jpg',
+    hero: '/wp-images/2024-07-20.webp',
     images: [
+      '/wp-images/2024-07-20.webp',
+      '/wp-images/2024-07-20-1.webp',
+      '/wp-images/2024-07-20-2.webp',
     ],
     onSiteDining: ['longboards'],
     priceRange: '$299–$499',
@@ -420,13 +442,10 @@ export const lodging = [
       'Wedding and event venue, family-friendly spaces, arcade, dog-friendly (2 dogs, 75 lbs)',
     ],
     // Real photos from nakomaresort.com — verified March 2026
-    hero: 'https://nakomaresort.com/wp-content/uploads/inn-at-nakoma-lobby-fireplace.jpg',
+    hero: '/wp-images/unnamed-40.webp',
     images: [
-      'https://nakomaresort.com/wp-content/uploads/double-queen-rooms-inn-at-nakoma-resort.jpg',
-      'https://nakomaresort.com/wp-content/uploads/King-Suite-Sitting-Area.jpg',
-      'https://nakomaresort.com/wp-content/uploads/apex-room-altitude-at-nakoma-meetings_2.jpg',
-      'https://nakomaresort.com/wp-content/uploads/outdoor-dining-frank-lloyd-wright-lodge-lawn.jpg',
-      'https://nakomaresort.com/wp-content/uploads/altitude-recreation-center-dusk.jpg',
+      '/wp-images/unnamed-40.webp',
+      '/wp-images/unnamed-35.webp',
     ],
     description: 'The Inn at Nakoma is the only place in the world where you can sleep under a roof designed by Frank Lloyd Wright and walk directly to your tee time on The Dragon. The 42-room resort features Frette Italian linens, a lobby fireplace, heated outdoor pool, two hot tubs, and a full spa. Dining options include the Fifty44 Restaurant & Bar inside the historic FLW Lodge serving wood-fired dishes, and the casual Middle Fork Bistro & Bar. The resort is pet-friendly (2 dogs, 75 lbs each) and has an arcade, children\'s club, and on-site driving range.',
     onSiteDining: [],
@@ -530,11 +549,13 @@ export const dining = [
     highlights: ['Building dates to 1906 — original post-office doors on display', 'Steaks, prime rib, seafood, scratch pastas, jaeger schnitzel', 'Operating since 1961', 'Timber-beam dining room'],
     coordinates: { lat: 39.777736, lng: -120.616367 },
     location: '5 min east of Graeagle via Hwy 70',
-    hero: 'https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=1200&q=80&auto=format',
+    hero: '/wp-images/unnamed-1.webp',
     images: [
       '/wp-images/unnamed-1.webp',
       '/wp-images/unnamed-2.webp',
       '/wp-images/unnamed-5.webp',
+      '/wp-images/unnamed-6.webp',
+      '/wp-images/unnamed-7.webp',
     ],
   },
   {
@@ -574,7 +595,7 @@ export const dining = [
     highlights: ['On-site at River Pines Resort — no driving required', 'Steaks, ribs, and whisky flights', 'Group-dinner-friendly', 'Just off Hwy 70'],
     coordinates: { lat: 39.7775, lng: -120.6210 },
     location: 'River Pines Resort, off Hwy 70',
-    hero: '/wp-images/Roadhouse-at-River-Pines-.jpg',
+    hero: '/wp-images/unnamed-20.webp',
   },
   {
     slug: 'graeagle-restaurant',
@@ -586,7 +607,7 @@ export const dining = [
     highlights: ['Family-owned since 1958 — three generations', 'Inside the historic Box Factory Mill building', 'Breakfast, lunch, homemade pies', 'Downtown Graeagle'],
     coordinates: { lat: 39.75069, lng: -120.63224 },
     location: 'Historic Box Factory Mill, downtown Graeagle',
-    hero: 'https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=1200&q=80&auto=format',
+    hero: '/wp-images/unnamed-10.webp',
   },
   {
     slug: 'meadows-restaurant',
@@ -600,7 +621,7 @@ export const dining = [
     location: 'Graeagle Meadows Golf Course, 5 min via CA-89 N',
     hero: '/wp-images/Graeagle-Meadows-Golf-Course-Restaurant.jpg',
     images: [
-      '/wp-images/Graeagle-Meadows-Golf-Course-Restaurant.jpg',
+      '/wp-images/unnamed-10.webp',
     ],
   },
   {
@@ -662,11 +683,12 @@ export const dining = [
     location: 'Inside Chalet View Lodge, 5 min south via CA-89',
     hero: '/wp-images/outdoor-seating.jpg',
     images: [
-      '/wp-images/Cuccias.png',
-      '/wp-images/unnamed.webp',
-      '/wp-images/unnamed2.jpg',
-      '/wp-images/unnamed1.jpg',
-      '/wp-images/unnamed3.jpg',
+      '/wp-images/outdoor-seating.jpg',
+      '/wp-images/unnamed-30.webp',
+      '/wp-images/exterior.jpg',
+      '/wp-images/interior.jpg',
+      '/wp-images/brewery-bar.jpg',
+      '/wp-images/brewery-pool-table.jpg',
     ],
   images: [
     '/wp-images/eureka-peak-brewing-company.jpg'
@@ -734,7 +756,10 @@ export const dining = [
     coordinates: { lat: 39.7510, lng: -120.6330 },
     location: '28 Hwy 89, Graeagle, CA 96103',
     phone: '(530) 836-4811',
-    hero: 'https://images.unsplash.com/photo-1525059696034-4967a8e1dca2?w=1200&q=80&auto=format',
+    hero: '/wp-images/unnamed-25.webp',
+    images: [
+      '/wp-images/unnamed-25.webp',
+    ],
   },
   {
     slug: 'longboards',
