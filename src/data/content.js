@@ -127,16 +127,15 @@ export const courses = [
       'Signature 2nd hole with green complex',
       'Affordable rates — exceptional value',
     ],
-    // Official photos from plumaspinesgolf.com — aerial and course photography
-    hero: 'https://www.plumaspinesgolf.com/wp-content/uploads/sites/9383/2024/04/Owen-Drone-2.jpg?w=1920&h=700&crop=1',
+    // Official photos from plumaspinesgolf.com — verified clean course shots
+    hero: 'https://www.plumaspinesgolf.com/wp-content/uploads/sites/9383/2024/04/13th-Fairway-from-Tee-22x35-1.jpg',
     images: [
-      'https://www.plumaspinesgolf.com/wp-content/uploads/sites/9383/2024/04/Owen-Drone-2.jpg?w=1920&h=700&crop=1',
+      'https://www.plumaspinesgolf.com/wp-content/uploads/sites/9383/2024/04/13th-Fairway-from-Tee-22x35-1.jpg',
+      'https://www.plumaspinesgolf.com/wp-content/uploads/sites/9383/2024/04/6th-Fairway25x45-copy.jpg',
       'https://www.plumaspinesgolf.com/wp-content/uploads/sites/9383/2024/04/2nd-Green-28x42-Looking-west-copy.jpg',
-      'https://www.plumaspinesgolf.com/wp-content/uploads/sites/9383/2024/03/Plumas-Pines-Graeagle-Golf-Course.jpg',
+      'https://www.plumaspinesgolf.com/wp-content/uploads/sites/9383/2024/04/Owen-Drone-2.jpg',
+      'https://www.plumaspinesgolf.com/wp-content/uploads/sites/9383/2024/04/Clubhouse-from-9th-Tee-25x38-1.jpg',
       'https://www.plumaspinesgolf.com/wp-content/uploads/sites/9383/2024/03/Plumas-Pines-Golf-Course2.jpg',
-      'https://www.plumaspinesgolf.com/wp-content/uploads/sites/9383/2024/04/Owen-Drone-2-lighter-1200.png?w=1024',
-      'https://www.plumaspinesgolf.com/wp-content/uploads/sites/9383/2024/04/hole2_highres_7c06c2.jpg',
-      'https://www.plumaspinesgolf.com/wp-content/uploads/sites/9383/2024/04/GolfShop_4f1fef.jpg',
     ],
     description: 'Plumas Pines Golf Resort, designed by Homer Flint and opened in 1980, sits deep in the pines with tighter fairways than its Graeagle neighbors. Despite playing just 6,504 yards, a slope of 132 means every shot demands precision. The signature second hole features a dramatic green complex looking west over the valley. Outstanding value among the five Graeagle courses.',
     bestFor: 'Shot-makers, value seekers, golfers who want a tough test',
@@ -166,12 +165,13 @@ export const courses = [
       'Exposed ridgeline holes with panoramic views',
       'Semi-private — limited public access',
     ],
-    // Official photos from grizzlyranchgolfclub.com
-    hero: 'https://grizzlyranchgolfclub.com/wp-content/uploads/2025/06/IMG_0666-2-scaled.jpg',
+    // Official photos from grizzlyranchgolfclub.com — verified clean course shots
+    hero: 'https://grizzlyranchgolfclub.com/wp-content/uploads/2025/06/2dfdf8_586aabb07dde409db509af8fd0b9da1amv2-1.jpg',
     images: [
+      'https://grizzlyranchgolfclub.com/wp-content/uploads/2025/06/2dfdf8_586aabb07dde409db509af8fd0b9da1amv2-1.jpg',
       'https://grizzlyranchgolfclub.com/wp-content/uploads/2025/06/IMG_0666-2-scaled.jpg',
-      'https://grizzlyranchgolfclub.com/wp-content/uploads/2025/06/IMG_0678-1.jpg',
-      'https://grizzlyranchgolfclub.com/wp-content/uploads/2025/07/GR-Sign-Entrance.jpg',
+      'https://grizzlyranchgolfclub.com/wp-content/uploads/2025/06/2dfdf8_9b7f63a906194188b93661b18b351578mv2.jpg',
+      'https://grizzlyranchgolfclub.com/wp-content/uploads/2025/10/2dfdf8_63c6afdb11ea45daa6956e5f61fac942mv2.jpg',
     ],
     description: 'Grizzly Ranch Golf Club, designed by Bob Cupp and opened in 2005, is the region\'s most demanding course. At 7,411 yards with a slope of 140 and course rating of 74.9, it plays every inch of its length through dramatic mountain terrain with significant elevation changes, exposed ridgeline holes, and panoramic Sierra views. Semi-private — access is through packages.',
     bestFor: 'Scratch and low-handicap golfers, bucket-list rounds, groups wanting a serious challenge',
