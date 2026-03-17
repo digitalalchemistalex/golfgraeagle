@@ -153,9 +153,11 @@ import { courses } from '../data/content.js';
           <div>
             <p style="font-size:10px;color:#a06c30;text-transform:uppercase;letter-spacing:0.12em;font-weight:700;margin:0 0 11px;">Fine Dining</p>
             {[
-              {name:'Longboards Bar & Grill', href:'/dining'},
-              {name:'Sardine Lake Resort', href:'/dining'},
-              {name:'Iron Door Restaurant', href:'/dining'},
+              {name:'Grizzly Grill',           href:'/portfolio/grizzly-grill/'},
+              {name:'Iron Door Restaurant',    href:'/portfolio/iron-door-restaurant/'},
+              {name:'Sardine Lake Resort',     href:'/portfolio/sardine-lake-resort/'},
+              {name:'Longboards Bar & Grill',  href:'/portfolio/longboards-bar-and-grill/'},
+              {name:"Cuccia's",                href:'/portfolio/cuccias/'},
             ].map(r=>(
               <a href={r.href} style="display:block;font-size:13px;color:#5a7060;text-decoration:none;margin-bottom:7px;padding:5px 7px;border-radius:6px;transition:all 0.15s;font-weight:500;" onmouseover="this.style.color='#1a3020';this.style.background='rgba(26,48,32,0.05)'" onmouseout="this.style.color='#5a7060';this.style.background='transparent'">{r.name}</a>
             ))}
@@ -163,11 +165,13 @@ import { courses } from '../data/content.js';
           <div>
             <p style="font-size:10px;color:#a06c30;text-transform:uppercase;letter-spacing:0.12em;font-weight:700;margin:0 0 11px;">Casual</p>
             {[
-              {name:'Grizzly Grill', href:'/dining'},
-              {name:'Roadhouse at River Pines', href:'/dining'},
-              {name:"Cuccia's", href:'/dining'},
-              {name:'Sierra SmokeShow', href:'/dining'},
-              {name:"Gumba's II Go", href:'/dining'},
+              {name:'Roadhouse at River Pines',href:'/portfolio/roadhouse-at-river-pines/'},
+              {name:'Sierra SmokeShow',        href:'/portfolio/sierra-smokeshow/'},
+              {name:"Gumba's II Go",           href:'/portfolio/gumbas-ii-go/'},
+              {name:'Little Bite Deli',        href:'/portfolio/little-bite-deli/'},
+              {name:'Graeagle Restaurant',     href:'/portfolio/graeagle-restaurant/'},
+              {name:'Meadows Restaurant',      href:'/portfolio/graeagle-meadows-golf-course-restaurant/'},
+              {name:'Mountain Frostee',        href:'/portfolio/graeagle-mountain-frostee/'},
             ].map(r=>(
               <a href={r.href} style="display:block;font-size:13px;color:#5a7060;text-decoration:none;margin-bottom:7px;padding:5px 7px;border-radius:6px;transition:all 0.15s;font-weight:500;" onmouseover="this.style.color='#1a3020';this.style.background='rgba(26,48,32,0.05)'" onmouseout="this.style.color='#5a7060';this.style.background='transparent'">{r.name}</a>
             ))}
@@ -175,10 +179,10 @@ import { courses } from '../data/content.js';
           <div>
             <p style="font-size:10px;color:#a06c30;text-transform:uppercase;letter-spacing:0.12em;font-weight:700;margin:0 0 11px;">Brews &amp; Bars</p>
             {[
-              {name:'Eureka Peak Brewing', href:'/dining'},
-              {name:'The Brewing Lair', href:'/dining'},
-              {name:'Mohawk Tavern', href:'/dining'},
-              {name:'Knotty Pine Tavern', href:'/dining'},
+              {name:'Eureka Peak Brewing',     href:'/portfolio/eureka-peak-brewing-co/'},
+              {name:'The Brewing Lair',        href:'/portfolio/the-brewing-lair/'},
+              {name:'Mohawk Tavern',           href:'/portfolio/mohawk-tavern/'},
+              {name:'Knotty Pine Tavern',      href:'/portfolio/the-knotty-pine-tavern/'},
             ].map(r=>(
               <a href={r.href} style="display:block;font-size:13px;color:#5a7060;text-decoration:none;margin-bottom:7px;padding:5px 7px;border-radius:6px;transition:all 0.15s;font-weight:500;" onmouseover="this.style.color='#1a3020';this.style.background='rgba(26,48,32,0.05)'" onmouseout="this.style.color='#5a7060';this.style.background='transparent'">{r.name}</a>
             ))}
