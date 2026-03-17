@@ -91,7 +91,7 @@ const homeFaqSchema = {
   <!-- Film strip: 5 courses, sits just below nav -->
   <div class="hero-strip">
     {courses.map((c) => (
-      <a href={`/courses/${c.slug}`} class="strip-item" aria-label={`View ${c.name}`}>
+      <a href={`/portfolio/${c.slug === "nakoma-dragon" ? "nakoma-dragon-golf-packages" : c.slug + "-golf-packages"}`} class="strip-item" aria-label={`View ${c.name}`}>
         <img src={c.hero} alt={c.name} class="strip-thumb" loading="lazy" />
         <div class="strip-dim"></div>
         <span class="strip-label">{c.name.replace(' — The Dragon','').replace('Graeagle ','')}</span>
@@ -175,7 +175,7 @@ const homeFaqSchema = {
           <div class="course-card-body">
             <span style="font-size:10px;color:rgba(232,168,80,0.65);letter-spacing:0.1em;text-transform:uppercase;">{c.par} par · {c.yards.toLocaleString()} yds · {c.designer}</span>
             <h3 style="font-family:'Playfair Display',serif;font-size:clamp(16px,1.4vw,20px);color:#f0f8f2;margin:6px 0 12px;line-height:1.2;">{c.name}</h3>
-            <a href={`/courses/${c.slug}`} class="link-gold-sm">View course →</a>
+            <a href={`/portfolio/${c.slug === "nakoma-dragon" ? "nakoma-dragon-golf-packages" : c.slug + "-golf-packages"}`} class="link-gold-sm">View course →</a>
           </div>
         </div>
       ))}

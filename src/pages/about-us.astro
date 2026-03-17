@@ -68,7 +68,7 @@ import { courses } from '../data/content.js';
         <h2 style="font-family:'Playfair Display',serif;font-size:clamp(28px,3.5vw,40px);font-weight:400;color:#1a2e1a;margin:0 0 20px;">The 5 courses we work with</h2>
         <div style="display:flex;flex-direction:column;gap:10px;">
           {courses.map(c => (
-            <a href={`/courses/${c.slug}`} style="display:flex;justify-content:space-between;align-items:center;padding:16px 20px;background:#f8faf4;border:1px solid #e0ece0;border-radius:12px;text-decoration:none;transition:all .2s;"
+            <a href={`/portfolio/${c.slug === "nakoma-dragon" ? "nakoma-dragon-golf-packages" : c.slug + "-golf-packages"}`} style="display:flex;justify-content:space-between;align-items:center;padding:16px 20px;background:#f8faf4;border:1px solid #e0ece0;border-radius:12px;text-decoration:none;transition:all .2s;"
               onmouseover="this.style.borderColor='#e8a850';this.style.background='#fffbf0'"
               onmouseout="this.style.borderColor='#e0ece0';this.style.background='#f8faf4'">
               <div>

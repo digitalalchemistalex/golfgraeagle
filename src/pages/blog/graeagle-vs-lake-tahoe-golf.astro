@@ -192,7 +192,7 @@ const faqSchema = {
             { name: 'Grizzly Ranch', slug: 'grizzly-ranch', note: 'Slope 140 · Golf Digest Top 100' },
             { name: 'Nakoma Dragon', slug: 'nakoma-dragon', note: 'Slope 147 · FLW Clubhouse' },
           ].map(c => (
-            <a href={`/courses/${c.slug}`} class="bl-sidebar-course">
+            <a href={`/portfolio/${c.slug === "nakoma-dragon" ? "nakoma-dragon-golf-packages" : c.slug + "-golf-packages"}`} class="bl-sidebar-course">
               <div class="bl-sidebar-course-name">{c.name}</div>
               <div class="bl-sidebar-course-note">{c.note}</div>
             </a>

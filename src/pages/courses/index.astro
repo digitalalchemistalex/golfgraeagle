@@ -121,7 +121,7 @@ export const prerender = true;
     <!-- thumbnail strip -->
     <div class="ch-hero-strip">
       {courseData.map(c=>(
-        <a href={`/courses/${c.slug}`} class="ch-strip-thumb" title={c.name}>
+        <a href={`/portfolio/${c.slug === "nakoma-dragon" ? "nakoma-dragon-golf-packages" : c.slug + "-golf-packages"}`} class="ch-strip-thumb" title={c.name}>
           <img src={c.hero} alt={c.name} loading="lazy"/>
           <div class="ch-strip-label">{c.name.replace(' — The Dragon','')}</div>
         </a>
@@ -178,7 +178,7 @@ export const prerender = true;
                 <td class="ch-td ch-td-center ch-td-designer">{c.designer}</td>
                 <td class="ch-td ch-td-best">{c.bestFor}</td>
                 <td class="ch-td ch-td-center">
-                  <a href={`/courses/${c.slug}`} class="ch-table-link">View →</a>
+                  <a href={`/portfolio/${c.slug === "nakoma-dragon" ? "nakoma-dragon-golf-packages" : c.slug + "-golf-packages"}`} class="ch-table-link">View →</a>
                 </td>
               </tr>
             ))}
@@ -201,7 +201,7 @@ export const prerender = true;
         {courseData.map((c, i) => (
           <article class="ch-card reveal">
             <!-- Photo -->
-            <a href={`/courses/${c.slug}`} class="ch-card-img-wrap">
+            <a href={`/portfolio/${c.slug === "nakoma-dragon" ? "nakoma-dragon-golf-packages" : c.slug + "-golf-packages"}`} class="ch-card-img-wrap">
               <img src={c.hero} alt={`${c.name} Golf Course — Graeagle, California`} loading={i < 2 ? 'eager' : 'lazy'} class="ch-card-img"/>
               <div class="ch-card-img-overlay"></div>
               <div class="ch-card-badges">
@@ -219,7 +219,7 @@ export const prerender = true;
                   <h2 class="ch-card-name">{c.name}</h2>
                   <p class="ch-card-tagline">{c.tagline}</p>
                 </div>
-                <a href={`/courses/${c.slug}`} class="ch-card-cta">Full details →</a>
+                <a href={`/portfolio/${c.slug === "nakoma-dragon" ? "nakoma-dragon-golf-packages" : c.slug + "-golf-packages"}`} class="ch-card-cta">Full details →</a>
               </div>
 
               <p class="ch-card-desc">{c.description}</p>
@@ -287,7 +287,7 @@ export const prerender = true;
                 </div>
               </div>
 
-              <a href={`/courses/${c.slug}`} class="ch-card-btn">View full course details →</a>
+              <a href={`/portfolio/${c.slug === "nakoma-dragon" ? "nakoma-dragon-golf-packages" : c.slug + "-golf-packages"}`} class="ch-card-btn">View full course details →</a>
             </div>
           </article>
         ))}

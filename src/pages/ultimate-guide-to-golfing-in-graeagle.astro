@@ -148,7 +148,7 @@ const comparisons = [
     ].map(c => (
       <div style="padding:24px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.06);border-radius:16px;margin-bottom:16px;">
         <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:8px;margin-bottom:12px;">
-          <a href={`/courses/${c.slug}`} style="font-family:'Playfair Display',serif;font-size:20px;color:#f0f8f2;text-decoration:none;font-weight:400;">{c.name}</a>
+          <a href={`/portfolio/${c.slug === "nakoma-dragon" ? "nakoma-dragon-golf-packages" : c.slug + "-golf-packages"}`} style="font-family:'Playfair Display',serif;font-size:20px;color:#f0f8f2;text-decoration:none;font-weight:400;">{c.name}</a>
           <div style="display:flex;gap:12px;font-size:13px;color:rgba(240,248,242,0.35);">
             <span>Par {c.par}</span>
             <span>{c.yards} yds</span>
