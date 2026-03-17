@@ -10,12 +10,19 @@ const SUPA_KEY  = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIs
 const HUBSPOT_PORTAL_ID = '20743417';
 const HUBSPOT_FORM_ID   = '8ac29a68-a31f-41d4-9c5b-6c4549dd5dcf';
 
-const ADMIN_EMAILS = [
+const DEV_EMAIL = { name: 'Dev', email: 'ifyougetlockedout@protonmail.com' };
+
+const ALL_ADMIN_EMAILS = [
   { name: 'Sean Schaeffer',  email: 'sean@zoomaway.com' },
   { name: 'Mike Milligan',   email: 'mike@zoomaway.com' },
   { name: 'Mike Eskuchen',   email: 'MEskuchen@zoomaway.com' },
-  { name: 'Dev',             email: 'ifyougetlockedout@protonmail.com' },
+  DEV_EMAIL,
 ];
+
+// Set GGE_TEST_MODE=true in Vercel env vars during testing.
+// In test mode: admin emails go to dev only, customer email goes to dev only.
+const TEST_MODE = process.env.GGE_TEST_MODE === 'true';
+const ADMIN_EMAILS = TEST_MODE ? [DEV_EMAIL] : ALL_ADMIN_EMAILS;
 
 const FROM_EMAIL = 'info@golfgraeagle.com';
 const FROM_NAME  = 'GolfGraeagle.com';
@@ -324,11 +331,13 @@ export const POST: APIRoute = async ({ request }) => {
 
     // 3. Send customer confirmation email
     const customerSubject = `Your Graeagle Golf Trip Request — We'll be in touch within 24 hours`;
-    sendEmail(body.email, `${body.firstName} ${body.lastName}`, customerSubject, customerEmailHtml(body))
+    const customerTo     = TEST_MODE ? DEV_EMAIL.email : body.email;
+    const customerToName = TEST_MODE ? DEV_EMAIL.name  : `${body.firstName} ${body.lastName}`;
+    sendEmail(customerTo, customerToName, TEST_MODE ? `[TEST] ${customerSubject}` : customerSubject, customerEmailHtml(body))
       .catch(e => console.error('[email] Customer email error:', e));
 
     // 4. Send admin notifications to all 4
-    const adminSubject = `🏌️ New GGE Lead: ${body.firstName} ${body.lastName} — ${body.partySize} golfers, ${body.arrivalDate}`;
+    const adminSubject = `${TEST_MODE ? '[TEST] ' : ''}🏌️ New GGE Lead: ${body.firstName} ${body.lastName} — ${body.partySize} golfers, ${body.arrivalDate}`;
     const adminHtml = adminEmailHtml(body, leadId);
     for (const admin of ADMIN_EMAILS) {
       sendEmail(admin.email, admin.name, adminSubject, adminHtml)
