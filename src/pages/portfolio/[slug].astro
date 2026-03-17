@@ -63,13 +63,138 @@ const type = entry?.type;
 const c = item; // alias for rich course template compatibility
 const pageUrl = `${siteConfig.url}/portfolio/${slug}`;
 
-// Fallback title/desc
-const pageTitle = item
-  ? `${item.name} — Graeagle Golf Packages & Info | GolfGraeagle.com`
-  : `${slug} | GolfGraeagle.com`;
-const pageDesc = item?.description || item?.tagline || `Graeagle golf packages and information for ${slug}.`;
+// ── Titles matching WP indexed titles (from site audit) ───────────────────────
+const wpTitles: Record<string, string> = {
+  'graeagle-meadows-golf-packages':   'Graeagle Meadows Golf Group Packages | Stay and Play Deals',
+  'whitehawk-ranch-golf-packages':    'Whitehawk Ranch Golf Packages | Stay and Play in Graeagle, CA',
+  'plumas-pines-golf-packages':       'Plumas Pines Golf Group Packages | Stay and Play Deals',
+  'grizzly-ranch-golf-packages':      'Grizzly Ranch Golf Group Packages | Stay and Play Deals',
+  'nakoma-dragon-golf-packages':      'Nakoma Dragon Golf Packages | Graeagle Golf Stay & Play Packages',
+  'river-pines-resort-graeagle-ca':   'River Pines Resort | Graeagle Golf Group Packages & Stay and Play Deals',
+  'chalet-view-lodge-graeagle-ca':    'Chalet View Lodge | Graeagle Golf Group Packages & Stay and Play Deals',
+  'the-inn-at-nakoma-clio-ca':        'Inn at Nakoma | Graeagle Golf Group Packages & Stay and Play Deals',
+  'the-townhomes-at-plumas-pines':    'The Townhomes at Plumas Pines | Graeagle Golf Stay & Play',
+  'grizzly-grill':                    'Grizzly Grill | Gourmet Dining in Graeagle\'s Plumas National Forest',
+  'iron-door-restaurant':             'Iron Door Restaurant | Graeagle Golf Stay & Play Packages',
+  'roadhouse-at-river-pines':         'River Pines Resort | Graeagle Golf, Casino, Lodging & Dining',
+  'the-brewing-lair':                 'The Brewing Lair | Après-Golf Drinks for Graeagle Groups',
+  'eureka-peak-brewing-co':           'Eureka Peak Brewing Co. | Après-Golf Drinks for Graeagle Groups',
+  'gumbas-ii-go':                     "Gumba's II Go | Pizza & To-Go for Graeagle Golf Groups",
+  'sierra-smokeshow':                 'Sierra SmokeShow | BBQ Dining for Graeagle Golf Groups',
+  'little-bite-deli':                 'Little Bite Deli — Fresh Sandwiches & Salads in Blairsden | Graeagle',
+  'graeagle-restaurant':              'Graeagle Restaurant — Classic Café & Homestyle Dining Since 1958',
+  'graeagle-meadows-golf-course-restaurant': 'Graeagle Meadows Golf Course Restaurant | Dining for Golf Groups',
+};
+const pageTitle = wpTitles[slug] || (item ? `${item.name} | GolfGraeagle.com` : `${slug} | GolfGraeagle.com`);
+
+// ── Meta descriptions matching WP indexed descriptions ────────────────────────
+const wpDescs: Record<string, string> = {
+  'graeagle-meadows-golf-packages': 'Graeagle Meadows golf group packages with stay and play deals. Includes tee times, lodging, and trip planning for Graeagle groups.',
+  'whitehawk-ranch-golf-packages':  'Custom Whitehawk Ranch golf trips with lodging + guaranteed tee times. Best stay-and-play packages. Request a quote.',
+  'plumas-pines-golf-packages':     'Plumas Pines golf group packages with stay and play deals. Custom tee times, lodging, and trip planning for Graeagle groups.',
+  'grizzly-ranch-golf-packages':    'Grizzly Ranch golf group packages with stay and play deals. Custom tee times, lodging, and trip planning for Graeagle groups.',
+  'river-pines-resort-graeagle-ca': 'River Pines Resort cabins in Graeagle with golf group packages and stay and play deals from $299–$499 per golfer. Lodging, tee times, and trip planning included.',
+  'chalet-view-lodge-graeagle-ca':  'Stay at Chalet View Lodge in Graeagle with golf group packages and stay and play deals from $299–$499 per golfer. Lodging, tee times, and trip planning included.',
+  'the-inn-at-nakoma-clio-ca':      'Stay at the Inn at Nakoma with Graeagle golf group packages and stay and play deals from $299–$499 per golfer. Includes lodging, tee times, and trip planning.',
+  'grizzly-grill':                  'Discover Grizzly Grill in Plumas National Forest: gourmet menu, full bar, seasonal wild-game dishes, and forest views. Reserve your table today!',
+  'roadhouse-at-river-pines':       'Experience River Pines Resort near Graeagle: golf, casino, cozy lodging, spa services, four restaurants, event venues, and lakeside recreation. Book now!',
+  'the-brewing-lair':               'Craft beers and lawn-game vibe for Graeagle golf groups. Easy après-golf meet-up; group-friendly setup.',
+  'eureka-peak-brewing-co':         "Craft beers and casual vibe near Graeagle courses—great après-golf meet-up for groups. We can align stop times with your tee sheet.",
+  'gumbas-ii-go':                   "Gumba's II Go serves pizza and Italian favorites in Graeagle—easy pick-up for golf groups before or after tee times. Group-friendly, central location.",
+  'sierra-smokeshow':               'Sierra SmokeShow serves barbecue plates and sandwiches near Graeagle courses—easy for golf groups before or after tee times. Group-friendly setup.',
+  'little-bite-deli':               'Hidden gem on Highway 89—Little Bite Deli serves big sandwiches, crisp salads & friendly service. Perfect for lunch near Graeagle golf.',
+  'graeagle-restaurant':            'Family-owned café in the historic Box Factory Mill—serving breakfast, lunch & homemade pies in Graeagle since 1958. A local favorite.',
+  'graeagle-meadows-golf-course-restaurant': 'Graeagle Meadows Golf Course Restaurant serves golfers with clubhouse dining—perfect for group lunches or après-golf meals in Graeagle.',
+};
+const pageDesc = wpDescs[slug] || item?.description || item?.tagline || `Graeagle golf packages for ${item?.name || slug}.`;
+
+// ── Schema per page type ──────────────────────────────────────────────────────
+const buildSchema = () => {
+  if (!item) return null;
+
+  const breadcrumb = {
+    '@type': 'BreadcrumbList',
+    'itemListElement': [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: siteConfig.url },
+      { '@type': 'ListItem', position: 2, name: type === 'course' ? 'Golf Courses' : type === 'lodging' ? 'Lodging' : 'Dining', item: `${siteConfig.url}/${type === 'course' ? 'all-golf-courses' : type}` },
+      { '@type': 'ListItem', position: 3, name: item.name, item: pageUrl },
+    ],
+  };
+
+  if (type === 'course') {
+    return [
+      {
+        '@type': 'GolfCourse',
+        '@id': `${pageUrl}#golfcourse`,
+        name: `${item.name} Golf Course`,
+        description: item.description,
+        url: pageUrl,
+        numberOfHoles: 18,
+        address: { '@type': 'PostalAddress', streetAddress: item.address, addressRegion: 'CA', addressCountry: 'US' },
+        geo: item.coordinates ? { '@type': 'GeoCoordinates', latitude: item.coordinates?.lat, longitude: item.coordinates?.lng } : undefined,
+        designer: { '@type': 'Person', name: item.designer },
+        dateCreated: `${item.year}`,
+        image: item.hero,
+        amenityFeature: item.highlights?.map((h: string) => ({ '@type': 'LocationFeatureSpecification', name: h, value: true })),
+        potentialAction: { '@type': 'ReserveAction', target: { '@type': 'EntryPoint', urlTemplate: `${siteConfig.url}/request-a-quote` } },
+      },
+      breadcrumb,
+      {
+        '@type': 'FAQPage',
+        mainEntity: [
+          { '@type': 'Question', name: `How do I book a tee time at ${item.name}?`, acceptedAnswer: { '@type': 'Answer', text: `GolfGraeagle.com handles all ${item.name} tee time bookings as part of stay-and-play packages. Request a free quote at golfgraeagle.com/request-a-quote and we'll coordinate everything.` } },
+          { '@type': 'Question', name: `What is the slope rating at ${item.name}?`, acceptedAnswer: { '@type': 'Answer', text: `${item.name} has a slope rating of ${item.slope} and a course rating of ${item.rating}, playing ${item.yards?.toLocaleString()} yards from the back tees at par ${item.par}.` } },
+          { '@type': 'Question', name: `Who designed ${item.name}?`, acceptedAnswer: { '@type': 'Answer', text: `${item.name} was designed by ${item.designer} and opened in ${item.year}.` } },
+        ],
+      },
+    ];
+  }
+
+  if (type === 'lodging') {
+    return [
+      {
+        '@type': 'LodgingBusiness',
+        '@id': `${pageUrl}#lodging`,
+        name: item.name,
+        description: item.description,
+        url: pageUrl,
+        image: item.hero,
+        address: { '@type': 'PostalAddress', addressRegion: 'CA', addressCountry: 'US', addressLocality: 'Graeagle' },
+        geo: item.coordinates ? { '@type': 'GeoCoordinates', latitude: item.coordinates.lat, longitude: item.coordinates.lng } : undefined,
+        amenityFeature: item.highlights?.map((h: string) => ({ '@type': 'LocationFeatureSpecification', name: h, value: true })),
+        priceRange: '$299–$499 per golfer',
+        telephone: item.phone,
+        potentialAction: { '@type': 'ReserveAction', target: { '@type': 'EntryPoint', urlTemplate: `${siteConfig.url}/request-a-quote` } },
+      },
+      breadcrumb,
+    ];
+  }
+
+  if (type === 'dining') {
+    return [
+      {
+        '@type': 'Restaurant',
+        '@id': `${pageUrl}#restaurant`,
+        name: item.name,
+        description: item.description,
+        url: pageUrl,
+        image: item.hero,
+        servesCuisine: item.cuisine,
+        address: { '@type': 'PostalAddress', streetAddress: item.location, addressRegion: 'CA', addressCountry: 'US', addressLocality: 'Graeagle' },
+        geo: item.coordinates ? { '@type': 'GeoCoordinates', latitude: item.coordinates.lat, longitude: item.coordinates.lng } : undefined,
+        telephone: item.phone,
+        priceRange: item.category === 'fine-dining' ? '$$$' : item.category === 'brewery' || item.category === 'bar' ? '$$' : '$$',
+      },
+      breadcrumb,
+    ];
+  }
+
+  return [breadcrumb];
+};
+
+const pageSchema = buildSchema();
 ---
-<Base title={pageTitle} description={pageDesc}>
+<Base title={pageTitle} description={pageDesc} schema={pageSchema} canonical={pageUrl}>
   <Nav />
 
   {item && type === 'course' && (
