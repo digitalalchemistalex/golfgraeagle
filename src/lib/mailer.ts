@@ -1,6 +1,11 @@
+export interface Recipient {
+  name: string;
+  email: string;
+}
+
 export interface MailOptions {
-  to: string;
-  toName: string;
+  to: string | Recipient[];
+  toName?: string;
   subject: string;
   html: string;
 }
@@ -15,8 +20,16 @@ export async function sendMail(opts: MailOptions): Promise<void> {
   const pass = process.env.GGE_SMTP_PASS;
 
   if (!host || !user || !pass) {
-    console.warn(`[mailer] SMTP not configured — skipping email to ${opts.to}`);
+    console.warn(`[mailer] SMTP not configured — skipping`);
     return;
+  }
+
+  // Build To string
+  let toStr: string;
+  if (Array.isArray(opts.to)) {
+    toStr = opts.to.map(r => `"${r.name}" <${r.email}>`).join(', ');
+  } else {
+    toStr = opts.toName ? `"${opts.toName}" <${opts.to}>` : opts.to;
   }
 
   const nodemailer = await import('nodemailer');
@@ -28,11 +41,11 @@ export async function sendMail(opts: MailOptions): Promise<void> {
   });
 
   await transporter.sendMail({
-    from: `"${FROM_NAME}" <${FROM_EMAIL}>`,
-    to:   `"${opts.toName}" <${opts.to}>`,
+    from:    `"${FROM_NAME}" <${FROM_EMAIL}>`,
+    to:      toStr,
     subject: opts.subject,
-    html: opts.html,
+    html:    opts.html,
   });
 
-  console.log(`[mailer] ✅ Sent to ${opts.to}: ${opts.subject}`);
+  console.log(`[mailer] ✅ Sent: ${opts.subject} → ${toStr}`);
 }

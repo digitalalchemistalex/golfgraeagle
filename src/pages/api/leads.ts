@@ -215,8 +215,12 @@ function adminEmailHtml(b: any, leadId: string): string {
 }
 
 // ─── Send email ───────────────────────────────────────────
-async function sendEmail(to: string, toName: string, subject: string, html: string): Promise<void> {
-  await sendMail({ to, toName, subject, html });
+async function sendEmail(subject: string, html: string, to: import('../../lib/mailer').Recipient[] | string, toName?: string): Promise<void> {
+  if (typeof to === 'string') {
+    await sendMail({ to, toName: toName || '', subject, html });
+  } else {
+    await sendMail({ to, subject, html });
+  }
 }
 
 // ─── HubSpot Form Submission ───────────────────────────────
@@ -361,17 +365,15 @@ export const POST: APIRoute = async ({ request }) => {
     const customerTo     = TEST_MODE ? DEV_EMAIL.email : body.email;
     const customerToName = TEST_MODE ? DEV_EMAIL.name  : `${body.firstName} ${body.lastName}`;
     try {
-      await sendEmail(customerTo, customerToName, TEST_MODE ? `[TEST] ${customerSubject}` : customerSubject, customerEmailHtml(body));
+      await sendEmail(TEST_MODE ? `[TEST] ${customerSubject}` : customerSubject, customerEmailHtml(body), customerTo, customerToName);
     } catch(e: any) { console.error('[email] Customer error:', e.message); }
 
     // 4. Send admin notifications (awaited)
     const adminSubject = `${TEST_MODE ? '[TEST] ' : ''}🏌️ New GGE Lead: ${body.firstName} ${body.lastName} — ${body.partySize} golfers, ${body.arrivalDate}`;
     const adminHtml = adminEmailHtml(body, leadId);
-    for (const admin of ADMIN_EMAILS) {
-      try {
-        await sendEmail(admin.email, admin.name, adminSubject, adminHtml);
-      } catch(e: any) { console.error(`[email] Admin error (${admin.email}):`, e.message); }
-    }
+    try {
+      await sendEmail(adminSubject, adminHtml, ADMIN_EMAILS);
+    } catch(e: any) { console.error('[email] Admin error:', e.message); }
 
     return new Response(JSON.stringify({ success: true, id: leadId }), {
       status: 200, headers: { 'Content-Type': 'application/json' }
