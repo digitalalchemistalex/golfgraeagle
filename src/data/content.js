@@ -264,10 +264,17 @@ export const lodging = [
     ],
     // Feather River cabin resort — verified Unsplash (River Pines has no public CDN)
     // River Pines — using Grizzly Ranch Plumas County Sierra scenery (same region)
-    hero: 'https://grizzlyranchgolfclub.com/wp-content/uploads/2025/10/2dfdf8_63c6afdb11ea45daa6956e5f61fac942mv2.jpg',
+    hero: '/wp-images/sign.jpg',
     images: [
-      'https://grizzlyranchgolfclub.com/wp-content/uploads/2025/10/2dfdf8_2652021f2d6f4b8c8ba5ddbe49c8252dmv2.jpg',
-      'https://grizzlyranchgolfclub.com/wp-content/uploads/2025/10/2dfdf8_95fd67b644d04d7e8f13da42bb9808f6mv2.jpg',
+      '/wp-images/sign.jpg',
+      '/wp-images/Bar3.jpg',
+      '/wp-images/Pool.jpg',
+      '/wp-images/Bar.jpg',
+      '/wp-images/Pool2-1.jpg',
+      '/wp-images/Patio.jpg',
+      '/wp-images/Cabin-3-008.webp',
+      '/wp-images/Cabin-3-006.webp',
+      '/wp-images/Cabin-6-005.webp',
     ],
     onSiteDining: ['roadhouse'],
     priceRange: '$299–$499',
@@ -454,7 +461,11 @@ export const dining = [
     hero: '/wp-images/Sardine-Lake-Resort.jpg',
     images: [
       '/wp-images/Sardine-Lake-Resort.jpg',
-      '/wp-images/Sardine-Lake-Resort-1024x682.jpg',
+      '/wp-images/5cb616deea137df066021704_gallery-img-v-001-full.jpg',
+      '/wp-images/5cb6198f744f42a15ca5ada2_gallery-img-h-002-sq.jpg',
+      '/wp-images/5cb2d8bb2edee088348216da_cabin-4-square.jpg',
+      '/wp-images/5cb61a14c62f06de6789298a_gallery-img-h-004-sq.jpg',
+      '/wp-images/5cb61a3aea137dd32d0234aa_gallery-img-h-005-sq.jpg',
     ],
   images: [
     '/wp-images/Sardine-Lake-Resort.jpg',
@@ -529,7 +540,10 @@ export const dining = [
     highlights: ['Hand-tossed pizzas, oven-baked subs, pasta, salads', 'Fast and family-friendly', 'Easy group pick-up', '5 min west of Graeagle'],
     coordinates: { lat: 39.77054, lng: -120.61264 },
     location: '5 min west of Graeagle via CA-89 S and CA-70 W',
-    hero: 'https://images.unsplash.com/photo-1513104890138-7c749659a591?w=1200&q=80&auto=format',
+    hero: '/wp-images/Gumbas-II-Go.jpg',
+    images: [
+      '/wp-images/Gumbas-II-Go.jpg',
+    ],
   },
   {
     slug: 'cuccias',
@@ -542,7 +556,7 @@ export const dining = [
     coordinates: { lat: 39.7506, lng: -120.6326 },
     location: '545 Mohawk Hwy, Graeagle, CA 96103',
     phone: '(530) 836-2121',
-    hero: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=1200&q=80&auto=format',
+    hero: '/wp-images/Cuccias.png',
   },
   // ─── Breweries & Bars ───────────────────────────────────
   {
@@ -555,9 +569,12 @@ export const dining = [
     highlights: ['On-site at Chalet View Lodge', 'IPAs, stouts, saisons, and fruit-forward ales', 'Locally sourced seasonal food', 'Timber-framed lodge setting'],
     coordinates: { lat: 39.7552, lng: -120.6347 },
     location: 'Inside Chalet View Lodge, 5 min south via CA-89',
-    hero: '/wp-images/eureka-peak-brewing-company.jpg',
+    hero: '/wp-images/outdoor-seating.jpg',
     images: [
-      '/wp-images/eureka-peak-brewing-company.jpg',
+      '/wp-images/Cuccias.png',
+      '/wp-images/unnamed2.jpg',
+      '/wp-images/unnamed1.jpg',
+      '/wp-images/unnamed3.jpg',
     ],
   images: [
     '/wp-images/eureka-peak-brewing-company.jpg'
