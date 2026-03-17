@@ -25,74 +25,192 @@ const allCoursesSchema = [
       position: i + 1,
       name: c.name,
       url: `https://golfgraeagle.com/portfolio/${wpSlugMap[c.slug]}`,
-      description: c.description?.split('.')[0],
     })),
   },
   {
     '@type': 'FAQPage',
     mainEntity: [
       { '@type': 'Question', name: 'How many golf courses are in Graeagle California?', acceptedAnswer: { '@type': 'Answer', text: 'There are 5 championship golf courses in the Graeagle area of Northern California: Graeagle Meadows Golf Course, Whitehawk Ranch Golf Course, Plumas Pines Golf Resort, Grizzly Ranch Golf Club, and Nakoma (The Dragon) Golf Course. All 5 are within 25 minutes of each other.' } },
-      { '@type': 'Question', name: 'What is the best golf course in Graeagle?', acceptedAnswer: { '@type': 'Answer', text: 'Grizzly Ranch Golf Club is ranked Golf Digest Top 100 Greatest Public Courses in the US (2021) and is considered the most challenging. Nakoma (The Dragon) is the most unique, with the only golf clubhouse designed by Frank Lloyd Wright. Whitehawk Ranch was ranked Top 20 Golf Courses in California in 1998.' } },
+      { '@type': 'Question', name: 'What is the best golf course in Graeagle?', acceptedAnswer: { '@type': 'Answer', text: 'Grizzly Ranch Golf Club is ranked Golf Digest Top 100 Greatest Public Courses in the US (2021) and is the most challenging at 7,411 yards with a slope of 140. Nakoma (The Dragon) is the most unique, with the only golf clubhouse in the world designed by Frank Lloyd Wright. Whitehawk Ranch was ranked Top 20 Golf Courses in California in 1998.' } },
+      { '@type': 'Question', name: 'What is the easiest golf course in Graeagle?', acceptedAnswer: { '@type': 'Answer', text: 'Graeagle Meadows Golf Course is the most accessible of the five Graeagle courses. Designed by Ellis Van Gorder in 1968, it plays to par 72 at 6,759 yards with a slope of 120 — the lowest difficulty rating in the valley. It is well-suited for groups with a range of handicaps.' } },
       { '@type': 'Question', name: 'Are the Graeagle golf courses close together?', acceptedAnswer: { '@type': 'Answer', text: 'Yes. All 5 Graeagle golf courses are within 5 to 25 minutes of each other. This density makes Graeagle ideal for multi-course golf trips — most groups play 2 to 4 courses over a single weekend.' } },
       { '@type': 'Question', name: 'What is the altitude of Graeagle golf courses?', acceptedAnswer: { '@type': 'Answer', text: 'Graeagle golf courses sit between 4,300 and 5,400 feet elevation in the Sierra Nevada. The altitude provides longer carry distances, faster greens, and cooler temperatures than lower-elevation California courses.' } },
+      { '@type': 'Question', name: 'When are Graeagle golf courses open?', acceptedAnswer: { '@type': 'Answer', text: 'Graeagle golf courses are generally open from late April or May through October or November, weather depending. Grizzly Ranch and Nakoma typically open later in spring due to higher elevation. GolfGraeagle can confirm current season dates when you request a quote.' } },
     ],
   },
 ];
+
+const difficultyOrder = ['Moderate','Challenging','Challenging','Very Hard','Hardest'];
+const bestForList = [
+  'All skill levels, mixed groups',
+  'Mid to low handicap, scenery seekers',
+  'Shot-makers, value seekers',
+  'Low handicap, bucket-list rounds',
+  'Low handicap, most unique experience',
+];
 ---
 <style>
-  .courses-wrap { padding: clamp(100px,12vw,140px) clamp(20px,10%,10%) 60px; max-width: 1200px; margin: 0 auto; }
+  .wrap { padding: clamp(100px,12vw,140px) clamp(20px,8%,10%) 80px; max-width: 1200px; margin: 0 auto; }
   .course-card {
     display: grid;
-    grid-template-columns: 200px 1fr auto;
-    align-items: center;
-    gap: 28px;
-    padding: 24px 28px;
+    grid-template-columns: 220px 1fr;
+    align-items: stretch;
     border-radius: 16px;
     background: rgba(240,248,242,0.02);
-    border: 1px solid rgba(240,248,242,0.07);
+    border: 1px solid rgba(240,248,242,0.08);
+    overflow: hidden;
     text-decoration: none;
-    transition: background 0.2s, border-color 0.2s;
+    transition: border-color 0.2s, background 0.2s;
   }
-  .course-card:hover { background: rgba(232,168,80,0.05); border-color: rgba(232,168,80,0.2); }
-  .course-card-img { width: 200px; height: 130px; object-fit: cover; border-radius: 10px; }
-  .course-card-tier { text-align: right; flex-shrink: 0; }
-  @media (max-width: 760px) {
-    .course-card { grid-template-columns: 1fr; gap: 16px; }
+  .course-card:hover { border-color: rgba(232,168,80,0.3); background: rgba(232,168,80,0.03); }
+  .course-card-img { width: 220px; height: 100%; object-fit: cover; display: block; }
+  .table-wrap { overflow-x: auto; }
+  table { width: 100%; border-collapse: collapse; font-size: 14px; }
+  th { text-align: left; padding: 12px 16px; font-size: 11px; color: rgba(240,248,242,0.35); text-transform: uppercase; letter-spacing: .1em; border-bottom: 1px solid rgba(240,248,242,0.07); }
+  td { padding: 14px 16px; color: rgba(240,248,242,0.7); border-bottom: 1px solid rgba(240,248,242,0.05); vertical-align: middle; }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: rgba(232,168,80,0.03); }
+  td a { color: #e8a850; text-decoration: none; font-weight: 600; }
+  td a:hover { text-decoration: underline; }
+  .award-pill { display: inline-block; font-size: 10px; padding: 3px 10px; border-radius: 100px; background: rgba(232,168,80,0.1); border: 1px solid rgba(232,168,80,0.2); color: #e8a850; letter-spacing: .05em; }
+  @media (max-width: 700px) {
+    .course-card { grid-template-columns: 1fr; }
     .course-card-img { width: 100%; height: 200px; }
-    .course-card-tier { text-align: left; }
   }
 </style>
-<Base canonical="https://golfgraeagle.com/all-golf-courses" title="All Golf Courses in Graeagle, California | GolfGraeagle.com" description="There are 5 championship golf courses in Graeagle, CA: Graeagle Meadows, Whitehawk Ranch, Plumas Pines, Grizzly Ranch, and Nakoma (The Dragon). All within 25 minutes." schema={allCoursesSchema}>
+<Base
+  canonical="https://golfgraeagle.com/all-golf-courses"
+  title="Graeagle Golf Courses and Stay and Play Packages | GolfGraeagle"
+  description="Explore all Graeagle golf courses — Meadows, Grizzly Ranch, Whitehawk, Plumas Pines, and Nakoma. Build your custom group stay-and-play golf expert package today."
+  schema={allCoursesSchema}
+>
   <Nav />
-  <section class="courses-wrap">
-    <p style="font-size:11px;color:#e8a850;letter-spacing:0.16em;text-transform:uppercase;font-weight:600;margin:0 0 16px;">5 Championship Courses</p>
+  <section class="wrap">
+
+    <!-- Header -->
+    <p style="font-size:11px;color:#e8a850;letter-spacing:0.16em;text-transform:uppercase;font-weight:600;margin:0 0 16px;">5 Championship Courses · Graeagle, CA</p>
     <h1 style="font-family:'Playfair Display',serif;font-size:clamp(32px,5vw,54px);font-weight:500;color:#f0f8f2;margin:0 0 20px;line-height:1.1;">Golf Courses in <span style="color:#e8a850;font-style:italic;">Graeagle, California</span></h1>
-    <p style="font-size:17px;color:rgba(240,248,242,0.5);max-width:640px;line-height:1.75;margin:0 0 60px;">There are five championship golf courses in the Graeagle area, all within 5–25 minutes of each other. Most groups play two to four courses over a weekend.</p>
-    <div style="display:grid;gap:16px;">
-      {courses.map(c => (
-        <a href={`/portfolio/${c.slug === 'nakoma-dragon' ? 'nakoma-dragon-golf-packages' : c.slug + '-golf-packages'}/`}
-          class="course-card">
-          <img src={c.hero} alt={c.name} class="course-card-img"/>
-          <div>
-            <h2 style="font-family:'Playfair Display',serif;font-size:22px;color:#f0f8f2;margin:0 0 8px;">{c.name}</h2>
-            <p style="font-size:13px;color:rgba(240,248,242,0.4);margin:0 0 12px;">{c.tagline}</p>
-            <div style="display:flex;gap:16px;flex-wrap:wrap;">
-              {[`Par ${c.par}`,`${c.yards.toLocaleString()} yds`,`Slope ${c.slope}`,c.designer,String(c.year)].map(s=>(
-                <span style="font-size:12px;color:rgba(240,248,242,0.35);">{s}</span>
+    <p style="font-size:17px;color:rgba(240,248,242,0.55);max-width:680px;line-height:1.8;margin:0 0 16px;">There are five championship golf courses in the Graeagle area of Northern California, all within 5–25 minutes of each other. Most groups play two to four courses over a weekend stay.</p>
+    <p style="font-size:15px;color:rgba(240,248,242,0.4);max-width:680px;line-height:1.75;margin:0 0 60px;">Graeagle sits at 4,300–5,400 feet in the Sierra Nevada — altitude adds carry distance, speeds up greens, and keeps temperatures cooler than Sacramento or the Bay Area even in summer. The five courses offer genuine variety: classic parkland, links-style ridgelines, tight pine corridors, and a championship layout with an FLW-designed clubhouse.</p>
+
+    <!-- Course cards -->
+    <div style="display:grid;gap:14px;margin-bottom:80px;">
+      {courses.map((c: any, i: number) => (
+        <a href={`/portfolio/${wpSlugMap[c.slug]}/`} class="course-card">
+          <img src={c.hero} alt={`${c.name} Golf Course — Graeagle CA`} class="course-card-img" loading="lazy"/>
+          <div style="padding:24px 28px;display:flex;flex-direction:column;justify-content:center;gap:10px;">
+            <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:16px;flex-wrap:wrap;">
+              <div>
+                <h2 style="font-family:'Playfair Display',serif;font-size:21px;color:#f0f8f2;margin:0 0 6px;">{c.name}</h2>
+                <p style="font-size:13px;color:rgba(240,248,242,0.4);margin:0;">{c.tagline}</p>
+              </div>
+              <span style="font-size:20px;color:#e8a850;font-weight:700;flex-shrink:0;">{c.tier}</span>
+            </div>
+            <div style="display:flex;gap:20px;flex-wrap:wrap;">
+              {[`Par ${c.par}`, `${c.yards.toLocaleString()} yds`, `Slope ${c.slope}`, `Rating ${c.rating}`, c.designer, String(c.year)].map((s: string) => (
+                <span style="font-size:12px;color:rgba(240,248,242,0.3);">{s}</span>
               ))}
             </div>
-          </div>
-          <div class="course-card-tier">
-            <span style="font-size:22px;color:#e8a850;font-weight:600;">{c.tier}</span>
-            <div style="font-size:12px;color:rgba(240,248,242,0.3);margin-top:4px;">per round</div>
+            {c.awards && c.awards.length > 0 && (
+              <div style="display:flex;gap:8px;flex-wrap:wrap;">
+                {c.awards.slice(0,2).map((a: string) => (
+                  <span class="award-pill">{a}</span>
+                ))}
+              </div>
+            )}
+            <p style="font-size:13px;color:rgba(240,248,242,0.5);margin:0;line-height:1.6;">Best for: {bestForList[i]}</p>
           </div>
         </a>
       ))}
     </div>
-    <div style="text-align:center;margin-top:60px;">
-      <a href="/request-a-quote/" style="display:inline-block;background:#e8a850;color:#0d1a0e;font-weight:700;font-size:15px;padding:16px 48px;border-radius:100px;text-decoration:none;" onmouseover="this.style.background='#f2c878'" onmouseout="this.style.background='#e8a850'">Build My Multi-Course Package →</a>
+
+    <!-- Comparison table -->
+    <div style="margin-bottom:80px;">
+      <h2 style="font-family:'Playfair Display',serif;font-size:28px;color:#f0f8f2;margin:0 0 8px;font-weight:400;">Course Comparison</h2>
+      <p style="font-size:14px;color:rgba(240,248,242,0.35);margin:0 0 28px;">All five courses by key stats — sorted from most accessible to most challenging.</p>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Course</th>
+              <th>Par</th>
+              <th>Yards</th>
+              <th>Slope</th>
+              <th>Rating</th>
+              <th>Designer</th>
+              <th>Opened</th>
+              <th>Difficulty</th>
+              <th>Price</th>
+            </tr>
+          </thead>
+          <tbody>
+            {courses.map((c: any, i: number) => (
+              <tr>
+                <td><a href={`/portfolio/${wpSlugMap[c.slug]}/`}>{c.name}</a></td>
+                <td>{c.par}</td>
+                <td>{c.yards.toLocaleString()}</td>
+                <td style="font-weight:600;color:#f0f8f2;">{c.slope}</td>
+                <td>{c.rating}</td>
+                <td style="white-space:nowrap;">{c.designer}</td>
+                <td>{c.year}</td>
+                <td style="color:rgba(240,248,242,0.5);font-size:13px;">{difficultyOrder[i]}</td>
+                <td style="color:#e8a850;font-weight:700;">{c.tier}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
+
+    <!-- AEO FAQ section -->
+    <div style="margin-bottom:80px;max-width:780px;">
+      <h2 style="font-family:'Playfair Display',serif;font-size:28px;color:#f0f8f2;margin:0 0 28px;font-weight:400;">Frequently Asked Questions</h2>
+      <div style="display:flex;flex-direction:column;gap:0;">
+        {[
+          ['How many golf courses are in Graeagle, California?', 'There are five championship golf courses in the Graeagle area of Northern California: Graeagle Meadows Golf Course, Whitehawk Ranch Golf Course, Plumas Pines Golf Resort, Grizzly Ranch Golf Club, and Nakoma (The Dragon) Golf Course. All five are within 5 to 25 minutes of each other, making Graeagle one of the most concentrated golf destinations in California.'],
+          ['What is the best golf course in Graeagle?', 'Grizzly Ranch Golf Club holds the highest national ranking — Golf Digest Top 100 Greatest Public Courses in the US (2021). At 7,411 yards with a slope of 140, it is also the most difficult. Nakoma (The Dragon) is the most distinctive, with the only golf clubhouse in the world designed by Frank Lloyd Wright. Whitehawk Ranch was ranked Top 20 Golf Courses in California in 1998. For value, Plumas Pines is rated a Top 5 Best Value course in the Sierra Nevada.'],
+          ['What is the easiest golf course in Graeagle for beginners?', 'Graeagle Meadows Golf Course is the most accessible. Opened in 1968 and designed by Ellis Van Gorder, it plays to par 72 at 6,759 yards with a slope of 120 — the lowest of the five courses. The open meadow design and generous fairways make it well-suited for higher-handicap golfers and mixed groups.'],
+          ['Are Graeagle golf courses open to the public?', 'Graeagle Meadows, Whitehawk Ranch, and Plumas Pines are fully open to public play. Nakoma (The Dragon) is accessible through resort stays or golf packages. Grizzly Ranch is semi-private — access is typically arranged through a package. GolfGraeagle coordinates tee times at all five courses as part of stay-and-play packages.'],
+          ['When do Graeagle golf courses open for the season?', 'Most Graeagle courses open between late April and mid-May, depending on snowpack and weather. Grizzly Ranch and Nakoma, at higher elevations, often open slightly later. The season typically runs through October or early November. GolfGraeagle confirms current opening dates at time of booking.'],
+          ['How far is Graeagle from Lake Tahoe for a golf trip?', 'Graeagle is approximately 45 to 55 minutes north of Truckee and North Lake Tahoe via Highway 89. It is a realistic day-trip from Tahoe, but most golfers stay in Graeagle itself to play multiple courses over a weekend without backtracking.'],
+        ].map(([q, a]) => (
+          <details style="border-bottom:1px solid rgba(240,248,242,0.06);padding:0;">
+            <summary style="font-size:16px;color:#f0f8f2;font-weight:500;padding:18px 0;cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;">
+              {q}
+              <span style="color:#e8a850;font-size:20px;flex-shrink:0;margin-left:16px;">+</span>
+            </summary>
+            <p style="font-size:14px;color:rgba(240,248,242,0.55);line-height:1.8;padding:0 0 18px;margin:0;">{a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+
+    <!-- Why Graeagle over other CA regions -->
+    <div style="background:rgba(240,248,242,0.02);border:1px solid rgba(240,248,242,0.07);border-radius:20px;padding:40px 44px;margin-bottom:80px;">
+      <h2 style="font-family:'Playfair Display',serif;font-size:26px;color:#f0f8f2;margin:0 0 24px;font-weight:400;">Why Graeagle vs Other California Golf Regions</h2>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;">
+        {[
+          ['Monterey / Pebble Beach', 'Elite but expensive — green fees 3–5× higher than Graeagle for similar quality design.'],
+          ['Palm Springs', 'Summer heat eliminates morning rounds. Graeagle stays 65–75°F through July and August.'],
+          ['Truckee / North Tahoe', 'Premium-priced, courses are more scattered. Graeagle has 5 courses within 25 minutes.'],
+          ['Sacramento Valley', 'Flat terrain, inconsistent quality. Graeagle offers elevation, design variety, and mountain air.'],
+        ].map(([region, note]) => (
+          <div style="padding:20px;background:rgba(240,248,242,0.02);border-radius:12px;border:1px solid rgba(240,248,242,0.06);">
+            <div style="font-size:14px;font-weight:600;color:#f0f8f2;margin-bottom:6px;">{region}</div>
+            <div style="font-size:13px;color:rgba(240,248,242,0.4);line-height:1.6;">{note}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <!-- CTA -->
+    <div style="text-align:center;padding:60px 20px;border-top:1px solid rgba(240,248,242,0.07);">
+      <h2 style="font-family:'Playfair Display',serif;font-size:30px;color:#f0f8f2;margin:0 0 14px;font-weight:400;">Ready to Book Your Graeagle Golf Trip?</h2>
+      <p style="font-size:16px;color:rgba(240,248,242,0.45);margin:0 0 32px;max-width:480px;margin-left:auto;margin-right:auto;">Tell us your dates, group size, and which courses you want to play. We'll build a custom package with tee times and lodging.</p>
+      <a href="/request-a-quote/" style="display:inline-block;background:#e8a850;color:#0d1a0e;font-weight:700;font-size:15px;padding:16px 48px;border-radius:100px;text-decoration:none;" onmouseover="this.style.background='#f2c878'" onmouseout="this.style.background='#e8a850'">Build My Custom Package →</a>
+      <p style="font-size:12px;color:rgba(240,248,242,0.25);margin:14px 0 0;">Free quote · 24-hour response · No obligation · +1-888-586-1157</p>
+    </div>
+
   </section>
   <Footer />
 </Base>
-

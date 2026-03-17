@@ -338,7 +338,7 @@ export const lodging = [
     ],
     onSiteDining: ['longboards'],
     priceRange: '$299–$499',
-    description: 'The Townhomes at Plumas Pines offer 2–4 bedroom units with full kitchens, golf course views, and community pool and tennis courts. Adjacent to Plumas Pines Golf Resort, they are the most practical option for large groups who want space, privacy, and the ability to self-cater between rounds.',
+    description: 'The Townhomes at Plumas Pines offer 2–4 bedroom vacation rentals immediately adjacent to Plumas Pines Golf Resort. Units come with full kitchens, in-unit laundry, private outdoor space, and golf course views. Community amenities include pools and tennis courts. The location puts groups steps from the first tee at Plumas Pines and within 10–15 minutes of Graeagle Meadows, Whitehawk Ranch, and Grizzly Ranch. Ideal for groups of 8–24 who want the comfort of a home rental, shared common spaces, and the flexibility to cook between rounds. Booking is arranged through GolfGraeagle as part of a stay-and-play package.',
   },
 ];
 
@@ -434,6 +434,7 @@ export const dining = [
   {
     slug: 'sardine-lake',
     name: 'Sardine Lake Resort',
+    cuisine: 'American / Lakeside Fine Dining',
     category: 'fine-dining',
     cuisine: 'American / Lakeside Fine Dining',
     tagline: 'Fine dining on an alpine lake at the base of the Sierra Buttes — book weeks ahead',
@@ -598,6 +599,7 @@ export const dining = [
   {
     slug: 'longboards',
     name: 'Longboards Bar and Grill',
+    cuisine: 'New American / Bar & Grill',
     category: 'casual',
     cuisine: 'New American / Bar & Grill',
     tagline: 'Fresh ingredients, Italian-flare entrées, and golf course views at Plumas Pines Resort',
