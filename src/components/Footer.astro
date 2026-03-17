@@ -29,8 +29,8 @@ const year = new Date().getFullYear();
 
       <!-- Brand col -->
       <div>
-        <a href="/" style="display:inline-block;font-family:'Playfair Display',serif;font-size:26px;color:#f0f8f2;text-decoration:none;margin-bottom:16px;">
-          Golf <span style="color:#e8a850;">Graeagle</span>
+        <a href="/" style="display:inline-block;font-family:'Playfair Display',serif;font-size:26px;color:var(--text-primary);text-decoration:none;margin-bottom:16px;">
+          Golf <span style="color:var(--gold);">Graeagle</span>
         </a>
         <p style="font-size:13px;color:rgba(240,248,242,0.38);line-height:1.75;margin:0 0 24px;max-width:260px;">
           Your guide to championship golf in California's Sierra Nevada mountains. Five world-class courses. One unforgettable valley.
@@ -64,7 +64,7 @@ const year = new Date().getFullYear();
           <a href={`/portfolio/${c.slug === "nakoma-dragon" ? "nakoma-dragon-golf-packages" : c.slug + "-golf-packages"}`} style="display:block;font-size:13px;color:rgba(240,248,242,0.65);text-decoration:none;margin-bottom:11px;line-height:1.3;transition:color 0.2s;"
           onmouseover="this.style.color='#f0f8f2'" onmouseout="this.style.color='rgba(240,248,242,0.45)'">{c.name}</a>
         ))}
-        <a href="/courses" style="display:block;font-size:13px;color:rgba(232,168,80,0.75);text-decoration:none;margin-top:14px;padding-top:14px;border-top:1px solid rgba(240,248,242,0.05);transition:color 0.2s;"
+        <a href="/courses" style="display:block;font-size:13px;color:rgba(232,168,80,0.75);text-decoration:none;margin-top:14px;padding-top:14px;border-top:1px solid rgba(28,18,8,0.05);transition:color 0.2s;"
         onmouseover="this.style.color='#e8a850'" onmouseout="this.style.color='rgba(232,168,80,0.55)'">Compare all courses →</a>
       </div>
 
@@ -105,10 +105,10 @@ const year = new Date().getFullYear();
       <div class="footer-col-cta">
         <h4 style="font-size:12px;color:rgba(232,168,80,0.85);text-transform:uppercase;letter-spacing:0.12em;margin:0 0 20px;font-weight:600;">Plan Your Round</h4>
         <div style="background:rgba(232,168,80,0.06);border:1px solid rgba(232,168,80,0.12);border-radius:16px;padding:24px;">
-          <p style="font-size:13px;color:rgba(240,248,242,0.6);line-height:1.65;margin:0 0 20px;">
+          <p style="font-size:13px;color:rgba(28,18,8,0.55);line-height:1.65;margin:0 0 20px;">
             Tell us your dates, group size, and preferred courses. We'll handle tee times, lodging, and everything in between.
           </p>
-          <a href="/request-a-quote" style="display:block;text-align:center;background:#e8a850;color:#0d1a0e;font-size:13px;font-weight:600;padding:12px 20px;border-radius:100px;text-decoration:none;transition:all 0.3s;"
+          <a href="/request-a-quote" style="display:block;text-align:center;background:var(--gold-light);color:#0d1a0e;font-size:13px;font-weight:600;padding:12px 20px;border-radius:100px;text-decoration:none;transition:all 0.3s;"
           onmouseover="this.style.background='#f2c878';this.style.transform='translateY(-1px)'"
           onmouseout="this.style.background='#e8a850';this.style.transform='translateY(0)'">
             Request a Free Quote
@@ -123,7 +123,7 @@ const year = new Date().getFullYear();
   </div>
 
   <!-- Divider -->
-  <div style="border-top: 1px solid rgba(240,248,242,0.05);"></div>
+  <div style="border-top: 1px solid rgba(28,18,8,0.05);"></div>
 
   <!-- Legal bottom bar -->
   <div class="footer-bottom">
@@ -144,7 +144,7 @@ const year = new Date().getFullYear();
           ['About','/about-us'],
         ].map(([l,h])=>(
           <a href={h} style="font-size:13px;color:rgba(240,248,242,0.50);text-decoration:none;transition:color 0.2s;"
-          onmouseover="this.style.color='rgba(240,248,242,0.6)'" onmouseout="this.style.color='rgba(240,248,242,0.50)'">{l}</a>
+          onmouseover="this.style.color='rgba(28,18,8,0.55)'" onmouseout="this.style.color='rgba(240,248,242,0.50)'">{l}</a>
         ))}
       </div>
 
@@ -152,7 +152,7 @@ const year = new Date().getFullYear();
 
     <!-- Subsidiary disclosure -->
     <p style="font-size:11px;color:rgba(240,248,242,0.42);margin:12px 0 0;line-height:1.6;">
-      Zoomaway Technologies Inc. and its subsidiaries (Zoomaway Inc. &amp; Tripsee) or operating web products (Golf the High Sierra, Group Golf Tours, Golf Graeagle, ZoomedIN) are not responsible for any offensive content posted by users. Bookings are subject to our <a href="/terms-and-conditions" style="color:rgba(240,248,242,0.25);text-decoration:none;" onmouseover="this.style.color='rgba(240,248,242,0.5)'" onmouseout="this.style.color='rgba(240,248,242,0.50)'">Terms &amp; Conditions</a> and <a href="/cancellation-policy" style="color:rgba(240,248,242,0.25);text-decoration:none;" onmouseover="this.style.color='rgba(240,248,242,0.5)'" onmouseout="this.style.color='rgba(240,248,242,0.50)'">Cancellation Policy</a>.
+      Zoomaway Technologies Inc. and its subsidiaries (Zoomaway Inc. &amp; Tripsee) or operating web products (Golf the High Sierra, Group Golf Tours, Golf Graeagle, ZoomedIN) are not responsible for any offensive content posted by users. Bookings are subject to our <a href="/terms-and-conditions" style="color:rgba(240,248,242,0.25);text-decoration:none;" onmouseover="this.style.color='rgba(28,18,8,0.45)'" onmouseout="this.style.color='rgba(240,248,242,0.50)'">Terms &amp; Conditions</a> and <a href="/cancellation-policy" style="color:rgba(240,248,242,0.25);text-decoration:none;" onmouseover="this.style.color='rgba(28,18,8,0.45)'" onmouseout="this.style.color='rgba(240,248,242,0.50)'">Cancellation Policy</a>.
     </p>
   </div>
 

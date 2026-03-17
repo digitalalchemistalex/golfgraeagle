@@ -52,8 +52,8 @@
 html { scroll-behavior: smooth; }
 
 body {
-  background-color: #0d1a0e;
-  color: #f0f8f2;
+  background-color: var(--page-bg, #f8f4ee);
+  color: var(--text-primary, #1c1208);
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
 }
@@ -361,3 +361,51 @@ body {
 .bl-sidebar-post{display:block;font-size:13px;color:#4a5a4a;text-decoration:none;padding:8px 0;border-bottom:1px solid #eef4ee;line-height:1.4;transition:color .15s;}
 .bl-sidebar-post:last-child{border-bottom:none;}
 .bl-sidebar-post:hover{color:#e8a850;}
+
+/* ── LIGHT THEME TOKENS ─────────────────────────────────────────────
+   Applied as CSS vars so a single change flips the whole site.
+   Replaces hardcoded #0d1a0e (bg) and #f0f8f2 (text) throughout.
+   ─────────────────────────────────────────────────────────────────── */
+:root {
+  /* Backgrounds */
+  --page-bg:       #f8f4ee;   /* warm parchment — the hero shift */
+  --surface:       #ffffff;   /* cards, modals */
+  --surface-2:     #f3ede4;   /* subtle card tint */
+  --surface-3:     #ede6da;   /* deeper surface for borders */
+
+  /* Text */
+  --text-primary:  #1c1208;   /* near black, warm */
+  --text-secondary:#4a3f2f;   /* warm brown-grey */
+  --text-muted:    #7a6a56;   /* muted warm */
+  --text-faint:    #b09e88;   /* very faint */
+
+  /* Gold accent — slightly deeper for light bg legibility */
+  --gold:          #b8820a;
+  --gold-light:    #e8a850;
+  --gold-hover:    #8a6008;
+  --gold-bg:       rgba(184,130,10,0.08);
+  --gold-border:   rgba(184,130,10,0.2);
+
+  /* Borders */
+  --border:        rgba(28,18,8,0.1);
+  --border-strong: rgba(28,18,8,0.18);
+
+  /* Nav */
+  --nav-bg:        rgba(249,246,238,0.96);
+  --nav-text:      #2a1c0e;
+
+  /* Hero overlay stays dark over images */
+  --hero-overlay:  rgba(20,12,4,0.55);
+}
+
+/* Hero sections always have dark image backgrounds — text must stay white */
+.hero-light-exempt,
+section.hero-section,
+[data-hero] {
+  color: #f8f4ee;
+}
+[data-hero] h1,
+[data-hero] p,
+[data-hero] span {
+  color: inherit;
+}
