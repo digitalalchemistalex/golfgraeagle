@@ -238,10 +238,12 @@ export const lodging = [
       'Steps from Feather River fishing and boutique shopping',
       'Minutes from all 5 championship courses',
     ],
-    // Real photos from nakomaresort.com (River Pines has no public CDN)
-    hero: 'https://nakomaresort.com/wp-content/uploads/inn-at-nakoma-lobby-fireplace.jpg',
+    // Feather River cabin resort — verified Unsplash (River Pines has no public CDN)
+    hero: 'https://images.unsplash.com/photo-1571068316344-75bc76f77890?w=1200&q=80&auto=format',
     images: [
-      'https://nakomaresort.com/wp-content/uploads/inn-at-nakoma-lobby-fireplace.jpg',
+      'https://images.unsplash.com/photo-1571068316344-75bc76f77890?w=1200&q=80&auto=format',
+      'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=1200&q=80&auto=format',
+      'https://images.unsplash.com/photo-1502126324834-38f8e02d7160?w=1200&q=80&auto=format',
     ],
     onSiteDining: ['roadhouse'],
     priceRange: '$299–$499',
@@ -424,7 +426,7 @@ export const dining = [
     highlights: ['Local game and Sierra-grown produce', 'Stone hearth and exposed beam interior', 'Full bar', '4,800 ft elevation — bring layers for evening'],
     coordinates: { lat: 39.7750, lng: -120.6180 },
     location: 'Off Hwy 70, 5 min from Graeagle',
-    hero: 'https://images.unsplash.com/photo-1544025162-d76694265947?w=800&q=80&auto=format',
+    hero: 'https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?w=1200&q=80&auto=format',
   },
   {
     slug: 'iron-door',
@@ -436,7 +438,7 @@ export const dining = [
     highlights: ['Building dates to 1906 — original post-office doors on display', 'Steaks, prime rib, seafood, scratch pastas, jaeger schnitzel', 'Operating since 1961', 'Timber-beam dining room'],
     coordinates: { lat: 39.777736, lng: -120.616367 },
     location: '5 min east of Graeagle via Hwy 70',
-    hero: 'https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=800&q=80&auto=format',
+    hero: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=1200&q=80&auto=format',
   },
   {
     slug: 'sardine-lake',
@@ -449,7 +451,7 @@ export const dining = [
     coordinates: { lat: 39.6466, lng: -120.6355 },
     location: '990 Sardine Lake Rd, Sierra City — 45 min via Gold Lake Road',
     phone: '(530) 862-1196',
-    hero: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800&q=80&auto=format',
+    hero: 'https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=1200&q=80&auto=format',
   },
   // ─── Casual Dining ─────────────────────────────────────
   {
@@ -462,7 +464,7 @@ export const dining = [
     highlights: ['On-site at River Pines Resort — no driving required', 'Steaks, ribs, and whisky flights', 'Group-dinner-friendly', 'Just off Hwy 70'],
     coordinates: { lat: 39.7775, lng: -120.6210 },
     location: 'River Pines Resort, off Hwy 70',
-    hero: 'https://images.unsplash.com/photo-1466978913421-dad2ebd01d17?w=800&q=80&auto=format',
+    hero: 'https://images.unsplash.com/photo-1529290130-4ca3753253ae?w=1200&q=80&auto=format',
   },
   {
     slug: 'graeagle-restaurant',
@@ -474,7 +476,7 @@ export const dining = [
     highlights: ['Family-owned since 1958 — three generations', 'Inside the historic Box Factory Mill building', 'Breakfast, lunch, homemade pies', 'Downtown Graeagle'],
     coordinates: { lat: 39.75069, lng: -120.63224 },
     location: 'Historic Box Factory Mill, downtown Graeagle',
-    hero: 'https://images.unsplash.com/photo-1424847651672-bf20a4b0982b?w=800&q=80&auto=format',
+    hero: 'https://images.unsplash.com/photo-1541614101331-1a5a3a194e92?w=1200&q=80&auto=format',
   },
   {
     slug: 'meadows-restaurant',
@@ -486,7 +488,7 @@ export const dining = [
     highlights: ['Fairway and mountain views from every table', 'Seasonal menu', 'Inside Graeagle Meadows clubhouse', '5 min from Graeagle via CA-89 N'],
     coordinates: { lat: 39.7505, lng: -120.6170 },
     location: 'Graeagle Meadows Golf Course, 5 min via CA-89 N',
-    hero: 'https://images.unsplash.com/photo-1424847651672-bf20a4b0982b?w=800&q=80&auto=format',
+    hero: 'https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?w=1200&q=80&auto=format',
   },
   {
     slug: 'sierra-smokeshow',
@@ -498,7 +500,7 @@ export const dining = [
     highlights: ['Baby back ribs, brisket, pork shoulder', 'Hickory and applewood smoker', '2 min from Plumas Pines on CA-89', 'Laid-back mountain setting'],
     coordinates: { lat: 39.77003, lng: -120.61092 },
     location: 'CA-89, 2 min from Plumas Pines',
-    hero: 'https://images.unsplash.com/photo-1529193591184-b1d58069ecdd?w=800&q=80&auto=format',
+    hero: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&q=80&auto=format',
   },
   {
     slug: 'gumbas',
@@ -510,7 +512,7 @@ export const dining = [
     highlights: ['Hand-tossed pizzas, oven-baked subs, pasta, salads', 'Fast and family-friendly', 'Easy group pick-up', '5 min west of Graeagle'],
     coordinates: { lat: 39.77054, lng: -120.61264 },
     location: '5 min west of Graeagle via CA-89 S and CA-70 W',
-    hero: 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=800&q=80&auto=format',
+    hero: 'https://images.unsplash.com/photo-1513104890138-7c749659a591?w=1200&q=80&auto=format',
   },
   {
     slug: 'cuccias',
@@ -523,7 +525,7 @@ export const dining = [
     coordinates: { lat: 39.7506, lng: -120.6326 },
     location: '545 Mohawk Hwy, Graeagle, CA 96103',
     phone: '(530) 836-2121',
-    hero: 'https://images.unsplash.com/photo-1579684947550-22e945225d9a?w=800&q=80&auto=format',
+    hero: 'https://images.unsplash.com/photo-1565958011703-44f9829ba187?w=1200&q=80&auto=format',
   },
   // ─── Breweries & Bars ───────────────────────────────────
   {
@@ -536,7 +538,7 @@ export const dining = [
     highlights: ['On-site at Chalet View Lodge', 'IPAs, stouts, saisons, and fruit-forward ales', 'Locally sourced seasonal food', 'Timber-framed lodge setting'],
     coordinates: { lat: 39.7552, lng: -120.6347 },
     location: 'Inside Chalet View Lodge, 5 min south via CA-89',
-    hero: 'https://images.unsplash.com/photo-1559526324-4b87b5e36e44?w=800&q=80&auto=format',
+    hero: 'https://images.unsplash.com/photo-1613564834361-9436948817d1?w=1200&q=80&auto=format',
   },
   {
     slug: 'brewing-lair',
@@ -548,7 +550,7 @@ export const dining = [
     highlights: ['15 acres untouched Sierra forest', '15-barrel craft brewery', 'Outdoor lawn games vibe', 'Bring layers — cools fast in the evening', 'Off Hwy 70 near Blairsden'],
     coordinates: { lat: 39.78427, lng: -120.61188 },
     location: 'Off Hwy 70 near Blairsden, 5 min from Graeagle',
-    hero: 'https://images.unsplash.com/photo-1436076863939-06870fe779c2?w=800&q=80&auto=format',
+    hero: 'https://images.unsplash.com/photo-1569050467447-ce54b3bbc37d?w=1200&q=80&auto=format',
   },
   {
     slug: 'mohawk-tavern',
@@ -561,7 +563,7 @@ export const dining = [
     coordinates: { lat: 39.7519, lng: -120.6291 },
     location: '999 Johnsville Rd, Graeagle, CA 96103',
     phone: '(530) 836-1241',
-    hero: 'https://images.unsplash.com/photo-1470337458703-46ad1756a187?w=800&q=80&auto=format',
+    hero: 'https://images.unsplash.com/photo-1482049016688-2d3e1b311543?w=1200&q=80&auto=format',
   },
   {
     slug: 'knotty-pine',
@@ -574,7 +576,7 @@ export const dining = [
     coordinates: { lat: 39.7686, lng: -120.6194 },
     location: '7426 CA-89, Graeagle, CA 96103',
     phone: '(530) 836-2536',
-    hero: 'https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?w=800&q=80&auto=format',
+    hero: 'https://images.unsplash.com/photo-1559339352-11d035aa65de?w=1200&q=80&auto=format',
   },
   // ─── Quick Bites ────────────────────────────────────────
   {
@@ -587,7 +589,7 @@ export const dining = [
     highlights: ['Freshly made sandwiches and salads', 'Local favorite on Hwy 89', 'Perfect between tee times', 'Quick in-and-out'],
     coordinates: { lat: 39.77255, lng: -120.60798 },
     location: 'Hwy 89, Blairsden-Graeagle',
-    hero: 'https://images.unsplash.com/photo-1509722747041-616f39b57569?w=800&q=80&auto=format',
+    hero: 'https://images.unsplash.com/photo-1471086569966-db3eebc25a59?w=1200&q=80&auto=format',
   },
   {
     slug: 'mountain-frostee',
@@ -600,7 +602,7 @@ export const dining = [
     coordinates: { lat: 39.7510, lng: -120.6330 },
     location: '28 Hwy 89, Graeagle, CA 96103',
     phone: '(530) 836-4811',
-    hero: 'https://images.unsplash.com/photo-1488900128323-21503983a07e?w=800&q=80&auto=format',
+    hero: 'https://images.unsplash.com/photo-1525059696034-4967a8e1dca2?w=1200&q=80&auto=format',
   },
   {
     slug: 'longboards',
@@ -613,6 +615,6 @@ export const dining = [
     coordinates: { lat: 39.7857, lng: -120.6436 },
     location: '402 Poplar Valley Rd, Blairsden-Graeagle, CA 96103',
     phone: '(530) 836-1111',
-    hero: 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&q=80&auto=format',
+    hero: 'https://images.unsplash.com/photo-1572635196237-14b3f281503f?w=1200&q=80&auto=format',
   },
 ];
