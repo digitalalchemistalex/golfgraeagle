@@ -94,6 +94,7 @@ export const courses = [
     ],
     hero: 'https://whitehawkranch.com/wp-content/uploads/sites/88/2025/03/P9151812-1.jpg',
     images: [
+      'https://whitehawkranch.com/wp-content/uploads/sites/88/2026/02/popup-home.webp',
       'https://images.unsplash.com/photo-1535131749006-b7f58c99034b?w=1200&q=80&auto=format',
       'https://images.unsplash.com/photo-1611374243147-44a702c2d44c?w=1200&q=80&auto=format',
       'https://images.unsplash.com/photo-1587174486073-ae5e5cff23aa?w=1200&q=80&auto=format',
