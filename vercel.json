@@ -169,6 +169,376 @@
       "source": "/project-type/:slug",
       "destination": "/lodging",
       "permanent": true
+    },
+    {
+      "source": "/portfolio/river-pines-resort/",
+      "destination": "/portfolio/river-pines-resort-graeagle-ca/",
+      "permanent": true
+    },
+    {
+      "source": "/portfolio/river-pines-resort",
+      "destination": "/portfolio/river-pines-resort-graeagle-ca",
+      "permanent": true
+    },
+    {
+      "source": "/portfolio/chalet-view-lodge/",
+      "destination": "/portfolio/chalet-view-lodge-graeagle-ca/",
+      "permanent": true
+    },
+    {
+      "source": "/portfolio/chalet-view-lodge",
+      "destination": "/portfolio/chalet-view-lodge-graeagle-ca",
+      "permanent": true
+    },
+    {
+      "source": "/portfolio/the-inn-at-nakoma/",
+      "destination": "/portfolio/the-inn-at-nakoma-clio-ca/",
+      "permanent": true
+    },
+    {
+      "source": "/portfolio/the-inn-at-nakoma",
+      "destination": "/portfolio/the-inn-at-nakoma-clio-ca",
+      "permanent": true
+    },
+    {
+      "source": "/portfolio/inn-at-nakoma/",
+      "destination": "/portfolio/the-inn-at-nakoma-clio-ca/",
+      "permanent": true
+    },
+    {
+      "source": "/portfolio/inn-at-nakoma",
+      "destination": "/portfolio/the-inn-at-nakoma-clio-ca",
+      "permanent": true
+    },
+    {
+      "source": "/portfolio/townhomes-at-plumas-pines/",
+      "destination": "/portfolio/the-townhomes-at-plumas-pines/",
+      "permanent": true
+    },
+    {
+      "source": "/portfolio/townhomes-at-plumas-pines",
+      "destination": "/portfolio/the-townhomes-at-plumas-pines",
+      "permanent": true
+    },
+    {
+      "source": "/portfolio/townhomes/",
+      "destination": "/portfolio/the-townhomes-at-plumas-pines/",
+      "permanent": true
+    },
+    {
+      "source": "/portfolio/townhomes",
+      "destination": "/portfolio/the-townhomes-at-plumas-pines",
+      "permanent": true
+    },
+    {
+      "source": "/portfolio/graeagle-meadows/",
+      "destination": "/portfolio/graeagle-meadows-golf-packages/",
+      "permanent": true
+    },
+    {
+      "source": "/portfolio/graeagle-meadows",
+      "destination": "/portfolio/graeagle-meadows-golf-packages",
+      "permanent": true
+    },
+    {
+      "source": "/portfolio/whitehawk-ranch/",
+      "destination": "/portfolio/whitehawk-ranch-golf-packages/",
+      "permanent": true
+    },
+    {
+      "source": "/portfolio/whitehawk-ranch",
+      "destination": "/portfolio/whitehawk-ranch-golf-packages",
+      "permanent": true
+    },
+    {
+      "source": "/portfolio/plumas-pines/",
+      "destination": "/portfolio/plumas-pines-golf-packages/",
+      "permanent": true
+    },
+    {
+      "source": "/portfolio/plumas-pines",
+      "destination": "/portfolio/plumas-pines-golf-packages",
+      "permanent": true
+    },
+    {
+      "source": "/portfolio/grizzly-ranch/",
+      "destination": "/portfolio/grizzly-ranch-golf-packages/",
+      "permanent": true
+    },
+    {
+      "source": "/portfolio/grizzly-ranch",
+      "destination": "/portfolio/grizzly-ranch-golf-packages",
+      "permanent": true
+    },
+    {
+      "source": "/portfolio/nakoma-dragon/",
+      "destination": "/portfolio/nakoma-dragon-golf-packages/",
+      "permanent": true
+    },
+    {
+      "source": "/portfolio/nakoma-dragon",
+      "destination": "/portfolio/nakoma-dragon-golf-packages",
+      "permanent": true
+    },
+    {
+      "source": "/portfolio/nakoma/",
+      "destination": "/portfolio/nakoma-dragon-golf-packages/",
+      "permanent": true
+    },
+    {
+      "source": "/portfolio/nakoma",
+      "destination": "/portfolio/nakoma-dragon-golf-packages",
+      "permanent": true
+    },
+    {
+      "source": "/graeagle-meadows-golf-packages/",
+      "destination": "/portfolio/graeagle-meadows-golf-packages/",
+      "permanent": true
+    },
+    {
+      "source": "/graeagle-meadows-golf-packages",
+      "destination": "/portfolio/graeagle-meadows-golf-packages",
+      "permanent": true
+    },
+    {
+      "source": "/whitehawk-ranch-golf-packages/",
+      "destination": "/portfolio/whitehawk-ranch-golf-packages/",
+      "permanent": true
+    },
+    {
+      "source": "/whitehawk-ranch-golf-packages",
+      "destination": "/portfolio/whitehawk-ranch-golf-packages",
+      "permanent": true
+    },
+    {
+      "source": "/plumas-pines-golf-packages/",
+      "destination": "/portfolio/plumas-pines-golf-packages/",
+      "permanent": true
+    },
+    {
+      "source": "/plumas-pines-golf-packages",
+      "destination": "/portfolio/plumas-pines-golf-packages",
+      "permanent": true
+    },
+    {
+      "source": "/grizzly-ranch-golf-packages/",
+      "destination": "/portfolio/grizzly-ranch-golf-packages/",
+      "permanent": true
+    },
+    {
+      "source": "/grizzly-ranch-golf-packages",
+      "destination": "/portfolio/grizzly-ranch-golf-packages",
+      "permanent": true
+    },
+    {
+      "source": "/nakoma-dragon-golf-packages/",
+      "destination": "/portfolio/nakoma-dragon-golf-packages/",
+      "permanent": true
+    },
+    {
+      "source": "/nakoma-dragon-golf-packages",
+      "destination": "/portfolio/nakoma-dragon-golf-packages",
+      "permanent": true
+    },
+    {
+      "source": "/grizzly-grill/",
+      "destination": "/portfolio/grizzly-grill/",
+      "permanent": true
+    },
+    {
+      "source": "/grizzly-grill",
+      "destination": "/portfolio/grizzly-grill",
+      "permanent": true
+    },
+    {
+      "source": "/iron-door-restaurant/",
+      "destination": "/portfolio/iron-door-restaurant/",
+      "permanent": true
+    },
+    {
+      "source": "/iron-door-restaurant",
+      "destination": "/portfolio/iron-door-restaurant",
+      "permanent": true
+    },
+    {
+      "source": "/longboards-bar-and-grill/",
+      "destination": "/portfolio/longboards-bar-and-grill/",
+      "permanent": true
+    },
+    {
+      "source": "/longboards-bar-and-grill",
+      "destination": "/portfolio/longboards-bar-and-grill",
+      "permanent": true
+    },
+    {
+      "source": "/sardine-lake-resort/",
+      "destination": "/portfolio/sardine-lake-resort/",
+      "permanent": true
+    },
+    {
+      "source": "/sardine-lake-resort",
+      "destination": "/portfolio/sardine-lake-resort",
+      "permanent": true
+    },
+    {
+      "source": "/roadhouse-at-river-pines/",
+      "destination": "/portfolio/roadhouse-at-river-pines/",
+      "permanent": true
+    },
+    {
+      "source": "/roadhouse-at-river-pines",
+      "destination": "/portfolio/roadhouse-at-river-pines",
+      "permanent": true
+    },
+    {
+      "source": "/cuccias/",
+      "destination": "/portfolio/cuccias/",
+      "permanent": true
+    },
+    {
+      "source": "/cuccias",
+      "destination": "/portfolio/cuccias",
+      "permanent": true
+    },
+    {
+      "source": "/eureka-peak-brewing-co/",
+      "destination": "/portfolio/eureka-peak-brewing-co/",
+      "permanent": true
+    },
+    {
+      "source": "/eureka-peak-brewing-co",
+      "destination": "/portfolio/eureka-peak-brewing-co",
+      "permanent": true
+    },
+    {
+      "source": "/the-brewing-lair/",
+      "destination": "/portfolio/the-brewing-lair/",
+      "permanent": true
+    },
+    {
+      "source": "/the-brewing-lair",
+      "destination": "/portfolio/the-brewing-lair",
+      "permanent": true
+    },
+    {
+      "source": "/mohawk-tavern/",
+      "destination": "/portfolio/mohawk-tavern/",
+      "permanent": true
+    },
+    {
+      "source": "/mohawk-tavern",
+      "destination": "/portfolio/mohawk-tavern",
+      "permanent": true
+    },
+    {
+      "source": "/the-knotty-pine-tavern/",
+      "destination": "/portfolio/the-knotty-pine-tavern/",
+      "permanent": true
+    },
+    {
+      "source": "/the-knotty-pine-tavern",
+      "destination": "/portfolio/the-knotty-pine-tavern",
+      "permanent": true
+    },
+    {
+      "source": "/little-bite-deli/",
+      "destination": "/portfolio/little-bite-deli/",
+      "permanent": true
+    },
+    {
+      "source": "/little-bite-deli",
+      "destination": "/portfolio/little-bite-deli",
+      "permanent": true
+    },
+    {
+      "source": "/graeagle-mountain-frostee/",
+      "destination": "/portfolio/graeagle-mountain-frostee/",
+      "permanent": true
+    },
+    {
+      "source": "/graeagle-mountain-frostee",
+      "destination": "/portfolio/graeagle-mountain-frostee",
+      "permanent": true
+    },
+    {
+      "source": "/sierra-smokeshow/",
+      "destination": "/portfolio/sierra-smokeshow/",
+      "permanent": true
+    },
+    {
+      "source": "/sierra-smokeshow",
+      "destination": "/portfolio/sierra-smokeshow",
+      "permanent": true
+    },
+    {
+      "source": "/gumbas-ii-go/",
+      "destination": "/portfolio/gumbas-ii-go/",
+      "permanent": true
+    },
+    {
+      "source": "/gumbas-ii-go",
+      "destination": "/portfolio/gumbas-ii-go",
+      "permanent": true
+    },
+    {
+      "source": "/graeagle-restaurant/",
+      "destination": "/portfolio/graeagle-restaurant/",
+      "permanent": true
+    },
+    {
+      "source": "/graeagle-restaurant",
+      "destination": "/portfolio/graeagle-restaurant",
+      "permanent": true
+    },
+    {
+      "source": "/graeagle-meadows-golf-course-restaurant/",
+      "destination": "/portfolio/graeagle-meadows-golf-course-restaurant/",
+      "permanent": true
+    },
+    {
+      "source": "/graeagle-meadows-golf-course-restaurant",
+      "destination": "/portfolio/graeagle-meadows-golf-course-restaurant",
+      "permanent": true
+    },
+    {
+      "source": "/river-pines-resort-graeagle-ca/",
+      "destination": "/portfolio/river-pines-resort-graeagle-ca/",
+      "permanent": true
+    },
+    {
+      "source": "/river-pines-resort-graeagle-ca",
+      "destination": "/portfolio/river-pines-resort-graeagle-ca",
+      "permanent": true
+    },
+    {
+      "source": "/chalet-view-lodge-graeagle-ca/",
+      "destination": "/portfolio/chalet-view-lodge-graeagle-ca/",
+      "permanent": true
+    },
+    {
+      "source": "/chalet-view-lodge-graeagle-ca",
+      "destination": "/portfolio/chalet-view-lodge-graeagle-ca",
+      "permanent": true
+    },
+    {
+      "source": "/the-inn-at-nakoma-clio-ca/",
+      "destination": "/portfolio/the-inn-at-nakoma-clio-ca/",
+      "permanent": true
+    },
+    {
+      "source": "/the-inn-at-nakoma-clio-ca",
+      "destination": "/portfolio/the-inn-at-nakoma-clio-ca",
+      "permanent": true
+    },
+    {
+      "source": "/the-townhomes-at-plumas-pines/",
+      "destination": "/portfolio/the-townhomes-at-plumas-pines/",
+      "permanent": true
+    },
+    {
+      "source": "/the-townhomes-at-plumas-pines",
+      "destination": "/portfolio/the-townhomes-at-plumas-pines",
+      "permanent": true
     }
   ]
 }
