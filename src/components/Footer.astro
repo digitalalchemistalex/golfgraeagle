@@ -37,12 +37,12 @@ const year = new Date().getFullYear();
         </p>
         <!-- Contact -->
         <div style="display:flex;flex-direction:column;gap:10px;">
-          <a href="mailto:mike.eskuchen@golfthehighsierra.com" style="display:flex;align-items:center;gap:10px;font-size:13px;color:rgba(240,248,242,0.45);text-decoration:none;transition:color 0.2s;"
+          <a href="mailto:mike.eskuchen@golfthehighsierra.com" style="display:flex;align-items:center;gap:10px;font-size:13px;color:rgba(240,248,242,0.65);text-decoration:none;transition:color 0.2s;"
           onmouseover="this.style.color='#e8a850'" onmouseout="this.style.color='rgba(240,248,242,0.45)'">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
             mike.eskuchen@golfthehighsierra.com
           </a>
-          <a href="/request-a-quote" style="display:flex;align-items:center;gap:10px;font-size:13px;color:rgba(240,248,242,0.45);text-decoration:none;transition:color 0.2s;"
+          <a href="/request-a-quote" style="display:flex;align-items:center;gap:10px;font-size:13px;color:rgba(240,248,242,0.65);text-decoration:none;transition:color 0.2s;"
           onmouseover="this.style.color='#e8a850'" onmouseout="this.style.color='rgba(240,248,242,0.45)'">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
             Request a free quote
@@ -52,25 +52,25 @@ const year = new Date().getFullYear();
         <!-- Trust badges -->
         <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:28px;">
           {['🥇 Golf Digest Top 100','🏛️ FLW Clubhouse','⛳ 5 Courses · 25 min'].map(b=>(
-            <span style="font-size:10px;color:rgba(232,168,80,0.65);background:rgba(232,168,80,0.07);border:1px solid rgba(232,168,80,0.12);padding:4px 10px;border-radius:100px;letter-spacing:0.04em;">{b}</span>
+            <span style="font-size:11px;color:rgba(232,168,80,0.85);background:rgba(232,168,80,0.07);border:1px solid rgba(232,168,80,0.12);padding:4px 10px;border-radius:100px;letter-spacing:0.04em;">{b}</span>
           ))}
         </div>
       </div>
 
       <!-- Courses col -->
       <div>
-        <h4 style="font-size:11px;color:rgba(232,168,80,0.7);text-transform:uppercase;letter-spacing:0.12em;margin:0 0 20px;font-weight:600;">Golf Courses</h4>
+        <h4 style="font-size:12px;color:rgba(232,168,80,0.85);text-transform:uppercase;letter-spacing:0.12em;margin:0 0 20px;font-weight:600;">Golf Courses</h4>
         {courses.map(c=>(
-          <a href={`/portfolio/${c.slug === "nakoma-dragon" ? "nakoma-dragon-golf-packages" : c.slug + "-golf-packages"}`} style="display:block;font-size:13px;color:rgba(240,248,242,0.45);text-decoration:none;margin-bottom:11px;line-height:1.3;transition:color 0.2s;"
+          <a href={`/portfolio/${c.slug === "nakoma-dragon" ? "nakoma-dragon-golf-packages" : c.slug + "-golf-packages"}`} style="display:block;font-size:13px;color:rgba(240,248,242,0.65);text-decoration:none;margin-bottom:11px;line-height:1.3;transition:color 0.2s;"
           onmouseover="this.style.color='#f0f8f2'" onmouseout="this.style.color='rgba(240,248,242,0.45)'">{c.name}</a>
         ))}
-        <a href="/courses" style="display:block;font-size:12px;color:rgba(232,168,80,0.55);text-decoration:none;margin-top:14px;padding-top:14px;border-top:1px solid rgba(240,248,242,0.05);transition:color 0.2s;"
+        <a href="/courses" style="display:block;font-size:13px;color:rgba(232,168,80,0.75);text-decoration:none;margin-top:14px;padding-top:14px;border-top:1px solid rgba(240,248,242,0.05);transition:color 0.2s;"
         onmouseover="this.style.color='#e8a850'" onmouseout="this.style.color='rgba(232,168,80,0.55)'">Compare all courses →</a>
       </div>
 
       <!-- Plan col -->
       <div>
-        <h4 style="font-size:11px;color:rgba(232,168,80,0.7);text-transform:uppercase;letter-spacing:0.12em;margin:0 0 20px;font-weight:600;">Plan Your Trip</h4>
+        <h4 style="font-size:12px;color:rgba(232,168,80,0.85);text-transform:uppercase;letter-spacing:0.12em;margin:0 0 20px;font-weight:600;">Plan Your Trip</h4>
         {[
           ['Lodging','/lodging'],
           ['Hotels & Resorts','/lodging'],
@@ -81,29 +81,29 @@ const year = new Date().getFullYear();
           ['Blog','/blog'],
           ['FAQ','/faq'],
         ].map(([l,h])=>(
-          <a href={h} style="display:block;font-size:13px;color:rgba(240,248,242,0.45);text-decoration:none;margin-bottom:11px;transition:color 0.2s;"
+          <a href={h} style="display:block;font-size:13px;color:rgba(240,248,242,0.65);text-decoration:none;margin-bottom:11px;transition:color 0.2s;"
           onmouseover="this.style.color='#f0f8f2'" onmouseout="this.style.color='rgba(240,248,242,0.45)'">{l}</a>
         ))}
       </div>
 
       <!-- Dining col -->
       <div class="footer-col-dining">
-        <h4 style="font-size:11px;color:rgba(232,168,80,0.7);text-transform:uppercase;letter-spacing:0.12em;margin:0 0 20px;font-weight:600;">Dining</h4>
-        <p style="font-size:10px;color:rgba(240,248,242,0.25);text-transform:uppercase;letter-spacing:0.1em;margin:0 0 8px;">Fine Dining</p>
+        <h4 style="font-size:12px;color:rgba(232,168,80,0.85);text-transform:uppercase;letter-spacing:0.12em;margin:0 0 20px;font-weight:600;">Dining</h4>
+        <p style="font-size:11px;color:rgba(240,248,242,0.45);text-transform:uppercase;letter-spacing:0.1em;margin:0 0 8px;">Fine Dining</p>
         {['Longboards Bar and Grill','Sardine Lake Resort','Iron Door Restaurant'].map(r=>(
-          <a href="/dining" style="display:block;font-size:13px;color:rgba(240,248,242,0.45);text-decoration:none;margin-bottom:8px;transition:color 0.2s;"
+          <a href="/dining" style="display:block;font-size:13px;color:rgba(240,248,242,0.65);text-decoration:none;margin-bottom:8px;transition:color 0.2s;"
           onmouseover="this.style.color='#f0f8f2'" onmouseout="this.style.color='rgba(240,248,242,0.45)'">{r}</a>
         ))}
-        <p style="font-size:10px;color:rgba(240,248,242,0.25);text-transform:uppercase;letter-spacing:0.1em;margin:14px 0 8px;">Breweries & Bars</p>
+        <p style="font-size:11px;color:rgba(240,248,242,0.45);text-transform:uppercase;letter-spacing:0.1em;margin:14px 0 8px;">Breweries & Bars</p>
         {['Eureka Peak Brewing Co.','The Brewing Lair','Mohawk Tavern','The Knotty Pine Tavern'].map(r=>(
-          <a href="/dining" style="display:block;font-size:13px;color:rgba(240,248,242,0.45);text-decoration:none;margin-bottom:8px;transition:color 0.2s;"
+          <a href="/dining" style="display:block;font-size:13px;color:rgba(240,248,242,0.65);text-decoration:none;margin-bottom:8px;transition:color 0.2s;"
           onmouseover="this.style.color='#f0f8f2'" onmouseout="this.style.color='rgba(240,248,242,0.45)'">{r}</a>
         ))}
       </div>
 
       <!-- CTA col -->
       <div class="footer-col-cta">
-        <h4 style="font-size:11px;color:rgba(232,168,80,0.7);text-transform:uppercase;letter-spacing:0.12em;margin:0 0 20px;font-weight:600;">Plan Your Round</h4>
+        <h4 style="font-size:12px;color:rgba(232,168,80,0.85);text-transform:uppercase;letter-spacing:0.12em;margin:0 0 20px;font-weight:600;">Plan Your Round</h4>
         <div style="background:rgba(232,168,80,0.06);border:1px solid rgba(232,168,80,0.12);border-radius:16px;padding:24px;">
           <p style="font-size:13px;color:rgba(240,248,242,0.6);line-height:1.65;margin:0 0 20px;">
             Tell us your dates, group size, and preferred courses. We'll handle tee times, lodging, and everything in between.
@@ -113,7 +113,7 @@ const year = new Date().getFullYear();
           onmouseout="this.style.background='#e8a850';this.style.transform='translateY(0)'">
             Request a Free Quote
           </a>
-          <p style="font-size:11px;color:rgba(240,248,242,0.2);text-align:center;margin:12px 0 0;">No obligation · Response within 24 hours</p>
+          <p style="font-size:12px;color:rgba(240,248,242,0.45);text-align:center;margin:12px 0 0;">No obligation · Response within 24 hours</p>
         </div>
 
         <!-- 72-hr cancellation badge (hidden per operator request) -->
@@ -130,7 +130,7 @@ const year = new Date().getFullYear();
     <div class="footer-bottom-inner" style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;">
 
       <div style="display:flex;align-items:center;gap:8px;">
-        <span style="font-size:12px;color:rgba(240,248,242,0.22);">
+        <span style="font-size:13px;color:rgba(240,248,242,0.50);">
           © {year} Zoomaway Technologies Inc. — GolfGraeagle.com is a product of Zoomaway Technologies Inc.
         </span>
       </div>
@@ -143,16 +143,16 @@ const year = new Date().getFullYear();
           ['Disclaimer','/disclaimer'],
           ['About','/about-us'],
         ].map(([l,h])=>(
-          <a href={h} style="font-size:12px;color:rgba(240,248,242,0.25);text-decoration:none;transition:color 0.2s;"
-          onmouseover="this.style.color='rgba(240,248,242,0.6)'" onmouseout="this.style.color='rgba(240,248,242,0.25)'">{l}</a>
+          <a href={h} style="font-size:13px;color:rgba(240,248,242,0.50);text-decoration:none;transition:color 0.2s;"
+          onmouseover="this.style.color='rgba(240,248,242,0.6)'" onmouseout="this.style.color='rgba(240,248,242,0.50)'">{l}</a>
         ))}
       </div>
 
     </div>
 
     <!-- Subsidiary disclosure -->
-    <p style="font-size:11px;color:rgba(240,248,242,0.14);margin:12px 0 0;line-height:1.6;">
-      Zoomaway Technologies Inc. and its subsidiaries (Zoomaway Inc. &amp; Tripsee) or operating web products (Golf the High Sierra, Group Golf Tours, Golf Graeagle, ZoomedIN) are not responsible for any offensive content posted by users. Bookings are subject to our <a href="/terms-and-conditions" style="color:rgba(240,248,242,0.25);text-decoration:none;" onmouseover="this.style.color='rgba(240,248,242,0.5)'" onmouseout="this.style.color='rgba(240,248,242,0.25)'">Terms &amp; Conditions</a> and <a href="/cancellation-policy" style="color:rgba(240,248,242,0.25);text-decoration:none;" onmouseover="this.style.color='rgba(240,248,242,0.5)'" onmouseout="this.style.color='rgba(240,248,242,0.25)'">Cancellation Policy</a>.
+    <p style="font-size:11px;color:rgba(240,248,242,0.42);margin:12px 0 0;line-height:1.6;">
+      Zoomaway Technologies Inc. and its subsidiaries (Zoomaway Inc. &amp; Tripsee) or operating web products (Golf the High Sierra, Group Golf Tours, Golf Graeagle, ZoomedIN) are not responsible for any offensive content posted by users. Bookings are subject to our <a href="/terms-and-conditions" style="color:rgba(240,248,242,0.25);text-decoration:none;" onmouseover="this.style.color='rgba(240,248,242,0.5)'" onmouseout="this.style.color='rgba(240,248,242,0.50)'">Terms &amp; Conditions</a> and <a href="/cancellation-policy" style="color:rgba(240,248,242,0.25);text-decoration:none;" onmouseover="this.style.color='rgba(240,248,242,0.5)'" onmouseout="this.style.color='rgba(240,248,242,0.50)'">Cancellation Policy</a>.
     </p>
   </div>
 
