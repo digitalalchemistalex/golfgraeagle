@@ -102,12 +102,12 @@
     },
     {
       "source": "/portfolio/nakoma-dragon-golf-packages/",
-      "destination": "/courses/nakoma",
+      "destination": "/courses/nakoma-dragon",
       "permanent": true
     },
     {
       "source": "/portfolio/nakoma-dragon-golf-packages",
-      "destination": "/courses/nakoma",
+      "destination": "/courses/nakoma-dragon",
       "permanent": true
     },
     {
@@ -173,6 +173,21 @@
     {
       "source": "/courses/:slug/",
       "destination": "/courses/:slug",
+      "permanent": true
+    },
+    {
+      "source": "/request-quote/",
+      "destination": "/quote",
+      "permanent": true
+    },
+    {
+      "source": "/request-quote",
+      "destination": "/quote",
+      "permanent": true
+    },
+    {
+      "source": "/sitemap_index.xml",
+      "destination": "/sitemap.xml",
       "permanent": true
     }
   ]
