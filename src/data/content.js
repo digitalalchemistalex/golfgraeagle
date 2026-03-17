@@ -93,12 +93,12 @@ export const courses = [
       'All-grass driving range with complimentary balls',
       'Award-winning snack bar — breakfast burritos famous',
     ],
-    // Official photos from whitehawkranch.com
-    hero: 'https://whitehawkranch.com/wp-content/uploads/sites/88/2026/02/popup-home.webp',
+    hero: 'https://whitehawkranch.com/wp-content/uploads/sites/88/2025/03/P9151812-1.jpg',
     images: [
-      'https://whitehawkranch.com/wp-content/uploads/sites/88/2026/02/popup-home.webp',
       'https://whitehawkranch.com/wp-content/uploads/sites/88/2025/03/P9151812-1.jpg',
-      'https://whitehawkranch.com/wp-content/uploads/sites/88/2025/03/DSC07704-1-470x705-1.jpg',
+      'https://images.unsplash.com/photo-1535131749006-b7f58c99034b?w=1200&q=80&auto=format',
+      'https://images.unsplash.com/photo-1611374243147-44a702c2d44c?w=1200&q=80&auto=format',
+      'https://images.unsplash.com/photo-1587174486073-ae5e5cff23aa?w=1200&q=80&auto=format',
     ],
     description: 'Whitehawk Ranch Golf Course opened in 1996, designed by Dick Bailey on 550 acres of pristine Mohawk Valley land. Twelve holes play through open meadows along meandering streams; six more climb through forested hillside terrain. Water features, native wildflowers, and elevation changes create a constantly varied round. Winner of four major regional awards including Golf Digest Top 20 in California.',
     bestFor: 'Competitive players, award-winning scenery, serious rounds',
