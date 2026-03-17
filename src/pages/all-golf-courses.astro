@@ -4,6 +4,40 @@ import Base from '../layouts/Base.astro';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
 import { courses } from '../data/content.js';
+
+const wpSlugMap: Record<string,string> = {
+  'graeagle-meadows': 'graeagle-meadows-golf-packages',
+  'whitehawk-ranch':  'whitehawk-ranch-golf-packages',
+  'plumas-pines':     'plumas-pines-golf-packages',
+  'grizzly-ranch':    'grizzly-ranch-golf-packages',
+  'nakoma-dragon':    'nakoma-dragon-golf-packages',
+};
+
+const allCoursesSchema = [
+  {
+    '@type': 'ItemList',
+    '@id': 'https://golfgraeagle.com/all-golf-courses#courselist',
+    name: 'Golf Courses in Graeagle, California',
+    description: 'All 5 championship golf courses in the Graeagle area of Northern California',
+    numberOfItems: 5,
+    itemListElement: courses.map((c: any, i: number) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      name: c.name,
+      url: `https://golfgraeagle.com/portfolio/${wpSlugMap[c.slug]}`,
+      description: c.description?.split('.')[0],
+    })),
+  },
+  {
+    '@type': 'FAQPage',
+    mainEntity: [
+      { '@type': 'Question', name: 'How many golf courses are in Graeagle California?', acceptedAnswer: { '@type': 'Answer', text: 'There are 5 championship golf courses in the Graeagle area of Northern California: Graeagle Meadows Golf Course, Whitehawk Ranch Golf Course, Plumas Pines Golf Resort, Grizzly Ranch Golf Club, and Nakoma (The Dragon) Golf Course. All 5 are within 25 minutes of each other.' } },
+      { '@type': 'Question', name: 'What is the best golf course in Graeagle?', acceptedAnswer: { '@type': 'Answer', text: 'Grizzly Ranch Golf Club is ranked Golf Digest Top 100 Greatest Public Courses in the US (2021) and is considered the most challenging. Nakoma (The Dragon) is the most unique, with the only golf clubhouse designed by Frank Lloyd Wright. Whitehawk Ranch was ranked Top 20 Golf Courses in California in 1998.' } },
+      { '@type': 'Question', name: 'Are the Graeagle golf courses close together?', acceptedAnswer: { '@type': 'Answer', text: 'Yes. All 5 Graeagle golf courses are within 5 to 25 minutes of each other. This density makes Graeagle ideal for multi-course golf trips — most groups play 2 to 4 courses over a single weekend.' } },
+      { '@type': 'Question', name: 'What is the altitude of Graeagle golf courses?', acceptedAnswer: { '@type': 'Answer', text: 'Graeagle golf courses sit between 4,300 and 5,400 feet elevation in the Sierra Nevada. The altitude provides longer carry distances, faster greens, and cooler temperatures than lower-elevation California courses.' } },
+    ],
+  },
+];
 ---
 <style>
   .courses-wrap { padding: clamp(100px,12vw,140px) clamp(20px,10%,10%) 60px; max-width: 1200px; margin: 0 auto; }
@@ -28,7 +62,7 @@ import { courses } from '../data/content.js';
     .course-card-tier { text-align: left; }
   }
 </style>
-<Base canonical="https://golfgraeagle.com/all-golf-courses" title="All Golf Courses in Graeagle, California | GolfGraeagle.com" description="There are 5 championship golf courses in Graeagle, CA: Graeagle Meadows, Whitehawk Ranch, Plumas Pines, Grizzly Ranch, and Nakoma (The Dragon). All within 25 minutes.">
+<Base canonical="https://golfgraeagle.com/all-golf-courses" title="All Golf Courses in Graeagle, California | GolfGraeagle.com" description="There are 5 championship golf courses in Graeagle, CA: Graeagle Meadows, Whitehawk Ranch, Plumas Pines, Grizzly Ranch, and Nakoma (The Dragon). All within 25 minutes." schema={allCoursesSchema}>
   <Nav />
   <section class="courses-wrap">
     <p style="font-size:11px;color:#e8a850;letter-spacing:0.16em;text-transform:uppercase;font-weight:600;margin:0 0 16px;">5 Championship Courses</p>
