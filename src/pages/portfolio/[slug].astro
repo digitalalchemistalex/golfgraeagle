@@ -402,11 +402,21 @@ const diningSlugMap: Record<string, string> = {
     position: relative;
     text-decoration: none;
     display: block;
-    transition: flex 0.4s cubic-bezier(0.4,0,0.2,1);
+    transition: flex 0.4s cubic-bezier(0.4,0,0.2,1), box-shadow 0.3s ease, outline 0.3s ease;
+    outline: 2px solid transparent;
+    outline-offset: 0px;
   }
 
-  .ch-strip-item.is-active { flex: 2.8; }
-  .ch-strip-item:not(.is-active):hover { flex: 1.6; }
+  .ch-strip-item.is-active {
+    flex: 2.8;
+    outline: 2px solid rgba(120,255,160,0.9);
+    box-shadow: 0 0 0 1px rgba(120,255,160,0.4), 0 0 12px 3px rgba(80,255,120,0.5), 0 0 28px 6px rgba(60,220,100,0.25);
+  }
+  .ch-strip-item:not(.is-active):hover {
+    flex: 1.6;
+    outline: 2px solid rgba(120,255,160,0.6);
+    box-shadow: 0 0 0 1px rgba(120,255,160,0.2), 0 0 10px 2px rgba(80,255,120,0.35), 0 0 20px 4px rgba(60,220,100,0.15);
+  }
 
   .ch-strip-thumb {
     width: 100%;
