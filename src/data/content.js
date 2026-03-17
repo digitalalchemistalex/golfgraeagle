@@ -18,7 +18,7 @@ export const siteConfig = {
   email: 'mike.eskuchen@golfthehighsierra.com',
   quoteUrl: '/request-a-quote',
   social: {
-    og_image: 'https://grizzlyranchgolfclub.com/wp-content/uploads/2025/06/2dfdf8_586aabb07dde409db509af8fd0b9da1amv2-1.jpg',
+    og_image: 'https://golfgraeagle.com/wp-images/DJI_0006-Edit.jpg',
   },
 };
 
