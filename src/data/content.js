@@ -276,7 +276,7 @@ export const lodging = [
       'https://static.wixstatic.com/media/b638ee_d34c79535086422bbd9e982155dbffeb~mv2.jpg',
       'https://static.wixstatic.com/media/b638ee_161386a82a024a4ca602d13cdb18f401~mv2.jpg',
       'https://static.wixstatic.com/media/b638ee_4f8087be64664ac2842076427b6d595e~mv2.jpg',
-      'https://static.wixstatic.com/media/b638ee_67c336cba18d413da6981f952dfa5de6~mv2.jpg',
+      'https://static.wixstatic.com/media/b638ee_72058e2a980141479207d0ab9b8a8a2d~mv2.jpg',
       'https://static.wixstatic.com/media/b638ee_72058e2a980141479207d0ab9b8a8a2d~mv2.jpg',
       'https://static.wixstatic.com/media/b638ee_1129a47da782475ca9eecb9767924a10~mv2.jpg',
       'https://static.wixstatic.com/media/b638ee_2986c284a74242969a3fcc6595014273~mv2.jpg',
