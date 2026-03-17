@@ -138,46 +138,73 @@ function adminEmailHtml(b: any, leadId: string): string {
     ['Submitted',       new Date().toLocaleString('en-US', { timeZone: 'America/Los_Angeles' }) + ' PT'],
   ];
 
+  // Split fields into 2 columns
+  const half = Math.ceil(fields.length / 2);
+  const col1 = fields.slice(0, half);
+  const col2 = fields.slice(half);
+
   return `<!DOCTYPE html>
 <html><head><meta charset="UTF-8"><title>New GGE Lead</title></head>
 <body style="margin:0;padding:0;background:#f0f8f2;font-family:'Helvetica Neue',Arial,sans-serif;">
 <table width="100%" cellpadding="0" cellspacing="0" style="background:#f0f8f2;padding:32px 0;">
 <tr><td align="center">
-<table width="600" cellpadding="0" cellspacing="0" style="background:#ffffff;border-radius:16px;overflow:hidden;box-shadow:0 4px 24px rgba(26,48,32,0.10);">
+<table width="640" cellpadding="0" cellspacing="0" style="background:#ffffff;border-radius:16px;overflow:hidden;box-shadow:0 4px 24px rgba(26,48,32,0.10);">
 
-  <!-- Header -->
-  <tr><td style="background:#122014;padding:24px 40px;">
-    <img src="${SITE_URL}/logo.png" alt="Graeagle Golf" style="height:48px;width:auto;display:block;margin-bottom:8px;">
-    <h2 style="color:#78c488;font-size:18px;font-weight:700;margin:0;">🏌️ New Golf Trip Lead</h2>
-    <p style="color:#a8dbb5;font-size:13px;margin:4px 0 0;">${b.firstName} ${b.lastName} — Party of ${b.partySize} — ${b.arrivalDate} to ${b.departureDate}</p>
+  <!-- Header — sierra green, not black -->
+  <tr><td style="background:#1a3020;padding:24px 36px;">
+    <table width="100%" cellpadding="0" cellspacing="0"><tr>
+      <td style="vertical-align:middle;">
+        <img src="${SITE_URL}/logo.png" alt="Graeagle Golf" style="height:72px;width:auto;display:block;">
+      </td>
+      <td style="vertical-align:middle;text-align:right;">
+        <div style="color:#78c488;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;">New Lead</div>
+        <div style="color:#ffffff;font-size:20px;font-weight:700;margin:4px 0;">🏌️ ${b.firstName} ${b.lastName}</div>
+        <div style="color:#a8dbb5;font-size:13px;">Party of ${b.partySize} · ${b.arrivalDate} → ${b.departureDate}</div>
+      </td>
+    </tr></table>
   </td></tr>
 
-  <!-- Fields -->
-  <tr><td style="padding:28px 40px;">
-    <table width="100%" cellpadding="0" cellspacing="0">
-      ${fields.map(([k, v]) => `
-      <tr>
-        <td style="padding:7px 0;border-bottom:1px solid #f0f8f2;width:40%;color:#5a7c5f;font-size:13px;font-weight:600;">${k}</td>
-        <td style="padding:7px 0;border-bottom:1px solid #f0f8f2;color:#122014;font-size:13px;">${v}</td>
-      </tr>`).join('')}
-    </table>
+  <!-- 2-column fields -->
+  <tr><td style="padding:28px 36px;">
+    <table width="100%" cellpadding="0" cellspacing="0"><tr valign="top">
+      <!-- Column 1 -->
+      <td width="48%" style="padding-right:16px;">
+        <table width="100%" cellpadding="0" cellspacing="0">
+          ${col1.map(([k, v]) => `<tr>
+            <td style="padding:6px 0;border-bottom:1px solid #e8f5ec;font-size:12px;font-weight:700;color:#3a8a48;width:45%;">${k}</td>
+            <td style="padding:6px 0;border-bottom:1px solid #e8f5ec;font-size:13px;color:#122014;">${v}</td>
+          </tr>`).join('')}
+        </table>
+      </td>
+      <!-- Divider -->
+      <td width="4%" style="border-left:1px solid #d4edd9;"></td>
+      <!-- Column 2 -->
+      <td width="48%" style="padding-left:16px;">
+        <table width="100%" cellpadding="0" cellspacing="0">
+          ${col2.map(([k, v]) => `<tr>
+            <td style="padding:6px 0;border-bottom:1px solid #e8f5ec;font-size:12px;font-weight:700;color:#3a8a48;width:45%;">${k}</td>
+            <td style="padding:6px 0;border-bottom:1px solid #e8f5ec;font-size:13px;color:#122014;">${v}</td>
+          </tr>`).join('')}
+        </table>
+      </td>
+    </tr></table>
   </td></tr>
 
   <!-- CTA -->
-  <tr><td style="padding:0 40px 28px;">
-    <a href="mailto:${b.email}?subject=Re: Your Graeagle Golf Trip Request" 
+  <tr><td style="padding:0 36px 28px;">
+    <a href="mailto:${b.email}?subject=Re: Your Graeagle Golf Trip Request"
        style="display:inline-block;background:#3a8a48;color:#ffffff;font-size:14px;font-weight:600;padding:12px 28px;border-radius:100px;text-decoration:none;margin-right:12px;">
       Reply to ${b.firstName} →
     </a>
-    <a href="tel:${b.phone.replace(/\D/g,'')}" 
+    <a href="tel:${b.phone.replace(/\D/g,'')}"
        style="display:inline-block;background:#e8a850;color:#122014;font-size:14px;font-weight:600;padding:12px 28px;border-radius:100px;text-decoration:none;">
       Call ${b.phone}
     </a>
   </td></tr>
 
   <!-- Footer -->
-  <tr><td style="background:#f0f8f2;padding:20px 40px;border-top:1px solid #d4edd9;">
-    <p style="color:#78c488;font-size:12px;margin:0;text-align:center;">
+  <tr><td style="background:#f0f8f2;padding:16px 36px;border-top:1px solid #d4edd9;">
+    <p style="color:#5a7c5f;font-size:12px;margin:0;text-align:center;">
       GolfGraeagle.com · Zoomaway Technologies Inc. · Lead ID: ${leadId}
     </p>
   </td></tr>
