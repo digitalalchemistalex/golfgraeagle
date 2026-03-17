@@ -1,4 +1,15 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <!-- Background -->
   <circle cx="16" cy="16" r="16" fill="#0d1a0e"/>
-  <text x="16" y="22" font-family="Georgia,serif" font-weight="700" font-size="16" fill="#3a8a48" text-anchor="middle" letter-spacing="-1">GG</text>
+  <!-- G shape - arc + crossbar -->
+  <!-- Outer arc of G -->
+  <path d="M24 11.5 A10 10 0 1 0 24 20.5 L18 20.5 L18 17 L24 17" 
+        fill="none" stroke="#3a8a48" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Flag pin inside the G opening -->
+  <!-- Pin pole -->
+  <line x1="21" y1="8" x2="21" y2="15" stroke="#52a862" stroke-width="1.2" stroke-linecap="round"/>
+  <!-- Flag -->
+  <polygon points="21,8 25,10 21,12" fill="#52a862"/>
+  <!-- Ball at base -->
+  <circle cx="21" cy="15.8" r="1.2" fill="#52a862"/>
 </svg>
