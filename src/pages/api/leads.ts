@@ -313,7 +313,7 @@ export const POST: APIRoute = async ({ request }) => {
       num_nights:             body.numNights            ? parseInt(body.numNights) : null,
       dates_flexible:         body.datesFlexible        || 'no',
       lodging_type:           body.lodgingType          || null,
-      // lodging_property: body.lodgingProperty || null, // ADD COLUMN FIRST: ALTER TABLE gg_leads ADD COLUMN IF NOT EXISTS lodging_property text;
+      lodging_property:       body.lodgingProperty      || null,
       room_config:            body.roomConfig           || null,
       total_rounds:           parseInt(body.totalRounds)|| null,
       ideal_tee_times:        body.idealTeeTimes        || null,
