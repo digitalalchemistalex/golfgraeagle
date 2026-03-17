@@ -167,6 +167,14 @@ const buildSchema = () => {
         potentialAction: { '@type': 'ReserveAction', target: { '@type': 'EntryPoint', urlTemplate: `${siteConfig.url}/request-a-quote` } },
       },
       breadcrumb,
+      {
+        '@type': 'FAQPage',
+        mainEntity: [
+          { '@type': 'Question', name: `Is ${item.name} good for golf groups?`, acceptedAnswer: { '@type': 'Answer', text: `Yes. ${item.name} is ${item.distanceFromGraeagle} and is paired with tee times at all 5 Graeagle championship courses by GolfGraeagle.com. Packages start from $299 per golfer.` } },
+          { '@type': 'Question', name: `How far is ${item.name} from the golf courses?`, acceptedAnswer: { '@type': 'Answer', text: `${item.name} is ${item.distanceFromGraeagle}. All 5 Graeagle courses — Graeagle Meadows, Whitehawk Ranch, Plumas Pines, Grizzly Ranch, and Nakoma (The Dragon) — are within 25 minutes.` } },
+          { '@type': 'Question', name: `Does ${item.name} offer stay and play golf packages?`, acceptedAnswer: { '@type': 'Answer', text: `GolfGraeagle.com offers stay-and-play packages at ${item.name} starting from $299 per golfer. Packages include lodging, tee times, and full trip coordination. Request a free quote at golfgraeagle.com/request-a-quote.` } },
+        ],
+      },
     ];
   }
 
@@ -183,9 +191,16 @@ const buildSchema = () => {
         address: { '@type': 'PostalAddress', streetAddress: item.location, addressRegion: 'CA', addressCountry: 'US', addressLocality: 'Graeagle' },
         geo: item.coordinates ? { '@type': 'GeoCoordinates', latitude: item.coordinates.lat, longitude: item.coordinates.lng } : undefined,
         telephone: item.phone,
-        priceRange: item.category === 'fine-dining' ? '$$$' : item.category === 'brewery' || item.category === 'bar' ? '$$' : '$$',
+        priceRange: item.category === 'fine-dining' ? '$$$' : '$$',
       },
       breadcrumb,
+      {
+        '@type': 'FAQPage',
+        mainEntity: [
+          { '@type': 'Question', name: `Is ${item.name} good for golf groups?`, acceptedAnswer: { '@type': 'Answer', text: `Yes. ${item.name} is popular with Graeagle golf groups. ${item.description?.split('.')[0]}.` } },
+          { '@type': 'Question', name: `Where is ${item.name} located?`, acceptedAnswer: { '@type': 'Answer', text: `${item.name} is located at ${item.location || 'near Graeagle, California'}, approximately 5 minutes from the main Graeagle golf courses.` } },
+        ],
+      },
     ];
   }
 
@@ -209,7 +224,7 @@ const lodgingSlugMap: Record<string, string> = {
   'townhomes-at-plumas-pines':'the-townhomes-at-plumas-pines',
 };
 ---
-<Base title={pageTitle} description={pageDesc} schema={pageSchema} canonical={pageUrl}>
+<Base title={pageTitle} description={pageDesc} schema={pageSchema} canonical={pageUrl} ogImage={item?.hero || undefined}>
   <Nav />
 
   {item && type === 'course' && (

@@ -81,7 +81,8 @@ const comparisons = [
   @media (max-width: 600px) { .stat-row { grid-template-columns: 1fr 1fr; } .compare-grid { gap: 8px; } }
 </style>
 
-<Base {title} {description} schema={[blogSchema, breadcrumbSchema, faqSchema]}>
+ogType="article"
+<Base {title} {description} canonical="https://golfgraeagle.com/ultimate-guide-to-golfing-in-graeagle" ogType="article" schema={[blogSchema, breadcrumbSchema, faqSchema]}>
   <Nav />
 
   <article class="blog-wrap">

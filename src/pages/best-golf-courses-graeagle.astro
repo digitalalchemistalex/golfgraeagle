@@ -75,7 +75,8 @@ const courses = [
   @media (max-width: 680px) { .course-table { display: block; overflow-x: auto; } }
 </style>
 
-<Base {title} {description} schema={[blogSchema, breadcrumbSchema, faqSchema]}>
+ogType="article"
+<Base {title} {description} canonical="https://golfgraeagle.com/best-golf-courses-graeagle" ogType="article" schema={[blogSchema, breadcrumbSchema, faqSchema]}>
   <Nav />
 
   <article class="blog-wrap">
