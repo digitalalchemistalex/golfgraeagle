@@ -962,6 +962,27 @@ const diningSlugMap: Record<string, string> = {
           ) : null;
         })()}
 
+        <!-- FAQ Section -->
+        <div style="margin-bottom:52px;">
+          <h2 style="font-family:'Playfair Display',serif;font-size:22px;color:#f0f8f2;margin:0 0 20px;font-weight:400;">Frequently Asked Questions</h2>
+          <div style="display:flex;flex-direction:column;gap:0;">
+            {[
+              [`Is ${item.name} good for golf groups?`, `Yes. ${item.name} is ${item.distanceFromGraeagle || 'near Graeagle'} and works well for golf groups of all sizes. GolfGraeagle pairs stays here with tee times at any of the 5 Graeagle championship courses — Graeagle Meadows, Whitehawk Ranch, Plumas Pines, Grizzly Ranch, and Nakoma (The Dragon). Packages include lodging, tee times, and a full day-by-day itinerary.`],
+              [`How far is ${item.name} from the Graeagle golf courses?`, `${item.name} is ${item.distanceFromGraeagle || 'conveniently located near Graeagle'}. All 5 Graeagle courses are within 25 minutes from the property.`],
+              [`Does ${item.name} offer stay and play golf packages?`, `GolfGraeagle.com offers stay-and-play packages at ${item.name} with guaranteed tee times at all 5 Graeagle courses. Request a free quote at golfgraeagle.com/request-a-quote. All packages include lodging coordination, tee time booking, and a day-by-day itinerary. Response within 24 hours.`],
+              [`What type of accommodation is ${item.name}?`, `${item.description?.split('.')[0] || item.tagline}. ${item.highlights?.[0] || ''}. GolfGraeagle matches lodging to group size and budget as part of every stay-and-play package.`],
+            ].map(([q, a]) => (
+              <details style="border-bottom:1px solid rgba(240,248,242,0.06);padding:0;">
+                <summary style="font-size:15px;color:#f0f8f2;font-weight:500;padding:16px 0;cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;">
+                  {q}
+                  <span style="color:#e8a850;font-size:18px;flex-shrink:0;margin-left:16px;">+</span>
+                </summary>
+                <p style="font-size:14px;color:rgba(240,248,242,0.55);line-height:1.75;padding:0 0 16px;margin:0;">{a}</p>
+              </details>
+            ))}
+          </div>
+        </div>
+
         <!-- Other lodging options -->
         <div>
           <h2 style="font-family:'Playfair Display',serif;font-size:22px;color:#f0f8f2;margin:0 0 24px;font-weight:400;">Other Graeagle Lodging</h2>

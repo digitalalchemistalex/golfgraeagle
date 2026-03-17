@@ -235,10 +235,11 @@ export const lodging = [
       'Minutes from all 5 championship courses',
     ],
     // Feather River cabin resort — verified Unsplash (River Pines has no public CDN)
-    hero: 'https://images.unsplash.com/photo-1571068316344-75bc76f77890?w=1200&q=80&auto=format',
+    // River Pines — using Grizzly Ranch Plumas County Sierra scenery (same region)
+    hero: 'https://grizzlyranchgolfclub.com/wp-content/uploads/2025/10/2dfdf8_63c6afdb11ea45daa6956e5f61fac942mv2.jpg',
     images: [
-      'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=1200&q=80&auto=format',
-      'https://images.unsplash.com/photo-1502126324834-38f8e02d7160?w=1200&q=80&auto=format',
+      'https://grizzlyranchgolfclub.com/wp-content/uploads/2025/10/2dfdf8_63c6afdb11ea45daa6956e5f61fac942mv2.jpg',
+      'https://grizzlyranchgolfclub.com/wp-content/uploads/2025/10/2dfdf8_95fd67b644d04d7e8f13da42bb9808f6mv2.jpg',
     ],
     onSiteDining: ['roadhouse'],
     priceRange: '$299–$499',
@@ -333,7 +334,8 @@ export const lodging = [
       'Steps from Plumas Pines Golf Course',
       'Perfect for groups of 8–24',
     ],
-    hero: 'https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=1200&q=85&auto=format',
+    // Townhomes at Plumas Pines — using Plumas Pines Golf course photography (adjacent property)
+    hero: 'https://www.plumaspinesgolf.com/wp-content/uploads/sites/9383/2024/04/Owen-Drone-2.jpg',
     images: [
     ],
     onSiteDining: ['longboards'],
@@ -417,7 +419,7 @@ export const dining = [
     highlights: ['Local game and Sierra-grown produce', 'Stone hearth and exposed beam interior', 'Full bar', '4,800 ft elevation — bring layers for evening'],
     coordinates: { lat: 39.7750, lng: -120.6180 },
     location: 'Off Hwy 70, 5 min from Graeagle',
-    hero: 'https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?w=1200&q=80&auto=format',
+    hero: 'https://grizzlyranchgolfclub.com/wp-content/uploads/2025/10/2dfdf8_c82b31666905452f951c34f7ee4b742amv2.jpg',
   },
   {
     slug: 'iron-door',
@@ -429,7 +431,7 @@ export const dining = [
     highlights: ['Building dates to 1906 — original post-office doors on display', 'Steaks, prime rib, seafood, scratch pastas, jaeger schnitzel', 'Operating since 1961', 'Timber-beam dining room'],
     coordinates: { lat: 39.777736, lng: -120.616367 },
     location: '5 min east of Graeagle via Hwy 70',
-    hero: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=1200&q=80&auto=format',
+    hero: 'https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=1200&q=80&auto=format',
   },
   {
     slug: 'sardine-lake',
@@ -443,7 +445,7 @@ export const dining = [
     coordinates: { lat: 39.6466, lng: -120.6355 },
     location: '990 Sardine Lake Rd, Sierra City — 45 min via Gold Lake Road',
     phone: '(530) 862-1196',
-    hero: 'https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=1200&q=80&auto=format',
+    hero: 'https://graeaglemeadows.com/wp-content/uploads/sites/86/2025/12/DJI_0230-Edit.jpg',
   },
   // ─── Casual Dining ─────────────────────────────────────
   {
@@ -456,7 +458,7 @@ export const dining = [
     highlights: ['On-site at River Pines Resort — no driving required', 'Steaks, ribs, and whisky flights', 'Group-dinner-friendly', 'Just off Hwy 70'],
     coordinates: { lat: 39.7775, lng: -120.6210 },
     location: 'River Pines Resort, off Hwy 70',
-    hero: 'https://images.unsplash.com/photo-1529290130-4ca3753253ae?w=1200&q=80&auto=format',
+    hero: 'https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?w=1200&q=80&auto=format',
   },
   {
     slug: 'graeagle-restaurant',
@@ -468,7 +470,7 @@ export const dining = [
     highlights: ['Family-owned since 1958 — three generations', 'Inside the historic Box Factory Mill building', 'Breakfast, lunch, homemade pies', 'Downtown Graeagle'],
     coordinates: { lat: 39.75069, lng: -120.63224 },
     location: 'Historic Box Factory Mill, downtown Graeagle',
-    hero: 'https://images.unsplash.com/photo-1541614101331-1a5a3a194e92?w=1200&q=80&auto=format',
+    hero: 'https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=1200&q=80&auto=format',
   },
   {
     slug: 'meadows-restaurant',
@@ -480,7 +482,7 @@ export const dining = [
     highlights: ['Fairway and mountain views from every table', 'Seasonal menu', 'Inside Graeagle Meadows clubhouse', '5 min from Graeagle via CA-89 N'],
     coordinates: { lat: 39.7505, lng: -120.6170 },
     location: 'Graeagle Meadows Golf Course, 5 min via CA-89 N',
-    hero: 'https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?w=1200&q=80&auto=format',
+    hero: 'https://images.unsplash.com/photo-1587174486073-ae5e5cff23aa?w=1200&q=80&auto=format',
   },
   {
     slug: 'sierra-smokeshow',
@@ -517,7 +519,7 @@ export const dining = [
     coordinates: { lat: 39.7506, lng: -120.6326 },
     location: '545 Mohawk Hwy, Graeagle, CA 96103',
     phone: '(530) 836-2121',
-    hero: 'https://images.unsplash.com/photo-1565958011703-44f9829ba187?w=1200&q=80&auto=format',
+    hero: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=1200&q=80&auto=format',
   },
   // ─── Breweries & Bars ───────────────────────────────────
   {
@@ -530,7 +532,7 @@ export const dining = [
     highlights: ['On-site at Chalet View Lodge', 'IPAs, stouts, saisons, and fruit-forward ales', 'Locally sourced seasonal food', 'Timber-framed lodge setting'],
     coordinates: { lat: 39.7552, lng: -120.6347 },
     location: 'Inside Chalet View Lodge, 5 min south via CA-89',
-    hero: 'https://images.unsplash.com/photo-1613564834361-9436948817d1?w=1200&q=80&auto=format',
+    hero: 'https://images.unsplash.com/photo-1584225064785-c62a8b43d148?w=1200&q=80&auto=format',
   },
   {
     slug: 'brewing-lair',
@@ -542,7 +544,7 @@ export const dining = [
     highlights: ['15 acres untouched Sierra forest', '15-barrel craft brewery', 'Outdoor lawn games vibe', 'Bring layers — cools fast in the evening', 'Off Hwy 70 near Blairsden'],
     coordinates: { lat: 39.78427, lng: -120.61188 },
     location: 'Off Hwy 70 near Blairsden, 5 min from Graeagle',
-    hero: 'https://images.unsplash.com/photo-1569050467447-ce54b3bbc37d?w=1200&q=80&auto=format',
+    hero: 'https://images.unsplash.com/photo-1436076863939-06870fe779c2?w=1200&q=80&auto=format',
   },
   {
     slug: 'mohawk-tavern',
@@ -555,7 +557,7 @@ export const dining = [
     coordinates: { lat: 39.7519, lng: -120.6291 },
     location: '999 Johnsville Rd, Graeagle, CA 96103',
     phone: '(530) 836-1241',
-    hero: 'https://images.unsplash.com/photo-1482049016688-2d3e1b311543?w=1200&q=80&auto=format',
+    hero: 'https://grizzlyranchgolfclub.com/wp-content/uploads/2025/10/2dfdf8_95fd67b644d04d7e8f13da42bb9808f6mv2.jpg',
   },
   {
     slug: 'knotty-pine',
@@ -568,7 +570,7 @@ export const dining = [
     coordinates: { lat: 39.7686, lng: -120.6194 },
     location: '7426 CA-89, Graeagle, CA 96103',
     phone: '(530) 836-2536',
-    hero: 'https://images.unsplash.com/photo-1559339352-11d035aa65de?w=1200&q=80&auto=format',
+    hero: 'https://images.unsplash.com/photo-1470337458703-46ad1756a187?w=1200&q=80&auto=format',
   },
   // ─── Quick Bites ────────────────────────────────────────
   {
@@ -581,7 +583,7 @@ export const dining = [
     highlights: ['Freshly made sandwiches and salads', 'Local favorite on Hwy 89', 'Perfect between tee times', 'Quick in-and-out'],
     coordinates: { lat: 39.77255, lng: -120.60798 },
     location: 'Hwy 89, Blairsden-Graeagle',
-    hero: 'https://images.unsplash.com/photo-1471086569966-db3eebc25a59?w=1200&q=80&auto=format',
+    hero: 'https://images.unsplash.com/photo-1509722747041-616f39b57569?w=1200&q=80&auto=format',
   },
   {
     slug: 'mountain-frostee',
@@ -608,6 +610,6 @@ export const dining = [
     coordinates: { lat: 39.7857, lng: -120.6436 },
     location: '402 Poplar Valley Rd, Blairsden-Graeagle, CA 96103',
     phone: '(530) 836-1111',
-    hero: 'https://images.unsplash.com/photo-1572635196237-14b3f281503f?w=1200&q=80&auto=format',
+    hero: 'https://www.plumaspinesgolf.com/wp-content/uploads/sites/9383/2024/06/Longboards-Deck-Photo.png',
   },
 ];

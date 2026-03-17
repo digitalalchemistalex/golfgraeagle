@@ -124,6 +124,26 @@ const schema = {
         </table>
       </div>
 
+      <div style="margin:56px 0;">
+        <h2 style="font-family:'Playfair Display',serif;font-size:26px;color:#f0f8f2;margin:0 0 24px;font-weight:400;">Frequently Asked Questions</h2>
+        <div style="display:flex;flex-direction:column;gap:0;">
+          {[
+            ['What is the best golf course in Graeagle?', 'Grizzly Ranch Golf Club holds the highest national ranking — Golf Digest Top 100 Greatest Public Courses in the US (2021). At 7,411 yards with a slope of 140, it is also the most demanding. Nakoma Dragon is the most unique with its Frank Lloyd Wright clubhouse and Golf World Top 75 debut ranking. The "best" course depends on what your group wants: Grizzly for the biggest challenge, Nakoma for the bucket-list experience, Whitehawk for the most scenic round.'],
+            ['What is the easiest Graeagle golf course for high handicappers?', 'Graeagle Meadows is the most forgiving. It plays to par 72 at 6,759 yards with a slope of 120 — the lowest rating in the valley. Open meadow terrain, generous fairways, and elevation-free routing make it accessible for all handicap levels.'],
+            ['How do the Graeagle courses compare on price?', 'Graeagle Meadows and Plumas Pines are the most affordable ($$). Whitehawk Ranch is mid-range ($$$). Grizzly Ranch and Nakoma Dragon carry the highest green fees ($$$$). GolfGraeagle does not publish specific green fees — request a quote for current package pricing.'],
+            ['Can you play all 5 Graeagle courses in one trip?', 'Yes. Five courses over 3–4 days is a common format. Most golfers play 2 rounds per day on back-to-back days and finish comfortably. The courses are within 5–25 minutes of each other, so drive time is minimal.'],
+          ].map(([q, a]) => (
+            <details style="border-bottom:1px solid rgba(240,248,242,0.06);padding:0;">
+              <summary style="font-size:16px;color:#f0f8f2;font-weight:500;padding:18px 0;cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;">
+                {q}
+                <span style="color:#e8a850;font-size:20px;flex-shrink:0;margin-left:16px;">+</span>
+              </summary>
+              <p style="font-size:14px;color:rgba(240,248,242,0.55);line-height:1.8;padding:0 0 16px;margin:0;">{a}</p>
+            </details>
+          ))}
+        </div>
+      </div>
+
       <div class="bl-cta">
         <h2>Which courses are right for your group?</h2>
         <p>Tell us your group's handicap range, how many rounds you want, and your dates. We'll build the right course sequence and secure tee times at all of them.</p>
