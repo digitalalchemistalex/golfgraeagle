@@ -715,17 +715,20 @@ const diningSlugMap: Record<string, string> = {
         </div>
       </div>
 
-      <!-- Photo gallery -->
+      <!-- Photo gallery with lightbox -->
       {item.images.length > 1 && (
         <div class="reveal" style="margin-bottom:56px;">
           <h2 style="font-family:'Playfair Display',serif;font-size:24px;color:#f0f8f2;margin:0 0 20px;">Course Photos</h2>
           <div class="photo-grid">
             {item.images.slice(0,6).map((img,i) => (
-              <div style={`border-radius:${i===0?'16px 4px 4px 4px':i===2?'4px 16px 4px 4px':i===3?'4px 4px 4px 16px':i===5?'4px 4px 16px 4px':'4px'};overflow:hidden;aspect-ratio:4/3;`}>
-                <img src={img} alt={`${item.name} — hole ${i+1}`} loading="lazy"
-                  style="width:100%;height:100%;object-fit:cover;transition:transform 0.6s ease;"
-                  onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'"/>
-              </div>
+              <button class="gallery-btn" data-src={img} data-idx={i} data-total={Math.min(item.images.length,6)}
+                style={`border:none;padding:0;background:none;border-radius:${i===0?'16px 4px 4px 4px':i===2?'4px 16px 4px 4px':i===3?'4px 4px 4px 16px':i===5?'4px 4px 16px 4px':'4px'};overflow:hidden;aspect-ratio:4/3;cursor:zoom-in;position:relative;display:block;`}>
+                <img src={img} alt={`${item.name} photo ${i+1}`} loading="lazy"
+                  style="width:100%;height:100%;object-fit:cover;transition:transform 0.4s ease;display:block;"/>
+                <span style="position:absolute;inset:0;background:rgba(0,0,0,0);transition:background 0.3s;display:flex;align-items:center;justify-content:center;" class="gal-ov">
+                  <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" style="opacity:0;transition:opacity 0.3s;filter:drop-shadow(0 2px 4px rgba(0,0,0,0.5));"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/><path d="M11 8v6M8 11h6"/></svg>
+                </span>
+              </button>
             ))}
           </div>
         </div>
@@ -881,11 +884,17 @@ const diningSlugMap: Record<string, string> = {
       </div>
     </section>
 
-    <!-- PHOTO STRIP -->
+    <!-- PHOTO STRIP with lightbox -->
     {item.images && item.images.length > 1 && (
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:4px;max-height:220px;overflow:hidden;">
-        {item.images.slice(1, 5).map((img: string) => (
-          <img src={img} alt={item.name} style="width:100%;height:220px;object-fit:cover;" loading="lazy"/>
+        {item.images.slice(0, 5).map((img: string, i: number) => (
+          <button class="gallery-btn" data-src={img} data-idx={i} data-total={Math.min(item.images.length,5)}
+            style="border:none;padding:0;background:none;cursor:zoom-in;position:relative;display:block;overflow:hidden;">
+            <img src={img} alt={item.name} style="width:100%;height:220px;object-fit:cover;transition:transform 0.4s;" loading="lazy"/>
+            <span style="position:absolute;inset:0;background:rgba(0,0,0,0);transition:background 0.3s;display:flex;align-items:center;justify-content:center;" class="gal-ov">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" style="opacity:0;transition:opacity 0.3s;filter:drop-shadow(0 2px 4px rgba(0,0,0,0.5));"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/><path d="M11 8v6M8 11h6"/></svg>
+            </span>
+          </button>
         ))}
       </div>
     )}
@@ -1228,4 +1237,62 @@ const diningSlugMap: Record<string, string> = {
   )}
 
   <Footer />
+
+  <!-- ── LIGHTBOX ─────────────────────────────────────────── -->
+  <div id="lb" style="position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,0.93);align-items:center;justify-content:center;display:none;">
+    <button onclick="lbClose()" style="position:fixed;top:20px;right:24px;background:none;border:none;color:white;font-size:36px;cursor:pointer;z-index:10001;line-height:1;opacity:0.7;">&times;</button>
+    <button id="lb-prev" onclick="lbNav(-1)" style="position:fixed;left:16px;top:50%;transform:translateY(-50%);background:rgba(255,255,255,0.1);border:none;color:white;font-size:28px;cursor:pointer;z-index:10001;width:52px;height:52px;border-radius:50%;">&#8249;</button>
+    <img id="lb-img" src="" alt="" style="max-width:92vw;max-height:88vh;object-fit:contain;border-radius:8px;box-shadow:0 8px 60px rgba(0,0,0,0.6);transition:opacity 0.2s;"/>
+    <button id="lb-next" onclick="lbNav(1)" style="position:fixed;right:16px;top:50%;transform:translateY(-50%);background:rgba(255,255,255,0.1);border:none;color:white;font-size:28px;cursor:pointer;z-index:10001;width:52px;height:52px;border-radius:50%;">&#8250;</button>
+    <div id="lb-counter" style="position:fixed;bottom:20px;left:50%;transform:translateX(-50%);color:rgba(255,255,255,0.5);font-size:13px;letter-spacing:0.1em;"></div>
+  </div>
+
+  <style>
+    #lb.open { display:flex !important; }
+    .gallery-btn:hover img { transform:scale(1.05); }
+    .gallery-btn:hover .gal-ov { background:rgba(0,0,0,0.35) !important; }
+    .gallery-btn:hover .gal-ov svg { opacity:1 !important; }
+    #lb-prev:hover, #lb-next:hover { background:rgba(255,255,255,0.2) !important; }
+  </style>
+
+  <script>
+    let lbSrcs = [], lbIdx = 0;
+    function lbOpen(srcs, idx) {
+      lbSrcs = srcs; lbIdx = idx;
+      document.getElementById('lb').classList.add('open');
+      document.body.style.overflow = 'hidden';
+      lbShow();
+    }
+    function lbClose() {
+      document.getElementById('lb').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+    function lbNav(dir) {
+      lbIdx = (lbIdx + dir + lbSrcs.length) % lbSrcs.length;
+      lbShow();
+    }
+    function lbShow() {
+      const img = document.getElementById('lb-img');
+      img.style.opacity = '0';
+      setTimeout(() => { img.src = lbSrcs[lbIdx]; img.style.opacity = '1'; }, 150);
+      document.getElementById('lb-counter').textContent = (lbIdx + 1) + ' / ' + lbSrcs.length;
+      document.getElementById('lb-prev').style.display = lbSrcs.length > 1 ? '' : 'none';
+      document.getElementById('lb-next').style.display = lbSrcs.length > 1 ? '' : 'none';
+    }
+    document.addEventListener('DOMContentLoaded', () => {
+      const btns = Array.from(document.querySelectorAll('.gallery-btn'));
+      if (!btns.length) return;
+      const allSrcs = btns.map(b => b.dataset.src);
+      btns.forEach((btn, i) => btn.addEventListener('click', () => lbOpen(allSrcs, i)));
+      document.addEventListener('keydown', e => {
+        if (!document.getElementById('lb').classList.contains('open')) return;
+        if (e.key === 'Escape') lbClose();
+        if (e.key === 'ArrowRight') lbNav(1);
+        if (e.key === 'ArrowLeft') lbNav(-1);
+      });
+      document.getElementById('lb').addEventListener('click', e => {
+        if (e.target.id === 'lb') lbClose();
+      });
+    });
+  </script>
 </Base>
