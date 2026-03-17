@@ -264,14 +264,15 @@ export const lodging = [
     ],
     // Feather River cabin resort — verified Unsplash (River Pines has no public CDN)
     // River Pines — using Grizzly Ranch Plumas County Sierra scenery (same region)
-    hero: '/wp-images/sign.jpg',
+    hero: '/wp-images/DJI_0949-Edit.jpg',
     images: [
-      '/wp-images/sign.jpg',
+      '/wp-images/DJI_0949-Edit.jpg',
+      '/wp-images/DJI_0013.jpg',
+      '/wp-images/pool3.jpg',
       '/wp-images/Bar3.jpg',
-      '/wp-images/Pool.jpg',
+      '/wp-images/DJI_0021.jpg',
       '/wp-images/Bar.jpg',
-      '/wp-images/Pool2-1.jpg',
-      '/wp-images/Patio.jpg',
+      '/wp-images/Poolside1.jpg',
       '/wp-images/Cabin-3-008.webp',
       '/wp-images/Cabin-3-006.webp',
       '/wp-images/Cabin-6-005.webp',
@@ -422,10 +423,10 @@ export const dining = [
     highlights: ['Local game and Sierra-grown produce', 'Stone hearth and exposed beam interior', 'Full bar', '4,800 ft elevation — bring layers for evening'],
     coordinates: { lat: 39.7750, lng: -120.6180 },
     location: 'Off Hwy 70, 5 min from Graeagle',
-    hero: '/wp-images/Grizzly-Grill-.jpg',
+    hero: '/wp-images/unnamed-3.webp',
     images: [
+      '/wp-images/unnamed-3.webp',
       '/wp-images/Grizzly-Grill-.jpg',
-      '/wp-images/Grizzly-Grill--1024x683.jpg',
       '/wp-images/grizzlydeck_orig.jpg',
     ],
   images: [
@@ -445,6 +446,11 @@ export const dining = [
     coordinates: { lat: 39.777736, lng: -120.616367 },
     location: '5 min east of Graeagle via Hwy 70',
     hero: 'https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=1200&q=80&auto=format',
+    images: [
+      '/wp-images/unnamed-1.webp',
+      '/wp-images/unnamed-2.webp',
+      '/wp-images/unnamed-5.webp',
+    ],
   },
   {
     slug: 'sardine-lake',
@@ -572,6 +578,7 @@ export const dining = [
     hero: '/wp-images/outdoor-seating.jpg',
     images: [
       '/wp-images/Cuccias.png',
+      '/wp-images/unnamed.webp',
       '/wp-images/unnamed2.jpg',
       '/wp-images/unnamed1.jpg',
       '/wp-images/unnamed3.jpg',
@@ -590,7 +597,7 @@ export const dining = [
     highlights: ['15 acres untouched Sierra forest', '15-barrel craft brewery', 'Outdoor lawn games vibe', 'Bring layers — cools fast in the evening', 'Off Hwy 70 near Blairsden'],
     coordinates: { lat: 39.78427, lng: -120.61188 },
     location: 'Off Hwy 70 near Blairsden, 5 min from Graeagle',
-    hero: 'https://images.unsplash.com/photo-1436076863939-06870fe779c2?w=1200&q=80&auto=format',
+    hero: '/wp-images/DJI_0006-Edit.jpg',
   },
   {
     slug: 'mohawk-tavern',

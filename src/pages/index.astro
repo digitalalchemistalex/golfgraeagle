@@ -4,7 +4,7 @@ import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
 import { courses, lodging, siteConfig } from '../data/content.js';
 
-const HERO_IMG = 'https://nakomaresort.com/wp-content/uploads/the-dragon-golf-overview-tahoe-truckee-plumas-1639x1080.jpg';
+const HERO_IMG = '/wp-images/DJI_0006-Edit.jpg';
 
 const courseListSchema = {
   "@type": "ItemList",
@@ -76,7 +76,7 @@ const homeFaqSchema = {
   <!-- LCP image — full bleed, eager load -->
   <img
     src={HERO_IMG}
-    alt="Nakoma Dragon Golf Course — aerial view of The Dragon fairway, Graeagle California"
+    alt="Graeagle California — aerial view of Feather River, golf courses and Sierra Nevada mountains"
     class="hero-img"
     loading="eager"
     fetchpriority="high"
