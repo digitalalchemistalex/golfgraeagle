@@ -1111,6 +1111,27 @@ const diningSlugMap: Record<string, string> = {
           </div>
         )}
 
+        <!-- FAQ section -->
+        <div style="margin-bottom:48px;">
+          <h2 style="font-family:'Playfair Display',serif;font-size:22px;color:#f0f8f2;margin:0 0 20px;font-weight:400;">Frequently Asked Questions</h2>
+          <div style="display:flex;flex-direction:column;gap:0;">
+            {[
+              [`Is ${item.name} good for golf groups?`, `Yes. ${item.name} is a popular stop for Graeagle golf groups. ${item.description?.split('.')[0] || item.tagline}. GolfGraeagle coordinates group reservations as part of stay-and-play packages.`],
+              [`Where is ${item.name} located?`, `${item.name} is located at ${item.location || 'near Graeagle, California'}. ${item.category === 'fine-dining' ? 'Reservations are recommended.' : 'Walk-ins are generally welcome.'}`],
+              [`What type of food does ${item.name} serve?`, `${item.name} serves ${item.cuisine || 'American cuisine'}. ${item.highlights?.[0] || item.tagline || ''}.`],
+              [`Can GolfGraeagle book ${item.name} for my group?`, `Yes. GolfGraeagle includes dining coordination as part of stay-and-play packages. Request a free quote at golfgraeagle.com/request-a-quote and we can reserve group dining at ${item.name} alongside your tee times and lodging.`],
+            ].map(([q, a]) => (
+              <details style="border-bottom:1px solid rgba(240,248,242,0.06);padding:0;">
+                <summary style="font-size:15px;color:#f0f8f2;font-weight:500;padding:16px 0;cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;">
+                  {q}
+                  <span style="color:#e8a850;font-size:18px;flex-shrink:0;margin-left:16px;">+</span>
+                </summary>
+                <p style="font-size:14px;color:rgba(240,248,242,0.55);line-height:1.75;padding:0 0 16px;margin:0;">{a}</p>
+              </details>
+            ))}
+          </div>
+        </div>
+
         <!-- More dining options -->
         <div>
           <h2 style="font-family:'Playfair Display',serif;font-size:22px;color:#f0f8f2;margin:0 0 20px;font-weight:400;">More Dining Near Graeagle</h2>
