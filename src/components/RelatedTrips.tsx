@@ -91,7 +91,7 @@ function matchesLodging(trip: Trip, names: string[]): boolean {
 }
 
 /* ─── TRIP CARD ─── */
-function TripCard({ trip, compact = false }: { trip: Trip; compact?: boolean }) {
+function TripCard({ trip }: { trip: Trip }) {
   const [imgLoaded, setImgLoaded] = useState(false);
   const [showItinerary, setShowItinerary] = useState(false);
   const imgSrc = pickImage(trip);
@@ -175,14 +175,14 @@ function TripCard({ trip, compact = false }: { trip: Trip; compact?: boolean }) 
         </div>
 
         {/* Synopsis */}
-        {!compact && trip.synopsis && (
+        {trip.synopsis && (
           <p style={{ fontSize: 13, color: "rgba(28,18,8,0.55)", lineHeight: 1.65, borderLeft: "3px solid #e8a850", paddingLeft: 12, marginBottom: 16, fontStyle: "italic", display: "-webkit-box", WebkitLineClamp: 3, WebkitBoxOrient: "vertical", overflow: "hidden" }}>
             &ldquo;{trip.synopsis}&rdquo;
           </p>
         )}
 
         {/* Courses */}
-        {!compact && trip.courses && trip.courses.length > 0 && (
+        {trip.courses && trip.courses.length > 0 && (
           <div style={{ marginBottom: 14 }}>
             <div style={{ fontSize: 9, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.12em", color: "rgba(28,18,8,0.3)", marginBottom: 8 }}>⛳ Courses Played</div>
             <div style={{ display: "flex", flexWrap: "wrap", gap: 6 }}>
@@ -207,7 +207,7 @@ function TripCard({ trip, compact = false }: { trip: Trip; compact?: boolean }) 
         )}
 
         {/* Lodging */}
-        {!compact && trip.lodging && (
+        {trip.lodging && (
           <div style={{ marginBottom: 14 }}>
             <div style={{ fontSize: 9, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.12em", color: "rgba(28,18,8,0.3)", marginBottom: 8 }}>🏨 Stayed</div>
             {(() => {
@@ -227,7 +227,7 @@ function TripCard({ trip, compact = false }: { trip: Trip; compact?: boolean }) 
         )}
 
         {/* Highlights */}
-        {!compact && trip.highlights && trip.highlights.length > 0 && (
+        {trip.highlights && trip.highlights.length > 0 && (
           <div style={{ marginBottom: 16 }}>
             <div style={{ fontSize: 9, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.12em", color: "rgba(28,18,8,0.3)", marginBottom: 8 }}>⭐ Highlights</div>
             <div style={{ display: "flex", flexDirection: "column", gap: 4 }}>
@@ -241,7 +241,7 @@ function TripCard({ trip, compact = false }: { trip: Trip; compact?: boolean }) 
         )}
 
         {/* Why It Worked */}
-        {!compact && trip.whyItWorked && (
+        {trip.whyItWorked && (
           <div style={{
             background: "rgba(232,168,80,0.05)", border: "1px solid rgba(232,168,80,0.15)",
             borderRadius: 10, padding: "12px 14px", marginBottom: 16,
@@ -252,7 +252,7 @@ function TripCard({ trip, compact = false }: { trip: Trip; compact?: boolean }) 
         )}
 
         {/* Itinerary toggle */}
-        {!compact && trip.dailyItinerary && trip.dailyItinerary.length > 0 && (
+        {trip.dailyItinerary && trip.dailyItinerary.length > 0 && (
           <button
             onClick={() => setShowItinerary(!showItinerary)}
             style={{
@@ -367,10 +367,10 @@ export default function RelatedTrips({ slug, type, showAll = false, max = 6 }: {
   const isCarousel = trips.length > 3;
 
   return (
-    <section className="rt-section" style={{ padding: "64px 0", background: "var(--page-bg, #f0ece3)" }}>
-      {/* Header — always constrained */}
-      <div style={{ maxWidth: 1200, margin: "0 auto", padding: "0 clamp(20px,5%,60px)", marginBottom: 40 }}>
-        <div style={{ textAlign: "center" }}>
+    <section style={{ padding: "64px 0", background: "var(--page-bg, #f0ece3)" }}>
+      <div style={{ maxWidth: 1200, margin: "0 auto", padding: "0 clamp(20px,5%,60px)", overflow: "hidden" }}>
+        {/* Header */}
+        <div style={{ textAlign: "center", marginBottom: 40 }}>
           <div style={{ fontSize: 11, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.14em", color: "#e8a850", marginBottom: 10 }}>
             {showAll || type === "dining" ? "Real Graeagle Golf Trips" : `Real Trips Featuring This ${type === "course" ? "Course" : "Property"}`}
           </div>
@@ -384,51 +384,44 @@ export default function RelatedTrips({ slug, type, showAll = false, max = 6 }: {
             Real itineraries from past groups — courses played, where they stayed, day-by-day logistics, and pricing. Use any trip as a starting point for yours.
           </p>
         </div>
-      </div>
 
-      {/* Grid (≤3) or Carousel (>3) */}
-      {isCarousel ? (
-        /* Carousel: full-width, scrolls edge-to-edge, no parent padding clipping it */
-        <div style={{
-          display: "flex",
-          gap: 16,
-          overflowX: "auto",
-          scrollSnapType: "x mandatory",
-          WebkitOverflowScrolling: "touch",
-          paddingLeft: "clamp(20px,5%,60px)",
-          paddingRight: "clamp(20px,5%,60px)",
-          paddingBottom: 12,
-          scrollbarWidth: "none",
-          msOverflowStyle: "none",
-          boxSizing: "border-box",
-          width: "100%",
-        }}
-          className="rt-carousel"
-        >
-          {trips.map((trip, i) => (
-            <div key={trip.id || i} style={{
-              flex: "0 0 300px",
-              maxWidth: 340,
-              scrollSnapAlign: "start",
-              minWidth: 0,
-            }}>
-              <TripCard trip={trip} compact={true} />
-            </div>
-          ))}
-        </div>
-      ) : (
-        /* Grid: constrained, responsive columns via CSS class */
-        <div style={{ maxWidth: 1200, margin: "0 auto", padding: "0 clamp(20px,5%,60px)" }}>
-          <div className="rt-grid" style={{ display: "grid", gap: 20 }}>
+        {/* Grid (≤3) or Carousel (>3) */}
+        {isCarousel ? (
+          <div style={{
+            display: "flex",
+            gap: 20,
+            overflowX: "auto",
+            scrollSnapType: "x mandatory",
+            WebkitOverflowScrolling: "touch",
+            paddingBottom: 12,
+            scrollbarWidth: "none",
+            msOverflowStyle: "none",
+          }}
+            className="rt-carousel"
+          >
+            {trips.map((trip, i) => (
+              <div key={trip.id || i} style={{
+                flex: "0 0 calc(33.333% - 14px)",
+                minWidth: "280px",
+                scrollSnapAlign: "start",
+              }}>
+                <TripCard trip={trip} />
+              </div>
+            ))}
+          </div>
+        ) : (
+          <div className="rt-grid" style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(3, 1fr)",
+            gap: 20,
+          }}>
             {trips.map((trip, i) => (
               <TripCard key={trip.id || i} trip={trip} />
             ))}
           </div>
-        </div>
-      )}
+        )}
 
-      {/* Footer CTA — always constrained */}
-      <div style={{ maxWidth: 1200, margin: "0 auto", padding: "0 clamp(20px,5%,60px)" }}>
+        {/* Footer CTA */}
         <div style={{ textAlign: "center", marginTop: 40 }}>
           <a
             href={CADDIE_URL} target="_blank" rel="noopener noreferrer"
