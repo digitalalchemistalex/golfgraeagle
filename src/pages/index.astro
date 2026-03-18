@@ -186,20 +186,7 @@ const homeFaqSchema = {
     </div>
 
     <div class="courses-five-grid">
-      {(() => {
-        const accolades: Record<string,string> = {
-          'graeagle-meadows': 'The Valley Classic',
-          'whitehawk-ranch':  'Top 20 California',
-          'plumas-pines':     'Top 5 Best Value',
-          'grizzly-ranch':    'Golf Digest Top 100',
-          'nakoma-dragon':    'Golf World Top 75',
-        };
-        const mustPlay: Record<string,boolean> = {
-          'whitehawk-ranch': true,
-          'grizzly-ranch':   true,
-          'nakoma-dragon':   true,
-        };
-        return [courses[0], courses[1], courses[2], courses[3], courses[4]].map((c,i)=>(
+      {[courses[0], courses[1], courses[2], courses[3], courses[4]].map((c,i)=>(
           <a href={`/portfolio/${c.slug === "nakoma-dragon" ? "nakoma-dragon-golf-packages" : c.slug + "-golf-packages"}/`} class={`reveal delay-${i*75} course-card-equal`} style="text-decoration:none;display:block;">
             <img src={c.hero} alt={getImgAlt(c.hero, `${c.name} Golf Course — Graeagle, California`)} loading="lazy" class="course-card-img"/>
             <div class="card-gradient"></div>
@@ -217,8 +204,7 @@ const homeFaqSchema = {
               <span class="link-gold-sm">View course →</span>
             </div>
           </a>
-        ));
-      })()}
+      ))}
     </div>
   </div>
 </section>
