@@ -282,7 +282,7 @@ const diningFaq = {
       <span style="font-size:22px;flex-shrink:0;">{c.icon}</span>
       <div>
         <div style="font-size:13px;font-weight:600;color:#1a2e1a;margin-bottom:4px;">{c.q}</div>
-        <div style="font-size:13px;color:rgba(28,46,26,0.35);line-height:1.55;">{c.a}</div>
+        <div style="font-size:13px;color:rgba(28,18,8,0.55);line-height:1.55;">{c.a}</div>
       </div>
     </a>
   ))}
@@ -299,7 +299,7 @@ const diningFaq = {
         <p class="sec-label">Fine Dining</p>
         <h2 class="sec-h2">The special occasion spots.</h2>
       </div>
-      <p style="font-size:13px;color:rgba(240,248,242,0.28);max-width:300px;text-align:right;line-height:1.6;">Book ahead. These fill up fast in summer. Worth every mile.</p>
+      <p style="font-size:13px;color:rgba(28,18,8,0.45);max-width:300px;text-align:right;line-height:1.6;">Book ahead. These fill up fast in summer. Worth every mile.</p>
     </div>
     <div class="grid-fine-dining reveal">
       {fineDining.map((v, i) => (
@@ -328,7 +328,7 @@ const diningFaq = {
     <div class="reveal" style="margin-bottom:36px;">
       <p class="sec-label">On-Course &amp; On-Property</p>
       <h2 class="sec-h2" style="margin-bottom:10px;">Don't even change your shoes.</h2>
-      <p style="font-size:15px;color:rgba(28,46,26,0.35);max-width:500px;line-height:1.7;">Two restaurants are physically on the courses you're already playing. Walk off the 18th and walk straight in.</p>
+      <p style="font-size:15px;color:rgba(28,18,8,0.55);max-width:500px;line-height:1.7;">Two restaurants are physically on the courses you're already playing. Walk off the 18th and walk straight in.</p>
     </div>
     <div class="grid-on-course reveal">
       {[
@@ -355,11 +355,11 @@ const diningFaq = {
           </div>
           <div style="padding:22px 24px;">
             <h3 style="font-family:'Playfair Display',serif;font-size:21px;color:#1a2e1a;margin:0 0 4px;">{v.name}</h3>
-            <p style="font-size:12px;color:rgba(232,168,80,0.6);margin:0 0 10px;">{v.sub}</p>
-            <p style="font-size:14px;color:rgba(240,248,242,0.42);line-height:1.65;margin:0 0 16px;">{v.desc}</p>
-            <a href={v.courseHref} style="font-size:12px;color:rgba(28,46,26,0.3);text-decoration:none;border:1px solid rgba(28,46,26,0.07);padding:7px 14px;border-radius:100px;display:inline-flex;align-items:center;gap:6px;transition:color 0.2s,border-color 0.2s;"
+            <p style="font-size:12px;color:#b8820a;margin:0 0 10px;">{v.sub}</p>
+            <p style="font-size:14px;color:rgba(28,18,8,0.6);line-height:1.65;margin:0 0 16px;">{v.desc}</p>
+            <a href={v.courseHref} style="font-size:12px;color:rgba(28,18,8,0.55);text-decoration:none;border:1px solid rgba(28,18,8,0.15);padding:7px 14px;border-radius:100px;display:inline-flex;align-items:center;gap:6px;transition:color 0.2s,border-color 0.2s;"
             onmouseover="this.style.color='#e8a850';this.style.borderColor='rgba(232,168,80,0.25)'"
-            onmouseout="this.style.color='rgba(28,46,26,0.3)';this.style.borderColor='rgba(28,46,26,0.07)'">
+            onmouseout="this.style.color='rgba(28,18,8,0.55)';this.style.borderColor='rgba(28,18,8,0.15)'">
               View {v.course} →
             </a>
           </div>
@@ -378,7 +378,7 @@ const diningFaq = {
     <div class="reveal" style="margin-bottom:36px;">
       <p class="sec-label">Casual Dining</p>
       <h2 class="sec-h2" style="margin-bottom:10px;">The everyday favourites.</h2>
-      <p style="font-size:15px;color:rgba(28,46,26,0.35);max-width:500px;line-height:1.7;">Local staples that have been feeding golfers for years. No fuss, no reservation — just good food and a cold drink.</p>
+      <p style="font-size:15px;color:rgba(28,18,8,0.55);max-width:500px;line-height:1.7;">Local staples that have been feeding golfers for years. No fuss, no reservation — just good food and a cold drink.</p>
     </div>
     <div class="grid-casual reveal">
       {casual.filter(v=>v.slug!=='meadows-restaurant').map(v=>(
