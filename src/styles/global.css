@@ -593,3 +593,15 @@ section.hero-section,
     grid-template-columns: 1fr;
   }
 }
+
+/* ── TripsCaddie card breathing glow — synchronized across all 3 cards ── */
+@keyframes tripGlow {
+  0%   { box-shadow: 0 0 8px rgba(74,222,128,0.25), 0 0 0px rgba(200,40,140,0); border-color: rgba(74,222,128,0.35); }
+  40%  { box-shadow: 0 0 22px rgba(74,222,128,0.55), 0 0 8px rgba(200,40,140,0.15); border-color: rgba(74,222,128,0.7); }
+  60%  { box-shadow: 0 0 18px rgba(200,40,140,0.45), 0 0 6px rgba(74,222,128,0.1); border-color: rgba(220,60,160,0.6); }
+  100% { box-shadow: 0 0 8px rgba(74,222,128,0.25), 0 0 0px rgba(200,40,140,0); border-color: rgba(74,222,128,0.35); }
+}
+.trip-glow-card {
+  border: 1px solid rgba(74,222,128,0.35);
+  animation: tripGlow 3.6s ease-in-out infinite;
+}
