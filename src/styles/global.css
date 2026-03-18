@@ -67,10 +67,13 @@
 
   /* ── Gold ── */
   --gold:           #b8820a;
-  --gold-light:     #e8a850;
+  --gold-light:     #e8a850;    /* CTA buttons, hover states — brand gold */
   --gold-hover:     #8a6008;
   --gold-bg:        rgba(184,130,10,0.08);
   --gold-border:    rgba(184,130,10,0.2);
+  --gold-price:     #f28d02;    /* Price/tier indicators $$$$ — bright orange */
+  --gold-eyebrow:   #a06c30;    /* Eyebrow labels, award pills, decorative icons */
+  --gold-link:      #b8820a;    /* Interactive links — gold, matches site visual anchor */
 
   /* ── Borders ── */
   --border:         rgba(28,18,8,0.10);
