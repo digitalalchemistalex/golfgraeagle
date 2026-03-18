@@ -78,12 +78,26 @@ function TestimonialCard({ trip }: { trip: Trip }) {
   const stars = deriveStars(trip);
   const price = trip.pricePerPerson || trip.pricePerPersonEstimate;
 
-  // Pick the most readable one-liner: whyItWorked > synopsis > highlights[0]
-  // Filter out internal operator notes that sound like copy ("Great Graeagle Trip!")
-  const rawQuote = trip.whyItWorked || trip.synopsis || trip.highlights?.[0] || "";
-  // Truncate at sentence boundary, max 160 chars
-  const truncated = rawQuote.length > 160
-    ? rawQuote.slice(0, 157).replace(/\s+\S*$/, "") + "…"
+  // Quote selection priority: synopsis (golfer-readable) > highlights > whyItWorked
+  // Filter out internal operator shorthand that reads as copy not testimonial
+  const OPERATOR_PATTERNS = [
+    /^great graeagle trip/i,
+    /^you just have to experience/i,
+    /^this group was a la carte/i,
+    /^the package offered/i,
+    /^the comprehensive package/i,
+    /^groups coming in from northern california/i,
+    /^if you're looking for an inexpensive/i,
+    /^ask us how/i,
+    /^what a lineup/i,
+  ];
+  const isOperatorCopy = (s: string) => !s || OPERATOR_PATTERNS.some(p => p.test(s.trim()));
+
+  const candidates = [trip.synopsis, ...(trip.highlights || []), trip.whyItWorked].filter(Boolean) as string[];
+  const rawQuote = candidates.find(s => !isOperatorCopy(s)) || "";
+
+  const truncated = rawQuote.length > 180
+    ? rawQuote.slice(0, 177).replace(/\s+\S*$/, "") + "…"
     : rawQuote;
 
   const pax = trip.groupSize;
