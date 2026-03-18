@@ -647,25 +647,67 @@ const homeFaqSchema = {
     grid-template-columns: repeat(5, 1fr);
     gap: 2px;
   }
+  @keyframes cardRise {
+    from { opacity: 0; transform: translateY(24px) scale(0.97); }
+    to   { opacity: 1; transform: translateY(0) scale(1); }
+  }
+  .courses-five-grid .course-card-equal.visible {
+    animation: cardRise 0.55s cubic-bezier(0.4,0,0.2,1) both;
+  }
+  .courses-five-grid .course-card-equal:nth-child(1).visible { animation-delay: 0s; }
+  .courses-five-grid .course-card-equal:nth-child(2).visible { animation-delay: 0.07s; }
+  .courses-five-grid .course-card-equal:nth-child(3).visible { animation-delay: 0.14s; }
+  .courses-five-grid .course-card-equal:nth-child(4).visible { animation-delay: 0.21s; }
+  .courses-five-grid .course-card-equal:nth-child(5).visible { animation-delay: 0.28s; }
   .course-card-equal {
     position: relative;
     height: 420px;
     overflow: hidden;
     border-radius: 12px;
+    transition: transform 0.4s cubic-bezier(0.4,0,0.2,1), box-shadow 0.4s ease;
+    cursor: pointer;
+  }
+  .course-card-equal:hover {
+    transform: translateY(-6px) scale(1.01);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.35), 0 0 0 1.5px rgba(232,168,80,0.4);
   }
   .course-card-img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 7s ease;
+    transition: transform 0.8s cubic-bezier(0.4,0,0.2,1);
     display: block;
   }
   .course-card-equal:hover .course-card-img,
-  .lodging-equal-card:hover .course-card-img { transform: scale(1.06); }
+  .lodging-equal-card:hover .course-card-img { transform: scale(1.08); }
+
+  /* Gold shimmer sweep on hover */
+  .course-card-equal::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(105deg, transparent 30%, rgba(232,168,80,0.12) 50%, transparent 70%);
+    background-size: 200% 100%;
+    background-position: -200% 0;
+    pointer-events: none;
+    z-index: 3;
+    border-radius: inherit;
+    transition: background-position 0s;
+  }
+  .course-card-equal:hover::after {
+    background-position: 200% 0;
+    transition: background-position 0.6s ease;
+  }
+
   .card-gradient {
     position: absolute; inset: 0;
     background: linear-gradient(to top, rgba(13,26,14,0.92) 0%, transparent 55%);
+    transition: opacity 0.4s ease;
   }
+  .course-card-equal:hover .card-gradient {
+    opacity: 0.85;
+  }
+
   .card-pill {
     display: inline-block;
     font-size: 10px;
@@ -679,6 +721,11 @@ const homeFaqSchema = {
     padding: 3px 9px;
     border-radius: 100px;
     white-space: nowrap;
+    transition: background 0.3s, border-color 0.3s;
+  }
+  .course-card-equal:hover .card-pill {
+    background: rgba(232,168,80,0.2);
+    border-color: rgba(232,168,80,0.5);
   }
   .card-gradient-heavy {
     position: absolute; inset: 0;
@@ -802,4 +849,10 @@ const homeFaqSchema = {
   window.addEventListener('scroll', () => {
     if (nav) nav.classList.toggle('scrolled', window.scrollY > 60);
   }, { passive: true });
+
+  // Staggered card entrance on scroll
+  const cardObs = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); cardObs.unobserve(e.target); } });
+  }, { threshold: 0.15 });
+  document.querySelectorAll('.courses-five-grid .course-card-equal').forEach(c => cardObs.observe(c));
 </script>
