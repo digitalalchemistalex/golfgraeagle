@@ -3,6 +3,7 @@ export const prerender = true;
 import Base from '../../layouts/Base.astro';
 import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
+import RelatedTrips from '../../components/RelatedTrips.tsx';
 import { courses, lodging, dining, siteConfig, courseToLodging, lodgingToCourses, imageAlts } from '../../data/content.js';
 // Helper: get descriptive SEO alt text for any image URL
 function getImgAlt(src, fallback) {
@@ -979,6 +980,9 @@ const diningSlugMap: Record<string, string> = {
 
   </div>
 </div>
+
+  <RelatedTrips client:load slug={item.slug} type="course" />
+
     </>
   )}
 
@@ -1178,6 +1182,10 @@ const diningSlugMap: Record<string, string> = {
         </div>
       </div>
     </div>
+    </div>
+
+  <RelatedTrips client:load slug={item.slug} type="lodging" />
+
     </>
   );})()}
 
