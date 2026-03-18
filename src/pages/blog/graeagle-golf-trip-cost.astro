@@ -70,42 +70,7 @@ const breadcrumbSchema = {
   <div class="bl-wrap">
     <article class="bl-article">
       <p class="bl-intro">The number one question we get before any booking conversation: what does this actually cost? Most golf trip websites won't give you real pricing — they make you fill out a form first. We're doing it differently. Below are real package prices from 15 actual Graeagle trips in our archive, broken down by tier so you can figure out where your group lands before you talk to anyone.</p>
-    </article>
-    <aside class="bl-sidebar">
-      <div class="bl-sidebar-card">
-        <div class="bl-sidebar-title">Get Exact Pricing</div>
-        <p>Tell us your group size and dates. Real quote in 24 hours — no estimates.</p>
-        <a href="/request-a-quote/" class="bl-sidebar-btn btn-green-glow">Request a Quote →</a>
-      </div>
-      <div class="bl-sidebar-card">
-        <div class="bl-sidebar-title">By Price Tier</div>
-        <div class="bl-sidebar-links">
-          <a href="/trips/" class="bl-sidebar-post">All real trip packages with pricing →</a>
-          <a href="/blog/large-group-golf-graeagle/" class="bl-sidebar-post">Large group pricing (50+) →</a>
-          <a href="/blog/corporate-golf-outing-graeagle/" class="bl-sidebar-post">Corporate packages →</a>
-        </div>
-      </div>
-      <div class="bl-sidebar-card">
-        <div class="bl-sidebar-title">5 Courses — What You'll Pay</div>
-        <div class="bl-sidebar-links">
-          {[
-            { name: 'Graeagle Meadows', slug: 'graeagle-meadows-golf-packages', note: 'Slope 120 · Most affordable' },
-            { name: 'Plumas Pines', slug: 'plumas-pines-golf-packages', note: 'Slope 132 · Best value' },
-            { name: 'Whitehawk Ranch', slug: 'whitehawk-ranch-golf-packages', note: 'Slope 132 · Top 20 CA' },
-            { name: 'Grizzly Ranch', slug: 'grizzly-ranch-golf-packages', note: 'Slope 140 · Top 100 US' },
-            { name: 'Nakoma Dragon', slug: 'nakoma-dragon-golf-packages', note: 'Slope 147 · FLW Clubhouse' },
-          ].map(c => (
-            <a href={`/portfolio/${c.slug}/`} class="bl-sidebar-course">
-              <div class="bl-sidebar-course-name">{c.name}</div>
-              <div class="bl-sidebar-course-note">{c.note}</div>
-            </a>
-          ))}
-        </div>
-      </div>
-    </aside>
-  </div>
 
-  <div class="bl-full bl-full-last">
       <h2>The Three Tiers of Graeagle Golf Trips</h2>
 
       <h3>Value Tier: $620–$685 per person</h3>
@@ -240,6 +205,40 @@ const breadcrumbSchema = {
           <a href="/blog/graeagle-vs-lake-tahoe-golf/">Graeagle vs Lake Tahoe →</a>
         </div>
       </div>
+    </article>
+
+    <aside class="bl-sidebar">
+      <div class="bl-sidebar-card">
+        <div class="bl-sidebar-title">Get Exact Pricing</div>
+        <p>Tell us your group size and dates. Real quote in 24 hours — no estimates.</p>
+        <a href="/request-a-quote/" class="bl-sidebar-btn btn-green-glow">Request a Quote →</a>
+      </div>
+      <div class="bl-sidebar-card">
+        <div class="bl-sidebar-title">By Price Tier</div>
+        <div class="bl-sidebar-links">
+          <a href="/trips/" class="bl-sidebar-post">All real trip packages with pricing →</a>
+          <a href="/blog/large-group-golf-graeagle/" class="bl-sidebar-post">Large group pricing (50+) →</a>
+          <a href="/blog/corporate-golf-outing-graeagle/" class="bl-sidebar-post">Corporate packages →</a>
+        </div>
+      </div>
+      <div class="bl-sidebar-card">
+        <div class="bl-sidebar-title">5 Courses — What You'll Pay</div>
+        <div class="bl-sidebar-links">
+          {[
+            { name: 'Graeagle Meadows', slug: 'graeagle-meadows-golf-packages', note: 'Slope 120 · Most affordable' },
+            { name: 'Plumas Pines', slug: 'plumas-pines-golf-packages', note: 'Slope 132 · Best value' },
+            { name: 'Whitehawk Ranch', slug: 'whitehawk-ranch-golf-packages', note: 'Slope 132 · Top 20 CA' },
+            { name: 'Grizzly Ranch', slug: 'grizzly-ranch-golf-packages', note: 'Slope 140 · Top 100 US' },
+            { name: 'Nakoma Dragon', slug: 'nakoma-dragon-golf-packages', note: 'Slope 147 · FLW Clubhouse' },
+          ].map(c => (
+            <a href={`/portfolio/${c.slug}/`} class="bl-sidebar-course">
+              <div class="bl-sidebar-course-name">{c.name}</div>
+              <div class="bl-sidebar-course-note">{c.note}</div>
+            </a>
+          ))}
+        </div>
+      </div>
+    </aside>
   </div>
 
   <RelatedTrips client:load slug="graeagle-meadows" type="course" showAll={true} max={4} />

@@ -71,43 +71,7 @@ const breadcrumbSchema = {
   <div class="bl-wrap">
     <article class="bl-article">
       <p class="bl-intro">When golfers search for courses near Lake Tahoe, they usually find Edgewood, Coyote Moon, Old Greenwood, and Gray's Crossing. These are genuinely excellent courses. They're also expensive, heavily booked in summer, and spread across a wide geographic area that requires serious drive-time coordination between rounds. What most searches don't surface is that 90 minutes south via Highway 89, a separate Sierra Nevada valley has five championship courses — including two with national rankings — within a single 25-minute circle. That's Graeagle.</p>
-    </article>
-    <aside class="bl-sidebar">
-      <div class="bl-sidebar-card">
-        <div class="bl-sidebar-title">The 5 Graeagle Courses</div>
-        <div class="bl-sidebar-links">
-          {[
-            { name: 'Grizzly Ranch', slug: 'grizzly-ranch-golf-packages', note: 'Golf Digest Top 100 · Slope 140' },
-            { name: 'Nakoma Dragon', slug: 'nakoma-dragon-golf-packages', note: 'Golf World Top 75 · FLW Clubhouse' },
-            { name: 'Whitehawk Ranch', slug: 'whitehawk-ranch-golf-packages', note: 'Top 20 CA · Slope 132' },
-            { name: 'Plumas Pines', slug: 'plumas-pines-golf-packages', note: 'Best Value · Slope 132' },
-            { name: 'Graeagle Meadows', slug: 'graeagle-meadows-golf-packages', note: 'Most Accessible · Slope 120' },
-          ].map(c => (
-            <a href={`/portfolio/${c.slug}/`} class="bl-sidebar-course">
-              <div class="bl-sidebar-course-name">{c.name}</div>
-              <div class="bl-sidebar-course-note">{c.note}</div>
-            </a>
-          ))}
-        </div>
-      </div>
-      <div class="bl-sidebar-card">
-        <div class="bl-sidebar-title">Get a Free Quote</div>
-        <p>Graeagle packages from $620/person. 24-hour response.</p>
-        <a href="/request-a-quote/" class="bl-sidebar-btn btn-green-glow">Request a Quote →</a>
-      </div>
-      <div class="bl-sidebar-card">
-        <div class="bl-sidebar-title">Related Reading</div>
-        <div class="bl-sidebar-links">
-          <a href="/blog/graeagle-vs-lake-tahoe-golf/" class="bl-sidebar-post">Graeagle vs Lake Tahoe — Full Comparison →</a>
-          <a href="/blog/graeagle-golf-weekend/" class="bl-sidebar-post">Graeagle Golf Weekend Guide →</a>
-          <a href="/blog/graeagle-golf-trip-cost/" class="bl-sidebar-post">Real Pricing Breakdown →</a>
-          <a href="/blog/best-time-to-golf-graeagle/" class="bl-sidebar-post">Best Time to Visit →</a>
-        </div>
-      </div>
-    </aside>
-  </div>
 
-  <div class="bl-full bl-full-last">
       <h2>What Golf Near Lake Tahoe Actually Looks Like</h2>
       <p>The Truckee-North Tahoe corridor has roughly 8–10 courses. The top tier:</p>
 
@@ -227,6 +191,41 @@ const breadcrumbSchema = {
           <a href="/blog/graeagle-golf-trip-cost/">What does a Graeagle trip cost? →</a>
         </div>
       </div>
+    </article>
+
+    <aside class="bl-sidebar">
+      <div class="bl-sidebar-card">
+        <div class="bl-sidebar-title">The 5 Graeagle Courses</div>
+        <div class="bl-sidebar-links">
+          {[
+            { name: 'Grizzly Ranch', slug: 'grizzly-ranch-golf-packages', note: 'Golf Digest Top 100 · Slope 140' },
+            { name: 'Nakoma Dragon', slug: 'nakoma-dragon-golf-packages', note: 'Golf World Top 75 · FLW Clubhouse' },
+            { name: 'Whitehawk Ranch', slug: 'whitehawk-ranch-golf-packages', note: 'Top 20 CA · Slope 132' },
+            { name: 'Plumas Pines', slug: 'plumas-pines-golf-packages', note: 'Best Value · Slope 132' },
+            { name: 'Graeagle Meadows', slug: 'graeagle-meadows-golf-packages', note: 'Most Accessible · Slope 120' },
+          ].map(c => (
+            <a href={`/portfolio/${c.slug}/`} class="bl-sidebar-course">
+              <div class="bl-sidebar-course-name">{c.name}</div>
+              <div class="bl-sidebar-course-note">{c.note}</div>
+            </a>
+          ))}
+        </div>
+      </div>
+      <div class="bl-sidebar-card">
+        <div class="bl-sidebar-title">Get a Free Quote</div>
+        <p>Graeagle packages from $620/person. 24-hour response.</p>
+        <a href="/request-a-quote/" class="bl-sidebar-btn btn-green-glow">Request a Quote →</a>
+      </div>
+      <div class="bl-sidebar-card">
+        <div class="bl-sidebar-title">Related Reading</div>
+        <div class="bl-sidebar-links">
+          <a href="/blog/graeagle-vs-lake-tahoe-golf/" class="bl-sidebar-post">Graeagle vs Lake Tahoe — Full Comparison →</a>
+          <a href="/blog/graeagle-golf-weekend/" class="bl-sidebar-post">Graeagle Golf Weekend Guide →</a>
+          <a href="/blog/graeagle-golf-trip-cost/" class="bl-sidebar-post">Real Pricing Breakdown →</a>
+          <a href="/blog/best-time-to-golf-graeagle/" class="bl-sidebar-post">Best Time to Visit →</a>
+        </div>
+      </div>
+    </aside>
   </div>
 
   <RelatedTrips client:load slug="graeagle-meadows" type="course" showAll={true} max={4} />

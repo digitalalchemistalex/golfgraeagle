@@ -73,34 +73,7 @@ const breadcrumbSchema = {
   <div class="bl-wrap">
     <article class="bl-article">
       <p class="bl-intro">Every golfer who plans a Graeagle trip asks the same question: which courses are actually worth it, and which should I prioritize? There's no universally correct ranking — it depends on your handicap, your group, and what you're looking for. Here's the honest breakdown across every dimension that matters.</p>
-    </article>
-    <aside class="bl-sidebar">
-      <div class="bl-sidebar-card">
-        <div class="bl-sidebar-title">Book Your Courses</div>
-        <p>We'll secure tee times across all 5 courses. Free quote, 24-hour response.</p>
-        <a href="/request-a-quote" class="bl-sidebar-btn">Request a Quote →</a>
-      </div>
-      <div class="bl-sidebar-card">
-        <div class="bl-sidebar-title">All 5 Courses</div>
-        <div class="bl-sidebar-links">
-          {[
-            { name: 'Whitehawk Ranch', slug: 'whitehawk-ranch', note: 'Best overall · Slope 132' },
-            { name: 'Grizzly Ranch', slug: 'grizzly-ranch', note: 'Top 100 · Slope 140' },
-            { name: 'Nakoma Dragon', slug: 'nakoma-dragon', note: 'FLW Clubhouse · Slope 147' },
-            { name: 'Plumas Pines', slug: 'plumas-pines', note: 'Best value · Slope 132' },
-            { name: 'Graeagle Meadows', slug: 'graeagle-meadows', note: 'Most accessible · Slope 120' },
-          ].map(c => (
-            <a href={`/portfolio/${c.slug === "nakoma-dragon" ? "nakoma-dragon-golf-packages" : c.slug + "-golf-packages"}`} class="bl-sidebar-course">
-              <div class="bl-sidebar-course-name">{c.name}</div>
-              <div class="bl-sidebar-course-note">{c.note}</div>
-            </a>
-          ))}
-        </div>
-      </div>
-    </aside>
-  </div>
 
-  <div class="bl-full bl-full-last">
       <h2>#1 Best Overall: Whitehawk Ranch</h2>
       <div class="bl-course-rank">
         <div class="bl-course-rank-stats">
@@ -202,7 +175,33 @@ const breadcrumbSchema = {
           <a href="/blog/graeagle-golf-trip-itinerary-3-days/">3-day itinerary →</a>
         </div>
       </div>
+    </article>
+
+    <aside class="bl-sidebar">
+      <div class="bl-sidebar-card">
+        <div class="bl-sidebar-title">Book Your Courses</div>
+        <p>We'll secure tee times across all 5 courses. Free quote, 24-hour response.</p>
+        <a href="/request-a-quote" class="bl-sidebar-btn">Request a Quote →</a>
       </div>
+      <div class="bl-sidebar-card">
+        <div class="bl-sidebar-title">All 5 Courses</div>
+        <div class="bl-sidebar-links">
+          {[
+            { name: 'Whitehawk Ranch', slug: 'whitehawk-ranch', note: 'Best overall · Slope 132' },
+            { name: 'Grizzly Ranch', slug: 'grizzly-ranch', note: 'Top 100 · Slope 140' },
+            { name: 'Nakoma Dragon', slug: 'nakoma-dragon', note: 'FLW Clubhouse · Slope 147' },
+            { name: 'Plumas Pines', slug: 'plumas-pines', note: 'Best value · Slope 132' },
+            { name: 'Graeagle Meadows', slug: 'graeagle-meadows', note: 'Most accessible · Slope 120' },
+          ].map(c => (
+            <a href={`/portfolio/${c.slug === "nakoma-dragon" ? "nakoma-dragon-golf-packages" : c.slug + "-golf-packages"}`} class="bl-sidebar-course">
+              <div class="bl-sidebar-course-name">{c.name}</div>
+              <div class="bl-sidebar-course-note">{c.note}</div>
+            </a>
+          ))}
+        </div>
+      </div>
+    </aside>
+  </div>
   </div>
 
   <RelatedTrips client:load slug="graeagle-meadows" type="course" showAll={true} max={4} />
