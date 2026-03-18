@@ -490,12 +490,13 @@ const homeFaqSchema = {
   /* Stat card (right side of hero) */
   .hero-right { align-self: end; }
   .stat-card {
-    background: rgba(13,26,14,0.6);
-    border: 1px solid rgba(255,255,255,0.1);
+    background: rgba(10,20,10,0.82);
+    border: 1px solid rgba(232,168,80,0.25);
     border-radius: 16px;
     overflow: hidden;
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.4);
   }
   .stat-row {
     display: flex;
@@ -537,7 +538,7 @@ const homeFaqSchema = {
   .btn-gold-sm:hover { background: #f2c878; transform: translateY(-1px); }
   .stat-cta-meta {
     font-size: 10px;
-    color: rgba(28,18,8,0.15);
+    color: rgba(255,255,255,0.45);
     text-align: center;
     margin: 8px 0 0;
     letter-spacing: 0.03em;
