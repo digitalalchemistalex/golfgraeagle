@@ -307,7 +307,7 @@ const homeFaqSchema = {
 </section>
 
 <!-- ══════ DINING SNAPSHOT ══════ -->
-<section class="dark-section" style="background:#1e1a12;padding:clamp(60px,10vw,100px) 0;">
+<section id="hp-dining" class="dark-section" style="background:#1e1a12;padding:clamp(60px,10vw,100px) 0;">
   <div class="container">
     <div class="two-col-section">
       <div class="reveal-left dining-photos">
@@ -354,7 +354,7 @@ const homeFaqSchema = {
 </section>
 
 <!-- ══════ TRIP GUIDES ══════ -->
-<section style="background:var(--page-bg);padding:clamp(60px,10vw,100px) clamp(24px,6vw,48px);">
+<section id="hp-blog" style="background:var(--page-bg);padding:clamp(60px,10vw,100px) clamp(24px,6vw,48px);">
   <div style="max-width:1200px;margin:0 auto;">
     <div class="reveal section-header" style="margin-bottom:48px;">
       <div>
@@ -428,7 +428,7 @@ const homeFaqSchema = {
 </section>
 
 <!-- ══════ CTA STRIP ══════ -->
-<section style="position:relative;padding:clamp(80px,12vw,120px) clamp(24px,6vw,48px);overflow:hidden;">
+<section id="hp-cta" style="position:relative;padding:clamp(80px,12vw,120px) clamp(24px,6vw,48px);overflow:hidden;">
   <div style="position:absolute;inset:0;">
     <img src="/wp-images/nakoma-flw-lodge-exterior.jpg"
       alt="Frank Lloyd Wright Nakoma Clubhouse" loading="lazy"
@@ -1012,9 +1012,12 @@ const homeFaqSchema = {
   /* ── Mobile section reorder: Real Trips moves before Courses ── */
   @media (max-width: 860px) {
     #hp-body { display: flex; flex-direction: column; }
-    #hp-courses { order: 3; }
-    #hp-why    { order: 5; }
-    #hp-lodging { order: 4; }
     #hp-trips  { order: 2; }
+    #hp-courses { order: 3; }
+    #hp-lodging { order: 4; }
+    #hp-why    { order: 5; }
+    #hp-dining { order: 6; }
+    #hp-blog   { order: 7; }
+    #hp-cta    { order: 8; }
   }
 </style>
