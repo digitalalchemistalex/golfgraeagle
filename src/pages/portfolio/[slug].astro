@@ -408,36 +408,81 @@ const diningSlugMap: Record<string, string> = {
     position: relative;
     text-decoration: none;
     display: block;
-    transition: flex 0.4s cubic-bezier(0.4,0,0.2,1), box-shadow 0.3s ease, outline 0.3s ease;
+    transition: flex 0.5s cubic-bezier(0.4,0,0.2,1), box-shadow 0.4s ease, outline 0.4s ease;
     outline: 2px solid transparent;
     outline-offset: 0px;
+    animation: stripEnter 0.6s ease both;
   }
 
+  /* Staggered entrance */
+  .ch-strip-item:nth-child(1) { animation-delay: 0.05s; }
+  .ch-strip-item:nth-child(2) { animation-delay: 0.12s; }
+  .ch-strip-item:nth-child(3) { animation-delay: 0.19s; }
+  .ch-strip-item:nth-child(4) { animation-delay: 0.26s; }
+  .ch-strip-item:nth-child(5) { animation-delay: 0.33s; }
+
+  @keyframes stripEnter {
+    from { opacity: 0; transform: translateY(-8px) scale(0.97); }
+    to   { opacity: 1; transform: translateY(0) scale(1); }
+  }
+
+  /* Active — expanded with pulsing green glow */
   .ch-strip-item.is-active {
     flex: 2.8;
     outline: 2px solid rgba(120,255,160,0.9);
-    box-shadow: 0 0 0 1px rgba(120,255,160,0.4), 0 0 12px 3px rgba(80,255,120,0.5), 0 0 28px 6px rgba(60,220,100,0.25);
+    box-shadow: 0 0 0 1px rgba(120,255,160,0.4), 0 0 14px 4px rgba(80,255,120,0.55), 0 0 32px 8px rgba(60,220,100,0.28);
+    animation: stripEnter 0.6s ease both, glowPulse 2.8s ease-in-out infinite;
   }
+  @keyframes glowPulse {
+    0%,100% { box-shadow: 0 0 0 1px rgba(120,255,160,0.4), 0 0 14px 4px rgba(80,255,120,0.55), 0 0 32px 8px rgba(60,220,100,0.28); }
+    50%      { box-shadow: 0 0 0 1px rgba(120,255,160,0.6), 0 0 22px 8px rgba(80,255,120,0.75), 0 0 48px 14px rgba(60,220,100,0.4); }
+  }
+
   .ch-strip-item:not(.is-active):hover {
     flex: 1.6;
     outline: 2px solid rgba(120,255,160,0.6);
     box-shadow: 0 0 0 1px rgba(120,255,160,0.2), 0 0 10px 2px rgba(80,255,120,0.35), 0 0 20px 4px rgba(60,220,100,0.15);
   }
 
+  /* Thumb — Ken Burns on active, zoom on hover */
   .ch-strip-thumb {
     width: 100%;
     height: 100%;
     object-fit: cover;
     display: block;
-    transition: transform 6s ease;
+    transition: transform 0.6s ease;
   }
+  .ch-strip-item.is-active .ch-strip-thumb {
+    animation: kenBurns 12s ease-in-out infinite alternate;
+  }
+  @keyframes kenBurns {
+    from { transform: scale(1.0) translateX(0); }
+    to   { transform: scale(1.1) translateX(-3%); }
+  }
+  .ch-strip-item:not(.is-active):hover .ch-strip-thumb { transform: scale(1.08); }
 
-  .ch-strip-item:hover .ch-strip-thumb { transform: scale(1.06); }
+  /* Shimmer sweep on hover */
+  .ch-strip-item::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(105deg, transparent 30%, rgba(232,168,80,0.18) 50%, transparent 70%);
+    background-size: 200% 100%;
+    background-position: -200% 0;
+    transition: background-position 0s;
+    pointer-events: none;
+    z-index: 3;
+    border-radius: inherit;
+  }
+  .ch-strip-item:hover::after {
+    background-position: 200% 0;
+    transition: background-position 0.55s ease;
+  }
 
   .ch-strip-dim {
     position: absolute;
     inset: 0;
-    transition: background 0.3s;
+    transition: background 0.35s;
   }
 
   .ch-strip-item:not(.is-active) .ch-strip-dim { background: rgba(0,0,0,0.5); }
