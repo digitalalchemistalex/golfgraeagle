@@ -155,7 +155,7 @@ const aboutSchema = [
             <div style="display:flex;align-items:flex-start;gap:14px;">
               <div style="width:30px;height:30px;border-radius:50%;background:#1a2e1a;color:#e8a850;font-family:'Playfair Display',serif;font-size:14px;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;">{s.n}</div>
               <div>
-                <div style="font-size:14px;font-weight:700;color:#f5f0e8;margin-bottom:2px;">{s.t}</div>
+                <div style="font-size:14px;font-weight:700;color:#1a2e1a;margin-bottom:2px;">{s.t}</div>
                 <div style="font-size:13px;color:#6b7c6b;line-height:1.6;">{s.d}</div>
               </div>
             </div>
@@ -164,7 +164,7 @@ const aboutSchema = [
 
         <div style="display:flex;flex-direction:column;gap:9px;">
           {['Tee time coordination across all 5 courses','Lodging matched to group size and budget','Full day-by-day itinerary','Dining recommendations and reservations','Transportation for large groups','72-hour cancellation on standard bookings','Free quotes — 24-hour response'].map(item => (
-            <div style="display:flex;align-items:center;gap:10px;font-size:14px;color:rgba(245,240,232,0.65);">
+            <div style="display:flex;align-items:center;gap:10px;font-size:14px;color:rgba(28,46,26,0.65);">
               <span style="color:#22a322;font-weight:700;flex-shrink:0;">✓</span>{item}
             </div>
           ))}
@@ -181,7 +181,7 @@ const aboutSchema = [
               onmouseover="this.style.borderColor='#e8a850';this.style.background='#fffbf0'"
               onmouseout="this.style.borderColor='#e0ece0';this.style.background='#fff'">
               <div>
-                <div style="font-size:14px;font-weight:700;color:#f5f0e8;margin-bottom:2px;">{c.name}</div>
+                <div style="font-size:14px;font-weight:700;color:#1a2e1a;margin-bottom:2px;">{c.name}</div>
                 <div style="font-size:11px;color:#8a9a8a;">Par {c.par} · {c.yards.toLocaleString()} yds · Slope {c.slope}</div>
               </div>
               <span style="font-size:12px;color:#e8a850;font-weight:600;white-space:nowrap;">View →</span>
@@ -340,14 +340,14 @@ const aboutSchema = [
           +'<div style="padding:16px;">'
           +'<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;">'
           +'<span style="font-size:9px;font-weight:700;text-transform:uppercase;color:#fff;background:'+col+';padding:2px 9px;border-radius:100px;">'+(t.vibe||'')+'</span>'
-          +'<span style="font-size:13px;font-weight:700;color:#e8a850;">$'+(t.pricePerPerson||0).toLocaleString()+'<span style="font-size:10px;font-weight:400;color:rgba(28,46,26,0.35);">/pp</span></span>'
+          +'<span style="font-size:13px;font-weight:700;color:#e8a850;">$'+(t.pricePerPerson||0).toLocaleString()+'<span style="font-size:10px;font-weight:400;color:rgba(245,240,232,0.45);">/pp</span></span>'
           +'</div>'
           +'<div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:7px;">'
-          +'<span style="font-size:10px;color:rgba(28,46,26,0.4);">⛳ '+t.rounds+' rounds</span>'
-          +'<span style="font-size:10px;color:rgba(28,46,26,0.4);">🏨 '+t.nights+' nights</span>'
-          +'<span style="font-size:10px;color:rgba(28,46,26,0.4);">👥 '+t.groupSize+' golfers</span>'
+          +'<span style="font-size:10px;color:rgba(245,240,232,0.5);">⛳ '+t.rounds+' rounds</span>'
+          +'<span style="font-size:10px;color:rgba(245,240,232,0.5);">🏨 '+t.nights+' nights</span>'
+          +'<span style="font-size:10px;color:rgba(245,240,232,0.5);">👥 '+t.groupSize+' golfers</span>'
           +'</div>'
-          +'<p style="font-size:11px;color:rgba(28,46,26,0.35);margin:0;">'+crs+'</p>'
+          +'<p style="font-size:11px;color:rgba(245,240,232,0.45);margin:0;">'+crs+'</p>'
           +'</div></div>';
       }).join('');
     })
