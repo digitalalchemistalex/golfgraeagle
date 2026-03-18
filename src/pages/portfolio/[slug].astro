@@ -1169,11 +1169,11 @@ const diningSlugMap: Record<string, string> = {
   </div>
 </div>
 
-  <RelatedTrips client:load slug={item.slug} type="course" />
+    <RelatedTrips client:load slug={item.slug} type="course" />
 
-  <Testimonials client:load slug={item.slug} type="course" />
+    <Testimonials client:load slug={item.slug} type="course" />
 
-    </>
+  </>
   )}
 
   {item && type === 'lodging' && (() => {
