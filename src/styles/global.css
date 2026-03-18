@@ -544,3 +544,8 @@ section.hero-section,
   .bl-stat-val { font-size:24px; }
   .bl-sidebar-card { padding:18px; }
 }
+
+/* ── RelatedTrips grid — 3 col desktop, 2 tablet, 1 mobile ── */
+.rt-grid { grid-template-columns: repeat(3, 1fr) !important; }
+@media (max-width: 900px) { .rt-grid { grid-template-columns: repeat(2, 1fr) !important; } }
+@media (max-width: 580px) { .rt-grid { grid-template-columns: 1fr !important; } }

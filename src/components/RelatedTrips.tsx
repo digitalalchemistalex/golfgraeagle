@@ -176,7 +176,7 @@ function TripCard({ trip }: { trip: Trip }) {
 
         {/* Synopsis */}
         {trip.synopsis && (
-          <p style={{ fontSize: 13, color: "rgba(28,18,8,0.55)", lineHeight: 1.65, borderLeft: "3px solid #e8a850", paddingLeft: 12, marginBottom: 16, fontStyle: "italic" }}>
+          <p style={{ fontSize: 13, color: "rgba(28,18,8,0.55)", lineHeight: 1.65, borderLeft: "3px solid #e8a850", paddingLeft: 12, marginBottom: 16, fontStyle: "italic", display: "-webkit-box", WebkitLineClamp: 3, WebkitBoxOrient: "vertical", overflow: "hidden" }}>
             &ldquo;{trip.synopsis}&rdquo;
           </p>
         )}
@@ -383,10 +383,10 @@ export default function RelatedTrips({ slug, type, showAll = false, max = 6 }: {
           </p>
         </div>
 
-        {/* Grid */}
-        <div style={{
+        {/* Grid — 3 col desktop, 2 col tablet, 1 col mobile */}
+        <div className="rt-grid" style={{
           display: "grid",
-          gridTemplateColumns: "repeat(auto-fill, minmax(min(320px, 100%), 1fr))",
+          gridTemplateColumns: "repeat(3, 1fr)",
           gap: 20,
         }}>
           {trips.map((trip, i) => (
