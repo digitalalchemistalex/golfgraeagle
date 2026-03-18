@@ -6,7 +6,7 @@ import Footer from '../components/Footer.astro';
 import { courses, lodging, siteConfig, imageAlts } from '../data/content.js';
 const getImgAlt = (src, fallback) => { const f = (src || '').split('/').pop().split('?')[0]; return (imageAlts || {})[f] || fallback; };
 
-const HERO_IMG = '/wp-images/DJI_0006-Edit.jpg';
+const HERO_IMG = '/wp-images/DJI_0006-Edit.webp';
 
 const mustPlay = {
   'grizzly-ranch': true,
@@ -1009,7 +1009,7 @@ const lodgingMeta = {'townhomes-at-plumas-pines':{badge:'Best for Large Groups',
       grid.innerHTML = picks.map(t => {
         const color = vibeColors[t.vibe] || '#2d7a3a';
         const courses = (t.courses||[]).slice(0,2).join(' + ');
-        const img = (t.imageUrl && !t.imageUrl.startsWith('data:')) ? t.imageUrl : '/wp-images/DJI_0006-Edit.jpg';
+        const img = (t.imageUrl && !t.imageUrl.startsWith('data:')) ? t.imageUrl : '/wp-images/DJI_0006-Edit.webp';
         const synopsis = (t.synopsis||'').substring(0,110);
         return '<a href="/trips/?highlight='+t.id+'" class="trip-glow-card" style="text-decoration:none;display:block;background:rgba(255,255,255,0.05);border-radius:16px;overflow:hidden;transition:transform 0.2s;cursor:pointer;" onmouseover="this.style.transform=\'translateY(-3px)\'" onmouseout="this.style.transform=\'none\'">'
           + '<div style="height:160px;overflow:hidden;"><img src="'+img+'" alt="'+courses+'" loading="lazy" style="width:100%;height:100%;object-fit:cover;"/></div>'
