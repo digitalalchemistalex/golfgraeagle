@@ -304,7 +304,7 @@ const diningSlugMap: Record<string, string> = {
       <p class="ch-tagline page-intro">{item.tagline}</p>
 
       <div class="ch-ctas">
-        <a href="/request-a-quote" class="ch-btn-primary">Book a Package →</a>
+        <a href={`/request-a-quote?utm_source=golfgraeagle&utm_medium=internal&utm_campaign=cta&utm_content=${item.slug}-hero`} class="ch-btn-primary">Book a Package →</a>
         {item.website && (
           <a href={item.website} class="ch-btn-ghost" target="_blank" rel="noopener">Course Website ↗</a>
         )}
@@ -889,7 +889,7 @@ const diningSlugMap: Record<string, string> = {
             ))}
           </div>
 
-          <a href="/request-a-quote" style="display:block;text-align:center;background:#b8820a;color:#ffffff;font-size:15px;font-weight:700;padding:15px;border-radius:100px;text-decoration:none;transition:all 0.25s;margin-bottom:10px;box-shadow:0 4px 16px rgba(184,130,10,0.3);"
+          <a href={`/request-a-quote?utm_source=golfgraeagle&utm_medium=internal&utm_campaign=cta&utm_content=${item.slug}-sidebar`} style="display:block;text-align:center;background:#b8820a;color:#ffffff;font-size:15px;font-weight:700;padding:15px;border-radius:100px;text-decoration:none;transition:all 0.25s;margin-bottom:10px;box-shadow:0 4px 16px rgba(184,130,10,0.3);"
           onmouseover="this.style.background='#8a6008';this.style.transform='translateY(-1px)'"
           onmouseout="this.style.background='#b8820a';this.style.transform='translateY(0)'">
             Request a Free Quote →
@@ -1278,7 +1278,7 @@ const diningSlugMap: Record<string, string> = {
         <div style="background:rgba(232,168,80,0.06);border:1px solid rgba(232,168,80,0.2);border-radius:20px;padding:28px;">
           <h3 style="font-family:'Playfair Display',serif;font-size:20px;color:var(--text-primary);margin:0 0 8px;font-weight:500;">Add to Your Golf Package</h3>
           <p style="font-size:14px;color:rgba(28,18,8,0.35);margin:0 0 20px;line-height:1.6;">We coordinate group dining reservations alongside tee times and lodging — one package, one call.</p>
-          <a href="/request-a-quote/"
+          <a href={`/request-a-quote/?utm_source=golfgraeagle&utm_medium=internal&utm_campaign=cta&utm_content=${item.slug}-dining-cta`}
              style="display:block;text-align:center;background:var(--gold-light);color:#0d1a0e;font-weight:700;font-size:14px;padding:14px;border-radius:100px;text-decoration:none;transition:all 0.2s;"
              onmouseover="this.style.background='#f2c878';this.style.transform='translateY(-2px)'"
              onmouseout="this.style.background='#e8a850';this.style.transform='translateY(0)'">
@@ -1296,7 +1296,7 @@ const diningSlugMap: Record<string, string> = {
       <div>
         <h1 style="font-family:'Playfair Display',serif;font-size:40px;color:var(--text-primary);margin:0 0 16px;">Graeagle Golf</h1>
         <p style="font-size:16px;color:rgba(28,18,8,0.45);margin:0 0 28px;">This page is being updated with fresh content.</p>
-        <a href="/request-a-quote/" style="display:inline-block;background:var(--gold-light);color:#0d1a0e;font-weight:700;padding:14px 36px;border-radius:100px;text-decoration:none;">Plan Your Trip →</a>
+        <a href="/request-a-quote/?utm_source=golfgraeagle&utm_medium=internal&utm_campaign=cta&utm_content=404-fallback" style="display:inline-block;background:var(--gold-light);color:#0d1a0e;font-weight:700;padding:14px 36px;border-radius:100px;text-decoration:none;">Plan Your Trip →</a>
       </div>
     </section>
   )}
