@@ -400,16 +400,85 @@ const quoteSchema = [
 
         </form>
 
-        <!-- SUCCESS -->
-        <div id="q-success" style="display:none;padding:72px 40px;text-align:center;">
-          <div style="width:80px;height:80px;border-radius:50%;background:rgba(82,168,98,0.12);border:2px solid rgba(82,168,98,0.3);display:flex;align-items:center;justify-content:center;margin:0 auto 28px;font-size:32px;">✓</div>
-          <h2 style="font-family:'Playfair Display',serif;font-size:30px;font-weight:500;color:#1a1208;margin:0 0 12px;">You're all set, <span id="s-name"></span>!</h2>
-          <p style="font-size:15px;color:rgba(26,18,8,0.55);margin:0 0 8px;">Your quote request has been received.</p>
-          <p style="font-size:13px;color:rgba(240,248,242,0.3);margin:0 0 8px;">One of our Graeagle trip specialists will reach out within 24 hours.</p>
-          <p style="font-size:13px;color:rgba(240,248,242,0.3);margin:0 0 36px;">Confirmation heading to <strong id="s-email" style="color:rgba(26,18,8,0.55);"></strong></p>
-          <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
-            <button id="q-reset" class="q-btn-back">Submit Another Request</button>
-            <a href="/" style="background:#e8a850;color:#0d1a0e;font-size:13px;font-weight:700;padding:12px 26px;border-radius:100px;text-decoration:none;">← Back to Home</a>
+        <!-- SUCCESS STATE -->
+        <div id="q-success" style="display:none;padding:56px 40px;">
+
+          <!-- Checkmark header -->
+          <div style="text-align:center;margin-bottom:40px;">
+            <div style="width:72px;height:72px;border-radius:50%;background:rgba(45,122,58,0.1);border:2px solid rgba(45,122,58,0.3);display:flex;align-items:center;justify-content:center;margin:0 auto 20px;font-size:28px;">✓</div>
+            <h2 style="font-family:'Playfair Display',serif;font-size:28px;font-weight:500;color:#1a1208;margin:0 0 8px;">You're all set, <span id="s-name"></span>!</h2>
+            <p style="font-size:14px;color:rgba(26,18,8,0.5);margin:0 0 4px;">Confirmation heading to <strong id="s-email" style="color:rgba(26,18,8,0.7);"></strong></p>
+            <p style="font-size:13px;color:rgba(26,18,8,0.4);margin:0;">A Graeagle trip specialist will be in touch within 24 hours.</p>
+          </div>
+
+          <!-- Trip summary — what they requested -->
+          <div id="s-trip-summary" style="background:#f7f3ec;border:1px solid rgba(168,140,90,0.2);border-radius:16px;padding:24px;margin-bottom:24px;">
+            <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.14em;color:#a06c30;margin-bottom:16px;">📋 Your Quote Request — Summary</div>
+
+            <!-- Trip reference if from TripsCaddie -->
+            <div id="s-trip-ref" style="display:none;background:#fff;border:1px solid rgba(168,140,90,0.2);border-radius:10px;padding:12px 14px;margin-bottom:14px;">
+              <div style="font-size:11px;font-weight:700;color:#a06c30;margin-bottom:4px;">Based on trip</div>
+              <div id="s-trip-name" style="font-size:14px;font-weight:600;color:#1a1208;"></div>
+              <div style="font-size:11px;color:rgba(26,18,8,0.45);margin-top:4px;">Prices are reference only — subject to change based on current availability and your dates.</div>
+            </div>
+
+            <!-- Key stats grid -->
+            <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:10px;margin-bottom:16px;">
+              <div id="s-stat-pax" style="display:none;background:#fff;border:1px solid rgba(28,18,8,0.07);border-radius:10px;padding:10px;text-align:center;">
+                <div style="font-size:18px;font-weight:700;color:#1a7a40;" id="s-pax-val"></div>
+                <div style="font-size:10px;color:rgba(26,18,8,0.4);text-transform:uppercase;letter-spacing:0.08em;margin-top:2px;">Golfers</div>
+              </div>
+              <div id="s-stat-nights" style="display:none;background:#fff;border:1px solid rgba(28,18,8,0.07);border-radius:10px;padding:10px;text-align:center;">
+                <div style="font-size:18px;font-weight:700;color:#1a1208;" id="s-nights-val"></div>
+                <div style="font-size:10px;color:rgba(26,18,8,0.4);text-transform:uppercase;letter-spacing:0.08em;margin-top:2px;">Nights</div>
+              </div>
+              <div id="s-stat-rounds" style="display:none;background:#fff;border:1px solid rgba(28,18,8,0.07);border-radius:10px;padding:10px;text-align:center;">
+                <div style="font-size:18px;font-weight:700;color:#1a1208;" id="s-rounds-val"></div>
+                <div style="font-size:10px;color:rgba(26,18,8,0.4);text-transform:uppercase;letter-spacing:0.08em;margin-top:2px;">Rounds</div>
+              </div>
+              <div id="s-stat-budget" style="display:none;background:#fff;border:1px solid rgba(28,18,8,0.07);border-radius:10px;padding:10px;text-align:center;">
+                <div style="font-size:18px;font-weight:700;color:#1a1208;" id="s-budget-val"></div>
+                <div style="font-size:10px;color:rgba(26,18,8,0.4);text-transform:uppercase;letter-spacing:0.08em;margin-top:2px;">Budget tier</div>
+              </div>
+            </div>
+
+            <!-- Courses + lodging -->
+            <div id="s-courses-row" style="display:none;margin-bottom:10px;">
+              <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:rgba(26,18,8,0.35);margin-bottom:6px;">⛳ Courses</div>
+              <div id="s-courses-list" style="display:flex;flex-wrap:wrap;gap:6px;"></div>
+            </div>
+            <div id="s-lodging-row" style="display:none;margin-bottom:10px;">
+              <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:rgba(26,18,8,0.35);margin-bottom:4px;">🏨 Lodging</div>
+              <div id="s-lodging-val" style="font-size:13px;color:#1a1208;font-weight:500;"></div>
+            </div>
+
+            <!-- Dates -->
+            <div id="s-dates-row" style="display:none;font-size:12px;color:rgba(26,18,8,0.5);padding-top:10px;border-top:1px solid rgba(26,18,8,0.06);">
+              📅 <span id="s-dates-val"></span>
+            </div>
+          </div>
+
+          <!-- What happens next -->
+          <div style="background:#1a2e1a;border-radius:14px;padding:20px 24px;margin-bottom:24px;">
+            <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:#e8a850;margin-bottom:12px;">What happens next</div>
+            {[
+              ["Within 24 hours", "A trip specialist reviews your request and builds a custom itinerary."],
+              ["Custom proposal", "You'll receive a detailed package with tee times, lodging options, and pricing."],
+              ["Book or adjust", "Confirm as-is or adjust any detail — courses, dates, lodging, group size."],
+            ].map(([step, desc]) => (
+              <div style="display:flex;gap:12px;margin-bottom:10px;align-items:flex-start;">
+                <div style="width:6px;height:6px;border-radius:50%;background:#e8a850;flex-shrink:0;margin-top:5px;"></div>
+                <div>
+                  <span style="font-size:12px;font-weight:600;color:#fff;">{step} — </span>
+                  <span style="font-size:12px;color:rgba(255,255,255,0.45);">{desc}</span>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div style="display:flex;gap:10px;flex-wrap:wrap;">
+            <button id="q-reset" style="flex:1;background:rgba(26,18,8,0.05);border:1px solid rgba(26,18,8,0.12);color:rgba(26,18,8,0.6);font-size:13px;font-weight:600;padding:12px 20px;border-radius:100px;cursor:pointer;font-family:'Inter',sans-serif;">Submit Another Request</button>
+            <a href="/" style="flex:1;display:block;background:#2d7a3a;color:#fff;font-size:13px;font-weight:700;padding:12px 20px;border-radius:100px;text-decoration:none;text-align:center;">← Back to Home</a>
           </div>
         </div>
       </main>
@@ -641,16 +710,53 @@ const $id  = id => document.getElementById(id);
     }
   }
 
-  // Special requests — prepend trip context note
-  if (tripName || vibe || budget) {
-    const sr = form.querySelector('[name="specialRequests"]');
+  // Budget tier — map vibe to budgetTier radio
+  if (vibe) {
+    const vibeToTier: Record<string, string> = {
+      'premium': 'premium',
+      'value': 'budget',
+      'bucket list': 'premium',
+      'corporate': 'premium',
+      'bachelor party': 'mid',
+    };
+    const tier = vibeToTier[vibe.toLowerCase()] || 'mid';
+    const radio = form.querySelector(`[name="budgetTier"][value="${tier}"]`);
+    if (radio) (radio as HTMLInputElement).checked = true;
+  }
+
+  // Special requests — full trip details for admin + customer clarity
+  // Prices are reference only — subject to change
+  {
+    const sr = form.querySelector('[name="specialRequests"]') as HTMLTextAreaElement;
     if (sr) {
-      const parts = [];
-      if (tripName) parts.push(`Interested in a trip similar to "${tripName}"`);
-      if (vibe) parts.push(`trip style: ${vibe}`);
-      if (budget) parts.push(`budget reference: $${Number(budget).toLocaleString()}/person`);
-      const note = parts.join(' — ') + '.';
-      sr.value = note;
+      const lines: string[] = [];
+
+      if (tripName) lines.push(`Based on trip: "${tripName}"`);
+
+      const details: string[] = [];
+      if (partySize) details.push(`${partySize} golfers`);
+      if (nights)    details.push(`${nights} nights`);
+      if (rounds)    details.push(`${rounds} rounds`);
+      if (details.length) lines.push(`Trip details: ${details.join(', ')}`);
+
+      if (coursesRaw) {
+        const courseList = coursesRaw.split(',').map((c: string) => c.trim()).filter(Boolean).join(', ');
+        if (courseList) lines.push(`Courses: ${courseList}`);
+      }
+
+      if (lodgingRaw) lines.push(`Lodging: ${lodgingRaw}`);
+
+      if (vibe) lines.push(`Trip style: ${vibe}`);
+
+      const priceRef = p.get('budget') || '';
+      if (priceRef) {
+        lines.push(`Reference pricing: ~$${Number(priceRef).toLocaleString()}/person (previous trip — subject to change based on current availability and dates)`);
+      }
+
+      lines.push('');
+      lines.push('Please adjust any details above and add any specific requests below:');
+
+      sr.value = lines.join('\n');
     }
   }
 
@@ -802,8 +908,86 @@ form.addEventListener('submit', async e => {
     if (!res.ok) throw new Error(await res.text());
     form.style.display = 'none';
     $id('q-success').style.display = 'block';
+
+    // Basic fields
     $id('s-name').textContent  = data.firstName || 'there';
     $id('s-email').textContent = data.email || '';
+
+    // Party size
+    if (data.partySize) {
+      $id('s-pax-val').textContent = data.partySize;
+      $id('s-stat-pax').style.display = 'block';
+    }
+
+    // Nights
+    if (data.numNights) {
+      $id('s-nights-val').textContent = data.numNights;
+      $id('s-stat-nights').style.display = 'block';
+    }
+
+    // Rounds
+    const roundsVal = data.totalRounds || data.totalRoundsCustom;
+    if (roundsVal && roundsVal !== 'other') {
+      $id('s-rounds-val').textContent = roundsVal;
+      $id('s-stat-rounds').style.display = 'block';
+    }
+
+    // Budget tier
+    const tierMap = { budget: '$$  Value', mid: '$$$  Mid-range', premium: '$$$$  Premium' };
+    if (data.budgetTier && tierMap[data.budgetTier]) {
+      $id('s-budget-val').textContent = tierMap[data.budgetTier];
+      $id('s-stat-budget').style.display = 'block';
+    }
+
+    // Courses
+    const selectedCourses = Array.isArray(data.coursesInterested) ? data.coursesInterested : [];
+    const courseLabels = {
+      'graeagle-meadows': 'Graeagle Meadows',
+      'whitehawk-ranch': 'Whitehawk Ranch',
+      'plumas-pines': 'Plumas Pines',
+      'grizzly-ranch': 'Grizzly Ranch',
+      'nakoma-dragon': 'Nakoma Dragon',
+    };
+    if (selectedCourses.length) {
+      const list = $id('s-courses-list');
+      selectedCourses.forEach(slug => {
+        const span = document.createElement('span');
+        span.textContent = courseLabels[slug] || slug;
+        span.style.cssText = 'font-size:12px;color:#3a4a3e;background:#fff;border:1px solid rgba(28,18,8,0.12);border-radius:6px;padding:3px 10px;font-weight:500;';
+        list.appendChild(span);
+      });
+      $id('s-courses-row').style.display = 'block';
+    }
+
+    // Lodging
+    const selectedLodging = Array.isArray(data.lodgingInterested) ? data.lodgingInterested : [];
+    const lodgingLabels = {
+      'river-pines-resort': 'River Pines Resort',
+      'chalet-view-lodge': 'Chalet View Lodge',
+      'inn-at-nakoma': 'Inn at Nakoma',
+      'townhomes-at-plumas-pines': 'Townhomes at Plumas Pines',
+    };
+    if (selectedLodging.length) {
+      $id('s-lodging-val').textContent = selectedLodging.map(s => lodgingLabels[s] || s).join(', ');
+      $id('s-lodging-row').style.display = 'block';
+    }
+
+    // Dates
+    if (data.arrivalDate && data.departureDate) {
+      $id('s-dates-val').textContent = `${data.arrivalDate} → ${data.departureDate}`;
+      $id('s-dates-row').style.display = 'block';
+    }
+
+    // TripsCaddie reference
+    const urlP = new URLSearchParams(window.location.search);
+    const refTrip = urlP.get('trip');
+    const refType = urlP.get('ref');
+    if (refTrip && (refType === 'trips-caddie' || refType === 'trips-page')) {
+      $id('s-trip-name').textContent = refTrip;
+      $id('s-trip-ref').style.display = 'block';
+    }
+
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   } catch {
     const err = $id('q-error');
     err.textContent = 'Something went wrong. Please try again or email mike.eskuchen@golfthehighsierra.com.';

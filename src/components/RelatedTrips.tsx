@@ -102,6 +102,7 @@ function TripCard({ trip }: { trip: Trip }) {
     ref: "trips-caddie",
     trip: trip.groupName || "",
     ...(trip.groupSize ? { partySize: String(trip.groupSize) } : {}),
+    ...(price ? { budget: String(price) } : {}),
     ...(trip.nights && trip.nights > 0 ? { nights: String(trip.nights) } : {}),
     ...(trip.rounds ? { rounds: String(trip.rounds) } : {}),
     ...(trip.lodging ? { lodging: trip.lodging } : {}),
