@@ -399,6 +399,7 @@ export default function RelatedTrips({ slug, type, showAll = false, max = 6 }: {
           paddingBottom: 12,
           scrollbarWidth: "none",
           msOverflowStyle: "none",
+          scrollPaddingLeft: "clamp(20px,5%,60px)",
         }}
           className="rt-carousel"
         >
