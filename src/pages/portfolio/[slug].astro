@@ -492,6 +492,7 @@ const diningSlugMap: Record<string, string> = {
         ['Altitude', item.altitude],
         ['Open', 'May – November'],
         ['Location', item.address?.split(',')[1]?.trim() || 'Graeagle, CA'],
+        ['Packages from', '$299/person'],
       ].map(([k, v]) => (
         <div class="ch-infobar-item">
           <span class="ch-infobar-label">{k}</span>
@@ -499,7 +500,7 @@ const diningSlugMap: Record<string, string> = {
         </div>
       ))}
     </div>
-    <div class="ch-infobar-aside">5 courses · All within 25 min of Graeagle</div>
+    <div class="ch-infobar-aside">⭐ 4.8/5 · 672 reviews · 5 courses within 25 min</div>
   </div>
 
 </section>
@@ -1124,8 +1125,15 @@ const diningSlugMap: Record<string, string> = {
     <div style="align-self:start;">
       <div style="position:sticky;top:100px;">
         <div style="background:var(--surface);border:1px solid rgba(184,130,10,0.2);border-radius:20px;padding:28px;margin-bottom:16px;box-shadow:0 4px 24px rgba(0,0,0,0.08);">
-          <h3 style="font-family:'Playfair Display',serif;font-size:20px;color:#1c1208;margin:0 0 6px;">Book {item.name}</h3>
-          <p style="font-size:13px;color:#7a6a56;margin:0 0 22px;line-height:1.5;">Custom packages — tee times + lodging + dining</p>
+          <!-- Social proof strip -->
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px;padding-bottom:14px;border-bottom:1px solid rgba(28,18,8,0.07);">
+            <span style="font-size:13px;color:#b8820a;font-weight:700;">★★★★★</span>
+            <span style="font-size:12px;color:#7a6a56;">4.8/5 · 672 reviews</span>
+          </div>
+
+          <h3 style="font-family:'Playfair Display',serif;font-size:20px;color:#1c1208;margin:0 0 4px;">Book {item.name}</h3>
+          <p style="font-size:13px;color:#7a6a56;margin:0 0 6px;line-height:1.5;">Tee times · Lodging · Dining · Logistics</p>
+          <p style="font-size:14px;font-weight:700;color:#1a7a40;margin:0 0 18px;">Packages from $299 per golfer</p>
 
           <div style="display:flex;flex-direction:column;margin-bottom:22px;">
             {[['Par',`${item.par}`],['Course Rating',`${item.rating}`],['Slope',`${item.slope}`],['Yardage',`${item.yards.toLocaleString()} yds`]].map(([k,v])=>(
@@ -1136,9 +1144,7 @@ const diningSlugMap: Record<string, string> = {
             ))}
           </div>
 
-          <a href={`/request-a-quote?utm_source=golfgraeagle&utm_medium=internal&utm_campaign=cta&utm_content=${item.slug}-sidebar`} style="display:block;text-align:center;font-size:15px;padding:15px;margin-bottom:10px;"
-          onmouseover="this.style.background='#8a6008';this.style.transform='translateY(-1px)'"
-          onmouseout="this.style.background='#b8820a';this.style.transform='translateY(0)'">
+          <a href={`/request-a-quote?utm_source=golfgraeagle&utm_medium=internal&utm_campaign=cta&utm_content=${item.slug}-sidebar`} class="btn-green-glow" style="display:block;text-align:center;font-size:15px;padding:15px;margin-bottom:10px;">
             Request a Free Quote →
           </a>
           <p style="font-size:11px;color:#b09e88;text-align:center;margin:0;">No obligation · 72-hr cancellation · 24hr response</p>
@@ -1188,7 +1194,8 @@ const diningSlugMap: Record<string, string> = {
         <p style="font-size:clamp(14px,2vw,17px);color:rgba(240,236,227,0.85);margin:0 0 20px;max-width:600px;text-shadow:0 1px 8px rgba(0,0,0,0.8);">{item.tagline}</p>
         <div style="display:flex;gap:20px;flex-wrap:wrap;align-items:center;">
           {item.distanceFromGraeagle && <span style="font-size:13px;color:rgba(232,168,80,0.8);">📍 {item.distanceFromGraeagle}</span>}
-          {item.priceRange && <span style="font-size:13px;color:rgba(240,236,227,0.55);">From {item.priceRange} per golfer</span>}
+          <span style="font-size:13px;color:rgba(240,236,227,0.75);">Packages from $299/person</span>
+          <span style="font-size:13px;color:rgba(240,236,227,0.55);">⭐ 4.8/5 · 672 reviews</span>
           <span style="font-size:13px;color:rgba(240,236,227,0.55);">⛳ {nearbyCourses.length} courses nearby</span>
         </div>
       </div>
@@ -1334,7 +1341,11 @@ const diningSlugMap: Record<string, string> = {
       <!-- RIGHT: Sticky CTA card -->
       <div style="position:sticky;top:100px;">
         <div style="background:rgba(232,168,80,0.06);border:1px solid rgba(232,168,80,0.2);border-radius:20px;padding:32px;">
-          <div style="font-size:11px;color:var(--gold);letter-spacing:0.12em;text-transform:uppercase;font-weight:700;margin-bottom:12px;">Stay & Play Package</div>
+          <div style="font-size:11px;color:var(--gold);letter-spacing:0.12em;text-transform:uppercase;font-weight:700;margin-bottom:8px;">Stay & Play Package</div>
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px;">
+            <span style="font-size:13px;color:#b8820a;font-weight:700;">★★★★★</span>
+            <span style="font-size:12px;color:rgba(28,18,8,0.5);">4.8/5 · 672 reviews</span>
+          </div>
           <h3 style="font-family:'Playfair Display',serif;font-size:22px;color:var(--text-primary);margin:0 0 8px;font-weight:500;">Stay at {item.name}</h3>
           <p style="font-size:14px;color:rgba(28,18,8,0.4);margin:0 0 24px;line-height:1.6;">We pair your stay with guaranteed tee times at any of the 5 Graeagle courses. Free quote, 24-hour response.</p>
           <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:24px;padding:16px;background:rgba(237,230,218,0.5);border-radius:12px;">
