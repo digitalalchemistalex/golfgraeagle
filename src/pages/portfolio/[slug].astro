@@ -1614,27 +1614,30 @@ const diningSlugMap: Record<string, string> = {
       const allSrcs = btns.map(b => b.dataset.src);
       btns.forEach((btn, i) => btn.addEventListener('click', () => lbOpen(allSrcs, i)));
 
+      const lb = document.getElementById('lb');
+      if (!lb) return;
+
       // Keyboard nav
       document.addEventListener('keydown', e => {
-        if (!document.getElementById('lb').classList.contains('open')) return;
+        if (!lb.classList.contains('open')) return;
         if (e.key === 'Escape') lbClose();
         if (e.key === 'ArrowRight') lbNav(1);
         if (e.key === 'ArrowLeft') lbNav(-1);
       });
 
       // Close button — explicit listener as backup to onclick
-      document.getElementById('lb-close').addEventListener('click', e => {
+      const lbCloseBtn = document.getElementById('lb-close');
+      if (lbCloseBtn) lbCloseBtn.addEventListener('click', e => {
         e.stopPropagation();
         lbClose();
       });
 
       // Click backdrop to close
-      document.getElementById('lb').addEventListener('click', e => {
-        if (e.target.id === 'lb') lbClose();
+      lb.addEventListener('click', e => {
+        if ((e.target as HTMLElement).id === 'lb') lbClose();
       });
 
       // Touch/swipe support for mobile
-      const lb = document.getElementById('lb');
       lb.addEventListener('touchstart', e => {
         touchStartX = e.changedTouches[0].screenX;
         touchStartY = e.changedTouches[0].screenY;
