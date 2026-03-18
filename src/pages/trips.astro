@@ -249,60 +249,94 @@ const schema = [tripListSchema, breadcrumbSchema, faqSchema];
   </section>
 
   <!-- AEO content — Lodging section -->
-  <section style="background:var(--page-bg);padding:80px clamp(20px,8%,120px);">
-    <div style="max-width:900px;margin:0 auto;">
-      <!-- H2 targets "graeagle golf lodging" / "stay and play graeagle" intent -->
-      <h2 style="font-family:'Playfair Display',serif;font-size:clamp(24px,3.5vw,38px);font-weight:400;color:#1c1208;margin:0 0 12px;line-height:1.2;">
-        Stay on the courses. Wake up ready to play.
-      </h2>
-      <p style="font-size:15px;color:rgba(28,18,8,0.55);max-width:560px;line-height:1.75;margin:0 0 32px;">
-        River Pines Resort handles groups of 8 to 52 in one block. Plumas Pines townhomes put you steps from the first tee.
-        The Inn at Nakoma means dinner at a Frank Lloyd Wright building and a 60-second walk to your morning round.
-        We match you to the right property for your group size, budget, and courses.
-      </p>
-      <div style="display:flex;flex-wrap:wrap;gap:12px;">
+  <!-- Lodging section -->
+  <section style="background:var(--surface-2);padding:80px clamp(20px,8%,120px);">
+    <div style="max-width:1100px;margin:0 auto;">
+      <div style="margin-bottom:40px;">
+        <p style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.16em;color:#e8a850;margin:0 0 12px;">Where to stay</p>
+        <h2 style="font-family:'Playfair Display',serif;font-size:clamp(24px,3.5vw,38px);font-weight:400;color:#1c1208;margin:0 0 14px;line-height:1.2;">
+          Stay on the courses.<br/>Wake up ready to play.
+        </h2>
+        <p style="font-size:15px;color:rgba(28,18,8,0.55);max-width:560px;line-height:1.75;margin:0;">
+          All lodging is inside the golf corridor — 5 minutes from the nearest first tee. We match you to the right property for group size, budget, and courses.
+        </p>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(240px,100%),1fr));gap:20px;">
         {[
-          { name:'River Pines Resort', tag:'Great for Groups', href:'/portfolio/river-pines-resort-graeagle-ca/' },
-          { name:'Townhomes at Plumas Pines', tag:'Steps from the First Tee', href:'/portfolio/the-townhomes-at-plumas-pines/' },
-          { name:'Inn at Nakoma', tag:'Frank Lloyd Wright', href:'/portfolio/the-inn-at-nakoma-clio-ca/' },
-          { name:'Chalet View Lodge', tag:'Great Amenities', href:'/portfolio/chalet-view-lodge-graeagle-ca/' },
+          { name:'River Pines Resort', tag:'Great for Groups', sub:'Groups 8–52 · Pool · On-site dining', img:'/wp-images/DJI_0949-Edit.webp', href:'/portfolio/river-pines-resort-graeagle-ca/' },
+          { name:'Townhomes at Plumas Pines', tag:'Steps from the First Tee', sub:'2–4BR units · Full kitchens · Fairway views', img:'/wp-images/2024-07-20.webp', href:'/portfolio/the-townhomes-at-plumas-pines/' },
+          { name:'Inn at Nakoma', tag:'Frank Lloyd Wright', sub:'FLW clubhouse · Fine dining · Secluded', img:'/wp-images/nakoma-flw-lodge-exterior.webp', href:'/portfolio/the-inn-at-nakoma-clio-ca/' },
+          { name:'Chalet View Lodge', tag:'Great Amenities', sub:'Pool · Hot tub · Near all 5 courses', img:'/wp-images/ChaletView-02.webp', href:'/portfolio/chalet-view-lodge-graeagle-ca/' },
         ].map(l => (
-          <a href={l.href} style="display:inline-flex;flex-direction:column;gap:2px;padding:14px 18px;background:var(--surface);border:1px solid rgba(28,18,8,0.1);border-radius:12px;text-decoration:none;transition:all 0.2s;"
-            onmouseover="this.style.borderColor='#e8a850';this.style.background='rgba(232,168,80,0.04)'"
-            onmouseout="this.style.borderColor='rgba(28,18,8,0.1)';this.style.background='#fff'">
-            <span style="font-size:13px;font-weight:700;color:#1c1208;">{l.name}</span>
-            <span style="font-size:11px;color:#a06c30;">{l.tag}</span>
+          <a href={l.href} style="display:flex;flex-direction:column;background:var(--surface);border-radius:16px;overflow:hidden;text-decoration:none;border:1px solid rgba(28,18,8,0.07);box-shadow:0 2px 12px rgba(0,0,0,0.05);transition:box-shadow 0.25s,transform 0.25s;"
+            onmouseover="this.style.boxShadow='0 8px 32px rgba(0,0,0,0.1)';this.style.transform='translateY(-3px)'"
+            onmouseout="this.style.boxShadow='0 2px 12px rgba(0,0,0,0.05)';this.style.transform='translateY(0)'">
+            <div style="height:160px;overflow:hidden;flex-shrink:0;">
+              <img src={l.img} alt={l.name} loading="lazy" style="width:100%;height:100%;object-fit:cover;transition:transform 0.4s;"
+                onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'"/>
+            </div>
+            <div style="padding:16px 18px 20px;">
+              <div style="font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:#e8a850;margin-bottom:6px;">{l.tag}</div>
+              <div style="font-size:15px;font-weight:700;color:#1c1208;margin-bottom:4px;line-height:1.25;">{l.name}</div>
+              <div style="font-size:12px;color:rgba(28,18,8,0.45);line-height:1.5;">{l.sub}</div>
+            </div>
           </a>
         ))}
+      </div>
+      <div style="margin-top:28px;">
+        <a href="/lodging/" style="font-size:13px;color:#a06c30;font-weight:600;text-decoration:none;">View all lodging options →</a>
       </div>
     </div>
   </section>
 
-  <!-- AEO content — Dining section -->
+  <!-- Dining section -->
   <section style="background:var(--page-bg);padding:80px clamp(20px,8%,120px);">
-    <div style="max-width:900px;margin:0 auto;">
-      <!-- H2 targets "graeagle restaurants golf" / "where to eat graeagle" intent -->
-      <h2 style="font-family:'Playfair Display',serif;font-size:clamp(24px,3.5vw,38px);font-weight:400;color:#1c1208;margin:0 0 12px;line-height:1.2;">
-        13 restaurants. Something for every night.
-      </h2>
-      <p style="font-size:15px;color:rgba(28,18,8,0.55);max-width:580px;line-height:1.75;margin:0 0 32px;">
-        The Iron Door has been open since 1961 in a 1906 general store — book ahead for prime rib night.
-        The Brewing Lair is 15 acres of Sierra forest and craft beer, perfect after a long day on Grizzly Ranch.
-        Sardine Lake Resort books four weeks out. We'll build your dining plan alongside your tee sheet.
-      </p>
-      <div style="display:flex;flex-wrap:wrap;gap:10px;margin-bottom:20px;">
+    <div style="max-width:1100px;margin:0 auto;">
+      <div style="margin-bottom:40px;">
+        <p style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.16em;color:#e8a850;margin:0 0 12px;">Where to eat</p>
+        <h2 style="font-family:'Playfair Display',serif;font-size:clamp(24px,3.5vw,38px);font-weight:400;color:#1c1208;margin:0 0 14px;line-height:1.2;">
+          13 restaurants.<br/>Something for every night.
+        </h2>
+        <p style="font-size:15px;color:rgba(28,18,8,0.55);max-width:560px;line-height:1.75;margin:0;">
+          The Iron Door has been open since 1961 in a 1906 general store. Sardine Lake books four weeks out. We build your dining plan alongside your tee sheet.
+        </p>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(220px,100%),1fr));gap:16px;margin-bottom:28px;">
         {[
-          ['Iron Door Restaurant', '/portfolio/iron-door-restaurant/'],
-          ['Grizzly Grill', '/portfolio/grizzly-grill/'],
-          ['Sardine Lake Resort', '/portfolio/sardine-lake-resort/'],
-          ['The Brewing Lair', '/portfolio/the-brewing-lair/'],
+          { name:'Iron Door Restaurant', tag:'Fine Dining', sub:'Steaks · Prime rib · Since 1961', img:'/wp-images/unnamed-1.webp', href:'/portfolio/iron-door-restaurant/' },
+          { name:'Grizzly Grill', tag:'After the Round', sub:'Stone hearth · Local game · 4,800 ft', img:'/wp-images/unnamed-3.webp', href:'/portfolio/grizzly-grill/' },
+          { name:'Sardine Lake Resort', tag:'Book 4 Weeks Out', sub:'Alpine lake · Trout · Worth the wait', img:'/wp-images/Sardine-Lake-Resort.webp', href:'/portfolio/sardine-lake-resort/' },
+          { name:'The Brewing Lair', tag:'Casual', sub:'15 acres · Craft beer · Lawn games', img:'/wp-images/brews-and-bars.jpeg', href:'/portfolio/the-brewing-lair/' },
+        ].map(d => (
+          <a href={d.href} style="display:flex;flex-direction:column;background:var(--surface);border-radius:16px;overflow:hidden;text-decoration:none;border:1px solid rgba(28,18,8,0.07);box-shadow:0 2px 12px rgba(0,0,0,0.05);transition:box-shadow 0.25s,transform 0.25s;"
+            onmouseover="this.style.boxShadow='0 8px 32px rgba(0,0,0,0.1)';this.style.transform='translateY(-3px)'"
+            onmouseout="this.style.boxShadow='0 2px 12px rgba(0,0,0,0.05)';this.style.transform='translateY(0)'">
+            <div style="height:130px;overflow:hidden;flex-shrink:0;">
+              <img src={d.img} alt={d.name} loading="lazy" style="width:100%;height:100%;object-fit:cover;transition:transform 0.4s;"
+                onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'"/>
+            </div>
+            <div style="padding:14px 16px 16px;">
+              <div style="font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:#e8a850;margin-bottom:5px;">{d.tag}</div>
+              <div style="font-size:14px;font-weight:700;color:#1c1208;margin-bottom:3px;">{d.name}</div>
+              <div style="font-size:11px;color:rgba(28,18,8,0.45);">{d.sub}</div>
+            </div>
+          </a>
+        ))}
+      </div>
+      <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:24px;">
+        {[
           ['Longboards Bar & Grill', '/portfolio/longboards-bar-and-grill/'],
           ['Eureka Peak Brewing', '/portfolio/eureka-peak-brewing-co/'],
           ['Roadhouse at River Pines', '/portfolio/roadhouse-at-river-pines/'],
+          ['Gumba\'s II Go', '/portfolio/graeagle-restaurant/'],
+          ['Mountain Frostee', '/portfolio/mountain-frostee/'],
+          ['Mohawk Tavern', '/portfolio/mohawk-tavern/'],
+          ['Knotty Pine', '/portfolio/knotty-pine/'],
+          ['Cuccia\'s', '/portfolio/cuccias/'],
         ].map(([name, href]) => (
-          <a href={href} style="font-size:12px;font-weight:600;color:#3a4a3e;padding:7px 14px;background:var(--surface-2);border:1px solid rgba(28,18,8,0.08);border-radius:100px;text-decoration:none;transition:all 0.15s;"
-            onmouseover="this.style.background='rgba(232,168,80,0.1)';this.style.borderColor='rgba(168,140,90,0.3)'"
-            onmouseout="this.style.background='var(--surface-2)';this.style.borderColor='rgba(28,18,8,0.08)'">
+          <a href={href} style="font-size:12px;font-weight:500;color:rgba(28,18,8,0.65);padding:6px 14px;background:var(--surface);border:1px solid rgba(28,18,8,0.08);border-radius:100px;text-decoration:none;transition:all 0.15s;"
+            onmouseover="this.style.borderColor='#e8a850';this.style.color='#8a5c00'"
+            onmouseout="this.style.borderColor='rgba(28,18,8,0.08)';this.style.color='rgba(28,18,8,0.65)'">
             {name}
           </a>
         ))}
