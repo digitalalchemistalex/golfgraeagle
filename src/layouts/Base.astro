@@ -15,7 +15,9 @@ const {
 } = Astro.props;
 
 const rawCanonical = canonical || new URL(Astro.url.pathname, siteConfig.url).href;
-const canonicalUrl = rawCanonical.replace(/\/$/, '') || siteConfig.url;
+// Preserve trailing slash to match WP-indexed canonical URLs in GSC
+// Exception: homepage is just https://golfgraeagle.com (no slash)
+const canonicalUrl = rawCanonical === siteConfig.url + '/' ? siteConfig.url : rawCanonical.endsWith('/') ? rawCanonical : rawCanonical + '/';
 
 const baseSchema = {
   "@context": "https://schema.org",

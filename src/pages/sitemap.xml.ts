@@ -6,7 +6,9 @@ const SITE  = 'https://golfgraeagle.com';
 const TODAY = new Date().toISOString().split('T')[0];
 
 function url(loc: string, priority: string, changefreq: string) {
-  return `  <url>\n    <loc>${SITE}${loc}</loc>\n    <lastmod>${TODAY}</lastmod>\n    <changefreq>${changefreq}</changefreq>\n    <priority>${priority}</priority>\n  </url>`;
+  // Always use trailing slash to match WP-indexed canonical URLs in GSC
+  const withSlash = loc.endsWith('/') ? loc : loc + '/';
+  return `  <url>\n    <loc>${SITE}${withSlash}</loc>\n    <lastmod>${TODAY}</lastmod>\n    <changefreq>${changefreq}</changefreq>\n    <priority>${priority}</priority>\n  </url>`;
 }
 
 // Slug maps: data slug → portfolio URL slug
