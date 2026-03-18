@@ -54,6 +54,10 @@ const blogUrls = [
   '/blog/graeagle-vs-lake-tahoe-golf',
   '/blog/best-time-to-golf-graeagle',
   '/blog/bachelor-party-golf-graeagle',
+  '/blog/graeagle-golf-trip-cost',
+  '/blog/large-group-golf-graeagle',
+  '/blog/corporate-golf-outing-graeagle',
+  '/blog/graeagle-golf-bucket-list',
 ].map(s => url(s,'0.7','monthly'));
 
 const sitemap = `<?xml version="1.0" encoding="UTF-8"?>

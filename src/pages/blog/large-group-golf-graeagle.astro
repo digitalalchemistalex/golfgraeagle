@@ -1,0 +1,216 @@
+---
+export const prerender = true;
+import Base from '../../layouts/Base.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+
+const title = "Large Group Golf in Graeagle: How 50+ Golfers Do It Right";
+const description = "Planning a Graeagle golf trip for 40–60 golfers? Here's exactly how large groups handle lodging splits, tee time staggering, banquet dinners, and keeping everyone happy — from a real 52-person trip.";
+const slug = "large-group-golf-graeagle";
+const datePublished = "2026-03-18";
+const dateModified = "2026-03-18";
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": title,
+  "datePublished": datePublished,
+  "dateModified": dateModified,
+  "author": { "@type": "Organization", "name": "GolfGraeagle.com" },
+  "publisher": { "@type": "Organization", "name": "Zoomaway Technologies Inc.", "url": "https://golfgraeagle.com" },
+  "mainEntityOfPage": { "@type": "WebPage", "@id": `https://golfgraeagle.com/blog/${slug}` }
+};
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    { "@type": "Question", "name": "Can Graeagle accommodate 50+ golfers in one group?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Graeagle's 5 championship courses can collectively absorb large groups through staggered tee times across multiple courses on the same day. River Pines Resort has capacity for large groups, and properties like Plumas Pines and townhome rentals can house 40–60 people across multiple units." } },
+    { "@type": "Question", "name": "How do you handle tee times for a 50-person golf group?", "acceptedAnswer": { "@type": "Answer", "text": "Split into sub-groups of 16–20 and send each sub-group to a different course on the same day. Stagger arrival times so you're not all in the same parking lot at 7am. A local coordinator — which is what GolfGraeagle does — handles the tee sheet across courses simultaneously." } },
+    { "@type": "Question", "name": "Where does a group of 50 golfers sleep in Graeagle?", "acceptedAnswer": { "@type": "Answer", "text": "River Pines Resort is the primary option for self-contained large groups — rooms, suites, and on-site dining in one location. For groups that want more space, Plumas Pines townhomes accommodate 40+ people across multiple 3–4 bedroom units on the golf course." } },
+    { "@type": "Question", "name": "How much does a Graeagle golf trip cost for 50 people?", "acceptedAnswer": { "@type": "Answer", "text": "Based on real group packages, a 50-person, 2-night, 3-round Graeagle golf trip runs $620–$865 per person depending on lodging and course selection. That includes rooms, golf, and taxes." } },
+  ]
+};
+---
+<Base title={title} description={description} ogType="article" schema={[schema, faqSchema]}
+  canonical={`https://golfgraeagle.com/blog/${slug}/`}
+  ogImage="https://golfgraeagle.com/wp-images/DJI_0006-Edit.jpg"
+>
+  <Nav />
+
+  <div class="bl-hero" style="background-image:url(https://golfgraeagle.com/wp-images/DJI_0006-Edit.jpg)">
+    <div class="bl-hero-fade"></div>
+    <div class="bl-hero-content">
+      <div class="bl-breadcrumb"><a href="/blog/">Blog</a> <span>→</span> Large Group Golf Graeagle</div>
+      <h1 class="bl-h1">Large Group Golf in Graeagle:<br/>How 50+ Golfers Do It Right</h1>
+      <p class="bl-meta">By GolfGraeagle.com · March 2026 · 8 min read</p>
+    </div>
+  </div>
+
+  <div class="bl-wrap">
+    <article class="bl-article">
+
+      <div class="bl-answer-box">
+        <div class="bl-answer-label">The Short Answer</div>
+        <p>A 50-person Graeagle golf trip is completely doable — and we've run them. The keys are splitting into sub-groups across multiple courses, anchoring everyone at River Pines Resort or Plumas Pines townhomes, and having one coordinator manage the tee sheet across all courses simultaneously. Budget: <strong>$620–$865 per person</strong> for 2 nights and 3 rounds, all-in.</p>
+      </div>
+
+      <p class="bl-intro">Most golf destinations can't absorb a 50-person group without turning into chaos — one course, one parking lot, one very annoyed foursome playing in front of you. Graeagle doesn't have that problem. Five championship courses within 25 minutes of each other means you can split a large group across venues, keep everyone playing simultaneously, and reunite for dinner without it feeling like a logistics operation. Here's exactly how it works, using a real 52-person trip as the model.</p>
+
+      <h2>The 52-Person River Pines Package — What Actually Happened</h2>
+      <p>This is a real trip from our TripsCaddie archive. A group of 52 golfers, 2 nights at River Pines Resort, 3 rounds of golf across Plumas Pines, Whitehawk Ranch, and Grizzly Ranch. The banquet dinner with open bar was included. Final cost: <strong>$865 per person</strong>.</p>
+
+      <div class="bl-stat-row">
+        <div class="bl-stat"><div class="bl-stat-val">52</div><div class="bl-stat-label">Golfers</div></div>
+        <div class="bl-stat"><div class="bl-stat-val">2</div><div class="bl-stat-label">Nights</div></div>
+        <div class="bl-stat"><div class="bl-stat-val">3</div><div class="bl-stat-label">Rounds</div></div>
+        <div class="bl-stat"><div class="bl-stat-val">$865</div><div class="bl-stat-label">Per Person</div></div>
+      </div>
+
+      <p>What made it work: the group was split into three sub-groups of roughly 17. Each sub-group had a designated tee time coordinator. Courses were staggered — not all 52 on the same course on the same day. River Pines handled the lodging as a single block reservation, which meant one invoice, one check-in window, and on-site dining for the group dinner each night.</p>
+
+      <h2>How Tee Times Work for a Group This Size</h2>
+      <p>A standard course handles 4-ball groups every 8–10 minutes. That means a foursome tees off roughly every 10 minutes throughout the morning wave. To get 52 golfers out without creating a 3-hour queue, you need to spread across courses.</p>
+
+      <p>The standard approach we use:</p>
+      <ul class="bl-list">
+        <li><strong>Day 1:</strong> Sub-group A (17 golfers) → Plumas Pines at 8am. Sub-group B (17 golfers) → Whitehawk Ranch at 8:30am. Sub-group C (18 golfers) → Grizzly Ranch at 7:30am (it's 25 min east — earlier start, done by 1pm).</li>
+        <li><strong>Day 2:</strong> Rotate courses. Everyone plays a different venue from Day 1. If there's a Day 3, rotate again.</li>
+        <li><strong>Evening:</strong> Everyone converges for group dinner. River Pines Roadhouse handles this well for large groups. For a formal banquet, Longboards Bar and Grill in Graeagle has banquet capacity.</li>
+      </ul>
+
+      <div class="bl-callout">
+        <strong>The single biggest mistake large groups make:</strong> trying to keep all 50 people on the same course on the same day. It creates a 6-hour round, frustrates the courses, and guarantees at least one sub-group has a miserable time waiting. Split up. You're golfing in the same valley — you'll see each other at dinner.
+      </div>
+
+      <h2>Lodging Options for 40–60 Golfers</h2>
+
+      <h3>River Pines Resort — Best for Groups That Want One Base</h3>
+      <p>Family-owned for over 40 years. Cabins, suites, and standard rooms in one property. Pool, hot tub, and The Roadhouse restaurant on-site — so dinner doesn't require a convoy. It's the most operationally simple option for large groups: one reservation, one check-in, one invoice. Five minutes from Graeagle, within 25 minutes of all five courses.</p>
+      <p><a href="/portfolio/river-pines-resort-graeagle-ca/">See River Pines Resort details →</a></p>
+
+      <h3>Plumas Pines Townhomes — Best for Groups That Want More Space</h3>
+      <p>Two to four-bedroom townhomes directly adjacent to Plumas Pines Golf Resort. For a 50-person group you'd need 8–12 units depending on configuration. Full kitchens, shared pools, and tennis courts. More like renting a neighborhood than a hotel — which some large groups strongly prefer. The 52-person groups that use Plumas Pines townhomes typically have a designated "house captain" per unit to manage the morning logistics.</p>
+      <p><a href="/portfolio/the-townhomes-at-plumas-pines/">See Plumas Pines Townhomes →</a></p>
+
+      <h2>The 3 Courses That Handle Large Groups Best</h2>
+
+      <div class="bl-course-compare">
+        <div class="bl-course-row">
+          <div class="bl-course-name"><a href="/portfolio/plumas-pines-golf-packages/">Plumas Pines</a></div>
+          <div class="bl-course-note">Par 72 · Slope 132 · Designer Homer Flint · Top 5 Best Values Sierra Nevada. Fast-playing, accommodating staff, on-site condos. The most group-friendly course in Graeagle. Start here for any large group trip.</div>
+        </div>
+        <div class="bl-course-row">
+          <div class="bl-course-name"><a href="/portfolio/whitehawk-ranch-golf-packages/">Whitehawk Ranch</a></div>
+          <div class="bl-course-note">Par 71 · Slope 132 · Top 20 CA 1998. Meadow + forested hillside layout keeps pace of play moving. All-grass range with complimentary balls. The crowd favorite — every large group has at least one sub-group that wants to come back here specifically.</div>
+        </div>
+        <div class="bl-course-row">
+          <div class="bl-course-name"><a href="/portfolio/grizzly-ranch-golf-packages/">Grizzly Ranch</a></div>
+          <div class="bl-course-note">Par 72 · Slope 140 · Golf Digest Top 100 US 2021. The prestige play for the group — every golfer wants to say they've played it. Schedule this early in the morning (the course is 25 min east in Portola) and allow a full day.</div>
+        </div>
+      </div>
+
+      <h2>Adding a Banquet Dinner</h2>
+      <p>Most large groups want at least one formal group dinner — awards ceremony, prizes, speeches. Two options in Graeagle:</p>
+      <ul class="bl-list">
+        <li><strong>Longboards Bar and Grill</strong> — Has dedicated banquet space. Can handle 50+ with seated dinner format. Past groups have used this for awards night with open bar packages.</li>
+        <li><strong>Roadhouse at River Pines</strong> — If you're staying at River Pines, on-site is operationally simple. Steaks, ribs, whisky flights. Works for a group that wants a casual banquet rather than a formal one.</li>
+      </ul>
+
+      <h2>What a 50-Person Graeagle Trip Costs</h2>
+      <p>Based on real packages from our trip archive:</p>
+
+      <div class="bl-price-table">
+        <div class="bl-price-row bl-price-header">
+          <span>Package Type</span><span>Group Size</span><span>Nights</span><span>Rounds</span><span>Per Person</span>
+        </div>
+        <div class="bl-price-row">
+          <span>Value (River Pines + 3 courses)</span><span>24 pax</span><span>2</span><span>3</span><span>$620</span>
+        </div>
+        <div class="bl-price-row">
+          <span>Value + Banquet (River Pines)</span><span>52 pax</span><span>2</span><span>3</span><span>$865</span>
+        </div>
+        <div class="bl-price-row">
+          <span>Premium (Townhomes + 3 courses)</span><span>36 pax</span><span>3</span><span>3</span><span>$1,150</span>
+        </div>
+        <div class="bl-price-row">
+          <span>Premium (Townhomes + 4 courses)</span><span>24 pax</span><span>3</span><span>4</span><span>$1,120</span>
+        </div>
+      </div>
+
+      <p>These are all-inclusive: lodging, golf, taxes, service charges. Alcohol, transportation, and extras are à la carte on top.</p>
+
+      <h2>What We Handle vs. What You Handle</h2>
+      <p>When you book through GolfGraeagle, we take on the coordination layer:</p>
+      <ul class="bl-list">
+        <li>Tee times locked across all courses simultaneously — no calling 3 pro shops separately</li>
+        <li>Lodging block reserved as a single booking</li>
+        <li>Day-by-day logistics sheet per sub-group</li>
+        <li>Banquet coordination if applicable</li>
+        <li>Single invoice for the group organizer</li>
+      </ul>
+      <p>You handle: getting everyone to agree on dates, collecting payment from participants, and keeping your playing partners from losing more sleeves than you.</p>
+
+      <!-- FAQ -->
+      <div class="bl-faq">
+        <h2>Frequently Asked Questions</h2>
+        {[
+          { q: "Can Graeagle accommodate 50+ golfers in one group?", a: "Yes. Graeagle's 5 championship courses can collectively absorb large groups through staggered tee times across multiple courses. River Pines Resort and Plumas Pines townhomes both accommodate 40–60 people. We've run groups up to 56." },
+          { q: "How do you handle tee times for a 50-person golf group?", a: "Split into sub-groups of 16–20 and send each to a different course simultaneously. A coordinator manages the tee sheet across all courses. You're all golfing in the same valley — everyone sees each other at dinner." },
+          { q: "Where does a group of 50 golfers sleep in Graeagle?", a: "River Pines Resort is the primary option — single-property, on-site dining, one invoice. For groups that want more space, Plumas Pines townhomes work with 8–12 units across a shared property adjacent to the golf course." },
+          { q: "Is a banquet dinner included in Graeagle golf packages?", a: "Banquet dinners are a common add-on. We've run group banquets at Longboards (awards + open bar format) and the Roadhouse at River Pines. These are coordinated separately from the golf package and priced per person." },
+        ].map(item => (
+          <div class="bl-faq-item">
+            <h3>{item.q}</h3>
+            <p>{item.a}</p>
+          </div>
+        ))}
+      </div>
+
+      <div class="bl-cta">
+        <h2>Running a large group trip to Graeagle?</h2>
+        <p>Tell us your headcount, dates, and budget. We'll send back a package with lodging, tee times across courses, and a day-by-day plan — one quote, one contact, no chasing three pro shops.</p>
+        <a href="/request-a-quote/" class="bl-cta-btn btn-green-glow">Get a Group Quote →</a>
+        <div class="bl-cta-links">
+          <a href="/lodging/">Compare lodging options →</a>
+          <a href="/portfolio/river-pines-resort-graeagle-ca/">River Pines Resort →</a>
+          <a href="/trips/">See real group trips →</a>
+        </div>
+      </div>
+
+    </article>
+
+    <aside class="bl-sidebar">
+      <div class="bl-sidebar-card">
+        <div class="bl-sidebar-title">Get a Group Quote</div>
+        <p>We specialize in groups of 20–100. One coordinator, one invoice, tee times locked across all 5 courses.</p>
+        <a href="/request-a-quote/" class="bl-sidebar-btn btn-green-glow">Request a Quote →</a>
+      </div>
+      <div class="bl-sidebar-card">
+        <div class="bl-sidebar-title">Best Courses for Large Groups</div>
+        <div class="bl-sidebar-links">
+          {[
+            { name: 'Plumas Pines', slug: 'plumas-pines-golf-packages', note: 'Most group-friendly' },
+            { name: 'Whitehawk Ranch', slug: 'whitehawk-ranch-golf-packages', note: 'Crowd favorite' },
+            { name: 'Grizzly Ranch', slug: 'grizzly-ranch-golf-packages', note: 'Golf Digest Top 100' },
+            { name: 'Graeagle Meadows', slug: 'graeagle-meadows-golf-packages', note: 'Fast-playing' },
+          ].map(c => (
+            <a href={`/portfolio/${c.slug}/`} class="bl-sidebar-course">
+              <div class="bl-sidebar-course-name">{c.name}</div>
+              <div class="bl-sidebar-course-note">{c.note}</div>
+            </a>
+          ))}
+        </div>
+      </div>
+      <div class="bl-sidebar-card">
+        <div class="bl-sidebar-title">Related Reading</div>
+        <div class="bl-sidebar-links">
+          <a href="/blog/corporate-golf-outing-graeagle/" class="bl-sidebar-post">Corporate Golf Outings →</a>
+          <a href="/blog/graeagle-golf-trip-cost/" class="bl-sidebar-post">What Does a Graeagle Trip Cost? →</a>
+          <a href="/blog/graeagle-golf-trip-itinerary-3-days/" class="bl-sidebar-post">3-Day Itinerary Guide →</a>
+        </div>
+      </div>
+    </aside>
+  </div>
+  <Footer />
+</Base>

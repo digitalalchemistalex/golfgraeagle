@@ -362,6 +362,31 @@ body {
 .bl-sidebar-post:last-child{border-bottom:none;}
 .bl-sidebar-post:hover{color:#e8a850;}
 
+/* ── BLOG: STAT ROW ─────────────────────────────────────────────── */
+.bl-stat-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(80px,1fr));gap:12px;margin:24px 0 32px;padding:24px;background:#f0f8f0;border-radius:14px;border:1px solid #c8e0c8;}
+.bl-stat{text-align:center;}
+.bl-stat-val{font-size:clamp(24px,4vw,36px);font-weight:800;color:#1a7a40;font-variant-numeric:tabular-nums;line-height:1;}
+.bl-stat-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:#6a8a6a;margin-top:4px;}
+
+/* ── BLOG: PRICE TABLE ─────────────────────────────────────────── */
+.bl-price-table{margin:20px 0 28px;border:1px solid #e0ece0;border-radius:12px;overflow:hidden;}
+.bl-price-row{display:grid;grid-template-columns:2fr 1fr 1fr 1fr 1fr;gap:0;padding:12px 16px;border-bottom:1px solid #e8f0e8;font-size:13px;color:#374137;align-items:center;}
+.bl-price-row:last-child{border-bottom:none;}
+.bl-price-header{background:#1a2e1a;color:#e8f8e8;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;}
+.bl-price-row:nth-child(even):not(.bl-price-header){background:#f8fbf8;}
+.bl-price-row span:last-child{font-weight:700;color:#1a7a40;}
+.bl-price-header span:last-child{color:#e8f8e8;}
+@media(max-width:640px){.bl-price-row{grid-template-columns:1fr 1fr;gap:4px;}.bl-price-row span:first-child{grid-column:1/-1;font-weight:600;color:#1a2e1a;}.bl-price-header{display:none;}}
+
+/* ── BLOG: COURSE COMPARE ──────────────────────────────────────── */
+.bl-course-compare{margin:20px 0 32px;display:flex;flex-direction:column;gap:12px;}
+.bl-course-row{padding:16px 20px;background:#f8fbf8;border:1px solid #e0ece0;border-radius:12px;display:grid;grid-template-columns:180px 1fr;gap:16px;align-items:start;}
+.bl-course-name{font-size:15px;font-weight:700;}
+.bl-course-name a{color:#1a7a40;text-decoration:none;}
+.bl-course-name a:hover{text-decoration:underline;}
+.bl-course-note{font-size:13px;color:#4a5a4a;line-height:1.65;}
+@media(max-width:640px){.bl-course-row{grid-template-columns:1fr;gap:6px;}}
+
 /* ── LIGHT THEME TOKENS ─────────────────────────────────────────────
    Applied as CSS vars so a single change flips the whole site.
    Replaces hardcoded #0d1a0e (bg) and #f0f8f2 (text) throughout.

@@ -1,0 +1,251 @@
+---
+export const prerender = true;
+import Base from '../../layouts/Base.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+
+const title = "The Graeagle Golf Bucket List: 4 Courses, 36-Hole Days, 3 Nights";
+const description = "The premium Graeagle golf trip — 4 championship courses including Nakoma Dragon and Grizzly Ranch, with 36-hole days and townhome lodging. Real itinerary, real pricing: $1,120 per person for a group of 24.";
+const slug = "graeagle-golf-bucket-list";
+const datePublished = "2026-03-18";
+const dateModified = "2026-03-18";
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": title,
+  "datePublished": datePublished,
+  "dateModified": dateModified,
+  "author": { "@type": "Organization", "name": "GolfGraeagle.com" },
+  "publisher": { "@type": "Organization", "name": "Zoomaway Technologies Inc.", "url": "https://golfgraeagle.com" },
+  "mainEntityOfPage": { "@type": "WebPage", "@id": `https://golfgraeagle.com/blog/${slug}` }
+};
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    { "@type": "Question", "name": "Can you play 36 holes in one day in Graeagle?", "acceptedAnswer": { "@type": "Answer", "text": "Yes, on the right courses. Whitehawk Ranch and Plumas Pines are the best candidates for 36-hole days in Graeagle — both play efficiently. Grizzly Ranch and Nakoma Dragon are too physically demanding for back-to-back rounds for most golfers." } },
+    { "@type": "Question", "name": "What are all 5 golf courses in Graeagle?", "acceptedAnswer": { "@type": "Answer", "text": "The 5 golf courses in Graeagle, California are: Graeagle Meadows Golf Course (par 72, slope 120), Whitehawk Ranch Golf Course (par 71, slope 132), Plumas Pines Golf Resort (par 72, slope 132), Grizzly Ranch Golf Club (par 72, slope 140, Golf Digest Top 100), and Nakoma Dragon Golf Course (par 72, slope 147, FLW clubhouse)." } },
+    { "@type": "Question", "name": "What is the hardest golf course in Graeagle?", "acceptedAnswer": { "@type": "Answer", "text": "Nakoma Dragon is the hardest golf course in Graeagle with a slope of 147 and course rating of 73.4. Grizzly Ranch is second at slope 140, course rating 74.9. Both are significantly more challenging than Graeagle Meadows (slope 120), which is the most accessible course." } },
+    { "@type": "Question", "name": "Is Nakoma Dragon worth playing?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Nakoma Dragon is worth playing for two reasons: the golf course itself debuted on Golf World's America's Top 75 list, and the clubhouse is the only golf clubhouse in the world designed by Frank Lloyd Wright. Even if you shoot your worst round of the trip, you're doing it in an architecturally significant building." } },
+  ]
+};
+---
+<Base title={title} description={description} ogType="article" schema={[schema, faqSchema]}
+  canonical={`https://golfgraeagle.com/blog/${slug}/`}
+  ogImage="https://nakomaresort.com/wp-content/uploads/the-dragon-golf-overview-tahoe-truckee-plumas-1639x1080.jpg"
+>
+  <Nav />
+
+  <div class="bl-hero" style="background-image:url(https://nakomaresort.com/wp-content/uploads/the-dragon-golf-overview-tahoe-truckee-plumas-1639x1080.jpg)">
+    <div class="bl-hero-fade"></div>
+    <div class="bl-hero-content">
+      <div class="bl-breadcrumb"><a href="/blog/">Blog</a> <span>→</span> Graeagle Bucket List Trip</div>
+      <h1 class="bl-h1">The Graeagle Golf Bucket List:<br/>4 Courses, 36-Hole Days, Done Right</h1>
+      <p class="bl-meta">By GolfGraeagle.com · March 2026 · 8 min read</p>
+    </div>
+  </div>
+
+  <div class="bl-wrap">
+    <article class="bl-article">
+
+      <div class="bl-answer-box">
+        <div class="bl-answer-label">The Trip at a Glance</div>
+        <p><strong>24 golfers · 3 nights · 4 courses · 36-hole days on Friday and Saturday</strong><br/>
+        Courses: Plumas Pines → Grizzly Ranch → The Dragon (Nakoma) → Whitehawk Ranch<br/>
+        Lodging: Townhomes at Plumas Pines Golf Resort<br/>
+        Price: <strong>$1,120 per person</strong> — all-inclusive (lodging, golf, taxes)</p>
+      </div>
+
+      <p class="bl-intro">Most Graeagle trips play 3 courses over 3 days. This is not that trip. This is the version where you push — 36 holes on the big days, 4 championship courses total, 3 nights in townhomes with fairway views, and Nakoma Dragon as the centerpiece round. We've run this exact package for a group of 24. Here's how it works and what it actually costs.</p>
+
+      <h2>Why 36-Hole Days Work in Graeagle</h2>
+      <p>Altitude helps. At 4,000–5,000 feet, you carry the ball farther and the courses play faster in cool morning air. Two specific courses pair naturally for a 36-hole day:</p>
+      <ul class="bl-list">
+        <li><strong>Whitehawk Ranch + Plumas Pines:</strong> Both are within 10 minutes of each other in Mohawk Valley. Play Whitehawk in the morning (8am, done by 1pm), grab food, tee off at Plumas Pines at 2pm. Both are slope 132 — demanding but not destruction. This is the most common 36-hole pairing in Graeagle.</li>
+        <li><strong>Graeagle Meadows + Plumas Pines:</strong> The lower-intensity version. Meadows is slope 120 — fast, forgiving, good for an afternoon when legs are tired. Pair it after any full morning round.</li>
+      </ul>
+      <p>What you don't do as a 36-hole day: Grizzly Ranch or Nakoma Dragon. Both are physically and mentally demanding enough that a second round the same day would be miserable for most golfers. Give those courses their own day.</p>
+
+      <h2>The Itinerary — 3 Nights, 4 Courses</h2>
+
+      <div class="bl-day-block">
+        <div class="bl-day-header">
+          <div class="bl-day-num">Thursday</div>
+          <div class="bl-day-title">Arrive + First Round</div>
+        </div>
+        <div class="bl-schedule">
+          <div class="bl-schedule-item">
+            <div class="bl-sched-time">Noon</div>
+            <div class="bl-sched-detail"><strong>Check in to townhomes at Plumas Pines.</strong> 2–4 bedroom units, full kitchens, golf course views. Assign rooms in advance — arrival day logistics only work when rooms are pre-allocated. Stock the kitchen for the trip.</div>
+          </div>
+          <div class="bl-schedule-item">
+            <div class="bl-sched-time">2:00pm</div>
+            <div class="bl-sched-detail"><strong>Round 1: Plumas Pines Golf Resort.</strong> You're literally on the course — it's the most convenient opener for townhome guests. Top 5 Best Values in the Sierra Nevada. Tight pine corridors, small greens, Feather River to the north. Play it as a warmup; you need the high-slope courses fresh.</div>
+          </div>
+          <div class="bl-schedule-item">
+            <div class="bl-sched-time">7:30pm</div>
+            <div class="bl-sched-detail"><strong>Dinner at Iron Door Restaurant.</strong> Operating since 1961 in a 1906 general store building in downtown Graeagle. Steaks, prime rib, scratch pasta. Make the reservation before you leave home — it's the best dinner in Graeagle and it fills up.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="bl-day-block">
+        <div class="bl-day-header">
+          <div class="bl-day-num">Friday</div>
+          <div class="bl-day-title">The Big Day — 36 Holes</div>
+        </div>
+        <div class="bl-schedule">
+          <div class="bl-schedule-item">
+            <div class="bl-sched-time">7:00am</div>
+            <div class="bl-sched-detail"><strong>Round 2: Grizzly Ranch Golf Club.</strong> Golf Digest Top 100 Public Courses in the US (2021). Par 72, 7,411 yards, slope 140, at 4,800–5,400 ft elevation. Bob Cupp design. Fescue roughs, 5 sets of tees, 30-station natural turf range. This is the course. It is 25 minutes east in Portola — leave by 6:30am. Book the first available morning slot.</div>
+          </div>
+          <div class="bl-schedule-item">
+            <div class="bl-sched-time">~1:00pm</div>
+            <div class="bl-sched-detail"><strong>Drive back.</strong> 25 minutes. Eat at the Grizzly Grill on the way back if the group needs a sit-down lunch — stone hearth, exposed beam ceilings, local game menu at the same elevation as the course.</div>
+          </div>
+          <div class="bl-schedule-item">
+            <div class="bl-sched-time">2:30pm</div>
+            <div class="bl-sched-detail"><strong>Round 3: Whitehawk Ranch Golf Course.</strong> Top 20 Golf Courses in California (1998). Par 71, slope 132. 12 holes through Mohawk Valley meadows, 6 through forested hillside. The all-grass range has complimentary balls — warm up your legs before the afternoon round. This is everyone's favorite course in Graeagle, and playing it after Grizzly Ranch means you're loose and your expectations are calibrated.</div>
+          </div>
+          <div class="bl-schedule-item">
+            <div class="bl-sched-time">8:00pm</div>
+            <div class="bl-sched-detail"><strong>Dinner at townhomes or The Brewing Lair.</strong> After a 36-hole day, most groups want casual. Townhome kitchen works. The Brewing Lair (15-acre craft brewery off Highway 70) is the outdoor option — lawn games, multiple beers on tap, no dress code. This is the night you earn the cold beer.</div>
+          </div>
+        </div>
+        <div class="bl-day-note">36 holes in one day is a test. Grizzly Ranch followed by Whitehawk is arguably the best possible sequence — you play the harder, more demanding course first when legs are fresh, then close with the most scenically rewarding course in the valley when you just want to enjoy the views and roll putts.</div>
+      </div>
+
+      <div class="bl-day-block">
+        <div class="bl-day-header">
+          <div class="bl-day-num">Saturday</div>
+          <div class="bl-day-title">The Bucket List — The Dragon</div>
+        </div>
+        <div class="bl-schedule">
+          <div class="bl-schedule-item">
+            <div class="bl-sched-time">8:00am</div>
+            <div class="bl-sched-detail"><strong>Round 4: Nakoma Dragon.</strong> Par 72, 7,015 yards, slope 147. Designed by Robin Nelson and Neil Haworth (1998). Debuted on Golf World's America's Top 75 list. The clubhouse is the only golf clubhouse in the world designed by Frank Lloyd Wright. Arrive 30 minutes early. Go inside the lodge. Look up. Take the photograph. You're in a building designed by the man who designed Fallingwater and the Guggenheim — and it's a golf clubhouse in the Sierra Nevada mountains. Play the round with that context.</div>
+          </div>
+          <div class="bl-schedule-item">
+            <div class="bl-sched-time">~2:00pm</div>
+            <div class="bl-sched-detail"><strong>Lunch at Middle Fork Bistro.</strong> On-site at Nakoma. Casual, right there when you finish. Worth 45 minutes before driving home or back to townhomes for the night.</div>
+          </div>
+          <div class="bl-schedule-item">
+            <div class="bl-sched-time">Evening</div>
+            <div class="bl-sched-detail"><strong>Final night dinner — Grizzly Grill.</strong> Book the reservation early. This is the evening for a proper sit-down — exposed beam ceilings, stone hearth, local game, Sierra produce. After Nakoma Dragon, you've earned a dinner that matches the day.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="bl-day-block">
+        <div class="bl-day-header">
+          <div class="bl-day-num">Sunday</div>
+          <div class="bl-day-title">Drive Home or Optional Round</div>
+        </div>
+        <div class="bl-schedule">
+          <div class="bl-schedule-item">
+            <div class="bl-sched-time">Morning</div>
+            <div class="bl-sched-detail"><strong>Optional Round 5: Graeagle Meadows.</strong> Slope 120. If the group has a fifth round in them — par 72, forgiving, beautiful mountain views, the Feather River Wild & Scenic corridor. The signature hole "English Gold" (#6) has elevated tees looking out across Mohawk Valley. A relaxed sendoff round before the drive home.</div>
+          </div>
+          <div class="bl-schedule-item">
+            <div class="bl-sched-time">Checkout</div>
+            <div class="bl-sched-detail">Townhomes. Drive home. Discuss whether Friday's 36-hole day was the best decision anyone has ever made.</div>
+          </div>
+        </div>
+      </div>
+
+      <h2>The Courses — What Each One Tests</h2>
+
+      <div class="bl-course-compare">
+        <div class="bl-course-row">
+          <div class="bl-course-name"><a href="/portfolio/plumas-pines-golf-packages/">Plumas Pines</a></div>
+          <div class="bl-course-note">Par 72 · Slope 132 · Designer: Homer Flint · 1980<br/>Tests: accuracy over distance. Tight pines penalize anything offline. Small greens punish approach shots. The course you can't power your way through.</div>
+        </div>
+        <div class="bl-course-row">
+          <div class="bl-course-name"><a href="/portfolio/grizzly-ranch-golf-packages/">Grizzly Ranch</a></div>
+          <div class="bl-course-note">Par 72 · Slope 140 · Designer: Bob Cupp · 2005<br/>Tests: everything. The longest course in Graeagle at 7,411 yards. Fescue roughs are severe. Ridgeline holes expose you to Sierra wind. Golf Digest Top 100 for a reason.</div>
+        </div>
+        <div class="bl-course-row">
+          <div class="bl-course-name"><a href="/portfolio/whitehawk-ranch-golf-packages/">Whitehawk Ranch</a></div>
+          <div class="bl-course-note">Par 71 · Slope 132 · Designer: Dick Bailey · 1996<br/>Tests: course management. Four reachable par 5s tempt aggression. Multiple lakes and Sulphur Creek punish it. The course that rewards smart play over big swings.</div>
+        </div>
+        <div class="bl-course-row">
+          <div class="bl-course-name"><a href="/portfolio/nakoma-dragon-golf-packages/">Nakoma Dragon</a></div>
+          <div class="bl-course-note">Par 72 · Slope 147 · Designers: Robin Nelson & Neil Haworth · 1998<br/>Tests: nerve. Highest slope in Graeagle. Exposed ridgeline holes with drop-offs. Elevation changes that make club selection genuinely difficult. Save it for the day your game is sharp.</div>
+        </div>
+      </div>
+
+      <h2>What You Get for $1,120/Person</h2>
+      <ul class="bl-list">
+        <li>3 nights in townhomes at Plumas Pines Golf Resort — 2–4 bedroom units, full kitchen, fairway views, pool, tennis courts</li>
+        <li>4 rounds of golf: Plumas Pines, Grizzly Ranch, Whitehawk Ranch, Nakoma Dragon</li>
+        <li>Option for a 5th round at Graeagle Meadows on departure day</li>
+        <li>All lodging taxes, service charges, and golf fees included</li>
+        <li>Single invoice for the group organizer</li>
+      </ul>
+      <p>Not included: meals (budget $50–$100/person/day separately), alcohol, transportation to Grizzly Ranch (25 min east), prizes if running a competition.</p>
+
+      <!-- FAQ -->
+      <div class="bl-faq">
+        <h2>Frequently Asked Questions</h2>
+        {[
+          { q: "Can you play 36 holes in one day in Graeagle?", a: "Yes, on the right courses. Whitehawk Ranch + Plumas Pines is the most common pairing — both are within 10 minutes of each other and both play efficiently. Avoid 36-hole days at Grizzly Ranch or Nakoma Dragon; both are physically demanding enough that back-to-back rounds would be miserable for most golfers." },
+          { q: "What is the hardest golf course in Graeagle?", a: "Nakoma Dragon has the highest slope at 147. Grizzly Ranch is second at 140. Graeagle Meadows is the most accessible at slope 120. If your group has a wide handicap range, route the weaker players to Meadows while stronger players take on Grizzly Ranch or The Dragon." },
+          { q: "Is Nakoma Dragon worth playing?", a: "Yes, for two reasons: the golf itself (Golf World Top 75 at debut, slope 147) and the FLW clubhouse. There's no other golf clubhouse in the world designed by Frank Lloyd Wright. Allow 30 minutes before your round to go inside — it's architecturally significant in a way that a photograph doesn't fully capture." },
+          { q: "How many golf courses are in Graeagle, California?", a: "There are 5 championship golf courses: Graeagle Meadows (par 72, slope 120), Whitehawk Ranch (par 71, slope 132), Plumas Pines (par 72, slope 132), Grizzly Ranch (par 72, slope 140, Golf Digest Top 100), and Nakoma Dragon (par 72, slope 147, FLW clubhouse). All 5 are within 25 minutes of each other." },
+        ].map(item => (
+          <div class="bl-faq-item">
+            <h3>{item.q}</h3>
+            <p>{item.a}</p>
+          </div>
+        ))}
+      </div>
+
+      <div class="bl-cta">
+        <h2>Want to run this trip for your group?</h2>
+        <p>We built this exact package for 24 golfers at $1,120 per person. Tell us your group size and dates — we'll build the same itinerary, lock the tee times, and send you a single all-inclusive quote.</p>
+        <a href="/request-a-quote/" class="bl-cta-btn btn-green-glow">Build My Bucket List Trip →</a>
+        <div class="bl-cta-links">
+          <a href="/trips/">See all real Graeagle trip packages →</a>
+          <a href="/blog/graeagle-golf-trip-itinerary-3-days/">3-day itinerary guide →</a>
+          <a href="/blog/graeagle-golf-trip-cost/">Full pricing breakdown →</a>
+        </div>
+      </div>
+
+    </article>
+
+    <aside class="bl-sidebar">
+      <div class="bl-sidebar-card">
+        <div class="bl-sidebar-title">Book This Trip</div>
+        <p>4 courses, 3 nights, 36-hole days. Tell us your group size and dates.</p>
+        <a href="/request-a-quote/" class="bl-sidebar-btn btn-green-glow">Get a Quote →</a>
+      </div>
+      <div class="bl-sidebar-card">
+        <div class="bl-sidebar-title">The 4 Courses</div>
+        <div class="bl-sidebar-links">
+          {[
+            { name: 'Nakoma Dragon', slug: 'nakoma-dragon-golf-packages', note: 'Slope 147 · FLW Clubhouse' },
+            { name: 'Grizzly Ranch', slug: 'grizzly-ranch-golf-packages', note: 'Slope 140 · Golf Digest Top 100' },
+            { name: 'Whitehawk Ranch', slug: 'whitehawk-ranch-golf-packages', note: 'Slope 132 · Top 20 CA' },
+            { name: 'Plumas Pines', slug: 'plumas-pines-golf-packages', note: 'Slope 132 · Best Value' },
+          ].map(c => (
+            <a href={`/portfolio/${c.slug}/`} class="bl-sidebar-course">
+              <div class="bl-sidebar-course-name">{c.name}</div>
+              <div class="bl-sidebar-course-note">{c.note}</div>
+            </a>
+          ))}
+        </div>
+      </div>
+      <div class="bl-sidebar-card">
+        <div class="bl-sidebar-title">Related Reading</div>
+        <div class="bl-sidebar-links">
+          <a href="/blog/graeagle-golf-trip-cost/" class="bl-sidebar-post">What Does a Graeagle Trip Cost? →</a>
+          <a href="/blog/graeagle-golf-trip-itinerary-3-days/" class="bl-sidebar-post">3-Day Itinerary Guide →</a>
+          <a href="/blog/graeagle-vs-lake-tahoe-golf/" class="bl-sidebar-post">Graeagle vs Lake Tahoe →</a>
+        </div>
+      </div>
+    </aside>
+  </div>
+  <Footer />
+</Base>
