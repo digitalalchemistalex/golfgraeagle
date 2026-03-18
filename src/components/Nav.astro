@@ -178,46 +178,91 @@ import { courses } from '../data/content.js';
         Dining
         <svg class="chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
       </button>
-      <div class="mega-menu" style="width:540px; background:rgba(252,249,242,0.98); border:1px solid rgba(168,140,90,0.2); border-radius:20px; padding:28px; backdrop-filter:blur(24px); box-shadow:0 16px 56px rgba(26,48,32,0.14),0 2px 8px rgba(26,48,32,0.06);">
-        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px;">
-          <div>
-            <p style="font-size:10px;color:#a06c30;text-transform:uppercase;letter-spacing:0.12em;font-weight:700;margin:0 0 11px;">Fine Dining</p>
-            {[
-              {name:'Grizzly Grill',           href:'/portfolio/grizzly-grill/'},
-              {name:'Iron Door Restaurant',    href:'/portfolio/iron-door-restaurant/'},
-              {name:'Sardine Lake Resort',     href:'/portfolio/sardine-lake-resort/'},
-              {name:'Longboards Bar & Grill',  href:'/portfolio/longboards-bar-and-grill/'},
-              {name:"Cuccia's",                href:'/portfolio/cuccias/'},
-            ].map(r=>(
-              <a href={r.href} style="display:block;font-size:13px;color:#3a4a3e;text-decoration:none;margin-bottom:7px;padding:5px 7px;border-radius:6px;transition:all 0.15s;font-weight:500;" onmouseover="this.style.color='#1a2e1a';this.style.background='rgba(26,48,32,0.05)'" onmouseout="this.style.color='#3a4a3e';this.style.background='transparent'">{r.name}</a>
-            ))}
+      <div class="mega-menu" style="width:660px; background:rgba(252,249,242,0.98); border:1px solid rgba(168,140,90,0.2); border-radius:20px; overflow:hidden; backdrop-filter:blur(24px); box-shadow:0 16px 56px rgba(26,48,32,0.14),0 2px 8px rgba(26,48,32,0.06);">
+        <div style="display:grid;grid-template-columns:200px 1fr;">
+
+          <!-- LEFT: dark hero panel — Sardine Lake featured -->
+          <a href="/portfolio/sardine-lake-resort/" style="position:relative;display:flex;flex-direction:column;justify-content:flex-end;padding:24px 20px;background:#1a2e1a;text-decoration:none;min-height:280px;overflow:hidden;">
+            <img src="/wp-images/Sardine-Lake-Resort.jpg" alt="Sardine Lake Resort dining"
+              style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.35;"
+              onerror="this.style.display='none'"/>
+            <div style="position:relative;z-index:2;">
+              <span style="display:inline-block;font-size:8px;font-weight:800;color:#e8a850;text-transform:uppercase;letter-spacing:0.12em;background:rgba(232,168,80,0.12);border:1px solid rgba(232,168,80,0.2);border-radius:100px;padding:3px 10px;margin-bottom:10px;">⭐ Reserve ahead</span>
+              <div style="font-family:'Playfair Display',serif;font-size:17px;color:#f0ece3;line-height:1.2;margin-bottom:6px;">Sardine Lake Resort</div>
+              <div style="font-size:11px;color:rgba(240,236,227,0.5);line-height:1.5;margin-bottom:14px;">Only alpine lake dining in the region. Book 2–3 weeks ahead in summer.</div>
+              <span style="font-size:11px;font-weight:700;color:#e8a850;">View restaurant →</span>
+            </div>
+          </a>
+
+          <!-- RIGHT: 2-col category grid -->
+          <div style="padding:22px 22px 16px;">
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:0 24px;">
+
+              <!-- Column 1 -->
+              <div>
+                <p style="font-size:9px;font-weight:800;color:#a06c30;text-transform:uppercase;letter-spacing:0.12em;margin:0 0 8px;padding-bottom:6px;border-bottom:1px solid rgba(168,140,90,0.15);">Fine Dining</p>
+                {[
+                  {name:'Longboards Bar & Grill', href:'/portfolio/longboards-bar-and-grill/'},
+                  {name:'Iron Door Restaurant',   href:'/portfolio/iron-door-restaurant/'},
+                  {name:"Cuccia's",               href:'/portfolio/cuccias/'},
+                  {name:'Fifty44 at Nakoma',      href:'/portfolio/iron-door-restaurant/'},
+                ].map(r=>(
+                  <a href={r.href} style="display:flex;align-items:center;gap:7px;font-size:12px;color:#3a4a3e;text-decoration:none;padding:5px 0;border-bottom:1px solid rgba(168,140,90,0.07);font-weight:500;transition:color 0.15s;"
+                    onmouseover="this.style.color='#1a2e1a'" onmouseout="this.style.color='#3a4a3e'">
+                    <span style="width:4px;height:4px;border-radius:50%;background:#c8a870;flex-shrink:0;"></span>{r.name}
+                  </a>
+                ))}
+
+                <p style="font-size:9px;font-weight:800;color:#a06c30;text-transform:uppercase;letter-spacing:0.12em;margin:14px 0 8px;padding-bottom:6px;border-bottom:1px solid rgba(168,140,90,0.15);">On-Course Dining</p>
+                {[
+                  {name:'Meadows Restaurant',       href:'/portfolio/graeagle-meadows-golf-course-restaurant/'},
+                  {name:'Grizzly Grill',            href:'/portfolio/grizzly-grill/'},
+                  {name:'Roadhouse at River Pines', href:'/portfolio/roadhouse-at-river-pines/'},
+                ].map(r=>(
+                  <a href={r.href} style="display:flex;align-items:center;gap:7px;font-size:12px;color:#3a4a3e;text-decoration:none;padding:5px 0;border-bottom:1px solid rgba(168,140,90,0.07);font-weight:500;transition:color 0.15s;"
+                    onmouseover="this.style.color='#1a2e1a'" onmouseout="this.style.color='#3a4a3e'">
+                    <span style="width:4px;height:4px;border-radius:50%;background:#c8a870;flex-shrink:0;"></span>{r.name}
+                  </a>
+                ))}
+              </div>
+
+              <!-- Column 2 -->
+              <div>
+                <p style="font-size:9px;font-weight:800;color:#a06c30;text-transform:uppercase;letter-spacing:0.12em;margin:0 0 8px;padding-bottom:6px;border-bottom:1px solid rgba(168,140,90,0.15);">Breweries & Bars</p>
+                {[
+                  {name:'Eureka Peak Brewing',  href:'/portfolio/eureka-peak-brewing-co/'},
+                  {name:'The Brewing Lair',     href:'/portfolio/the-brewing-lair/'},
+                  {name:'Mohawk Tavern',        href:'/portfolio/mohawk-tavern/'},
+                  {name:'Knotty Pine Tavern',   href:'/portfolio/the-knotty-pine-tavern/'},
+                ].map(r=>(
+                  <a href={r.href} style="display:flex;align-items:center;gap:7px;font-size:12px;color:#3a4a3e;text-decoration:none;padding:5px 0;border-bottom:1px solid rgba(168,140,90,0.07);font-weight:500;transition:color 0.15s;"
+                    onmouseover="this.style.color='#1a2e1a'" onmouseout="this.style.color='#3a4a3e'">
+                    <span style="width:4px;height:4px;border-radius:50%;background:#c8a870;flex-shrink:0;"></span>{r.name}
+                  </a>
+                ))}
+
+                <p style="font-size:9px;font-weight:800;color:#a06c30;text-transform:uppercase;letter-spacing:0.12em;margin:14px 0 8px;padding-bottom:6px;border-bottom:1px solid rgba(168,140,90,0.15);">Casual & Quick Bites</p>
+                {[
+                  {name:'Sierra SmokeShow BBQ', href:'/portfolio/sierra-smokeshow/'},
+                  {name:"Gumba's II Go",         href:'/portfolio/gumbas-ii-go/'},
+                  {name:'Little Bite Deli',      href:'/portfolio/little-bite-deli/'},
+                  {name:'Mountain Frostee',      href:'/portfolio/graeagle-mountain-frostee/'},
+                ].map(r=>(
+                  <a href={r.href} style="display:flex;align-items:center;gap:7px;font-size:12px;color:#3a4a3e;text-decoration:none;padding:5px 0;border-bottom:1px solid rgba(168,140,90,0.07);font-weight:500;transition:color 0.15s;"
+                    onmouseover="this.style.color='#1a2e1a'" onmouseout="this.style.color='#3a4a3e'">
+                    <span style="width:4px;height:4px;border-radius:50%;background:#c8a870;flex-shrink:0;"></span>{r.name}
+                  </a>
+                ))}
+              </div>
+
+            </div>
+
+            <!-- Footer link -->
+            <div style="border-top:1px solid rgba(168,140,90,0.12);margin-top:14px;padding-top:12px;text-align:right;">
+              <a href="/dining/" style="font-size:11px;color:#a06c30;text-decoration:none;font-weight:700;transition:opacity 0.2s;" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">See all 15 restaurants & bars →</a>
+            </div>
           </div>
-          <div>
-            <p style="font-size:10px;color:#a06c30;text-transform:uppercase;letter-spacing:0.12em;font-weight:700;margin:0 0 11px;">Casual</p>
-            {[
-              {name:'Roadhouse at River Pines',href:'/portfolio/roadhouse-at-river-pines/'},
-              {name:'Sierra SmokeShow',        href:'/portfolio/sierra-smokeshow/'},
-              {name:"Gumba's II Go",           href:'/portfolio/gumbas-ii-go/'},
-              {name:'Little Bite Deli',        href:'/portfolio/little-bite-deli/'},
-              {name:'Graeagle Restaurant',     href:'/portfolio/graeagle-restaurant/'},
-              {name:'Meadows Restaurant',      href:'/portfolio/graeagle-meadows-golf-course-restaurant/'},
-              {name:'Mountain Frostee',        href:'/portfolio/graeagle-mountain-frostee/'},
-            ].map(r=>(
-              <a href={r.href} style="display:block;font-size:13px;color:#3a4a3e;text-decoration:none;margin-bottom:7px;padding:5px 7px;border-radius:6px;transition:all 0.15s;font-weight:500;" onmouseover="this.style.color='#1a2e1a';this.style.background='rgba(26,48,32,0.05)'" onmouseout="this.style.color='#3a4a3e';this.style.background='transparent'">{r.name}</a>
-            ))}
-          </div>
-          <div>
-            <p style="font-size:10px;color:#a06c30;text-transform:uppercase;letter-spacing:0.12em;font-weight:700;margin:0 0 11px;">Brews &amp; Bars</p>
-            {[
-              {name:'Eureka Peak Brewing',     href:'/portfolio/eureka-peak-brewing-co/'},
-              {name:'The Brewing Lair',        href:'/portfolio/the-brewing-lair/'},
-              {name:'Mohawk Tavern',           href:'/portfolio/mohawk-tavern/'},
-              {name:'Knotty Pine Tavern',      href:'/portfolio/the-knotty-pine-tavern/'},
-            ].map(r=>(
-              <a href={r.href} style="display:block;font-size:13px;color:#3a4a3e;text-decoration:none;margin-bottom:7px;padding:5px 7px;border-radius:6px;transition:all 0.15s;font-weight:500;" onmouseover="this.style.color='#1a2e1a';this.style.background='rgba(26,48,32,0.05)'" onmouseout="this.style.color='#3a4a3e';this.style.background='transparent'">{r.name}</a>
-            ))}
-            <a href="/dining/" style="display:block;font-size:11px;color:#a06c30;text-decoration:none;margin-top:10px;padding:5px 7px;font-weight:600;transition:opacity 0.15s;" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">View all dining →</a>
-          </div>
+
         </div>
       </div>
     </div>
