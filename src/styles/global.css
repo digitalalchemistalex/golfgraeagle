@@ -551,3 +551,6 @@ section.hero-section,
 .rt-grid { grid-template-columns: repeat(3, 1fr) !important; }
 @media (max-width: 900px) { .rt-grid { grid-template-columns: repeat(2, 1fr) !important; } }
 @media (max-width: 580px) { .rt-grid { grid-template-columns: 1fr !important; } }
+
+/* ── RelatedTrips carousel — hide scrollbar, keep scroll */
+.rt-carousel::-webkit-scrollbar { display: none; }

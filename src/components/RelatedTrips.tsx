@@ -364,8 +364,10 @@ export default function RelatedTrips({ slug, type, showAll = false, max = 6 }: {
 
   if (loading || trips.length === 0) return null;
 
+  const isCarousel = trips.length > 3;
+
   return (
-    <section style={{ padding: "64px 0", background: "#f7f3ec" }}>
+    <section style={{ padding: "64px 0", background: "var(--page-bg, #f0ece3)" }}>
       <div style={{ maxWidth: 1200, margin: "0 auto", padding: "0 clamp(20px,5%,60px)" }}>
         {/* Header */}
         <div style={{ textAlign: "center", marginBottom: 40 }}>
@@ -383,16 +385,41 @@ export default function RelatedTrips({ slug, type, showAll = false, max = 6 }: {
           </p>
         </div>
 
-        {/* Grid — 3 col desktop, 2 col tablet, 1 col mobile */}
-        <div className="rt-grid" style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(3, 1fr)",
-          gap: 20,
-        }}>
-          {trips.map((trip, i) => (
-            <TripCard key={trip.id || i} trip={trip} />
-          ))}
-        </div>
+        {/* Grid (≤3) or Carousel (>3) */}
+        {isCarousel ? (
+          <div style={{
+            display: "flex",
+            gap: 20,
+            overflowX: "auto",
+            scrollSnapType: "x mandatory",
+            WebkitOverflowScrolling: "touch",
+            paddingBottom: 12,
+            scrollbarWidth: "none",
+            msOverflowStyle: "none",
+          }}
+            className="rt-carousel"
+          >
+            {trips.map((trip, i) => (
+              <div key={trip.id || i} style={{
+                flex: "0 0 calc(33.333% - 14px)",
+                minWidth: "280px",
+                scrollSnapAlign: "start",
+              }}>
+                <TripCard trip={trip} />
+              </div>
+            ))}
+          </div>
+        ) : (
+          <div className="rt-grid" style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(3, 1fr)",
+            gap: 20,
+          }}>
+            {trips.map((trip, i) => (
+              <TripCard key={trip.id || i} trip={trip} />
+            ))}
+          </div>
+        )}
 
         {/* Footer CTA */}
         <div style={{ textAlign: "center", marginTop: 40 }}>
