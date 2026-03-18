@@ -886,6 +886,35 @@ const diningSlugMap: Record<string, string> = {
         );
       })()}
 
+      <!-- Where to Eat (on-site dining) -->
+      {item.onSiteDining && item.onSiteDining.length > 0 && (() => {
+        const onSite = item.onSiteDining.map((s: string) => dining.find((d: any) => d.slug === s)).filter(Boolean);
+        if (!onSite.length) return null;
+        return (
+          <div class="reveal" style="margin-bottom:56px;">
+            <h2 style="font-family:'Playfair Display',serif;font-size:24px;color:var(--text-primary);margin:0 0 6px;">Where to Eat</h2>
+            <p style="font-size:14px;color:rgba(28,18,8,0.3);margin:0 0 24px;">On-site dining at {item.name}</p>
+            <div style="display:flex;flex-direction:column;gap:10px;">
+              {onSite.map((d: any) => (
+                <a href={`/portfolio/${diningSlugMap[d.slug] || d.slug}/`}
+                   style="display:flex;gap:16px;align-items:center;padding:16px;background:rgba(28,18,8,0.04);border:1px solid rgba(28,18,8,0.06);border-radius:12px;text-decoration:none;transition:all 0.2s;"
+                   onmouseover="this.style.borderColor='rgba(232,168,80,0.3)'" onmouseout="this.style.borderColor='rgba(28,18,8,0.06)'">
+                  <img src={d.hero} alt={d.name} style="width:60px;height:60px;object-fit:cover;border-radius:8px;flex-shrink:0;" loading="lazy"/>
+                  <div style="flex:1;min-width:0;">
+                    <div style="font-size:14px;font-weight:700;color:var(--text-primary);margin-bottom:3px;">{d.name}</div>
+                    <div style="font-size:12px;color:rgba(28,18,8,0.35);">{d.cuisine}</div>
+                  </div>
+                  <span style="font-size:12px;color:var(--gold);flex-shrink:0;">View →</span>
+                </a>
+              ))}
+            </div>
+            <div style="margin-top:20px;">
+              <a href="/dining/" style="font-size:13px;color:var(--gold);text-decoration:none;border-bottom:1px solid rgba(232,168,80,0.3);padding-bottom:2px;">Browse all Graeagle dining →</a>
+            </div>
+          </div>
+        );
+      })()}
+
       <!-- FAQ Section — AEO optimized, answers in DOM (not collapsed) -->
       <div class="reveal" style="margin-bottom:56px;">
         <h2 style="font-family:'Playfair Display',serif;font-size:24px;color:var(--text-primary);margin:0 0 28px;">Frequently Asked Questions</h2>
