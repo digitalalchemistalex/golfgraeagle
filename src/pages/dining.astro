@@ -178,7 +178,7 @@ const diningFaq = {
     border: 1px solid rgba(240,248,242,0.06);
     transition: border-color 0.2s, background 0.2s;
   }
-  .brewery-row:hover { border-color: rgba(232,168,80,0.15); background: rgba(232,168,80,0.03); }
+  .brewery-row:hover { border-color: rgba(232,168,80,0.15); background: rgba(232,168,80,0.03); cursor: pointer; }
   .brewery-row .thumb { display: block; width: 140px; flex-shrink: 0; object-fit: cover; }
   /* ── Matrix table ── */
   .matrix { border-radius: 18px; overflow: hidden; border: 1px solid rgba(240,248,242,0.06); }
@@ -296,7 +296,7 @@ const diningFaq = {
     </div>
     <div class="grid-fine-dining reveal">
       {fineDining.map((v, i) => (
-        <div class="img-card" style={i === 0 ? 'grid-row: span 1' : ''}>
+        <a href={`/portfolio/${v.slug}/`} class="img-card" style={i === 0 ? 'grid-row: span 1' : ''}>
           <img class="thumb" src={v.hero} alt={v.name} style={`height:${i===0?'260px':'220px'}`} loading={i===0?'eager':'lazy'} />
           <div class="img-card-body">
             <h3 style="font-family:'Playfair Display',serif;font-size:21px;font-weight:400;color:#f0f8f2;margin:0 0 5px;">{v.name}</h3>
@@ -304,8 +304,9 @@ const diningFaq = {
             {v.slug==='sardine-lake'   && <span class="badge-gold">⚠️ Reservations essential · Remote</span>}
             {v.slug==='longboards'     && <span class="badge-gold">🏔️ Lakefront · Gold Lake Lodge</span>}
             {v.slug==='iron-door'      && <span class="badge-gold">🏛️ Historic Johnsville landmark</span>}
+            <span style="font-size:12px;color:#e8a850;margin-top:10px;display:inline-block;">View details →</span>
           </div>
-        </div>
+        </a>
       ))}
     </div>
   </div>
@@ -374,13 +375,14 @@ const diningFaq = {
     </div>
     <div class="grid-casual reveal">
       {casual.filter(v=>v.slug!=='meadows-restaurant').map(v=>(
-        <div class="img-card">
+        <a href={`/portfolio/${v.slug}/`} class="img-card">
           <img class="thumb" src={v.hero} alt={v.name} loading="lazy" />
           <div class="img-card-body">
             <h3 style="font-family:'Playfair Display',serif;font-size:19px;font-weight:400;color:#f0f8f2;margin:0 0 5px;">{v.name}</h3>
             <p style="font-size:13px;color:rgba(240,248,242,0.38);line-height:1.5;margin:0;">{v.tagline}</p>
+            <span style="font-size:12px;color:#e8a850;margin-top:10px;display:inline-block;">View details →</span>
           </div>
-        </div>
+        </a>
       ))}
     </div>
   </div>
@@ -399,7 +401,7 @@ const diningFaq = {
     </div>
     <div class="grid-brewery reveal">
       {breweries.map(v=>(
-        <div class="brewery-row">
+        <a href={`/portfolio/${v.slug}/`} class="brewery-row" style="text-decoration:none;">
           <img class="thumb" src={v.hero} alt={v.name} style="height:100%;min-height:120px;" loading="lazy" />
           <div style="padding:20px 22px;display:flex;flex-direction:column;justify-content:center;">
             <div style="font-size:10px;color:rgba(232,168,80,0.5);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:6px;">
@@ -407,8 +409,9 @@ const diningFaq = {
             </div>
             <h3 style="font-family:'Playfair Display',serif;font-size:18px;color:#f0f8f2;margin:0 0 5px;">{v.name}</h3>
             <p style="font-size:13px;color:rgba(240,248,242,0.38);line-height:1.5;margin:0;">{v.tagline}</p>
+            <span style="font-size:12px;color:#e8a850;margin-top:8px;">View details →</span>
           </div>
-        </div>
+        </a>
       ))}
     </div>
   </div>
@@ -426,13 +429,16 @@ const diningFaq = {
     </div>
     <div class="grid-quick reveal">
       {quickBites.map(v=>(
-        <div style="display:flex;align-items:center;gap:16px;padding:18px 20px;border-radius:14px;background:rgba(240,248,242,0.02);border:1px solid rgba(240,248,242,0.05);">
+        <a href={`/portfolio/${v.slug}/`} style="display:flex;align-items:center;gap:16px;padding:18px 20px;border-radius:14px;background:rgba(240,248,242,0.02);border:1px solid rgba(240,248,242,0.05);text-decoration:none;transition:border-color 0.2s,background 0.2s;"
+          onmouseover="this.style.borderColor='rgba(232,168,80,0.2)';this.style.background='rgba(232,168,80,0.03)'"
+          onmouseout="this.style.borderColor='rgba(240,248,242,0.05)';this.style.background='rgba(240,248,242,0.02)'">
           <img src={v.hero} alt={v.name} style="width:68px;height:68px;border-radius:10px;object-fit:cover;flex-shrink:0;" loading="lazy" />
-          <div>
+          <div style="flex:1;">
             <h3 style="font-size:15px;font-weight:600;color:#f0f8f2;margin:0 0 3px;">{v.name}</h3>
-            <p style="font-size:13px;color:rgba(240,248,242,0.35);margin:0;">{v.tagline}</p>
+            <p style="font-size:13px;color:rgba(240,248,242,0.35);margin:0 0 4px;">{v.tagline}</p>
+            <span style="font-size:12px;color:#e8a850;">View details →</span>
           </div>
-        </div>
+        </a>
       ))}
     </div>
   </div>
