@@ -773,7 +773,7 @@ const $id  = id => document.getElementById(id);
     const lines = $id('summary-lines');
     if (banner && lines) {
       banner.style.display = 'block';
-      lines.innerHTML = `<div style="font-size:13px;color:#f5f0e8;font-weight:600;margin-bottom:4px;">Based on: ${tripName}</div>` +
+      lines.innerHTML = `<div style="font-size:13px;color:#1c1208;font-weight:600;margin-bottom:4px;">Based on: ${tripName}</div>` +
         (partySize ? `<div style="font-size:12px;color:rgba(28,18,8,0.55);">👥 ${partySize} golfers${nights ? ` · ${nights} nights` : ''}${rounds ? ` · ${rounds} rounds` : ''}</div>` : '') +
         `<div style="font-size:11px;color:#a06c30;margin-top:6px;">Fields pre-filled from this trip — adjust anything to customise.</div>`;
     }
