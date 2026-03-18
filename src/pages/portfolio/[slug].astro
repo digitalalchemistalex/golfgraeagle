@@ -99,9 +99,9 @@ const wpDescs: Record<string, string> = {
   'whitehawk-ranch-golf-packages':  'Custom Whitehawk Ranch golf trips with lodging + guaranteed tee times. Best stay-and-play packages. Request a quote.',
   'plumas-pines-golf-packages':     'Plumas Pines golf group packages with stay and play deals. Custom tee times, lodging, and trip planning for Graeagle groups.',
   'grizzly-ranch-golf-packages':    'Grizzly Ranch golf group packages with stay and play deals. Custom tee times, lodging, and trip planning for Graeagle groups.',
-  'river-pines-resort-graeagle-ca': 'River Pines Resort cabins in Graeagle with golf group packages and stay and play deals from $299–$499 per golfer. Lodging, tee times, and trip planning included.',
-  'chalet-view-lodge-graeagle-ca':  'Stay at Chalet View Lodge in Graeagle with golf group packages and stay and play deals from $299–$499 per golfer. Lodging, tee times, and trip planning included.',
-  'the-inn-at-nakoma-clio-ca':      'Stay at the Inn at Nakoma with Graeagle golf group packages and stay and play deals from $299–$499 per golfer. Includes lodging, tee times, and trip planning.',
+  'river-pines-resort-graeagle-ca': 'River Pines Resort cabins in Graeagle with golf group packages and stay and play deals. Lodging, tee times, and trip planning included. Request a free quote.',
+  'chalet-view-lodge-graeagle-ca':  'Stay at Chalet View Lodge in Graeagle with golf group packages and stay and play deals. Lodging, tee times, and trip planning included. Request a free quote.',
+  'the-inn-at-nakoma-clio-ca':      'Stay at the Inn at Nakoma with Graeagle golf group packages and stay and play deals. Includes lodging, tee times, and trip planning. Request a free quote.',
   'grizzly-grill':                  'Discover Grizzly Grill in Plumas National Forest: gourmet menu, full bar, seasonal wild-game dishes, and forest views. Reserve your table today!',
   'roadhouse-at-river-pines':       'Experience River Pines Resort near Graeagle: golf, casino, cozy lodging, spa services, four restaurants, event venues, and lakeside recreation. Book now!',
   'the-brewing-lair':               'Craft beers and lawn-game vibe for Graeagle golf groups. Easy après-golf meet-up; group-friendly setup.',
@@ -168,7 +168,7 @@ const buildSchema = () => {
         address: { '@type': 'PostalAddress', addressRegion: 'CA', addressCountry: 'US', addressLocality: 'Graeagle' },
         geo: item.coordinates ? { '@type': 'GeoCoordinates', latitude: item.coordinates.lat, longitude: item.coordinates.lng } : undefined,
         amenityFeature: item.highlights?.map((h: string) => ({ '@type': 'LocationFeatureSpecification', name: h, value: true })),
-        priceRange: '$299–$499 per golfer',
+        priceRange: 'Contact for pricing',
         telephone: item.phone,
         potentialAction: { '@type': 'ReserveAction', target: { '@type': 'EntryPoint', urlTemplate: `${siteConfig.url}/request-a-quote` } },
       },
@@ -176,9 +176,9 @@ const buildSchema = () => {
       {
         '@type': 'FAQPage',
         mainEntity: [
-          { '@type': 'Question', name: `Is ${item.name} good for golf groups?`, acceptedAnswer: { '@type': 'Answer', text: `Yes. ${item.name} is ${item.distanceFromGraeagle} and is paired with tee times at all 5 Graeagle championship courses by GolfGraeagle.com. Packages start from $299 per golfer.` } },
+          { '@type': 'Question', name: `Is ${item.name} good for golf groups?`, acceptedAnswer: { '@type': 'Answer', text: `Yes. ${item.name} is ${item.distanceFromGraeagle} and is paired with tee times at all 5 Graeagle championship courses by GolfGraeagle.com. Contact GolfGraeagle.com for current package pricing.` } },
           { '@type': 'Question', name: `How far is ${item.name} from the golf courses?`, acceptedAnswer: { '@type': 'Answer', text: `${item.name} is ${item.distanceFromGraeagle}. All 5 Graeagle courses — Graeagle Meadows, Whitehawk Ranch, Plumas Pines, Grizzly Ranch, and Nakoma (The Dragon) — are within 25 minutes.` } },
-          { '@type': 'Question', name: `Does ${item.name} offer stay and play golf packages?`, acceptedAnswer: { '@type': 'Answer', text: `GolfGraeagle.com offers stay-and-play packages at ${item.name} starting from $299 per golfer. Packages include lodging, tee times, and full trip coordination. Request a free quote at golfgraeagle.com/request-a-quote.` } },
+          { '@type': 'Question', name: `Does ${item.name} offer stay and play golf packages?`, acceptedAnswer: { '@type': 'Answer', text: `GolfGraeagle.com offers stay-and-play packages at ${item.name} available for groups of all sizes. Packages include lodging, tee times, and full trip coordination. Request a free quote at golfgraeagle.com/request-a-quote.` } },
         ],
       },
     ];

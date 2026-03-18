@@ -348,7 +348,6 @@ export const lodging = [
       '/wp-images/2024-07-20-2.webp',
     ],
     onSiteDining: ['longboards'],
-    priceRange: '$299–$499',
     description: 'The Townhomes at Plumas Pines offer 2–4 bedroom vacation rentals immediately adjacent to Plumas Pines Golf Resort. Units come with full kitchens, in-unit laundry, private outdoor space, and golf course views. Community amenities include pools and tennis courts. The location puts groups steps from the first tee at Plumas Pines and within 10–15 minutes of Graeagle Meadows, Whitehawk Ranch, and Grizzly Ranch. Ideal for groups of 8–24 who want the comfort of a home rental, shared common spaces, and the flexibility to cook between rounds. Booking is arranged through GolfGraeagle as part of a stay-and-play package.',
   },
   {
@@ -385,7 +384,6 @@ export const lodging = [
       '/wp-images/Cabin-6-005.webp',
     ],
     onSiteDining: ['roadhouse'],
-    priceRange: '$299–$499',
     description: 'River Pines Resort has been family-owned for over 40 years and sits along the Feather River, 5 minutes from Graeagle village. Accommodation options include cozy cabins, spacious suites, and well-appointed rooms — flexible for groups of any size. The Roadhouse at River Pines handles group dinners with a menu of steaks, ribs, and whisky flights. An outdoor pool, hot tub, and game lounge round out the amenities.',
   },
   {
@@ -420,7 +418,6 @@ export const lodging = [
     '/wp-images/ChaletView-22.webp'
   ],
     onSiteDining: ['eureka-peak-brewing'],
-    priceRange: '$299–$499',
     description: 'Chalet View Lodge sits on 10 forested acres, 10 minutes from Graeagle via Highway 89. Room types include lodge rooms, terrace suites, and private cabins — making it one of the most versatile properties in the valley for groups. The 9-hole executive course lets guests warm up without leaving the property. Eureka Peak Brewing Co. is located on-site, serving handcrafted IPAs, stouts, and saisons alongside locally sourced seasonal dishes. Full spa services, a seasonal outdoor pool, volleyball courts, and a fishing pond complete the offering.',
   },
   {
@@ -449,7 +446,6 @@ export const lodging = [
     ],
     description: 'The Inn at Nakoma is the only place in the world where you can sleep under a roof designed by Frank Lloyd Wright and walk directly to your tee time on The Dragon. The 42-room resort features Frette Italian linens, a lobby fireplace, heated outdoor pool, two hot tubs, and a full spa. Dining options include the Fifty44 Restaurant & Bar inside the historic FLW Lodge serving wood-fired dishes, and the casual Middle Fork Bistro & Bar. The resort is pet-friendly (2 dogs, 75 lbs each) and has an arcade, children\'s club, and on-site driving range.',
     onSiteDining: [],
-    priceRange: '$299–$499',
   },
 ];
 
