@@ -712,7 +712,7 @@ const $id  = id => document.getElementById(id);
 
   // Budget tier — map vibe to budgetTier radio
   if (vibe) {
-    const vibeToTier: Record<string, string> = {
+    const vibeToTier = {
       'premium': 'premium',
       'value': 'budget',
       'bucket list': 'premium',
@@ -721,26 +721,26 @@ const $id  = id => document.getElementById(id);
     };
     const tier = vibeToTier[vibe.toLowerCase()] || 'mid';
     const radio = form.querySelector(`[name="budgetTier"][value="${tier}"]`);
-    if (radio) (radio as HTMLInputElement).checked = true;
+    if (radio) radio.checked = true;
   }
 
   // Special requests — full trip details for admin + customer clarity
   // Prices are reference only — subject to change
   {
-    const sr = form.querySelector('[name="specialRequests"]') as HTMLTextAreaElement;
+    const sr = form.querySelector('[name="specialRequests"]');
     if (sr) {
-      const lines: string[] = [];
+      const lines = [];
 
       if (tripName) lines.push(`Based on trip: "${tripName}"`);
 
-      const details: string[] = [];
+      const details = [];
       if (partySize) details.push(`${partySize} golfers`);
       if (nights)    details.push(`${nights} nights`);
       if (rounds)    details.push(`${rounds} rounds`);
       if (details.length) lines.push(`Trip details: ${details.join(', ')}`);
 
       if (coursesRaw) {
-        const courseList = coursesRaw.split(',').map((c: string) => c.trim()).filter(Boolean).join(', ');
+        const courseList = coursesRaw.split(',').map(c => c.trim()).filter(Boolean).join(', ');
         if (courseList) lines.push(`Courses: ${courseList}`);
       }
 
