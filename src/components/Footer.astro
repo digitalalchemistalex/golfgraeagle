@@ -5,16 +5,15 @@ const year = new Date().getFullYear();
 
 <style>
   .footer-inner { max-width: 1280px; margin: 0 auto; padding: 72px clamp(20px,4vw,48px) 48px; }
-  .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr 1.2fr; gap: 48px; }
+  .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr 1.4fr; gap: 40px; }
   .footer-bottom { max-width: 1280px; margin: 0 auto; padding: 24px clamp(20px,4vw,48px); }
-  @media (max-width: 1024px) {
-    .footer-grid { grid-template-columns: 2fr 1fr 1fr; gap: 32px; }
-    /* hide dining and CTA columns, merge into brand col on tablet */
+  @media (max-width: 1100px) {
+    .footer-grid { grid-template-columns: 1fr 1fr 1fr; gap: 32px; }
     .footer-col-dining { display: none; }
     .footer-col-cta { grid-column: 1 / -1; }
   }
   @media (max-width: 640px) {
-    .footer-grid { grid-template-columns: 1fr; gap: 32px; }
+    .footer-grid { grid-template-columns: 1fr; gap: 28px; }
     .footer-col-dining { display: block; }
     .footer-col-cta { grid-column: auto; }
     .footer-bottom-inner { flex-direction: column; align-items: flex-start; gap: 12px; }
@@ -64,7 +63,7 @@ const year = new Date().getFullYear();
           <a href={`/portfolio/${c.slug === "nakoma-dragon" ? "nakoma-dragon-golf-packages" : c.slug + "-golf-packages"}`} style="display:block;font-size:13px;color:rgba(240,248,242,0.65);text-decoration:none;margin-bottom:11px;line-height:1.3;transition:color 0.2s;"
           onmouseover="this.style.color='#f0f8f2'" onmouseout="this.style.color='rgba(240,248,242,0.45)'">{c.name}</a>
         ))}
-        <a href="/courses" style="display:block;font-size:13px;color:rgba(232,168,80,0.75);text-decoration:none;margin-top:14px;padding-top:14px;border-top:1px solid rgba(28,18,8,0.05);transition:color 0.2s;"
+        <a href="/courses" style="display:block;font-size:13px;color:rgba(232,168,80,0.75);text-decoration:none;margin-top:14px;padding-top:14px;border-top:1px solid rgba(255,255,255,0.07);transition:color 0.2s;"
         onmouseover="this.style.color='#e8a850'" onmouseout="this.style.color='rgba(232,168,80,0.55)'">Compare all courses →</a>
       </div>
 
@@ -105,10 +104,10 @@ const year = new Date().getFullYear();
       <div class="footer-col-cta">
         <h4 style="font-size:12px;color:rgba(232,168,80,0.85);text-transform:uppercase;letter-spacing:0.12em;margin:0 0 20px;font-weight:600;">Plan Your Round</h4>
         <div style="background:rgba(232,168,80,0.06);border:1px solid rgba(232,168,80,0.12);border-radius:16px;padding:24px;">
-          <p style="font-size:13px;color:rgba(28,18,8,0.55);line-height:1.65;margin:0 0 20px;">
+          <p style="font-size:13px;color:rgba(255,255,255,0.65);line-height:1.65;margin:0 0 20px;">
             Tell us your dates, group size, and preferred courses. We'll handle tee times, lodging, and everything in between.
           </p>
-          <a href="/request-a-quote" style="display:block;text-align:center;background:var(--gold-light);color:#0d1a0e;font-size:13px;font-weight:600;padding:12px 20px;border-radius:100px;text-decoration:none;transition:all 0.3s;"
+          <a href="/request-a-quote" style="display:block;text-align:center;background:#e8a850;color:#0d1a0e;font-size:13px;font-weight:700;padding:12px 20px;border-radius:100px;text-decoration:none;transition:all 0.3s;"
           onmouseover="this.style.background='#f2c878';this.style.transform='translateY(-1px)'"
           onmouseout="this.style.background='#e8a850';this.style.transform='translateY(0)'">
             Request a Free Quote
@@ -123,7 +122,7 @@ const year = new Date().getFullYear();
   </div>
 
   <!-- Divider -->
-  <div style="border-top: 1px solid rgba(28,18,8,0.05);"></div>
+  <div style="border-top: 1px solid rgba(255,255,255,0.07);"></div>
 
   <!-- Legal bottom bar -->
   <div class="footer-bottom">
@@ -144,7 +143,7 @@ const year = new Date().getFullYear();
           ['About','/about-us'],
         ].map(([l,h])=>(
           <a href={h} style="font-size:13px;color:rgba(240,248,242,0.50);text-decoration:none;transition:color 0.2s;"
-          onmouseover="this.style.color='rgba(28,18,8,0.55)'" onmouseout="this.style.color='rgba(240,248,242,0.50)'">{l}</a>
+          onmouseover="this.style.color='#f0f8f2'" onmouseout="this.style.color='rgba(240,248,242,0.50)'">{l}</a>
         ))}
       </div>
 
