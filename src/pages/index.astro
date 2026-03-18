@@ -273,29 +273,21 @@ const lodgingMeta = {'townhomes-at-plumas-pines':{badge:'Best for Large Groups',
     </div>
 
     <div class="lodging-four-grid">
-      {(() => {
-        const lodgingMeta = {
-          'townhomes-at-plumas-pines': { badge:'Best for Large Groups', detail:'Full kitchens · On the course · 2–4 BR units' },
-          'river-pines-resort':        { badge:'Best for Groups',       detail:'On-site dining · Pool & hot tub · 40+ years family-owned' },
-          'chalet-view-lodge':         { badge:'Best Amenities',        detail:'Spa · Brewery on-site · 9-hole exec course' },
-          'inn-at-nakoma':             { badge:'Most Unique',           detail:'Frank Lloyd Wright lodge · Walk to The Dragon' },
-        };
-        return lodging.map((l, i) => {
-          const meta = lodgingMeta[l.slug] || { badge: l.subtitle, detail: '' };
-          return (
-            <a href={`/portfolio/${l.slug}/`} class={`reveal delay-${i*75} lodging-equal-card`} style="text-decoration:none;display:block;">
-              <img src={l.hero} alt={getImgAlt(l.hero, `${l.name} — Graeagle CA lodging for golf groups`)} loading="lazy" class="course-card-img"/>
-              <div class="card-gradient"></div>
-              <div class="course-card-body">
-                <span style="font-size:8px;font-weight:800;text-transform:uppercase;letter-spacing:0.08em;background:#e8a850;color:#0d1a0e;padding:2px 8px;border-radius:100px;display:inline-block;margin-bottom:8px;">{meta.badge}</span>
-                <h3 style="font-family:'Playfair Display',serif;font-size:clamp(16px,1.4vw,20px);color:#ffffff;text-shadow:0 1px 8px rgba(0,0,0,0.5);margin:0 0 6px;line-height:1.2;">{l.name}</h3>
-                <p style="font-size:11px;color:rgba(255,255,255,0.55);margin:0 0 10px;line-height:1.4;">{meta.detail}</p>
-                <span class="link-gold-sm">View →</span>
-              </div>
-            </a>
-          );
-        });
-      })()}
+      {lodging.map((l, i) => {
+        const meta = lodgingMeta[l.slug] || { badge: l.subtitle, detail: '' };
+        return (
+          <a href={`/portfolio/${l.slug}/`} class={`reveal delay-${i*75} lodging-equal-card`} style="text-decoration:none;display:block;">
+            <img src={l.hero} alt={getImgAlt(l.hero, `${l.name} — Graeagle CA lodging for golf groups`)} loading="lazy" class="course-card-img"/>
+            <div class="card-gradient"></div>
+            <div class="course-card-body">
+              <span style="font-size:8px;font-weight:800;text-transform:uppercase;letter-spacing:0.08em;background:#e8a850;color:#0d1a0e;padding:2px 8px;border-radius:100px;display:inline-block;margin-bottom:8px;">{meta.badge}</span>
+              <h3 style="font-family:'Playfair Display',serif;font-size:clamp(16px,1.4vw,20px);color:#ffffff;text-shadow:0 1px 8px rgba(0,0,0,0.5);margin:0 0 6px;line-height:1.2;">{l.name}</h3>
+              <p style="font-size:11px;color:rgba(255,255,255,0.55);margin:0 0 10px;line-height:1.4;">{meta.detail}</p>
+              <span class="link-gold-sm">View →</span>
+            </div>
+          </a>
+        );
+      })}
     </div>
 
     <div class="reveal" style="text-align:center;margin-top:48px;">
