@@ -478,12 +478,12 @@ const diningSlugMap: Record<string, string> = {
   .ch-breadcrumb { margin-bottom: 16px; }
   .ch-breadcrumb-link {
     font-size: 11px;
-    color: rgba(28,18,8,0.28);
+    color: rgba(255,255,255,0.45);
     text-decoration: none;
     letter-spacing: 0.06em;
     transition: color 0.2s;
   }
-  .ch-breadcrumb-link:hover { color: rgba(28,18,8,0.6); }
+  .ch-breadcrumb-link:hover { color: rgba(255,255,255,0.8); }
 
   .ch-badges {
     display: flex;
@@ -503,16 +503,17 @@ const diningSlugMap: Record<string, string> = {
     color:var(--gold);
   }
   .ch-badge-dim {
-    background: rgba(28,18,8,0.06);
-    border: 1px solid var(--border);
-    color: rgba(28,18,8,0.45);
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.15);
+    color: rgba(255,255,255,0.55);
   }
 
   .ch-h1 {
     font-family: 'Playfair Display', serif;
     font-size: clamp(34px,5.5vw,72px);
     font-weight: 500;
-    color:var(--text-primary);
+    color: #ffffff;
+    text-shadow: 0 2px 12px rgba(0,0,0,0.4);
     line-height: 1.0;
     letter-spacing: -0.01em;
     margin: 0 0 12px;
@@ -520,7 +521,7 @@ const diningSlugMap: Record<string, string> = {
 
   .ch-tagline {
     font-size: clamp(13px,1.5vw,16px);
-    color: rgba(28,18,8,0.4);
+    color: rgba(255,255,255,0.65);
     line-height: 1.6;
     margin: 0 0 24px;
     max-width: 520px;
