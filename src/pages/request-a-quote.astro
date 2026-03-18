@@ -463,7 +463,7 @@ const quoteSchema = [
 .q-radio-label{font-size:10px;color:rgba(26,18,8,0.45);text-transform:uppercase;letter-spacing:.08em;font-weight:500;margin-bottom:9px;}
 .q-radio-row{display:flex;gap:7px;flex-wrap:wrap;}
 .q-radio{display:flex;align-items:center;gap:7px;font-size:12px;color:rgba(26,18,8,0.55);cursor:pointer;padding:8px 13px;border-radius:10px;border:1px solid rgba(26,18,8,0.1);background:rgba(26,18,8,0.03);transition:all .2s;white-space:nowrap;}
-.q-radio:has(input:checked){color:#e8a850;border-color:rgba(232,168,80,0.22);background:rgba(232,168,80,0.06);}
+.q-radio:has(input:checked){color:#7a4a00;border-color:#c8820a;background:#e8a850;font-weight:600;}
 .q-radio input[type="radio"]{accent-color:#e8a850;flex-shrink:0;}
 /* tier */
 .q-tier-row{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:2px;}
@@ -471,14 +471,14 @@ const quoteSchema = [
 .q-tier-card{cursor:pointer;display:block;}
 .q-tier-card input{display:none;}
 .q-tier-inner{padding:14px;border-radius:12px;border:1px solid rgba(26,18,8,0.12);background:rgba(26,18,8,0.03);text-align:center;transition:all .2s;}
-.q-tier-card:has(input:checked) .q-tier-inner{border-color:rgba(232,168,80,0.3);background:rgba(232,168,80,0.07);}
+.q-tier-card:has(input:checked) .q-tier-inner{border-color:#b8740a;border-width:2px;background:rgba(184,116,10,0.12);}
 .q-tier-price{font-family:'Playfair Display',serif;font-size:22px;color:#e8a850;font-weight:500;margin-bottom:5px;}
 .q-tier-desc{font-size:10px;color:rgba(26,18,8,0.38);line-height:1.5;}
 /* round chips */
 .q-num-chip{cursor:pointer;}
 .q-num-chip input{display:none;}
 .q-num-chip span{display:block;padding:8px 16px;border-radius:100px;border:1px solid rgba(26,18,8,0.12);background:rgba(26,18,8,0.03);font-size:12px;color:rgba(26,18,8,0.55);transition:all .2s;}
-.q-num-chip:has(input:checked) span{background:rgba(232,168,80,0.1);border-color:rgba(232,168,80,0.3);color:#e8a850;}
+.q-num-chip:has(input:checked) span{background:#e8a850;border-color:#c8820a;color:#7a4a00;font-weight:600;}
 /* course cards */
 .q-course-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
 @media(max-width:480px){.q-course-grid{grid-template-columns:1fr;}}
@@ -493,7 +493,7 @@ const quoteSchema = [
 .q-course-card:has(input:checked) .q-course-check-icon{opacity:1;}
 .q-course-card:has(input:checked) .q-course-img-wrap{box-shadow:0 0 0 2px #e8a850;}
 .q-course-info{padding:10px 12px 12px;background:#fff;border:1px solid rgba(26,18,8,0.1);border-top:none;border-radius:0 0 12px 12px;transition:all .2s;}
-.q-course-card:has(input:checked) .q-course-info{background:rgba(232,168,80,0.06);border-color:rgba(232,168,80,0.2);}
+.q-course-card:has(input:checked) .q-course-info{background:rgba(184,116,10,0.1);border-color:#b8740a;border-width:2px;}
 .q-course-accolade{font-size:9px;color:#e8a850;text-transform:uppercase;letter-spacing:.1em;margin-bottom:3px;font-weight:600;}
 .q-course-name{font-family:'Playfair Display',serif;font-size:13px;color:#1a1208;margin-bottom:3px;}
 .q-course-stats{font-size:10px;color:rgba(26,18,8,0.35);line-height:1.5;}
@@ -501,7 +501,7 @@ const quoteSchema = [
 .q-lodge-any{display:block;cursor:pointer;margin-bottom:10px;}
 .q-lodge-any input{display:none;}
 .q-lodge-any-inner{display:flex;align-items:center;gap:14px;padding:13px 16px;border-radius:12px;border:1px solid rgba(26,18,8,0.12);background:rgba(26,18,8,0.03);transition:all .2s;}
-.q-lodge-any:has(input:checked) .q-lodge-any-inner{border-color:rgba(184,116,10,0.3);background:rgba(232,168,80,0.06);}
+.q-lodge-any:has(input:checked) .q-lodge-any-inner{border-color:#b8740a;border-width:2px;background:rgba(184,116,10,0.1);}
 .q-lodge-any-check{margin-left:auto;width:22px;height:22px;border-radius:50%;background:#e8a850;color:#0d1a0e;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;opacity:0;transition:opacity .2s;}
 .q-lodge-any:has(input:checked) .q-lodge-any-check{opacity:1;}
 /* lodge cards */
@@ -517,7 +517,7 @@ const quoteSchema = [
 .q-lodge-card:has(input:checked) .q-lodge-check-icon{opacity:1;}
 .q-lodge-card:has(input:checked) .q-lodge-img-wrap{box-shadow:0 0 0 2px #e8a850;}
 .q-lodge-info{padding:10px 12px 12px;background:#fff;border:1px solid rgba(26,18,8,0.1);border-top:none;border-radius:0 0 12px 12px;transition:all .2s;}
-.q-lodge-card:has(input:checked) .q-lodge-info{background:rgba(232,168,80,0.06);border-color:rgba(232,168,80,0.2);}
+.q-lodge-card:has(input:checked) .q-lodge-info{background:rgba(184,116,10,0.1);border-color:#b8740a;border-width:2px;}
 .q-lodge-best{font-size:9px;color:#e8a850;text-transform:uppercase;letter-spacing:.1em;margin-bottom:3px;font-weight:600;}
 .q-lodge-name{font-family:'Playfair Display',serif;font-size:13px;color:#1a1208;margin-bottom:3px;}
 .q-lodge-desc{font-size:10px;color:rgba(26,18,8,0.35);line-height:1.5;}
