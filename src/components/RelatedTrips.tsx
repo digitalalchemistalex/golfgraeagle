@@ -91,7 +91,7 @@ function matchesLodging(trip: Trip, names: string[]): boolean {
 }
 
 /* ─── TRIP CARD ─── */
-function TripCard({ trip }: { trip: Trip }) {
+function TripCard({ trip, compact = false }: { trip: Trip; compact?: boolean }) {
   const [imgLoaded, setImgLoaded] = useState(false);
   const [showItinerary, setShowItinerary] = useState(false);
   const imgSrc = pickImage(trip);
@@ -175,14 +175,14 @@ function TripCard({ trip }: { trip: Trip }) {
         </div>
 
         {/* Synopsis */}
-        {trip.synopsis && (
+        {!compact && trip.synopsis && (
           <p style={{ fontSize: 13, color: "rgba(28,18,8,0.55)", lineHeight: 1.65, borderLeft: "3px solid #e8a850", paddingLeft: 12, marginBottom: 16, fontStyle: "italic", display: "-webkit-box", WebkitLineClamp: 3, WebkitBoxOrient: "vertical", overflow: "hidden" }}>
             &ldquo;{trip.synopsis}&rdquo;
           </p>
         )}
 
         {/* Courses */}
-        {trip.courses && trip.courses.length > 0 && (
+        {!compact && trip.courses && trip.courses.length > 0 && (
           <div style={{ marginBottom: 14 }}>
             <div style={{ fontSize: 9, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.12em", color: "rgba(28,18,8,0.3)", marginBottom: 8 }}>⛳ Courses Played</div>
             <div style={{ display: "flex", flexWrap: "wrap", gap: 6 }}>
@@ -207,7 +207,7 @@ function TripCard({ trip }: { trip: Trip }) {
         )}
 
         {/* Lodging */}
-        {trip.lodging && (
+        {!compact && trip.lodging && (
           <div style={{ marginBottom: 14 }}>
             <div style={{ fontSize: 9, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.12em", color: "rgba(28,18,8,0.3)", marginBottom: 8 }}>🏨 Stayed</div>
             {(() => {
@@ -227,7 +227,7 @@ function TripCard({ trip }: { trip: Trip }) {
         )}
 
         {/* Highlights */}
-        {trip.highlights && trip.highlights.length > 0 && (
+        {!compact && trip.highlights && trip.highlights.length > 0 && (
           <div style={{ marginBottom: 16 }}>
             <div style={{ fontSize: 9, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.12em", color: "rgba(28,18,8,0.3)", marginBottom: 8 }}>⭐ Highlights</div>
             <div style={{ display: "flex", flexDirection: "column", gap: 4 }}>
@@ -241,7 +241,7 @@ function TripCard({ trip }: { trip: Trip }) {
         )}
 
         {/* Why It Worked */}
-        {trip.whyItWorked && (
+        {!compact && trip.whyItWorked && (
           <div style={{
             background: "rgba(232,168,80,0.05)", border: "1px solid rgba(232,168,80,0.15)",
             borderRadius: 10, padding: "12px 14px", marginBottom: 16,
@@ -252,7 +252,7 @@ function TripCard({ trip }: { trip: Trip }) {
         )}
 
         {/* Itinerary toggle */}
-        {trip.dailyItinerary && trip.dailyItinerary.length > 0 && (
+        {!compact && trip.dailyItinerary && trip.dailyItinerary.length > 0 && (
           <button
             onClick={() => setShowItinerary(!showItinerary)}
             style={{
@@ -412,7 +412,7 @@ export default function RelatedTrips({ slug, type, showAll = false, max = 6 }: {
               scrollSnapAlign: "start",
               minWidth: 0,
             }}>
-              <TripCard trip={trip} />
+              <TripCard trip={trip} compact={true} />
             </div>
           ))}
         </div>
