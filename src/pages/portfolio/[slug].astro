@@ -446,21 +446,22 @@ const diningSlugMap: Record<string, string> = {
 
   .ch-strip-label {
     position: absolute;
-    bottom: 7px;
-    left: 9px;
-    font-size: 9px;
-    font-weight: 600;
-    letter-spacing: 0.05em;
+    bottom: 8px;
+    left: 10px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
     max-width: 90%;
+    text-shadow: 0 1px 6px rgba(0,0,0,0.8), 0 0 12px rgba(0,0,0,0.6);
     transition: color 0.3s;
   }
 
-  .ch-strip-item.is-active .ch-strip-label { color: rgba(255,255,255,0.9); }
-  .ch-strip-item:not(.is-active) .ch-strip-label { color: rgba(255,255,255,0.4); }
-  .ch-strip-item:not(.is-active):hover .ch-strip-label { color: rgba(255,255,255,0.75); }
+  .ch-strip-item.is-active .ch-strip-label { color: #ffffff; }
+  .ch-strip-item:not(.is-active) .ch-strip-label { color: rgba(255,255,255,0.75); }
+  .ch-strip-item:not(.is-active):hover .ch-strip-label { color: #ffffff; }
 
   /* Main content grid */
   .ch-content {
