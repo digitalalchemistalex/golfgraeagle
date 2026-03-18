@@ -973,16 +973,16 @@ const diningSlugMap: Record<string, string> = {
     <!-- HERO -->
     <section style="position:relative;height:75vh;min-height:500px;overflow:hidden;display:flex;align-items:flex-end;">
       <img src={item.hero} alt={getImgAlt(item.hero, `${item.name} — ${item.type === "course" ? "golf course" : item.type === "lodge" ? "lodging" : "restaurant"}, Graeagle CA`)} style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" loading="eager" fetchpriority="high"/>
-      <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(9,15,9,0.92) 0%,rgba(9,15,9,0.55) 40%,rgba(9,15,9,0.15) 70%,transparent 100%);"></div>
-      <div style="position:relative;z-index:2;padding:0 clamp(20px,10%,120px) 64px;max-width:1400px;width:100%;">
-        <a href="/lodging/" style="display:inline-flex;align-items:center;gap:6px;font-size:12px;color:rgba(255,255,255,0.45);text-decoration:none;margin-bottom:20px;transition:color 0.2s;" onmouseover="this.style.color='rgba(255,255,255,0.8)'" onmouseout="this.style.color='rgba(255,255,255,0.45)'">← All Lodging</a>
-        {item.subtitle && <div style="font-size:11px;color:#e8a850;letter-spacing:0.14em;text-transform:uppercase;margin-bottom:12px;font-weight:700;">{item.subtitle}</div>}
-        <h1 style="font-family:'Playfair Display',serif;font-size:clamp(34px,5vw,60px);font-weight:500;color:#ffffff;margin:0 0 14px;line-height:1.1;text-shadow:0 2px 12px rgba(0,0,0,0.4);">{item.name}</h1>
-        <p style="font-size:17px;color:rgba(255,255,255,0.65);margin:0 0 20px;max-width:600px;">{item.tagline}</p>
+      <div style="position:absolute;inset:0;background:linear-gradient(to top,var(--page-bg) 0%,rgba(20,12,4,0.55) 45%,transparent 80%);"></div>
+      <div style="position:relative;z-index:2;padding:0 10% 64px;max-width:1400px;width:100%;">
+        <a href="/lodging/" style="display:inline-flex;align-items:center;gap:6px;font-size:12px;color:rgba(28,18,8,0.35);text-decoration:none;margin-bottom:20px;transition:color 0.2s;" onmouseover="this.style.color='rgba(28,18,8,0.65)'" onmouseout="this.style.color='rgba(28,18,8,0.35)'">← All Lodging</a>
+        {item.subtitle && <div style="font-size:11px;color:var(--gold);letter-spacing:0.14em;text-transform:uppercase;margin-bottom:12px;font-weight:700;">{item.subtitle}</div>}
+        <h1 style="font-family:'Playfair Display',serif;font-size:clamp(34px,5vw,60px);font-weight:500;color:var(--text-primary);margin:0 0 14px;line-height:1.1;">{item.name}</h1>
+        <p style="font-size:17px;color:rgba(28,18,8,0.5);margin:0 0 20px;max-width:600px;">{item.tagline}</p>
         <div style="display:flex;gap:20px;flex-wrap:wrap;align-items:center;">
-          {item.distanceFromGraeagle && <span style="font-size:13px;color:rgba(232,168,80,0.9);">📍 {item.distanceFromGraeagle}</span>}
-          {item.priceRange && <span style="font-size:13px;color:rgba(255,255,255,0.45);">From {item.priceRange} per golfer</span>}
-          <span style="font-size:13px;color:rgba(255,255,255,0.45);">⛳ {nearbyCourses.length} courses nearby</span>
+          {item.distanceFromGraeagle && <span style="font-size:13px;color:rgba(232,168,80,0.8);">📍 {item.distanceFromGraeagle}</span>}
+          {item.priceRange && <span style="font-size:13px;color:rgba(28,18,8,0.4);">From {item.priceRange} per golfer</span>}
+          <span style="font-size:13px;color:rgba(28,18,8,0.4);">⛳ {nearbyCourses.length} courses nearby</span>
         </div>
       </div>
     </section>
@@ -1160,7 +1160,6 @@ const diningSlugMap: Record<string, string> = {
         </div>
       </div>
     </div>
-    </div>
 
   <RelatedTrips client:load slug={item.slug} type="lodging" />
 
@@ -1179,15 +1178,15 @@ const diningSlugMap: Record<string, string> = {
     <!-- HERO -->
     <section style="position:relative;height:65vh;min-height:420px;overflow:hidden;display:flex;align-items:flex-end;">
       <img src={item.hero} alt={getImgAlt(item.hero, `${item.name} — ${item.type === "course" ? "golf course" : item.type === "lodge" ? "lodging" : "restaurant"}, Graeagle CA`)} style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" loading="eager" fetchpriority="high"/>
-      <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(9,15,9,0.92) 0%,rgba(9,15,9,0.5) 40%,rgba(9,15,9,0.1) 70%,transparent 100%);"></div>
-      <div style="position:relative;z-index:2;padding:0 clamp(20px,10%,120px) 56px;max-width:1400px;width:100%;">
-        <a href="/dining/" style="display:inline-flex;align-items:center;gap:6px;font-size:12px;color:rgba(255,255,255,0.45);text-decoration:none;margin-bottom:20px;transition:color 0.2s;" onmouseover="this.style.color='rgba(255,255,255,0.8)'" onmouseout="this.style.color='rgba(255,255,255,0.45)'">← All Dining</a>
-        {item.cuisine && <div style="font-size:11px;color:#e8a850;letter-spacing:0.14em;text-transform:uppercase;margin-bottom:12px;font-weight:700;">{item.cuisine}</div>}
-        <h1 style="font-family:'Playfair Display',serif;font-size:clamp(30px,5vw,56px);font-weight:500;color:#ffffff;margin:0 0 12px;line-height:1.1;text-shadow:0 2px 12px rgba(0,0,0,0.4);">{item.name}</h1>
-        <p style="font-size:16px;color:rgba(255,255,255,0.6);margin:0 0 16px;max-width:560px;">{item.tagline}</p>
+      <div style="position:absolute;inset:0;background:linear-gradient(to top,var(--page-bg) 0%,rgba(237,230,218,0.5) 50%,transparent 85%);"></div>
+      <div style="position:relative;z-index:2;padding:0 10% 56px;max-width:1400px;width:100%;">
+        <a href="/dining/" style="display:inline-flex;align-items:center;gap:6px;font-size:12px;color:rgba(28,18,8,0.35);text-decoration:none;margin-bottom:20px;transition:color 0.2s;" onmouseover="this.style.color='rgba(28,18,8,0.65)'" onmouseout="this.style.color='rgba(28,18,8,0.35)'">← All Dining</a>
+        {item.cuisine && <div style="font-size:11px;color:var(--gold);letter-spacing:0.14em;text-transform:uppercase;margin-bottom:12px;font-weight:700;">{item.cuisine}</div>}
+        <h1 style="font-family:'Playfair Display',serif;font-size:clamp(30px,5vw,56px);font-weight:500;color:var(--text-primary);margin:0 0 12px;line-height:1.1;">{item.name}</h1>
+        <p style="font-size:16px;color:rgba(28,18,8,0.45);margin:0 0 16px;max-width:560px;">{item.tagline}</p>
         <div style="display:flex;gap:16px;flex-wrap:wrap;">
-          {item.location && <span style="font-size:13px;color:rgba(232,168,80,0.9);">📍 {item.location}</span>}
-          {item.phone && <span style="font-size:13px;color:rgba(255,255,255,0.45);">📞 {item.phone}</span>}
+          {item.location && <span style="font-size:13px;color:rgba(232,168,80,0.75);">📍 {item.location}</span>}
+          {item.phone && <span style="font-size:13px;color:rgba(28,18,8,0.35);">📞 {item.phone}</span>}
         </div>
       </div>
     </section>
