@@ -395,3 +395,52 @@ Disallow: /api/
 ---
 
 *File maintained by: GolfGraeagle build sessions. Update after every deploy that changes titles, meta, schema, or adds pages.*
+
+---
+
+## GSC DATA — ACTUAL RANKINGS (pre-Astro WP site, last 3 months ending Mar 16 2026)
+
+**Critical context:** These figures are from the WordPress site. The Astro site went live March 17. 0 GSC data exists yet for the Astro site.
+
+### Reality check
+- **Total impressions (3 months):** 1,063
+- **Total clicks (3 months):** 0
+- **The WP site never generated organic clicks.** This is not a rebuild problem.
+- **Keyword coverage ✅ in this file = "we have a page targeting this." NOT "we rank for this."**
+
+### Actual GSC positions (WP site)
+
+| Query | Position | Impressions | Page Ranking |
+|-------|----------|-------------|--------------|
+| little bite deli | 8.8 | 100 | /portfolio/little-bite-deli/ |
+| little bite deli menu | 6.5 | 34 | /portfolio/little-bite-deli/ |
+| graeagle hotels | 35.5 | 56 | /hotels/ → redirects to /lodging/ |
+| graeagle (generic) | 57.5 | 38 | / |
+| graeagle meadows golf course | 76.4 | 42 | /portfolio/graeagle-meadows-golf-packages/ |
+| graeagle lodge | 49.0 | 31 | /lodging/ |
+| graeagle resort | 20.0 | 18 | homepage |
+| graeagle lodging | 37.9 | 15 | /lodging/ |
+| stay and play golf packages northern california | 35.1 | 10 | /all-golf-courses/ |
+| graeagle golf | 46.6 | 11 | / |
+| graeagle golf courses | 65.7 | 10 | /all-golf-courses/ |
+| grizzly ranch golf | 83.3 | 13 | /portfolio/grizzly-ranch-golf-packages/ |
+| northern california golf packages | 13.3 | 3 | unknown |
+
+### Key findings
+1. Only 4 queries on page 1 — all are `little bite deli` variants. No golf keyword on page 1.
+2. Core keyword `graeagle golf` is at position 46 (page 5). `graeagle golf courses` at position 65 (page 7).
+3. `/hotels/` (368 impressions, highest on site) is a 308 redirect to `/lodging/`. Equity transfers but slowly.
+4. 93.9% of Googlebot crawls are Refresh (re-crawling known pages), only 6.1% Discovery. New content not being found fast.
+5. 108 of 182 queries are buried at position 51+. Effectively invisible.
+
+### What needs to happen for clicks
+1. **Domain authority** — site has no meaningful backlinks. Rankings won't move without inbound links from golf/travel/local sites.
+2. **Content indexing** — 13 new blog posts need to be crawled and evaluated. Check GSC Coverage daily.
+3. **Wait** — realistically 8-16 weeks before new content affects rankings.
+
+### WP-era URLs with GSC impressions (all now 308 redirecting correctly)
+- `/hotels/` → `/lodging/` (368 imp, 1 click)
+- `/blogs/` → `/blog/` (70 imp)
+- `/private-homes/` → `/lodging/`
+- `/golf-guide/` → `/blog/`
+- `/project-type/hotels/` → `/lodging/`
