@@ -299,6 +299,11 @@ export default function TripsHub() {
   const [filter, setFilter] = useState<Filter>("all");
   const [sortBy, setSortBy] = useState<"price" | "nights">("price");
 
+  // Read highlight param once at mount — stable ref, no re-renders
+  const highlightId = typeof window !== "undefined"
+    ? new URLSearchParams(window.location.search).get("highlight")
+    : null;
+
   useEffect(() => {
     fetch(`${API_URL}?t=${Date.now()}`)
       .then(r => r.json())
@@ -310,37 +315,42 @@ export default function TripsHub() {
           return GRAEAGLE_COURSES.some(k => courses.includes(k));
         });
         graeagle.sort((a, b) => (a.pricePerPerson || 9999) - (b.pricePerPerson || 9999));
+        // If a highlight trip exists, ensure filter=all so it's visible
+        if (highlightId) setFilter("all");
         setAllTrips(graeagle);
         setLoading(false);
       })
       .catch(() => setLoading(false));
   }, []);
 
-  // Scroll to + highlight a specific trip when ?highlight=ID is in the URL
+  // Scroll+highlight: use MutationObserver — fires the instant the target card
+  // enters the DOM, no polling, no arbitrary timeouts
   useEffect(() => {
-    if (!allTrips.length) return;
-    const params = new URLSearchParams(window.location.search);
-    const id = params.get("highlight");
-    if (!id) return;
-    // Ensure we're on "all" filter so the trip is visible
-    setFilter("all");
-    // Wait for React to render the full list then scroll
-    const attempt = (tries: number) => {
-      const el = document.getElementById(`trip-${id}`);
-      if (el) {
-        el.scrollIntoView({ behavior: "smooth", block: "center" });
-        el.style.transition = "box-shadow 0.4s, outline 0.4s";
-        el.style.outline = "2px solid #e8a850";
-        el.style.boxShadow = "0 0 0 4px rgba(232,168,80,0.25)";
-        setTimeout(() => {
-          el.style.outline = "";
-          el.style.boxShadow = "0 2px 16px rgba(0,0,0,0.05)";
-        }, 2500);
-      } else if (tries > 0) {
-        setTimeout(() => attempt(tries - 1), 300);
-      }
+    if (!highlightId || !allTrips.length) return;
+    const targetId = `trip-${highlightId}`;
+
+    const doHighlight = (el: HTMLElement) => {
+      el.scrollIntoView({ behavior: "smooth", block: "center" });
+      el.style.transition = "box-shadow 0.4s, outline 0.4s";
+      el.style.outline = "2px solid #e8a850";
+      el.style.boxShadow = "0 0 0 4px rgba(232,168,80,0.25)";
+      setTimeout(() => {
+        el.style.outline = "";
+        el.style.boxShadow = "0 2px 16px rgba(0,0,0,0.05)";
+      }, 2500);
     };
-    setTimeout(() => attempt(5), 400);
+
+    // Already rendered (fast connection / cached)
+    const existing = document.getElementById(targetId);
+    if (existing) { doHighlight(existing); return; }
+
+    // Watch for it to appear — disconnect immediately after first match
+    const observer = new MutationObserver(() => {
+      const el = document.getElementById(targetId);
+      if (el) { observer.disconnect(); doHighlight(el); }
+    });
+    observer.observe(document.body, { childList: true, subtree: true });
+    return () => observer.disconnect();
   }, [allTrips]);
 
   const filtered = allTrips.filter(t => {
@@ -355,8 +365,22 @@ export default function TripsHub() {
   });
 
   if (loading) return (
-    <div style={{ padding: "80px 0", textAlign: "center", background: "#f7f3ec" }}>
-      <div style={{ fontSize: 13, color: "rgba(28,18,8,0.35)", letterSpacing: "0.1em", textTransform: "uppercase" }}>Loading trips…</div>
+    <div style={{ maxWidth: 1200, margin: "0 auto", padding: "0 clamp(20px,5%,60px) 80px" }}>
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 20 }} className="rt-grid">
+        {[1,2,3,4,5,6].map(i => (
+          <div key={i} style={{ borderRadius: 20, overflow: "hidden", background: "#fff", border: "1px solid rgba(28,18,8,0.07)" }}>
+            <div style={{ height: 200, background: "linear-gradient(90deg,#ede8e0 25%,#f5f1eb 50%,#ede8e0 75%)", backgroundSize: "200% 100%", animation: "shimmer 1.4s ease infinite" }} />
+            <div style={{ padding: 20 }}>
+              <div style={{ height: 12, width: "60%", background: "#ede8e0", borderRadius: 6, marginBottom: 16 }} />
+              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 8, marginBottom: 16 }}>
+                {[1,2,3,4].map(j => <div key={j} style={{ height: 48, background: "#f5f1eb", borderRadius: 8 }} />)}
+              </div>
+              <div style={{ height: 10, background: "#ede8e0", borderRadius: 6, marginBottom: 8 }} />
+              <div style={{ height: 10, width: "80%", background: "#ede8e0", borderRadius: 6 }} />
+            </div>
+          </div>
+        ))}
+      </div>
     </div>
   );
 
