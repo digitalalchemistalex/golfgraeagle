@@ -387,6 +387,11 @@ body {
 .bl-course-note{font-size:13px;color:#4a5a4a;line-height:1.65;}
 @media(max-width:640px){.bl-course-row{grid-template-columns:1fr;gap:6px;}}
 
+/* ── TESTIMONIALS GRID ─────────────────────────────────────────── */
+.testimonials-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+@media(max-width:900px){.testimonials-grid{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:580px){.testimonials-grid{grid-template-columns:1fr;}}
+
 /* ── LIGHT THEME TOKENS ─────────────────────────────────────────────
    Applied as CSS vars so a single change flips the whole site.
    Replaces hardcoded #0d1a0e (bg) and #f0f8f2 (text) throughout.

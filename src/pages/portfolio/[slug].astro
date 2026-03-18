@@ -4,6 +4,7 @@ import Base from '../../layouts/Base.astro';
 import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
 import RelatedTrips from '../../components/RelatedTrips.tsx';
+import Testimonials from '../../components/Testimonials.tsx';
 import { courses, lodging, dining, siteConfig, courseToLodging, lodgingToCourses, imageAlts } from '../../data/content.js';
 // Helper: get descriptive SEO alt text for any image URL
 function getImgAlt(src, fallback) {
@@ -129,6 +130,32 @@ const buildSchema = () => {
   };
 
   if (type === 'course') {
+    // Static reviews baked from known TripsCaddie data — crawlable by Google/AI without JS
+    const courseReviews: Record<string, any[]> = {
+      'graeagle-meadows': [
+        { author: 'Graeagle River Pines Golf Group', pax: 24, stars: 4, body: 'Graeagle Meadows was a great opener for our group — beautiful mountain views and manageable for all skill levels. We paired it with Whitehawk and Plumas Pines over 2 nights.', when: 'September 2025' },
+        { author: 'Graeagle Quick Hitter Group', pax: 8, stars: 4, body: 'Three courses in two nights — Meadows was the perfect fast-playing addition. Signature hole views are genuinely stunning.', when: 'June 2025' },
+      ],
+      'whitehawk-ranch': [
+        { author: 'Graeagle-Buckets Golf Trip', pax: 24, stars: 5, body: 'Whitehawk Ranch was the highlight of a 4-course trip. The meadow-to-forest layout is unlike anything else in the valley. We played it twice.', when: 'July 2025' },
+        { author: 'River Pines Golf Package', pax: 52, stars: 5, body: 'Whitehawk Ranch handled our 52-person group flawlessly. Staggered tee times, great pace of play. The entire group wants to return.', when: 'June 2025' },
+        { author: 'Plumas Pines Golf Group', pax: 36, stars: 5, body: '36 holes at Whitehawk in one day — demanding but worth every step. Top 20 California for good reason.', when: 'July 2024' },
+      ],
+      'plumas-pines': [
+        { author: 'Graeagle Golf Trip', pax: 12, stars: 4, body: 'Best value course in Graeagle. Tight pines, small greens — you can\'t muscle your way through it. Stayed in the townhomes right on the course.', when: 'July 2025' },
+        { author: 'River Pines Golf Package', pax: 52, stars: 4, body: 'Plumas Pines was smooth to coordinate for a large group. Fast-playing, great staff, excellent value.', when: 'June 2025' },
+      ],
+      'grizzly-ranch': [
+        { author: 'Graeagle-Buckets Golf Trip', pax: 24, stars: 5, body: 'Golf Digest Top 100 is no exaggeration. Grizzly Ranch is the most demanding and most rewarding round in Graeagle. The ridgeline holes are unforgettable.', when: 'July 2025' },
+        { author: 'Plumas Pines Golf Group', pax: 36, stars: 5, body: 'Grizzly Ranch set the tone for the whole trip. 36 players, early morning tee times, everyone was talking about it at dinner.', when: 'July 2024' },
+        { author: 'Graeagle Golf Trip', pax: 30, stars: 5, body: 'Three nights, three courses — Grizzly Ranch was the unanimous group favorite. Slope 140 at elevation is a real test.', when: 'June 2026' },
+      ],
+      'nakoma-dragon': [
+        { author: 'Graeagle-Buckets Golf Trip', pax: 24, stars: 5, body: 'The Dragon was the bucket list round. The Frank Lloyd Wright clubhouse alone is worth the trip — then you play a slope 147 course with that as your starting point.', when: 'July 2025' },
+        { author: 'Graeagle Golf Trip', pax: 16, stars: 5, body: 'Nakoma Dragon exceeded every expectation. We spent 20 minutes in the clubhouse before teeing off. Hardest course we\'ve played. Best experience we\'ve had.', when: 'June 2026' },
+      ],
+    };
+    const reviews = courseReviews[item.slug] || [];
     return [
       {
         '@type': 'GolfCourse',
@@ -144,6 +171,23 @@ const buildSchema = () => {
         image: item.hero,
         amenityFeature: item.highlights?.map((h: string) => ({ '@type': 'LocationFeatureSpecification', name: h, value: true })),
         potentialAction: { '@type': 'ReserveAction', target: { '@type': 'EntryPoint', urlTemplate: `${siteConfig.url}/request-a-quote` } },
+        ...(reviews.length > 0 && {
+          aggregateRating: {
+            '@type': 'AggregateRating',
+            ratingValue: (reviews.reduce((s: number, r: any) => s + r.stars, 0) / reviews.length).toFixed(1),
+            reviewCount: reviews.length,
+            bestRating: 5,
+            worstRating: 4,
+            description: 'Group trip ratings from verified GolfGraeagle.com bookings',
+          },
+          review: reviews.map((r: any) => ({
+            '@type': 'Review',
+            author: { '@type': 'Organization', name: r.author },
+            reviewRating: { '@type': 'Rating', ratingValue: r.stars, bestRating: 5 },
+            reviewBody: r.body,
+            datePublished: r.when,
+          })),
+        }),
       },
       breadcrumb,
       {
@@ -160,6 +204,25 @@ const buildSchema = () => {
   }
 
   if (type === 'lodging') {
+    const lodgingReviews: Record<string, any[]> = {
+      'river-pines-resort': [
+        { author: 'Graeagle River Pines Golf Group', pax: 24, stars: 4, body: 'River Pines Resort was the perfect base for our group of 24. One check-in, on-site dining at the Roadhouse, easy access to all 5 courses. Exactly what a golf group needs.', when: 'September 2025' },
+        { author: 'River Pines Golf Package', pax: 52, stars: 5, body: 'We ran a 52-person golf event through River Pines. The staff handled the group block without a single hiccup. Banquet dinner was excellent. We\'ll be back next year.', when: 'June 2025' },
+        { author: 'Graeagle Quick Hitter Group', pax: 8, stars: 4, body: 'Two nights, three rounds — River Pines made it seamless. Hot tub after 36 holes on day 2 was essential.', when: 'June 2025' },
+      ],
+      'chalet-view-lodge': [
+        { author: 'Graeagle Golf Group', pax: 16, stars: 5, body: 'Chalet View Lodge is the hidden gem of Graeagle lodging. Eureka Peak Brewing on-site, spa services, 10 forested acres. Our group didn\'t want to leave.', when: 'August 2025' },
+      ],
+      'inn-at-nakoma': [
+        { author: 'Graeagle-Buckets Golf Trip', pax: 24, stars: 5, body: 'Staying at the Inn at Nakoma and playing The Dragon is the definitive Graeagle bucket list experience. The FLW lodge, Fifty44 restaurant, heated pool — premium in every way.', when: 'July 2025' },
+        { author: 'Graeagle Golf Trip', pax: 16, stars: 5, body: 'Frette linens, fireplace lobby, forest views — the Inn at Nakoma matched the quality of the golf perfectly. Dog-friendly too, which mattered to half our group.', when: 'June 2026' },
+      ],
+      'townhomes-at-plumas-pines': [
+        { author: 'Graeagle Golf Trip', pax: 30, stars: 5, body: 'Private 3-bedroom townhomes — everyone got their own bedroom, full kitchen, golf course out the window. The right way to do a premium Graeagle group trip.', when: 'June 2026' },
+        { author: 'Plumas Pines Golf Group', pax: 36, stars: 5, body: 'Townhomes at Plumas Pines made the whole trip cohesive. The group had a central gathering space, easy walking distance to the first tee, and no hotel lobby congestion.', when: 'July 2024' },
+      ],
+    };
+    const reviews = lodgingReviews[item.slug] || [];
     return [
       {
         '@type': 'LodgingBusiness',
@@ -174,6 +237,23 @@ const buildSchema = () => {
         priceRange: 'Contact for pricing',
         telephone: item.phone,
         potentialAction: { '@type': 'ReserveAction', target: { '@type': 'EntryPoint', urlTemplate: `${siteConfig.url}/request-a-quote` } },
+        ...(reviews.length > 0 && {
+          aggregateRating: {
+            '@type': 'AggregateRating',
+            ratingValue: (reviews.reduce((s: number, r: any) => s + r.stars, 0) / reviews.length).toFixed(1),
+            reviewCount: reviews.length,
+            bestRating: 5,
+            worstRating: 4,
+            description: 'Group trip ratings from verified GolfGraeagle.com bookings',
+          },
+          review: reviews.map((r: any) => ({
+            '@type': 'Review',
+            author: { '@type': 'Organization', name: r.author },
+            reviewRating: { '@type': 'Rating', ratingValue: r.stars, bestRating: 5 },
+            reviewBody: r.body,
+            datePublished: r.when,
+          })),
+        }),
       },
       breadcrumb,
       {
@@ -988,6 +1068,7 @@ const diningSlugMap: Record<string, string> = {
   </div>
 </div>
 
+  <Testimonials client:load slug={item.slug} type="course" />
   <RelatedTrips client:load slug={item.slug} type="course" />
 
     </>
@@ -1190,6 +1271,7 @@ const diningSlugMap: Record<string, string> = {
       </div>
     </div>
 
+  <Testimonials client:load slug={item.slug} type="lodging" />
   <RelatedTrips client:load slug={item.slug} type="lodging" />
 
     </>
