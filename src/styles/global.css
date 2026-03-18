@@ -425,7 +425,8 @@ body {
   .bl-schedule-item{grid-template-columns:1fr;gap:4px;}
   .bl-sched-time{font-size:11px;font-weight:700;color:#a06c30;text-transform:uppercase;letter-spacing:0.06em;}
   /* Hero: shorter on mobile */
-  .bl-hero{height:56vw;min-height:260px;max-height:360px;}
+  .bl-hero{height:auto;min-height:360px;max-height:none;}
+  .bl-hero-content{padding-top:80px;padding-bottom:32px;}
   /* CTA block: tighter padding */
   .bl-cta{padding:28px 20px;border-radius:14px;margin-top:32px;}
   .bl-cta-links{flex-direction:column;gap:12px;align-items:center;}
