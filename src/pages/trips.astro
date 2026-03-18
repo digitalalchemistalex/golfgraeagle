@@ -159,7 +159,7 @@ const schema = [tripListSchema, breadcrumbSchema, faqSchema];
         <h2 style="font-family:'Playfair Display',serif;font-size:clamp(24px,3.5vw,38px);font-weight:400;color:#1c1208;margin:0 0 12px;line-height:1.2;">
           Show up. Play golf. Go home happy.
         </h2>
-        <p style="font-size:15px;color:rgba(245,240,232,0.65);max-width:560px;line-height:1.7;margin:0;">
+        <p style="font-size:15px;color:rgba(28,18,8,0.55);max-width:560px;line-height:1.7;margin:0;">
           Every trip below is a Graeagle golf package we've built and delivered. Courses played, where they stayed, what they paid.
           Nothing estimated. Use any as your starting point — we'll customise from there.
         </p>
@@ -179,7 +179,7 @@ const schema = [tripListSchema, breadcrumbSchema, faqSchema];
                   {t.vibe || 'Value'}
                 </span>
                 <span style="font-size:18px;font-weight:800;color:#1a7a40;">
-                  ${price?.toLocaleString()}<span style="font-size:11px;font-weight:500;color:rgba(245,240,232,0.55);">/person</span>
+                  ${price?.toLocaleString()}<span style="font-size:11px;font-weight:500;color:rgba(28,18,8,0.4);">/person</span>
                 </span>
               </div>
               <div style="font-size:15px;font-weight:700;color:#1c1208;">{t.groupName}</div>
@@ -192,7 +192,7 @@ const schema = [tripListSchema, breadcrumbSchema, faqSchema];
                 ))}
               </div>
               <div>
-                <div style="font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:rgba(245,240,232,0.45);margin-bottom:5px;">Courses Played</div>
+                <div style="font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:rgba(28,18,8,0.3);margin-bottom:5px;">Courses Played</div>
                 <div style="display:flex;flex-wrap:wrap;gap:4px;">
                   {cleanCourses.map((c: string) => (
                     <span style="font-size:11px;color:#3a4a3e;background:var(--surface);border:1px solid rgba(28,18,8,0.1);border-radius:6px;padding:3px 8px;">{c}</span>
@@ -272,8 +272,7 @@ const schema = [tripListSchema, breadcrumbSchema, faqSchema];
             onmouseover="this.style.boxShadow='0 8px 32px rgba(0,0,0,0.1)';this.style.transform='translateY(-3px)'"
             onmouseout="this.style.boxShadow='0 2px 12px rgba(0,0,0,0.05)';this.style.transform='translateY(0)'">
             <div style="height:160px;overflow:hidden;flex-shrink:0;">
-              <img src={l.img} alt={l.name} loading="lazy" style="width:100%;height:100%;object-fit:cover;transition:transform 0.4s;"
-                onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'"/>
+              <img src={l.img} alt={l.name} loading="lazy" style="width:100%;height:100%;object-fit:cover;"/>
             </div>
             <div style="padding:16px 18px 20px;">
               <div style="font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:#e8a850;margin-bottom:6px;">{l.tag}</div>
@@ -312,8 +311,7 @@ const schema = [tripListSchema, breadcrumbSchema, faqSchema];
             onmouseover="this.style.boxShadow='0 8px 32px rgba(0,0,0,0.1)';this.style.transform='translateY(-3px)'"
             onmouseout="this.style.boxShadow='0 2px 12px rgba(0,0,0,0.05)';this.style.transform='translateY(0)'">
             <div style="height:130px;overflow:hidden;flex-shrink:0;">
-              <img src={d.img} alt={d.name} loading="lazy" style="width:100%;height:100%;object-fit:cover;transition:transform 0.4s;"
-                onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'"/>
+              <img src={d.img} alt={d.name} loading="lazy" style="width:100%;height:100%;object-fit:cover;"/>
             </div>
             <div style="padding:14px 16px 16px;">
               <div style="font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:#e8a850;margin-bottom:5px;">{d.tag}</div>
