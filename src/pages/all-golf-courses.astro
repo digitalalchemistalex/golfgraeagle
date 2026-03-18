@@ -52,7 +52,7 @@ const bestForList = [
 ];
 ---
 <style>
-  .wrap { padding: clamp(100px,12vw,140px) clamp(20px,8%,10%) 80px; max-width: 1200px; margin: 0 auto; }
+  .wrap { padding: clamp(100px,12vw,140px) clamp(16px,5%,80px) 80px; max-width: 1200px; margin: 0 auto; }
   .course-card {
     display: grid;
     grid-template-columns: 220px 1fr;
@@ -91,7 +91,12 @@ const bestForList = [
     gap: 48px;
     margin-bottom: 48px;
   }
-  @media (max-width: 700px) {
+  @media (max-width: 560px) {
+    .agc-region-grid { grid-template-columns: 1fr; }
+    .agc-interlinks-grid { grid-template-columns: 1fr; gap: 32px; }
+    .agc-blog-grid { grid-template-columns: 1fr !important; }
+  }
+  @media (min-width: 561px) and (max-width: 700px) {
     .agc-blog-grid { grid-template-columns: 1fr !important; }
   }
 </style>
