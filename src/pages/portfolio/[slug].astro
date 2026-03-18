@@ -741,6 +741,67 @@ const diningSlugMap: Record<string, string> = {
   }
 
   @media (max-width: 400px) { .photo-grid { grid-template-columns: 1fr; } }
+
+  /* ─── LODGING / DINING BODY GRIDS ─── */
+  .lod-body-grid {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 64px 5%;
+    display: grid;
+    grid-template-columns: 1fr 380px;
+    gap: 60px;
+    align-items: start;
+  }
+  .lod-amenities-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  .din-body-grid {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 64px 5%;
+    display: grid;
+    grid-template-columns: 1fr 340px;
+    gap: 56px;
+    align-items: start;
+  }
+
+  @media (max-width: 860px) {
+    .lod-body-grid,
+    .din-body-grid {
+      grid-template-columns: 1fr;
+      padding: 40px 5%;
+      gap: 40px;
+    }
+    .lod-amenities-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  /* Lodging hero content */
+  .lod-hero-content {
+    position: relative;
+    z-index: 2;
+    padding: 0 10% 64px;
+    max-width: 1400px;
+    width: 100%;
+  }
+  .din-hero-content {
+    position: relative;
+    z-index: 2;
+    padding: 0 10% 56px;
+    max-width: 1400px;
+    width: 100%;
+  }
+  @media (max-width: 860px) {
+    .lod-hero-content {
+      padding: 0 5% 40px;
+    }
+    .din-hero-content {
+      padding: 0 5% 36px;
+    }
+  }
 </style>
 
 <div class="course-body">
@@ -926,7 +987,7 @@ const diningSlugMap: Record<string, string> = {
     <section style="position:relative;height:75vh;min-height:500px;overflow:hidden;display:flex;align-items:flex-end;">
       <img src={item.hero} alt={getImgAlt(item.hero, `${item.name} — ${item.type === "course" ? "golf course" : item.type === "lodge" ? "lodging" : "restaurant"}, Graeagle CA`)} style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" loading="eager" fetchpriority="high"/>
       <div style="position:absolute;inset:0;background:linear-gradient(to top,var(--page-bg) 0%,rgba(20,12,4,0.55) 45%,transparent 80%);"></div>
-      <div style="position:relative;z-index:2;padding:0 10% 64px;max-width:1400px;width:100%;">
+      <div class="lod-hero-content">
         <a href="/lodging/" style="display:inline-flex;align-items:center;gap:6px;font-size:12px;color:rgba(28,18,8,0.35);text-decoration:none;margin-bottom:20px;transition:color 0.2s;" onmouseover="this.style.color='rgba(28,18,8,0.65)'" onmouseout="this.style.color='rgba(28,18,8,0.35)'">← All Lodging</a>
         {item.subtitle && <div style="font-size:11px;color:var(--gold);letter-spacing:0.14em;text-transform:uppercase;margin-bottom:12px;font-weight:700;">{item.subtitle}</div>}
         <h1 style="font-family:'Playfair Display',serif;font-size:clamp(34px,5vw,60px);font-weight:500;color:var(--text-primary);margin:0 0 14px;line-height:1.1;">{item.name}</h1>
@@ -961,7 +1022,7 @@ const diningSlugMap: Record<string, string> = {
     )}
 
     <!-- MAIN CONTENT -->
-    <div style="max-width:1100px;margin:0 auto;padding:64px 5%;display:grid;grid-template-columns:1fr 380px;gap:60px;align-items:start;">
+    <div class="lod-body-grid">
 
       <!-- LEFT: Description + Amenities + Courses -->
       <div>
@@ -972,7 +1033,7 @@ const diningSlugMap: Record<string, string> = {
         {item.highlights && (
           <div style="margin-bottom:52px;">
             <h2 style="font-family:'Playfair Display',serif;font-size:22px;color:var(--text-primary);margin:0 0 24px;font-weight:400;">What's Included</h2>
-            <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+            <div class="lod-amenities-grid">
               {item.highlights.map((h: string) => (
                 <div style="display:flex;align-items:flex-start;gap:10px;padding:14px;background:rgba(28,18,8,0.04);border:1px solid rgba(28,18,8,0.06);border-radius:10px;">
                   <span style="color:var(--gold);flex-shrink:0;font-size:16px;margin-top:1px;">✓</span>
@@ -1128,7 +1189,7 @@ const diningSlugMap: Record<string, string> = {
     <section style="position:relative;height:65vh;min-height:420px;overflow:hidden;display:flex;align-items:flex-end;">
       <img src={item.hero} alt={getImgAlt(item.hero, `${item.name} — ${item.type === "course" ? "golf course" : item.type === "lodge" ? "lodging" : "restaurant"}, Graeagle CA`)} style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" loading="eager" fetchpriority="high"/>
       <div style="position:absolute;inset:0;background:linear-gradient(to top,var(--page-bg) 0%,rgba(237,230,218,0.5) 50%,transparent 85%);"></div>
-      <div style="position:relative;z-index:2;padding:0 10% 56px;max-width:1400px;width:100%;">
+      <div class="din-hero-content">
         <a href="/dining/" style="display:inline-flex;align-items:center;gap:6px;font-size:12px;color:rgba(28,18,8,0.35);text-decoration:none;margin-bottom:20px;transition:color 0.2s;" onmouseover="this.style.color='rgba(28,18,8,0.65)'" onmouseout="this.style.color='rgba(28,18,8,0.35)'">← All Dining</a>
         {item.cuisine && <div style="font-size:11px;color:var(--gold);letter-spacing:0.14em;text-transform:uppercase;margin-bottom:12px;font-weight:700;">{item.cuisine}</div>}
         <h1 style="font-family:'Playfair Display',serif;font-size:clamp(30px,5vw,56px);font-weight:500;color:var(--text-primary);margin:0 0 12px;line-height:1.1;">{item.name}</h1>
@@ -1141,7 +1202,7 @@ const diningSlugMap: Record<string, string> = {
     </section>
 
     <!-- MAIN CONTENT: 2-col layout -->
-    <div style="max-width:1100px;margin:0 auto;padding:64px 5%;display:grid;grid-template-columns:1fr 340px;gap:56px;align-items:start;">
+    <div class="din-body-grid">
 
       <!-- LEFT -->
       <div>
