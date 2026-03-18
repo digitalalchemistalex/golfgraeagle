@@ -436,7 +436,26 @@ section.hero-section,
   color: inherit;
 }
 
-/* ── DARK SECTION TOKENS ────────────────────────────────────────────
+/* ── GREEN GLOW CTA — used on all Request a Quote buttons site-wide ── */
+.btn-green-glow {
+  display: inline-block;
+  background: rgba(20,40,20,0.85);
+  color: #a8ffb8;
+  font-weight: 700;
+  text-decoration: none;
+  border-radius: 100px;
+  border: 1.5px solid rgba(100,255,140,0.55);
+  box-shadow: 0 0 12px 2px rgba(80,255,120,0.3), 0 0 28px 6px rgba(60,220,100,0.15);
+  transition: box-shadow 0.3s ease, transform 0.25s ease, background 0.25s;
+  backdrop-filter: blur(8px);
+}
+.btn-green-glow:hover {
+  background: rgba(25,55,25,0.95);
+  border-color: rgba(120,255,160,0.85);
+  box-shadow: 0 0 18px 5px rgba(80,255,120,0.55), 0 0 48px 12px rgba(60,220,100,0.3);
+  transform: translateY(-2px);
+  color: #c8ffd8;
+}
    Apply class="dark-section" to any section with a dark background.
    Children use --ds-* vars. Never use --text-primary in dark sections.
    ─────────────────────────────────────────────────────────────────── */

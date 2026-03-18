@@ -304,7 +304,7 @@ const diningSlugMap: Record<string, string> = {
       <p class="ch-tagline page-intro">{item.tagline}</p>
 
       <div class="ch-ctas">
-        <a href={`/request-a-quote?utm_source=golfgraeagle&utm_medium=internal&utm_campaign=cta&utm_content=${item.slug}-hero`} class="ch-btn-primary">Book a Package →</a>
+        <a href={`/request-a-quote?utm_source=golfgraeagle&utm_medium=internal&utm_campaign=cta&utm_content=${item.slug}-hero`} class="btn-green-glow ch-btn-primary">Book a Package →</a>
         {item.website && (
           <a href={item.website} class="ch-btn-ghost" target="_blank" rel="noopener">Course Website ↗</a>
         )}
@@ -587,17 +587,12 @@ const diningSlugMap: Record<string, string> = {
   .ch-btn-primary {
     display: inline-flex;
     align-items: center;
-    background: var(--surface-3);
-    color: #090f09;
-    font-size: 12px;
+    font-size: 13px;
     font-weight: 700;
     padding: 13px 24px;
-    border-radius: 100px;
-    text-decoration: none;
     letter-spacing: 0.01em;
-    transition: background 0.2s, transform 0.2s;
   }
-  .ch-btn-primary:hover { background: #fff; transform: translateY(-1px); }
+  .ch-btn-primary:hover { }
 
   .ch-btn-ghost {
     display: inline-flex;
@@ -889,7 +884,7 @@ const diningSlugMap: Record<string, string> = {
             ))}
           </div>
 
-          <a href={`/request-a-quote?utm_source=golfgraeagle&utm_medium=internal&utm_campaign=cta&utm_content=${item.slug}-sidebar`} style="display:block;text-align:center;background:#b8820a;color:#ffffff;font-size:15px;font-weight:700;padding:15px;border-radius:100px;text-decoration:none;transition:all 0.25s;margin-bottom:10px;box-shadow:0 4px 16px rgba(184,130,10,0.3);"
+          <a href={`/request-a-quote?utm_source=golfgraeagle&utm_medium=internal&utm_campaign=cta&utm_content=${item.slug}-sidebar`} style="display:block;text-align:center;font-size:15px;padding:15px;margin-bottom:10px;"
           onmouseover="this.style.background='#8a6008';this.style.transform='translateY(-1px)'"
           onmouseout="this.style.background='#b8820a';this.style.transform='translateY(0)'">
             Request a Free Quote →
@@ -1296,7 +1291,7 @@ const diningSlugMap: Record<string, string> = {
       <div>
         <h1 style="font-family:'Playfair Display',serif;font-size:40px;color:var(--text-primary);margin:0 0 16px;">Graeagle Golf</h1>
         <p style="font-size:16px;color:rgba(28,18,8,0.45);margin:0 0 28px;">This page is being updated with fresh content.</p>
-        <a href="/request-a-quote/?utm_source=golfgraeagle&utm_medium=internal&utm_campaign=cta&utm_content=404-fallback" style="display:inline-block;background:var(--gold-light);color:#0d1a0e;font-weight:700;padding:14px 36px;border-radius:100px;text-decoration:none;">Plan Your Trip →</a>
+        <a href="/request-a-quote/?utm_source=golfgraeagle&utm_medium=internal&utm_campaign=cta&utm_content=404-fallback" class="btn-green-glow" style="display:inline-block;background:var(--gold-light);color:#0d1a0e;font-weight:700;padding:14px 36px;border-radius:100px;text-decoration:none;">Plan Your Trip →</a>
       </div>
     </section>
   )}
