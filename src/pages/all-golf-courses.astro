@@ -77,6 +77,27 @@ const bestForList = [
     .course-card { grid-template-columns: 1fr; }
     .course-card-img { width: 100%; height: 200px; }
   }
+
+  .agc-region-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+  .agc-interlinks-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    margin-bottom: 48px;
+  }
+  @media (max-width: 600px) {
+    .agc-region-grid {
+      grid-template-columns: 1fr;
+    }
+    .agc-interlinks-grid {
+      grid-template-columns: 1fr;
+      gap: 32px;
+    }
+  }
 </style>
 <Base
   canonical="https://golfgraeagle.com/all-golf-courses/"
@@ -188,7 +209,7 @@ const bestForList = [
     <!-- Why Graeagle over other CA regions -->
     <div style="background:rgba(240,248,242,0.02);border:1px solid rgba(240,248,242,0.07);border-radius:20px;padding:40px 44px;margin-bottom:80px;">
       <h2 style="font-family:'Playfair Display',serif;font-size:26px;color:#f0f8f2;margin:0 0 24px;font-weight:400;">Why Graeagle vs Other California Golf Regions</h2>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;">
+      <div class="agc-region-grid">
         {[
           ['Monterey / Pebble Beach', 'Elite but expensive — green fees 3–5× higher than Graeagle for similar quality design.'],
           ['Palm Springs', 'Summer heat eliminates morning rounds. Graeagle stays 65–75°F through July and August.'],
@@ -205,7 +226,7 @@ const bestForList = [
 
     <!-- Interlinks: lodging + dining -->
     <div style="border-top:1px solid rgba(240,248,242,0.07);padding:48px 0 0;">
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:48px;margin-bottom:48px;">
+      <div class="agc-interlinks-grid">
         <div>
           <h2 style="font-family:'Playfair Display',serif;font-size:20px;font-weight:400;color:#f0f8f2;margin:0 0 16px;">Where to Stay Near the Courses</h2>
           {[
