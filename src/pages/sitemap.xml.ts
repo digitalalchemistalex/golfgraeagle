@@ -68,6 +68,7 @@ ${url('/dining','0.8','monthly')}
 ${url('/about-us','0.7','monthly')}
 ${url('/blog','0.7','weekly')}
 ${url('/faq','0.7','monthly')}
+${url('/trips','0.8','weekly')}
 ${url('/townhomes','0.6','monthly')}
 
 <!-- Courses (${courseUrls.length} — auto from content.js) -->
