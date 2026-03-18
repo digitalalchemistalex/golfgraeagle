@@ -799,7 +799,7 @@ const diningSlugMap: Record<string, string> = {
       {item.facilities?.length > 0 && (
         <div class="reveal" style="margin-bottom:56px;">
           <h2 style="font-family:'Playfair Display',serif;font-size:24px;color:var(--text-primary);margin:0 0 20px;">On-Site Facilities</h2>
-          <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px;">
+          <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(220px,45vw),1fr));gap:10px;">
             {item.facilities.map(f => (
               <div style="display:flex;align-items:center;gap:12px;padding:14px 16px;background:rgba(28,18,8,0.04);border:1px solid rgba(28,18,8,0.06);border-radius:10px;">
                 <span style="color:var(--gold);font-size:14px;flex-shrink:0;">✦</span>
@@ -945,7 +945,8 @@ const diningSlugMap: Record<string, string> = {
         <div style="padding:20px 5% 12px;display:flex;align-items:center;justify-content:space-between;">
           <span style="font-size:11px;color:rgba(28,18,8,0.3);text-transform:uppercase;letter-spacing:0.12em;">Photo Gallery — {item.images.length} photos · click to expand</span>
         </div>
-        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:3px;height:280px;overflow:hidden;">
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(220px,45vw),1fr));gap:3px;height:280px;overflow:hidden;"
+          class="photo-strip-grid">
         {item.images.slice(0, 5).map((img: string, i: number) => (
           <button class="gallery-btn" data-src={img} data-idx={i} data-total={Math.min(item.images.length,5)}
             style="border:none;padding:0;background:none;cursor:zoom-in;position:relative;display:block;overflow:hidden;">
