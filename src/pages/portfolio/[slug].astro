@@ -249,7 +249,7 @@ const diningSlugMap: Record<string, string> = {
   'longboards':           'longboards-bar-and-grill',
 };
 ---
-<Base title={pageTitle} description={pageDesc} schema={pageSchema} canonical={pageUrl} ogImage={item?.hero || undefined} preloadImage={item?.hero || undefined}>
+<Base title={pageTitle} description={pageDesc} schema={pageSchema} canonical={pageUrl} ogImage={item?.hero || undefined} preloadImage={item?.hero || undefined} bodyClass="light-page">
   <Nav />
 
   {item && type === 'course' && (

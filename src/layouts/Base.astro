@@ -11,6 +11,7 @@ const {
   schema = null,
   noindex = false,
   preloadImage = null,
+  bodyClass = '',
 } = Astro.props;
 
 const rawCanonical = canonical || new URL(Astro.url.pathname, siteConfig.url).href;
@@ -127,7 +128,7 @@ const baseSchema = {
   <!-- Microsoft Clarity -->
   <script is:inline>(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y)})(window,document,"clarity","script","vwyyopty3f");</script>
 </head>
-<body style="background:var(--page-bg,#f8f4ee); color:var(--text-primary,#1c1208); font-family:'Inter',system-ui,sans-serif; -webkit-font-smoothing:antialiased;">
+<body class={bodyClass} style="font-family:'Inter',system-ui,sans-serif;-webkit-font-smoothing:antialiased;">
   <!-- Google Tag Manager (noscript) -->
   <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NTBX7XK5" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <slot />

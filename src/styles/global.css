@@ -52,8 +52,8 @@
 html { scroll-behavior: smooth; }
 
 body {
-  background-color: var(--page-bg, #f8f4ee);
-  color: var(--text-primary, #1c1208);
+  background-color: var(--page-bg, #0d1a0e);
+  color: var(--text-primary, #f0f8f2);
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
 }
@@ -367,35 +367,61 @@ body {
    Replaces hardcoded #0d1a0e (bg) and #f0f8f2 (text) throughout.
    ─────────────────────────────────────────────────────────────────── */
 :root {
-  /* Backgrounds */
-  --page-bg:       #f8f4ee;   /* warm parchment — the hero shift */
-  --surface:       #ffffff;   /* cards, modals */
-  --surface-2:     #f3ede4;   /* subtle card tint */
-  --surface-3:     #ede6da;   /* deeper surface for borders */
+  /* Default: DARK theme (most pages) */
+  --page-bg:       #0d1a0e;
+  --surface:       rgba(255,255,255,0.04);
+  --surface-2:     rgba(255,255,255,0.06);
+  --surface-3:     rgba(255,255,255,0.08);
 
-  /* Text */
-  --text-primary:  #1c1208;   /* near black, warm */
-  --text-secondary:#4a3f2f;   /* warm brown-grey */
-  --text-muted:    #7a6a56;   /* muted warm */
-  --text-faint:    #b09e88;   /* very faint */
+  --text-primary:  #f0f8f2;
+  --text-secondary:rgba(240,248,242,0.65);
+  --text-muted:    rgba(240,248,242,0.40);
+  --text-faint:    rgba(240,248,242,0.25);
 
-  /* Gold accent — slightly deeper for light bg legibility */
+  --gold:          #e8a850;
+  --gold-light:    #f2c878;
+  --gold-hover:    #c88840;
+  --gold-bg:       rgba(232,168,80,0.08);
+  --gold-border:   rgba(232,168,80,0.2);
+
+  --border:        rgba(240,248,242,0.07);
+  --border-strong: rgba(240,248,242,0.14);
+
+  --nav-bg:        rgba(13,26,14,0.95);
+  --nav-text:      #f0f8f2;
+
+  --hero-overlay:  rgba(9,15,9,0.55);
+}
+
+/* ── LIGHT PAGE OVERRIDE ────────────────────────────────────────────
+   Apply class="light-page" to <body> on pages designed light:
+   index.astro, portfolio/[slug].astro
+   ─────────────────────────────────────────────────────────────────── */
+.light-page {
+  --page-bg:       #f8f4ee;
+  --surface:       #ffffff;
+  --surface-2:     #f3ede4;
+  --surface-3:     #ede6da;
+
+  --text-primary:  #1c1208;
+  --text-secondary:#4a3f2f;
+  --text-muted:    #7a6a56;
+  --text-faint:    #b09e88;
+
   --gold:          #b8820a;
   --gold-light:    #e8a850;
   --gold-hover:    #8a6008;
   --gold-bg:       rgba(184,130,10,0.08);
   --gold-border:   rgba(184,130,10,0.2);
 
-  /* Borders */
   --border:        rgba(28,18,8,0.1);
   --border-strong: rgba(28,18,8,0.18);
 
-  /* Nav */
   --nav-bg:        rgba(249,246,238,0.96);
   --nav-text:      #2a1c0e;
 
-  /* Hero overlay stays dark over images */
-  --hero-overlay:  rgba(20,12,4,0.55);
+  background-color: #f8f4ee;
+  color: #1c1208;
 }
 
 /* Hero sections always have dark image backgrounds — text must stay white */
