@@ -339,11 +339,11 @@ export const courses = [
       'Designed by Robin Nelson — creator of Dunes at Mauna Lani',
     ],
     // Official photos from nakomaresort.com
-    hero: 'https://nakomaresort.com/wp-content/uploads/the-dragon-golf-at-nakoma-feather-river-1639x1080.jpg',
+    hero: '/wp-images/nakoma-dragon-feather-river.jpg',
     images: [
-      'https://nakomaresort.com/wp-content/uploads/draong-golf-at-nakoma-18-hole-1620x1080.jpg',
-      'https://nakomaresort.com/wp-content/uploads/outdoor-dining-frank-lloyd-wright-lodge-lawn.jpg',
-      'https://nakomaresort.com/wp-content/uploads/altitude-recreation-center-dusk.jpg',
+      '/wp-images/nakoma-dragon-18-hole.jpg',
+      '/wp-images/nakoma-flw-outdoor-dining.jpg',
+      '/wp-images/nakoma-recreation-dusk.jpg',
     ],
     description: 'Nakoma Resort\'s Dragon course, designed by Robin Nelson (creator of the famous Dunes at Mauna Lani) and opened in 1998, debuted as one of Golf World\'s America\'s Top 75 Courses. The course plays 7,015 yards with a fearsome slope of 147 — the most challenging rating in the valley. The Frank Lloyd Wright-designed clubhouse is the only golf clubhouse in the world built to his design.',
     bestFor: 'Architecture enthusiasts, bucket-list golfers, those seeking the most unique experience in Northern California',
