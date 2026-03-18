@@ -224,26 +224,78 @@ import { courses } from '../data/content.js';
 
 <!-- Mobile menu -->
 <div id="mobile-menu">
-  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:36px;">
-    <img src="/logo.png" alt="Golf Graeagle" style="height:40px;width:auto;"
+  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:28px;">
+    <img src="/logo.png" alt="Golf Graeagle" style="height:38px;width:auto;"
       onerror="this.style.display='none';this.nextElementSibling.style.display='block'"/>
     <span style="display:none;font-family:'Playfair Display',serif;font-size:18px;color:var(--nav-text);">Golf <span style="color:#a06c30;">Graeagle</span></span>
     <button onclick="document.getElementById('mobile-menu').classList.remove('open')" style="background:none;border:none;color:var(--nav-text);font-size:28px;cursor:pointer;line-height:1;">×</button>
   </div>
-  <div style="display:flex;flex-direction:column;gap:4px;">
-    {[
-      {label:'Home',            href:'/'},
-      {label:'About',           href:'/about-us/'},
-      {label:'Courses',         href:'/all-golf-courses/'},
-      {label:'Lodging',         href:'/lodging/'},
-      {label:'Dining',          href:'/dining/'},
-      {label:'FAQ',             href:'/faq/'},
-      {label:'Blog',            href:'/blog/'},
-    ].map(l=>(
-      <a href={l.href} style="font-size:20px;color:#3a4a3e;text-decoration:none;padding:13px 0;border-bottom:1px solid rgba(168,140,90,0.12);transition:color 0.2s;font-weight:500;" onmouseover="this.style.color='#a06c30'" onmouseout="this.style.color='#3a4a3e'">{l.label}</a>
-    ))}
-    <a href="/request-a-quote/" style="margin-top:24px;background:var(--nav-text);color:#f5f0e8;font-size:16px;font-weight:700;padding:17px;border-radius:14px;text-decoration:none;text-align:center;">Plan My Trip →</a>
+
+  <!-- 2-column grid -->
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px 16px;margin-bottom:28px;">
+
+    <!-- Col 1: Golf Courses -->
+    <div>
+      <p style="font-size:10px;color:#a06c30;text-transform:uppercase;letter-spacing:0.12em;font-weight:700;margin:0 0 12px;">Golf Courses</p>
+      {[
+        ['Graeagle Meadows','/portfolio/graeagle-meadows-golf-packages/'],
+        ['Whitehawk Ranch', '/portfolio/whitehawk-ranch-golf-packages/'],
+        ['Plumas Pines',    '/portfolio/plumas-pines-golf-packages/'],
+        ['Grizzly Ranch',  '/portfolio/grizzly-ranch-golf-packages/'],
+        ['Nakoma — Dragon','/portfolio/nakoma-dragon-golf-packages/'],
+      ].map(([l,h])=>(
+        <a href={h} style="display:block;font-size:14px;color:#3a4a3e;text-decoration:none;padding:7px 0;border-bottom:1px solid rgba(168,140,90,0.1);font-weight:500;">{l}</a>
+      ))}
+      <a href="/all-golf-courses/" style="display:block;font-size:12px;color:#a06c30;text-decoration:none;padding:8px 0;font-weight:600;">Compare all →</a>
+    </div>
+
+    <!-- Col 2: Plan Your Trip -->
+    <div>
+      <p style="font-size:10px;color:#a06c30;text-transform:uppercase;letter-spacing:0.12em;font-weight:700;margin:0 0 12px;">Plan Your Trip</p>
+      {[
+        ['Lodging',         '/lodging/'],
+        ['Hotels & Resorts','/lodging/'],
+        ['Townhomes',       '/lodging/'],
+        ['Dining',          '/dining/'],
+        ['FAQ',             '/faq/'],
+        ['Blog',            '/blog/'],
+        ['About',           '/about-us/'],
+      ].map(([l,h])=>(
+        <a href={h} style="display:block;font-size:14px;color:#3a4a3e;text-decoration:none;padding:7px 0;border-bottom:1px solid rgba(168,140,90,0.1);font-weight:500;">{l}</a>
+      ))}
+    </div>
+
+    <!-- Col 3: Dining -->
+    <div>
+      <p style="font-size:10px;color:#a06c30;text-transform:uppercase;letter-spacing:0.12em;font-weight:700;margin:0 0 12px;">Dining</p>
+      {[
+        ['Grizzly Grill',      '/portfolio/grizzly-grill/'],
+        ['Iron Door',          '/portfolio/iron-door-restaurant/'],
+        ['Sardine Lake Resort', '/portfolio/sardine-lake-resort/'],
+        ['Eureka Peak Brewing', '/portfolio/eureka-peak-brewing-co/'],
+        ['The Brewing Lair',    '/portfolio/the-brewing-lair/'],
+        ['Roadhouse',           '/portfolio/roadhouse-at-river-pines/'],
+      ].map(([l,h])=>(
+        <a href={h} style="display:block;font-size:14px;color:#3a4a3e;text-decoration:none;padding:7px 0;border-bottom:1px solid rgba(168,140,90,0.1);font-weight:500;">{l}</a>
+      ))}
+    </div>
+
+    <!-- Col 4: Lodging -->
+    <div>
+      <p style="font-size:10px;color:#a06c30;text-transform:uppercase;letter-spacing:0.12em;font-weight:700;margin:0 0 12px;">Where to Stay</p>
+      {[
+        ['River Pines Resort',      '/portfolio/river-pines-resort-graeagle-ca/'],
+        ['Chalet View Lodge',        '/portfolio/chalet-view-lodge-graeagle-ca/'],
+        ['Inn at Nakoma',            '/portfolio/the-inn-at-nakoma-clio-ca/'],
+        ['Townhomes at Plumas Pines','/portfolio/the-townhomes-at-plumas-pines/'],
+      ].map(([l,h])=>(
+        <a href={h} style="display:block;font-size:14px;color:#3a4a3e;text-decoration:none;padding:7px 0;border-bottom:1px solid rgba(168,140,90,0.1);font-weight:500;">{l}</a>
+      ))}
+    </div>
+
   </div>
+
+  <a href="/request-a-quote/" style="display:block;background:#1a2e1a;color:#f5f0e8;font-size:16px;font-weight:700;padding:17px;border-radius:14px;text-decoration:none;text-align:center;">Plan My Trip →</a>
 </div>
 
 <script>
