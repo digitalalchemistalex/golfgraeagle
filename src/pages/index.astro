@@ -280,7 +280,7 @@ const lodgingMeta = {'townhomes-at-plumas-pines':{badge:'Best for Large Groups',
           'chalet-view-lodge':         { badge:'Best Amenities',        detail:'Spa · Brewery on-site · 9-hole exec course' },
           'inn-at-nakoma':             { badge:'Most Unique',           detail:'Frank Lloyd Wright lodge · Walk to The Dragon' },
         };
-        return lodging.map((l: any, i: number) => {
+        return lodging.map((l, i) => {
           const meta = lodgingMeta[l.slug] || { badge: l.subtitle, detail: '' };
           return (
             <a href={`/portfolio/${l.slug}/`} class={`reveal delay-${i*75} lodging-equal-card`} style="text-decoration:none;display:block;">
