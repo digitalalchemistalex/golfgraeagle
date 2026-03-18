@@ -367,10 +367,10 @@ export default function RelatedTrips({ slug, type, showAll = false, max = 6 }: {
   const isCarousel = trips.length > 3;
 
   return (
-    <section style={{ padding: "64px 0", background: "var(--page-bg, #f0ece3)", overflow: "hidden" }}>
-      <div style={{ maxWidth: 1200, margin: "0 auto", padding: "0 clamp(20px,5%,60px)" }}>
-        {/* Header */}
-        <div style={{ textAlign: "center", marginBottom: 40 }}>
+    <section style={{ padding: "64px 0", background: "var(--page-bg, #f0ece3)" }}>
+      {/* Header */}
+      <div style={{ maxWidth: 1200, margin: "0 auto", padding: "0 clamp(20px,5%,60px)", marginBottom: 40 }}>
+        <div style={{ textAlign: "center" }}>
           <div style={{ fontSize: 11, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.14em", color: "#e8a850", marginBottom: 10 }}>
             {showAll || type === "dining" ? "Real Graeagle Golf Trips" : `Real Trips Featuring This ${type === "course" ? "Course" : "Property"}`}
           </div>
@@ -384,45 +384,47 @@ export default function RelatedTrips({ slug, type, showAll = false, max = 6 }: {
             Real itineraries from past groups — courses played, where they stayed, day-by-day logistics, and pricing. Use any trip as a starting point for yours.
           </p>
         </div>
+      </div>
 
-        {/* Grid (≤3) or Carousel (>3) */}
-        {isCarousel ? (
-          <div style={{
-            display: "flex",
-            gap: 20,
-            overflowX: "auto",
-            scrollSnapType: "x mandatory",
-            WebkitOverflowScrolling: "touch",
-            paddingBottom: 12,
-            scrollbarWidth: "none",
-            msOverflowStyle: "none",
-          }}
-            className="rt-carousel"
-          >
-            {trips.map((trip, i) => (
-              <div key={trip.id || i} style={{
-                flex: "0 0 85vw",
-                maxWidth: "340px",
-                minWidth: "260px",
-                scrollSnapAlign: "start",
-              }}>
-                <TripCard trip={trip} />
-              </div>
-            ))}
-          </div>
-        ) : (
-          <div className="rt-grid" style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(3, 1fr)",
-            gap: 20,
-          }}>
+      {/* Grid (≤3) or Carousel (>3) */}
+      {isCarousel ? (
+        <div style={{
+          display: "flex",
+          gap: 20,
+          overflowX: "auto",
+          scrollSnapType: "x mandatory",
+          WebkitOverflowScrolling: "touch",
+          paddingLeft: "clamp(20px,5%,60px)",
+          paddingRight: "clamp(20px,5%,60px)",
+          paddingBottom: 12,
+          scrollbarWidth: "none",
+          msOverflowStyle: "none",
+        }}
+          className="rt-carousel"
+        >
+          {trips.map((trip, i) => (
+            <div key={trip.id || i} style={{
+              flex: "0 0 85vw",
+              maxWidth: "340px",
+              minWidth: "260px",
+              scrollSnapAlign: "start",
+            }}>
+              <TripCard trip={trip} />
+            </div>
+          ))}
+        </div>
+      ) : (
+        <div style={{ maxWidth: 1200, margin: "0 auto", padding: "0 clamp(20px,5%,60px)" }}>
+          <div className="rt-grid" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 20 }}>
             {trips.map((trip, i) => (
               <TripCard key={trip.id || i} trip={trip} />
             ))}
           </div>
-        )}
+        </div>
+      )}
 
-        {/* Footer CTA */}
+      {/* Footer CTA */}
+      <div style={{ maxWidth: 1200, margin: "0 auto", padding: "0 clamp(20px,5%,60px)" }}>
         <div style={{ textAlign: "center", marginTop: 40 }}>
           <a
             href={CADDIE_URL} target="_blank" rel="noopener noreferrer"
