@@ -217,7 +217,7 @@ body {
 
 /* Hero */
 .bl-hero{position:relative;height:60vh;min-height:420px;overflow:hidden;display:flex;align-items:flex-end;background-size:cover;background-position:center;}
-.bl-hero-fade{position:absolute;inset:0;background:linear-gradient(to top,rgba(5,12,5,0.92) 0%,rgba(5,12,5,0.45) 50%,rgba(5,12,5,0.2) 100%);}
+.bl-hero-fade{position:absolute;inset:0;background:linear-gradient(to top,rgba(5,12,5,0.72) 0%,rgba(5,12,5,0.25) 45%,rgba(5,12,5,0.05) 100%);}
 .bl-hero-content{position:relative;z-index:2;max-width:860px;padding:0 clamp(20px,5vw,60px);padding-bottom:48px;}
 .bl-breadcrumb{font-size:12px;color:rgba(248,250,248,0.45);margin-bottom:16px;}
 .bl-breadcrumb a{color:rgba(248,250,248,0.45);text-decoration:none;}
