@@ -314,30 +314,8 @@ const diningSlugMap: Record<string, string> = {
       </div>
     </div>
 
-    <!-- Right: stat card -->
-    <div class="ch-right">
-      <div class="ch-stat-card">
-        <div class="ch-stat-heading">Quick Stats</div>
-        {[
-          ['Par', `${item.par}`],
-          ['Yards', item.yards.toLocaleString()],
-          ['Slope', `${item.slope}`],
-          ['Rating', `${item.rating}`],
-        ].map(([k, v]) => (
-          <div class="ch-stat-row">
-            <span class="ch-stat-label">{k}</span>
-            <span class="ch-stat-val">{v}</span>
-          </div>
-        ))}
-        <div class="ch-stat-designer">
-          <span class="ch-stat-label">Designer</span>
-          <div>
-            <div class="ch-stat-designer-name">{item.designer}</div>
-            <div class="ch-stat-year">Est. {item.year}</div>
-          </div>
-        </div>
-      </div>
-    </div>
+    <!-- Right: removed (stats shown in body section below) -->
+    <div class="ch-right" style="display:none;"></div>
 
   </div>
 
@@ -516,7 +494,7 @@ const diningSlugMap: Record<string, string> = {
     position: relative;
     z-index: 2;
     display: grid;
-    grid-template-columns: 1fr 200px;
+    grid-template-columns: 1fr;
     gap: clamp(20px,3vw,40px);
     align-items: end;
     padding: clamp(24px,5vw,56px) clamp(20px,4vw,52px);
@@ -577,7 +555,7 @@ const diningSlugMap: Record<string, string> = {
     color: rgba(255,255,255,0.65);
     line-height: 1.6;
     margin: 0 0 24px;
-    max-width: 520px;
+    max-width: 680px;
   }
 
   .ch-ctas {
