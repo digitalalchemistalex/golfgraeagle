@@ -288,7 +288,7 @@ const homeFaqSchema = {
 <!-- ══════ REAL TRIPS ══════ -->
 <section id="hp-trips" class="dark-section" style="background:#0f1a0f;padding:clamp(60px,10vw,100px) clamp(24px,6vw,48px);">
   <div style="max-width:1200px;margin:0 auto;">
-    <div class="reveal section-header" style="margin-bottom:48px;text-align:center;">
+    <div class="reveal" style="margin-bottom:48px;text-align:center;">
       <p style="font-size:11px;color:var(--gold);letter-spacing:0.16em;text-transform:uppercase;margin:0 0 12px;">Real Packages · Actual Groups</p>
       <h2 style="font-family:'Playfair Display',serif;font-size:clamp(28px,4vw,52px);font-weight:500;color:#f0f8f2;margin:0 0 16px;line-height:1.1;">Real trips. Real groups. Real prices.</h2>
       <p style="font-size:16px;color:rgba(240,248,242,0.55);max-width:580px;margin:0 auto;line-height:1.7;">Not stock photos. These are actual packages we built — pulled directly from our trip archive.</p>
@@ -1023,7 +1023,25 @@ const homeFaqSchema = {
 <style>
   .blog-four-grid { grid-template-columns: repeat(4,1fr) !important; }
   @media (max-width: 900px) { .blog-four-grid { grid-template-columns: repeat(2,1fr) !important; } }
-  @media (max-width: 500px) { .blog-four-grid { grid-template-columns: 1fr !important; } }
+  @media (max-width: 640px) {
+    .blog-four-grid {
+      display: flex !important;
+      flex-wrap: nowrap !important;
+      overflow-x: auto !important;
+      scroll-snap-type: x mandatory !important;
+      -webkit-overflow-scrolling: touch !important;
+      gap: 14px !important;
+      padding-bottom: 12px !important;
+      /* hide scrollbar */
+      scrollbar-width: none !important;
+    }
+    .blog-four-grid::-webkit-scrollbar { display: none; }
+    .blog-four-grid > a {
+      flex: 0 0 80vw !important;
+      min-width: 80vw !important;
+      scroll-snap-align: start !important;
+    }
+  }
   #hp-trips-grid { grid-template-columns: repeat(3,1fr); }
   @media (max-width: 860px) { #hp-trips-grid { grid-template-columns: 1fr !important; } }
 
