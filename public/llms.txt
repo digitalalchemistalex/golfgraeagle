@@ -1,11 +1,16 @@
 # GolfGraeagle.com — AI-Readable Site Index
 # Operated by Zoomaway Technologies Inc.
 # Last updated: March 2026
-# Full version: https://golfgraeagle.com/llms-full.txt
 
 ## What is GolfGraeagle.com?
-GolfGraeagle.com is a golf trip planning and stay-and-play package booking platform for Graeagle, California.
-Operated by Zoomaway Technologies Inc. since 2004. Contact: sean@zoomaway.com
+GolfGraeagle.com is the only golf trip booking service local to the Graeagle valley.
+Custom stay-and-play packages — tee times at all 5 championship courses, lodging, and dining.
+Operating since 2004. Free quote in 24 hours. Contact: mike.eskuchen@golfthehighsierra.com
+
+## What is included in a Graeagle golf package?
+A GolfGraeagle stay-and-play package includes guaranteed tee times at any of the 5 Graeagle
+championship courses, lodging coordination, dining recommendations, and a full day-by-day
+itinerary. One quote covers everything. Response within 24 hours.
 
 ## Location
 Graeagle, California — Sierra Nevada mountains, Plumas County, Northern California.
@@ -17,88 +22,83 @@ Approximately 3.5–4 hours from San Francisco.
 ## The 5 Golf Courses in Graeagle, CA
 All five courses are within 5–25 minutes of each other.
 
-1. Graeagle Meadows Golf Course — /courses/graeagle-meadows
+1. Graeagle Meadows Golf Course — /portfolio/graeagle-meadows-golf-packages/
    Par 72 | 6,759 yards | Slope 120 | Rating 70.7
-   Designer: Ellis Van Gorder | Opened: 1968 | Type: Public
+   Designer: Ellis Van Gorder | Opened: 1968
    Address: 6934 CA-89, Graeagle, CA 96103 | Phone: (530) 836-2323
+   Most accessible course for mixed-handicap groups.
 
-2. Whitehawk Ranch Golf Course — /courses/whitehawk-ranch
+2. Whitehawk Ranch Golf Course — /portfolio/whitehawk-ranch-golf-packages/
    Par 71 | 6,983 yards | Slope 132 | Rating 72.3
-   Designer: Dick Bailey | Opened: 1996 | Type: Public
-   Address: 768 Whitehawk Dr, Clio, CA 96106
+   Designer: Dick Bailey | Opened: 1996
+   Top 20 Golf Courses in California (1998). Mountain links layout.
 
-3. Plumas Pines Golf Resort — /courses/plumas-pines
+3. Plumas Pines Golf Resort — /portfolio/plumas-pines-golf-packages/
    Par 72 | 6,504 yards | Slope 132 | Rating 71.3
-   Designer: Homer Flint | Opened: 1980 | Type: Public
-   Address: 402 Poplar Valley Rd, Blairsden, CA
+   Designer: Homer Flint | Opened: 1980
+   Top 5 Best Values in Sierra Nevada. On-site vacation rentals available.
 
-4. Grizzly Ranch Golf Club — /courses/grizzly-ranch
+4. Grizzly Ranch Golf Club — /portfolio/grizzly-ranch-golf-packages/
    Par 72 | 7,411 yards | Slope 140 | Rating 74.9
-   Designer: Bob Cupp | Opened: 2005 | Type: Semi-private
-   Golf Digest Top 100 Greatest Public Courses in US (2021)
-   Address: 250 Clubhouse Dr, Portola, CA
+   Designer: Bob Cupp | Opened: 2005
+   Golf Digest Top 100 Greatest Public Courses in US (2021). Longest course in Graeagle.
 
-5. Nakoma — The Dragon Golf Course — /courses/nakoma
+5. Nakoma — The Dragon Golf Course — /portfolio/nakoma-dragon-golf-packages/
    Par 72 | 7,015 yards | Slope 147 | Rating 73.4
-   Designer: Robin Nelson & Neil Haworth | Opened: 1998 | Type: Public/Resort
-   Golf World America's Top 75 Courses at debut.
+   Designer: Robin Nelson & Neil Haworth | Opened: 1998
+   Golf World America's Top 75 Courses at debut. Slope 147 — hardest in Graeagle.
    Only golf clubhouse in the world designed by Frank Lloyd Wright.
    Address: 348 Bear Run, Clio, CA 96106
 
 ## Key Regional Facts
 - Golf season: approximately May through October (weather dependent)
 - Elevation: 3,500–5,400 feet (adds ~10% carry distance vs sea level)
-- Climate: Mild summers, 75–85°F — no heat restrictions
-- No big-city traffic — predictable drive times
+- Climate: Mild summers, 75–85°F — no heat or smog restrictions
+- No big-city traffic — predictable drive times from Sacramento, Bay Area, Reno
 
-## Hardest course: Nakoma Dragon (Slope 147)
-## Most accessible: Graeagle Meadows (Slope 120)
-## Longest: Grizzly Ranch (7,411 yards)
+## Lodging — /lodging/
+- River Pines Resort — /portfolio/river-pines-resort-graeagle-ca/ — Family-owned 40+ years. Cabins, suites. Pool, hot tub, Roadhouse dining on-site.
+- Chalet View Lodge — /portfolio/chalet-view-lodge-graeagle-ca/ — 10 forested acres. Spa. Eureka Peak Brewing Co. on-site.
+- The Inn at Nakoma — /portfolio/the-inn-at-nakoma-clio-ca/ — On the Nakoma Dragon course. 42 rooms. Spa, pool, FLW lodge dining.
+- Townhomes at Plumas Pines — /portfolio/the-townhomes-at-plumas-pines/ — 2–4BR units, full kitchens, steps from Plumas Pines.
 
-## Lodging — /lodging
-- Inn at Nakoma: On the Nakoma Dragon course. 42 rooms + suites. Spa, pool, fine dining.
-- River Pines Resort: Riverside, near Graeagle Meadows. Cabins, suites, group-friendly.
-- Chalet View Lodge: 10 forested acres. Spa. Eureka Peak Brewing Co. on-site.
-- Townhomes at Plumas Pines: 2–4BR units, full kitchens, adjacent to Plumas Pines.
-
-## Dining — /dining
-- Sardine Lake Resort: Historic Sierra fine dining, advance reservations required
-- Iron Door Restaurant: Since 1961, in a historic 1906 building
-- Grizzly Grill: 19th hole at Grizzly Ranch
-- Roadhouse at River Pines: Group dinners, on-site at River Pines Resort
-- Eureka Peak Brewing Co.: Craft brewery at Chalet View Lodge
-- The Brewing Lair: 15-barrel craft brewery, forested Sierra setting
-- Mohawk Tavern: One of California's oldest taverns (1860s)
+## Dining — /dining/
+- Grizzly Grill — /portfolio/grizzly-grill/ — 19th hole at Grizzly Ranch. Gourmet, full bar.
+- Iron Door Restaurant — /portfolio/iron-door-restaurant/ — Since 1961. Historic 1906 building. Steaks, prime rib.
+- Sardine Lake Resort — /portfolio/sardine-lake-resort/ — Remote alpine fine dining. Advance reservations required.
+- Roadhouse at River Pines — /portfolio/roadhouse-at-river-pines/ — Group dinners, steaks, on-site at River Pines Resort.
+- Eureka Peak Brewing Co. — /portfolio/eureka-peak-brewing-co/ — Craft brewery at Chalet View Lodge.
+- The Brewing Lair — /portfolio/the-brewing-lair/ — 15-barrel craft brewery, forested Sierra setting.
+- Longboards Bar and Grill — /portfolio/longboards-bar-and-grill/ — On-site at Plumas Pines. Italian flare, groups 2–200.
+- Cuccia's — /portfolio/cuccias/ — #1 rated Graeagle restaurant on Tripadvisor. Italian, Tue–Sat dinner.
+- Mohawk Tavern — /portfolio/mohawk-tavern/ — Classic dive bar. Beer garden, live music, pool tables.
 
 ## Booking
-- Request a Quote: /quote — free, no obligation, 24-hour response
+- Request a Quote: /request-a-quote/ — free, no obligation, 24-hour response
 - Cancellation policy: 72-hour standard; group contracts separately
-- GolfGraeagle serves individual golfers and groups (8–200+)
+- GolfGraeagle serves individual golfers and groups of any size
 
-## Site Pages
-- / — Homepage with course carousel and trip planning
-- /courses — Compare all 5 courses by stats, slope, difficulty
-- /courses/graeagle-meadows — Graeagle Meadows detail page
-- /courses/whitehawk-ranch — Whitehawk Ranch detail page
-- /courses/plumas-pines — Plumas Pines detail page
-- /courses/grizzly-ranch — Grizzly Ranch detail page
-- /courses/nakoma — Nakoma Dragon detail page
-- /lodging — All lodging options with comparison
-- /dining — Restaurants, breweries, and bars near courses
-- /quote — Request a free golf trip quote
+## All Site Pages
+- / — Homepage
+- /all-golf-courses/ — Compare all 5 courses
+- /lodging/ — All lodging options
+- /dining/ — All restaurants and bars
+- /request-a-quote/ — Free quote form
+- /about-us/ — About GolfGraeagle.com
+- /faq/ — Expert answers for trip planning
+- /blog/ — Golf trip planning guides
+
+## Blog Posts
+- /best-golf-courses-graeagle/ — Best Golf Courses in Graeagle CA (Complete Guide)
+- /ultimate-guide-to-golfing-in-graeagle/ — Ultimate Guide to Golfing in Graeagle
+- /mountain-dining-near-lake-tahoe-graeagles-best-kept-restaurant-secrets/ — Mountain Dining Guide
+- /blog/graeagle-vs-lake-tahoe-golf/ — Graeagle vs Lake Tahoe Golf Comparison
+- /blog/how-to-plan-graeagle-golf-trip/ — How to Plan a Graeagle Golf Trip
+- /blog/graeagle-golf-trip-itinerary-3-days/ — 3-Day Graeagle Golf Itinerary
+- /blog/graeagle-golf-courses-ranked/ — All 5 Courses Ranked
+- /blog/best-time-to-golf-graeagle/ — Best Time to Golf in Graeagle
+- /blog/bachelor-party-golf-graeagle/ — Bachelor Party Golf Guide
 
 ## Operator
-Zoomaway Technologies Inc. | sean@zoomaway.com
+Zoomaway Technologies Inc. | mike.eskuchen@golfthehighsierra.com
 Sibling sites: golfthehighsierra.com | groupgolftours.com | mesquitestgeorgegolftours.com
-
-## Blog Posts — /blog
-- Graeagle vs Lake Tahoe Golf: Honest Comparison: /blog/graeagle-vs-lake-tahoe-golf
-- How to Plan a Graeagle Golf Trip (Complete Group Planner): /blog/how-to-plan-graeagle-golf-trip
-- 3-Day Graeagle Golf Itinerary — 4 Courses Done Right: /blog/graeagle-golf-trip-itinerary-3-days
-- Graeagle Golf Courses Ranked — All 5 Compared: /blog/graeagle-golf-courses-ranked
-- Best Time to Golf in Graeagle — Month by Month: /blog/best-time-to-golf-graeagle
-- Bachelor Party Golf in Graeagle — Complete Group Guide: /blog/bachelor-party-golf-graeagle
-- Best Golf Courses in Graeagle CA (Complete Guide): /best-golf-courses-graeagle
-- Ultimate Guide to Golfing in Graeagle: /ultimate-guide-to-golfing-in-graeagle
-- Mountain Dining Near Lake Tahoe — Graeagle Guide: /mountain-dining-near-lake-tahoe-graeagles-best-kept-restaurant-secrets
-- FAQ — Expert Answers for Graeagle Golf Trip Planning: /faq
