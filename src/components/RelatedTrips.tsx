@@ -367,8 +367,8 @@ export default function RelatedTrips({ slug, type, showAll = false, max = 6 }: {
   const isCarousel = trips.length > 3;
 
   return (
-    <section style={{ padding: "64px 0", background: "var(--page-bg, #f0ece3)" }}>
-      <div style={{ maxWidth: 1200, margin: "0 auto", padding: "0 clamp(20px,5%,60px)", overflow: "hidden" }}>
+    <section style={{ padding: "64px 0", background: "var(--page-bg, #f0ece3)", overflow: "hidden" }}>
+      <div style={{ maxWidth: 1200, margin: "0 auto", padding: "0 clamp(20px,5%,60px)" }}>
         {/* Header */}
         <div style={{ textAlign: "center", marginBottom: 40 }}>
           <div style={{ fontSize: 11, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.14em", color: "#e8a850", marginBottom: 10 }}>
