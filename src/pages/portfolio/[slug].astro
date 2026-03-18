@@ -1123,7 +1123,7 @@ const diningSlugMap: Record<string, string> = {
     <!-- RIGHT: Booking sidebar -->
     <div style="align-self:start;">
       <div style="position:sticky;top:100px;">
-        <div style="background:#ffffff;border:1px solid rgba(184,130,10,0.2);border-radius:20px;padding:28px;margin-bottom:16px;box-shadow:0 4px 24px rgba(0,0,0,0.08);">
+        <div style="background:var(--surface);border:1px solid rgba(184,130,10,0.2);border-radius:20px;padding:28px;margin-bottom:16px;box-shadow:0 4px 24px rgba(0,0,0,0.08);">
           <h3 style="font-family:'Playfair Display',serif;font-size:20px;color:#1c1208;margin:0 0 6px;">Book {item.name}</h3>
           <p style="font-size:13px;color:#7a6a56;margin:0 0 22px;line-height:1.5;">Custom packages — tee times + lodging + dining</p>
 
@@ -1145,7 +1145,7 @@ const diningSlugMap: Record<string, string> = {
         </div>
 
         <!-- Add other courses -->
-        <div style="background:#ffffff;border:1px solid rgba(28,18,8,0.08);border-radius:16px;padding:22px;box-shadow:0 2px 12px rgba(0,0,0,0.04);">
+        <div style="background:var(--surface);border:1px solid rgba(28,18,8,0.08);border-radius:16px;padding:22px;box-shadow:0 2px 12px rgba(0,0,0,0.04);">
           <p style="font-size:11px;color:#b09e88;text-transform:uppercase;letter-spacing:0.1em;margin:0 0 14px;font-weight:600;">Add Another Course</p>
           {courses.filter(x=>x.slug!==c.slug).map(x=>(
             <a href={`/portfolio/${x.slug === 'nakoma-dragon' ? 'nakoma-dragon-golf-packages' : x.slug + '-golf-packages'}/`} style="display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid rgba(28,18,8,0.06);text-decoration:none;transition:opacity 0.2s;"

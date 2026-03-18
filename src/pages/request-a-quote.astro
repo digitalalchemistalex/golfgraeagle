@@ -423,7 +423,7 @@ const quoteSchema = [
             <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.14em;color:#a06c30;margin-bottom:16px;">📋 Your Quote Request — Summary</div>
 
             <!-- Trip reference if from TripsCaddie -->
-            <div id="s-trip-ref" style="display:none;background:#fff;border:1px solid rgba(168,140,90,0.2);border-radius:10px;padding:12px 14px;margin-bottom:14px;">
+            <div id="s-trip-ref" style="display:none;background:var(--surface);border:1px solid rgba(168,140,90,0.2);border-radius:10px;padding:12px 14px;margin-bottom:14px;">
               <div style="font-size:11px;font-weight:700;color:#a06c30;margin-bottom:4px;">Based on trip</div>
               <div id="s-trip-name" style="font-size:14px;font-weight:600;color:#1a1208;"></div>
               <div style="font-size:11px;color:rgba(26,18,8,0.45);margin-top:4px;">Prices are reference only — subject to change based on current availability and your dates.</div>
@@ -431,19 +431,19 @@ const quoteSchema = [
 
             <!-- Key stats grid -->
             <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:10px;margin-bottom:16px;">
-              <div id="s-stat-pax" style="display:none;background:#fff;border:1px solid rgba(28,18,8,0.07);border-radius:10px;padding:10px;text-align:center;">
+              <div id="s-stat-pax" style="display:none;background:var(--surface);border:1px solid rgba(28,18,8,0.07);border-radius:10px;padding:10px;text-align:center;">
                 <div style="font-size:18px;font-weight:700;color:#1a7a40;" id="s-pax-val"></div>
                 <div style="font-size:10px;color:rgba(26,18,8,0.4);text-transform:uppercase;letter-spacing:0.08em;margin-top:2px;">Golfers</div>
               </div>
-              <div id="s-stat-nights" style="display:none;background:#fff;border:1px solid rgba(28,18,8,0.07);border-radius:10px;padding:10px;text-align:center;">
+              <div id="s-stat-nights" style="display:none;background:var(--surface);border:1px solid rgba(28,18,8,0.07);border-radius:10px;padding:10px;text-align:center;">
                 <div style="font-size:18px;font-weight:700;color:#1a1208;" id="s-nights-val"></div>
                 <div style="font-size:10px;color:rgba(26,18,8,0.4);text-transform:uppercase;letter-spacing:0.08em;margin-top:2px;">Nights</div>
               </div>
-              <div id="s-stat-rounds" style="display:none;background:#fff;border:1px solid rgba(28,18,8,0.07);border-radius:10px;padding:10px;text-align:center;">
+              <div id="s-stat-rounds" style="display:none;background:var(--surface);border:1px solid rgba(28,18,8,0.07);border-radius:10px;padding:10px;text-align:center;">
                 <div style="font-size:18px;font-weight:700;color:#1a1208;" id="s-rounds-val"></div>
                 <div style="font-size:10px;color:rgba(26,18,8,0.4);text-transform:uppercase;letter-spacing:0.08em;margin-top:2px;">Rounds</div>
               </div>
-              <div id="s-stat-budget" style="display:none;background:#fff;border:1px solid rgba(28,18,8,0.07);border-radius:10px;padding:10px;text-align:center;">
+              <div id="s-stat-budget" style="display:none;background:var(--surface);border:1px solid rgba(28,18,8,0.07);border-radius:10px;padding:10px;text-align:center;">
                 <div style="font-size:18px;font-weight:700;color:#1a1208;" id="s-budget-val"></div>
                 <div style="font-size:10px;color:rgba(26,18,8,0.4);text-transform:uppercase;letter-spacing:0.08em;margin-top:2px;">Budget tier</div>
               </div>
@@ -516,7 +516,7 @@ const quoteSchema = [
 .q-trust-n{font-family:'Playfair Display',serif;font-size:18px;color:#b8740a;font-weight:500;}
 .q-trust-l{font-size:9px;color:rgba(26,18,8,0.32);margin-top:2px;letter-spacing:.05em;text-transform:uppercase;}
 /* panel */
-.q-panel{background:#fff;border:1px solid rgba(26,18,8,0.08);border-radius:24px;overflow:hidden;}
+.q-panel{background:var(--surface);border:1px solid rgba(26,18,8,0.08);border-radius:24px;overflow:hidden;}
 /* sections */
 .q-section{padding:32px;}
 @media(max-width:540px){.q-section{padding:22px 18px;}}
@@ -533,7 +533,7 @@ const quoteSchema = [
 .qfld{display:flex;flex-direction:column;}
 .qfld label{font-size:10px;color:rgba(26,18,8,0.45);text-transform:uppercase;letter-spacing:.08em;margin-bottom:6px;font-weight:500;}
 .req{color:rgba(232,168,80,0.7);}
-.qfld input,.qfld select,.qfld textarea{background:#fff;border:1px solid rgba(26,18,8,0.12);border-radius:12px;color:#1a1208;padding:12px 14px;font-size:14px;font-family:'Inter',sans-serif;outline:none;transition:border-color .2s,background .2s;-webkit-appearance:none;}
+.qfld input,.qfld select,.qfld textarea{background:var(--surface);border:1px solid rgba(26,18,8,0.12);border-radius:12px;color:#1a1208;padding:12px 14px;font-size:14px;font-family:'Inter',sans-serif;outline:none;transition:border-color .2s,background .2s;-webkit-appearance:none;}
 .qfld input:focus,.qfld select:focus,.qfld textarea:focus{border-color:rgba(232,168,80,0.35);background:rgba(26,18,8,0.04);}
 .qfld select option{background:#f0ece3;}
 .qfld textarea{resize:vertical;min-height:100px;}
@@ -573,7 +573,7 @@ const quoteSchema = [
 .q-course-check-icon{position:absolute;top:8px;right:8px;width:22px;height:22px;border-radius:50%;background:#e8a850;color:#0d1a0e;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;opacity:0;transition:opacity .2s;}
 .q-course-card:has(input:checked) .q-course-check-icon{opacity:1;}
 .q-course-card:has(input:checked) .q-course-img-wrap{box-shadow:0 0 0 2px #e8a850;}
-.q-course-info{padding:10px 12px 12px;background:#fff;border:1px solid rgba(26,18,8,0.1);border-top:none;border-radius:0 0 12px 12px;transition:all .2s;}
+.q-course-info{padding:10px 12px 12px;background:var(--surface);border:1px solid rgba(26,18,8,0.1);border-top:none;border-radius:0 0 12px 12px;transition:all .2s;}
 .q-course-card:has(input:checked) .q-course-info{background:rgba(184,116,10,0.1);border-color:#b8740a;border-width:2px;}
 .q-course-accolade{font-size:9px;color:#e8a850;text-transform:uppercase;letter-spacing:.1em;margin-bottom:3px;font-weight:600;}
 .q-course-name{font-family:'Playfair Display',serif;font-size:13px;color:#1a1208;margin-bottom:3px;}
@@ -597,7 +597,7 @@ const quoteSchema = [
 .q-lodge-check-icon{position:absolute;top:8px;right:8px;width:22px;height:22px;border-radius:50%;background:#e8a850;color:#0d1a0e;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;opacity:0;transition:opacity .2s;}
 .q-lodge-card:has(input:checked) .q-lodge-check-icon{opacity:1;}
 .q-lodge-card:has(input:checked) .q-lodge-img-wrap{box-shadow:0 0 0 2px #e8a850;}
-.q-lodge-info{padding:10px 12px 12px;background:#fff;border:1px solid rgba(26,18,8,0.1);border-top:none;border-radius:0 0 12px 12px;transition:all .2s;}
+.q-lodge-info{padding:10px 12px 12px;background:var(--surface);border:1px solid rgba(26,18,8,0.1);border-top:none;border-radius:0 0 12px 12px;transition:all .2s;}
 .q-lodge-card:has(input:checked) .q-lodge-info{background:rgba(184,116,10,0.1);border-color:#b8740a;border-width:2px;}
 .q-lodge-best{font-size:9px;color:#e8a850;text-transform:uppercase;letter-spacing:.1em;margin-bottom:3px;font-weight:600;}
 .q-lodge-name{font-family:'Playfair Display',serif;font-size:13px;color:#1a1208;margin-bottom:3px;}
@@ -960,7 +960,7 @@ form.addEventListener('submit', async e => {
       selectedCourses.forEach(slug => {
         const span = document.createElement('span');
         span.textContent = courseLabels[slug] || slug;
-        span.style.cssText = 'font-size:12px;color:#3a4a3e;background:#fff;border:1px solid rgba(28,18,8,0.12);border-radius:6px;padding:3px 10px;font-weight:500;';
+        span.style.cssText = 'font-size:12px;color:#3a4a3e;background:var(--surface);border:1px solid rgba(28,18,8,0.12);border-radius:6px;padding:3px 10px;font-weight:500;';
         list.appendChild(span);
       });
       $id('s-courses-row').style.display = 'block';

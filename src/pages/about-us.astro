@@ -177,7 +177,7 @@ const aboutSchema = [
         <div style="display:flex;flex-direction:column;gap:8px;">
           {courses.map(c => (
             <a href={`/portfolio/${c.slug === "nakoma-dragon" ? "nakoma-dragon-golf-packages" : c.slug + "-golf-packages"}/`}
-              style="display:flex;justify-content:space-between;align-items:center;padding:14px 18px;background:#fff;border:1px solid #e0ece0;border-radius:12px;text-decoration:none;transition:all .2s;"
+              style="display:flex;justify-content:space-between;align-items:center;padding:14px 18px;background:var(--surface);border:1px solid #e0ece0;border-radius:12px;text-decoration:none;transition:all .2s;"
               onmouseover="this.style.borderColor='#e8a850';this.style.background='#fffbf0'"
               onmouseout="this.style.borderColor='#e0ece0';this.style.background='#fff'">
               <div>
@@ -245,7 +245,7 @@ const aboutSchema = [
           { label:'Sibling Platform', name:'Group Golf Tours', desc:'Specializes in large-group golf outings across multiple destinations. Corporate events, charity tournaments, and group travel.', href:'http://groupgolftours.com/?utm_source=golfgraeagle&utm_medium=referral&utm_campaign=sibling_site&utm_content=about_page', badge:'👥 Groups 20–200+', tc:'#8a3010' },
           { label:'Subsidiaries', name:'Zoomaway Inc. & Tripsee', desc:'Additional technology and booking subsidiaries under the Zoomaway umbrella, focused on travel automation and trip planning tools.', href:null, badge:'⚙️ Tech & automation', tc:'#502090' },
         ].map(p => (
-          <div style={`padding:22px;background:#fff;border:1px solid #e0ece0;border-radius:14px;`}>
+          <div style={`padding:22px;background:var(--surface);border:1px solid #e0ece0;border-radius:14px;`}>
             <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:7px;">
               <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:#e8a850;">{p.label}</div>
               <span style={`font-size:9px;font-weight:800;color:${p.tc};background:rgba(0,0,0,0.04);padding:2px 8px;border-radius:100px;`}>{p.badge}</span>
