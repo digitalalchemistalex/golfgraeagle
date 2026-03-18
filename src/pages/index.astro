@@ -1,4 +1,5 @@
 ---
+export const prerender = true;
 import Base from '../layouts/Base.astro';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
@@ -6,6 +7,22 @@ import { courses, lodging, siteConfig, imageAlts } from '../data/content.js';
 const getImgAlt = (src, fallback) => { const f = (src || '').split('/').pop().split('?')[0]; return (imageAlts || {})[f] || fallback; };
 
 const HERO_IMG = '/wp-images/DJI_0006-Edit.jpg';
+
+const mustPlay = {
+  'grizzly-ranch': true,
+  'nakoma-dragon': true,
+  'whitehawk-ranch': true,
+  'plumas-pines': false,
+  'graeagle-meadows': false,
+};
+
+const accolades = {
+  'graeagle-meadows': 'Est. 1968 · Best for All Levels',
+  'whitehawk-ranch':  'Top 20 California',
+  'plumas-pines':     'Top 5 Best Value Sierra',
+  'grizzly-ranch':    'Golf Digest Top 100',
+  'nakoma-dragon':    'Golf World Top 75 · FLW Clubhouse',
+};
 
 const courseListSchema = {
   "@type": "ItemList",
