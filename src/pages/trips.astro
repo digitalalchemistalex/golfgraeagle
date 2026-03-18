@@ -165,6 +165,61 @@ const schema = [tripListSchema, breadcrumbSchema, faqSchema];
   </div>
 
   <!-- Main trips hub — React island -->
+  <!-- Static trip summaries for Google — crawlable, baked at build time -->
+  <section style="background:#fff;padding:64px clamp(20px,8%,120px) 0;">
+    <div style="max-width:1100px;margin:0 auto;">
+      <div style="display:flex;align-items:baseline;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-bottom:36px;">
+        <div>
+          <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.14em;color:#e8a850;margin-bottom:8px;">Real Trips · Verified Pricing</div>
+          <h2 style="font-family:'Playfair Display',serif;font-size:clamp(22px,3vw,32px);font-weight:400;color:#1c1208;margin:0;">Graeagle Golf Packages — Real Itineraries</h2>
+        </div>
+        <p style="font-size:13px;color:rgba(28,18,8,0.45);max-width:380px;line-height:1.6;margin:0;">Every package below is a real trip. Actual group size, actual courses played, actual price paid.</p>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(320px,100%),1fr));gap:20px;padding-bottom:32px;">
+        {[
+          { name:"Graeagle Quick Hitter", pax:8, nights:2, rounds:3, price:675, vibe:"Value", lodging:"River Pines Resort", courses:["Whitehawk Ranch","Graeagle Meadows","Grizzly Ranch"], note:"Best entry-level Graeagle trip — 3 top courses, 2 nights, River Pines on-site bar." },
+          { name:"Graeagle River Pines Group", pax:24, nights:2, rounds:3, price:620, vibe:"Value", lodging:"River Pines Resort", courses:["Whitehawk Ranch","Graeagle Meadows","Plumas Pines"], note:"Best per-person value at scale. 24 golfers, $620/person all-in." },
+          { name:"River Pines Golf Package", pax:52, nights:2, rounds:3, price:865, vibe:"Value", lodging:"River Pines Resort", courses:["Plumas Pines","Whitehawk Ranch","Grizzly Ranch"], note:"52-person group with banquet dinner and open bar. One invoice." },
+          { name:"Graeagle Golf Trip", pax:16, nights:3, rounds:3, price:876, vibe:"Premium", lodging:"Private Homes at Plumas Pines", courses:["Plumas Pines","Whitehawk Ranch","Grizzly Ranch"], note:"Private home accommodations — every golfer gets their own bedroom." },
+          { name:"Graeagle-Buckets Golf Trip", pax:24, nights:3, rounds:4, price:1120, vibe:"Premium", lodging:"Townhomes at Plumas Pines", courses:["Plumas Pines","Grizzly Ranch","The Dragon","Whitehawk Ranch"], note:"36-hole days Friday and Saturday. The Dragon + Golf Digest Top 100 in one trip." },
+          { name:"Plumas Pines Golf Group", pax:36, nights:3, rounds:4, price:1150, vibe:"Premium", lodging:"Townhomes at Plumas Pines", courses:["Grizzly Ranch","Whitehawk Ranch","Plumas Pines"], note:"36-person corporate trip with awards banquet at Longboards." },
+        ].map(t => (
+          <div style="background:#f8fbf8;border:1px solid #e0ece0;border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:12px;">
+            <div style="display:flex;align-items:center;justify-content:space-between;">
+              <span style={`font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;padding:3px 10px;border-radius:100px;${t.vibe==='Premium'?'background:rgba(232,168,80,0.15);color:#92400e;':'background:rgba(16,185,129,0.1);color:#065f46;'}`}>{t.vibe}</span>
+              <span style="font-size:18px;font-weight:800;color:#1a7a40;">${t.price.toLocaleString()}<span style="font-size:11px;font-weight:500;color:rgba(28,18,8,0.4);">/person</span></span>
+            </div>
+            <div style="font-size:16px;font-weight:700;color:#1c1208;">{t.name}</div>
+            <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;">
+              {[["👥",t.pax+" pax"],["🌙",t.nights+" nights"],["⛳",t.rounds+" rounds"]].map(([icon,val]) => (
+                <div style="text-align:center;background:#fff;border:1px solid rgba(28,18,8,0.07);border-radius:8px;padding:7px 4px;">
+                  <div style="font-size:13px;margin-bottom:2px;">{icon}</div>
+                  <div style="font-size:11px;font-weight:600;color:#1c1208;">{val}</div>
+                </div>
+              ))}
+            </div>
+            <p style="font-size:12px;color:rgba(28,18,8,0.5);line-height:1.5;font-style:italic;margin:0;">"{t.note}"</p>
+            <div>
+              <div style="font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:rgba(28,18,8,0.3);margin-bottom:5px;">Courses Played</div>
+              <div style="display:flex;flex-wrap:wrap;gap:4px;">
+                {t.courses.map(c => (<span style="font-size:11px;color:#3a4a3e;background:#fff;border:1px solid rgba(28,18,8,0.1);border-radius:6px;padding:3px 8px;">{c}</span>))}
+              </div>
+            </div>
+            <div style="font-size:11px;color:rgba(28,18,8,0.45);">🏨 {t.lodging}</div>
+            <a href={`/request-a-quote/?ref=trips-page&trip=${encodeURIComponent(t.name)}&partySize=${t.pax}&nights=${t.nights}&rounds=${t.rounds}`}
+              style="display:block;background:#2d7a3a;color:#fff;font-size:12px;font-weight:700;padding:11px;border-radius:100px;text-decoration:none;text-align:center;text-transform:uppercase;letter-spacing:0.05em;transition:background 0.2s;"
+              onmouseover="this.style.background='#245f2d'" onmouseout="this.style.background='#2d7a3a'">
+              Get This Trip →
+            </a>
+          </div>
+        ))}
+      </div>
+      <div style="text-align:center;padding:0 0 16px;">
+        <p style="font-size:13px;color:rgba(28,18,8,0.4);margin:0 0 8px;">Showing 6 of 15 Graeagle trips — filter and browse all packages below.</p>
+      </div>
+    </div>
+  </section>
+
   <div id="trips">
     <TripsHub client:load />
   </div>
