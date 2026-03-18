@@ -147,11 +147,13 @@ const buildSchema = () => {
       breadcrumb,
       {
         '@type': 'FAQPage',
-        mainEntity: [
-          { '@type': 'Question', name: `How do I book a tee time at ${item.name}?`, acceptedAnswer: { '@type': 'Answer', text: `GolfGraeagle.com handles all ${item.name} tee time bookings as part of stay-and-play packages. Request a free quote at golfgraeagle.com/request-a-quote and we'll coordinate everything.` } },
-          { '@type': 'Question', name: `What is the slope rating at ${item.name}?`, acceptedAnswer: { '@type': 'Answer', text: `${item.name} has a slope rating of ${item.slope} and a course rating of ${item.rating}, playing ${item.yards?.toLocaleString()} yards from the back tees at par ${item.par}.` } },
-          { '@type': 'Question', name: `Who designed ${item.name}?`, acceptedAnswer: { '@type': 'Answer', text: `${item.name} was designed by ${item.designer} and opened in ${item.year}.` } },
-        ],
+        mainEntity: (item.faqs && item.faqs.length > 0)
+          ? item.faqs.map((f: any) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } }))
+          : [
+            { '@type': 'Question', name: `How do I book a tee time at ${item.name}?`, acceptedAnswer: { '@type': 'Answer', text: `GolfGraeagle.com handles all ${item.name} tee time bookings as part of stay-and-play packages. Request a free quote at golfgraeagle.com/request-a-quote and we'll coordinate everything.` } },
+            { '@type': 'Question', name: `What is the slope rating at ${item.name}?`, acceptedAnswer: { '@type': 'Answer', text: `${item.name} has a slope rating of ${item.slope} and a course rating of ${item.rating}, playing ${item.yards?.toLocaleString()} yards from the back tees at par ${item.par}.` } },
+            { '@type': 'Question', name: `Who designed ${item.name}?`, acceptedAnswer: { '@type': 'Answer', text: `${item.name} was designed by ${item.designer} and opened in ${item.year}.` } },
+          ],
       },
     ];
   }
@@ -909,13 +911,16 @@ const diningSlugMap: Record<string, string> = {
       <div class="reveal" style="margin-bottom:56px;">
         <h2 style="font-family:'Playfair Display',serif;font-size:24px;color:var(--text-primary);margin:0 0 28px;">Frequently Asked Questions</h2>
         <div style="display:flex;flex-direction:column;gap:0;">
-          {[
-            [`Is ${item.name} open to the public?`, `${item.name} is open to public play. Tee time availability varies by season. GolfGraeagle can secure guaranteed tee times as part of a stay-and-play package.`],
-            [`What is the slope rating at ${item.name}?`, `${item.name} has a slope rating of ${item.slope} and a course rating of ${item.rating}. The course plays to par ${item.par} at ${item.yards.toLocaleString()} yards from the tips.`],
-            [`Who designed ${item.name}?`, `${item.name} was designed by ${item.designer} and opened in ${item.year}.`],
-            [`What is the best time to play ${item.name}?`, `${item.name} is open approximately May through October, weather permitting. Morning tee times offer cooler temperatures and optimal course conditions.`],
-            [`How do I book a tee time at ${item.name}?`, `GolfGraeagle can book tee times at ${item.name} as part of a custom stay-and-play package. Request a free quote and receive a response within 24 hours.`],
-          ].map(([q, a]) => (
+          {(item.faqs && item.faqs.length > 0
+            ? item.faqs.map((f: any) => [f.q, f.a])
+            : [
+              [`Is ${item.name} open to the public?`, `${item.name} is open to public play. Tee time availability varies by season. GolfGraeagle can secure guaranteed tee times as part of a stay-and-play package.`],
+              [`What is the slope rating at ${item.name}?`, `${item.name} has a slope rating of ${item.slope} and a course rating of ${item.rating}. The course plays to par ${item.par} at ${item.yards.toLocaleString()} yards from the tips.`],
+              [`Who designed ${item.name}?`, `${item.name} was designed by ${item.designer} and opened in ${item.year}.`],
+              [`What is the best time to play ${item.name}?`, `${item.name} is open approximately May through October, weather permitting. Morning tee times offer cooler temperatures and optimal course conditions.`],
+              [`How do I book a tee time at ${item.name}?`, `GolfGraeagle can book tee times at ${item.name} as part of a custom stay-and-play package. Request a free quote and receive a response within 24 hours.`],
+            ]
+          ).map(([q, a]: [string, string]) => (
             <details style="border-bottom:1px solid rgba(28,18,8,0.06);padding:0;">
               <summary style="font-size:15px;color:var(--text-primary);font-weight:500;padding:18px 0;cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;">
                 {q}
