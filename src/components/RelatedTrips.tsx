@@ -155,8 +155,8 @@ function TripCard({ trip }: { trip: Trip }) {
 
       {/* Body */}
       <div style={{ flex: 1, padding: "20px 20px 0" }}>
-        {/* Stats */}
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(4,1fr)", gap: 8, marginBottom: 18 }}>
+        {/* Stats — 2x2 grid works on all screen sizes */}
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(2,1fr)", gap: 8, marginBottom: 18 }}>
           {[
             ["Pax", trip.groupSize || "—"],
             ["From", price ? `$${new Intl.NumberFormat("en-US", { maximumFractionDigits: 0 }).format(price)}` : "—"],
