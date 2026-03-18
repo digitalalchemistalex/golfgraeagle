@@ -526,14 +526,18 @@ const diningSlugMap: Record<string, string> = {
     position: absolute;
     inset: 0;
     bottom: 48px;
-    background: linear-gradient(
-      180deg,
-      rgba(9,15,9,0.52) 0%,
-      transparent 30%,
-      transparent 42%,
-      rgba(9,15,9,0.9) 75%,
-      rgba(9,15,9,1) 100%
-    );
+    background:
+      /* Dark base — always present regardless of photo brightness */
+      linear-gradient(180deg, rgba(9,15,9,0.35) 0%, rgba(9,15,9,0.35) 100%),
+      /* Directional gradient — heavy dark top + bottom, lighter middle */
+      linear-gradient(
+        180deg,
+        rgba(9,15,9,0.62) 0%,
+        rgba(9,15,9,0.1) 30%,
+        rgba(9,15,9,0.1) 45%,
+        rgba(9,15,9,0.92) 78%,
+        rgba(9,15,9,1) 100%
+      );
     z-index: 1;
   }
 

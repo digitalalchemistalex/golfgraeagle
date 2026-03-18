@@ -18,6 +18,9 @@ const year = new Date().getFullYear();
     .footer-col-dining { display: none; }
     .footer-col-cta { grid-column: 1 / -1; }
     .footer-bottom-inner { flex-direction: column; align-items: flex-start; gap: 12px; }
+    .footer-brand-mobile { display: flex !important; }
+    .footer-logo-desktop { display: none !important; }
+    .footer-tagline-desktop { display: none !important; }
   }
 </style>
 
@@ -29,12 +32,26 @@ const year = new Date().getFullYear();
 
       <!-- Brand col -->
       <div class="footer-col-brand">
-        <a href="/" style="display:inline-block;margin-bottom:16px;">
+
+        <!-- MOBILE: logo + tagline side by side (hidden on desktop) -->
+        <div class="footer-brand-mobile" style="display:none;align-items:center;gap:14px;margin-bottom:18px;">
+          <a href="/" style="flex-shrink:0;">
+            <img src="/logo.png" alt="Golf Graeagle" style="height:56px;width:auto;display:block;"
+              onerror="this.style.display='none'"/>
+          </a>
+          <div>
+            <div style="font-family:'Playfair Display',serif;font-size:15px;color:#f0f8f2;margin-bottom:3px;">Golf <span style="color:#e8a850;">Graeagle</span></div>
+            <div style="font-size:12px;color:rgba(240,248,242,0.4);line-height:1.55;">Your guide to championship golf<br/>in California's Sierra Nevada mountains.</div>
+          </div>
+        </div>
+
+        <!-- DESKTOP: logo above tagline (hidden on mobile) -->
+        <a href="/" class="footer-logo-desktop" style="display:inline-block;margin-bottom:16px;">
           <img src="/logo.png" alt="Golf Graeagle" style="height:48px;width:auto;"
             onerror="this.style.display='none';this.nextElementSibling.style.display='block'"/>
           <span style="display:none;font-family:'Playfair Display',serif;font-size:26px;color:#f0f8f2;text-decoration:none;">Golf <span style="color:#e8a850;">Graeagle</span></span>
         </a>
-        <p style="font-size:13px;color:rgba(240,248,242,0.38);line-height:1.75;margin:0 0 24px;max-width:260px;">
+        <p class="footer-tagline-desktop" style="font-size:13px;color:rgba(240,248,242,0.38);line-height:1.75;margin:0 0 24px;max-width:260px;">
           Your guide to championship golf in California's Sierra Nevada mountains. Five world-class courses. One unforgettable valley.
         </p>
         <!-- Contact -->
