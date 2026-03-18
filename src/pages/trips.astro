@@ -10,16 +10,105 @@ const pageTitle = "Graeagle Golf Trip Packages — Real Itineraries & Pricing | 
 const pageDesc = "Browse real Graeagle golf trip packages with actual pricing from $620/person. See full itineraries, courses played, lodging used, and group size — then request the same trip for your group.";
 const pageUrl = `${siteConfig.url}/trips/`;
 
-// ItemList schema — will be hydrated client-side with real data
-// Static fallback schema for crawlers
-const schema = {
+// Static schema for Googlebot — real trip data baked in at build time
+// TripsHub widget hydrates dynamically but crawlers get this
+const tripListSchema = {
+  "@context": "https://schema.org",
   "@type": "ItemList",
   "@id": `${pageUrl}#triplist`,
-  "name": "Graeagle Golf Trip Packages — Real Itineraries",
-  "description": "Real golf trip packages from GolfGraeagle.com featuring verified itineraries, actual pricing, courses played, and lodging used by real groups in the Graeagle region.",
+  "name": "Graeagle Golf Trip Packages — Real Itineraries & Pricing",
+  "description": "Real golf trip packages from GolfGraeagle.com with verified itineraries, actual pricing, courses played, and lodging used by real groups in Graeagle, California.",
   "url": pageUrl,
   "numberOfItems": 15,
+  "itemListElement": [
+    {
+      "@type": "ListItem", "position": 1,
+      "name": "Graeagle River Pines Golf Group — 24 Golfers, 3 Rounds, $620/person",
+      "description": "3-day, 2-night golf package for 24 golfers at River Pines Resort. Rounds at Whitehawk Ranch, Graeagle Meadows, and Plumas Pines. $620 per person all-inclusive.",
+      "url": `${pageUrl}?ref=schema`
+    },
+    {
+      "@type": "ListItem", "position": 2,
+      "name": "Graeagle Quick Hitter — 8 Golfers, 3 Rounds, $675/person",
+      "description": "2-night, 3-round golf trip for 8 golfers at River Pines Resort. Whitehawk Ranch, Graeagle Meadows, and Grizzly Ranch. $675 per person.",
+      "url": `${pageUrl}?ref=schema`
+    },
+    {
+      "@type": "ListItem", "position": 3,
+      "name": "River Pines Golf Package — 52 Golfers, 3 Rounds + Banquet, $865/person",
+      "description": "2-night, 3-round golf package for 52 golfers at River Pines Resort with banquet dinner and open bar. Plumas Pines, Whitehawk Ranch, Grizzly Ranch. $865 per person.",
+      "url": `${pageUrl}?ref=schema`
+    },
+    {
+      "@type": "ListItem", "position": 4,
+      "name": "Graeagle-Buckets Premium Trip — 24 Golfers, 4 Courses, 36-Hole Days, $1,120/person",
+      "description": "3-night, 4-round bucket list trip for 24 golfers in townhomes at Plumas Pines. Plumas Pines, Grizzly Ranch, The Dragon at Nakoma, Whitehawk Ranch. 36-hole days Friday and Saturday. $1,120 per person.",
+      "url": `${pageUrl}?ref=schema`
+    },
+    {
+      "@type": "ListItem", "position": 5,
+      "name": "Plumas Pines Golf Group — 36 Golfers, 4 Rounds + Banquet, $1,150/person",
+      "description": "3-night, 4-round corporate-style package for 36 golfers in townhomes at Plumas Pines. Grizzly Ranch, Whitehawk Ranch (36 holes), Plumas Pines. Awards banquet at Longboards. $1,150 per person.",
+      "url": `${pageUrl}?ref=schema`
+    },
+    {
+      "@type": "ListItem", "position": 6,
+      "name": "Graeagle Golf Trip — 30 Golfers, 3 Rounds, Private Homes, $1,067/person",
+      "description": "3-night, 3-round golf trip for 30 golfers in private 3-bedroom townhomes at Plumas Pines. Each golfer assured own bedroom. Plumas Pines, Whitehawk Ranch, Grizzly Ranch. $1,067 per person.",
+      "url": `${pageUrl}?ref=schema`
+    },
+    {
+      "@type": "ListItem", "position": 7,
+      "name": "Graeagle Golf Trip — 16 Golfers, 3 Rounds, Private Townhomes, $876/person",
+      "description": "3-night, 3-round premium trip for 16 golfers in private homes and townhomes at Plumas Pines Golf Resort. Plumas Pines, Whitehawk Ranch, Grizzly Ranch. $876 per person.",
+      "url": `${pageUrl}?ref=schema`
+    },
+    {
+      "@type": "ListItem", "position": 8,
+      "name": "Graeagle Golf Trip — 12 Golfers, 2 Rounds, Townhomes, $645/person",
+      "description": "2-night, 2-round value trip for 12 golfers in Plumas Pines townhomes. Grizzly Ranch and Whitehawk Ranch. $645 per person — best value entry point for Graeagle.",
+      "url": `${pageUrl}?ref=schema`
+    },
+  ]
 };
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": siteConfig.url },
+    { "@type": "ListItem", "position": 2, "name": "Golf Trip Packages", "item": pageUrl }
+  ]
+};
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How much does a Graeagle golf trip package cost?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Graeagle golf trip packages range from $620 to $1,150 per person depending on group size, number of nights, rounds played, and lodging type. Value packages (2 nights, 3 rounds, River Pines Resort) start at $620 per person for groups of 24. Premium packages (3 nights, 4 rounds, private townhomes) reach $1,120–$1,150 per person. All prices include lodging, green fees, and taxes." }
+    },
+    {
+      "@type": "Question",
+      "name": "Are these real golf trip packages or estimates?",
+      "acceptedAnswer": { "@type": "Answer", "text": "These are real packages from actual booked groups. Every itinerary, price, group size, and course combination shown was a real trip arranged by GolfGraeagle.com. Prices reflect what groups actually paid, not estimates or rack rates." }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I request the same trip shown in a package?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Yes. Any trip shown can be replicated for your group with the same courses, lodging, and structure — adjusted for your dates and headcount. Request a quote and reference the trip name." }
+    },
+    {
+      "@type": "Question",
+      "name": "What golf courses are in Graeagle golf packages?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Graeagle golf packages typically feature combinations of the 5 championship courses: Graeagle Meadows (par 72, slope 120), Whitehawk Ranch (par 71, slope 132, Top 20 CA), Plumas Pines (par 72, slope 132), Grizzly Ranch (par 72, slope 140, Golf Digest Top 100 US), and Nakoma Dragon (par 72, slope 147, FLW clubhouse). Most 2–3 night packages include 2–3 courses." }
+    }
+  ]
+};
+
+const schema = [tripListSchema, breadcrumbSchema, faqSchema];
 ---
 
 <Base

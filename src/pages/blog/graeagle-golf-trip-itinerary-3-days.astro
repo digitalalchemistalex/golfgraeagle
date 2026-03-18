@@ -18,7 +18,7 @@ const schema = {
   "dateModified": dateModified,
   "author": { "@type": "Organization", "name": "GolfGraeagle.com" },
   "publisher": { "@type": "Organization", "name": "Zoomaway Technologies Inc.", "url": "https://golfgraeagle.com" },
-  "mainEntityOfPage": { "@type": "WebPage", "@id": `https://golfgraeagle.com/blog/${slug}` }
+  "mainEntityOfPage": { "@type": "WebPage", "@id": `https://golfgraeagle.com/blog/${slug}/` }
 };
 
 const faqSchema = {
@@ -30,8 +30,20 @@ const faqSchema = {
     { "@type": "Question", "name": "Should you play Nakoma Dragon or Grizzly Ranch on the last day?", "acceptedAnswer": { "@type": "Answer", "text": "Save Nakoma Dragon for mid-trip when your game is warm but your energy is high. Grizzly Ranch is brutal enough that some groups prefer it on day 2 so they're not exhausted. Either works — just don't make it day 1 before you've calibrated to altitude." } },
   ]
 };
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://golfgraeagle.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://golfgraeagle.com/blog/" },
+    { "@type": "ListItem", "position": 3, "name": "Graeagle Golf Trip Itinerary: 3 Days, 4 Courses (The Ideal Schedule)", "item": `https://golfgraeagle.com/blog/${slug}/` }
+  ]
+};
+
 ---
-<Base title={title} description={description} ogType="article" schema={[schema, faqSchema]}>
+<Base title={title} description={description} ogType="article" schema={[schema, faqSchema, breadcrumbSchema]}
+  canonical={`https://golfgraeagle.com/blog/${slug}/`}
+>
   <Nav />
 
   <div class="bl-hero" style="background-image:url(https://nakomaresort.com/wp-content/uploads/the-dragon-golf-overview-tahoe-truckee-plumas-1639x1080.jpg)">

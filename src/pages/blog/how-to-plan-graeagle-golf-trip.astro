@@ -18,7 +18,7 @@ const schema = {
   "dateModified": dateModified,
   "author": { "@type": "Organization", "name": "GolfGraeagle.com" },
   "publisher": { "@type": "Organization", "name": "Zoomaway Technologies Inc.", "url": "https://golfgraeagle.com" },
-  "mainEntityOfPage": { "@type": "WebPage", "@id": `https://golfgraeagle.com/blog/${slug}` }
+  "mainEntityOfPage": { "@type": "WebPage", "@id": `https://golfgraeagle.com/blog/${slug}/` }
 };
 
 const faqSchema = {
@@ -31,8 +31,20 @@ const faqSchema = {
     { "@type": "Question", "name": "How much does a Graeagle golf trip cost?", "acceptedAnswer": { "@type": "Answer", "text": "GolfGraeagle packages start from $299 per golfer. Total trip cost varies based on lodging choice, number of courses, group size, and nights. Groups of 8+ typically pay less per person through package pricing. Request a free quote for exact pricing on your dates." } },
   ]
 };
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://golfgraeagle.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://golfgraeagle.com/blog/" },
+    { "@type": "ListItem", "position": 3, "name": "How to Plan a Graeagle Golf Trip: Complete Group Planner (2025)", "item": `https://golfgraeagle.com/blog/${slug}/` }
+  ]
+};
+
 ---
-<Base title={title} description={description} ogType="article" schema={[schema, faqSchema]}>
+<Base title={title} description={description} ogType="article" schema={[schema, faqSchema, breadcrumbSchema]}
+  canonical={`https://golfgraeagle.com/blog/${slug}/`}
+>
   <Nav />
 
   <div class="bl-hero" style="background-image:url(https://whitehawkranch.com/wp-content/uploads/sites/88/2026/02/popup-home.webp)">

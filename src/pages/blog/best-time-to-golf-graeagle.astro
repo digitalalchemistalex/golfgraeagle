@@ -18,7 +18,7 @@ const schema = {
   "dateModified": dateModified,
   "author": { "@type": "Organization", "name": "GolfGraeagle.com" },
   "publisher": { "@type": "Organization", "name": "Zoomaway Technologies Inc.", "url": "https://golfgraeagle.com" },
-  "mainEntityOfPage": { "@type": "WebPage", "@id": `https://golfgraeagle.com/blog/${slug}` }
+  "mainEntityOfPage": { "@type": "WebPage", "@id": `https://golfgraeagle.com/blog/${slug}/` }
 };
 
 const faqSchema = {
@@ -41,8 +41,20 @@ const months = [
   { month: 'October', rating: 4, temp: '48–68°F', crowds: 'Low–Medium', conditions: 'Good', summary: 'Fall golf at its finest. Brilliant colors, quiet courses, sharp mountain air. Some courses may close late October.', pros: ['Stunning fall colors', 'Low crowds', 'Peaceful experience'], cons: ['Cool mornings (bring layers)', 'Some courses closing', 'Shorter days'] },
   { month: 'November', rating: 2, temp: '38–55°F', crowds: 'Very Low', conditions: 'Variable', summary: 'Closing season. Some courses close early November. Check status before booking. Cold and unpredictable.', pros: ['Absolute solitude', 'Very low prices if open'], cons: ['Most courses closed', 'Cold', 'Short days', 'Snow possible'] },
 ];
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://golfgraeagle.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://golfgraeagle.com/blog/" },
+    { "@type": "ListItem", "position": 3, "name": "Best Time to Golf in Graeagle, CA: Month-by-Month Guide", "item": `https://golfgraeagle.com/blog/${slug}/` }
+  ]
+};
+
 ---
-<Base title={title} description={description} ogType="article" schema={[schema, faqSchema]}>
+<Base title={title} description={description} ogType="article" schema={[schema, faqSchema, breadcrumbSchema]}
+  canonical={`https://golfgraeagle.com/blog/${slug}/`}
+>
   <Nav />
 
   <div class="bl-hero" style="background-image:url(https://graeaglemeadows.com/wp-content/uploads/sites/86/2026/03/DJI_0629-2-Edit-scaled.jpg)">

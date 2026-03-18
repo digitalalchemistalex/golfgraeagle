@@ -18,7 +18,7 @@ const schema = {
   "dateModified": dateModified,
   "author": { "@type": "Organization", "name": "GolfGraeagle.com" },
   "publisher": { "@type": "Organization", "name": "Zoomaway Technologies Inc.", "url": "https://golfgraeagle.com" },
-  "mainEntityOfPage": { "@type": "WebPage", "@id": `https://golfgraeagle.com/blog/${slug}` }
+  "mainEntityOfPage": { "@type": "WebPage", "@id": `https://golfgraeagle.com/blog/${slug}/` }
 };
 
 const faqSchema = {
@@ -31,8 +31,18 @@ const faqSchema = {
     { "@type": "Question", "name": "What courses are best for a corporate golf event in Graeagle?", "acceptedAnswer": { "@type": "Answer", "text": "Whitehawk Ranch and Plumas Pines are the most corporate-event-friendly — accessible difficulty, strong aesthetics, and good pace of play. Grizzly Ranch (Golf Digest Top 100) works as the prestige round for experienced players. Nakoma Dragon (FLW clubhouse) is an excellent add-on for VIP participants." } },
   ]
 };
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://golfgraeagle.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://golfgraeagle.com/blog/" },
+    { "@type": "ListItem", "position": 3, "name": "Corporate Golf Outing in Graeagle, CA: Complete Planning Guide", "item": `https://golfgraeagle.com/blog/${slug}/` }
+  ]
+};
+
 ---
-<Base title={title} description={description} ogType="article" schema={[schema, faqSchema]}
+<Base title={title} description={description} ogType="article" schema={[schema, faqSchema, breadcrumbSchema]}
   canonical={`https://golfgraeagle.com/blog/${slug}/`}
   ogImage="https://golfgraeagle.com/wp-images/DJI_0006-Edit.jpg"
 >

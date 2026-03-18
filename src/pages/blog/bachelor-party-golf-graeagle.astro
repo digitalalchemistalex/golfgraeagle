@@ -18,10 +18,33 @@ const schema = {
   "dateModified": dateModified,
   "author": { "@type": "Organization", "name": "GolfGraeagle.com" },
   "publisher": { "@type": "Organization", "name": "Zoomaway Technologies Inc.", "url": "https://golfgraeagle.com" },
-  "mainEntityOfPage": { "@type": "WebPage", "@id": `https://golfgraeagle.com/blog/${slug}` }
+  "mainEntityOfPage": { "@type": "WebPage", "@id": `https://golfgraeagle.com/blog/${slug}/` }
+};
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    { "@type": "Question", "name": "What is the best golf course for a bachelor party in Graeagle?", "acceptedAnswer": { "@type": "Answer", "text": "Whitehawk Ranch is the most popular bachelor party course in Graeagle — accessible for all handicaps, scenic, and has a bar on-site for post-round drinks. Grizzly Ranch is the prestige pick for groups with strong golfers. Nakoma Dragon is the bucket-list choice if the group wants the Frank Lloyd Wright clubhouse experience." } },
+    { "@type": "Question", "name": "How many people can golf together in Graeagle?", "acceptedAnswer": { "@type": "Answer", "text": "Groups of 8–20 can typically book together at a single course with staggered tee times. Larger groups of 20–60 are handled by splitting across multiple courses simultaneously, with everyone meeting for dinner. GolfGraeagle coordinates tee times across all 5 courses for groups of any size." } },
+    { "@type": "Question", "name": "Where do bachelor party groups stay in Graeagle?", "acceptedAnswer": { "@type": "Answer", "text": "River Pines Resort is the most popular option for bachelor party groups — cabins and rooms in one property, pool, hot tub, and on-site bar (The Roadhouse). Plumas Pines townhomes work well for groups that want their own multi-bedroom space with full kitchens and golf course access." } },
+    { "@type": "Question", "name": "How much does a bachelor party golf trip to Graeagle cost?", "acceptedAnswer": { "@type": "Answer", "text": "A bachelor party golf trip to Graeagle runs $645–$875 per person for 2 nights and 2–3 rounds of golf including lodging. Groups of 12–20 can access the best value pricing. Premium packages with townhomes and 3–4 courses reach $1,067–$1,120 per person." } },
+  ]
+};
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://golfgraeagle.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://golfgraeagle.com/blog/" },
+    { "@type": "ListItem", "position": 3, "name": "Bachelor Party Golf Graeagle", "item": `https://golfgraeagle.com/blog/${slug}/` }
+  ]
 };
 ---
-<Base title={title} description={description} ogType="article" schema={[schema]}>
+<Base title={title} description={description} ogType="article" schema={[schema, faqSchema, breadcrumbSchema]}
+  canonical={`https://golfgraeagle.com/blog/${slug}/`}
+>
   <Nav />
 
   <div class="bl-hero" style="background-image:url(https://whitehawkranch.com/wp-content/uploads/sites/88/2026/02/popup-home.webp)">

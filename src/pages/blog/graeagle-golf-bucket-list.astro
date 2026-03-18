@@ -18,7 +18,7 @@ const schema = {
   "dateModified": dateModified,
   "author": { "@type": "Organization", "name": "GolfGraeagle.com" },
   "publisher": { "@type": "Organization", "name": "Zoomaway Technologies Inc.", "url": "https://golfgraeagle.com" },
-  "mainEntityOfPage": { "@type": "WebPage", "@id": `https://golfgraeagle.com/blog/${slug}` }
+  "mainEntityOfPage": { "@type": "WebPage", "@id": `https://golfgraeagle.com/blog/${slug}/` }
 };
 
 const faqSchema = {
@@ -31,8 +31,18 @@ const faqSchema = {
     { "@type": "Question", "name": "Is Nakoma Dragon worth playing?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Nakoma Dragon is worth playing for two reasons: the golf course itself debuted on Golf World's America's Top 75 list, and the clubhouse is the only golf clubhouse in the world designed by Frank Lloyd Wright. Even if you shoot your worst round of the trip, you're doing it in an architecturally significant building." } },
   ]
 };
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://golfgraeagle.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://golfgraeagle.com/blog/" },
+    { "@type": "ListItem", "position": 3, "name": "The Graeagle Golf Bucket List: 4 Courses, 36-Hole Days, 3 Nights", "item": `https://golfgraeagle.com/blog/${slug}/` }
+  ]
+};
+
 ---
-<Base title={title} description={description} ogType="article" schema={[schema, faqSchema]}
+<Base title={title} description={description} ogType="article" schema={[schema, faqSchema, breadcrumbSchema]}
   canonical={`https://golfgraeagle.com/blog/${slug}/`}
   ogImage="https://nakomaresort.com/wp-content/uploads/the-dragon-golf-overview-tahoe-truckee-plumas-1639x1080.jpg"
 >

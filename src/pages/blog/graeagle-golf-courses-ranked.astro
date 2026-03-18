@@ -18,10 +18,33 @@ const schema = {
   "dateModified": dateModified,
   "author": { "@type": "Organization", "name": "GolfGraeagle.com" },
   "publisher": { "@type": "Organization", "name": "Zoomaway Technologies Inc.", "url": "https://golfgraeagle.com" },
-  "mainEntityOfPage": { "@type": "WebPage", "@id": `https://golfgraeagle.com/blog/${slug}` }
+  "mainEntityOfPage": { "@type": "WebPage", "@id": `https://golfgraeagle.com/blog/${slug}/` }
+};
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    { "@type": "Question", "name": "What is the best golf course in Graeagle?", "acceptedAnswer": { "@type": "Answer", "text": "Grizzly Ranch Golf Club holds the highest national ranking — Golf Digest Top 100 Greatest Public Courses in the US (2021). Nakoma Dragon is the most unique, with its Frank Lloyd Wright clubhouse and Golf World Top 75 debut ranking. Whitehawk Ranch is the most universally loved. The best course depends on your group: Grizzly for the biggest challenge, Nakoma for the bucket-list experience, Whitehawk for the most scenic round." } },
+    { "@type": "Question", "name": "What is the easiest Graeagle golf course for high handicappers?", "acceptedAnswer": { "@type": "Answer", "text": "Graeagle Meadows is the most forgiving course in Graeagle. It plays to par 72 at 6,759 yards with a slope of 120 — the lowest in the valley. Open meadow terrain and generous fairways make it accessible for all handicap levels." } },
+    { "@type": "Question", "name": "What is the hardest golf course in Graeagle?", "acceptedAnswer": { "@type": "Answer", "text": "Nakoma Dragon is the hardest course in Graeagle with a slope of 147 and course rating of 73.4. Grizzly Ranch is second at slope 140. Both require precise ball-striking and course management at elevation." } },
+    { "@type": "Question", "name": "Can you play all 5 Graeagle courses in one trip?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Five courses over 3–4 days is a common format. The courses are within 5–25 minutes of each other, so drive time is minimal. Most groups play 1–2 rounds per day and complete all 5 over a long weekend." } },
+  ]
+};
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://golfgraeagle.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://golfgraeagle.com/blog/" },
+    { "@type": "ListItem", "position": 3, "name": "Graeagle Golf Courses Ranked", "item": `https://golfgraeagle.com/blog/${slug}/` }
+  ]
 };
 ---
-<Base title={title} description={description} ogType="article" schema={[schema]}>
+<Base title={title} description={description} ogType="article" schema={[schema, faqSchema, breadcrumbSchema]}
+  canonical={`https://golfgraeagle.com/blog/${slug}/`}
+>
   <Nav />
 
   <div class="bl-hero" style="background-image:url(https://grizzlyranchgolfclub.com/wp-content/uploads/2025/06/IMG_0666-2-scaled.jpg)">

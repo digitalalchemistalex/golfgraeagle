@@ -18,7 +18,7 @@ const schema = {
   "dateModified": dateModified,
   "author": { "@type": "Organization", "name": "GolfGraeagle.com" },
   "publisher": { "@type": "Organization", "name": "Zoomaway Technologies Inc.", "url": "https://golfgraeagle.com" },
-  "mainEntityOfPage": { "@type": "WebPage", "@id": `https://golfgraeagle.com/blog/${slug}` }
+  "mainEntityOfPage": { "@type": "WebPage", "@id": `https://golfgraeagle.com/blog/${slug}/` }
 };
 
 const faqSchema = {
@@ -31,8 +31,18 @@ const faqSchema = {
     { "@type": "Question", "name": "How much does a Graeagle golf trip cost for 50 people?", "acceptedAnswer": { "@type": "Answer", "text": "Based on real group packages, a 50-person, 2-night, 3-round Graeagle golf trip runs $620–$865 per person depending on lodging and course selection. That includes rooms, golf, and taxes." } },
   ]
 };
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://golfgraeagle.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://golfgraeagle.com/blog/" },
+    { "@type": "ListItem", "position": 3, "name": "Large Group Golf in Graeagle: How 50+ Golfers Do It Right", "item": `https://golfgraeagle.com/blog/${slug}/` }
+  ]
+};
+
 ---
-<Base title={title} description={description} ogType="article" schema={[schema, faqSchema]}
+<Base title={title} description={description} ogType="article" schema={[schema, faqSchema, breadcrumbSchema]}
   canonical={`https://golfgraeagle.com/blog/${slug}/`}
   ogImage="https://golfgraeagle.com/wp-images/DJI_0006-Edit.jpg"
 >
