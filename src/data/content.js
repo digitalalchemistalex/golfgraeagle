@@ -18,7 +18,7 @@ export const siteConfig = {
   email: 'mike.eskuchen@golfthehighsierra.com',
   quoteUrl: '/request-a-quote',
   social: {
-    og_image: 'https://golfgraeagle.com/wp-images/DJI_0006-Edit.jpg',
+    og_image: 'https://golfgraeagle.com/wp-images/DJI_0006-Edit.webp',
   },
 };
 
@@ -27,7 +27,7 @@ export const siteConfig = {
 // Used by portfolio template: imageAlts[filename] || contextual fallback
 export const imageAlts = {
   // HOMEPAGE / AERIAL
-  'DJI_0006-Edit.jpg': 'Aerial view of Graeagle California — Feather River winding through Sierra Nevada golf meadows',
+  'DJI_0006-Edit.webp': 'Aerial view of Graeagle California — Feather River winding through Sierra Nevada golf meadows',
   // GRAEAGLE MEADOWS
   'DJI_0230-Edit.jpg': 'Graeagle Meadows Golf Course — aerial view of fairways along Feather River, Graeagle CA',
   'DSC5446-Edit.jpg': 'Graeagle Meadows Golf Course — signature hole with mountain and Sierra pine backdrop',
@@ -177,7 +177,7 @@ export const courses = [
       'Great for groups of all skill levels',
     ],
     // Official photos from graeaglemeadows.com — drone photography 2025/2026
-    hero: '/wp-images/graeagle-meadows-hero.jpg',
+    hero: '/wp-images/graeagle-meadows-hero.webp',
     images: [
       '/wp-images/graeagle-meadows-aerial.jpg',
       '/wp-images/graeagle-meadows-dsc5446.jpg',
@@ -192,11 +192,11 @@ export const courses = [
       '/wp-images/graeagle-meadows-gallery-005.webp',
       '/wp-images/graeagle-meadows-gallery-007.webp',
       '/wp-images/graeagle-meadows-tad-mccormick.webp',
-      '/wp-images/DJI_0011.jpg',
+      '/wp-images/DJI_0011.webp',
       '/wp-images/DJI_0012-Edit.jpg',
-      '/wp-images/DJI_0014.jpg',
-      '/wp-images/DJI_0015.jpg',
-      '/wp-images/DJI_0016.jpg',
+      '/wp-images/DJI_0014.webp',
+      '/wp-images/DJI_0015.webp',
+      '/wp-images/DJI_0016.webp',
     ],
     description: 'Graeagle Meadows Golf Course opened in 1968, making it the original championship course in the valley. Designed by Ellis Van Gorder, the layout winds through open Sierra meadows and tall ponderosa pines along the Middle Fork of the Feather River. At 6,759 yards with a slope of 120, it\'s the most approachable of the five Graeagle courses and perfect for groups with a range of handicaps. The signature hole — the par-4 6th, known as "English Gold" — offers elevated tees with views of Mohawk Valley, the Feather River, and the Sierra beyond.',
     bestFor: 'First-timers, mixed-handicap groups, value rounds',
@@ -236,7 +236,7 @@ export const courses = [
       'All-grass driving range with complimentary balls',
       'Award-winning snack bar — breakfast burritos famous',
     ],
-    hero: '/wp-images/whitehawk-hero.jpg',
+    hero: '/wp-images/whitehawk-hero.webp',
     images: [
       '/wp-images/whitehawk-popup-home.webp',
       '/wp-images/unsplash-golf-sunset.jpg',
@@ -281,7 +281,7 @@ export const courses = [
       'Affordable rates — exceptional value',
     ],
     // Official photos from plumaspinesgolf.com — verified clean course shots
-    hero: '/wp-images/plumas-pines-hero.jpg',
+    hero: '/wp-images/plumas-pines-hero.webp',
     images: [
       '/wp-images/plumas-pines-6th-fairway.jpg',
       '/wp-images/plumas-pines-2nd-green.jpg',
@@ -333,7 +333,7 @@ export const courses = [
       '/wp-images/grizzly-ranch-.jpeg',
       '/wp-images/grizzly-ranch--1024x682.webp',
       '/wp-images/grizzly-ranch-img0666.jpg',
-      '/wp-images/grizzly-ranch-hero.jpg',
+      '/wp-images/grizzly-ranch-hero.webp',
       '/wp-images/grizzly-ranch--1536x1023.webp',
       '/wp-images/grizzlydeck_orig-1024x768.jpg',
     ],
@@ -379,7 +379,7 @@ export const courses = [
     hero: '/wp-images/nakoma-dragon-feather-river.jpg',
     images: [
       '/wp-images/nakoma-dragon-18-hole.jpg',
-      '/wp-images/nakoma-dragon-overview.jpg',
+      '/wp-images/nakoma-dragon-overview.webp',
       '/wp-images/nakoma-dragon-feather-river.jpg',
       '/wp-images/nakoma-flw-outdoor-dining.jpg',
       '/wp-images/nakoma-recreation-dusk.jpg',
@@ -466,7 +466,7 @@ export const lodging = [
     ],
     // Feather River cabin resort — verified Unsplash (River Pines has no public CDN)
     // River Pines — using Grizzly Ranch Plumas County Sierra scenery (same region)
-    hero: '/wp-images/DJI_0949-Edit.jpg',
+    hero: '/wp-images/DJI_0949-Edit.webp',
     images: [
       '/wp-images/DJI_0949-Edit.jpg',
       '/wp-images/DJI_0013.jpg',
@@ -544,7 +544,7 @@ export const lodging = [
       'Wedding and event venue, family-friendly spaces, arcade, dog-friendly (2 dogs, 75 lbs)',
     ],
     // Real photos from nakomaresort.com — verified March 2026
-    hero: '/wp-images/nakoma-flw-lodge-exterior.jpg',
+    hero: '/wp-images/nakoma-flw-lodge-exterior.webp',
     images: [
       '/wp-images/nakoma-flw-lodge-exterior.jpg',
       '/wp-images/nakoma-inn-lobby-fireplace.jpg',
@@ -745,7 +745,7 @@ export const dining = [
     coordinates: { lat: 39.6466, lng: -120.6355 },
     location: '990 Sardine Lake Rd, Sierra City — 45 min via Gold Lake Road',
     phone: '(530) 862-1196',
-    hero: '/wp-images/Sardine-Lake-Resort.jpg',
+    hero: '/wp-images/Sardine-Lake-Resort.webp',
     images: [
       '/wp-images/Sardine-Lake-Resort.jpg',
       '/wp-images/5cb616deea137df066021704_gallery-img-v-001-full.jpg',
@@ -804,7 +804,7 @@ export const dining = [
     highlights: ['Fairway and mountain views from every table', 'Seasonal menu', 'Inside Graeagle Meadows clubhouse', '5 min from Graeagle via CA-89 N'],
     coordinates: { lat: 39.7505, lng: -120.6170 },
     location: 'Graeagle Meadows Golf Course, 5 min via CA-89 N',
-    hero: '/wp-images/Graeagle-Meadows-Golf-Course-Restaurant.jpg',
+    hero: '/wp-images/Graeagle-Meadows-Golf-Course-Restaurant.webp',
     images: [
       '/wp-images/unnamed-10.webp',
     ],
@@ -819,7 +819,7 @@ export const dining = [
     highlights: ['Baby back ribs, brisket, pork shoulder', 'Hickory and applewood smoker', '2 min from Plumas Pines on CA-89', 'Laid-back mountain setting'],
     coordinates: { lat: 39.77003, lng: -120.61092 },
     location: 'CA-89, 2 min from Plumas Pines',
-    hero: '/wp-images/Sierra-SmokeShow-.jpg',
+    hero: '/wp-images/Sierra-SmokeShow-.webp',
     images: [
       '/wp-images/Sierra-SmokeShow-.jpg',
     ],
@@ -834,7 +834,7 @@ export const dining = [
     highlights: ['Hand-tossed pizzas, oven-baked subs, pasta, salads', 'Fast and family-friendly', 'Easy group pick-up', '5 min west of Graeagle'],
     coordinates: { lat: 39.77054, lng: -120.61264 },
     location: '5 min west of Graeagle via CA-89 S and CA-70 W',
-    hero: '/wp-images/Gumbas-II-Go.jpg',
+    hero: '/wp-images/Gumbas-II-Go.webp',
     images: [
       '/wp-images/Gumbas-II-Go.jpg',
     ],
@@ -870,7 +870,7 @@ export const dining = [
     highlights: ['On-site at Chalet View Lodge', 'IPAs, stouts, saisons, and fruit-forward ales', 'Locally sourced seasonal food', 'Timber-framed lodge setting'],
     coordinates: { lat: 39.7552, lng: -120.6347 },
     location: 'Inside Chalet View Lodge, 5 min south via CA-89',
-    hero: '/wp-images/outdoor-seating.jpg',
+    hero: '/wp-images/outdoor-seating.webp',
     images: [
       '/wp-images/outdoor-seating.jpg',
       '/wp-images/unnamed-30.webp',
@@ -929,7 +929,7 @@ export const dining = [
     coordinates: { lat: 39.7686, lng: -120.6194 },
     location: '7426 CA-89, Graeagle, CA 96103',
     phone: '(530) 836-2536',
-    hero: '/wp-images/unsplash-golf-green.jpg',
+    hero: '/wp-images/unsplash-golf-green.webp',
     images: [
       '/wp-images/unsplash-golf-green.jpg',
       '/wp-images/Longboards-Bar-and-Grill.jpg',
@@ -958,7 +958,7 @@ export const dining = [
     location: 'Hwy 89, Blairsden-Graeagle, CA 96103',
     distanceFromGraeagle: '2 min north of Graeagle via Hwy 89',
     nearbyCourses: ['plumas-pines', 'whitehawk-ranch', 'graeagle-meadows'],
-    hero: '/wp-images/unsplash-golf-mountain.jpg',
+    hero: '/wp-images/unsplash-golf-mountain.webp',
     images: [
       '/wp-images/unsplash-golf-mountain.jpg',
       '/wp-images/unsplash-food-pasta.jpg',
