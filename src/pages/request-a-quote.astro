@@ -324,8 +324,13 @@ const quoteSchema = [
               ))}
             </div>
 
-            <div class="q-radio-group" style="margin-top:24px;">
-              <div class="q-radio-label">Room Configuration</div>
+            <div class="q-radio-group" style="margin-top:28px;padding:20px;background:rgba(184,116,10,0.06);border:1.5px solid rgba(184,116,10,0.2);border-radius:14px;">
+              <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;">
+                <span style="font-size:15px;">🛏</span>
+                <div style="font-size:13px;font-weight:600;color:#7a4a00;letter-spacing:0.01em;">Room Configuration</div>
+                <span style="font-size:10px;color:rgba(184,116,10,0.7);background:rgba(184,116,10,0.1);padding:2px 8px;border-radius:20px;margin-left:4px;">Affects pricing</span>
+              </div>
+              <p style="font-size:11px;color:rgba(26,18,8,0.45);margin:0 0 14px;line-height:1.5;">Single occupancy (own room) costs more but many groups prefer it.</p>
               <div class="q-radio-row">
                 <label class="q-radio"><input type="radio" name="roomConfig" value="double"/> Double occupancy (shared rooms)</label>
                 <label class="q-radio"><input type="radio" name="roomConfig" value="single"/> Single occupancy (own room)</label>
