@@ -996,7 +996,7 @@ const diningSlugMap: Record<string, string> = {
     <section style="position:relative;height:75vh;min-height:500px;overflow:hidden;display:flex;align-items:flex-end;">
       <img src={item.hero} alt={getImgAlt(item.hero, `${item.name} — ${item.type === "course" ? "golf course" : item.type === "lodge" ? "lodging" : "restaurant"}, Graeagle CA`)} style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" loading="eager" fetchpriority="high"/>
       <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(9,15,9,0.92) 0%,rgba(9,15,9,0.55) 40%,rgba(9,15,9,0.15) 70%,transparent 100%);"></div>
-      <div class="lod-hero-content">
+      <div style="position:relative;z-index:2;padding:0 clamp(20px,10%,120px) 64px;max-width:1400px;width:100%;">
         <a href="/lodging/" style="display:inline-flex;align-items:center;gap:6px;font-size:12px;color:rgba(255,255,255,0.45);text-decoration:none;margin-bottom:20px;transition:color 0.2s;" onmouseover="this.style.color='rgba(255,255,255,0.8)'" onmouseout="this.style.color='rgba(255,255,255,0.45)'">← All Lodging</a>
         {item.subtitle && <div style="font-size:11px;color:#e8a850;letter-spacing:0.14em;text-transform:uppercase;margin-bottom:12px;font-weight:700;">{item.subtitle}</div>}
         <h1 style="font-family:'Playfair Display',serif;font-size:clamp(34px,5vw,60px);font-weight:500;color:#ffffff;margin:0 0 14px;line-height:1.1;text-shadow:0 2px 12px rgba(0,0,0,0.4);">{item.name}</h1>
@@ -1202,7 +1202,7 @@ const diningSlugMap: Record<string, string> = {
     <section style="position:relative;height:65vh;min-height:420px;overflow:hidden;display:flex;align-items:flex-end;">
       <img src={item.hero} alt={getImgAlt(item.hero, `${item.name} — ${item.type === "course" ? "golf course" : item.type === "lodge" ? "lodging" : "restaurant"}, Graeagle CA`)} style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" loading="eager" fetchpriority="high"/>
       <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(9,15,9,0.92) 0%,rgba(9,15,9,0.5) 40%,rgba(9,15,9,0.1) 70%,transparent 100%);"></div>
-      <div class="din-hero-content">
+      <div style="position:relative;z-index:2;padding:0 clamp(20px,10%,120px) 56px;max-width:1400px;width:100%;">
         <a href="/dining/" style="display:inline-flex;align-items:center;gap:6px;font-size:12px;color:rgba(255,255,255,0.45);text-decoration:none;margin-bottom:20px;transition:color 0.2s;" onmouseover="this.style.color='rgba(255,255,255,0.8)'" onmouseout="this.style.color='rgba(255,255,255,0.45)'">← All Dining</a>
         {item.cuisine && <div style="font-size:11px;color:#e8a850;letter-spacing:0.14em;text-transform:uppercase;margin-bottom:12px;font-weight:700;">{item.cuisine}</div>}
         <h1 style="font-family:'Playfair Display',serif;font-size:clamp(30px,5vw,56px);font-weight:500;color:#ffffff;margin:0 0 12px;line-height:1.1;text-shadow:0 2px 12px rgba(0,0,0,0.4);">{item.name}</h1>
