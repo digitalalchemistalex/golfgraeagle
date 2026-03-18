@@ -330,6 +330,77 @@ const homeFaqSchema = {
   </div>
 </section>
 
+<!-- ══════ TRIP GUIDES ══════ -->
+<section style="background:var(--page-bg);padding:clamp(60px,10vw,100px) clamp(24px,6vw,48px);">
+  <div style="max-width:1200px;margin:0 auto;">
+    <div class="reveal section-header" style="margin-bottom:48px;">
+      <p class="eyebrow">Plan Smarter</p>
+      <h2 class="section-title">Graeagle Golf Trip Guides</h2>
+      <p class="section-sub">Real itineraries, honest course rankings, and pricing from actual booked packages.</p>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(320px,100%),1fr));gap:20px;margin-bottom:36px;">
+      {[
+        {
+          slug: 'graeagle-golf-weekend',
+          tag: 'Weekend Trip',
+          tagColor: '#2d7a3a',
+          title: 'Graeagle Golf Weekend: 2-Day & 3-Day Itineraries',
+          desc: 'The exact course sequence, lodging, and real pricing for a 2 or 3-day Graeagle golf trip. From $620/person.',
+          img: '/wp-images/whitehawk-popup-home.webp',
+        },
+        {
+          slug: 'graeagle-golf-trip-cost',
+          tag: 'Pricing Guide',
+          tagColor: '#1a7a40',
+          title: 'How Much Does a Graeagle Golf Trip Cost?',
+          desc: 'Real numbers from 15 actual packages — $620 to $1,705 per person. What drives the cost up or down.',
+          img: '/wp-images/grizzly-ranch-img0666.jpg',
+        },
+        {
+          slug: 'graeagle-golf-courses-ranked',
+          tag: 'Course Guide',
+          tagColor: '#a06c30',
+          title: 'All 5 Graeagle Golf Courses, Honestly Ranked',
+          desc: 'Best for beginners, best challenge, best value, best scenery. The unvarnished ranking from people who book all five.',
+          img: '/wp-images/nakoma-dragon-overview.jpg',
+        },
+        {
+          slug: 'golf-near-lake-tahoe',
+          tag: 'Destination Guide',
+          tagColor: '#3b82f6',
+          title: 'Golf Near Lake Tahoe: Why Graeagle Is the Answer',
+          desc: 'Graeagle is 90 min from North Lake Tahoe — Golf Digest Top 100, FLW clubhouse, and 40% cheaper than Truckee.',
+          img: '/wp-images/grizzly-ranch-.jpeg',
+        },
+      ].map(post => (
+        <a href={`/blog/${post.slug}/`} style="display:block;text-decoration:none;background:#fff;border:1px solid rgba(28,18,8,0.07);border-radius:18px;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,0.04);transition:all 0.2s;"
+          onmouseover="this.style.transform='translateY(-3px)';this.style.boxShadow='0 8px 32px rgba(0,0,0,0.1)'"
+          onmouseout="this.style.transform='translateY(0)';this.style.boxShadow='0 2px 12px rgba(0,0,0,0.04)'">
+          <div style="height:180px;overflow:hidden;">
+            <img src={post.img} alt={post.title} loading="lazy"
+              style="width:100%;height:100%;object-fit:cover;transition:transform 0.4s;"
+              onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'"/>
+          </div>
+          <div style="padding:20px;">
+            <span style={`display:inline-block;font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:#fff;background:${post.tagColor};padding:3px 10px;border-radius:100px;margin-bottom:10px;`}>{post.tag}</span>
+            <h3 style="font-family:'Playfair Display',serif;font-size:17px;font-weight:500;color:#1a2e1a;margin:0 0 8px;line-height:1.3;">{post.title}</h3>
+            <p style="font-size:13px;color:rgba(28,18,8,0.5);line-height:1.6;margin:0;">{post.desc}</p>
+          </div>
+        </a>
+      ))}
+    </div>
+
+    <div style="text-align:center;">
+      <a href="/blog/" style="display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:600;color:#2d7a3a;text-decoration:none;border:1px solid rgba(45,122,58,0.2);padding:12px 28px;border-radius:100px;transition:all 0.2s;"
+        onmouseover="this.style.background='rgba(45,122,58,0.05)';this.style.borderColor='rgba(45,122,58,0.4)'"
+        onmouseout="this.style.background='transparent';this.style.borderColor='rgba(45,122,58,0.2)'">
+        View all trip guides →
+      </a>
+    </div>
+  </div>
+</section>
+
 <!-- ══════ CTA STRIP ══════ -->
 <section style="position:relative;padding:clamp(80px,12vw,120px) clamp(24px,6vw,48px);overflow:hidden;">
   <div style="position:absolute;inset:0;">
