@@ -436,7 +436,7 @@ export const prerender = true;
 @media(max-width:600px){.ch-hero-strip{display:none;}}
 
 /* ── altitude callout ── */
-.ch-altitude{background:#f8faf4;border-bottom:1px solid #e8ede8;}
+.ch-altitude{background:var(--surface-2);border-bottom:1px solid #e8ede8;}
 .ch-altitude-inner{display:flex;align-items:flex-start;gap:20px;padding:28px 0;}
 .ch-altitude-icon{font-size:28px;flex-shrink:0;margin-top:2px;}
 .ch-altitude-title{font-size:15px;font-weight:700;color:#1a2e1a;margin-bottom:6px;}
@@ -448,13 +448,13 @@ export const prerender = true;
 .ch-section-sub{font-size:15px;color:#6b7c6b;margin:0 0 40px;line-height:1.65;}
 
 /* ── comparison table ── */
-.ch-table-section{padding:80px 0;background:#fff;}
+.ch-table-section{padding:80px 0;background:var(--page-bg);}
 .ch-table-wrap{overflow-x:auto;border-radius:16px;border:1px solid #e8ede8;box-shadow:0 2px 20px rgba(0,0,0,0.04);}
 .ch-table{width:100%;border-collapse:collapse;font-size:13px;}
-.ch-th{padding:14px 16px;text-align:center;font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:#6b7c6b;background:#f8faf4;border-bottom:1px solid #e8ede8;}
+.ch-th{padding:14px 16px;text-align:center;font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:#6b7c6b;background:var(--surface-2);border-bottom:1px solid #e8ede8;}
 .ch-th-left{text-align:left;}
 .ch-tr{border-bottom:1px solid #f0f4f0;transition:background .15s;}
-.ch-tr:hover{background:#f8faf4;}
+.ch-tr:hover{background:var(--surface-2);}
 .ch-tr:last-child{border-bottom:none;}
 .ch-td{padding:16px 16px;vertical-align:top;}
 .ch-td-center{text-align:center;color:#374137;}
@@ -471,7 +471,7 @@ export const prerender = true;
 .ch-legend-dot{padding:2px 8px;border-radius:100px;font-size:11px;font-weight:700;}
 
 /* ── course cards ── */
-.ch-cards-section{padding:80px 0;background:#f0f5f0;}
+.ch-cards-section{padding:80px 0;background:var(--surface-2);}
 .ch-cards{display:flex;flex-direction:column;gap:40px;}
 .ch-card{background:#fff;border-radius:24px;overflow:hidden;box-shadow:0 4px 24px rgba(0,0,0,0.06);transition:box-shadow .3s;}
 .ch-card:hover{box-shadow:0 12px 48px rgba(0,0,0,0.12);}
@@ -497,7 +497,7 @@ export const prerender = true;
 .ch-stats-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:1px;background:#e8ede8;border-radius:14px;overflow:hidden;margin-bottom:24px;}
 @media(max-width:700px){.ch-stats-grid{grid-template-columns:repeat(3,1fr);}}
 @media(max-width:420px){.ch-stats-grid{grid-template-columns:repeat(2,1fr);}}
-.ch-stat-box{background:#f8faf4;padding:16px 12px;text-align:center;}
+.ch-stat-box{background:var(--surface-2);padding:16px 12px;text-align:center;}
 .ch-stat-label{font-size:9px;color:#8a9a8a;text-transform:uppercase;letter-spacing:.08em;font-weight:600;margin-bottom:6px;}
 .ch-stat-val{font-family:'Playfair Display',serif;font-size:20px;color:#1a2e1a;font-weight:400;line-height:1.1;}
 .ch-stat-sm{font-size:12px;font-family:'Inter',sans-serif;color:#374137;}
@@ -524,14 +524,14 @@ export const prerender = true;
 .ch-facilities{margin-bottom:28px;}
 .ch-facilities-label{font-size:10px;font-weight:700;color:#8a9a8a;text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px;}
 .ch-facilities-list{display:flex;flex-wrap:wrap;gap:6px;}
-.ch-facility{font-size:12px;color:#374137;background:#f8faf4;padding:4px 10px;border-radius:6px;}
+.ch-facility{font-size:12px;color:#374137;background:var(--surface-2);padding:4px 10px;border-radius:6px;}
 
 /* full details btn */
 .ch-card-btn{display:inline-block;background:#1a2e1a;color:#f8faf8;font-size:14px;font-weight:600;padding:14px 28px;border-radius:100px;text-decoration:none;transition:all .25s;}
 .ch-card-btn:hover{background:#e8a850;color:#0d1a0e;transform:translateY(-1px);}
 
 /* ── slope explainer ── */
-.ch-explainer{padding:80px 0;background:#fff;}
+.ch-explainer{padding:80px 0;background:var(--page-bg);}
 .ch-explainer-inner{display:grid;grid-template-columns:1fr 1fr;gap:60px;}
 @media(max-width:800px){.ch-explainer-inner{grid-template-columns:1fr;gap:40px;}}
 .ch-explainer-title{font-family:'Playfair Display',serif;font-size:clamp(22px,2.5vw,30px);font-weight:400;color:#1a2e1a;margin:0 0 16px;}
@@ -552,7 +552,7 @@ export const prerender = true;
 .ch-explainer-fine{font-size:11px;color:#8a9a8a;line-height:1.5;}
 
 /* ── itinerary ── */
-.ch-itinerary{padding:80px 0;background:#f0f5f0;}
+.ch-itinerary{padding:80px 0;background:var(--surface-2);}
 .ch-itin-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
 @media(max-width:800px){.ch-itin-grid{grid-template-columns:1fr;}}
 .ch-itin-card{background:#fff;border-radius:20px;padding:28px;border:1px solid #e8ede8;}
