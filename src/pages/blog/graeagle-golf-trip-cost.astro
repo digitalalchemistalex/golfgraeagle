@@ -3,6 +3,7 @@ export const prerender = true;
 import Base from '../../layouts/Base.astro';
 import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
+import RelatedTrips from '../../components/RelatedTrips.tsx';
 
 const title = "How Much Does a Graeagle Golf Trip Cost? Real Pricing from 15 Actual Packages";
 const description = "Graeagle golf trips run $620–$1,705 per person depending on nights, rounds, and lodging. Here's a breakdown of real package pricing across budget, value, and premium tiers — with actual itineraries.";
@@ -237,5 +238,7 @@ const breadcrumbSchema = {
       </div>
     </aside>
   </div>
-  <Footer />
+  
+  <RelatedTrips client:load slug="graeagle-meadows" type="course" showAll={true} max={4} />
+<Footer />
 </Base>

@@ -324,26 +324,43 @@ function TripCard({ trip }: { trip: Trip }) {
 }
 
 /* ─── MAIN EXPORT ─── */
-export default function RelatedTrips({ slug, type }: { slug: string; type: "course" | "lodging" }) {
+export default function RelatedTrips({ slug, type, showAll = false, max = 6 }: { slug: string; type: "course" | "lodging"; showAll?: boolean; max?: number }) {
   const [trips, setTrips] = useState<Trip[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const namesMap = type === "course" ? COURSE_NAMES : LODGING_NAMES;
-    const names = namesMap[slug];
-    if (!names) { setLoading(false); return; }
-
     fetch(`${API_URL}?t=${Date.now()}`)
       .then(r => r.json())
       .then((data: Trip[]) => {
-        const filtered = data.filter(t =>
-          type === "course" ? matchesCourse(t, names) : matchesLodging(t, names)
-        ).slice(0, 6);
+        let filtered: Trip[];
+        if (showAll) {
+          // Blog post mode — show top trips from any Graeagle venue
+          filtered = data
+            .filter(t => (t.region || "").toLowerCase().includes("graeagle") || 
+                        (t.courses || []).some(c => 
+                          Object.values(COURSE_NAMES).flat().some(n => 
+                            c.toLowerCase().includes(n.toLowerCase().split(" ")[0])
+                          )
+                        ))
+            .sort((a, b) => {
+              const aScore = (a.vibe?.toLowerCase() === "premium" ? 1000 : 0) + (a.groupSize || 0);
+              const bScore = (b.vibe?.toLowerCase() === "premium" ? 1000 : 0) + (b.groupSize || 0);
+              return bScore - aScore;
+            })
+            .slice(0, max);
+        } else {
+          const namesMap = type === "course" ? COURSE_NAMES : LODGING_NAMES;
+          const names = namesMap[slug];
+          if (!names) { setLoading(false); return; }
+          filtered = data.filter(t =>
+            type === "course" ? matchesCourse(t, names) : matchesLodging(t, names)
+          ).slice(0, max);
+        }
         setTrips(filtered);
         setLoading(false);
       })
       .catch(() => setLoading(false));
-  }, [slug, type]);
+  }, [slug, type, showAll, max]);
 
   if (loading || trips.length === 0) return null;
 
@@ -353,7 +370,7 @@ export default function RelatedTrips({ slug, type }: { slug: string; type: "cour
         {/* Header */}
         <div style={{ textAlign: "center", marginBottom: 40 }}>
           <div style={{ fontSize: 11, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.14em", color: "#e8a850", marginBottom: 10 }}>
-            Real Trips Featuring This {type === "course" ? "Course" : "Property"}
+            {showAll ? "Real Graeagle Golf Trips" : `Real Trips Featuring This ${type === "course" ? "Course" : "Property"}`}
           </div>
           <h2 style={{
             fontFamily: "'Playfair Display', serif", fontSize: "clamp(26px,3.5vw,38px)",

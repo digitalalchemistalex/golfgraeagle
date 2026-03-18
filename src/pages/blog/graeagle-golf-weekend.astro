@@ -3,6 +3,7 @@ export const prerender = true;
 import Base from '../../layouts/Base.astro';
 import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
+import RelatedTrips from '../../components/RelatedTrips.tsx';
 
 const title = "Graeagle Golf Weekend: 2-Day and 3-Day Itineraries (With Real Pricing)";
 const description = "Planning a Graeagle golf weekend? Here are the exact 2-day and 3-day itineraries that work — courses in the right order, where to stay, what to eat, and what groups actually pay. From $620/person.";
@@ -311,5 +312,7 @@ const breadcrumbSchema = {
       </div>
     </aside>
   </div>
-  <Footer />
+  
+  <RelatedTrips client:load slug="graeagle-meadows" type="course" showAll={true} max={4} />
+<Footer />
 </Base>

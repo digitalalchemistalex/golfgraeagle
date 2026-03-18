@@ -3,6 +3,7 @@ export const prerender = true;
 import Base from '../../layouts/Base.astro';
 import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
+import RelatedTrips from '../../components/RelatedTrips.tsx';
 
 const title = "Graeagle Golf Courses Ranked: All 5 Compared Honestly";
 const description = "All 5 Graeagle golf courses ranked for different types of golfers. Best course for beginners, best for low handicappers, best value, and what the slope ratings actually mean.";
@@ -200,5 +201,7 @@ const breadcrumbSchema = {
       </div>
     </aside>
   </div>
-  <Footer />
+  
+  <RelatedTrips client:load slug="graeagle-meadows" type="course" showAll={true} max={4} />
+<Footer />
 </Base>

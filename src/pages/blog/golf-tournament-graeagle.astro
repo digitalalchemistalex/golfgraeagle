@@ -3,6 +3,7 @@ export const prerender = true;
 import Base from '../../layouts/Base.astro';
 import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
+import RelatedTrips from '../../components/RelatedTrips.tsx';
 
 const title = "Golf Tournament in Graeagle, CA: How to Run a Group Event Across 5 Courses";
 const description = "Planning a golf tournament in Graeagle? Here's how groups of 20–200 run scrambles, net/gross events, and charity outings across Graeagle's 5 championship courses — with tee time coordination, scoring, and banquet options.";
@@ -223,5 +224,7 @@ const breadcrumbSchema = {
       </div>
     </aside>
   </div>
-  <Footer />
+  
+  <RelatedTrips client:load slug="graeagle-meadows" type="course" showAll={true} max={3} />
+<Footer />
 </Base>

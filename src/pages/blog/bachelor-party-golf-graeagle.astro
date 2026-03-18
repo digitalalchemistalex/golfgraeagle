@@ -3,6 +3,7 @@ export const prerender = true;
 import Base from '../../layouts/Base.astro';
 import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
+import RelatedTrips from '../../components/RelatedTrips.tsx';
 
 const title = "Bachelor Party Golf in Graeagle, CA: The Complete Group Guide";
 const description = "Planning a golf bachelor party in Graeagle? Which courses, lodging for large groups, what to do after, and how to coordinate 8–16 players. From people who plan these regularly.";
@@ -192,5 +193,7 @@ const breadcrumbSchema = {
       </div>
     </aside>
   </div>
-  <Footer />
+  
+  <RelatedTrips client:load slug="graeagle-meadows" type="course" showAll={true} max={3} />
+<Footer />
 </Base>

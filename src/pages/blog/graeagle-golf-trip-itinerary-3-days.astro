@@ -3,6 +3,7 @@ export const prerender = true;
 import Base from '../../layouts/Base.astro';
 import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
+import RelatedTrips from '../../components/RelatedTrips.tsx';
 
 const title = "Graeagle Golf Trip Itinerary: 3 Days, 4 Courses (The Ideal Schedule)";
 const description = "A day-by-day Graeagle golf itinerary covering 4 courses over 3 days. Which courses to play when, where to eat, where to stay, and how to avoid rookie mistakes.";
@@ -224,5 +225,7 @@ const breadcrumbSchema = {
       </div>
     </aside>
   </div>
-  <Footer />
+  
+  <RelatedTrips client:load slug="graeagle-meadows" type="course" showAll={true} max={3} />
+<Footer />
 </Base>

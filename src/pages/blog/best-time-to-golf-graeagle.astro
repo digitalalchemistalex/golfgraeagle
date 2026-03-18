@@ -3,6 +3,7 @@ export const prerender = true;
 import Base from '../../layouts/Base.astro';
 import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
+import RelatedTrips from '../../components/RelatedTrips.tsx';
 
 const title = "Best Time to Golf in Graeagle, CA: Month-by-Month Guide";
 const description = "When is the best time to golf in Graeagle? Season runs May–November. June, September, and October are the sweet spots. Here's exactly what to expect month by month.";
@@ -207,5 +208,7 @@ const breadcrumbSchema = {
       </div>
     </aside>
   </div>
-  <Footer />
+  
+  <RelatedTrips client:load slug="graeagle-meadows" type="course" showAll={true} max={3} />
+<Footer />
 </Base>

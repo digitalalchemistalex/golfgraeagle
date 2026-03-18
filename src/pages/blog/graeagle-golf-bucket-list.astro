@@ -3,6 +3,7 @@ export const prerender = true;
 import Base from '../../layouts/Base.astro';
 import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
+import RelatedTrips from '../../components/RelatedTrips.tsx';
 
 const title = "The Graeagle Golf Bucket List: 4 Courses, 36-Hole Days, 3 Nights";
 const description = "The premium Graeagle golf trip — 4 championship courses including Nakoma Dragon and Grizzly Ranch, with 36-hole days and townhome lodging. Real itinerary, real pricing: $1,120 per person for a group of 24.";
@@ -257,5 +258,7 @@ const breadcrumbSchema = {
       </div>
     </aside>
   </div>
-  <Footer />
+  
+  <RelatedTrips client:load slug="graeagle-meadows" type="course" showAll={true} max={4} />
+<Footer />
 </Base>

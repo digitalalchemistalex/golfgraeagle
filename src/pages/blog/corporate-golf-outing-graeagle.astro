@@ -3,6 +3,7 @@ export const prerender = true;
 import Base from '../../layouts/Base.astro';
 import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
+import RelatedTrips from '../../components/RelatedTrips.tsx';
 
 const title = "Corporate Golf Outing in Graeagle, CA: Complete Planning Guide";
 const description = "Planning a corporate golf outing in Graeagle? Here's how companies run 30–60 person golf events with awards banquets, multiple course options, and clean all-inclusive invoicing. Real packages from $865–$1,150 per person.";
@@ -252,5 +253,7 @@ const breadcrumbSchema = {
       </div>
     </aside>
   </div>
-  <Footer />
+  
+  <RelatedTrips client:load slug="graeagle-meadows" type="course" showAll={true} max={3} />
+<Footer />
 </Base>
