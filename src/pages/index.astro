@@ -32,7 +32,14 @@ const homeFaqSchema = {
   "mainEntity": [
     {
       "@type": "Question",
-      "name": "How many golf courses are in Graeagle California?",
+      "name": "What is GolfGraeagle.com?",
+      "acceptedAnswer": { "@type": "Answer", "text": "GolfGraeagle.com is the only golf trip booking service local to the Graeagle valley. We build custom stay-and-play packages for groups of all sizes — tee times at all 5 championship courses, lodging coordination, and dining recommendations. Operating since 2004. Free quote with 24-hour response." }
+    },
+    {
+      "@type": "Question",
+      "name": "What is included in a Graeagle golf package?",
+      "acceptedAnswer": { "@type": "Answer", "text": "A GolfGraeagle stay-and-play package includes guaranteed tee times at any of the 5 Graeagle championship courses (Graeagle Meadows, Whitehawk Ranch, Plumas Pines, Grizzly Ranch, Nakoma Dragon), lodging coordination at properties including River Pines Resort, Chalet View Lodge, The Inn at Nakoma, or the Townhomes at Plumas Pines, and a full day-by-day itinerary. Dining reservations available on request." }
+    },
       "acceptedAnswer": { "@type": "Answer", "text": "Graeagle, California has 5 championship golf courses within 25 minutes of each other: Graeagle Meadows Golf Course, Whitehawk Ranch Golf Course, Plumas Pines Golf Resort, Grizzly Ranch Golf Club, and Nakoma (The Dragon) Golf Course." }
     },
     {
@@ -64,8 +71,8 @@ const homeFaqSchema = {
 };
 ---
 <Base
-  title="Graeagle Golf Packages & Tee Times | GolfGraeagle.com"
-  description="Plan your Graeagle golf trip — 5 championship courses in the Sierra Nevada within 25 minutes of each other. Custom stay-and-play packages, tee times, and lodging. Free quote in 24 hours."
+  title="Graeagle Golf Packages — 5 Courses, Custom Itineraries, Tee Times + Lodging Guaranteed | GolfGraeagle.com"
+  description="The only booking service local to the Graeagle valley. Custom stay-and-play packages — tee times at all 5 championship courses, lodging, and dining. We've done this since 2004. Free quote in 24 hours."
   preloadImage={HERO_IMG}
   schema={[courseListSchema, homeFaqSchema]}
   bodyClass="light-page"
@@ -112,13 +119,13 @@ const homeFaqSchema = {
       </div>
 
       <h1 class="hero-h1 reveal delay-100 speakable">
-        Five courses.<br/>
-        One <em>unforgettable</em><br/>
-        valley.
+        Graeagle Golf Packages —<br/>
+        <em>5 Courses, Custom Itineraries,</em><br/>
+        Tee Times + Lodging Guaranteed.
       </h1>
 
       <p class="hero-sub reveal delay-200 page-intro">
-        Championship golf within 25 minutes of each other — from the only Frank Lloyd Wright golf clubhouse to a Golf Digest Top 100 course. We handle everything.
+        The only booking service local to the Graeagle valley. We've done this since 2004. Free quote in 24 hours.
       </p>
 
       <div class="hero-ctas reveal delay-300">
