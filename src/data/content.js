@@ -479,8 +479,14 @@ export const lodging = [
       'Wedding and event venue, family-friendly spaces, arcade, dog-friendly (2 dogs, 75 lbs)',
     ],
     // Real photos from nakomaresort.com — verified March 2026
-    hero: '/wp-images/unnamed-40.webp',
+    hero: '/wp-images/nakoma-flw-lodge-exterior.jpg',
     images: [
+      '/wp-images/nakoma-flw-lodge-exterior.jpg',
+      '/wp-images/nakoma-inn-lobby-fireplace.jpg',
+      '/wp-images/nakoma-dining-patio.jpg',
+      '/wp-images/nakoma-fifty44-dining.jpg',
+      '/wp-images/nakoma-recreation-dusk.jpg',
+      '/wp-images/nakoma-flw-outdoor-dining.jpg',
       '/wp-images/unnamed-40.webp',
       '/wp-images/unnamed-35.webp',
     ],
