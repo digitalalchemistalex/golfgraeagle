@@ -118,24 +118,52 @@ import { courses } from '../data/content.js';
         Courses
         <svg class="chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
       </button>
-      <div class="mega-menu" style="width:700px; background:rgba(252,249,242,0.98); border:1px solid rgba(168,140,90,0.2); border-radius:20px; padding:28px; backdrop-filter:blur(24px); box-shadow:0 16px 56px rgba(26,48,32,0.14),0 2px 8px rgba(26,48,32,0.06);">
-        <p style="font-size:10px;color:#a06c30;text-transform:uppercase;letter-spacing:0.14em;font-weight:700;margin:0 0 14px;">5 Championship Courses · All within 25 minutes</p>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:18px;">
-          {courses.map(c => (
-            <a href={`/portfolio/${c.slug === 'nakoma-dragon' ? 'nakoma-dragon-golf-packages' : c.slug + '-golf-packages'}/`}
-              style="display:flex;align-items:flex-start;gap:12px;padding:12px 14px;border-radius:12px;text-decoration:none;background:rgba(26,48,32,0.02);border:1px solid rgba(168,140,90,0.1);transition:all 0.18s;"
-              onmouseover="this.style.background='rgba(232,168,80,0.08)';this.style.borderColor='rgba(168,140,90,0.3)'"
-              onmouseout="this.style.background='rgba(26,48,32,0.02)';this.style.borderColor='rgba(168,140,90,0.1)'">
-              <div style="width:34px;height:34px;border-radius:8px;background:rgba(232,168,80,0.12);border:1px solid rgba(168,140,90,0.2);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:15px;">⛳</div>
-              <div>
-                <div style="font-size:13px;font-weight:600;color:#1a2e1a;margin-bottom:2px;">{c.name}</div>
-                <div style="font-size:11px;color:#7a8a7e;line-height:1.4;">{c.tier} · Par {c.par} · {c.yards.toLocaleString()} yds</div>
-              </div>
-            </a>
-          ))}
-        </div>
-        <div style="border-top:1px solid rgba(168,140,90,0.12);padding-top:13px;display:flex;justify-content:flex-end;">
-          <a href="/all-golf-courses/" style="font-size:12px;color:#a06c30;text-decoration:none;font-weight:600;transition:opacity 0.2s;" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">Compare all 5 courses →</a>
+      <div class="mega-menu" style="width:640px; background:rgba(252,249,242,0.98); border:1px solid rgba(168,140,90,0.2); border-radius:20px; overflow:hidden; backdrop-filter:blur(24px); box-shadow:0 16px 56px rgba(26,48,32,0.14),0 2px 8px rgba(26,48,32,0.06);">
+        <div style="display:grid;grid-template-columns:190px 1fr;">
+
+          <!-- LEFT: Grizzly Ranch featured — strongest accolade = best hook -->
+          <a href="/portfolio/grizzly-ranch-golf-packages/" style="display:flex;flex-direction:column;justify-content:flex-end;padding:22px 18px;background:linear-gradient(160deg,#2a1a0a,#3a2510);text-decoration:none;position:relative;min-height:300px;">
+            <div style="position:absolute;inset:0;background:linear-gradient(0deg,rgba(10,5,0,0.9) 0%,rgba(10,5,0,0.3) 65%,transparent 100%);"></div>
+            <div style="position:relative;z-index:2;">
+              <span style="display:inline-block;font-size:8px;font-weight:800;color:#e8a850;text-transform:uppercase;letter-spacing:0.1em;background:rgba(232,168,80,0.15);border:1px solid rgba(232,168,80,0.25);border-radius:100px;padding:3px 9px;margin-bottom:10px;">🏆 Golf Digest Top 100</span>
+              <div style="font-family:'Playfair Display',serif;font-size:18px;color:#f0ece3;line-height:1.2;margin-bottom:6px;">Grizzly Ranch</div>
+              <div style="font-size:10px;color:rgba(240,236,227,0.5);line-height:1.6;margin-bottom:6px;">7,411 yds · Slope 140 · 4,800 ft<br/>Most golfers have never heard of it.<br/>That's the point.</div>
+              <span style="font-size:11px;font-weight:700;color:#e8a850;">View packages →</span>
+            </div>
+          </a>
+
+          <!-- RIGHT: All 5 courses with FOMO copy -->
+          <div style="padding:18px 20px 16px;">
+            <div style="font-size:9px;font-weight:800;color:#a06c30;text-transform:uppercase;letter-spacing:0.12em;margin-bottom:14px;">5 courses · all within 25 min · most golfers play 3–4 in one trip</div>
+
+            {[
+              { slug:'graeagle-meadows',    url:'graeagle-meadows-golf-packages',    name:'Graeagle Meadows',  note:'Start here — easiest read, best scenery',     slope:'120', badge:'Best intro',    bc:'rgba(40,120,200,0.12)', bct:'#1050a0' },
+              { slug:'whitehawk-ranch',     url:'whitehawk-ranch-golf-packages',     name:'Whitehawk Ranch',   note:'Top 20 CA — meadow & forest mix',              slope:'132', badge:'Top 20 CA',    bc:'rgba(40,140,60,0.12)',  bct:'#1a6030' },
+              { slug:'plumas-pines',        url:'plumas-pines-golf-packages',        name:'Plumas Pines',      note:'Best value in the valley. No ego.',            slope:'132', badge:'Best value',   bc:'rgba(40,100,180,0.12)', bct:'#1050a0' },
+              { slug:'grizzly-ranch',       url:'grizzly-ranch-golf-packages',       name:'Grizzly Ranch',     note:'Golf Digest Top 100 — earn this one last',     slope:'140', badge:'Top 100 🏆',  bc:'rgba(180,120,20,0.15)', bct:'#8a5810' },
+              { slug:'nakoma-dragon',       url:'nakoma-dragon-golf-packages',       name:'Nakoma — The Dragon', note:"Only FLW golf clubhouse on earth. Period.", slope:'147', badge:'FLW Clubhouse', bc:'rgba(100,60,180,0.12)', bct:'#502090' },
+            ].map(c => (
+              <a href={`/portfolio/${c.url}/`}
+                style="display:flex;align-items:center;gap:10px;padding:7px 9px;border-radius:8px;text-decoration:none;margin-bottom:2px;transition:background 0.15s;"
+                onmouseover="this.style.background='rgba(232,168,80,0.07)'"
+                onmouseout="this.style.background='transparent'">
+                <div style="flex:1;min-width:0;">
+                  <div style="display:flex;align-items:center;gap:7px;margin-bottom:2px;">
+                    <span style="font-size:12px;font-weight:600;color:#1a2e1a;">{c.name}</span>
+                    <span style={`font-size:8px;font-weight:800;padding:1px 7px;border-radius:100px;background:${c.bc};color:${c.bct};white-space:nowrap;`}>{c.badge}</span>
+                  </div>
+                  <div style="font-size:10px;color:#8a9a8e;font-style:italic;">{c.note}</div>
+                </div>
+                <div style="font-size:10px;font-weight:700;color:#c8a870;white-space:nowrap;flex-shrink:0;">Slope {c.slope}</div>
+              </a>
+            ))}
+
+            <div style="border-top:1px solid rgba(168,140,90,0.12);margin-top:10px;padding-top:10px;display:flex;align-items:center;justify-content:space-between;">
+              <span style="font-size:10px;color:#a06c30;font-style:italic;">Tee times fill fast in summer →</span>
+              <a href="/all-golf-courses/" style="font-size:11px;font-weight:700;color:#a06c30;text-decoration:none;" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">Compare all 5 →</a>
+            </div>
+          </div>
+
         </div>
       </div>
     </div>
@@ -146,28 +174,82 @@ import { courses } from '../data/content.js';
         Lodging
         <svg class="chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
       </button>
-      <div class="mega-menu" style="width:520px; background:rgba(252,249,242,0.98); border:1px solid rgba(168,140,90,0.2); border-radius:20px; padding:28px; backdrop-filter:blur(24px); box-shadow:0 16px 56px rgba(26,48,32,0.14),0 2px 8px rgba(26,48,32,0.06);">
-        <p style="font-size:10px;color:#a06c30;text-transform:uppercase;letter-spacing:0.14em;font-weight:700;margin:0 0 14px;">Where to Stay</p>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:16px;">
-          {[
-            {name:'River Pines Resort',        tag:'Best for Groups',      icon:'🏨', href:'/portfolio/river-pines-resort-graeagle-ca/'},
-            {name:'Chalet View Lodge',         tag:'Best Amenities',       icon:'🏔️', href:'/portfolio/chalet-view-lodge-graeagle-ca/'},
-            {name:'The Inn at Nakoma',         tag:'Most Unique',          icon:'🏛️', href:'/portfolio/the-inn-at-nakoma-clio-ca/'},
-            {name:'Townhomes at Plumas Pines', tag:'Best for Large Groups',icon:'🏠', href:'/portfolio/the-townhomes-at-plumas-pines/'},
-          ].map(l => (
-            <a href={l.href} style="display:flex;align-items:flex-start;gap:11px;padding:12px 13px;border-radius:10px;text-decoration:none;background:rgba(26,48,32,0.02);border:1px solid rgba(168,140,90,0.1);transition:all 0.18s;"
-            onmouseover="this.style.background='rgba(232,168,80,0.08)';this.style.borderColor='rgba(168,140,90,0.3)'"
-            onmouseout="this.style.background='rgba(26,48,32,0.02)';this.style.borderColor='rgba(168,140,90,0.1)'">
-              <span style="font-size:17px;flex-shrink:0;">{l.icon}</span>
-              <div>
-                <div style="font-size:13px;font-weight:600;color:#1a2e1a;margin-bottom:2px;">{l.name}</div>
-                <div style="font-size:11px;color:#7a8a7e;">{l.tag}</div>
-              </div>
-            </a>
-          ))}
-        </div>
-        <div style="border-top:1px solid rgba(168,140,90,0.12);padding-top:13px;text-align:right;">
-          <a href="/lodging/" style="font-size:12px;color:#a06c30;text-decoration:none;font-weight:600;transition:opacity 0.2s;" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">View all lodging →</a>
+      <div class="mega-menu" style="width:600px; background:rgba(252,249,242,0.98); border:1px solid rgba(168,140,90,0.2); border-radius:20px; overflow:hidden; backdrop-filter:blur(24px); box-shadow:0 16px 56px rgba(26,48,32,0.14),0 2px 8px rgba(26,48,32,0.06);">
+        <div style="display:grid;grid-template-columns:190px 1fr;">
+
+          <!-- LEFT: Inn at Nakoma featured — FLW is the unique hook -->
+          <a href="/portfolio/the-inn-at-nakoma-clio-ca/" style="display:flex;flex-direction:column;justify-content:flex-end;padding:22px 18px;background:linear-gradient(160deg,#1a0a2e,#2a1040);text-decoration:none;position:relative;min-height:280px;">
+            <div style="position:absolute;inset:0;background:linear-gradient(0deg,rgba(6,2,15,0.92) 0%,rgba(6,2,15,0.3) 65%,transparent 100%);"></div>
+            <div style="position:relative;z-index:2;">
+              <span style="display:inline-block;font-size:8px;font-weight:800;color:#e8a850;text-transform:uppercase;letter-spacing:0.1em;background:rgba(232,168,80,0.15);border:1px solid rgba(232,168,80,0.25);border-radius:100px;padding:3px 9px;margin-bottom:10px;">🏛️ Frank Lloyd Wright</span>
+              <div style="font-family:'Playfair Display',serif;font-size:17px;color:#f0ece3;line-height:1.2;margin-bottom:6px;">The Inn at Nakoma</div>
+              <div style="font-size:10px;color:rgba(240,236,227,0.5);line-height:1.6;margin-bottom:6px;">42 rooms · Frette linens · Fifty44 restaurant · heated pool · spa<br/>The only FLW-designed golf resort in the world.</div>
+              <span style="font-size:11px;font-weight:700;color:#e8a850;">View property →</span>
+            </div>
+          </a>
+
+          <!-- RIGHT: All 4 properties with intelligent + FOMO copy -->
+          <div style="padding:18px 20px 16px;">
+            <div style="font-size:9px;font-weight:800;color:#a06c30;text-transform:uppercase;letter-spacing:0.12em;margin-bottom:14px;">Where to stay — we include lodging in every package</div>
+
+            {[
+              {
+                href: '/portfolio/river-pines-resort-graeagle-ca/',
+                name: 'River Pines Resort',
+                note: 'Family-owned 40+ years. Groups book cabins fast in July/Aug.',
+                tag: 'Best for groups',
+                fomo: '🔥 Most booked',
+                tc: '#8a2010',
+                bc: 'rgba(200,60,20,0.1)',
+              },
+              {
+                href: '/portfolio/chalet-view-lodge-graeagle-ca/',
+                name: 'Chalet View Lodge',
+                note: '10 forested acres · spa · Eureka Peak Brewing on-site.',
+                tag: 'Best amenities',
+                fomo: '⭐ Golfer favourite',
+                tc: '#1a6030',
+                bc: 'rgba(40,140,60,0.1)',
+              },
+              {
+                href: '/portfolio/the-inn-at-nakoma-clio-ca/',
+                name: 'The Inn at Nakoma',
+                note: 'Walk to the 1st tee. Fifty44 restaurant. Frette linens.',
+                tag: 'Most unique',
+                fomo: '🏛️ FLW Clubhouse',
+                tc: '#502090',
+                bc: 'rgba(100,60,180,0.1)',
+              },
+              {
+                href: '/portfolio/the-townhomes-at-plumas-pines/',
+                name: 'Townhomes at Plumas Pines',
+                note: '2–4BR rentals. Full kitchens. Pool. On-course. Groups of 12+.',
+                tag: 'Best for large groups',
+                fomo: '🏠 On-course stay',
+                tc: '#1050a0',
+                bc: 'rgba(40,100,200,0.1)',
+              },
+            ].map(l => (
+              <a href={l.href}
+                style="display:flex;align-items:flex-start;gap:10px;padding:8px 9px;border-radius:8px;text-decoration:none;margin-bottom:3px;transition:background 0.15s;"
+                onmouseover="this.style.background='rgba(232,168,80,0.07)'"
+                onmouseout="this.style.background='transparent'">
+                <div style="flex:1;min-width:0;">
+                  <div style="display:flex;align-items:center;gap:7px;margin-bottom:2px;flex-wrap:wrap;">
+                    <span style="font-size:12px;font-weight:600;color:#1a2e1a;">{l.name}</span>
+                    <span style={`font-size:8px;font-weight:800;padding:1px 7px;border-radius:100px;background:${l.bc};color:${l.tc};white-space:nowrap;`}>{l.fomo}</span>
+                  </div>
+                  <div style="font-size:10px;color:#8a9a8e;font-style:italic;line-height:1.4;">{l.note}</div>
+                </div>
+              </a>
+            ))}
+
+            <div style="border-top:1px solid rgba(168,140,90,0.12);margin-top:10px;padding-top:10px;display:flex;align-items:center;justify-content:space-between;">
+              <span style="font-size:10px;color:#a06c30;font-style:italic;">Summer weekends sell out early →</span>
+              <a href="/lodging/" style="font-size:11px;font-weight:700;color:#a06c30;text-decoration:none;" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">View all lodging →</a>
+            </div>
+          </div>
+
         </div>
       </div>
     </div>
