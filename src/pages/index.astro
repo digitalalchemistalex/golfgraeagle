@@ -171,7 +171,7 @@ const homeFaqSchema = {
 
     <div class="courses-five-grid">
       {[courses[0], courses[1], courses[2], courses[3], courses[4]].map((c,i)=>(
-        <div class={`reveal delay-${i*75} course-card-equal`} onclick={`window.location='/courses/${c.slug}'`} style="cursor:pointer;">
+        <a href={`/portfolio/${c.slug === "nakoma-dragon" ? "nakoma-dragon-golf-packages" : c.slug + "-golf-packages"}`} class={`reveal delay-${i*75} course-card-equal`} style="text-decoration:none;display:block;">
           <img src={c.hero} alt={getImgAlt(c.hero, `${c.name} Golf Course — Graeagle, California`)} loading="lazy" class="course-card-img"/>
           <div class="card-gradient"></div>
           <div class="course-card-body">
@@ -181,9 +181,9 @@ const homeFaqSchema = {
               <span class="card-pill">{c.designer}</span>
             </div>
             <h3 style="font-family:'Playfair Display',serif;font-size:clamp(16px,1.4vw,20px);color:#ffffff;text-shadow:0 1px 8px rgba(0,0,0,0.5);margin:0 0 12px;line-height:1.2;">{c.name}</h3>
-            <a href={`/portfolio/${c.slug === "nakoma-dragon" ? "nakoma-dragon-golf-packages" : c.slug + "-golf-packages"}`} class="link-gold-sm">View course →</a>
+            <span class="link-gold-sm">View course →</span>
           </div>
-        </div>
+        </a>
       ))}
     </div>
   </div>
@@ -251,15 +251,15 @@ const homeFaqSchema = {
 
     <div class="lodging-four-grid">
       {lodging.map((l, i) => (
-        <div class={`reveal delay-${i*75} lodging-equal-card`} onclick={`window.location='/portfolio/${l.slug}'`} style="cursor:pointer;">
+        <a href={`/portfolio/${l.slug}`} class={`reveal delay-${i*75} lodging-equal-card`} style="text-decoration:none;display:block;">
           <img src={l.hero} alt={getImgAlt(l.hero, `${l.name} — Graeagle CA lodging for golf groups`)} loading="lazy" class="course-card-img"/>
           <div class="card-gradient"></div>
           <div class="course-card-body">
             <h3 style="font-family:'Playfair Display',serif;font-size:clamp(16px,1.4vw,20px);color:#ffffff;text-shadow:0 1px 8px rgba(0,0,0,0.5);margin:0 0 6px;line-height:1.2;">{l.name}</h3>
             <p style="font-size:12px;color:rgba(255,255,255,0.6);margin:0 0 12px;">{l.subtitle}</p>
-            <a href={`/portfolio/${l.slug}`} class="link-gold-sm">View →</a>
+            <span class="link-gold-sm">View →</span>
           </div>
-        </div>
+        </a>
       ))}
     </div>
 
