@@ -8,7 +8,9 @@ export default defineConfig({
   site: 'https://golfgraeagle.com',
   integrations: [
     react(),
-    sitemap(),
+    sitemap({
+      customPages: ['https://golfgraeagle.com/trips/'],
+    }),
   ],
   vite: {
     plugins: [tailwindcss()],
