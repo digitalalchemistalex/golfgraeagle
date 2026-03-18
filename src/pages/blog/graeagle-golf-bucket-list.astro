@@ -58,19 +58,56 @@ const breadcrumbSchema = {
     </div>
   </div>
 
-  <div class="bl-wrap">
-    <article class="bl-article">
 
-      <div class="bl-answer-box">
+  <div class="bl-full">
+    <div class="bl-answer-box">
         <div class="bl-answer-label">The Trip at a Glance</div>
         <p><strong>24 golfers · 3 nights · 4 courses · 36-hole days on Friday and Saturday</strong><br/>
         Courses: Plumas Pines → Grizzly Ranch → The Dragon (Nakoma) → Whitehawk Ranch<br/>
         Lodging: Townhomes at Plumas Pines Golf Resort<br/>
         Price: <strong>$1,120 per person</strong> — all-inclusive (lodging, golf, taxes)</p>
       </div>
+  </div>
 
+  <div class="bl-wrap">
+    <article class="bl-article">
       <p class="bl-intro">Most Graeagle trips play 3 courses over 3 days. This is not that trip. This is the version where you push — 36 holes on the big days, 4 championship courses total, 3 nights in townhomes with fairway views, and Nakoma Dragon as the centerpiece round. We've run this exact package for a group of 24. Here's how it works and what it actually costs.</p>
+    </article>
+    <aside class="bl-sidebar">
+      <div class="bl-sidebar-card">
+        <div class="bl-sidebar-title">Book This Trip</div>
+        <p>4 courses, 3 nights, 36-hole days. Tell us your group size and dates.</p>
+        <a href="/request-a-quote/" class="bl-sidebar-btn btn-green-glow">Get a Quote →</a>
+      </div>
+      <div class="bl-sidebar-card">
+        <div class="bl-sidebar-title">The 4 Courses</div>
+        <div class="bl-sidebar-links">
+          {[
+            { name: 'Nakoma Dragon', slug: 'nakoma-dragon-golf-packages', note: 'Slope 147 · FLW Clubhouse' },
+            { name: 'Grizzly Ranch', slug: 'grizzly-ranch-golf-packages', note: 'Slope 140 · Golf Digest Top 100' },
+            { name: 'Whitehawk Ranch', slug: 'whitehawk-ranch-golf-packages', note: 'Slope 132 · Top 20 CA' },
+            { name: 'Plumas Pines', slug: 'plumas-pines-golf-packages', note: 'Slope 132 · Best Value' },
+          ].map(c => (
+            <a href={`/portfolio/${c.slug}/`} class="bl-sidebar-course">
+              <div class="bl-sidebar-course-name">{c.name}</div>
+              <div class="bl-sidebar-course-note">{c.note}</div>
+            </a>
+          ))}
+        </div>
+      </div>
+      <div class="bl-sidebar-card">
+        <div class="bl-sidebar-title">Related Reading</div>
+        <div class="bl-sidebar-links">
+          <a href="/blog/graeagle-golf-trip-cost/" class="bl-sidebar-post">What Does a Graeagle Trip Cost? →</a>
+          <a href="/blog/graeagle-golf-trip-itinerary-3-days/" class="bl-sidebar-post">3-Day Itinerary Guide →</a>
+          <a href="/blog/graeagle-vs-lake-tahoe-golf/" class="bl-sidebar-post">Graeagle vs Lake Tahoe →</a>
+        </div>
+      </div>
+    </aside>
+  </div>
 
+  <div class="bl-full">
+    <div class="bl-body">
       <h2>Why 36-Hole Days Work in Graeagle</h2>
       <p>Altitude helps. At 4,000–5,000 feet, you carry the ball farther and the courses play faster in cool morning air. Two specific courses pair naturally for a 36-hole day:</p>
       <ul class="bl-list">
@@ -223,42 +260,10 @@ const breadcrumbSchema = {
           <a href="/blog/graeagle-golf-trip-cost/">Full pricing breakdown →</a>
         </div>
       </div>
-
-    </article>
-
-    <aside class="bl-sidebar">
-      <div class="bl-sidebar-card">
-        <div class="bl-sidebar-title">Book This Trip</div>
-        <p>4 courses, 3 nights, 36-hole days. Tell us your group size and dates.</p>
-        <a href="/request-a-quote/" class="bl-sidebar-btn btn-green-glow">Get a Quote →</a>
-      </div>
-      <div class="bl-sidebar-card">
-        <div class="bl-sidebar-title">The 4 Courses</div>
-        <div class="bl-sidebar-links">
-          {[
-            { name: 'Nakoma Dragon', slug: 'nakoma-dragon-golf-packages', note: 'Slope 147 · FLW Clubhouse' },
-            { name: 'Grizzly Ranch', slug: 'grizzly-ranch-golf-packages', note: 'Slope 140 · Golf Digest Top 100' },
-            { name: 'Whitehawk Ranch', slug: 'whitehawk-ranch-golf-packages', note: 'Slope 132 · Top 20 CA' },
-            { name: 'Plumas Pines', slug: 'plumas-pines-golf-packages', note: 'Slope 132 · Best Value' },
-          ].map(c => (
-            <a href={`/portfolio/${c.slug}/`} class="bl-sidebar-course">
-              <div class="bl-sidebar-course-name">{c.name}</div>
-              <div class="bl-sidebar-course-note">{c.note}</div>
-            </a>
-          ))}
-        </div>
-      </div>
-      <div class="bl-sidebar-card">
-        <div class="bl-sidebar-title">Related Reading</div>
-        <div class="bl-sidebar-links">
-          <a href="/blog/graeagle-golf-trip-cost/" class="bl-sidebar-post">What Does a Graeagle Trip Cost? →</a>
-          <a href="/blog/graeagle-golf-trip-itinerary-3-days/" class="bl-sidebar-post">3-Day Itinerary Guide →</a>
-          <a href="/blog/graeagle-vs-lake-tahoe-golf/" class="bl-sidebar-post">Graeagle vs Lake Tahoe →</a>
-        </div>
-      </div>
-    </aside>
+    </div>
   </div>
-  
+
   <RelatedTrips client:load slug="graeagle-meadows" type="course" showAll={true} max={4} />
+
 <Footer />
 </Base>

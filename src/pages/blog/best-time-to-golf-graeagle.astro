@@ -67,16 +67,56 @@ const breadcrumbSchema = {
     </div>
   </div>
 
-  <div class="bl-wrap">
-    <article class="bl-article">
 
-      <div class="bl-answer-box">
+  <div class="bl-full">
+    <div class="bl-answer-box">
         <div class="bl-answer-label">Direct Answer</div>
         <p>Golf season in Graeagle runs May through October, occasionally into early November. <strong>June and September are the two best months</strong> — peak conditions, manageable crowds, and comfortable temperatures. July and August are excellent but busiest. May and October are the value plays for golfers who want solitude and lower prices.</p>
       </div>
+  </div>
 
+  <div class="bl-wrap">
+    <article class="bl-article">
       <p class="bl-intro">At 3,500–4,800 feet in the Sierra Nevada, Graeagle's climate is mountain golf at its best — cool mornings, warm afternoons, and evenings that require a fleece. Summer doesn't mean heat exhaustion. Winter means closure. The window between those is where this region shines.</p>
+    </article>
+    <aside class="bl-sidebar">
+      <div class="bl-sidebar-card">
+        <div class="bl-sidebar-title">Plan Your Trip</div>
+        <p>Free quote. 24-hour response. Tee times at all 5 courses.</p>
+        <a href="/request-a-quote" class="bl-sidebar-btn">Request a Quote →</a>
+      </div>
+      <div class="bl-sidebar-card">
+        <div class="bl-sidebar-title">Season Quick Reference</div>
+        <div style="display:flex;flex-direction:column;gap:8px;margin-top:4px;">
+          {[
+            { m: 'May', r: '⭐⭐⭐', note: 'Opening, value' },
+            { m: 'June', r: '⭐⭐⭐⭐⭐', note: 'Best month' },
+            { m: 'July', r: '⭐⭐⭐⭐', note: 'Peak, book early' },
+            { m: 'August', r: '⭐⭐⭐⭐', note: 'Peak, book early' },
+            { m: 'September', r: '⭐⭐⭐⭐⭐', note: 'Insider favorite' },
+            { m: 'October', r: '⭐⭐⭐⭐', note: 'Fall colors' },
+            { m: 'November', r: '⭐⭐', note: 'Closing' },
+          ].map(r => (
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-bottom:1px solid #f0f4f0;">
+              <span style="font-size:13px;font-weight:600;color:#1a2e1a;">{r.m}</span>
+              <span style="font-size:11px;color:#8a9a8a;">{r.note}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+      <div class="bl-sidebar-card">
+        <div class="bl-sidebar-title">Related Reading</div>
+        <div class="bl-sidebar-links">
+          <a href="/blog/graeagle-vs-lake-tahoe-golf" class="bl-sidebar-post">Graeagle vs Lake Tahoe Golf →</a>
+          <a href="/blog/how-to-plan-graeagle-golf-trip" class="bl-sidebar-post">Full Planning Guide →</a>
+          <a href="/blog/graeagle-golf-trip-itinerary-3-days" class="bl-sidebar-post">3-Day Itinerary →</a>
+        </div>
+      </div>
+    </aside>
+  </div>
 
+  <div class="bl-full">
+    <div class="bl-body">
       <h2>Month-by-Month Breakdown</h2>
 
       <div class="bl-months">
@@ -170,45 +210,10 @@ const breadcrumbSchema = {
           <a href="/blog/how-to-plan-graeagle-golf-trip">Full planning guide →</a>
         </div>
       </div>
-
-    </article>
-
-    <aside class="bl-sidebar">
-      <div class="bl-sidebar-card">
-        <div class="bl-sidebar-title">Plan Your Trip</div>
-        <p>Free quote. 24-hour response. Tee times at all 5 courses.</p>
-        <a href="/request-a-quote" class="bl-sidebar-btn">Request a Quote →</a>
-      </div>
-      <div class="bl-sidebar-card">
-        <div class="bl-sidebar-title">Season Quick Reference</div>
-        <div style="display:flex;flex-direction:column;gap:8px;margin-top:4px;">
-          {[
-            { m: 'May', r: '⭐⭐⭐', note: 'Opening, value' },
-            { m: 'June', r: '⭐⭐⭐⭐⭐', note: 'Best month' },
-            { m: 'July', r: '⭐⭐⭐⭐', note: 'Peak, book early' },
-            { m: 'August', r: '⭐⭐⭐⭐', note: 'Peak, book early' },
-            { m: 'September', r: '⭐⭐⭐⭐⭐', note: 'Insider favorite' },
-            { m: 'October', r: '⭐⭐⭐⭐', note: 'Fall colors' },
-            { m: 'November', r: '⭐⭐', note: 'Closing' },
-          ].map(r => (
-            <div style="display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-bottom:1px solid #f0f4f0;">
-              <span style="font-size:13px;font-weight:600;color:#1a2e1a;">{r.m}</span>
-              <span style="font-size:11px;color:#8a9a8a;">{r.note}</span>
-            </div>
-          ))}
-        </div>
-      </div>
-      <div class="bl-sidebar-card">
-        <div class="bl-sidebar-title">Related Reading</div>
-        <div class="bl-sidebar-links">
-          <a href="/blog/graeagle-vs-lake-tahoe-golf" class="bl-sidebar-post">Graeagle vs Lake Tahoe Golf →</a>
-          <a href="/blog/how-to-plan-graeagle-golf-trip" class="bl-sidebar-post">Full Planning Guide →</a>
-          <a href="/blog/graeagle-golf-trip-itinerary-3-days" class="bl-sidebar-post">3-Day Itinerary →</a>
-        </div>
-      </div>
-    </aside>
+    </div>
   </div>
-  
+
   <RelatedTrips client:load slug="graeagle-meadows" type="course" showAll={true} max={3} />
+
 <Footer />
 </Base>

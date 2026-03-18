@@ -57,17 +57,56 @@ const breadcrumbSchema = {
     </div>
   </div>
 
-  <div class="bl-wrap">
-    <article class="bl-article">
 
-      <div class="bl-answer-box">
+  <div class="bl-full">
+    <div class="bl-answer-box">
         <div class="bl-answer-label">The Short Version</div>
         <p>A Graeagle golf trip takes about 3 nights to do right. Play 3–4 courses, stay in Graeagle or Clio, book 4–6 weeks ahead for summer weekends. Packages start from $299 per golfer — request a quote for exact pricing on your dates. Grizzly Ranch and Whitehawk Ranch are the two courses no group should skip.</p>
       </div>
+  </div>
 
+  <div class="bl-wrap">
+    <article class="bl-article">
       <p class="bl-intro">Graeagle has 5 championship courses within 25 minutes of each other. That density is the whole point — you drive less, play more. But a Graeagle trip still takes some deliberate planning to get right. This guide covers every decision you'll need to make, in the order you'll need to make it.</p>
 
       <!-- Step 1 -->
+    </article>
+    <aside class="bl-sidebar">
+      <div class="bl-sidebar-card">
+        <div class="bl-sidebar-title">Plan Your Trip Now</div>
+        <p>Free quote. Tee times at all 5 courses. 24-hour response.</p>
+        <a href="/request-a-quote" class="bl-sidebar-btn">Request a Quote →</a>
+      </div>
+      <div class="bl-sidebar-card">
+        <div class="bl-sidebar-title">The 5 Courses</div>
+        <div class="bl-sidebar-links">
+          {[
+            { name: 'Graeagle Meadows', slug: 'graeagle-meadows', note: 'Slope 120 · Most accessible' },
+            { name: 'Whitehawk Ranch', slug: 'whitehawk-ranch', note: 'Slope 132 · Top 20 CA' },
+            { name: 'Plumas Pines', slug: 'plumas-pines', note: 'Slope 132 · Best value' },
+            { name: 'Grizzly Ranch', slug: 'grizzly-ranch', note: 'Slope 140 · Golf Digest Top 100' },
+            { name: 'Nakoma Dragon', slug: 'nakoma-dragon', note: 'Slope 147 · FLW Clubhouse' },
+          ].map(c => (
+            <a href={`/portfolio/${c.slug === "nakoma-dragon" ? "nakoma-dragon-golf-packages" : c.slug + "-golf-packages"}`} class="bl-sidebar-course">
+              <div class="bl-sidebar-course-name">{c.name}</div>
+              <div class="bl-sidebar-course-note">{c.note}</div>
+            </a>
+          ))}
+        </div>
+      </div>
+      <div class="bl-sidebar-card">
+        <div class="bl-sidebar-title">Related Reading</div>
+        <div class="bl-sidebar-links">
+          <a href="/blog/graeagle-vs-lake-tahoe-golf" class="bl-sidebar-post">Graeagle vs Lake Tahoe Golf →</a>
+          <a href="/blog/best-time-to-golf-graeagle" class="bl-sidebar-post">Best Time to Golf in Graeagle →</a>
+          <a href="/blog/graeagle-golf-trip-itinerary-3-days" class="bl-sidebar-post">3-Day Graeagle Itinerary →</a>
+        </div>
+      </div>
+    </aside>
+  </div>
+
+  <div class="bl-full">
+    <div class="bl-body">
       <h2>Step 1: Decide How Many Days</h2>
       <p>This is the foundational decision. Everything else — courses, lodging, budget — flows from it.</p>
       <div class="bl-comparison-table">
@@ -214,43 +253,10 @@ const breadcrumbSchema = {
           <a href="/lodging">See lodging options →</a>
         </div>
       </div>
-
-    </article>
-
-    <aside class="bl-sidebar">
-      <div class="bl-sidebar-card">
-        <div class="bl-sidebar-title">Plan Your Trip Now</div>
-        <p>Free quote. Tee times at all 5 courses. 24-hour response.</p>
-        <a href="/request-a-quote" class="bl-sidebar-btn">Request a Quote →</a>
-      </div>
-      <div class="bl-sidebar-card">
-        <div class="bl-sidebar-title">The 5 Courses</div>
-        <div class="bl-sidebar-links">
-          {[
-            { name: 'Graeagle Meadows', slug: 'graeagle-meadows', note: 'Slope 120 · Most accessible' },
-            { name: 'Whitehawk Ranch', slug: 'whitehawk-ranch', note: 'Slope 132 · Top 20 CA' },
-            { name: 'Plumas Pines', slug: 'plumas-pines', note: 'Slope 132 · Best value' },
-            { name: 'Grizzly Ranch', slug: 'grizzly-ranch', note: 'Slope 140 · Golf Digest Top 100' },
-            { name: 'Nakoma Dragon', slug: 'nakoma-dragon', note: 'Slope 147 · FLW Clubhouse' },
-          ].map(c => (
-            <a href={`/portfolio/${c.slug === "nakoma-dragon" ? "nakoma-dragon-golf-packages" : c.slug + "-golf-packages"}`} class="bl-sidebar-course">
-              <div class="bl-sidebar-course-name">{c.name}</div>
-              <div class="bl-sidebar-course-note">{c.note}</div>
-            </a>
-          ))}
-        </div>
-      </div>
-      <div class="bl-sidebar-card">
-        <div class="bl-sidebar-title">Related Reading</div>
-        <div class="bl-sidebar-links">
-          <a href="/blog/graeagle-vs-lake-tahoe-golf" class="bl-sidebar-post">Graeagle vs Lake Tahoe Golf →</a>
-          <a href="/blog/best-time-to-golf-graeagle" class="bl-sidebar-post">Best Time to Golf in Graeagle →</a>
-          <a href="/blog/graeagle-golf-trip-itinerary-3-days" class="bl-sidebar-post">3-Day Graeagle Itinerary →</a>
-        </div>
-      </div>
-    </aside>
+    </div>
   </div>
-  
+
   <RelatedTrips client:load slug="graeagle-meadows" type="course" showAll={true} max={3} />
+
 <Footer />
 </Base>

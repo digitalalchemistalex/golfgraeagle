@@ -57,16 +57,54 @@ const breadcrumbSchema = {
     </div>
   </div>
 
-  <div class="bl-wrap">
-    <article class="bl-article">
 
-      <div class="bl-answer-box">
+  <div class="bl-full">
+    <div class="bl-answer-box">
         <div class="bl-answer-label">The Short Version</div>
         <p>Graeagle is one of the best bachelor party golf destinations in Northern California. Five courses, great group lodging, breweries for après, and none of the Vegas-style chaos that half the group probably doesn't want anyway. Plan for 3 nights, 3–4 rounds, and stay at the Townhomes at Plumas Pines or River Pines Resort. Book 6 weeks ahead for summer weekends.</p>
       </div>
+  </div>
 
+  <div class="bl-wrap">
+    <article class="bl-article">
       <p class="bl-intro">Golf bachelor parties have a specific set of requirements that most general "golf trip planning" guides miss. You need courses that work for a wide range of skill levels (someone always brings that friend who doesn't really play). You need lodging that fits 8–16 guys without forcing half of them into separate hotels across town. You need a reliable evening plan that doesn't require everyone to drive 45 minutes each way. Graeagle handles all of this.</p>
+    </article>
+    <aside class="bl-sidebar">
+      <div class="bl-sidebar-card">
+        <div class="bl-sidebar-title">Plan Your Bachelor Trip</div>
+        <p>Group tee times at all 5 courses. Lodging coordination. Free quote.</p>
+        <a href="/request-a-quote" class="bl-sidebar-btn">Request a Quote →</a>
+      </div>
+      <div class="bl-sidebar-card">
+        <div class="bl-sidebar-title">Group Lodging</div>
+        <div class="bl-sidebar-links">
+          <a href="/portfolio/the-townhomes-at-plumas-pines/" class="bl-sidebar-course">
+            <div class="bl-sidebar-course-name">Townhomes at Plumas Pines</div>
+            <div class="bl-sidebar-course-note">Best for 8–20+ · On the course</div>
+          </a>
+          <a href="/portfolio/river-pines-resort-graeagle-ca/" class="bl-sidebar-course">
+            <div class="bl-sidebar-course-name">River Pines Resort</div>
+            <div class="bl-sidebar-course-note">Best for 4–12 · On-site dining</div>
+          </a>
+          <a href="/portfolio/the-inn-at-nakoma-clio-ca/" class="bl-sidebar-course">
+            <div class="bl-sidebar-course-name">The Inn at Nakoma</div>
+            <div class="bl-sidebar-course-note">Splurge option · FLW building</div>
+          </a>
+        </div>
+      </div>
+      <div class="bl-sidebar-card">
+        <div class="bl-sidebar-title">Related Reading</div>
+        <div class="bl-sidebar-links">
+          <a href="/blog/graeagle-golf-trip-itinerary-3-days" class="bl-sidebar-post">3-Day Itinerary →</a>
+          <a href="/blog/how-to-plan-graeagle-golf-trip" class="bl-sidebar-post">Full Planning Guide →</a>
+          <a href="/blog/graeagle-golf-courses-ranked" class="bl-sidebar-post">Courses Ranked →</a>
+        </div>
+      </div>
+    </aside>
+  </div>
 
+  <div class="bl-full">
+    <div class="bl-body">
       <h2>Why Graeagle Works for Bachelor Parties</h2>
       <div class="bl-tip-grid">
         {[
@@ -157,43 +195,10 @@ const breadcrumbSchema = {
           <a href="/courses">Compare all 5 courses →</a>
         </div>
       </div>
-
-    </article>
-
-    <aside class="bl-sidebar">
-      <div class="bl-sidebar-card">
-        <div class="bl-sidebar-title">Plan Your Bachelor Trip</div>
-        <p>Group tee times at all 5 courses. Lodging coordination. Free quote.</p>
-        <a href="/request-a-quote" class="bl-sidebar-btn">Request a Quote →</a>
-      </div>
-      <div class="bl-sidebar-card">
-        <div class="bl-sidebar-title">Group Lodging</div>
-        <div class="bl-sidebar-links">
-          <a href="/portfolio/the-townhomes-at-plumas-pines/" class="bl-sidebar-course">
-            <div class="bl-sidebar-course-name">Townhomes at Plumas Pines</div>
-            <div class="bl-sidebar-course-note">Best for 8–20+ · On the course</div>
-          </a>
-          <a href="/portfolio/river-pines-resort-graeagle-ca/" class="bl-sidebar-course">
-            <div class="bl-sidebar-course-name">River Pines Resort</div>
-            <div class="bl-sidebar-course-note">Best for 4–12 · On-site dining</div>
-          </a>
-          <a href="/portfolio/the-inn-at-nakoma-clio-ca/" class="bl-sidebar-course">
-            <div class="bl-sidebar-course-name">The Inn at Nakoma</div>
-            <div class="bl-sidebar-course-note">Splurge option · FLW building</div>
-          </a>
-        </div>
-      </div>
-      <div class="bl-sidebar-card">
-        <div class="bl-sidebar-title">Related Reading</div>
-        <div class="bl-sidebar-links">
-          <a href="/blog/graeagle-golf-trip-itinerary-3-days" class="bl-sidebar-post">3-Day Itinerary →</a>
-          <a href="/blog/how-to-plan-graeagle-golf-trip" class="bl-sidebar-post">Full Planning Guide →</a>
-          <a href="/blog/graeagle-golf-courses-ranked" class="bl-sidebar-post">Courses Ranked →</a>
-        </div>
-      </div>
-    </aside>
+    </div>
   </div>
-  
+
   <RelatedTrips client:load slug="graeagle-meadows" type="course" showAll={true} max={3} />
+
 <Footer />
 </Base>

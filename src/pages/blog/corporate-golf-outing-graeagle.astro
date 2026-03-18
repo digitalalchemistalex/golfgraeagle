@@ -58,16 +58,54 @@ const breadcrumbSchema = {
     </div>
   </div>
 
-  <div class="bl-wrap">
-    <article class="bl-article">
 
-      <div class="bl-answer-box">
+  <div class="bl-full">
+    <div class="bl-answer-box">
         <div class="bl-answer-label">Quick Answer</div>
         <p>Graeagle is one of the best corporate golf destinations in Northern California for groups of 20–80. Five championship courses, multiple lodging properties that accept group blocks, and venues that handle formal banquet dinners. A 3-night corporate package with 3 rounds and a banquet runs <strong>$865–$1,150 per person all-inclusive.</strong> No flights required from Sacramento, Bay Area, or Reno.</p>
       </div>
+  </div>
 
+  <div class="bl-wrap">
+    <article class="bl-article">
       <p class="bl-intro">Corporate golf outings have one job: make everyone feel like the company did something right. The venue needs to impress people who've played good courses before, the logistics need to work without embarrassing the organizer, and the whole thing needs a clean invoice the finance team won't push back on. Graeagle delivers on all three — which is why we run corporate groups here every season.</p>
+    </article>
+    <aside class="bl-sidebar">
+      <div class="bl-sidebar-card">
+        <div class="bl-sidebar-title">Corporate Quote</div>
+        <p>Groups of 20–80. Single invoice, tee times across all 5 courses, banquet coordination available.</p>
+        <a href="/request-a-quote/" class="bl-sidebar-btn btn-green-glow">Get a Proposal →</a>
+      </div>
+      <div class="bl-sidebar-card">
+        <div class="bl-sidebar-title">Courses in This Guide</div>
+        <div class="bl-sidebar-links">
+          {[
+            { name: 'Nakoma Dragon', slug: 'nakoma-dragon-golf-packages', note: 'FLW Clubhouse · Slope 147' },
+            { name: 'Grizzly Ranch', slug: 'grizzly-ranch-golf-packages', note: 'Golf Digest Top 100' },
+            { name: 'Whitehawk Ranch', slug: 'whitehawk-ranch-golf-packages', note: 'Top 20 CA · Slope 132' },
+            { name: 'Plumas Pines', slug: 'plumas-pines-golf-packages', note: 'Best Value · Slope 132' },
+            { name: 'Graeagle Meadows', slug: 'graeagle-meadows-golf-packages', note: 'Most Accessible · Slope 120' },
+          ].map(c => (
+            <a href={`/portfolio/${c.slug}/`} class="bl-sidebar-course">
+              <div class="bl-sidebar-course-name">{c.name}</div>
+              <div class="bl-sidebar-course-note">{c.note}</div>
+            </a>
+          ))}
+        </div>
+      </div>
+      <div class="bl-sidebar-card">
+        <div class="bl-sidebar-title">Related Reading</div>
+        <div class="bl-sidebar-links">
+          <a href="/blog/large-group-golf-graeagle/" class="bl-sidebar-post">Large Group Golf (50+) →</a>
+          <a href="/blog/graeagle-golf-trip-cost/" class="bl-sidebar-post">What Does a Trip Cost? →</a>
+          <a href="/blog/graeagle-golf-trip-itinerary-3-days/" class="bl-sidebar-post">3-Day Itinerary →</a>
+        </div>
+      </div>
+    </aside>
+  </div>
 
+  <div class="bl-full">
+    <div class="bl-body">
       <h2>Why Graeagle Works for Corporate Events</h2>
 
       <p>Most Northern California corporate golf options fail on one axis or another. Monterey is incredible but expensive and requires flights. Lake Tahoe courses are scattered — you're coordinating transportation across a massive area. Sacramento Valley courses are accessible but don't feel like a trip. Graeagle threads the needle:</p>
@@ -217,43 +255,10 @@ const breadcrumbSchema = {
           <a href="/portfolio/nakoma-dragon-golf-packages/">Nakoma Dragon — the prestige round →</a>
         </div>
       </div>
-
-    </article>
-
-    <aside class="bl-sidebar">
-      <div class="bl-sidebar-card">
-        <div class="bl-sidebar-title">Corporate Quote</div>
-        <p>Groups of 20–80. Single invoice, tee times across all 5 courses, banquet coordination available.</p>
-        <a href="/request-a-quote/" class="bl-sidebar-btn btn-green-glow">Get a Proposal →</a>
-      </div>
-      <div class="bl-sidebar-card">
-        <div class="bl-sidebar-title">Courses in This Guide</div>
-        <div class="bl-sidebar-links">
-          {[
-            { name: 'Nakoma Dragon', slug: 'nakoma-dragon-golf-packages', note: 'FLW Clubhouse · Slope 147' },
-            { name: 'Grizzly Ranch', slug: 'grizzly-ranch-golf-packages', note: 'Golf Digest Top 100' },
-            { name: 'Whitehawk Ranch', slug: 'whitehawk-ranch-golf-packages', note: 'Top 20 CA · Slope 132' },
-            { name: 'Plumas Pines', slug: 'plumas-pines-golf-packages', note: 'Best Value · Slope 132' },
-            { name: 'Graeagle Meadows', slug: 'graeagle-meadows-golf-packages', note: 'Most Accessible · Slope 120' },
-          ].map(c => (
-            <a href={`/portfolio/${c.slug}/`} class="bl-sidebar-course">
-              <div class="bl-sidebar-course-name">{c.name}</div>
-              <div class="bl-sidebar-course-note">{c.note}</div>
-            </a>
-          ))}
-        </div>
-      </div>
-      <div class="bl-sidebar-card">
-        <div class="bl-sidebar-title">Related Reading</div>
-        <div class="bl-sidebar-links">
-          <a href="/blog/large-group-golf-graeagle/" class="bl-sidebar-post">Large Group Golf (50+) →</a>
-          <a href="/blog/graeagle-golf-trip-cost/" class="bl-sidebar-post">What Does a Trip Cost? →</a>
-          <a href="/blog/graeagle-golf-trip-itinerary-3-days/" class="bl-sidebar-post">3-Day Itinerary →</a>
-        </div>
-      </div>
-    </aside>
+    </div>
   </div>
-  
+
   <RelatedTrips client:load slug="graeagle-meadows" type="course" showAll={true} max={3} />
+
 <Footer />
 </Base>

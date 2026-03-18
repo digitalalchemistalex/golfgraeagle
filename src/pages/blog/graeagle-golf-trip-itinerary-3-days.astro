@@ -56,16 +56,18 @@ const breadcrumbSchema = {
     </div>
   </div>
 
-  <div class="bl-wrap">
-    <article class="bl-article">
 
-      <div class="bl-answer-box">
+  <div class="bl-full">
+    <div class="bl-answer-box">
         <div class="bl-answer-label">The Itinerary at a Glance</div>
         <p><strong>Day 1:</strong> Arrive → Whitehawk Ranch → Dinner at The Brewing Lair<br/>
         <strong>Day 2:</strong> Grizzly Ranch (morning) → Graeagle Meadows (optional afternoon 9) → Dinner at Iron Door<br/>
         <strong>Day 3:</strong> Nakoma Dragon → drive home or optional round at Plumas Pines</p>
       </div>
+  </div>
 
+  <div class="bl-wrap">
+    <article class="bl-article">
       <p class="bl-intro">Three days in Graeagle is enough to play 3–4 courses, eat well, and not feel like you rushed it. This is the itinerary we'd give a group of 4–8 mid-handicappers who want to play the best the valley has to offer without burning themselves out. Adjust based on your group's handicap range and pain tolerance.</p>
 
       <!-- Day 1 -->
@@ -147,7 +149,42 @@ const breadcrumbSchema = {
         </div>
         <div class="bl-day-note">Why Nakoma on the last day? The FLW clubhouse is a genuine visual experience. Ending on something bucket-list sends the group home talking about the trip — which is what brings people back.</div>
       </div>
+    </article>
+    <aside class="bl-sidebar">
+      <div class="bl-sidebar-card">
+        <div class="bl-sidebar-title">Book This Itinerary</div>
+        <p>We'll secure tee times at all 4 courses and match you with the right lodging. Free quote.</p>
+        <a href="/request-a-quote" class="bl-sidebar-btn">Request a Quote →</a>
+      </div>
+      <div class="bl-sidebar-card">
+        <div class="bl-sidebar-title">The 4 Courses in This Itinerary</div>
+        <div class="bl-sidebar-links">
+          {[
+            { name: 'Whitehawk Ranch', slug: 'whitehawk-ranch', note: 'Day 1 · Slope 132' },
+            { name: 'Grizzly Ranch', slug: 'grizzly-ranch', note: 'Day 2 · Slope 140' },
+            { name: 'Graeagle Meadows', slug: 'graeagle-meadows', note: 'Day 2 optional · Slope 120' },
+            { name: 'Nakoma Dragon', slug: 'nakoma-dragon', note: 'Day 3 · Slope 147' },
+          ].map(c => (
+            <a href={`/portfolio/${c.slug === "nakoma-dragon" ? "nakoma-dragon-golf-packages" : c.slug + "-golf-packages"}`} class="bl-sidebar-course">
+              <div class="bl-sidebar-course-name">{c.name}</div>
+              <div class="bl-sidebar-course-note">{c.note}</div>
+            </a>
+          ))}
+        </div>
+      </div>
+      <div class="bl-sidebar-card">
+        <div class="bl-sidebar-title">Related Reading</div>
+        <div class="bl-sidebar-links">
+          <a href="/blog/graeagle-vs-lake-tahoe-golf" class="bl-sidebar-post">Graeagle vs Lake Tahoe →</a>
+          <a href="/blog/best-time-to-golf-graeagle" class="bl-sidebar-post">Best Time to Go →</a>
+          <a href="/blog/how-to-plan-graeagle-golf-trip" class="bl-sidebar-post">Full Planning Guide →</a>
+        </div>
+      </div>
+    </aside>
+  </div>
 
+  <div class="bl-full">
+    <div class="bl-body">
       <h2>Alternative: The 2-Day Speed Run</h2>
       <p>Tight on time? Here's the condensed version:</p>
       <ul class="bl-list">
@@ -190,42 +227,10 @@ const breadcrumbSchema = {
           <a href="/blog/how-to-plan-graeagle-golf-trip">Full planning guide →</a>
         </div>
       </div>
-
-    </article>
-
-    <aside class="bl-sidebar">
-      <div class="bl-sidebar-card">
-        <div class="bl-sidebar-title">Book This Itinerary</div>
-        <p>We'll secure tee times at all 4 courses and match you with the right lodging. Free quote.</p>
-        <a href="/request-a-quote" class="bl-sidebar-btn">Request a Quote →</a>
-      </div>
-      <div class="bl-sidebar-card">
-        <div class="bl-sidebar-title">The 4 Courses in This Itinerary</div>
-        <div class="bl-sidebar-links">
-          {[
-            { name: 'Whitehawk Ranch', slug: 'whitehawk-ranch', note: 'Day 1 · Slope 132' },
-            { name: 'Grizzly Ranch', slug: 'grizzly-ranch', note: 'Day 2 · Slope 140' },
-            { name: 'Graeagle Meadows', slug: 'graeagle-meadows', note: 'Day 2 optional · Slope 120' },
-            { name: 'Nakoma Dragon', slug: 'nakoma-dragon', note: 'Day 3 · Slope 147' },
-          ].map(c => (
-            <a href={`/portfolio/${c.slug === "nakoma-dragon" ? "nakoma-dragon-golf-packages" : c.slug + "-golf-packages"}`} class="bl-sidebar-course">
-              <div class="bl-sidebar-course-name">{c.name}</div>
-              <div class="bl-sidebar-course-note">{c.note}</div>
-            </a>
-          ))}
-        </div>
-      </div>
-      <div class="bl-sidebar-card">
-        <div class="bl-sidebar-title">Related Reading</div>
-        <div class="bl-sidebar-links">
-          <a href="/blog/graeagle-vs-lake-tahoe-golf" class="bl-sidebar-post">Graeagle vs Lake Tahoe →</a>
-          <a href="/blog/best-time-to-golf-graeagle" class="bl-sidebar-post">Best Time to Go →</a>
-          <a href="/blog/how-to-plan-graeagle-golf-trip" class="bl-sidebar-post">Full Planning Guide →</a>
-        </div>
-      </div>
-    </aside>
+    </div>
   </div>
-  
+
   <RelatedTrips client:load slug="graeagle-meadows" type="course" showAll={true} max={3} />
+
 <Footer />
 </Base>

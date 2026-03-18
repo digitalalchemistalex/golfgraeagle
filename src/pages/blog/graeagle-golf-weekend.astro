@@ -59,16 +59,55 @@ const breadcrumbSchema = {
     </div>
   </div>
 
-  <div class="bl-wrap">
-    <article class="bl-article">
 
-      <div class="bl-answer-box">
+  <div class="bl-full">
+    <div class="bl-answer-box">
         <div class="bl-answer-label">The Short Answer</div>
         <p>A 2-day Graeagle golf weekend fits <strong>2–3 courses</strong> and costs <strong>$620–$675 per person</strong> all-in for groups of 8–24. A 3-day weekend fits <strong>3–4 courses</strong> and runs <strong>$675–$876 per person</strong>. All five courses are within 25 minutes of each other. You can play Grizzly Ranch, Whitehawk Ranch, and Graeagle Meadows back-to-back without ever driving more than 20 minutes between venues.</p>
       </div>
+  </div>
 
+  <div class="bl-wrap">
+    <article class="bl-article">
       <p class="bl-intro">A Graeagle golf weekend is the most efficient golf trip reachable from Northern California. Sacramento is 2.5 hours away. Bay Area is 3.5–4 hours. Once you're there, five championship courses sit within a single valley — no convoy logistics, no 45-minute drives between rounds, no wasted morning hours. Here are the two itineraries that work: the 2-day version for groups that can't take Friday off, and the 3-day version that's become the standard for most groups we book.</p>
+    </article>
+    <aside class="bl-sidebar">
+      <div class="bl-sidebar-card">
+        <div class="bl-sidebar-title">Book Your Weekend</div>
+        <p>2-day or 3-day packages. Tee times + lodging locked. Free quote in 24 hours.</p>
+        <a href="/request-a-quote/" class="bl-sidebar-btn btn-green-glow">Request a Quote →</a>
+      </div>
+      <div class="bl-sidebar-card">
+        <div class="bl-sidebar-title">Weekend Courses</div>
+        <div class="bl-sidebar-links">
+          {[
+            { name: 'Whitehawk Ranch', slug: 'whitehawk-ranch-golf-packages', note: 'Best opener · Slope 132' },
+            { name: 'Grizzly Ranch', slug: 'grizzly-ranch-golf-packages', note: 'Golf Digest Top 100 · Slope 140' },
+            { name: 'Graeagle Meadows', slug: 'graeagle-meadows-golf-packages', note: 'Most accessible · Slope 120' },
+            { name: 'Plumas Pines', slug: 'plumas-pines-golf-packages', note: 'Best value · Slope 132' },
+            { name: 'Nakoma Dragon', slug: 'nakoma-dragon-golf-packages', note: 'Bucket list · Slope 147' },
+          ].map(c => (
+            <a href={`/portfolio/${c.slug}/`} class="bl-sidebar-course">
+              <div class="bl-sidebar-course-name">{c.name}</div>
+              <div class="bl-sidebar-course-note">{c.note}</div>
+            </a>
+          ))}
+        </div>
+      </div>
+      <div class="bl-sidebar-card">
+        <div class="bl-sidebar-title">Related Reading</div>
+        <div class="bl-sidebar-links">
+          <a href="/blog/graeagle-golf-trip-cost/" class="bl-sidebar-post">What Does a Graeagle Trip Cost? →</a>
+          <a href="/blog/graeagle-golf-trip-itinerary-3-days/" class="bl-sidebar-post">Full 3-Day Itinerary →</a>
+          <a href="/blog/best-time-to-golf-graeagle/" class="bl-sidebar-post">Best Time to Visit →</a>
+          <a href="/trips/" class="bl-sidebar-post">Real trip packages →</a>
+        </div>
+      </div>
+    </aside>
+  </div>
 
+  <div class="bl-full">
+    <div class="bl-body">
       <h2>The 2-Day Graeagle Golf Weekend</h2>
       <p>Friday evening arrival, two rounds Saturday and Sunday, drive home Sunday afternoon. Tight but completely doable for groups with Monday commitments. Real cost: <strong>$620–$675 per person</strong> for 8–24 golfers, 2 nights at River Pines Resort, 2–3 rounds.</p>
 
@@ -275,44 +314,10 @@ const breadcrumbSchema = {
           <a href="/blog/graeagle-golf-trip-itinerary-3-days/">3-day itinerary guide →</a>
         </div>
       </div>
-
-    </article>
-
-    <aside class="bl-sidebar">
-      <div class="bl-sidebar-card">
-        <div class="bl-sidebar-title">Book Your Weekend</div>
-        <p>2-day or 3-day packages. Tee times + lodging locked. Free quote in 24 hours.</p>
-        <a href="/request-a-quote/" class="bl-sidebar-btn btn-green-glow">Request a Quote →</a>
-      </div>
-      <div class="bl-sidebar-card">
-        <div class="bl-sidebar-title">Weekend Courses</div>
-        <div class="bl-sidebar-links">
-          {[
-            { name: 'Whitehawk Ranch', slug: 'whitehawk-ranch-golf-packages', note: 'Best opener · Slope 132' },
-            { name: 'Grizzly Ranch', slug: 'grizzly-ranch-golf-packages', note: 'Golf Digest Top 100 · Slope 140' },
-            { name: 'Graeagle Meadows', slug: 'graeagle-meadows-golf-packages', note: 'Most accessible · Slope 120' },
-            { name: 'Plumas Pines', slug: 'plumas-pines-golf-packages', note: 'Best value · Slope 132' },
-            { name: 'Nakoma Dragon', slug: 'nakoma-dragon-golf-packages', note: 'Bucket list · Slope 147' },
-          ].map(c => (
-            <a href={`/portfolio/${c.slug}/`} class="bl-sidebar-course">
-              <div class="bl-sidebar-course-name">{c.name}</div>
-              <div class="bl-sidebar-course-note">{c.note}</div>
-            </a>
-          ))}
-        </div>
-      </div>
-      <div class="bl-sidebar-card">
-        <div class="bl-sidebar-title">Related Reading</div>
-        <div class="bl-sidebar-links">
-          <a href="/blog/graeagle-golf-trip-cost/" class="bl-sidebar-post">What Does a Graeagle Trip Cost? →</a>
-          <a href="/blog/graeagle-golf-trip-itinerary-3-days/" class="bl-sidebar-post">Full 3-Day Itinerary →</a>
-          <a href="/blog/best-time-to-golf-graeagle/" class="bl-sidebar-post">Best Time to Visit →</a>
-          <a href="/trips/" class="bl-sidebar-post">Real trip packages →</a>
-        </div>
-      </div>
-    </aside>
+    </div>
   </div>
-  
+
   <RelatedTrips client:load slug="graeagle-meadows" type="course" showAll={true} max={4} />
+
 <Footer />
 </Base>

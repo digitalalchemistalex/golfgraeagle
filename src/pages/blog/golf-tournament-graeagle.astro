@@ -59,16 +59,54 @@ const breadcrumbSchema = {
     </div>
   </div>
 
-  <div class="bl-wrap">
-    <article class="bl-article">
 
-      <div class="bl-answer-box">
+  <div class="bl-full">
+    <div class="bl-answer-box">
         <div class="bl-answer-label">Quick Answer</div>
         <p>Graeagle can host golf tournaments from 20 to 200+ players using split-field formats across multiple courses simultaneously. Standard tournament packages with lodging, tee times, and a banquet dinner run <strong>$865–$1,150 per person</strong>. GolfGraeagle handles tee sheet coordination across all 5 courses, scoring logistics, and banquet arrangements — you run the event, we handle the infrastructure.</p>
       </div>
+  </div>
 
+  <div class="bl-wrap">
+    <article class="bl-article">
       <p class="bl-intro">Graeagle works for golf tournaments for the same reason it works for group trips: five championship courses within 25 minutes of each other. A 100-person tournament that would create a 6-hour round at a single venue becomes manageable when split across two courses simultaneously. The courses have handled group events for decades. The valley has the lodging, the dining, and the banquet space to support a multi-day event.</p>
+    </article>
+    <aside class="bl-sidebar">
+      <div class="bl-sidebar-card">
+        <div class="bl-sidebar-title">Tournament Quote</div>
+        <p>20–200 players. Tee blocks across all 5 courses. Banquet coordination available.</p>
+        <a href="/request-a-quote/" class="bl-sidebar-btn btn-green-glow">Get a Quote →</a>
+      </div>
+      <div class="bl-sidebar-card">
+        <div class="bl-sidebar-title">Best Tournament Courses</div>
+        <div class="bl-sidebar-links">
+          {[
+            { name: 'Whitehawk Ranch', slug: 'whitehawk-ranch-golf-packages', note: 'Best main event · Slope 132' },
+            { name: 'Plumas Pines', slug: 'plumas-pines-golf-packages', note: 'Best recreational div · Fast-playing' },
+            { name: 'Grizzly Ranch', slug: 'grizzly-ranch-golf-packages', note: 'Best competitive div · Top 100' },
+            { name: 'Graeagle Meadows', slug: 'graeagle-meadows-golf-packages', note: 'Best senior div · Slope 120' },
+            { name: 'Nakoma Dragon', slug: 'nakoma-dragon-golf-packages', note: 'Best VIP round · FLW Clubhouse' },
+          ].map(c => (
+            <a href={`/portfolio/${c.slug}/`} class="bl-sidebar-course">
+              <div class="bl-sidebar-course-name">{c.name}</div>
+              <div class="bl-sidebar-course-note">{c.note}</div>
+            </a>
+          ))}
+        </div>
+      </div>
+      <div class="bl-sidebar-card">
+        <div class="bl-sidebar-title">Related Reading</div>
+        <div class="bl-sidebar-links">
+          <a href="/blog/corporate-golf-outing-graeagle/" class="bl-sidebar-post">Corporate Golf Outing Guide →</a>
+          <a href="/blog/large-group-golf-graeagle/" class="bl-sidebar-post">Large Group (50+) Logistics →</a>
+          <a href="/blog/graeagle-golf-trip-cost/" class="bl-sidebar-post">Real Pricing Breakdown →</a>
+        </div>
+      </div>
+    </aside>
+  </div>
 
+  <div class="bl-full">
+    <div class="bl-body">
       <h2>Tournament Formats That Work in Graeagle</h2>
 
       <h3>Single-Course Scramble (20–60 players)</h3>
@@ -188,43 +226,10 @@ const breadcrumbSchema = {
           <a href="/trips/">See real group packages →</a>
         </div>
       </div>
-
-    </article>
-
-    <aside class="bl-sidebar">
-      <div class="bl-sidebar-card">
-        <div class="bl-sidebar-title">Tournament Quote</div>
-        <p>20–200 players. Tee blocks across all 5 courses. Banquet coordination available.</p>
-        <a href="/request-a-quote/" class="bl-sidebar-btn btn-green-glow">Get a Quote →</a>
-      </div>
-      <div class="bl-sidebar-card">
-        <div class="bl-sidebar-title">Best Tournament Courses</div>
-        <div class="bl-sidebar-links">
-          {[
-            { name: 'Whitehawk Ranch', slug: 'whitehawk-ranch-golf-packages', note: 'Best main event · Slope 132' },
-            { name: 'Plumas Pines', slug: 'plumas-pines-golf-packages', note: 'Best recreational div · Fast-playing' },
-            { name: 'Grizzly Ranch', slug: 'grizzly-ranch-golf-packages', note: 'Best competitive div · Top 100' },
-            { name: 'Graeagle Meadows', slug: 'graeagle-meadows-golf-packages', note: 'Best senior div · Slope 120' },
-            { name: 'Nakoma Dragon', slug: 'nakoma-dragon-golf-packages', note: 'Best VIP round · FLW Clubhouse' },
-          ].map(c => (
-            <a href={`/portfolio/${c.slug}/`} class="bl-sidebar-course">
-              <div class="bl-sidebar-course-name">{c.name}</div>
-              <div class="bl-sidebar-course-note">{c.note}</div>
-            </a>
-          ))}
-        </div>
-      </div>
-      <div class="bl-sidebar-card">
-        <div class="bl-sidebar-title">Related Reading</div>
-        <div class="bl-sidebar-links">
-          <a href="/blog/corporate-golf-outing-graeagle/" class="bl-sidebar-post">Corporate Golf Outing Guide →</a>
-          <a href="/blog/large-group-golf-graeagle/" class="bl-sidebar-post">Large Group (50+) Logistics →</a>
-          <a href="/blog/graeagle-golf-trip-cost/" class="bl-sidebar-post">Real Pricing Breakdown →</a>
-        </div>
-      </div>
-    </aside>
+    </div>
   </div>
-  
+
   <RelatedTrips client:load slug="graeagle-meadows" type="course" showAll={true} max={3} />
+
 <Footer />
 </Base>

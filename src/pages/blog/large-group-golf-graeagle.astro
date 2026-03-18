@@ -58,16 +58,53 @@ const breadcrumbSchema = {
     </div>
   </div>
 
-  <div class="bl-wrap">
-    <article class="bl-article">
 
-      <div class="bl-answer-box">
+  <div class="bl-full">
+    <div class="bl-answer-box">
         <div class="bl-answer-label">The Short Answer</div>
         <p>A 50-person Graeagle golf trip is completely doable — and we've run them. The keys are splitting into sub-groups across multiple courses, anchoring everyone at River Pines Resort or Plumas Pines townhomes, and having one coordinator manage the tee sheet across all courses simultaneously. Budget: <strong>$620–$865 per person</strong> for 2 nights and 3 rounds, all-in.</p>
       </div>
+  </div>
 
+  <div class="bl-wrap">
+    <article class="bl-article">
       <p class="bl-intro">Most golf destinations can't absorb a 50-person group without turning into chaos — one course, one parking lot, one very annoyed foursome playing in front of you. Graeagle doesn't have that problem. Five championship courses within 25 minutes of each other means you can split a large group across venues, keep everyone playing simultaneously, and reunite for dinner without it feeling like a logistics operation. Here's exactly how it works, using a real 52-person trip as the model.</p>
+    </article>
+    <aside class="bl-sidebar">
+      <div class="bl-sidebar-card">
+        <div class="bl-sidebar-title">Get a Group Quote</div>
+        <p>We specialize in groups of 20–100. One coordinator, one invoice, tee times locked across all 5 courses.</p>
+        <a href="/request-a-quote/" class="bl-sidebar-btn btn-green-glow">Request a Quote →</a>
+      </div>
+      <div class="bl-sidebar-card">
+        <div class="bl-sidebar-title">Best Courses for Large Groups</div>
+        <div class="bl-sidebar-links">
+          {[
+            { name: 'Plumas Pines', slug: 'plumas-pines-golf-packages', note: 'Most group-friendly' },
+            { name: 'Whitehawk Ranch', slug: 'whitehawk-ranch-golf-packages', note: 'Crowd favorite' },
+            { name: 'Grizzly Ranch', slug: 'grizzly-ranch-golf-packages', note: 'Golf Digest Top 100' },
+            { name: 'Graeagle Meadows', slug: 'graeagle-meadows-golf-packages', note: 'Fast-playing' },
+          ].map(c => (
+            <a href={`/portfolio/${c.slug}/`} class="bl-sidebar-course">
+              <div class="bl-sidebar-course-name">{c.name}</div>
+              <div class="bl-sidebar-course-note">{c.note}</div>
+            </a>
+          ))}
+        </div>
+      </div>
+      <div class="bl-sidebar-card">
+        <div class="bl-sidebar-title">Related Reading</div>
+        <div class="bl-sidebar-links">
+          <a href="/blog/corporate-golf-outing-graeagle/" class="bl-sidebar-post">Corporate Golf Outings →</a>
+          <a href="/blog/graeagle-golf-trip-cost/" class="bl-sidebar-post">What Does a Graeagle Trip Cost? →</a>
+          <a href="/blog/graeagle-golf-trip-itinerary-3-days/" class="bl-sidebar-post">3-Day Itinerary Guide →</a>
+        </div>
+      </div>
+    </aside>
+  </div>
 
+  <div class="bl-full">
+    <div class="bl-body">
       <h2>The 52-Person River Pines Package — What Actually Happened</h2>
       <p>This is a real trip from our TripsCaddie archive. A group of 52 golfers, 2 nights at River Pines Resort, 3 rounds of golf across Plumas Pines, Whitehawk Ranch, and Grizzly Ranch. The banquet dinner with open bar was included. Final cost: <strong>$865 per person</strong>.</p>
 
@@ -188,42 +225,10 @@ const breadcrumbSchema = {
           <a href="/trips/">See real group trips →</a>
         </div>
       </div>
-
-    </article>
-
-    <aside class="bl-sidebar">
-      <div class="bl-sidebar-card">
-        <div class="bl-sidebar-title">Get a Group Quote</div>
-        <p>We specialize in groups of 20–100. One coordinator, one invoice, tee times locked across all 5 courses.</p>
-        <a href="/request-a-quote/" class="bl-sidebar-btn btn-green-glow">Request a Quote →</a>
-      </div>
-      <div class="bl-sidebar-card">
-        <div class="bl-sidebar-title">Best Courses for Large Groups</div>
-        <div class="bl-sidebar-links">
-          {[
-            { name: 'Plumas Pines', slug: 'plumas-pines-golf-packages', note: 'Most group-friendly' },
-            { name: 'Whitehawk Ranch', slug: 'whitehawk-ranch-golf-packages', note: 'Crowd favorite' },
-            { name: 'Grizzly Ranch', slug: 'grizzly-ranch-golf-packages', note: 'Golf Digest Top 100' },
-            { name: 'Graeagle Meadows', slug: 'graeagle-meadows-golf-packages', note: 'Fast-playing' },
-          ].map(c => (
-            <a href={`/portfolio/${c.slug}/`} class="bl-sidebar-course">
-              <div class="bl-sidebar-course-name">{c.name}</div>
-              <div class="bl-sidebar-course-note">{c.note}</div>
-            </a>
-          ))}
-        </div>
-      </div>
-      <div class="bl-sidebar-card">
-        <div class="bl-sidebar-title">Related Reading</div>
-        <div class="bl-sidebar-links">
-          <a href="/blog/corporate-golf-outing-graeagle/" class="bl-sidebar-post">Corporate Golf Outings →</a>
-          <a href="/blog/graeagle-golf-trip-cost/" class="bl-sidebar-post">What Does a Graeagle Trip Cost? →</a>
-          <a href="/blog/graeagle-golf-trip-itinerary-3-days/" class="bl-sidebar-post">3-Day Itinerary Guide →</a>
-        </div>
-      </div>
-    </aside>
+    </div>
   </div>
-  
+
   <RelatedTrips client:load slug="graeagle-meadows" type="course" showAll={true} max={4} />
+
 <Footer />
 </Base>

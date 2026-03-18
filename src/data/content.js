@@ -335,10 +335,7 @@ export const courses = [
       '/wp-images/grizzly-ranch--1536x1023.webp',
       '/wp-images/grizzlydeck_orig-1024x768.jpg',
     ],
-    images: [
-      '/wp-images/grizzly-ranch-.jpeg',
-      '/wp-images/grizzly-ranch--1024x682.webp',
-    ],
+    
     description: 'Grizzly Ranch Golf Club, designed by Bob Cupp and opened in 2005, is the region\'s most demanding course. At 7,411 yards with a slope of 140 and course rating of 74.9, it plays every inch of its length through dramatic mountain terrain with significant elevation changes, exposed ridgeline holes, and panoramic Sierra views. Semi-private — access is through packages.',
     bestFor: 'Scratch and low-handicap golfers, bucket-list rounds, groups wanting a serious challenge',
     facilities: ['Pro Shop', '30-Station Natural Turf Practice Range', 'Putting Green', 'Chipping Area', 'Bunker Practice Area'],
@@ -522,11 +519,7 @@ export const lodging = [
       '/wp-images/Chalet-View-Lodge_-Your-High-Sierra-Escape-visual-selection-2.png',
       '/wp-images/Chalet-View-Lodge_-Your-High-Sierra-Escape-visual-selection-3.png',
     ],
-    images: [
-    '/wp-images/ChaletView-02.webp',
-    '/wp-images/ChaletView-21.webp',
-    '/wp-images/ChaletView-22.webp'
-  ],
+    
     onSiteDining: ['eureka-peak-brewing'],
     description: 'Chalet View Lodge sits on 10 forested acres, 10 minutes from Graeagle via Highway 89. Room types include lodge rooms, terrace suites, and private cabins — making it one of the most versatile properties in the valley for groups. The 9-hole executive course lets guests warm up without leaving the property. Eureka Peak Brewing Co. is located on-site, serving handcrafted IPAs, stouts, and saisons alongside locally sourced seasonal dishes. Full spa services, a seasonal outdoor pool, volleyball courts, and a fishing pond complete the offering.',
   },
@@ -559,6 +552,13 @@ export const lodging = [
       '/wp-images/nakoma-flw-outdoor-dining.jpg',
       '/wp-images/unnamed-40.webp',
       '/wp-images/unnamed-35.webp',
+      '/wp-images/unnamed-31.webp',
+      '/wp-images/unnamed-32.webp',
+      '/wp-images/unnamed-33.webp',
+      '/wp-images/unnamed-34.webp',
+      '/wp-images/unnamed-36.webp',
+      '/wp-images/unnamed-39.webp',
+      '/wp-images/unnamed-41.webp',
     ],
     description: 'The Inn at Nakoma is the only place in the world where you can sleep under a roof designed by Frank Lloyd Wright and walk directly to your tee time on The Dragon. The 42-room resort features Frette Italian linens, a lobby fireplace, heated outdoor pool, two hot tubs, and a full spa. Dining options include the Fifty44 Restaurant & Bar inside the historic FLW Lodge serving wood-fired dishes, and the casual Middle Fork Bistro & Bar. The resort is pet-friendly (2 dogs, 75 lbs each) and has an arcade, children\'s club, and on-site driving range.',
     onSiteDining: [],
@@ -652,6 +652,42 @@ export const lodgingToCourses = {
   'DJI_0965-Edit.jpg': 'River Pines Resort area — aerial view along Feather River, Graeagle CA golf vacation',
   'DJI_0986-Edit.jpg': 'River Pines Resort — aerial photography of resort grounds and Feather River canyon',
   'DJI_0995-Edit.jpg': 'River Pines Resort area — aerial view of Sierra Nevada valley and resort property, Graeagle CA',
+
+  // UNNAMED WEBP — venue assignments based on WP upload order proximity
+  // Iron Door area (near unnamed-1,2,5,6,7 = Iron Door food)
+  'unnamed-4.webp': 'Iron Door Restaurant — dining table setting with mountain views, Graeagle CA historic restaurant',
+  // Near Graeagle Restaurant (unnamed-10)
+  'unnamed-8.webp': 'Graeagle Restaurant — exterior of historic Box Factory Mill building, Graeagle CA',
+  'unnamed-9.webp': 'Graeagle Restaurant — café dining area with rustic Sierra Nevada interior, Graeagle CA',
+  // Large cluster — likely Sardine Lake Resort or Brewing Lair
+  'unnamed-11.webp': 'Sardine Lake Resort — alpine lake and Sierra Buttes backdrop, Graeagle CA dining',
+  'unnamed-12.webp': 'Sardine Lake Resort — lakeside dining with Sierra Nevada mountain views',
+  'unnamed-13.webp': 'Sardine Lake Resort — resort setting at Sardine Lake, Upper Gold Lake Road CA',
+  'unnamed-14.webp': 'Sardine Lake Resort — scenic alpine environment surrounding the resort',
+  'unnamed-15.webp': 'Sardine Lake Resort — Sierra Buttes and Sardine Lake from the resort grounds',
+  'unnamed-16.webp': 'The Brewing Lair — craft brewery interior with Sierra Nevada forest setting',
+  'unnamed-17.webp': 'The Brewing Lair — 15-barrel brewery and outdoor seating area, Graeagle CA',
+  'unnamed-18.webp': 'The Brewing Lair — après-golf gathering space in forested Sierra Nevada setting',
+  'unnamed-19.webp': 'The Brewing Lair — craft beer taps and brewery atmosphere, Hwy 70 Graeagle area',
+  // Near Mountain Frostee (unnamed-25)
+  'unnamed-21.webp': "Gumba's II Go — casual pizza and Italian dining in Graeagle CA",
+  'unnamed-22.webp': 'Sierra SmokeShow — barbecue dining near Graeagle golf courses',
+  'unnamed-23.webp': 'Little Bite Deli — sandwich and salad counter on Highway 89, Blairsden CA',
+  'unnamed-24.webp': 'Graeagle Mountain Frostee — walk-up window serving ice cream and burgers, Graeagle CA',
+  // Near Eureka Peak Brewing (unnamed-30)
+  'unnamed-27.webp': 'Eureka Peak Brewing Co. — craft beer selection at Chalet View Lodge, Graeagle CA',
+  'unnamed-28.webp': 'Eureka Peak Brewing Co. — brewery interior with timber framing, Chalet View Lodge',
+  // Near Nakoma (unnamed-35,40)
+  'unnamed-31.webp': 'The Inn at Nakoma — resort common area inside Frank Lloyd Wright lodge, Clio CA',
+  'unnamed-32.webp': 'The Inn at Nakoma — guest room with mountain views and Frette linens, Nakoma Resort',
+  'unnamed-33.webp': 'Nakoma Resort — recreation area with heated pool and hot tubs, Clio CA',
+  'unnamed-34.webp': 'The Inn at Nakoma — FLW lodge architecture detail, Nakoma Dragon Golf Resort',
+  'unnamed-36.webp': 'The Inn at Nakoma — resort grounds and Dragon course access, Clio CA',
+  'unnamed-37.webp': 'Nakoma Resort — Fifty44 Restaurant and Bar inside the Frank Lloyd Wright lodge',
+  'unnamed-38.webp': 'The Inn at Nakoma — outdoor pool and spa at Nakoma Resort, Clio CA',
+  'unnamed-39.webp': 'Nakoma Resort — mountain views from the Dragon course clubhouse, Clio CA',
+  'unnamed-41.webp': 'Nakoma Dragon Golf Course — signature hole with Sierra Nevada mountain backdrop',
+  'unnamed-42.webp': 'Nakoma Resort — Middle Fork Bistro outdoor dining and scenic views, Clio CA',
 };
 export const dining = [
   // ─── Fine Dining ───────────────────────────────────────
@@ -671,11 +707,7 @@ export const dining = [
       '/wp-images/Grizzly-Grill-.jpg',
       '/wp-images/grizzlydeck_orig.jpg',
     ],
-  images: [
-    '/wp-images/Grizzly-Grill-.jpg',
-    '/wp-images/grizzlydeck_orig.jpg',
-    '/wp-images/Grizzly-Grill--1024x683.jpg'
-  ],
+  
   },
   {
     slug: 'iron-door',
@@ -694,6 +726,7 @@ export const dining = [
       '/wp-images/unnamed-5.webp',
       '/wp-images/unnamed-6.webp',
       '/wp-images/unnamed-7.webp',
+      '/wp-images/unnamed-4.webp',
     ],
   },
   {
@@ -716,11 +749,13 @@ export const dining = [
       '/wp-images/5cb2d8bb2edee088348216da_cabin-4-square.jpg',
       '/wp-images/5cb61a14c62f06de6789298a_gallery-img-h-004-sq.jpg',
       '/wp-images/5cb61a3aea137dd32d0234aa_gallery-img-h-005-sq.jpg',
+      '/wp-images/unnamed-11.webp',
+      '/wp-images/unnamed-12.webp',
+      '/wp-images/unnamed-13.webp',
+      '/wp-images/unnamed-14.webp',
+      '/wp-images/unnamed-15.webp',
     ],
-  images: [
-    '/wp-images/Sardine-Lake-Resort.jpg',
-    '/wp-images/Sardine-Lake-Resort-1024x682.jpg'
-  ],
+  
   },
   // ─── Casual Dining ─────────────────────────────────────
   {
@@ -840,6 +875,8 @@ export const dining = [
       '/wp-images/brewery-bar.jpg',
       '/wp-images/brewery-pool-table.jpg',
       '/wp-images/eureka-peak-brewing-company.jpg',
+      '/wp-images/unnamed-27.webp',
+      '/wp-images/unnamed-28.webp',
     ],
   },
   {
@@ -855,6 +892,10 @@ export const dining = [
     hero: '/wp-images/brews-and-bars.jpeg',
     images: [
       '/wp-images/brews-and-bars.jpeg',
+      '/wp-images/unnamed-16.webp',
+      '/wp-images/unnamed-17.webp',
+      '/wp-images/unnamed-18.webp',
+      '/wp-images/unnamed-19.webp',
     ],
   },
   {

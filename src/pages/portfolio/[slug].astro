@@ -988,9 +988,9 @@ const diningSlugMap: Record<string, string> = {
             <span class="gallery-count-desktop" style="font-size:11px;color:rgba(28,18,8,0.3);text-transform:uppercase;letter-spacing:0.1em;">{item.images.length} photos · click to expand</span>
           </div>
           <div class="photo-grid">
-            {item.images.slice(0,6).map((img,i) => (
-              <button class="gallery-btn" data-src={img} data-idx={i} data-total={Math.min(item.images.length,6)}
-                style={`border:none;padding:0;background:none;border-radius:${i===0?'16px 4px 4px 4px':i===2?'4px 16px 4px 4px':i===3?'4px 4px 4px 16px':i===5?'4px 4px 16px 4px':'4px'};overflow:hidden;aspect-ratio:4/3;cursor:zoom-in;position:relative;display:block;`}>
+            {item.images.slice(0,9).map((img,i) => (
+              <button class="gallery-btn" data-src={img} data-idx={i} data-total={Math.min(item.images.length,9)}
+                style={`border:none;padding:0;background:none;border-radius:${i===0?'16px 4px 4px 4px':i===2?'4px 16px 4px 4px':i===6?'4px 4px 4px 16px':i===8?'4px 4px 16px 4px':'4px'};overflow:hidden;aspect-ratio:4/3;cursor:zoom-in;position:relative;display:block;`}>
                 <img src={img} alt={getImgAlt(img, `${item.name} — golf course photo ${i+1}, Graeagle CA`)} loading="lazy"
                   style="width:100%;height:100%;object-fit:cover;transition:transform 0.4s ease;display:block;"/>
                 <span style="position:absolute;inset:0;background:rgba(0,0,0,0);transition:background 0.3s;display:flex;align-items:center;justify-content:center;" class="gal-ov">
@@ -1197,8 +1197,8 @@ const diningSlugMap: Record<string, string> = {
         </div>
         <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(220px,45vw),1fr));gap:3px;height:280px;overflow:hidden;"
           class="photo-strip-grid">
-        {item.images.slice(0, 5).map((img: string, i: number) => (
-          <button class="gallery-btn" data-src={img} data-idx={i} data-total={Math.min(item.images.length,5)}
+        {item.images.slice(0, 10).map((img: string, i: number) => (
+          <button class="gallery-btn" data-src={img} data-idx={i} data-total={Math.min(item.images.length,10)}
             style="border:none;padding:0;background:none;cursor:zoom-in;position:relative;display:block;overflow:hidden;">
             <img src={img} alt={getImgAlt(img, `${item.name} — Graeagle CA`)} style="width:100%;height:220px;object-fit:cover;transition:transform 0.4s;" loading="lazy"/>
             <span style="position:absolute;inset:0;background:rgba(0,0,0,0);transition:background 0.3s;display:flex;align-items:center;justify-content:center;" class="gal-ov">
