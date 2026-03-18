@@ -541,6 +541,134 @@ const quoteSchema = [
 const form = document.getElementById('qf');
 const $id  = id => document.getElementById(id);
 
+// ── URL PARAM PRE-FILL (TripsCaddie + RelatedTrips) ───────────────────────
+// Runs before anything else so fields are populated when summary fires
+(function prefillFromParams() {
+  const p = new URLSearchParams(window.location.search);
+  const ref = p.get('ref') || '';
+  const tripName = p.get('trip') || '';
+  const partySize = p.get('partySize') || '';
+  const nights = p.get('nights') || '';
+  const rounds = p.get('rounds') || '';
+  const lodgingRaw = p.get('lodging') || '';
+  const coursesRaw = p.get('courses') || '';
+  const vibe = p.get('vibe') || '';
+  const budget = p.get('budget') || '';
+
+  const isTripRef = ref === 'trips-caddie' || ref === 'trips-page';
+  if (!isTripRef && !tripName && !partySize) return; // nothing to do
+
+  // Group size
+  if (partySize) {
+    const ps = $id('party-size');
+    if (ps) ps.value = partySize;
+  }
+
+  // Nights
+  if (nights) {
+    const nn = $id('num-nights');
+    if (nn) nn.value = nights;
+  }
+
+  // Rounds — match to radio buttons (1,2,3,4,5 or "other")
+  if (rounds) {
+    const r = parseInt(rounds);
+    const radio = form.querySelector(`[name="totalRounds"][value="${r}"]`);
+    if (radio) {
+      radio.checked = true;
+    } else {
+      // value out of range — use "other" and set custom input
+      const other = form.querySelector('[name="totalRounds"][value="other"]');
+      if (other) {
+        other.checked = true;
+        const customInput = $id('rounds-other-wrap')?.querySelector('input');
+        if (customInput) {
+          customInput.value = rounds;
+          const wrap = $id('rounds-other-wrap');
+          if (wrap) wrap.style.display = 'flex';
+        }
+      }
+    }
+  }
+
+  // Courses — TripsCaddie sends full course names, form uses slugs
+  // Map common name fragments to form slugs
+  if (coursesRaw) {
+    const courseNameToSlug = {
+      'graeagle meadows': 'graeagle-meadows',
+      'whitehawk ranch': 'whitehawk-ranch',
+      'plumas pines': 'plumas-pines',
+      'grizzly ranch': 'grizzly-ranch',
+      'nakoma': 'nakoma-dragon',
+      'the dragon': 'nakoma-dragon',
+      'dragon': 'nakoma-dragon',
+    };
+    const courseNames = coursesRaw.split(',').map(s => s.trim().toLowerCase());
+    courseNames.forEach(name => {
+      let slug = null;
+      for (const [key, val] of Object.entries(courseNameToSlug)) {
+        if (name.includes(key) || key.includes(name.split(' ')[0])) {
+          slug = val; break;
+        }
+      }
+      if (slug) {
+        const cb = form.querySelector(`[name="coursesInterested"][value="${slug}"]`);
+        if (cb) cb.checked = true;
+      }
+    });
+  }
+
+  // Lodging — map name fragments to slugs
+  if (lodgingRaw) {
+    const lodgingNameToSlug = {
+      'river pines': 'river-pines-resort',
+      'chalet view': 'chalet-view-lodge',
+      'inn at nakoma': 'inn-at-nakoma',
+      'nakoma resort': 'inn-at-nakoma',
+      'townhomes': 'townhomes-at-plumas-pines',
+      'plumas pines golf resort (': 'townhomes-at-plumas-pines',
+    };
+    const lname = lodgingRaw.toLowerCase();
+    for (const [key, slug] of Object.entries(lodgingNameToSlug)) {
+      if (lname.includes(key)) {
+        const cb = form.querySelector(`[name="lodgingInterested"][value="${slug}"]`);
+        if (cb) cb.checked = true;
+        // Uncheck "let us recommend" if a specific property is selected
+        const anyChk = $id('lodge-any');
+        if (anyChk) anyChk.checked = false;
+        break;
+      }
+    }
+  }
+
+  // Special requests — prepend trip context note
+  if (tripName || vibe || budget) {
+    const sr = form.querySelector('[name="specialRequests"]');
+    if (sr) {
+      const parts = [];
+      if (tripName) parts.push(`Interested in a trip similar to "${tripName}"`);
+      if (vibe) parts.push(`trip style: ${vibe}`);
+      if (budget) parts.push(`budget reference: $${Number(budget).toLocaleString()}/person`);
+      const note = parts.join(' — ') + '.';
+      sr.value = note;
+    }
+  }
+
+  // Show trip-reference banner at top of sidebar
+  if (isTripRef && tripName) {
+    const banner = $id('trip-summary');
+    const lines = $id('summary-lines');
+    if (banner && lines) {
+      banner.style.display = 'block';
+      lines.innerHTML = `<div style="font-size:13px;color:#1a2e1a;font-weight:600;margin-bottom:4px;">Based on: ${tripName}</div>` +
+        (partySize ? `<div style="font-size:12px;color:rgba(28,18,8,0.55);">👥 ${partySize} golfers${nights ? ` · ${nights} nights` : ''}${rounds ? ` · ${rounds} rounds` : ''}</div>` : '') +
+        `<div style="font-size:11px;color:#a06c30;margin-top:6px;">Fields pre-filled from this trip — adjust anything to customise.</div>`;
+    }
+    // Hide static benefits since trip context is showing
+    const benefits = $id('static-benefits');
+    if (benefits) benefits.style.display = 'none';
+  }
+})();
 // auto-calc nights
 function calcNights() {
   const a = $id('arrival-date')?.value, d = $id('departure-date')?.value;

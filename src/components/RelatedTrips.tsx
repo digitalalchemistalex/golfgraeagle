@@ -102,6 +102,11 @@ function TripCard({ trip }: { trip: Trip }) {
     ref: "trips-caddie",
     trip: trip.groupName || "",
     ...(trip.groupSize ? { partySize: String(trip.groupSize) } : {}),
+    ...(trip.nights && trip.nights > 0 ? { nights: String(trip.nights) } : {}),
+    ...(trip.rounds ? { rounds: String(trip.rounds) } : {}),
+    ...(trip.lodging ? { lodging: trip.lodging } : {}),
+    ...(trip.vibe ? { vibe: trip.vibe } : {}),
+    ...(trip.courses?.length ? { courses: trip.courses.join(",") } : {}),
   }).toString();
 
   return (
