@@ -24,6 +24,14 @@ const accolades = {
   'nakoma-dragon':    'Golf World Top 75 · FLW Clubhouse',
 };
 
+const wpSlugMap = {
+  'graeagle-meadows': 'graeagle-meadows-golf-packages',
+  'whitehawk-ranch':  'whitehawk-ranch-golf-packages',
+  'plumas-pines':     'plumas-pines-golf-packages',
+  'grizzly-ranch':    'grizzly-ranch-golf-packages',
+  'nakoma-dragon':    'nakoma-dragon-golf-packages',
+};
+
 const courseListSchema = {
   "@type": "ItemList",
   "name": "Golf Courses in Graeagle, California",
@@ -33,14 +41,7 @@ const courseListSchema = {
     "@type": "ListItem",
     "position": i + 1,
     "name": `${c.name} Golf Course`,
-    "url": `${siteConfig.url}/courses/${c.slug}`,
-    "item": {
-      "@type": "GolfCourse",
-      "name": `${c.name} Golf Course`,
-      "url": `${siteConfig.url}/courses/${c.slug}`,
-      "numberOfHoles": 18,
-      "address": { "@type": "PostalAddress", "streetAddress": c.address, "addressRegion": "CA", "addressCountry": "US" }
-    }
+    "url": `${siteConfig.url}/portfolio/${wpSlugMap[c.slug]}/`,
   }))
 };
 
@@ -123,7 +124,7 @@ const lodgingMeta = {'townhomes-at-plumas-pines':{badge:'Best for Large Groups',
   <!-- Film strip: 5 courses, sits just below nav -->
   <div class="hero-strip">
     {courses.map((c) => (
-      <a href={`/portfolio/${c.slug === "nakoma-dragon" ? "nakoma-dragon-golf-packages" : c.slug + "-golf-packages"}`} class="strip-item" aria-label={`View ${c.name}`}>
+      <a href={`/portfolio/${wpSlugMap[c.slug]}/`} class="strip-item" aria-label={`View ${c.name}`}>
         <img src={c.hero} alt={getImgAlt(c.hero, `${c.name} Golf Course — Graeagle CA`)} class="strip-thumb" loading="lazy" />
         <div class="strip-dim"></div>
         <span class="strip-label">{c.name.replace(' — The Dragon','').replace('Graeagle ','')}</span>
@@ -207,7 +208,7 @@ const lodgingMeta = {'townhomes-at-plumas-pines':{badge:'Best for Large Groups',
 
     <div class="courses-five-grid">
       {[courses[0], courses[1], courses[2], courses[3], courses[4]].map((c,i)=>(
-          <a href={`/portfolio/${c.slug === "nakoma-dragon" ? "nakoma-dragon-golf-packages" : c.slug + "-golf-packages"}/`} class={`reveal delay-${i*75} course-card-equal`} style="text-decoration:none;display:block;">
+          <a href={`/portfolio/${wpSlugMap[c.slug]}/`} class={`reveal delay-${i*75} course-card-equal`} style="text-decoration:none;display:block;">
             <img src={c.hero} alt={getImgAlt(c.hero, `${c.name} Golf Course — Graeagle, California`)} loading="lazy" class="course-card-img"/>
             <div class="card-gradient"></div>
             <div class="course-card-body">
