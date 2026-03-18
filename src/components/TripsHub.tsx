@@ -366,7 +366,7 @@ export default function TripsHub() {
 
   if (loading) return (
     <div style={{ maxWidth: 1200, margin: "0 auto", padding: "0 clamp(20px,5%,60px) 80px" }}>
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 20 }} className="rt-grid">
+      <div style={{ display: "grid", gap: 20 }} className="rt-grid">
         {[1,2,3,4,5,6].map(i => (
           <div key={i} style={{ borderRadius: 20, overflow: "hidden", background: "#fff", border: "1px solid rgba(28,18,8,0.07)" }}>
             <div style={{ height: 200, background: "linear-gradient(90deg,#ede8e0 25%,#f5f1eb 50%,#ede8e0 75%)", backgroundSize: "200% 100%", animation: "shimmer 1.4s ease infinite" }} />

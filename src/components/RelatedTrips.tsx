@@ -415,7 +415,6 @@ export default function RelatedTrips({ slug, type, showAll = false, max = 6 }: {
         ) : (
           <div className="rt-grid" style={{
             display: "grid",
-            gridTemplateColumns: "repeat(3, 1fr)",
             gap: 20,
           }}>
             {trips.map((trip, i) => (
