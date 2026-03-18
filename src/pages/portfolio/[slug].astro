@@ -71,48 +71,56 @@ const type = entry?.type;
 const c = item; // alias for rich course template compatibility
 const pageUrl = `${siteConfig.url}/portfolio/${slug}`;
 
-// ── Titles matching WP indexed titles (from site audit) ───────────────────────
+// ── Titles — upgraded with accolades, location, and intent keywords ────────────
 const wpTitles: Record<string, string> = {
-  'graeagle-meadows-golf-packages':   'Graeagle Meadows Golf Group Packages | Stay and Play Deals',
-  'whitehawk-ranch-golf-packages':    'Whitehawk Ranch Golf Packages | Stay and Play in Graeagle, CA',
-  'plumas-pines-golf-packages':       'Plumas Pines Golf Group Packages | Stay and Play Deals',
-  'grizzly-ranch-golf-packages':      'Grizzly Ranch Golf Group Packages | Stay and Play Deals',
-  'nakoma-dragon-golf-packages':      'Nakoma Dragon Golf Packages | Graeagle Golf Stay & Play Packages',
-  'river-pines-resort-graeagle-ca':   'River Pines Resort | Graeagle Golf Group Packages & Stay and Play Deals',
-  'chalet-view-lodge-graeagle-ca':    'Chalet View Lodge | Graeagle Golf Group Packages & Stay and Play Deals',
-  'the-inn-at-nakoma-clio-ca':        'Inn at Nakoma | Graeagle Golf Group Packages & Stay and Play Deals',
-  'the-townhomes-at-plumas-pines':    'The Townhomes at Plumas Pines | Graeagle Golf Stay & Play',
-  'grizzly-grill':                    'Grizzly Grill | Gourmet Dining in Graeagle\'s Plumas National Forest',
-  'iron-door-restaurant':             'Iron Door Restaurant | Graeagle Golf Stay & Play Packages',
-  'roadhouse-at-river-pines':         'River Pines Resort | Graeagle Golf, Casino, Lodging & Dining',
-  'the-brewing-lair':                 'The Brewing Lair | Après-Golf Drinks for Graeagle Groups',
-  'eureka-peak-brewing-co':           'Eureka Peak Brewing Co. | Après-Golf Drinks for Graeagle Groups',
-  'gumbas-ii-go':                     "Gumba's II Go | Pizza & To-Go for Graeagle Golf Groups",
-  'sierra-smokeshow':                 'Sierra SmokeShow | BBQ Dining for Graeagle Golf Groups',
-  'little-bite-deli':                 'Little Bite Deli — Fresh Sandwiches & Salads in Blairsden | Graeagle',
-  'graeagle-restaurant':              'Graeagle Restaurant — Classic Café & Homestyle Dining Since 1958',
-  'graeagle-meadows-golf-course-restaurant': 'Graeagle Meadows Golf Course Restaurant | Dining for Golf Groups',
+  // Course pages — accolade + location + intent
+  'graeagle-meadows-golf-packages':   'Graeagle Meadows Golf Course — Tee Times & Stay and Play Packages | Graeagle, CA',
+  'whitehawk-ranch-golf-packages':    'Whitehawk Ranch Golf Course — Top 20 California | Tee Times & Packages | Graeagle, CA',
+  'plumas-pines-golf-packages':       'Plumas Pines Golf Resort — Best Value Sierra Nevada | Tee Times & Stay and Play | Graeagle, CA',
+  'grizzly-ranch-golf-packages':      'Grizzly Ranch Golf Club — Golf Digest Top 100 | Tee Times & Stay and Play | Graeagle, CA',
+  'nakoma-dragon-golf-packages':      'Nakoma Dragon Golf Course — Frank Lloyd Wright Clubhouse | Golf World Top 75 | Graeagle, CA',
+  // Lodging pages
+  'river-pines-resort-graeagle-ca':   'River Pines Resort Graeagle — Golf Lodging & Stay and Play Packages',
+  'chalet-view-lodge-graeagle-ca':    'Chalet View Lodge Graeagle — Golf Lodging & Stay and Play Packages',
+  'the-inn-at-nakoma-clio-ca':        'Inn at Nakoma — Frank Lloyd Wright Resort | Golf Stay and Play | Clio, CA',
+  'the-townhomes-at-plumas-pines':    'Townhomes at Plumas Pines — On-Course Golf Lodging | Graeagle, CA',
+  // Dining pages
+  'grizzly-grill':                    'Grizzly Grill — Gourmet Dining in Plumas National Forest | Graeagle, CA',
+  'iron-door-restaurant':             'Iron Door Restaurant — Historic Steakhouse Since 1961 | Graeagle, CA',
+  'roadhouse-at-river-pines':         'Roadhouse at River Pines — Steaks & Whisky | Après-Golf Dining | Graeagle, CA',
+  'the-brewing-lair':                 'The Brewing Lair — Craft Brewery & Après-Golf Bar | Graeagle, CA',
+  'eureka-peak-brewing-co':           'Eureka Peak Brewing Co. — Craft Beer at Chalet View Lodge | Graeagle, CA',
+  'gumbas-ii-go':                     "Gumba's II Go — Pizza & Italian To-Go | Graeagle Golf Groups",
+  'sierra-smokeshow':                 'Sierra SmokeShow — BBQ Ribs & Brisket Near Graeagle Golf Courses',
+  'little-bite-deli':                 'Little Bite Deli — Fresh Sandwiches & Salads on Hwy 89 | Blairsden, CA',
+  'graeagle-restaurant':              'Graeagle Restaurant — Family-Owned Café Since 1958 | Graeagle, CA',
+  'graeagle-meadows-golf-course-restaurant': 'Graeagle Meadows Golf Course Restaurant — Clubhouse Dining | Graeagle, CA',
 };
 const pageTitle = wpTitles[slug] || (item ? `${item.name} | GolfGraeagle.com` : `${slug} | GolfGraeagle.com`);
 
-// ── Meta descriptions matching WP indexed descriptions ────────────────────────
+// ── Meta descriptions — upgraded with accolades, differentiators, price/intent ─
 const wpDescs: Record<string, string> = {
-  'graeagle-meadows-golf-packages': 'Graeagle Meadows golf group packages with stay and play deals. Includes tee times, lodging, and trip planning for Graeagle groups.',
-  'whitehawk-ranch-golf-packages':  'Custom Whitehawk Ranch golf trips with lodging + guaranteed tee times. Best stay-and-play packages. Request a quote.',
-  'plumas-pines-golf-packages':     'Plumas Pines golf group packages with stay and play deals. Custom tee times, lodging, and trip planning for Graeagle groups.',
-  'grizzly-ranch-golf-packages':    'Grizzly Ranch golf group packages with stay and play deals. Custom tee times, lodging, and trip planning for Graeagle groups.',
-  'river-pines-resort-graeagle-ca': 'River Pines Resort cabins in Graeagle with golf group packages and stay and play deals. Lodging, tee times, and trip planning included. Request a free quote.',
-  'chalet-view-lodge-graeagle-ca':  'Stay at Chalet View Lodge in Graeagle with golf group packages and stay and play deals. Lodging, tee times, and trip planning included. Request a free quote.',
-  'the-inn-at-nakoma-clio-ca':      'Stay at the Inn at Nakoma with Graeagle golf group packages and stay and play deals. Includes lodging, tee times, and trip planning. Request a free quote.',
-  'grizzly-grill':                  'Discover Grizzly Grill in Plumas National Forest: gourmet menu, full bar, seasonal wild-game dishes, and forest views. Reserve your table today!',
-  'roadhouse-at-river-pines':       'Experience River Pines Resort near Graeagle: golf, casino, cozy lodging, spa services, four restaurants, event venues, and lakeside recreation. Book now!',
-  'the-brewing-lair':               'Craft beers and lawn-game vibe for Graeagle golf groups. Easy après-golf meet-up; group-friendly setup.',
-  'eureka-peak-brewing-co':         "Craft beers and casual vibe near Graeagle courses—great après-golf meet-up for groups. We can align stop times with your tee sheet.",
-  'gumbas-ii-go':                   "Gumba's II Go serves pizza and Italian favorites in Graeagle—easy pick-up for golf groups before or after tee times. Group-friendly, central location.",
-  'sierra-smokeshow':               'Sierra SmokeShow serves barbecue plates and sandwiches near Graeagle courses—easy for golf groups before or after tee times. Group-friendly setup.',
-  'little-bite-deli':               'Hidden gem on Highway 89—Little Bite Deli serves big sandwiches, crisp salads & friendly service. Perfect for lunch near Graeagle golf.',
-  'graeagle-restaurant':            'Family-owned café in the historic Box Factory Mill—serving breakfast, lunch & homemade pies in Graeagle since 1958. A local favorite.',
-  'graeagle-meadows-golf-course-restaurant': 'Graeagle Meadows Golf Course Restaurant serves golfers with clubhouse dining—perfect for group lunches or après-golf meals in Graeagle.',
+  // Course pages — accolade first, then intent, then CTA
+  'graeagle-meadows-golf-packages':   'Graeagle Meadows Golf Course — par 72, slope 120, designed by Ellis Van Gorder (1968). The most accessible championship course in the valley with mountain views and the famous "English Gold" signature hole. Stay-and-play packages from $299/golfer.',
+  'whitehawk-ranch-golf-packages':    'Whitehawk Ranch Golf Course — Top 20 Golf Courses in California (1998). Par 71, slope 132. 550 acres of Mohawk Valley meadows and forested hillsides. The crowd favourite in Graeagle. Stay-and-play packages with guaranteed tee times.',
+  'plumas-pines-golf-packages':       'Plumas Pines Golf Resort — Top 5 Best Values in the Sierra Nevada (California Golf + Travel). Par 72, slope 132, designed by Homer Flint. Tight pines, small greens, on-course townhome lodging. Stay-and-play packages from $299/golfer.',
+  'grizzly-ranch-golf-packages':      'Grizzly Ranch Golf Club — Golf Digest Top 100 Greatest Public Courses in the US (2021). Par 72, 7,411 yards, slope 140 at 4,800–5,400 ft elevation. Designed by Bob Cupp. Guaranteed tee times via GolfGraeagle stay-and-play packages.',
+  'nakoma-dragon-golf-packages':      'Nakoma Dragon Golf Course — Golf World Top 75 at debut. Par 72, slope 147. The only golf clubhouse in the world designed by Frank Lloyd Wright. Designed by Robin Nelson. Stay-and-play packages with Inn at Nakoma lodging.',
+  // Lodging pages
+  'river-pines-resort-graeagle-ca':   'River Pines Resort — family-owned 40+ years, Graeagle CA. Cabins, suites, and rooms in one property. Pool, hot tub, The Roadhouse on-site. Best base for golf groups of 8–60. Stay-and-play packages from $299/golfer.',
+  'chalet-view-lodge-graeagle-ca':    'Chalet View Lodge — 10 forested acres in Graeagle. Lodge rooms, terrace suites, and private cabins. Spa, 9-hole executive course, Eureka Peak Brewing on-site. Stay-and-play golf packages with tee times at all 5 courses.',
+  'the-inn-at-nakoma-clio-ca':        'Inn at Nakoma — 42 rooms in the Frank Lloyd Wright-designed FLW Lodge. Steps from The Dragon golf course. Frette linens, heated pool, Fifty44 Restaurant & Bar on-site. Golf stay-and-play packages from $299/golfer.',
+  'the-townhomes-at-plumas-pines':    'Townhomes at Plumas Pines — 2–4 bedroom units directly adjacent to Plumas Pines Golf Resort. Full kitchens, private decks with fairway views, pools and tennis on-site. Best on-course lodging in Graeagle for groups.',
+  // Dining pages
+  'grizzly-grill':                    'Grizzly Grill — gourmet dining at 4,800 ft in the Plumas National Forest. Stone hearth, exposed beams, local Sierra game and produce. Full bar. Off Hwy 70, 5 minutes from Graeagle. The dinner choice for a serious group trip.',
+  'roadhouse-at-river-pines':         'Roadhouse at River Pines — steaks, ribs, and whisky flights just off Hwy 70. Connected to River Pines Resort. The easiest group dinner in Graeagle — on-site if you\'re staying at River Pines.',
+  'the-brewing-lair':                 'The Brewing Lair — 15-acre craft brewery in the Sierra forest off Hwy 70. Après-golf drinks, lawn games, outdoor seating. The first-night Graeagle tradition for golf groups.',
+  'eureka-peak-brewing-co':           'Eureka Peak Brewing Co. — IPAs, stouts, and saisons inside Chalet View Lodge. Locally sourced seasonal dishes, timber-framed setting. The more intimate après-golf alternative to The Brewing Lair.',
+  'gumbas-ii-go':                     "Gumba's II Go — hand-tossed pizza, oven-baked subs, pasta, and salads in Graeagle. Fast, group-friendly, easy pick-up after a long day on the course.",
+  'sierra-smokeshow':                 'Sierra SmokeShow — baby back ribs, brisket, and pork shoulder smoked over hickory and applewood. Blairsden-Graeagle gateway. The casual group dinner between tee times.',
+  'little-bite-deli':                 'Little Bite Deli — fresh sandwiches and salads on Highway 89. The local lunch spot between rounds. Fast, affordable, and exactly what you need between Whitehawk and Grizzly Ranch.',
+  'graeagle-restaurant':              'Graeagle Restaurant — family-owned since 1958 in the historic Box Factory Mill. Breakfast, lunch, and homemade pies. Three generations, one of the most beloved spots in the valley.',
+  'graeagle-meadows-golf-course-restaurant': 'Graeagle Meadows Golf Course Restaurant — clubhouse dining with fairway and mountain views. Seasonal menus, warm hospitality. The natural first or last meal of your Graeagle golf trip.',
 };
 const pageDesc = wpDescs[slug] || item?.description || item?.tagline || `Graeagle golf packages for ${item?.name || slug}.`;
 
@@ -383,7 +391,7 @@ const diningSlugMap: Record<string, string> = {
         </div>
       )}
 
-      <h1 class="ch-h1 speakable">{item.name}</h1>
+      <h1 class="ch-h1 speakable">{item.name} <span style="display:block;font-size:0.55em;font-weight:400;color:rgba(255,255,255,0.5);font-style:italic;margin-top:4px;">Golf Packages &amp; Tee Times — Graeagle, CA</span></h1>
       <p class="ch-tagline page-intro">{item.tagline}</p>
 
       <div class="ch-ctas">
