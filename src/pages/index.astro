@@ -51,7 +51,7 @@ const homeFaqSchema = {
     {
       "@type": "Question",
       "name": "What is GolfGraeagle.com?",
-      "acceptedAnswer": { "@type": "Answer", "text": "GolfGraeagle.com is the only golf trip booking service local to the Graeagle valley. We build custom stay-and-play packages for groups of all sizes — tee times at all 5 championship courses, lodging coordination, and dining recommendations. Operating since 2004. Free quote with 24-hour response." }
+      "acceptedAnswer": { "@type": "Answer", "text": "GolfGraeagle.com is a local golf trip booking service in the Graeagle valley. We build custom stay-and-play packages for groups of all sizes — tee times at all 5 championship courses, lodging coordination, and dining recommendations. Operating since 2004. Free quote with 24-hour response." }
     },
     {
       "@type": "Question",
@@ -92,7 +92,7 @@ const homeFaqSchema = {
 };
 const courseAccolades = {'graeagle-meadows':'The Valley Classic','whitehawk-ranch':'Top 20 California','plumas-pines':'Top 5 Best Value','grizzly-ranch':'Golf Digest Top 100','nakoma-dragon':'Golf World Top 75'};
 const courseMustPlay = {'whitehawk-ranch':true,'grizzly-ranch':true,'nakoma-dragon':true};
-const lodgingMeta = {'townhomes-at-plumas-pines':{badge:'Best for Large Groups',detail:'Full kitchens · On the course · 2–4 BR units'},'river-pines-resort':{badge:'Best for Groups',detail:'On-site dining · Pool & hot tub · 40+ years family-owned'},'chalet-view-lodge':{badge:'Best Amenities',detail:'Spa · Brewery on-site · 9-hole exec course'},'inn-at-nakoma':{badge:'Most Unique',detail:'Frank Lloyd Wright lodge · Walk to The Dragon'}};
+const lodgingMeta = {'townhomes-at-plumas-pines':{badge:'Great for Large Groups',detail:'Full kitchens · On the course · 2–4 BR units'},'river-pines-resort':{badge:'Great for Groups',detail:'On-site dining · Pool & hot tub · 40+ years family-owned'},'chalet-view-lodge':{badge:'Great Amenities',detail:'Spa · Brewery on-site · 9-hole exec course'},'inn-at-nakoma':{badge:'Most Unique',detail:'Frank Lloyd Wright lodge · Walk to The Dragon'}};
 ---
 <Base
   title="Graeagle Golf Packages — 5 Courses, Custom Itineraries, Tee Times + Lodging Guaranteed | GolfGraeagle.com"
@@ -127,7 +127,7 @@ const lodgingMeta = {'townhomes-at-plumas-pines':{badge:'Best for Large Groups',
       <a href={`/portfolio/${wpSlugMap[c.slug]}/`} class="strip-item" aria-label={`View ${c.name}`}>
         <img src={c.hero} alt={getImgAlt(c.hero, `${c.name} Golf Course — Graeagle CA`)} class="strip-thumb" loading="lazy" />
         <div class="strip-dim"></div>
-        <span class="strip-label">{c.name.replace(' — The Dragon','').replace('Graeagle ','')}</span>
+        <span class="strip-label">{c.name.replace(' — The Dragon','')}</span>
       </a>
     ))}
   </div>
@@ -149,7 +149,7 @@ const lodgingMeta = {'townhomes-at-plumas-pines':{badge:'Best for Large Groups',
       </h1>
 
       <p class="hero-sub reveal delay-200 page-intro">
-        The only booking service local to the Graeagle valley. We've done this since 2004. Free quote in 24 hours.
+        Graeagle's local golf trip specialists since 2004. Free quote in 24 hours.
       </p>
 
       <div class="hero-ctas reveal delay-300">
@@ -213,7 +213,6 @@ const lodgingMeta = {'townhomes-at-plumas-pines':{badge:'Best for Large Groups',
             <div class="card-gradient"></div>
             <div class="course-card-body">
               <div style="display:flex;flex-wrap:wrap;gap:5px;margin-bottom:10px;align-items:center;">
-                {mustPlay[c.slug] && <span style="font-size:8px;font-weight:800;text-transform:uppercase;letter-spacing:0.08em;background:#e8a850;color:#0d1a0e;padding:2px 7px;border-radius:100px;">Must Play</span>}
                 <span style="font-size:8px;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:rgba(255,255,255,0.6);border:1px solid rgba(255,255,255,0.2);padding:2px 7px;border-radius:100px;">{accolades[c.slug]}</span>
               </div>
               <h3 style="font-family:'Playfair Display',serif;font-size:clamp(16px,1.4vw,20px);color:#ffffff;text-shadow:0 1px 8px rgba(0,0,0,0.5);margin:0 0 8px;line-height:1.2;">{c.name}</h3>

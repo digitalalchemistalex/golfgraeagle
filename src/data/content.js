@@ -404,7 +404,7 @@ export const lodging = [
   {
     slug: 'townhomes-at-plumas-pines',
     name: 'Townhomes at Plumas Pines',
-    subtitle: 'Best for Large Groups',
+    subtitle: 'Great for Large Groups',
     type: 'townhomes',
     address: 'Graeagle, CA 96103',
     coordinates: { lat: 39.7505, lng: -120.6170 },
@@ -449,7 +449,7 @@ export const lodging = [
   {
     slug: 'river-pines-resort',
     name: 'River Pines Resort',
-    subtitle: 'Best for Groups',
+    subtitle: 'Great for Groups',
     type: 'resort',
     address: 'Graeagle, CA 96103',
     coordinates: { lat: 39.7610, lng: -120.6348 },
@@ -494,7 +494,7 @@ export const lodging = [
   {
     slug: 'chalet-view-lodge',
     name: 'Chalet View Lodge',
-    subtitle: 'Best Amenities',
+    subtitle: 'Great Amenities',
     type: 'lodge',
     address: 'Graeagle, CA 96103',
     coordinates: { lat: 39.7727, lng: -120.6352 },

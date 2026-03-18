@@ -8,7 +8,7 @@ export const prerender = true;
 const hotels = [
   {
     ...lodging.find(l => l.slug === 'river-pines-resort'),
-    badge: 'Best for Golf Groups',
+    badge: 'Great for Golf Groups',
     badgeColor: '#22c55e',
     priceRange: '$$',
     capacity: '4–60 guests',
@@ -20,7 +20,7 @@ const hotels = [
   },
   {
     ...lodging.find(l => l.slug === 'chalet-view-lodge'),
-    badge: 'Best Amenities',
+    badge: 'Great Amenities',
     badgeColor: '#3b82f6',
     priceRange: '$$$',
     capacity: '2–30 guests',
@@ -46,7 +46,7 @@ const hotels = [
 
 const townhomeData = {
   ...lodging.find(l => l.slug === 'townhomes-at-plumas-pines'),
-  badge: 'Best for Large Groups',
+  badge: 'Great for Large Groups',
   badgeColor: '#e8a850',
   priceRange: '$$',
   capacity: '8–24+ guests',
@@ -57,7 +57,7 @@ const lodgingFaq = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
   "mainEntity": [
-    { "@type": "Question", "name": "Where should a golf group stay in Graeagle?", "acceptedAnswer": { "@type": "Answer", "text": "River Pines Resort is the top choice for most golf groups — multiple room types, on-site dining, pool. For large groups (8+), the Townhomes at Plumas Pines offer multi-bedroom units with full kitchens at the best per-person cost. For the bucket-list stay, the Inn at Nakoma puts you steps from The Dragon." } },
+    { "@type": "Question", "name": "Where should a golf group stay in Graeagle?", "acceptedAnswer": { "@type": "Answer", "text": "River Pines Resort is a popular choice for golf groups — multiple room types, on-site dining, pool. For large groups (8+), the Townhomes at Plumas Pines offer multi-bedroom units with full kitchens at a strong per-person value. For the bucket-list stay, the Inn at Nakoma puts you steps from The Dragon." } },
     { "@type": "Question", "name": "Is there lodging on the golf courses in Graeagle?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. The Inn at Nakoma is on the Nakoma Dragon course property. The Townhomes at Plumas Pines are adjacent to Plumas Pines Golf Resort. River Pines Resort is walking distance from Graeagle Meadows." } },
     { "@type": "Question", "name": "What is the difference between a Graeagle hotel and townhome rental?", "acceptedAnswer": { "@type": "Answer", "text": "Hotels and lodges (River Pines, Chalet View, Inn at Nakoma) offer traditional hotel service with amenities, on-site dining, and housekeeping. Townhomes at Plumas Pines are multi-bedroom vacation rentals with full kitchens — better for larger groups who want to self-cater and share common spaces." } },
     { "@type": "Question", "name": "Do Graeagle lodging properties offer stay-and-play golf packages?", "acceptedAnswer": { "@type": "Answer", "text": "GolfGraeagle builds custom stay-and-play packages combining any property with tee times at all 5 courses. Request a free quote with your dates, group size, and preferred courses." } },
@@ -202,14 +202,14 @@ const lodgingFaq = {
       <div>
         <div class="ldg-section-tag" style="color:#e8a850;background:rgba(232,168,80,0.1);border-color:rgba(232,168,80,0.2);">🏘 Townhomes</div>
         <h2 class="ldg-section-title" style="color:#1a2e1a;">Best for groups of 8 or more.</h2>
-        <p class="ldg-section-sub" style="color:rgba(28,46,26,0.45);">Multi-bedroom vacation rentals on the Plumas Pines Golf Course. Full kitchens, shared living spaces, and the best per-person cost in Graeagle.</p>
+        <p class="ldg-section-sub" style="color:rgba(28,46,26,0.45);">Multi-bedroom vacation rentals on the Plumas Pines Golf Course. Full kitchens, shared living spaces, and the great per-person value in Graeagle.</p>
       </div>
     </div>
 
     <div class="ldg-townhome-layout">
       <div class="ldg-townhome-img-wrap">
         <img src={townhomeData.hero} alt="Townhomes at Plumas Pines — Graeagle group lodging" loading="lazy" class="ldg-townhome-img"/>
-        <span class="ldg-hotel-badge" style="background:#e8a850;top:20px;left:20px;position:absolute;">Best for Large Groups</span>
+        <span class="ldg-hotel-badge" style="background:#e8a850;top:20px;left:20px;position:absolute;">Great for Large Groups</span>
         <span class="ldg-hotel-price" style="top:20px;right:20px;position:absolute;">$$</span>
       </div>
       <div class="ldg-townhome-body">
@@ -294,7 +294,7 @@ const lodgingFaq = {
     <h2 class="ldg-section-title">Lodging FAQ</h2>
     <div class="ldg-faqs">
       {[
-        { q:'Where should a golf group stay in Graeagle?', a:'River Pines Resort is the top choice for most golf groups — flexible room types, on-site dining at The Roadhouse, pool and hot tub. For groups of 8+, the Townhomes at Plumas Pines offer multi-bedroom units with full kitchens at the best per-person cost. The Inn at Nakoma is the luxury bucket-list option.' },
+        { q:'Where should a golf group stay in Graeagle?', a:'River Pines Resort is a popular choice for golf groups — flexible room types, on-site dining at The Roadhouse, pool and hot tub. For groups of 8+, the Townhomes at Plumas Pines offer multi-bedroom units with full kitchens at a strong per-person value. The Inn at Nakoma is the luxury bucket-list option.' },
         { q:'What is the difference between a hotel and a townhome in Graeagle?', a:'Hotels and lodges (River Pines, Chalet View, Inn at Nakoma) offer traditional hotel service with on-site dining, housekeeping, and amenities. The Townhomes at Plumas Pines are multi-bedroom vacation rentals with full kitchens — better for larger groups who want to share living space and cut costs by cooking some meals.' },
         { q:'Is there lodging on the golf courses in Graeagle?', a:'Yes. The Inn at Nakoma sits on the Nakoma Dragon course — guests walk directly to the first tee. The Townhomes at Plumas Pines are adjacent to Plumas Pines Golf Resort. River Pines Resort is a short walk from Graeagle Meadows.' },
         { q:'Do Graeagle lodging properties offer stay-and-play packages?', a:'GolfGraeagle builds custom stay-and-play packages combining any property with tee times at all 5 courses. Request a free quote with your dates, group size, and preferred courses — we handle the coordination.' },
