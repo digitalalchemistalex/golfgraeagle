@@ -389,11 +389,15 @@ export default function RelatedTrips({ slug, type, showAll = false, max = 6 }: {
         {isCarousel ? (
           <div style={{
             display: "flex",
-            gap: 20,
+            gap: 16,
             overflowX: "auto",
             scrollSnapType: "x mandatory",
             WebkitOverflowScrolling: "touch",
             paddingBottom: 12,
+            paddingLeft: "clamp(20px,5%,60px)",
+            paddingRight: "clamp(20px,5%,60px)",
+            marginLeft: "calc(-1 * clamp(20px,5%,60px))",
+            marginRight: "calc(-1 * clamp(20px,5%,60px))",
             scrollbarWidth: "none",
             msOverflowStyle: "none",
           }}
@@ -401,8 +405,7 @@ export default function RelatedTrips({ slug, type, showAll = false, max = 6 }: {
           >
             {trips.map((trip, i) => (
               <div key={trip.id || i} style={{
-                flex: "0 0 calc(33.333% - 14px)",
-                minWidth: "280px",
+                flex: "0 0 min(340px, 80vw)",
                 scrollSnapAlign: "start",
               }}>
                 <TripCard trip={trip} />
