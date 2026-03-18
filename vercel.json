@@ -535,5 +535,11 @@
       "destination": "/portfolio/the-townhomes-at-plumas-pines/",
       "permanent": true
     }
+  ],
+  "crons": [
+    {
+      "path": "/api/cron-rebuild",
+      "schedule": "0 3 * * *"
+    }
   ]
 }

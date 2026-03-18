@@ -6,10 +6,88 @@ import Footer from '../../components/Footer.astro';
 import RelatedTrips from '../../components/RelatedTrips.tsx';
 import Testimonials from '../../components/Testimonials.tsx';
 import { courses, lodging, dining, siteConfig, courseToLodging, lodgingToCourses, imageAlts } from '../../data/content.js';
+
 // Helper: get descriptive SEO alt text for any image URL
 function getImgAlt(src, fallback) {
   const filename = src.split('/').pop().split('?')[0];
   return imageAlts[filename] || fallback;
+}
+
+// ── Fetch TripsCaddie data at build time for dynamic schema + reviews ──────
+let allTrips = [];
+try {
+  const tripsRes = await fetch('https://golfthehighsierra.com/trips-caddie/api/api-recaps.php');
+  allTrips = await tripsRes.json();
+} catch (e) {
+  // Fallback to empty — static reviews below will still work
+  allTrips = [];
+}
+
+// Filter Graeagle trips with real content
+const graeagleTrips = allTrips.filter((t: any) =>
+  (t.region || '').toLowerCase() === 'graeagle' &&
+  (t.synopsis || t.highlights?.length)
+);
+
+// Build course review map from live API data
+const COURSE_NAME_MAP: Record<string, string[]> = {
+  'graeagle-meadows':  ['Graeagle Meadows', 'Graeagle Meadows Golf Course'],
+  'whitehawk-ranch':   ['Whitehawk Ranch', 'Whitehawk Ranch Golf Course', 'Whitehawk Ranch Golf Club'],
+  'plumas-pines':      ['Plumas Pines', 'Plumas Pines Golf Resort'],
+  'grizzly-ranch':     ['Grizzly Ranch', 'Grizzly Ranch Golf Club'],
+  'nakoma-dragon':     ['Nakoma', 'Dragon', 'Nakoma Dragon', 'The Dragon'],
+};
+const LODGING_NAME_MAP: Record<string, string[]> = {
+  'river-pines-resort':        ['River Pines Resort', 'River Pines'],
+  'chalet-view-lodge':         ['Chalet View Lodge', 'Chalet View'],
+  'inn-at-nakoma':             ['The Inn at Nakoma', 'Inn at Nakoma', 'Nakoma Resort'],
+  'townhomes-at-plumas-pines': ['Townhomes at Plumas Pines', 'Plumas Pines Townhomes'],
+};
+
+// Vibe → star rating (same logic as Testimonials.tsx)
+function deriveStarsFromTrip(trip: any): number {
+  const vibe = (trip.vibe || '').toLowerCase();
+  if (vibe === 'premium' || vibe === 'bucket list') return 5;
+  return 4;
+}
+
+// Get best quote from trip
+const OPERATOR_PATTERNS = [
+  /^great graeagle trip/i, /^you just have to experience/i,
+  /^this group was a la carte/i, /^the package offered/i,
+  /^groups coming in from northern california/i, /^if you're looking for an inexpensive/i,
+];
+function getBestQuote(trip: any): string {
+  const candidates = [trip.synopsis, ...(trip.highlights || []), trip.whyItWorked].filter(Boolean);
+  const clean = candidates.find((s: string) => !OPERATOR_PATTERNS.some(p => p.test(s.trim())));
+  if (!clean) return '';
+  return clean.length > 200 ? clean.slice(0, 197) + '…' : clean;
+}
+
+// Build live review lists per slug
+function getLiveReviews(slug: string, nameMap: Record<string, string[]>): any[] {
+  const names = nameMap[slug] || [];
+  if (!names.length) return [];
+  return graeagleTrips
+    .filter((t: any) => {
+      const allText = [...(t.courses || []), t.lodging || ''].join(' ').toLowerCase();
+      return names.some((n: string) => allText.includes(n.toLowerCase()));
+    })
+    .sort((a: any, b: any) => {
+      // Premium first, then by group size
+      const aScore = (a.vibe?.toLowerCase() === 'premium' ? 1000 : 0) + (a.groupSize || 0);
+      const bScore = (b.vibe?.toLowerCase() === 'premium' ? 1000 : 0) + (b.groupSize || 0);
+      return bScore - aScore;
+    })
+    .slice(0, 5)
+    .map((t: any) => ({
+      author: t.groupName || 'Golf Group',
+      pax: t.groupSize,
+      stars: deriveStarsFromTrip(t),
+      body: getBestQuote(t),
+      when: [t.month, t.year].filter(Boolean).join(' ') || '2025',
+    }))
+    .filter((r: any) => r.body); // Only include reviews with actual content
 }
 
 
@@ -787,56 +865,6 @@ const diningSlugMap: Record<string, string> = {
   .course-body { background:var(--page-bg); padding: clamp(40px, 8vw, 80px) clamp(20px, 10%, 10%); }
   .course-layout { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 380px; gap: 64px; }
   .photo-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 8px; }
-
-  /* ─── MOBILE CAROUSEL — course + lodging galleries ─── */
-  @media (max-width: 640px) {
-    /* Course photo-grid → horizontal scroll carousel */
-    .photo-grid {
-      display: flex;
-      overflow-x: auto;
-      scroll-snap-type: x mandatory;
-      -webkit-overflow-scrolling: touch;
-      gap: 8px;
-      padding-bottom: 8px;
-      scrollbar-width: none;
-    }
-    .photo-grid::-webkit-scrollbar { display: none; }
-    .photo-grid .gallery-btn {
-      flex: 0 0 78vw;
-      scroll-snap-align: start;
-      border-radius: 12px !important;
-      aspect-ratio: 4/3;
-      height: auto !important;
-    }
-    .photo-grid .gallery-btn img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    /* Lodging photo-strip-grid → horizontal scroll carousel */
-    .photo-strip-grid {
-      display: flex !important;
-      overflow-x: auto;
-      scroll-snap-type: x mandatory;
-      -webkit-overflow-scrolling: touch;
-      gap: 8px;
-      height: auto !important;
-      padding-bottom: 8px;
-      scrollbar-width: none;
-    }
-    .photo-strip-grid::-webkit-scrollbar { display: none; }
-    .photo-strip-grid .gallery-btn {
-      flex: 0 0 78vw;
-      scroll-snap-align: start;
-      border-radius: 12px;
-    }
-    .photo-strip-grid .gallery-btn img {
-      width: 100%;
-      height: 220px;
-      object-fit: cover;
-    }
-  }
 
   /* ─── MOBILE ─── */
   @media (max-width: 860px) {

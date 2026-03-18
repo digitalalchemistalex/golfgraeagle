@@ -215,7 +215,7 @@ const diningFaq = {
   @media (max-width: 768px) {
     .decision-rail    { grid-template-columns: 1fr; padding: 40px 24px; }
     .page-wrap        { padding: 0 24px; }
-    .dining-hero-content { padding: 0 24px 56px; }
+    .dining-hero-content { padding: 0 24px 48px; }
     .cta-band         { padding: 72px 24px; }
     .grid-fine-dining { grid-template-columns: 1fr; }
     .grid-on-course   { grid-template-columns: 1fr; }
@@ -223,6 +223,11 @@ const diningFaq = {
     .grid-brewery     { grid-template-columns: 1fr; }
     .grid-quick       { grid-template-columns: 1fr; }
     .grid-matrix      { grid-template-columns: repeat(2,1fr); }
+  }
+  @media (max-width: 600px) {
+    /* Hero: taller to contain content, text smaller */
+    .dining-hero { min-height: 90vh; align-items: flex-end; }
+    .dining-hero-content { padding: 0 20px 40px; }
   }
   @media (max-width: 480px) {
     .grid-matrix      { grid-template-columns: 1fr; }
@@ -237,7 +242,7 @@ const diningFaq = {
   <div class="dining-hero-grad"></div>
   <div class="dining-hero-content">
     <p class="sec-label" style="margin-bottom:18px;">Food &amp; Drink · Graeagle, California</p>
-    <h1 style="font-family:'Playfair Display',serif;font-size:clamp(52px,7vw,94px);font-weight:400;color:#f0f8f2;margin:0 0 20px;line-height:1.0;">
+    <h1 style="font-family:'Playfair Display',serif;font-size:clamp(38px,7vw,94px);font-weight:400;color:#f0f8f2;margin:0 0 20px;line-height:1.05;">
       Eat well.<br/><em style="color:#e8a850;font-style:italic;">Drink even better.</em>
     </h1>
     <p class="speakable page-intro" style="font-size:18px;color:rgba(240,248,242,0.55);max-width:540px;line-height:1.75;margin:0 0 36px;">

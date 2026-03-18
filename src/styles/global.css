@@ -387,6 +387,30 @@ body {
 .bl-course-note{font-size:13px;color:#4a5a4a;line-height:1.65;}
 @media(max-width:640px){.bl-course-row{grid-template-columns:1fr;gap:6px;}}
 
+/* ── GALLERY CAROUSELS — mobile scroll-snap (global: reaches IIFE elements) ── */
+/* course photo-grid */
+.photo-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;}
+/* lodging photo-strip-grid: desktop grid */
+.photo-strip-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(220px,45vw),1fr));gap:3px;height:280px;overflow:hidden;}
+
+@media(max-width:640px){
+  /* Course photo-grid → swipe carousel */
+  .photo-grid{display:flex !important;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;gap:8px;padding-bottom:8px;scrollbar-width:none;height:auto !important;}
+  .photo-grid::-webkit-scrollbar{display:none;}
+  .photo-grid .gallery-btn{flex:0 0 78vw;scroll-snap-align:start;border-radius:12px !important;aspect-ratio:4/3;height:auto !important;}
+  .photo-grid .gallery-btn img{width:100%;height:100%;object-fit:cover;}
+
+  /* Lodging photo-strip-grid → swipe carousel */
+  .photo-strip-grid{display:flex !important;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;gap:8px;height:auto !important;padding-bottom:8px;scrollbar-width:none;}
+  .photo-strip-grid::-webkit-scrollbar{display:none;}
+  .photo-strip-grid .gallery-btn{flex:0 0 78vw;scroll-snap-align:start;border-radius:12px;}
+  .photo-strip-grid .gallery-btn img{width:100%;height:220px;object-fit:cover;}
+
+  /* Gallery swipe hint */
+  .gallery-swipe-hint{display:block !important;}
+  .gallery-count-desktop{display:none !important;}
+}
+
 /* ── TESTIMONIALS GRID ─────────────────────────────────────────── */
 .testimonials-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
 @media(max-width:900px){.testimonials-grid{grid-template-columns:repeat(2,1fr);}}
