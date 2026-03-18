@@ -4,17 +4,17 @@ import { useState, useEffect } from "react";
 /* ─── SLUG → NAME MAPS (Graeagle courses + lodging only) ─── */
 const COURSE_NAMES: Record<string, string[]> = {
   "graeagle-meadows":  ["Graeagle Meadows", "Graeagle Meadows Golf Course"],
-  "whitehawk-ranch":   ["Whitehawk Ranch", "Whitehawk Ranch Golf Course"],
+  "whitehawk-ranch":   ["Whitehawk Ranch", "Whitehawk Ranch Golf Course", "Whitehawk Ranch Golf Club"],
   "plumas-pines":      ["Plumas Pines", "Plumas Pines Golf Resort"],
   "grizzly-ranch":     ["Grizzly Ranch", "Grizzly Ranch Golf Club"],
-  "nakoma-dragon":     ["The Dragon at Nakoma", "Nakoma", "Dragon", "Nakoma Dragon"],
+  "nakoma-dragon":     ["The Dragon at Nakoma", "Nakoma", "Dragon", "Nakoma Dragon", "The Dragon"],
 };
 
 const LODGING_NAMES: Record<string, string[]> = {
-  "river-pines-resort":       ["River Pines Resort", "River Pines"],
-  "chalet-view-lodge":        ["Chalet View Lodge", "Chalet View"],
-  "inn-at-nakoma":            ["The Inn at Nakoma", "Inn at Nakoma", "Nakoma Resort"],
-  "townhomes-at-plumas-pines":["Townhomes at Plumas Pines", "Plumas Pines Townhomes"],
+  "river-pines-resort":        ["River Pines Resort", "River Pines"],
+  "chalet-view-lodge":         ["Chalet View Lodge", "Chalet View"],
+  "inn-at-nakoma":             ["The Inn at Nakoma", "Inn at Nakoma", "Nakoma Resort"],
+  "townhomes-at-plumas-pines": ["Townhomes at Plumas Pines", "Plumas Pines Townhomes", "Plumas Pines Golf Resort (Townhomes)", "Townhomes at Plumas Pines Resort", "Private Homes and Townhomes at Plumas Pines"],
 };
 
 /* ─── PORTFOLIO URL MAPS ─── */
@@ -72,7 +72,9 @@ const STOCK = [
   "https://images.unsplash.com/photo-1592919505780-303950717480?auto=format&fit=crop&q=80&w=800",
 ];
 function pickImage(trip: Trip): string {
-  if (trip.imageUrl?.trim()) return trip.imageUrl;
+  const url = trip.imageUrl?.trim() || "";
+  // Reject base64 data URIs — use stock fallback
+  if (url && !url.startsWith("data:") && url.startsWith("http")) return url;
   const idx = (trip.id || trip.groupName || "").split("").reduce((a, c) => a + c.charCodeAt(0), 0);
   return STOCK[idx % STOCK.length];
 }
