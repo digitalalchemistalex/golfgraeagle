@@ -1091,9 +1091,6 @@ const diningSlugMap: Record<string, string> = {
         );
       })()}
 
-      <!-- Real Trips — social proof at peak desire, before FAQ removes objections -->
-      <RelatedTrips client:load slug={item.slug} type="course" />
-
       <!-- FAQ Section — AEO optimized, answers in DOM (not collapsed) -->
       <div class="reveal" style="margin-bottom:56px;">
         <h2 style="font-family:'Playfair Display',serif;font-size:24px;color:var(--text-primary);margin:0 0 28px;">Frequently Asked Questions</h2>
@@ -1171,6 +1168,8 @@ const diningSlugMap: Record<string, string> = {
 
   </div>
 </div>
+
+  <RelatedTrips client:load slug={item.slug} type="course" />
 
   <Testimonials client:load slug={item.slug} type="course" />
 
@@ -1295,9 +1294,6 @@ const diningSlugMap: Record<string, string> = {
           ) : null;
         })()}
 
-        <!-- Real Trips — social proof: "groups like yours stayed here and paid X" -->
-        <RelatedTrips client:load slug={item.slug} type="lodging" />
-
         <!-- FAQ Section -->
         <div style="margin-bottom:52px;">
           <h2 style="font-family:'Playfair Display',serif;font-size:22px;color:var(--text-primary);margin:0 0 20px;font-weight:400;">Frequently Asked Questions</h2>
@@ -1382,6 +1378,8 @@ const diningSlugMap: Record<string, string> = {
         </div>
       </div>
     </div>
+
+  <RelatedTrips client:load slug={item.slug} type="lodging" />
 
   <Testimonials client:load slug={item.slug} type="lodging" />
 
