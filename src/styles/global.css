@@ -449,28 +449,28 @@ body {
    Replaces hardcoded #0d1a0e (bg) and #f0f8f2 (text) throughout.
    ─────────────────────────────────────────────────────────────────── */
 :root {
-  /* Default: DARK theme (most pages) */
-  --page-bg:       #0d1a0e;
-  --surface:       rgba(255,255,255,0.04);
-  --surface-2:     rgba(255,255,255,0.06);
-  --surface-3:     rgba(255,255,255,0.08);
+  /* Default: LIGHT theme (all pages use light-page class) */
+  --page-bg:       #f8f4ee;
+  --surface:       #ffffff;
+  --surface-2:     #f3ede4;
+  --surface-3:     #ede6da;
 
-  --text-primary:  #f0f8f2;
-  --text-secondary:rgba(240,248,242,0.65);
-  --text-muted:    rgba(240,248,242,0.40);
-  --text-faint:    rgba(240,248,242,0.25);
+  --text-primary:  #1c1208;
+  --text-secondary:#4a3f2f;
+  --text-muted:    #7a6a56;
+  --text-faint:    #b09e88;
 
-  --gold:          #e8a850;
-  --gold-light:    #f2c878;
-  --gold-hover:    #c88840;
-  --gold-bg:       rgba(232,168,80,0.08);
-  --gold-border:   rgba(232,168,80,0.2);
+  --gold:          #b8820a;
+  --gold-light:    #e8a850;
+  --gold-hover:    #8a6008;
+  --gold-bg:       rgba(184,130,10,0.08);
+  --gold-border:   rgba(184,130,10,0.2);
 
-  --border:        rgba(240,248,242,0.07);
-  --border-strong: rgba(240,248,242,0.14);
+  --border:        rgba(28,18,8,0.1);
+  --border-strong: rgba(28,18,8,0.18);
 
-  --nav-bg:        rgba(13,26,14,0.95);
-  --nav-text:      #f0f8f2;
+  --nav-bg:        rgba(249,246,238,0.96);
+  --nav-text:      #2a1c0e;
 
   --hero-overlay:  rgba(9,15,9,0.55);
 }
