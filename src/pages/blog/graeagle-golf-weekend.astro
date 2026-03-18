@@ -1,0 +1,315 @@
+---
+export const prerender = true;
+import Base from '../../layouts/Base.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+
+const title = "Graeagle Golf Weekend: 2-Day and 3-Day Itineraries (With Real Pricing)";
+const description = "Planning a Graeagle golf weekend? Here are the exact 2-day and 3-day itineraries that work — courses in the right order, where to stay, what to eat, and what groups actually pay. From $620/person.";
+const slug = "graeagle-golf-weekend";
+const datePublished = "2026-03-18";
+const dateModified = "2026-03-18";
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": title,
+  "datePublished": datePublished,
+  "dateModified": dateModified,
+  "author": { "@type": "Organization", "name": "GolfGraeagle.com" },
+  "publisher": { "@type": "Organization", "name": "Zoomaway Technologies Inc.", "url": "https://golfgraeagle.com" },
+  "mainEntityOfPage": { "@type": "WebPage", "@id": `https://golfgraeagle.com/blog/${slug}/` }
+};
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    { "@type": "Question", "name": "How many golf courses can you play in a Graeagle weekend?", "acceptedAnswer": { "@type": "Answer", "text": "A 2-day Graeagle golf weekend fits 2–3 courses comfortably. A 3-day weekend (Friday–Sunday or Thursday–Sunday) fits 3–4 courses. All 5 courses are within 25 minutes of each other, so drive time between venues is never the limiting factor." } },
+    { "@type": "Question", "name": "How much does a Graeagle golf weekend cost per person?", "acceptedAnswer": { "@type": "Answer", "text": "A Graeagle golf weekend costs $620–$875 per person all-inclusive for a group of 8–24. That covers 2 nights lodging, 2–3 rounds of golf, all taxes and fees. Smaller groups (4–8) run slightly higher per person due to reduced group rate availability." } },
+    { "@type": "Question", "name": "What is the best course to play first on a Graeagle golf weekend?", "acceptedAnswer": { "@type": "Answer", "text": "Whitehawk Ranch or Graeagle Meadows works best as a Friday opener. Both have slope ratings of 120–132, which calibrates your group to mountain golf — altitude ball flight, firm fairways, Sierra elevation — without punishing you for being rusty. Save Grizzly Ranch (slope 140) and Nakoma Dragon (slope 147) for when your game is warmed up." } },
+    { "@type": "Question", "name": "Should you stay in Graeagle or drive up for the day?", "acceptedAnswer": { "@type": "Answer", "text": "Stay in Graeagle. The courses have morning tee time windows that require arriving early, and the valley cools fast in the evenings — you want to be 5 minutes from the course, not 2.5 hours from Sacramento. River Pines Resort and the Plumas Pines townhomes put you inside the golf corridor." } },
+    { "@type": "Question", "name": "What is the best time of year for a Graeagle golf weekend?", "acceptedAnswer": { "@type": "Answer", "text": "June, September, and early October are the best months for a Graeagle golf weekend. June has long days and fresh course conditions. September and October bring fall colors, cooler mornings, and noticeably fewer crowds than the July–August peak." } },
+  ]
+};
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://golfgraeagle.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://golfgraeagle.com/blog/" },
+    { "@type": "ListItem", "position": 3, "name": "Graeagle Golf Weekend", "item": `https://golfgraeagle.com/blog/${slug}/` }
+  ]
+};
+---
+<Base title={title} description={description} ogType="article" schema={[schema, faqSchema, breadcrumbSchema]}
+  canonical={`https://golfgraeagle.com/blog/${slug}/`}
+  ogImage="https://golfgraeagle.com/wp-images/DJI_0006-Edit.jpg"
+>
+  <Nav />
+
+  <div class="bl-hero" style="background-image:url(/wp-images/whitehawk-popup-home.webp)">
+    <div class="bl-hero-fade"></div>
+    <div class="bl-hero-content">
+      <div class="bl-breadcrumb"><a href="/blog/">Blog</a> <span>→</span> Graeagle Golf Weekend</div>
+      <h1 class="bl-h1">Graeagle Golf Weekend:<br/>2-Day and 3-Day Itineraries</h1>
+      <p class="bl-meta">By GolfGraeagle.com · March 2026 · 9 min read · Real pricing included</p>
+    </div>
+  </div>
+
+  <div class="bl-wrap">
+    <article class="bl-article">
+
+      <div class="bl-answer-box">
+        <div class="bl-answer-label">The Short Answer</div>
+        <p>A 2-day Graeagle golf weekend fits <strong>2–3 courses</strong> and costs <strong>$620–$675 per person</strong> all-in for groups of 8–24. A 3-day weekend fits <strong>3–4 courses</strong> and runs <strong>$675–$876 per person</strong>. All five courses are within 25 minutes of each other. You can play Grizzly Ranch, Whitehawk Ranch, and Graeagle Meadows back-to-back without ever driving more than 20 minutes between venues.</p>
+      </div>
+
+      <p class="bl-intro">A Graeagle golf weekend is the most efficient golf trip reachable from Northern California. Sacramento is 2.5 hours away. Bay Area is 3.5–4 hours. Once you're there, five championship courses sit within a single valley — no convoy logistics, no 45-minute drives between rounds, no wasted morning hours. Here are the two itineraries that work: the 2-day version for groups that can't take Friday off, and the 3-day version that's become the standard for most groups we book.</p>
+
+      <h2>The 2-Day Graeagle Golf Weekend</h2>
+      <p>Friday evening arrival, two rounds Saturday and Sunday, drive home Sunday afternoon. Tight but completely doable for groups with Monday commitments. Real cost: <strong>$620–$675 per person</strong> for 8–24 golfers, 2 nights at River Pines Resort, 2–3 rounds.</p>
+
+      <div class="bl-day-block">
+        <div class="bl-day-header">
+          <div class="bl-day-num">Friday</div>
+          <div class="bl-day-title">Arrive, Check In, First Beer</div>
+        </div>
+        <div class="bl-schedule">
+          <div class="bl-schedule-item">
+            <div class="bl-sched-time">4:00–6:00pm</div>
+            <div class="bl-sched-detail"><strong>Drive in.</strong> From Sacramento: 2.5 hrs via Hwy 70. From Bay Area: 3.5–4 hrs via I-80 to Hwy 70. From Reno: 1 hr west on Hwy 70. Check in to River Pines Resort or Plumas Pines townhomes. Drop bags. Don't start the weekend exhausted — keep Friday simple.</div>
+          </div>
+          <div class="bl-schedule-item">
+            <div class="bl-sched-time">7:00pm</div>
+            <div class="bl-sched-detail"><strong>Dinner at The Brewing Lair or Iron Door.</strong> Brewing Lair is the casual first-night choice — 15 acres of forest, craft beers on tap, lawn games. Iron Door is the serious dinner — 1906 building, prime rib, make a reservation. Both are within 10 minutes of any lodging in the valley.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="bl-day-block">
+        <div class="bl-day-header">
+          <div class="bl-day-num">Saturday</div>
+          <div class="bl-day-title">The Main Round</div>
+        </div>
+        <div class="bl-schedule">
+          <div class="bl-schedule-item">
+            <div class="bl-sched-time">7:30am</div>
+            <div class="bl-sched-detail"><strong>Round 1: Whitehawk Ranch.</strong> The right opener for a 2-day weekend. Par 71, slope 132, Top 20 California (1998). Twelve holes through Mohawk Valley meadows, six through forested hillside. Calibrates your group to mountain golf without punishing first-morning rust. The all-grass driving range has complimentary balls — warm up before you tee off. Whitehawk is 7 miles south of Graeagle in Clio, roughly 10 minutes.</div>
+          </div>
+          <div class="bl-schedule-item">
+            <div class="bl-sched-time">~1:00pm</div>
+            <div class="bl-sched-detail"><strong>Lunch at the Whitehawk bar or drive back.</strong> The snack bar serves grinders. Most groups head back toward Graeagle for lunch at Gumba's II Go (pizza, fast, group-friendly) or grab food before the afternoon option.</div>
+          </div>
+          <div class="bl-schedule-item">
+            <div class="bl-sched-time">3:00pm (optional)</div>
+            <div class="bl-sched-detail"><strong>Optional afternoon 9 at Graeagle Meadows.</strong> Slope 120. Relaxed, fast-playing, different feel. If your group has energy and daylight — Meadows is 20 minutes from Whitehawk and plays quickly. Skip it if anyone's legs are done from Whitehawk.</div>
+          </div>
+          <div class="bl-schedule-item">
+            <div class="bl-sched-time">7:30pm</div>
+            <div class="bl-sched-detail"><strong>Dinner — Iron Door Restaurant.</strong> If you didn't go Friday night, Saturday is the night. The 1906 general store building. Steaks, prime rib, scratch pasta. Make the reservation before you leave home — it fills on weekends.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="bl-day-block">
+        <div class="bl-day-header">
+          <div class="bl-day-num">Sunday</div>
+          <div class="bl-day-title">The Big One Before You Drive Home</div>
+        </div>
+        <div class="bl-schedule">
+          <div class="bl-schedule-item">
+            <div class="bl-sched-time">7:00am</div>
+            <div class="bl-sched-detail"><strong>Round 2: Grizzly Ranch.</strong> Golf Digest Top 100 Greatest Public Courses in the US (2021). Par 72, 7,411 yards, slope 140, at 4,800 ft. Book the earliest available tee time — Grizzly is 18 miles east in Portola, about 25 minutes. Leave no later than 6:30am. This is the course that brings groups back to Graeagle every year.</div>
+          </div>
+          <div class="bl-schedule-item">
+            <div class="bl-sched-time">~1:00pm</div>
+            <div class="bl-sched-detail"><strong>Finish, debrief, drive home.</strong> Stop at Little Bite Deli on Hwy 89 for a sandwich before the drive. The whole group discusses when to come back and play Nakoma Dragon. This is how most 2-day Graeagle weekends end.</div>
+          </div>
+        </div>
+        <div class="bl-day-note">Why Grizzly on Sunday? You've calibrated to mountain golf on Saturday, your game is loose, and ending on a Top 100 course sends everyone home talking about the trip.</div>
+      </div>
+
+      <div class="bl-stat-row">
+        <div class="bl-stat"><div class="bl-stat-val">2</div><div class="bl-stat-label">Nights</div></div>
+        <div class="bl-stat"><div class="bl-stat-val">2–3</div><div class="bl-stat-label">Rounds</div></div>
+        <div class="bl-stat"><div class="bl-stat-val">$620</div><div class="bl-stat-label">From/person</div></div>
+        <div class="bl-stat"><div class="bl-stat-val">8–52</div><div class="bl-stat-label">Golfers</div></div>
+      </div>
+
+      <h2>The 3-Day Graeagle Golf Weekend</h2>
+      <p>Thursday or Friday arrival, three rounds across three days, Sunday departure. This is the format most groups settle on after their first Graeagle trip. It removes the pressure of cramming two rounds into a day and adds a fourth course option. Real cost: <strong>$675–$876 per person</strong> for groups of 8–30, 3 nights, 3 rounds.</p>
+
+      <div class="bl-callout">
+        <strong>The 3-day format is what most of our repeat groups choose.</strong> Two rounds felt rushed. Three rounds with a real dinner on the second night is the right rhythm. Most groups come back for a 3-day trip within 18 months of their first 2-day visit.
+      </div>
+
+      <div class="bl-day-block">
+        <div class="bl-day-header">
+          <div class="bl-day-num">Day 1</div>
+          <div class="bl-day-title">Arrive and Warm Up</div>
+        </div>
+        <div class="bl-schedule">
+          <div class="bl-schedule-item">
+            <div class="bl-sched-time">12:30pm</div>
+            <div class="bl-sched-detail"><strong>Round 1: Graeagle Meadows or Plumas Pines.</strong> Meadows (slope 120) is the gentler opener — mountain views, the signature "English Gold" 6th hole, forgiving fairways. Plumas Pines (slope 132, Homer Flint, 1980) is slightly more demanding and plays through tight pines — great if your group wants to feel calibrated before the harder courses. Either works as a Day 1 round.</div>
+          </div>
+          <div class="bl-schedule-item">
+            <div class="bl-sched-time">Evening</div>
+            <div class="bl-sched-detail"><strong>Dinner at The Brewing Lair.</strong> First-night vibe — outdoor seating in the forest, craft beers, nothing formal. Everyone relaxes.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="bl-day-block">
+        <div class="bl-day-header">
+          <div class="bl-day-num">Day 2</div>
+          <div class="bl-day-title">The Test</div>
+        </div>
+        <div class="bl-schedule">
+          <div class="bl-schedule-item">
+            <div class="bl-sched-time">7:00am</div>
+            <div class="bl-sched-detail"><strong>Round 2: Grizzly Ranch.</strong> Book early. 25 minutes east in Portola. Golf Digest Top 100. The round that earns the dinner. Give the course its full attention — don't pair it with an afternoon 9. After Grizzly, legs are done.</div>
+          </div>
+          <div class="bl-schedule-item">
+            <div class="bl-sched-time">7:30pm</div>
+            <div class="bl-sched-detail"><strong>Dinner — Grizzly Grill or Iron Door.</strong> Grizzly Grill is the choice after a day at the ranch — stone hearth, local game, exposed beams at 4,800 ft. Iron Door is the classic steakhouse. Either is the dinner people remember from the trip.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="bl-day-block">
+        <div class="bl-day-header">
+          <div class="bl-day-num">Day 3</div>
+          <div class="bl-day-title">The Finish</div>
+        </div>
+        <div class="bl-schedule">
+          <div class="bl-schedule-item">
+            <div class="bl-sched-time">8:00am</div>
+            <div class="bl-sched-detail"><strong>Round 3: Whitehawk Ranch.</strong> Save Whitehawk for Day 3 — it's the crowd favourite and a strong finish. Or if your group has done Whitehawk before, substitute Nakoma Dragon (slope 147, FLW clubhouse) for the bucket-list ending. The Dragon is harder, but finishing on the most visually dramatic course in the valley is worth it.</div>
+          </div>
+          <div class="bl-schedule-item">
+            <div class="bl-sched-time">~1:00pm</div>
+            <div class="bl-sched-detail"><strong>Lunch at Middle Fork Bistro (if Nakoma) or Whitehawk bar.</strong> Then check out and drive home.</div>
+          </div>
+        </div>
+      </div>
+
+      <h2>What Groups Actually Pay — Real Numbers</h2>
+      <p>These are from our TripsCaddie archive — real booked packages, not estimates:</p>
+
+      <div class="bl-price-table">
+        <div class="bl-price-row bl-price-header">
+          <span>Package</span><span>Pax</span><span>Nights</span><span>Rounds</span><span>Per Person</span>
+        </div>
+        <div class="bl-price-row">
+          <span>Grizzly Ranch + Whitehawk · Townhomes</span><span>12</span><span>2</span><span>2</span><span>$645</span>
+        </div>
+        <div class="bl-price-row">
+          <span>Whitehawk + Meadows + Grizzly · River Pines</span><span>8</span><span>2</span><span>3</span><span>$675</span>
+        </div>
+        <div class="bl-price-row">
+          <span>Whitehawk + Meadows + Grizzly · River Pines</span><span>16</span><span>2</span><span>3</span><span>$675</span>
+        </div>
+        <div class="bl-price-row">
+          <span>Whitehawk + Meadows + Plumas Pines · River Pines</span><span>24</span><span>2</span><span>3</span><span>$620</span>
+        </div>
+        <div class="bl-price-row">
+          <span>Plumas Pines + Whitehawk + Grizzly · Townhomes</span><span>16</span><span>3</span><span>3</span><span>$876</span>
+        </div>
+      </div>
+
+      <p>All-inclusive: lodging, green fees, cart, taxes, service charges. Meals, alcohol, and transportation are extra.</p>
+
+      <h2>Where to Stay</h2>
+      <p>Two properties handle most Graeagle golf weekends:</p>
+      <div class="bl-course-compare">
+        <div class="bl-course-row">
+          <div class="bl-course-name"><a href="/portfolio/river-pines-resort-graeagle-ca/">River Pines Resort</a></div>
+          <div class="bl-course-note">Family-owned 40+ years. Cabins, suites, and rooms in one property. Pool, hot tub, The Roadhouse on-site. Best for groups of 8–52 who want one check-in, one invoice, on-site dinner. 5 minutes from Graeagle village.</div>
+        </div>
+        <div class="bl-course-row">
+          <div class="bl-course-name"><a href="/portfolio/the-townhomes-at-plumas-pines/">Townhomes at Plumas Pines</a></div>
+          <div class="bl-course-note">2–4 bedroom units adjacent to Plumas Pines Golf Resort. Full kitchens, fairway views, pools on-site. Best for groups that want space and privacy over a hotel vibe. Steps from the first tee at Plumas Pines.</div>
+        </div>
+      </div>
+
+      <h2>What to Eat — The Short Version</h2>
+      <ul class="bl-list">
+        <li><strong>Iron Door Restaurant</strong> — steakhouse, 1961, prime rib. Book ahead for Saturday night.</li>
+        <li><strong>The Brewing Lair</strong> — craft brewery, outdoor, forest setting. Best first-night spot.</li>
+        <li><strong>Grizzly Grill</strong> — gourmet dining in the Plumas National Forest. Stone hearth, local game.</li>
+        <li><strong>Gumba's II Go</strong> — pizza, fast, group-friendly. For the night nobody wants to make a decision.</li>
+        <li><strong>Little Bite Deli</strong> — sandwiches on Hwy 89. The departure day lunch.</li>
+      </ul>
+
+      <h2>Booking a Graeagle Golf Weekend</h2>
+      <p>The logistics that feel complicated — tee times at multiple courses, lodging blocks, group coordination — are what we handle. You tell us your dates, group size, and which courses you want. We send back a day-by-day itinerary with everything confirmed. Most weekend bookings are turned around in 24 hours.</p>
+
+      <!-- FAQ -->
+      <div class="bl-faq">
+        <h2>Frequently Asked Questions</h2>
+        {[
+          { q: "How many golf courses can you play in a Graeagle weekend?", a: "A 2-day weekend fits 2–3 courses comfortably. A 3-day weekend fits 3–4 courses. All 5 courses are within 25 minutes — drive time is never the limiting factor." },
+          { q: "How much does a Graeagle golf weekend cost?", a: "A 2-night, 3-round Graeagle golf weekend costs $620–$675 per person for groups of 8–24 — all-inclusive for lodging and golf. Groups of 4–8 run slightly higher per person." },
+          { q: "What is the best course to play first on a Graeagle golf weekend?", a: "Whitehawk Ranch (slope 132) or Graeagle Meadows (slope 120) work best as openers. Both calibrate your group to mountain golf without punishing rust. Save Grizzly Ranch (slope 140) and Nakoma Dragon (slope 147) for when you're warmed up." },
+          { q: "Should you stay in Graeagle or drive up for the day?", a: "Stay in Graeagle. Morning tee times require early arrivals, and the valley cools fast. Being 5 minutes from the course beats being 2.5 hours from Sacramento." },
+          { q: "What is the best time of year for a Graeagle golf weekend?", a: "June, September, and early October. Best course conditions, fewer crowds, and better rates than July–August peak." },
+        ].map(item => (
+          <div class="bl-faq-item">
+            <h3>{item.q}</h3>
+            <p>{item.a}</p>
+          </div>
+        ))}
+      </div>
+
+      <div class="bl-cta">
+        <h2>Ready to book your Graeagle golf weekend?</h2>
+        <p>Tell us your dates, group size, and which courses you want. We'll send a full itinerary with tee times and lodging confirmed within 24 hours.</p>
+        <a href="/request-a-quote/" class="bl-cta-btn btn-green-glow">Get a Free Weekend Quote →</a>
+        <div class="bl-cta-links">
+          <a href="/trips/">See real weekend packages with pricing →</a>
+          <a href="/blog/graeagle-golf-trip-cost/">Full pricing breakdown →</a>
+          <a href="/blog/graeagle-golf-trip-itinerary-3-days/">3-day itinerary guide →</a>
+        </div>
+      </div>
+
+    </article>
+
+    <aside class="bl-sidebar">
+      <div class="bl-sidebar-card">
+        <div class="bl-sidebar-title">Book Your Weekend</div>
+        <p>2-day or 3-day packages. Tee times + lodging locked. Free quote in 24 hours.</p>
+        <a href="/request-a-quote/" class="bl-sidebar-btn btn-green-glow">Request a Quote →</a>
+      </div>
+      <div class="bl-sidebar-card">
+        <div class="bl-sidebar-title">Weekend Courses</div>
+        <div class="bl-sidebar-links">
+          {[
+            { name: 'Whitehawk Ranch', slug: 'whitehawk-ranch-golf-packages', note: 'Best opener · Slope 132' },
+            { name: 'Grizzly Ranch', slug: 'grizzly-ranch-golf-packages', note: 'Golf Digest Top 100 · Slope 140' },
+            { name: 'Graeagle Meadows', slug: 'graeagle-meadows-golf-packages', note: 'Most accessible · Slope 120' },
+            { name: 'Plumas Pines', slug: 'plumas-pines-golf-packages', note: 'Best value · Slope 132' },
+            { name: 'Nakoma Dragon', slug: 'nakoma-dragon-golf-packages', note: 'Bucket list · Slope 147' },
+          ].map(c => (
+            <a href={`/portfolio/${c.slug}/`} class="bl-sidebar-course">
+              <div class="bl-sidebar-course-name">{c.name}</div>
+              <div class="bl-sidebar-course-note">{c.note}</div>
+            </a>
+          ))}
+        </div>
+      </div>
+      <div class="bl-sidebar-card">
+        <div class="bl-sidebar-title">Related Reading</div>
+        <div class="bl-sidebar-links">
+          <a href="/blog/graeagle-golf-trip-cost/" class="bl-sidebar-post">What Does a Graeagle Trip Cost? →</a>
+          <a href="/blog/graeagle-golf-trip-itinerary-3-days/" class="bl-sidebar-post">Full 3-Day Itinerary →</a>
+          <a href="/blog/best-time-to-golf-graeagle/" class="bl-sidebar-post">Best Time to Visit →</a>
+          <a href="/trips/" class="bl-sidebar-post">Real trip packages →</a>
+        </div>
+      </div>
+    </aside>
+  </div>
+  <Footer />
+</Base>

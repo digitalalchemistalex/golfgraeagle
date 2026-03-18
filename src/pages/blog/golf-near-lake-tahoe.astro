@@ -1,0 +1,228 @@
+---
+export const prerender = true;
+import Base from '../../layouts/Base.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+
+const title = "Golf Near Lake Tahoe: Why Graeagle Is the Answer Most Golfers Miss";
+const description = "Looking for golf near Lake Tahoe? Graeagle is 90 minutes away — 5 championship courses, Golf Digest Top 100, a Frank Lloyd Wright clubhouse, and 40% cheaper than the Truckee corridor. Here's why serious golfers choose Graeagle over Tahoe.";
+const slug = "golf-near-lake-tahoe";
+const datePublished = "2026-03-18";
+const dateModified = "2026-03-18";
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": title,
+  "datePublished": datePublished,
+  "dateModified": dateModified,
+  "author": { "@type": "Organization", "name": "GolfGraeagle.com" },
+  "publisher": { "@type": "Organization", "name": "Zoomaway Technologies Inc.", "url": "https://golfgraeagle.com" },
+  "mainEntityOfPage": { "@type": "WebPage", "@id": `https://golfgraeagle.com/blog/${slug}/` }
+};
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    { "@type": "Question", "name": "What golf courses are near Lake Tahoe?", "acceptedAnswer": { "@type": "Answer", "text": "The best golf courses near Lake Tahoe are split between the Truckee corridor (Old Greenwood, Gray's Crossing, Coyote Moon, Edgewood Tahoe) and the Graeagle valley 90 minutes south (Grizzly Ranch, Whitehawk Ranch, Nakoma Dragon, Plumas Pines, Graeagle Meadows). Graeagle offers 5 courses within 25 minutes of each other — more concentrated than any Tahoe option." } },
+    { "@type": "Question", "name": "Is Graeagle close to Lake Tahoe?", "acceptedAnswer": { "@type": "Answer", "text": "Graeagle is approximately 1.5 hours south of North Lake Tahoe via Highway 89. It sits in Plumas County in the Sierra Nevada mountains — same mountain range, similar elevation, but a separate valley with its own 5-course golf destination." } },
+    { "@type": "Question", "name": "Is golf in Graeagle cheaper than Lake Tahoe?", "acceptedAnswer": { "@type": "Answer", "text": "Yes, significantly. A 2-night, 3-round stay-and-play package at Graeagle runs $620–$875 per person. A comparable package at Truckee-Tahoe courses costs $1,200–$1,800 per person. Graeagle is roughly 40–60% cheaper for equal or better course quality." } },
+    { "@type": "Question", "name": "What is the best golf course near Lake Tahoe?", "acceptedAnswer": { "@type": "Answer", "text": "Within the Tahoe basin, Edgewood Tahoe and Coyote Moon are the most highly rated. But 90 minutes south in Graeagle, Grizzly Ranch Golf Club (Golf Digest Top 100 Greatest Public Courses in the US, 2021) and Nakoma Dragon (Golf World Top 75, Frank Lloyd Wright clubhouse) compete at the same level for significantly lower green fees and with better tee time availability." } },
+    { "@type": "Question", "name": "Can you combine a Lake Tahoe trip with golf in Graeagle?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Groups based in Tahoe can do a day trip to Graeagle for a round at Grizzly Ranch or Whitehawk Ranch — it's 90 minutes each way. For dedicated golf trips, staying in Graeagle is more efficient: everything is within 25 minutes and accommodation costs are lower." } },
+  ]
+};
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://golfgraeagle.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://golfgraeagle.com/blog/" },
+    { "@type": "ListItem", "position": 3, "name": "Golf Near Lake Tahoe", "item": `https://golfgraeagle.com/blog/${slug}/` }
+  ]
+};
+---
+<Base title={title} description={description} ogType="article" schema={[schema, faqSchema, breadcrumbSchema]}
+  canonical={`https://golfgraeagle.com/blog/${slug}/`}
+  ogImage="https://golfgraeagle.com/wp-images/grizzly-ranch-img0666.jpg"
+>
+  <Nav />
+
+  <div class="bl-hero" style="background-image:url(/wp-images/grizzly-ranch-img0666.jpg)">
+    <div class="bl-hero-fade"></div>
+    <div class="bl-hero-content">
+      <div class="bl-breadcrumb"><a href="/blog/">Blog</a> <span>→</span> Golf Near Lake Tahoe</div>
+      <h1 class="bl-h1">Golf Near Lake Tahoe:<br/>Why Graeagle Is the Answer Most Golfers Miss</h1>
+      <p class="bl-meta">By GolfGraeagle.com · March 2026 · 8 min read</p>
+    </div>
+  </div>
+
+  <div class="bl-wrap">
+    <article class="bl-article">
+
+      <div class="bl-answer-box">
+        <div class="bl-answer-label">Direct Answer</div>
+        <p>The best golf near Lake Tahoe is <strong>90 minutes south in Graeagle</strong> — not in the Tahoe basin itself. Five championship courses within 25 minutes of each other, including Golf Digest Top 100 Grizzly Ranch and Golf World Top 75 Nakoma Dragon. Packages run <strong>$620–$875 per person</strong> versus $1,200–$1,800 for comparable Truckee-Tahoe trips. Same mountains. Better concentration. Significantly lower cost.</p>
+      </div>
+
+      <p class="bl-intro">When golfers search for courses near Lake Tahoe, they usually find Edgewood, Coyote Moon, Old Greenwood, and Gray's Crossing. These are genuinely excellent courses. They're also expensive, heavily booked in summer, and spread across a wide geographic area that requires serious drive-time coordination between rounds. What most searches don't surface is that 90 minutes south via Highway 89, a separate Sierra Nevada valley has five championship courses — including two with national rankings — within a single 25-minute circle. That's Graeagle.</p>
+
+      <h2>What Golf Near Lake Tahoe Actually Looks Like</h2>
+      <p>The Truckee-North Tahoe corridor has roughly 8–10 courses. The top tier:</p>
+
+      <div class="bl-course-compare">
+        <div class="bl-course-row">
+          <div class="bl-course-name">Edgewood Tahoe</div>
+          <div class="bl-course-note">Par 72 on the lake's south shore. Lakeside finishing holes, premium design. Also premium pricing — one of the most expensive rounds in California. Heavily booked. Worth playing once, not the foundation of a multi-round trip.</div>
+        </div>
+        <div class="bl-course-row">
+          <div class="bl-course-name">Old Greenwood</div>
+          <div class="bl-course-note">Jack Nicklaus design in Truckee. Consistently rated top 10 in California. On-course cottage accommodation. Excellent course, but green fees and lodging prices reflect the Truckee premium.</div>
+        </div>
+        <div class="bl-course-row">
+          <div class="bl-course-name">Gray's Crossing</div>
+          <div class="bl-course-note">Peter Jacobsen design in Truckee. Mountain terrain, well-regarded layout. Part of the same Truckee club complex as Old Greenwood.</div>
+        </div>
+        <div class="bl-course-row">
+          <div class="bl-course-name">Coyote Moon</div>
+          <div class="bl-course-note">Brad Bell design near Truckee. Known for dramatic granite outcroppings and forest terrain. Limited tee time availability in summer.</div>
+        </div>
+      </div>
+
+      <p>The logistics problem: these courses are spread from South Lake Tahoe to Truckee — easily 45–60 minutes apart depending on traffic. Playing Gray's Crossing on Day 1 and Edgewood on Day 2 means significant daily driving. In summer, Highway 89 and I-80 around Tahoe carry heavy tourist traffic.</p>
+
+      <h2>What Golf in Graeagle Actually Looks Like</h2>
+      <p>Graeagle is 90 minutes south of North Lake Tahoe via Highway 89. Same Sierra Nevada range, similar elevation (3,500–5,400 ft), cooler summers than the valley, no Tahoe tourist congestion. The five courses:</p>
+
+      <div class="bl-course-compare">
+        <div class="bl-course-row">
+          <div class="bl-course-name"><a href="/portfolio/grizzly-ranch-golf-packages/">Grizzly Ranch Golf Club</a></div>
+          <div class="bl-course-note"><strong>Golf Digest Top 100 Greatest Public Courses in the US (2021).</strong> Par 72, 7,411 yards, slope 140, at 4,800–5,400 ft. Bob Cupp design (2005). The nationally ranked course in this comparison — competing directly with Edgewood and Old Greenwood on credential, not on price.</div>
+        </div>
+        <div class="bl-course-row">
+          <div class="bl-course-name"><a href="/portfolio/nakoma-dragon-golf-packages/">Nakoma — The Dragon</a></div>
+          <div class="bl-course-note"><strong>Golf World Top 75 at debut. Only FLW golf clubhouse in the world.</strong> Par 72, 7,015 yards, slope 147. Robin Nelson design (1998). The Frank Lloyd Wright-designed clubhouse is architecturally significant — there's nothing comparable in the Tahoe area. Or anywhere.</div>
+        </div>
+        <div class="bl-course-row">
+          <div class="bl-course-name"><a href="/portfolio/whitehawk-ranch-golf-packages/">Whitehawk Ranch</a></div>
+          <div class="bl-course-note"><strong>Top 20 Golf Courses in California (1998).</strong> Par 71, slope 132, 550 acres of Mohawk Valley. Dick Bailey design. The most universally loved course in the valley — accessible to a range of handicaps while consistently delivering on scenery and variety.</div>
+        </div>
+        <div class="bl-course-row">
+          <div class="bl-course-name"><a href="/portfolio/plumas-pines-golf-packages/">Plumas Pines Golf Resort</a></div>
+          <div class="bl-course-note"><strong>Top 5 Best Values in the Sierra Nevada.</strong> Par 72, slope 132, Homer Flint design (1980). Tight pines, small greens. The course that rewards precision over power and consistently delivers more challenge than its green fee suggests.</div>
+        </div>
+        <div class="bl-course-row">
+          <div class="bl-course-name"><a href="/portfolio/graeagle-meadows-golf-packages/">Graeagle Meadows</a></div>
+          <div class="bl-course-note">Par 72, slope 120. The valley original (1968). Ellis Van Gorder design. The most accessible course in the region — wide fairways, mountain views, the signature "English Gold" 6th hole. Perfect opener or closer for a multi-round trip.</div>
+        </div>
+      </div>
+
+      <p>The logistics advantage: all five courses are within a 25-minute circle. Playing Whitehawk Ranch on Day 1 and Grizzly Ranch on Day 2 means a 20-minute drive between venues. There is no traffic between courses. There are no highway delays. The entire trip operates like a golf club where the courses are close enough to be a single destination.</p>
+
+      <h2>The Price Comparison — Side by Side</h2>
+      <p>This is where the gap is most stark. Both regions have nationally ranked courses. The cost to access them is not comparable:</p>
+
+      <div class="bl-price-table">
+        <div class="bl-price-row bl-price-header">
+          <span>Trip Type</span><span>Region</span><span>Nights</span><span>Rounds</span><span>Per Person</span>
+        </div>
+        <div class="bl-price-row">
+          <span>Value stay-and-play</span><span>Graeagle</span><span>2</span><span>3</span><span>$620–$675</span>
+        </div>
+        <div class="bl-price-row">
+          <span>Standard stay-and-play</span><span>Graeagle</span><span>3</span><span>3</span><span>$876–$1,067</span>
+        </div>
+        <div class="bl-price-row">
+          <span>Premium (4 courses)</span><span>Graeagle</span><span>3</span><span>4</span><span>$1,120–$1,150</span>
+        </div>
+        <div class="bl-price-row">
+          <span>Standard stay-and-play</span><span>Truckee/Tahoe</span><span>2</span><span>3</span><span>$1,200–$1,600</span>
+        </div>
+        <div class="bl-price-row">
+          <span>Premium (Old Greenwood)</span><span>Truckee/Tahoe</span><span>3</span><span>3</span><span>$1,600–$2,200</span>
+        </div>
+      </div>
+
+      <p>The Graeagle numbers are from real booked packages. The Tahoe estimates reflect published green fees at Old Greenwood, Coyote Moon, and Gray's Crossing combined with Truckee accommodation rates.</p>
+
+      <h2>When Lake Tahoe Golf Makes Sense</h2>
+      <p>Tahoe golf isn't wrong — it's just different. Choose the Tahoe courses when:</p>
+      <ul class="bl-list">
+        <li><strong>You're already staying at Tahoe</strong> for a non-golf trip and want a round. Edgewood and Coyote Moon are worth it as one-off experiences.</li>
+        <li><strong>Old Greenwood is the specific bucket-list goal.</strong> The Nicklaus design and on-course cottages are genuinely special. Worth paying the premium if that's the objective.</li>
+        <li><strong>You're combining with Graeagle.</strong> Some groups do 2 nights in Reno, 2 rounds in Graeagle, then 1 night at Old Greenwood as a circuit. That's a strong multi-destination trip.</li>
+      </ul>
+
+      <p>Choose Graeagle when the goal is <em>multiple quality rounds at the best per-round value in the Sierra Nevada</em>. That's the majority of group golf trips.</p>
+
+      <h2>Can You Combine Tahoe and Graeagle?</h2>
+      <p>Yes — and some groups do. A 5-night circuit: 2 nights in Reno, 1 round at Grizzly Ranch, drive to Graeagle for 2 nights and 2 more rounds, finish with 1 night at Old Greenwood in Truckee before flying home. We've run this package — it costs $1,705 per person for 5 rounds and represents the premium end of the High Sierra golf trip.</p>
+      <p>For most groups, the simpler answer is: <strong>base yourself in Graeagle, play the 5 courses there, and skip the logistics of the Tahoe circuit.</strong> The quality ceiling in Graeagle — Golf Digest Top 100 plus Golf World Top 75 — is high enough that you don't need Tahoe to have a genuinely great golf trip.</p>
+
+      <!-- FAQ -->
+      <div class="bl-faq">
+        <h2>Frequently Asked Questions</h2>
+        {[
+          { q: "What golf courses are near Lake Tahoe?", a: "Near Tahoe: Edgewood Tahoe, Old Greenwood, Gray's Crossing, Coyote Moon, Incline Village. 90 minutes south in Graeagle: Grizzly Ranch (Golf Digest Top 100), Nakoma Dragon (Golf World Top 75, FLW clubhouse), Whitehawk Ranch (Top 20 CA), Plumas Pines, and Graeagle Meadows. All 5 Graeagle courses are within 25 minutes of each other." },
+          { q: "Is Graeagle close to Lake Tahoe?", a: "Graeagle is approximately 90 minutes south of North Lake Tahoe via Highway 89. Same mountain range, similar elevation, no Tahoe traffic. Close enough to combine on a longer trip, and a complete golf destination on its own." },
+          { q: "Is golf in Graeagle cheaper than Lake Tahoe?", a: "Yes — significantly. A 2-night, 3-round Graeagle stay-and-play runs $620–$875 per person. A comparable Truckee-Tahoe trip runs $1,200–$1,800. Graeagle is 40–60% cheaper for the same number of rounds at nationally ranked courses." },
+          { q: "What is the best golf course near Lake Tahoe?", a: "Within the Tahoe basin: Edgewood Tahoe and Old Greenwood are the top picks. 90 minutes south: Grizzly Ranch (Golf Digest Top 100 US) and Nakoma Dragon (Golf World Top 75, only FLW golf clubhouse) rank at the same national level for significantly lower cost." },
+          { q: "Can you combine a Tahoe trip with Graeagle golf?", a: "Yes. Groups based in Tahoe can day-trip to Graeagle for a round — 90 minutes each way. For dedicated golf trips, staying in Graeagle is more efficient: everything is within 25 minutes, accommodation is less expensive, and 5 courses are accessible from one base." },
+        ].map(item => (
+          <div class="bl-faq-item">
+            <h3>{item.q}</h3>
+            <p>{item.a}</p>
+          </div>
+        ))}
+      </div>
+
+      <div class="bl-cta">
+        <h2>Plan your Graeagle golf trip</h2>
+        <p>5 championship courses. Free quote in 24 hours. Groups of 4 to 200.</p>
+        <a href="/request-a-quote/" class="bl-cta-btn btn-green-glow">Get a Free Quote →</a>
+        <div class="bl-cta-links">
+          <a href="/all-golf-courses/">Compare all 5 Graeagle courses →</a>
+          <a href="/blog/graeagle-vs-lake-tahoe-golf/">Graeagle vs Lake Tahoe — full comparison →</a>
+          <a href="/blog/graeagle-golf-trip-cost/">What does a Graeagle trip cost? →</a>
+        </div>
+      </div>
+
+    </article>
+
+    <aside class="bl-sidebar">
+      <div class="bl-sidebar-card">
+        <div class="bl-sidebar-title">The 5 Graeagle Courses</div>
+        <div class="bl-sidebar-links">
+          {[
+            { name: 'Grizzly Ranch', slug: 'grizzly-ranch-golf-packages', note: 'Golf Digest Top 100 · Slope 140' },
+            { name: 'Nakoma Dragon', slug: 'nakoma-dragon-golf-packages', note: 'Golf World Top 75 · FLW Clubhouse' },
+            { name: 'Whitehawk Ranch', slug: 'whitehawk-ranch-golf-packages', note: 'Top 20 CA · Slope 132' },
+            { name: 'Plumas Pines', slug: 'plumas-pines-golf-packages', note: 'Best Value · Slope 132' },
+            { name: 'Graeagle Meadows', slug: 'graeagle-meadows-golf-packages', note: 'Most Accessible · Slope 120' },
+          ].map(c => (
+            <a href={`/portfolio/${c.slug}/`} class="bl-sidebar-course">
+              <div class="bl-sidebar-course-name">{c.name}</div>
+              <div class="bl-sidebar-course-note">{c.note}</div>
+            </a>
+          ))}
+        </div>
+      </div>
+      <div class="bl-sidebar-card">
+        <div class="bl-sidebar-title">Get a Free Quote</div>
+        <p>Graeagle packages from $620/person. 24-hour response.</p>
+        <a href="/request-a-quote/" class="bl-sidebar-btn btn-green-glow">Request a Quote →</a>
+      </div>
+      <div class="bl-sidebar-card">
+        <div class="bl-sidebar-title">Related Reading</div>
+        <div class="bl-sidebar-links">
+          <a href="/blog/graeagle-vs-lake-tahoe-golf/" class="bl-sidebar-post">Graeagle vs Lake Tahoe — Full Comparison →</a>
+          <a href="/blog/graeagle-golf-weekend/" class="bl-sidebar-post">Graeagle Golf Weekend Guide →</a>
+          <a href="/blog/graeagle-golf-trip-cost/" class="bl-sidebar-post">Real Pricing Breakdown →</a>
+          <a href="/blog/best-time-to-golf-graeagle/" class="bl-sidebar-post">Best Time to Visit →</a>
+        </div>
+      </div>
+    </aside>
+  </div>
+  <Footer />
+</Base>
