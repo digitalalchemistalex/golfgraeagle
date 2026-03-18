@@ -201,8 +201,8 @@ const lodgingFaq = {
     <div class="ldg-section-header">
       <div>
         <div class="ldg-section-tag" style="color:#e8a850;background:rgba(232,168,80,0.1);border-color:rgba(232,168,80,0.2);">🏘 Townhomes</div>
-        <h2 class="ldg-section-title" style="color:#1a2e1a;">Built for groups of 8 or more.</h2>
-        <p class="ldg-section-sub" style="color:rgba(28,46,26,0.45);">Multi-bedroom vacation rentals on the Plumas Pines Golf Course. Full kitchens, shared living spaces, and the great per-person value in Graeagle.</p>
+        <h2 class="ldg-section-title">Built for groups of 8 or more.</h2>
+        <p class="ldg-section-sub">Multi-bedroom vacation rentals on the Plumas Pines Golf Course. Full kitchens, shared living spaces, and the great per-person value in Graeagle.</p>
       </div>
     </div>
 
@@ -360,6 +360,17 @@ const lodgingFaq = {
 .ldg-section{padding:80px 0;}
 .ldg-section-light{background:var(--surface-2);}
 .ldg-section-dark{background:#0d1a0e;}
+/* ── Text overrides for dark townhomes section ── */
+.ldg-section-dark .ldg-section-title{color:#f8faf8;}
+.ldg-section-dark .ldg-section-sub{color:rgba(248,250,248,0.6);}
+.ldg-section-dark .ldg-townhome-name{color:#f8faf8;}
+.ldg-section-dark .ldg-townhome-tagline{color:rgba(248,250,248,0.5);}
+.ldg-section-dark .ldg-townhome-desc{color:rgba(248,250,248,0.65);}
+.ldg-section-dark .ldg-tw-why-title{color:#e8a850;}
+.ldg-section-dark .ldg-tw-why-point{color:#f8faf8;}
+.ldg-section-dark .ldg-tw-why-detail{color:rgba(248,250,248,0.55);}
+.ldg-section-dark .ldg-tw-feature{color:rgba(248,250,248,0.7);}
+.ldg-section-dark .ldg-section-tag{color:#e8a850 !important;background:rgba(232,168,80,0.1) !important;border-color:rgba(232,168,80,0.2) !important;}
 /* hotel cards */
 .ldg-hotel-cards{display:flex;flex-direction:column;gap:40px;}
 .ldg-hotel-card{background:#fff;border-radius:22px;overflow:hidden;box-shadow:0 4px 24px rgba(0,0,0,0.06);}
