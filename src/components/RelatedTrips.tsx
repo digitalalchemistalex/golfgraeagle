@@ -401,8 +401,9 @@ export default function RelatedTrips({ slug, type, showAll = false, max = 6 }: {
           >
             {trips.map((trip, i) => (
               <div key={trip.id || i} style={{
-                flex: "0 0 calc(33.333% - 14px)",
-                minWidth: "280px",
+                flex: "0 0 85vw",
+                maxWidth: "340px",
+                minWidth: "260px",
                 scrollSnapAlign: "start",
               }}>
                 <TripCard trip={trip} />
