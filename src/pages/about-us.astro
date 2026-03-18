@@ -10,95 +10,179 @@ const aboutSchema = [
     '@type': 'AboutPage',
     '@id': 'https://golfgraeagle.com/about-us#aboutpage',
     name: 'About GolfGraeagle.com',
-    description: 'GolfGraeagle.com is operated by Zoomaway Technologies Inc. — a golf trip planning platform for Graeagle, California since 2004.',
-    url: 'https://golfgraeagle.com/about-us',
+    description: 'GolfGraeagle.com is operated by Zoomaway Technologies Inc. Led by Mike Eskuchen — 20+ year golf industry professional, former Golf Pro, Director of Sales, and Club GM.',
+    url: 'https://golfgraeagle.com/about-us/',
   },
   {
     '@type': 'FAQPage',
     mainEntity: [
-      { '@type': 'Question', name: 'How long has GolfGraeagle.com been operating?', acceptedAnswer: { '@type': 'Answer', text: 'GolfGraeagle.com is operated by Zoomaway Technologies Inc. and has been booking Graeagle golf trips since 2004 — over 20 years of local expertise.' } },
-      { '@type': 'Question', name: 'What services does GolfGraeagle.com provide?', acceptedAnswer: { '@type': 'Answer', text: 'GolfGraeagle.com coordinates tee times at all 5 Graeagle championship courses, matches lodging to group size and budget, and builds full day-by-day itineraries. Packages start from $299 per golfer with free quotes and 24-hour response.' } },
-      { '@type': 'Question', name: 'Who runs GolfGraeagle.com?', acceptedAnswer: { '@type': 'Answer', text: 'GolfGraeagle.com is a product of Zoomaway Technologies Inc., based in the Reno-Tahoe corridor. The same team also operates GolfTheHighSierra.com, GroupGolfTours.com, and MesquiteStGeorgeGolfTours.com.' } },
-      { '@type': 'Question', name: 'What golf courses does GolfGraeagle work with?', acceptedAnswer: { '@type': 'Answer', text: 'GolfGraeagle.com works with all 5 championship courses in the Graeagle area: Graeagle Meadows, Whitehawk Ranch, Plumas Pines, Grizzly Ranch (Golf Digest Top 100 US), and Nakoma The Dragon (Golf World Top 75, only Frank Lloyd Wright-designed golf clubhouse).' } },
+      { '@type': 'Question', name: 'How long has GolfGraeagle.com been operating?', acceptedAnswer: { '@type': 'Answer', text: 'GolfGraeagle.com has been booking Graeagle golf trips since 2004 — over 20 years of local expertise.' } },
+      { '@type': 'Question', name: 'Who builds my itinerary?', acceptedAnswer: { '@type': 'Answer', text: 'Mike Eskuchen — a 20+ year golf industry professional who worked as a Golf Professional in Palm Springs, Director of Sales at Red Hawk Golf Club, helped grow Duncan Golf Management from 2 to 9 courses, and served as GM at Hidden Valley CC in Reno.' } },
+      { '@type': 'Question', name: 'What is TripsCaddie?', acceptedAnswer: { '@type': 'Answer', text: 'TripsCaddie is a live archive of real golf packages booked through Golf the High Sierra and partner platforms. Every entry is a real group, real itinerary, real price — covering California, Nevada, and select international destinations. Prices range from $379 to $1,705 per person across 76 trips.' } },
+      { '@type': 'Question', name: 'What golf courses does GolfGraeagle work with?', acceptedAnswer: { '@type': 'Answer', text: 'All 5 championship courses: Graeagle Meadows, Whitehawk Ranch, Plumas Pines, Grizzly Ranch (Golf Digest Top 100), and Nakoma The Dragon (only Frank Lloyd Wright-designed golf clubhouse).' } },
+      { '@type': 'Question', name: 'What does a Graeagle golf package cost?', acceptedAnswer: { '@type': 'Answer', text: 'Packages start from $299 per golfer. The TripsCaddie archive shows real packages from $379 to $1,705 per person — range depends on courses selected, lodging, nights, and group size. Request a free quote for exact pricing.' } },
+      { '@type': 'Question', name: 'Can you plan a trip for a large group?', acceptedAnswer: { '@type': 'Answer', text: 'Yes. We book for groups from 4 to 200+ players. Large groups need 6–8 weeks lead time for summer weekends. Mike coordinates tee time blocks directly with each course.' } },
     ],
+  },
+  {
+    '@type': 'Person',
+    '@id': 'https://golfgraeagle.com/about-us#mike',
+    name: 'Michael R. Eskuchen',
+    jobTitle: 'Account Manager, Golf the High Sierra',
+    description: '20+ year golf industry professional. Former Golf Professional (Palm Springs), Director of Sales (Red Hawk, Duncan Golf Management), GM/COO (Hidden Valley CC). Currently Account Manager at Golf the High Sierra, overseeing GolfGraeagle.com.',
+    image: 'https://nv-for-hd-v1757363743.websitepro-cdn.com/wp-content/uploads/2026/01/skoogen-head-shot-1.png',
+    worksFor: { '@type': 'Organization', name: 'Golf the High Sierra' },
+    alumniOf: { '@type': 'CollegeOrUniversity', name: 'Western Illinois University' },
+    knowsAbout: ['Golf trip planning', 'Graeagle golf', 'Sierra Nevada golf', 'Golf course management', 'Group golf outings', 'Northern Nevada golf'],
   },
 ];
 ---
 <Base
-  title="About GolfGraeagle | Graeagle Golf Group Packages & Stay and Play Deals"
-  description="GolfGraeagle is the #1 local booking agent for Graeagle golf group packages and stay and play deals. We pair Graeagle Meadows, Grizzly Ranch, Nakoma (Dragon), Whitehawk Ranch, and Plumas Pines with lodging and dining for custom trips."
-  canonical="https://golfgraeagle.com/about-us"
+  title="About GolfGraeagle | Graeagle Golf Packages — Real Expert, Real Pricing"
+  description="GolfGraeagle.com is led by Mike Eskuchen — 20+ years in the golf industry as a Golf Pro, Sales Director, and Club GM. Real itineraries, real pricing via TripsCaddie, free quotes in 24 hours."
+  canonical="https://golfgraeagle.com/about-us/"
   schema={aboutSchema}
 >
   <Nav />
 
-  <!-- Hero -->
+  <!-- 1. HERO — credibility first, not "About Us" -->
   <section style="background:#1a2e1a;padding:120px clamp(20px,8%,10%) 80px;">
     <div style="max-width:1100px;margin:0 auto;">
-      <p style="font-size:11px;color:#e8a850;letter-spacing:.18em;text-transform:uppercase;font-weight:600;margin:0 0 18px;">About Us</p>
-      <h1 style="font-family:'Playfair Display',serif;font-size:clamp(38px,5.5vw,64px);font-weight:400;color:#f0f8f2;margin:0 0 24px;line-height:1.1;">We plan golf trips<br/><span style="color:#e8a850;font-style:italic;">to Graeagle.</span></h1>
-      <p style="font-size:clamp(16px,2vw,19px);color:rgba(240,248,242,0.55);max-width:620px;line-height:1.8;margin:0 0 48px;">GolfGraeagle.com is a golf trip planning and package booking platform for the Graeagle, California region — operated by Zoomaway Technologies Inc. since 2004. We coordinate tee times at all 5 courses, match groups to the right lodging, and handle the full itinerary.</p>
+      <p style="font-size:11px;color:#e8a850;letter-spacing:.18em;text-transform:uppercase;font-weight:600;margin:0 0 18px;">About Us · Operating since 2004</p>
+      <h1 style="font-family:'Playfair Display',serif;font-size:clamp(36px,5.5vw,62px);font-weight:400;color:#f0f8f2;margin:0 0 24px;line-height:1.1;">We've been planning<br/><span style="color:#e8a850;font-style:italic;">Graeagle golf trips since 2004.</span></h1>
+      <p style="font-size:clamp(15px,2vw,18px);color:rgba(240,248,242,0.55);max-width:620px;line-height:1.8;margin:0 0 40px;">Local to the valley. 672 verified reviews. One team that knows every tee sheet, every lodge, and every post-round dinner spot — so you don't have to figure it out yourself.</p>
       <div style="display:flex;gap:14px;flex-wrap:wrap;">
-        <a href="/request-a-quote?utm_source=golfgraeagle&utm_medium=internal&utm_campaign=cta&utm_content=about-hero" class="btn-green-glow" style="display:inline-block;font-weight:700;font-size:14px;padding:14px 32px;">Plan your trip →</a>
+        <a href="/request-a-quote?utm_source=golfgraeagle&utm_medium=internal&utm_campaign=cta&utm_content=about-hero" class="btn-green-glow" style="display:inline-block;font-weight:700;font-size:14px;padding:14px 32px;">Plan my trip →</a>
         <a href="tel:+18885861157" style="display:inline-block;border:1px solid rgba(240,248,242,0.2);color:rgba(240,248,242,0.7);font-size:14px;padding:14px 28px;border-radius:100px;text-decoration:none;">(888) 586-1157</a>
       </div>
     </div>
   </section>
 
-  <!-- Trust stats -->
+  <!-- 2. TRUST STATS — specificity beats vague claims -->
   <section style="background:#f0f5f0;padding:0;border-bottom:1px solid #e0ece0;">
     <div style="max-width:1100px;margin:0 auto;padding:0 clamp(20px,8%,10%);display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:#e0ece0;">
       {[
-        { n:'2004', l:'Year founded' },
-        { n:'25+', l:'Years booking Graeagle' },
-        { n:'6k+', l:'Verified reviews' },
+        { n:'2004',  l:'Year founded' },
+        { n:'20+',   l:'Years in Graeagle' },
+        { n:'672',   l:'Verified reviews' },
         { n:'4.8/5', l:'Average rating' },
       ].map(s => (
         <div style="background:#f8faf4;padding:32px 24px;text-align:center;">
-          <div style="font-family:'Playfair Display',serif;font-size:36px;color:#1a2e1a;font-weight:400;margin-bottom:6px;">{s.n}</div>
-          <div style="font-size:12px;color:#6b7c6b;text-transform:uppercase;letter-spacing:.08em;font-weight:600;">{s.l}</div>
+          <div style="font-family:'Playfair Display',serif;font-size:34px;color:#1a2e1a;font-weight:400;margin-bottom:6px;">{s.n}</div>
+          <div style="font-size:11px;color:#6b7c6b;text-transform:uppercase;letter-spacing:.08em;font-weight:600;">{s.l}</div>
         </div>
       ))}
     </div>
   </section>
 
-  <!-- What we do -->
+  <!-- 3. MIKE — named human beats anonymous brand -->
   <section style="background:#fff;padding:80px clamp(20px,8%,10%);">
-    <div style="max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start;">
+    <div style="max-width:1100px;margin:0 auto;">
+      <p style="font-size:11px;color:#e8a850;letter-spacing:.16em;text-transform:uppercase;font-weight:700;margin:0 0 40px;">The person who answers your quote</p>
+      <div style="display:grid;grid-template-columns:260px 1fr;gap:64px;align-items:start;">
+
+        <!-- Photo + credentials card -->
+        <div>
+          <div style="border-radius:18px;overflow:hidden;aspect-ratio:3/4;background:#f0f5f0;margin-bottom:20px;box-shadow:0 8px 32px rgba(26,46,26,0.1);">
+            <img
+              src="https://nv-for-hd-v1757363743.websitepro-cdn.com/wp-content/uploads/2026/01/skoogen-head-shot-1.png"
+              alt="Mike Eskuchen — Graeagle Golf Expert"
+              style="width:100%;height:100%;object-fit:cover;object-position:top;"
+              loading="lazy"
+            />
+          </div>
+          <div style="font-family:'Playfair Display',serif;font-size:20px;color:#1a2e1a;margin-bottom:3px;">Mike Eskuchen</div>
+          <div style="font-size:11px;color:#e8a850;font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-bottom:14px;">Graeagle Golf Expert · Account Manager</div>
+          <div style="display:flex;flex-direction:column;gap:7px;margin-bottom:18px;">
+            <a href="mailto:mike.eskuchen@golfthehighsierra.com" style="display:flex;align-items:center;gap:8px;font-size:12px;color:#4a5a4a;text-decoration:none;">
+              <span style="color:#e8a850;font-size:13px;">✉</span>mike.eskuchen@golfthehighsierra.com
+            </a>
+            <a href="tel:+18885861157" style="display:flex;align-items:center;gap:8px;font-size:12px;color:#4a5a4a;text-decoration:none;">
+              <span style="color:#e8a850;font-size:13px;">📞</span>(888) 586-1157
+            </a>
+          </div>
+          <div style="display:flex;flex-wrap:wrap;gap:5px;">
+            {['20+ yrs golf industry','PGA Golf Professional','Former Club GM & COO','Director of Sales','9 courses built'].map(b => (
+              <span style="font-size:9px;font-weight:700;color:#4a5a4a;background:#f0f5f0;border:1px solid #d0dcd0;padding:3px 8px;border-radius:100px;">{b}</span>
+            ))}
+          </div>
+        </div>
+
+        <!-- Bio -->
+        <div>
+          <h2 style="font-family:'Playfair Display',serif;font-size:clamp(24px,3vw,38px);font-weight:400;color:#1a2e1a;margin:0 0 20px;line-height:1.2;">Most booking agents work from a spreadsheet.<br/><span style="color:#e8a850;font-style:italic;">Mike has played every hole.</span></h2>
+
+          <p style="font-size:15px;color:#4a5a4a;line-height:1.85;margin:0 0 16px;">Mike Eskuchen grew up in Glenview, Illinois and studied at Western Illinois University before heading west to launch his career as a PGA Golf Professional in Palm Springs. He spent 8 years in the California desert teaching the game, competing, and working the tee sheets at private and semi-private clubs. He knows how golfers think because he is one.</p>
+
+          <p style="font-size:15px;color:#4a5a4a;line-height:1.85;margin:0 0 16px;">A move to Sparks, NV brought him to Red Hawk Golf Club and Wingfield Springs — two of Northern Nevada's top courses — where he ran golf sales for over a decade and built a market reputation across the Sierra Nevada corridor. He started a family during those years, including twin boys born in 2009.</p>
+
+          <p style="font-size:15px;color:#4a5a4a;line-height:1.85;margin:0 0 16px;">That reputation led to a Director of Sales role at Duncan Golf Management, where he helped grow the company from 2 golf courses to 9 in under 5 years. He then took on the Director of Sales and then General Manager & COO role at Hidden Valley Country Club in Reno — overseeing full club operations and growing membership to 90% capacity.</p>
+
+          <p style="font-size:15px;color:#4a5a4a;line-height:1.85;margin:0 0 28px;">Today Mike is Account Manager at Golf the High Sierra, personally building itineraries for GolfGraeagle.com packages. When you submit a quote request, Mike reviews it and builds a real itinerary — not a template, not a chatbot. Outside work he coaches football and baseball for his twin boys and enjoys pretty much every outdoor activity the Sierra Nevada has to offer.</p>
+
+          <blockquote style="border-left:3px solid #e8a850;padding:16px 22px;background:#fffbf0;border-radius:0 12px 12px 0;margin:0 0 28px;">
+            <p style="font-size:15px;color:#4a3a10;font-style:italic;line-height:1.75;margin:0 0 8px;">"I've spent 20 years in this industry — as a teaching pro, a sales director, and a GM running a club. When someone asks me what courses to play or where to stay in Graeagle, I'm not guessing. I've been there."</p>
+            <cite style="font-size:11px;color:#a06c30;font-weight:700;font-style:normal;">— Mike Eskuchen, GolfGraeagle.com</cite>
+          </blockquote>
+
+          <a href="/request-a-quote?utm_source=golfgraeagle&utm_medium=internal&utm_campaign=cta&utm_content=about-mike" class="btn-green-glow" style="display:inline-block;font-weight:700;font-size:14px;padding:13px 30px;">Get a quote from Mike →</a>
+          <p style="font-size:11px;color:#8a9a8a;margin:10px 0 0;">No obligation · Response within 24 hours</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. WHAT WE DO + 5 COURSES -->
+  <section style="background:#f8faf4;padding:80px clamp(20px,8%,10%);">
+    <div style="max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:start;">
+
       <div>
-        <h2 style="font-family:'Playfair Display',serif;font-size:clamp(28px,3.5vw,40px);font-weight:400;color:#1a2e1a;margin:0 0 20px;">What we actually do</h2>
-        <p style="font-size:16px;color:#4a5a4a;line-height:1.8;margin:0 0 18px;">GolfGraeagle is not a golf course. We're the planning layer between you and the courses — a team that knows every tee sheet, every lodge, and every post-round dinner spot in the valley.</p>
-        <p style="font-size:16px;color:#4a5a4a;line-height:1.8;margin:0 0 18px;">When you request a quote, a real person builds your itinerary. We book the tee times across however many courses you want, coordinate lodging that fits your group size and budget, and hand you a day-by-day plan.</p>
-        <p style="font-size:16px;color:#4a5a4a;line-height:1.8;margin:0 0 32px;">We serve individual golfers, groups of 4–200+, bachelor parties, corporate outings, and families. Packages start from $299 per golfer.</p>
-        <div style="display:flex;flex-direction:column;gap:12px;">
+        <p style="font-size:11px;color:#e8a850;letter-spacing:.16em;text-transform:uppercase;font-weight:700;margin:0 0 14px;">What we actually do</p>
+        <h2 style="font-family:'Playfair Display',serif;font-size:clamp(24px,3vw,34px);font-weight:400;color:#1a2e1a;margin:0 0 18px;line-height:1.2;">The planning layer between you and the courses.</h2>
+        <p style="font-size:15px;color:#4a5a4a;line-height:1.8;margin:0 0 14px;">GolfGraeagle is not a golf course. We're the team that knows every tee sheet, lodge, and post-round dinner spot in the valley — and puts it all together so you just show up and play.</p>
+        <p style="font-size:15px;color:#4a5a4a;line-height:1.8;margin:0 0 28px;">We serve solo golfers, groups of 4–200+, bachelor parties, corporate outings, and families. Packages start from $299 per golfer.</p>
+
+        <!-- 3-step process -->
+        <div style="display:flex;flex-direction:column;gap:16px;margin-bottom:32px;">
           {[
-            'Tee time coordination across all 5 courses',
-            'Lodging matched to group size and budget',
-            'Full day-by-day itinerary with dining recommendations',
-            'Transportation coordination for large groups',
-            'Meal functions and group dining reservations',
-            '72-hour cancellation policy on standard bookings',
-            'Free quotes — 24-hour response',
-          ].map(item => (
-            <div style="display:flex;align-items:center;gap:12px;font-size:15px;color:#374137;">
-              <span style="color:#22a322;font-weight:700;flex-shrink:0;">✓</span>
-              {item}
+            { n:'1', t:'Submit a free quote', d:'Tell us dates, group size, and which courses appeal. 2 minutes.' },
+            { n:'2', t:'Mike builds your itinerary', d:'Full day-by-day plan within 24 hours — courses, lodging, dining, logistics.' },
+            { n:'3', t:'Review and confirm', d:'No obligation until you say go. 72-hour cancellation on standard bookings.' },
+          ].map(s => (
+            <div style="display:flex;align-items:flex-start;gap:14px;">
+              <div style="width:30px;height:30px;border-radius:50%;background:#1a2e1a;color:#e8a850;font-family:'Playfair Display',serif;font-size:14px;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;">{s.n}</div>
+              <div>
+                <div style="font-size:14px;font-weight:700;color:#1a2e1a;margin-bottom:2px;">{s.t}</div>
+                <div style="font-size:13px;color:#6b7c6b;line-height:1.6;">{s.d}</div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:9px;">
+          {['Tee time coordination across all 5 courses','Lodging matched to group size and budget','Full day-by-day itinerary','Dining recommendations and reservations','Transportation for large groups','72-hour cancellation on standard bookings','Free quotes — 24-hour response'].map(item => (
+            <div style="display:flex;align-items:center;gap:10px;font-size:14px;color:#374137;">
+              <span style="color:#22a322;font-weight:700;flex-shrink:0;">✓</span>{item}
             </div>
           ))}
         </div>
       </div>
+
       <div>
-        <h2 style="font-family:'Playfair Display',serif;font-size:clamp(28px,3.5vw,40px);font-weight:400;color:#1a2e1a;margin:0 0 20px;">The 5 courses we work with</h2>
-        <div style="display:flex;flex-direction:column;gap:10px;">
+        <p style="font-size:11px;color:#e8a850;letter-spacing:.16em;text-transform:uppercase;font-weight:700;margin:0 0 14px;">The 5 courses we work with</p>
+        <h2 style="font-family:'Playfair Display',serif;font-size:clamp(20px,2.5vw,28px);font-weight:400;color:#1a2e1a;margin:0 0 20px;">All within 25 minutes of each other.</h2>
+        <div style="display:flex;flex-direction:column;gap:8px;">
           {courses.map(c => (
-            <a href={`/portfolio/${c.slug === "nakoma-dragon" ? "nakoma-dragon-golf-packages" : c.slug + "-golf-packages"}`} style="display:flex;justify-content:space-between;align-items:center;padding:16px 20px;background:#f8faf4;border:1px solid #e0ece0;border-radius:12px;text-decoration:none;transition:all .2s;"
+            <a href={`/portfolio/${c.slug === "nakoma-dragon" ? "nakoma-dragon-golf-packages" : c.slug + "-golf-packages"}/`}
+              style="display:flex;justify-content:space-between;align-items:center;padding:14px 18px;background:#fff;border:1px solid #e0ece0;border-radius:12px;text-decoration:none;transition:all .2s;"
               onmouseover="this.style.borderColor='#e8a850';this.style.background='#fffbf0'"
-              onmouseout="this.style.borderColor='#e0ece0';this.style.background='#f8faf4'">
+              onmouseout="this.style.borderColor='#e0ece0';this.style.background='#fff'">
               <div>
                 <div style="font-size:14px;font-weight:700;color:#1a2e1a;margin-bottom:2px;">{c.name}</div>
                 <div style="font-size:11px;color:#8a9a8a;">Par {c.par} · {c.yards.toLocaleString()} yds · Slope {c.slope}</div>
               </div>
-              <span style="font-size:12px;color:#e8a850;font-weight:600;">View →</span>
+              <span style="font-size:12px;color:#e8a850;font-weight:600;white-space:nowrap;">View →</span>
             </a>
           ))}
         </div>
@@ -106,114 +190,177 @@ const aboutSchema = [
     </div>
   </section>
 
-  <!-- Who we are -->
+  <!-- 5. TRIPSCADDIE — centrepiece, radical transparency -->
+  <section style="background:#0f1a0f;padding:clamp(60px,10vw,100px) clamp(20px,8%,10%);">
+    <div style="max-width:1100px;margin:0 auto;">
+
+      <div style="max-width:680px;margin:0 auto 52px;text-align:center;">
+        <p style="font-size:11px;color:#e8a850;letter-spacing:.16em;text-transform:uppercase;font-weight:700;margin:0 0 14px;">Real Pricing · No Guesswork · Live Archive</p>
+        <h2 style="font-family:'Playfair Display',serif;font-size:clamp(26px,4vw,46px);font-weight:400;color:#f0f8f2;margin:0 0 18px;line-height:1.15;">Before you ask what it costs —<br/><span style="color:#e8a850;font-style:italic;">see what others paid.</span></h2>
+        <p style="font-size:15px;color:rgba(240,248,242,0.5);line-height:1.85;margin:0 0 12px;">TripsCaddie is a live archive of real packages booked through Golf the High Sierra and its partner platforms — including GolfGraeagle.com. Every entry is a real group, a real itinerary, and a real price. California, Nevada, and select international destinations.</p>
+        <p style="font-size:13px;color:rgba(232,168,80,0.65);font-style:italic;">No other booking agent publishes this. We do because we have nothing to hide.</p>
+      </div>
+
+      <!-- Stats -->
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(255,255,255,0.05);border-radius:14px;overflow:hidden;margin-bottom:44px;">
+        {[
+          { n:'76',          l:'Trips in archive' },
+          { n:'$379',        l:'Lowest per person' },
+          { n:'$1,705',      l:'Highest per person' },
+          { n:'CA · NV · Intl', l:'Destinations' },
+        ].map(s => (
+          <div style="background:rgba(255,255,255,0.03);padding:26px 18px;text-align:center;">
+            <div style="font-family:'Playfair Display',serif;font-size:26px;color:#e8a850;font-weight:400;margin-bottom:5px;">{s.n}</div>
+            <div style="font-size:10px;color:rgba(240,248,242,0.35);text-transform:uppercase;letter-spacing:.08em;font-weight:600;">{s.l}</div>
+          </div>
+        ))}
+      </div>
+
+      <!-- Live trips -->
+      <div id="about-trips-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-bottom:36px;">
+        <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:16px;padding:28px;text-align:center;color:rgba(240,248,242,0.25);font-size:13px;">Loading trips…</div>
+      </div>
+
+      <div style="text-align:center;">
+        <a href="/trips/" class="btn-green-glow" style="display:inline-block;font-weight:700;font-size:14px;padding:14px 36px;margin-bottom:12px;">Browse the full pricing archive →</a>
+        <p style="font-size:11px;color:rgba(240,248,242,0.25);margin:0;">76 real packages · updated continuously · no signup required</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 6. THE NETWORK -->
   <section style="background:#f0f5f0;padding:80px clamp(20px,8%,10%);">
     <div style="max-width:1100px;margin:0 auto;">
-      <h2 style="font-family:'Playfair Display',serif;font-size:clamp(28px,3.5vw,40px);font-weight:400;color:#1a2e1a;margin:0 0 40px;">The company behind the site</h2>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;">
-        <div style="padding:24px;background:#fff;border:1px solid #e0ece0;border-radius:14px;">
-          <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:#e8a850;margin-bottom:6px;">Parent Company</div>
-          <div style="font-size:16px;font-weight:700;color:#1a2e1a;margin-bottom:8px;">Zoomaway Technologies Inc.</div>
-          <div style="font-size:14px;color:#4a5a4a;line-height:1.65;margin-bottom:14px;">GolfGraeagle.com is a product of Zoomaway Technologies Inc. — a travel technology company specializing in golf trip planning across the High Sierra region. Founded in 2004.</div>
-          <a href="https://zoomaway.com/?utm_source=golfgraeagle&utm_medium=referral&utm_campaign=parent_company&utm_content=about_page"
-             target="_blank" rel="noopener noreferrer"
-             style="display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:600;color:#1a2e1a;text-decoration:none;padding:8px 16px;border:1.5px solid #1a2e1a;border-radius:100px;transition:all 0.2s;"
-             onmouseover="this.style.background='#1a2e1a';this.style.color='#f0f8f2'"
-             onmouseout="this.style.background='transparent';this.style.color='#1a2e1a'">
-            Visit zoomaway.com →
-          </a>
-        </div>
-        <div style="padding:24px;background:#fff;border:1px solid #e0ece0;border-radius:14px;">
-          <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:#e8a850;margin-bottom:6px;">Sibling Platform</div>
-          <div style="font-size:16px;font-weight:700;color:#1a2e1a;margin-bottom:8px;">Golf the High Sierra</div>
-          <div style="font-size:14px;color:#4a5a4a;line-height:1.65;margin-bottom:14px;">Covers the broader Northern California and Nevada region — Reno, Tahoe, Mesquite, and beyond. Same team, wider geography.</div>
-          <a href="https://golfthehighsierra.com/?utm_source=golfgraeagle&utm_medium=referral&utm_campaign=sibling_site&utm_content=about_page"
-             target="_blank" rel="noopener noreferrer"
-             style="display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:600;color:#1a2e1a;text-decoration:none;padding:8px 16px;border:1.5px solid #1a2e1a;border-radius:100px;transition:all 0.2s;"
-             onmouseover="this.style.background='#1a2e1a';this.style.color='#f0f8f2'"
-             onmouseout="this.style.background='transparent';this.style.color='#1a2e1a'">
-            Visit golfthehighsierra.com →
-          </a>
-        </div>
-        <div style="padding:24px;background:#fff;border:1px solid #e0ece0;border-radius:14px;">
-          <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:#e8a850;margin-bottom:6px;">Sibling Platform</div>
-          <div style="font-size:16px;font-weight:700;color:#1a2e1a;margin-bottom:8px;">Group Golf Tours</div>
-          <div style="font-size:14px;color:#4a5a4a;line-height:1.65;margin-bottom:14px;">Specializes in large-group golf outings across multiple destinations. Corporate events, charity tournaments, and group travel.</div>
-          <a href="http://groupgolftours.com/?utm_source=golfgraeagle&utm_medium=referral&utm_campaign=sibling_site&utm_content=about_page"
-             target="_blank" rel="noopener noreferrer"
-             style="display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:600;color:#1a2e1a;text-decoration:none;padding:8px 16px;border:1.5px solid #1a2e1a;border-radius:100px;transition:all 0.2s;"
-             onmouseover="this.style.background='#1a2e1a';this.style.color='#f0f8f2'"
-             onmouseout="this.style.background='transparent';this.style.color='#1a2e1a'">
-            Visit groupgolftours.com →
-          </a>
-        </div>
-        <div style="padding:24px;background:#fff;border:1px solid #e0ece0;border-radius:14px;">
-          <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:#e8a850;margin-bottom:6px;">Subsidiaries</div>
-          <div style="font-size:16px;font-weight:700;color:#1a2e1a;margin-bottom:8px;">Zoomaway Inc. &amp; Tripsee</div>
-          <div style="font-size:14px;color:#4a5a4a;line-height:1.65;">Additional technology and booking subsidiaries under the Zoomaway umbrella, focused on travel automation and trip planning tools.</div>
-        </div>
-      </div>
+      <p style="font-size:11px;color:#e8a850;letter-spacing:.16em;text-transform:uppercase;font-weight:700;margin:0 0 14px;">The company behind the site</p>
+      <h2 style="font-family:'Playfair Display',serif;font-size:clamp(24px,3vw,36px);font-weight:400;color:#1a2e1a;margin:0 0 12px;">One team. Four platforms.<br/>The full High Sierra golf region covered.</h2>
+      <p style="font-size:15px;color:#4a5a4a;line-height:1.8;max-width:660px;margin:0 0 36px;">Zoomaway Technologies Inc. has operated golf trip planning platforms since 2004. GolfGraeagle.com is the Graeagle specialist — and TripsCaddie draws real pricing data from the entire network across California, Nevada, and beyond.</p>
+
+      <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:14px;">
+        {[
+          { label:'This site', name:'GolfGraeagle.com', desc:'Graeagle, California specialist. 5 championship courses. The only booking agent local to the valley.', href:null, badge:'📍 You are here', bc:'rgba(40,140,60,0.06)', tc:'#1a6030' },
+          { label:'Sibling Platform', name:'Golf the High Sierra', desc:"Reno, Lake Tahoe, and the broader High Sierra region. Mike's home platform — and where TripsCaddie lives.", href:'https://golfthehighsierra.com/', badge:"🏔 Mike's platform", bc:'rgba(40,80,200,0.05)', tc:'#204090' },
+          { label:'Sibling Platform', name:'Group Golf Tours', desc:'Corporate events, charity tournaments, and large-group golf travel across multiple destinations.', href:'http://groupgolftours.com/', badge:'👥 Groups 20–200+', bc:'rgba(180,80,20,0.05)', tc:'#8a3010' },
+          { label:'Sibling Platform', name:'Mesquite St. George Golf Tours', desc:'Southern Nevada and Utah golf specialist. Year-round warm-weather golf.', href:'https://mesquitestgeorgegolftours.com/', badge:'☀️ Year-round golf', bc:'rgba(180,130,20,0.06)', tc:'#8a6010' },
+        ].map(p => (
+          <div style={`padding:22px;background:#fff;border:1px solid #e0ece0;border-radius:14px;`}>
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:7px;">
+              <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:#e8a850;">{p.label}</div>
+              <span style={`font-size:9px;font-weight:800;color:${p.tc};background:rgba(0,0,0,0.04);padding:2px 8px;border-radius:100px;`}>{p.badge}</span>
+            </div>
+            <div style="font-size:15px;font-weight:700;color:#1a2e1a;margin-bottom:7px;">{p.name}</div>
+            <div style="font-size:13px;color:#4a5a4a;line-height:1.65;margin-bottom:12px;">{p.desc}</div>
+            {p.href && (
+              <a href={p.href} target="_blank" rel="noopener noreferrer"
+                style="display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:600;color:#1a2e1a;text-decoration:none;padding:7px 14px;border:1.5px solid #1a2e1a;border-radius:100px;transition:all 0.2s;"
+                onmouseover="this.style.background='#1a2e1a';this.style.color='#f0f8f2'"
+                onmouseout="this.style.background='transparent';this.style.color='#1a2e1a'">
+                Visit site →
+              </a>
+            )}
+          </div>
+        ))}
       </div>
     </div>
   </section>
 
-  <!-- FAQ section -->
-  <section style="background:#f0f5f0;padding:80px clamp(20px,8%,10%);">
+  <!-- 7. FAQ -->
+  <section style="background:#fff;padding:80px clamp(20px,8%,10%);">
     <div style="max-width:780px;margin:0 auto;">
-      <h2 style="font-family:'Playfair Display',serif;font-size:clamp(26px,3.5vw,38px);font-weight:400;color:#1a2e1a;margin:0 0 36px;">Common Questions</h2>
-      <div style="display:flex;flex-direction:column;gap:0;">
+      <h2 style="font-family:'Playfair Display',serif;font-size:clamp(24px,3.5vw,36px);font-weight:400;color:#1a2e1a;margin:0 0 32px;">Common Questions</h2>
+      <div style="display:flex;flex-direction:column;">
         {[
-          ['What does GolfGraeagle.com actually do?', 'GolfGraeagle.com is a golf trip planning and package booking platform — not a golf course. We coordinate tee times at all 5 Graeagle championship courses, match lodging to your group size and budget, arrange transportation, coordinate group dining, and hand you a complete day-by-day itinerary. Operated by Zoomaway Technologies Inc. since 2004.'],
-          ['How long has GolfGraeagle.com been operating?', 'GolfGraeagle.com is operated by Zoomaway Technologies Inc. and has been booking Graeagle golf trips since 2004 — over 20 years of local knowledge of the valley, the courses, and the lodging properties.'],
-          ['Can you plan a trip for a large group?', 'Yes. We book for groups from 4 to 200+ players. Large groups require consecutive tee time blocks across multiple courses — we coordinate directly with each course to secure these. Most large group bookings need 6–8 weeks lead time for summer weekends.'],
-          ['What does a package cost?', 'Packages start from $299 per golfer and vary based on courses selected, lodging type, group size, and number of nights. We do not show specific pricing online — request a free quote and receive a custom itinerary with pricing within 24 hours.'],
-          ['Do you only book Graeagle golf trips?', 'GolfGraeagle.com focuses on the Graeagle region. Zoomaway Technologies Inc. also operates GolfTheHighSierra.com (Reno, Tahoe, and High Sierra region) and MesquiteStGeorgeGolfTours.com (Southern Nevada and Utah) for trips to adjacent destinations.'],
-          ['Is there a cancellation fee?', 'Standard bookings carry a 72-hour cancellation policy. Large group outings are governed by individual contracts. Vendor cancellation policies (golf courses, lodging properties) are passed through to the customer where applicable. Full details are in our Cancellation Policy.'],
+          ['What does GolfGraeagle.com actually do?', 'GolfGraeagle.com is a golf trip planning and package booking platform — not a golf course. We coordinate tee times at all 5 Graeagle championship courses, match lodging to your group size and budget, arrange transportation, coordinate dining, and hand you a complete day-by-day itinerary. Operating since 2004.'],
+          ['Who builds my itinerary?', 'Mike Eskuchen — a 20+ year golf industry professional. He started as a PGA Golf Professional in Palm Springs, ran sales at Red Hawk Golf Club for 10+ years, grew Duncan Golf Management from 2 to 9 courses as Director of Sales, and served as GM & COO at Hidden Valley Country Club in Reno. When you submit a quote, Mike builds it personally within 24 hours.'],
+          ['What is TripsCaddie and why should I trust it?', 'TripsCaddie is a live archive of real packages booked through Golf the High Sierra and partner platforms including GolfGraeagle.com. Every price is from an actual confirmed booking — real group, real courses, real lodging. It covers California, Nevada, and international destinations. 76 trips in the archive, ranging from $379 to $1,705 per person. No other booking agent publishes real pricing this transparently.'],
+          ['What does a package cost?', 'Packages start from $299 per golfer. The TripsCaddie archive shows real packages from $379 to $1,705 per person — the range depends on courses, lodging type, nights, and group size. Request a free quote for exact pricing on your trip.'],
+          ['Can you plan a trip for a large group?', 'Yes. We book for groups from 4 to 200+ players. Large groups need 6–8 weeks lead time for summer weekends. Mike coordinates tee time blocks directly with each course — this is the kind of multi-course, multi-night coordination he spent 20 years building relationships for.'],
+          ['Do you only book Graeagle?', 'GolfGraeagle.com specializes in the Graeagle region. Zoomaway Technologies also operates GolfTheHighSierra.com (Reno, Tahoe, High Sierra), GroupGolfTours.com (large groups), and MesquiteStGeorgeGolfTours.com (Southern Nevada and Utah).'],
+          ['What is the cancellation policy?', 'Standard bookings carry a 72-hour cancellation policy. Large group outings are governed by individual contracts. Full details are in our Cancellation Policy.'],
         ].map(([q, a]) => (
-          <details style="border-bottom:1px solid #d0dcd0;padding:0;">
-            <summary style="font-size:16px;color:#1a2e1a;font-weight:500;padding:20px 0;cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;">
+          <details style="border-bottom:1px solid #d0dcd0;">
+            <summary style="font-size:15px;color:#1a2e1a;font-weight:500;padding:18px 0;cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;">
               {q}
               <span style="color:#e8a850;font-size:20px;flex-shrink:0;margin-left:16px;">+</span>
             </summary>
-            <p style="font-size:15px;color:#4a5a4a;line-height:1.8;padding:0 0 20px;margin:0;">{a}</p>
+            <p style="font-size:14px;color:#4a5a4a;line-height:1.8;padding:0 0 18px;margin:0;">{a}</p>
           </details>
         ))}
       </div>
     </div>
   </section>
 
-  <!-- Contact + CTA -->
+  <!-- 8. CTA -->
   <section style="background:#1a2e1a;padding:80px clamp(20px,8%,10%);">
     <div style="max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:48px;flex-wrap:wrap;">
       <div>
-        <h2 style="font-family:'Playfair Display',serif;font-size:clamp(26px,3.5vw,40px);font-weight:400;color:#f0f8f2;margin:0 0 12px;">Get in touch</h2>
-        <p style="font-size:15px;color:rgba(240,248,242,0.45);margin:0 0 28px;max-width:420px;line-height:1.65;">For quotes, bookings, or questions about any Graeagle golf trip — reach us directly or request a quote online.</p>
-        <div style="display:flex;flex-direction:column;gap:12px;">
+        <h2 style="font-family:'Playfair Display',serif;font-size:clamp(24px,3.5vw,38px);font-weight:400;color:#f0f8f2;margin:0 0 12px;">Ready to plan your Graeagle trip?</h2>
+        <p style="font-size:15px;color:rgba(240,248,242,0.45);margin:0 0 24px;max-width:420px;line-height:1.65;">Mike will build your itinerary personally — courses, lodging, dining, and everything in between. Free quote. No obligation.</p>
+        <div style="display:flex;flex-direction:column;gap:10px;">
           <a href="mailto:mike.eskuchen@golfthehighsierra.com" style="display:flex;align-items:center;gap:10px;font-size:14px;color:rgba(240,248,242,0.6);text-decoration:none;">
-            <span style="color:#e8a850;">✉</span> mike.eskuchen@golfthehighsierra.com
+            <span style="color:#e8a850;">✉</span>mike.eskuchen@golfthehighsierra.com
           </a>
           <a href="tel:+18885861157" style="display:flex;align-items:center;gap:10px;font-size:14px;color:rgba(240,248,242,0.6);text-decoration:none;">
-            <span style="color:#e8a850;">📞</span> (888) 586-1157
+            <span style="color:#e8a850;">📞</span>(888) 586-1157
           </a>
-          <div style="font-size:13px;color:rgba(240,248,242,0.3);">
-            Zoomaway Technologies Inc. · Operated since 2004
-          </div>
         </div>
       </div>
-      <a href="/request-a-quote?utm_source=golfgraeagle&utm_medium=internal&utm_campaign=cta&utm_content=about-bottom" class="btn-green-glow" style="flex-shrink:0;font-weight:700;font-size:15px;padding:18px 44px;white-space:nowrap;transition:all .2s;"
-        onmouseover="this.style.background='#f2c878';this.style.transform='translateY(-2px)'"
-        onmouseout="this.style.background='#e8a850';this.style.transform='translateY(0)'">
-        Request a free quote →
-      </a>
+      <div style="display:flex;flex-direction:column;align-items:center;gap:10px;">
+        <a href="/request-a-quote?utm_source=golfgraeagle&utm_medium=internal&utm_campaign=cta&utm_content=about-bottom" class="btn-green-glow" style="display:inline-block;font-weight:700;font-size:15px;padding:18px 44px;white-space:nowrap;">Request a free quote →</a>
+        <p style="font-size:11px;color:rgba(240,248,242,0.3);margin:0;text-align:center;">No obligation · 72-hr cancellation · Response within 24 hours</p>
+      </div>
     </div>
   </section>
 
   <Footer />
 </Base>
 
+<script>
+(function(){
+  const grid = document.getElementById('about-trips-grid');
+  if (!grid) return;
+  const vc = { Premium:'#a06c30', Value:'#2d7a3a', Budget:'#1a5a8a' };
+  fetch('/api/trips?t=' + Date.now())
+    .then(r => r.json())
+    .then(data => {
+      const gg = data.filter(t => {
+        const c = (t.courses||[]).join(' ').toLowerCase();
+        return ((t.region||'').toLowerCase().includes('graeagle'))||c.includes('grizzly')||c.includes('nakoma')||c.includes('whitehawk')||c.includes('plumas')||c.includes('graeagle');
+      });
+      const picks = [...gg.filter(t=>t.vibe==='Premium').slice(0,1), ...gg.filter(t=>t.vibe==='Value').slice(0,2)].slice(0,3);
+      if (!picks.length){ grid.style.display='none'; return; }
+      grid.innerHTML = picks.map(t => {
+        const col = vc[t.vibe]||'#2d7a3a';
+        const crs = (t.courses||[]).slice(0,2).join(' + ');
+        const img = (t.imageUrl&&!t.imageUrl.startsWith('data:')) ? t.imageUrl : '/wp-images/DJI_0006-Edit.jpg';
+        return '<div style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:16px;overflow:hidden;">'
+          +'<div style="height:145px;overflow:hidden;"><img src="'+img+'" loading="lazy" style="width:100%;height:100%;object-fit:cover;"/></div>'
+          +'<div style="padding:16px;">'
+          +'<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;">'
+          +'<span style="font-size:9px;font-weight:700;text-transform:uppercase;color:#fff;background:'+col+';padding:2px 9px;border-radius:100px;">'+(t.vibe||'')+'</span>'
+          +'<span style="font-size:13px;font-weight:700;color:#e8a850;">$'+(t.pricePerPerson||0).toLocaleString()+'<span style="font-size:10px;font-weight:400;color:rgba(240,248,242,0.4);">/pp</span></span>'
+          +'</div>'
+          +'<div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:7px;">'
+          +'<span style="font-size:10px;color:rgba(240,248,242,0.45);">⛳ '+t.rounds+' rounds</span>'
+          +'<span style="font-size:10px;color:rgba(240,248,242,0.45);">🏨 '+t.nights+' nights</span>'
+          +'<span style="font-size:10px;color:rgba(240,248,242,0.45);">👥 '+t.groupSize+' golfers</span>'
+          +'</div>'
+          +'<p style="font-size:11px;color:rgba(240,248,242,0.4);margin:0;">'+crs+'</p>'
+          +'</div></div>';
+      }).join('');
+    })
+    .catch(()=>{ if(grid) grid.style.display='none'; });
+})();
+</script>
+
 <style is:global>
-@media(max-width:700px){
-  section div[style*="grid-template-columns:1fr 1fr"]{grid-template-columns:1fr!important;}
+@media(max-width:860px){
+  section > div > div[style*="grid-template-columns:260px"]{grid-template-columns:1fr!important;gap:36px!important;}
+  section > div > div[style*="grid-template-columns:1fr 1fr"]{grid-template-columns:1fr!important;}
+}
+@media(max-width:640px){
   section div[style*="grid-template-columns:repeat(4"]{grid-template-columns:repeat(2,1fr)!important;}
+  section div[style*="grid-template-columns:repeat(3"]{grid-template-columns:1fr!important;}
+  section div[style*="grid-template-columns:repeat(2"]{grid-template-columns:1fr!important;}
 }
 </style>
