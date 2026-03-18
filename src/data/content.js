@@ -286,8 +286,10 @@ export const courses = [
       '/wp-images/plumas-pines-6th-fairway.jpg',
       '/wp-images/plumas-pines-2nd-green.jpg',
       '/wp-images/plumas-pines-owen-drone.jpg',
+      '/wp-images/plumas-pines-hero.jpg',
       '/wp-images/plumas-pines-clubhouse.jpg',
       '/wp-images/plumas-pines-course2.jpg',
+      '/wp-images/plumas-pines-longboards-deck.png',
     ],
     description: 'Plumas Pines Golf Resort, designed by Homer Flint and opened in 1980, sits deep in the pines with tighter fairways than its Graeagle neighbors. Despite playing just 6,504 yards, a slope of 132 means every shot demands precision. The signature second hole features a dramatic green complex looking west over the valley. Outstanding value among the five Graeagle courses.',
     bestFor: 'Shot-makers, value seekers, golfers who want a tough test',
@@ -688,6 +690,8 @@ export const lodgingToCourses = {
   'unnamed-39.webp': 'Nakoma Resort — mountain views from the Dragon course clubhouse, Clio CA',
   'unnamed-41.webp': 'Nakoma Dragon Golf Course — signature hole with Sierra Nevada mountain backdrop',
   'unnamed-42.webp': 'Nakoma Resort — Middle Fork Bistro outdoor dining and scenic views, Clio CA',
+  'plumas-pines-hero.jpg': 'Plumas Pines Golf Course — scenic hero shot with Feather River and Sierra Nevada mountain backdrop',
+  'plumas-pines-longboards-deck.png': 'Longboards Bar and Grill deck at Plumas Pines Golf Resort — après-golf dining with mountain views',
 };
 export const dining = [
   // ─── Fine Dining ───────────────────────────────────────

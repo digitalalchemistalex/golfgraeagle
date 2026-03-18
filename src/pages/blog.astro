@@ -158,7 +158,7 @@ const posts = [
 
       <!-- Featured post -->
       <div class="blhub-featured">
-        <a href={`/blog/${posts[0].slug}`} class="blhub-featured-card">
+        <a href={`/blog/${posts[0].slug}/`} class="blhub-featured-card">
           <div class="blhub-featured-img-wrap">
             <img src={posts[0].hero} alt={posts[0].title} loading="eager" class="blhub-featured-img"/>
             <div class="blhub-card-fade"></div>
@@ -176,7 +176,7 @@ const posts = [
       <!-- Grid of remaining posts -->
       <div class="blhub-grid">
         {posts.slice(1).map(post => (
-          <a href={`/blog/${post.slug}`} class="blhub-card">
+          <a href={`/blog/${post.slug}/`} class="blhub-card">
             <div class="blhub-card-img-wrap">
               <img src={post.hero} alt={post.title} loading="lazy" class="blhub-card-img"/>
               <div class="blhub-card-fade"></div>
