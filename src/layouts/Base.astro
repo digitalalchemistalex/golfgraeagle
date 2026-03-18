@@ -1,6 +1,8 @@
 ---
 import '../styles/global.css';
 import { siteConfig } from '../data/content.js';
+import SpeedInsights from '@vercel/speed-insights/astro';
+import Analytics from '@vercel/analytics/astro';
 
 const {
   title = siteConfig.name,
@@ -199,5 +201,7 @@ const baseSchema = {
     }, { threshold: 0.5 });
     counters.forEach(c => countObserver.observe(c));
   </script>
+  <SpeedInsights />
+  <Analytics />
 </body>
 </html>
