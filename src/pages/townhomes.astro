@@ -80,8 +80,8 @@ const faqSchema = {
   .highlight-card { padding:16px 20px;background:rgba(232,168,80,0.04);border:1px solid rgba(232,168,80,0.1);border-radius:14px; }
   .course-row { display:flex;justify-content:space-between;align-items:center;padding:16px 0;border-bottom:1px solid rgba(255,255,255,0.04); }
   .faq-item { border-bottom:1px solid rgba(255,255,255,0.06);padding:20px 0; }
-  .faq-q { font-size:16px;color:#f0f8f2;font-weight:500; }
-  .faq-a { font-size:15px;color:rgba(240,248,242,0.55);line-height:1.75;margin-top:10px; }
+  .faq-q { font-size:16px;color:#1a2e1a;font-weight:500; }
+  .faq-a { font-size:15px;color:rgba(28,46,26,0.5);line-height:1.75;margin-top:10px; }
   @media (max-width:640px) { .highlight-grid { grid-template-columns:1fr 1fr; } .hero-img { height:40vh; } }
 </style>
 
@@ -89,26 +89,28 @@ const faqSchema = {
   title="Townhomes at Plumas Pines — Graeagle Golf Lodging for Groups"
   description="Spacious 2–4 bedroom vacation townhomes adjacent to Plumas Pines Golf Resort in Graeagle, CA. Full kitchens, pool, tennis, golf course views. Ideal for golf groups and families."
   schema={[lodgingSchema, breadcrumbSchema, faqSchema]}
+
+  bodyClass="light-page"
 >
   <Nav />
 
   <div style="max-width:900px;margin:0 auto;padding:140px 5% 100px;">
 
     <!-- Breadcrumb -->
-    <nav style="font-size:12px;color:rgba(240,248,242,0.3);margin-bottom:32px;">
-      <a href="/" style="color:rgba(240,248,242,0.3);text-decoration:none;">Home</a>
+    <nav style="font-size:12px;color:rgba(28,46,26,0.28);margin-bottom:32px;">
+      <a href="/" style="color:rgba(28,46,26,0.28);text-decoration:none;">Home</a>
       <span style="margin:0 8px;">›</span>
-      <a href="/lodging" style="color:rgba(240,248,242,0.3);text-decoration:none;">Lodging</a>
+      <a href="/lodging" style="color:rgba(28,46,26,0.28);text-decoration:none;">Lodging</a>
       <span style="margin:0 8px;">›</span>
       <span style="color:#e8a850;">Townhomes at Plumas Pines</span>
     </nav>
 
     <!-- Label + H1 -->
     <p style="font-size:11px;color:#e8a850;letter-spacing:0.16em;text-transform:uppercase;font-weight:600;margin:0 0 16px;">Golf Lodging · Graeagle, CA</p>
-    <h1 class="speakable" style="font-family:'Playfair Display',serif;font-size:clamp(32px,5vw,52px);font-weight:400;color:#f0f8f2;line-height:1.1;margin:0 0 16px;">
+    <h1 class="speakable" style="font-family:'Playfair Display',serif;font-size:clamp(32px,5vw,52px);font-weight:400;color:#1a2e1a;line-height:1.1;margin:0 0 16px;">
       Townhomes at<br/><span style="color:#e8a850;font-style:italic;">Plumas Pines</span>
     </h1>
-    <p style="font-size:13px;color:rgba(240,248,242,0.3);margin:0 0 40px;">📍 Adjacent to Plumas Pines Golf Resort · Graeagle, CA 96103</p>
+    <p style="font-size:13px;color:rgba(28,46,26,0.28);margin:0 0 40px;">📍 Adjacent to Plumas Pines Golf Resort · Graeagle, CA 96103</p>
 
     <!-- Hero image -->
     <img
@@ -121,19 +123,19 @@ const faqSchema = {
     <!-- Two-col intro -->
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:40px;margin-bottom:48px;">
       <div>
-        <p class="page-intro" style="font-size:17px;color:rgba(240,248,242,0.6);line-height:1.85;margin:0;">
+        <p class="page-intro" style="font-size:17px;color:rgba(28,46,26,0.55);line-height:1.85;margin:0;">
           The Townhomes at Plumas Pines offer multi-bedroom vacation rentals directly adjacent to Plumas Pines Golf Resort — the closest on-course accommodation in the Graeagle area outside of Nakoma Resort. For golf groups who want the comforts of home without giving up proximity to the course, these townhomes are the practical choice.
         </p>
       </div>
       <div>
-        <p style="font-size:17px;color:rgba(240,248,242,0.5);line-height:1.85;margin:0;">
+        <p style="font-size:17px;color:rgba(28,46,26,0.45);line-height:1.85;margin:0;">
           Units run 2–4 bedrooms with full kitchens, golf course views, and access to community pools and tennis courts. Whitehawk Ranch is 12 minutes away. Graeagle Meadows is 10 minutes. All five championship courses are within 22 minutes — making this the most efficient base for a multi-course golf trip.
         </p>
       </div>
     </div>
 
     <!-- Highlights grid -->
-    <h2 style="font-family:'Playfair Display',serif;font-size:clamp(20px,2.5vw,28px);font-weight:400;color:#f0f8f2;margin:0 0 8px;">Property Highlights</h2>
+    <h2 style="font-family:'Playfair Display',serif;font-size:clamp(20px,2.5vw,28px);font-weight:400;color:#1a2e1a;margin:0 0 8px;">Property Highlights</h2>
     <div class="highlight-grid">
       {[
         { icon: '🏠', label: '2–4 Bedrooms', note: 'Multiple unit sizes for any group' },
@@ -145,30 +147,30 @@ const faqSchema = {
       ].map(h => (
         <div class="highlight-card">
           <div style="font-size:22px;margin-bottom:6px;">{h.icon}</div>
-          <div style="font-size:14px;color:#f0f8f2;font-weight:500;margin-bottom:2px;">{h.label}</div>
-          <div style="font-size:12px;color:rgba(240,248,242,0.35);">{h.note}</div>
+          <div style="font-size:14px;color:#1a2e1a;font-weight:500;margin-bottom:2px;">{h.label}</div>
+          <div style="font-size:12px;color:rgba(28,46,26,0.3);">{h.note}</div>
         </div>
       ))}
     </div>
 
     <!-- Who it's for -->
-    <h2 style="font-family:'Playfair Display',serif;font-size:clamp(20px,2.5vw,28px);font-weight:400;color:#f0f8f2;margin:0 0 20px;">Who the Townhomes Are Best For</h2>
-    <p style="font-size:17px;color:rgba(240,248,242,0.55);line-height:1.85;margin-bottom:16px;">
+    <h2 style="font-family:'Playfair Display',serif;font-size:clamp(20px,2.5vw,28px);font-weight:400;color:#1a2e1a;margin:0 0 20px;">Who the Townhomes Are Best For</h2>
+    <p style="font-size:17px;color:rgba(28,46,26,0.5);line-height:1.85;margin-bottom:16px;">
       The Townhomes at Plumas Pines work best for golf groups of 4–12 who want to share costs, cook some meals, and stay directly at the course. Full kitchens mean you can handle breakfast in-unit before an early tee time and skip the restaurant scramble. Groups playing Plumas Pines get the added bonus of walking to the first tee.
     </p>
-    <p style="font-size:17px;color:rgba(240,248,242,0.55);line-height:1.85;margin-bottom:40px;">
+    <p style="font-size:17px;color:rgba(28,46,26,0.5);line-height:1.85;margin-bottom:40px;">
       They're also a strong choice for extended stays of 3–5 nights, where the kitchen savings compound and having a proper living space matters more than hotel amenities. Families visiting Graeagle for a mix of golf and outdoor activities will find the space and practical layout more comfortable than a single hotel room setup.
     </p>
 
     <!-- Course proximity -->
-    <h2 style="font-family:'Playfair Display',serif;font-size:clamp(20px,2.5vw,28px);font-weight:400;color:#f0f8f2;margin:0 0 8px;">Golf Courses From the Townhomes</h2>
-    <p style="font-size:14px;color:rgba(240,248,242,0.3);margin:0 0 20px;">All five Graeagle courses within 22 minutes.</p>
+    <h2 style="font-family:'Playfair Display',serif;font-size:clamp(20px,2.5vw,28px);font-weight:400;color:#1a2e1a;margin:0 0 8px;">Golf Courses From the Townhomes</h2>
+    <p style="font-size:14px;color:rgba(28,46,26,0.28);margin:0 0 20px;">All five Graeagle courses within 22 minutes.</p>
     <div>
       {nearbyCourses.map(c => (
         <div class="course-row">
           <div>
-            <a href={`/portfolio/${c.slug === "nakoma-dragon" ? "nakoma-dragon-golf-packages" : c.slug + "-golf-packages"}`} style="font-size:16px;color:#f0f8f2;text-decoration:none;font-weight:500;">{c.name}</a>
-            <div style="font-size:12px;color:rgba(240,248,242,0.3);margin-top:2px;">{c.note}</div>
+            <a href={`/portfolio/${c.slug === "nakoma-dragon" ? "nakoma-dragon-golf-packages" : c.slug + "-golf-packages"}`} style="font-size:16px;color:#1a2e1a;text-decoration:none;font-weight:500;">{c.name}</a>
+            <div style="font-size:12px;color:rgba(28,46,26,0.28);margin-top:2px;">{c.note}</div>
           </div>
           <span style="font-size:14px;color:#e8a850;font-weight:500;white-space:nowrap;">{c.dist}</span>
         </div>
@@ -177,7 +179,7 @@ const faqSchema = {
 
     <!-- Compare lodging -->
     <div style="margin:48px 0;padding:28px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.06);border-radius:16px;">
-      <h3 style="font-family:'Playfair Display',serif;font-size:18px;font-weight:400;color:#f0f8f2;margin:0 0 16px;">Compare Graeagle Lodging Options</h3>
+      <h3 style="font-family:'Playfair Display',serif;font-size:18px;font-weight:400;color:#1a2e1a;margin:0 0 16px;">Compare Graeagle Lodging Options</h3>
       {[
         { name: 'Townhomes at Plumas Pines', best: 'Groups of 4–12, budget-friendly', note: 'Full kitchens, on-course location', link: '/townhomes', current: true },
         { name: 'River Pines Resort', best: 'Mixed groups, on-site dining', note: 'Cabins, suites, rooms — Roadhouse restaurant', link: '/lodging' },
@@ -186,11 +188,11 @@ const faqSchema = {
       ].map(p => (
         <div style={`display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid rgba(255,255,255,0.04);${p.current ? 'opacity:0.5;' : ''}`}>
           <div>
-            <div style={`font-size:14px;font-weight:500;color:${p.current ? '#e8a850' : '#f0f8f2'};margin-bottom:2px;`}>{p.name}{p.current ? ' ← you are here' : ''}</div>
-            <div style="font-size:12px;color:rgba(240,248,242,0.3);">{p.note}</div>
+            <div style={`font-size:14px;font-weight:500;color:${p.current ? '#e8a850' : '#1a2e1a'};margin-bottom:2px;`}>{p.name}{p.current ? ' ← you are here' : ''}</div>
+            <div style="font-size:12px;color:rgba(28,46,26,0.28);">{p.note}</div>
           </div>
           <div style="text-align:right;">
-            <div style="font-size:12px;color:rgba(240,248,242,0.4);margin-bottom:4px;">{p.best}</div>
+            <div style="font-size:12px;color:rgba(28,46,26,0.35);margin-bottom:4px;">{p.best}</div>
             {!p.current && <a href={p.link} style="font-size:12px;color:#e8a850;text-decoration:none;">View →</a>}
           </div>
         </div>
@@ -198,7 +200,7 @@ const faqSchema = {
     </div>
 
     <!-- FAQ -->
-    <h2 style="font-family:'Playfair Display',serif;font-size:clamp(20px,2.5vw,28px);font-weight:400;color:#f0f8f2;margin:0 0 24px;">Frequently Asked Questions</h2>
+    <h2 style="font-family:'Playfair Display',serif;font-size:clamp(20px,2.5vw,28px);font-weight:400;color:#1a2e1a;margin:0 0 24px;">Frequently Asked Questions</h2>
     <div>
       {faqSchema.mainEntity.map(item => (
         <details class="faq-item" style="cursor:pointer;">
@@ -210,8 +212,8 @@ const faqSchema = {
 
     <!-- CTA -->
     <div style="margin-top:64px;padding:40px;background:rgba(232,168,80,0.04);border:1px solid rgba(232,168,80,0.12);border-radius:20px;text-align:center;">
-      <h2 style="font-family:'Playfair Display',serif;font-size:clamp(20px,2.5vw,28px);font-weight:400;color:#f0f8f2;margin:0 0 12px;">Book the Townhomes with Tee Times</h2>
-      <p style="font-size:16px;color:rgba(240,248,242,0.5);margin:0 auto 28px;max-width:480px;">GolfGraeagle packages lodging and tee times together. Tell us your dates and group size — we'll handle the rest.</p>
+      <h2 style="font-family:'Playfair Display',serif;font-size:clamp(20px,2.5vw,28px);font-weight:400;color:#1a2e1a;margin:0 0 12px;">Book the Townhomes with Tee Times</h2>
+      <p style="font-size:16px;color:rgba(28,46,26,0.45);margin:0 auto 28px;max-width:480px;">GolfGraeagle packages lodging and tee times together. Tell us your dates and group size — we'll handle the rest.</p>
       <a href="/request-a-quote?lodging=townhomes-at-plumas-pines" style="display:inline-block;background:#e8a850;color:#0d1a0e;font-weight:700;font-size:15px;padding:16px 40px;border-radius:100px;text-decoration:none;margin-right:12px;">Request a Package Quote →</a>
       <a href="/lodging" style="display:inline-block;border:1px solid rgba(232,168,80,0.3);color:#e8a850;font-size:14px;padding:15px 28px;border-radius:100px;text-decoration:none;">Compare All Lodging</a>
     </div>

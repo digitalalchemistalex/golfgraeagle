@@ -66,27 +66,29 @@ const courses = [
 <style>
   .blog-wrap { max-width: 800px; margin: 0 auto; padding: 140px 5% 100px; }
   .course-table { width: 100%; border-collapse: collapse; font-size: 14px; margin: 32px 0; }
-  .course-table th { text-align: left; padding: 12px 16px; color: rgba(240,248,242,0.4); font-weight: 500; font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; border-bottom: 1px solid rgba(255,255,255,0.06); }
+  .course-table th { text-align: left; padding: 12px 16px; color: rgba(28,46,26,0.35); font-weight: 500; font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; border-bottom: 1px solid rgba(255,255,255,0.06); }
   .course-table td { padding: 14px 16px; border-bottom: 1px solid rgba(255,255,255,0.04); color: rgba(240,248,242,0.75); vertical-align: top; }
   .course-table tr:hover td { background: rgba(232,168,80,0.03); }
-  .course-table .name { color: #f0f8f2; font-weight: 500; }
+  .course-table .name { color: #1a2e1a; font-weight: 500; }
   .faq-item { border-bottom: 1px solid rgba(255,255,255,0.06); padding: 20px 0; }
-  .faq-q { font-size: 16px; color: #f0f8f2; font-weight: 500; margin-bottom: 8px; }
-  .faq-a { font-size: 15px; color: rgba(240,248,242,0.55); line-height: 1.75; }
+  .faq-q { font-size: 16px; color: #1a2e1a; font-weight: 500; margin-bottom: 8px; }
+  .faq-a { font-size: 15px; color: rgba(28,46,26,0.5); line-height: 1.75; }
   @media (max-width: 680px) { .course-table { display: block; overflow-x: auto; } }
   .bgc-course-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 28px; }
   @media (max-width: 560px) { .bgc-course-grid { grid-template-columns: 1fr; } }
 </style>
 
 ogType="article"
-<Base {title} {description} canonical="https://golfgraeagle.com/best-golf-courses-graeagle" ogType="article" schema={[blogSchema, breadcrumbSchema, faqSchema]}>
+<Base {title} {description} canonical="https://golfgraeagle.com/best-golf-courses-graeagle" ogType="article" schema={[blogSchema, breadcrumbSchema, faqSchema]}
+  bodyClass="light-page"
+>
   <Nav />
 
   <article class="blog-wrap">
 
     <!-- Breadcrumb -->
-    <nav style="font-size:12px;color:rgba(240,248,242,0.3);margin-bottom:32px;">
-      <a href="/" style="color:rgba(240,248,242,0.3);text-decoration:none;">Home</a>
+    <nav style="font-size:12px;color:rgba(28,46,26,0.28);margin-bottom:32px;">
+      <a href="/" style="color:rgba(28,46,26,0.28);text-decoration:none;">Home</a>
       <span style="margin:0 8px;">›</span>
       <span style="color:#e8a850;">Best Golf Courses in Graeagle</span>
     </nav>
@@ -95,21 +97,21 @@ ogType="article"
     <p style="font-size:11px;color:#e8a850;letter-spacing:0.16em;text-transform:uppercase;font-weight:600;margin:0 0 16px;">Golf Courses · Graeagle, California</p>
 
     <!-- H1 -->
-    <h1 class="speakable" style="font-family:'Playfair Display',serif;font-size:clamp(32px,5vw,52px);font-weight:400;color:#f0f8f2;line-height:1.1;margin:0 0 24px;">
+    <h1 class="speakable" style="font-family:'Playfair Display',serif;font-size:clamp(32px,5vw,52px);font-weight:400;color:#1a2e1a;line-height:1.1;margin:0 0 24px;">
       Best Golf Courses in Graeagle, California
     </h1>
 
     <!-- Intro -->
-    <p class="page-intro" style="font-size:18px;color:rgba(240,248,242,0.6);line-height:1.85;margin-bottom:16px;">
+    <p class="page-intro" style="font-size:18px;color:rgba(28,46,26,0.55);line-height:1.85;margin-bottom:16px;">
       Graeagle, California has five championship golf courses within 25 minutes of each other in the Sierra Nevada mountains. That density — five top-tier layouts in one valley — is what makes Graeagle one of the most efficient multi-course golf destinations in Northern California.
     </p>
-    <p style="font-size:17px;color:rgba(240,248,242,0.55);line-height:1.85;margin-bottom:48px;">
+    <p style="font-size:17px;color:rgba(28,46,26,0.5);line-height:1.85;margin-bottom:48px;">
       The five courses are Graeagle Meadows Golf Course, Whitehawk Ranch Golf Course, Plumas Pines Golf Resort, Grizzly Ranch Golf Club, and Nakoma (The Dragon) Golf Course. Most visiting groups play two to four courses over a weekend while staying in nearby lodges, cabins, or resort properties.
     </p>
 
     <!-- Course Comparison Table -->
-    <h2 style="font-family:'Playfair Display',serif;font-size:clamp(22px,3vw,32px);font-weight:400;color:#f0f8f2;margin:0 0 8px;">Compare All 5 Courses</h2>
-    <p style="font-size:14px;color:rgba(240,248,242,0.35);margin-bottom:0;">Sorted by slope rating — easiest to hardest.</p>
+    <h2 style="font-family:'Playfair Display',serif;font-size:clamp(22px,3vw,32px);font-weight:400;color:#1a2e1a;margin:0 0 8px;">Compare All 5 Courses</h2>
+    <p style="font-size:14px;color:rgba(28,46,26,0.3);margin-bottom:0;">Sorted by slope rating — easiest to hardest.</p>
 
     <div style="overflow-x:auto;">
       <table class="course-table">
@@ -128,7 +130,7 @@ ogType="article"
         <tbody>
           {courses.map(c => (
             <tr>
-              <td><a href={`/portfolio/${c.slug === "nakoma-dragon" ? "nakoma-dragon-golf-packages" : c.slug + "-golf-packages"}`} class="name" style="color:#f0f8f2;text-decoration:none;font-weight:500;">{c.name}</a><div style="font-size:11px;color:rgba(240,248,242,0.3);margin-top:2px;">{c.designer}, {c.opened}</div></td>
+              <td><a href={`/portfolio/${c.slug === "nakoma-dragon" ? "nakoma-dragon-golf-packages" : c.slug + "-golf-packages"}`} class="name" style="color:#1a2e1a;text-decoration:none;font-weight:500;">{c.name}</a><div style="font-size:11px;color:rgba(28,46,26,0.28);margin-top:2px;">{c.designer}, {c.opened}</div></td>
               <td>{c.par}</td>
               <td>{c.yards.toLocaleString()}</td>
               <td style="color:#e8a850;font-weight:500;">{c.slope}</td>
@@ -143,77 +145,77 @@ ogType="article"
     </div>
 
     <!-- Course Sections -->
-    <h2 style="font-family:'Playfair Display',serif;font-size:clamp(22px,3vw,32px);font-weight:400;color:#f0f8f2;margin:56px 0 24px;">Graeagle Meadows Golf Course</h2>
-    <p style="font-size:17px;color:rgba(240,248,242,0.55);line-height:1.85;margin-bottom:16px;">
+    <h2 style="font-family:'Playfair Display',serif;font-size:clamp(22px,3vw,32px);font-weight:400;color:#1a2e1a;margin:56px 0 24px;">Graeagle Meadows Golf Course</h2>
+    <p style="font-size:17px;color:rgba(28,46,26,0.5);line-height:1.85;margin-bottom:16px;">
       Graeagle Meadows is the valley's original course, opened in 1968 and designed by Ellis Van Gorder. Playing to 6,759 yards with a slope of 120, it's the most accessible of the five courses and the natural starting point for a Graeagle golf trip.
     </p>
-    <p style="font-size:17px;color:rgba(240,248,242,0.55);line-height:1.85;margin-bottom:16px;">
+    <p style="font-size:17px;color:rgba(28,46,26,0.5);line-height:1.85;margin-bottom:16px;">
       The course runs through open Sierra meadows along the Feather River, with elevated tees offering views of the Mohawk Valley. It rewards consistent play over power — a layout that works for all handicap levels and holds up well for group outings.
     </p>
-    <p style="font-size:17px;color:rgba(240,248,242,0.55);line-height:1.85;margin-bottom:8px;">
+    <p style="font-size:17px;color:rgba(28,46,26,0.5);line-height:1.85;margin-bottom:8px;">
       Facilities include a pro shop, restaurant, snack bar, driving range, and putting greens. Open April through November.
     </p>
     <p style="margin-bottom:40px;"><a href="/portfolio/graeagle-meadows-golf-packages/" style="color:#e8a850;font-size:15px;text-decoration:none;">Graeagle Meadows packages and tee times →</a></p>
 
-    <h2 style="font-family:'Playfair Display',serif;font-size:clamp(22px,3vw,32px);font-weight:400;color:#f0f8f2;margin:0 0 24px;">Whitehawk Ranch Golf Course</h2>
-    <p style="font-size:17px;color:rgba(240,248,242,0.55);line-height:1.85;margin-bottom:16px;">
+    <h2 style="font-family:'Playfair Display',serif;font-size:clamp(22px,3vw,32px);font-weight:400;color:#1a2e1a;margin:0 0 24px;">Whitehawk Ranch Golf Course</h2>
+    <p style="font-size:17px;color:rgba(28,46,26,0.5);line-height:1.85;margin-bottom:16px;">
       Whitehawk Ranch was named a Top 20 Golf Course in California by Golf Digest in 1998. Designed by Dick Bailey and opened in 1996, it plays to 6,983 yards with a slope of 132 — the second-longest course in the region.
     </p>
-    <p style="font-size:17px;color:rgba(240,248,242,0.55);line-height:1.85;margin-bottom:16px;">
+    <p style="font-size:17px;color:rgba(28,46,26,0.5);line-height:1.85;margin-bottom:16px;">
       The layout splits into 12 holes in open meadow and 6 in forested hillsides. Sulphur Creek and multiple lakes come into play throughout the round. The course has four reachable par 5s and at least one driveable par 4, making it engaging for players of different styles.
     </p>
-    <p style="font-size:17px;color:rgba(240,248,242,0.55);line-height:1.85;margin-bottom:8px;">
+    <p style="font-size:17px;color:rgba(28,46,26,0.5);line-height:1.85;margin-bottom:8px;">
       Pairs well with Grizzly Ranch and Plumas Pines for a multi-course weekend.
     </p>
     <p style="margin-bottom:40px;"><a href="/portfolio/whitehawk-ranch-golf-packages/" style="color:#e8a850;font-size:15px;text-decoration:none;">Whitehawk Ranch packages and tee times →</a></p>
 
-    <h2 style="font-family:'Playfair Display',serif;font-size:clamp(22px,3vw,32px);font-weight:400;color:#f0f8f2;margin:0 0 24px;">Plumas Pines Golf Resort</h2>
-    <p style="font-size:17px;color:rgba(240,248,242,0.55);line-height:1.85;margin-bottom:16px;">
+    <h2 style="font-family:'Playfair Display',serif;font-size:clamp(22px,3vw,32px);font-weight:400;color:#1a2e1a;margin:0 0 24px;">Plumas Pines Golf Resort</h2>
+    <p style="font-size:17px;color:rgba(28,46,26,0.5);line-height:1.85;margin-bottom:16px;">
       Plumas Pines is a Top 5 Best Value course in the Sierra Nevada according to California Golf and Travel Magazine. Designed by Homer Flint in 1980, it plays to 6,504 yards with a slope of 132 — shorter than the others but no easier.
     </p>
-    <p style="font-size:17px;color:rgba(240,248,242,0.55);line-height:1.85;margin-bottom:16px;">
+    <p style="font-size:17px;color:rgba(28,46,26,0.5);line-height:1.85;margin-bottom:16px;">
       Giant pines line every hole, the greens run small, and the Feather River borders the north side of the property. Straight play matters more than length here. On-site condos and vacation homes make it a practical base for golf groups who want to stay at the course.
     </p>
-    <p style="font-size:17px;color:rgba(240,248,242,0.55);line-height:1.85;margin-bottom:8px;">
+    <p style="font-size:17px;color:rgba(28,46,26,0.5);line-height:1.85;margin-bottom:8px;">
       Located minutes from Grizzly Ranch and Whitehawk Ranch — an easy three-course combination.
     </p>
     <p style="margin-bottom:40px;"><a href="/portfolio/plumas-pines-golf-packages/" style="color:#e8a850;font-size:15px;text-decoration:none;">Plumas Pines packages and tee times →</a></p>
 
-    <h2 style="font-family:'Playfair Display',serif;font-size:clamp(22px,3vw,32px);font-weight:400;color:#f0f8f2;margin:0 0 24px;">Grizzly Ranch Golf Club</h2>
-    <p style="font-size:17px;color:rgba(240,248,242,0.55);line-height:1.85;margin-bottom:16px;">
+    <h2 style="font-family:'Playfair Display',serif;font-size:clamp(22px,3vw,32px);font-weight:400;color:#1a2e1a;margin:0 0 24px;">Grizzly Ranch Golf Club</h2>
+    <p style="font-size:17px;color:rgba(28,46,26,0.5);line-height:1.85;margin-bottom:16px;">
       Grizzly Ranch was ranked among Golf Digest's Top 100 Greatest Public Courses in the United States in 2021. Designed by Bob Cupp and opened in 2005, it plays to 7,411 yards from the tips with a slope of 140 — the longest course in the Graeagle area and the second most challenging.
     </p>
-    <p style="font-size:17px;color:rgba(240,248,242,0.55);line-height:1.85;margin-bottom:16px;">
+    <p style="font-size:17px;color:rgba(28,46,26,0.5);line-height:1.85;margin-bottom:16px;">
       The course sits at 4,800 to 5,400 feet elevation, with fescue roughs, natural terrain throughout, and five sets of tees ranging down to 5,374 yards. A 30-station natural turf practice range plus putting, chipping, and bunker practice facilities are on-site.
     </p>
-    <p style="font-size:17px;color:rgba(240,248,242,0.55);line-height:1.85;margin-bottom:8px;">
+    <p style="font-size:17px;color:rgba(28,46,26,0.5);line-height:1.85;margin-bottom:8px;">
       Located 11 miles east of Graeagle in Portola — an 18-minute drive. Semi-private, but public tee times are available.
     </p>
     <p style="margin-bottom:40px;"><a href="/portfolio/grizzly-ranch-golf-packages/" style="color:#e8a850;font-size:15px;text-decoration:none;">Grizzly Ranch packages and tee times →</a></p>
 
-    <h2 style="font-family:'Playfair Display',serif;font-size:clamp(22px,3vw,32px);font-weight:400;color:#f0f8f2;margin:0 0 24px;">Nakoma — The Dragon Golf Course</h2>
-    <p style="font-size:17px;color:rgba(240,248,242,0.55);line-height:1.85;margin-bottom:16px;">
+    <h2 style="font-family:'Playfair Display',serif;font-size:clamp(22px,3vw,32px);font-weight:400;color:#1a2e1a;margin:0 0 24px;">Nakoma — The Dragon Golf Course</h2>
+    <p style="font-size:17px;color:rgba(28,46,26,0.5);line-height:1.85;margin-bottom:16px;">
       Nakoma Dragon is the hardest golf course in Graeagle, with a slope of 147 and course rating of 73.4. Designed by Robin Nelson and Neil Haworth, The Dragon debuted on Golf World's list of America's Top 75 courses and remains the region's signature challenge.
     </p>
-    <p style="font-size:17px;color:rgba(240,248,242,0.55);line-height:1.85;margin-bottom:16px;">
+    <p style="font-size:17px;color:rgba(28,46,26,0.5);line-height:1.85;margin-bottom:16px;">
       The clubhouse is the only golf facility in the world designed by Frank Lloyd Wright — reason enough to visit even if you never tee it up. On-site at Nakoma Resort: 42 rooms and suites, the Fifty44 Restaurant and Bar inside the FLW lodge, Middle Fork Bistro, spa, heated pool, two hot tubs, and a driving range.
     </p>
-    <p style="font-size:17px;color:rgba(240,248,242,0.55);line-height:1.85;margin-bottom:8px;">
+    <p style="font-size:17px;color:rgba(28,46,26,0.5);line-height:1.85;margin-bottom:8px;">
       Located in Clio, 8 miles from Graeagle via Hwy 89 — a 14-minute drive. Open May 1 through October 31.
     </p>
     <p style="margin-bottom:56px;"><a href="/portfolio/nakoma-dragon-golf-packages/" style="color:#e8a850;font-size:15px;text-decoration:none;">Nakoma Dragon packages and tee times →</a></p>
 
     <!-- Trip planning section -->
-    <h2 style="font-family:'Playfair Display',serif;font-size:clamp(22px,3vw,32px);font-weight:400;color:#f0f8f2;margin:0 0 24px;">How to Plan a Multi-Course Graeagle Golf Trip</h2>
-    <p style="font-size:17px;color:rgba(240,248,242,0.55);line-height:1.85;margin-bottom:16px;">
+    <h2 style="font-family:'Playfair Display',serif;font-size:clamp(22px,3vw,32px);font-weight:400;color:#1a2e1a;margin:0 0 24px;">How to Plan a Multi-Course Graeagle Golf Trip</h2>
+    <p style="font-size:17px;color:rgba(28,46,26,0.5);line-height:1.85;margin-bottom:16px;">
       Most golf groups visiting Graeagle plan a 2–3 night stay and play two to four courses. The courses are close enough to each other that you can play a morning round at one course and an afternoon round at another, or spread courses across consecutive days.
     </p>
-    <p style="font-size:17px;color:rgba(240,248,242,0.55);line-height:1.85;margin-bottom:32px;">
+    <p style="font-size:17px;color:rgba(28,46,26,0.5);line-height:1.85;margin-bottom:32px;">
       A practical 3-day itinerary: Day 1 — Graeagle Meadows (warmup round, all-levels). Day 2 — Whitehawk Ranch (morning) + Plumas Pines (afternoon). Day 3 — Grizzly Ranch or Nakoma Dragon for the big finish. GolfGraeagle coordinates tee times, lodging, and dining for trips of any size.
     </p>
 
     <!-- FAQ -->
-    <h2 style="font-family:'Playfair Display',serif;font-size:clamp(22px,3vw,32px);font-weight:400;color:#f0f8f2;margin:0 0 24px;">Frequently Asked Questions</h2>
+    <h2 style="font-family:'Playfair Display',serif;font-size:clamp(22px,3vw,32px);font-weight:400;color:#1a2e1a;margin:0 0 24px;">Frequently Asked Questions</h2>
     <div>
       {[
         { q: "How many golf courses are in Graeagle California?", a: "There are five main golf courses in the Graeagle area: Graeagle Meadows Golf Course, Whitehawk Ranch Golf Course, Plumas Pines Golf Resort, Grizzly Ranch Golf Club, and Nakoma (The Dragon) Golf Course. All five courses are within 5–25 minutes of each other." },
@@ -230,7 +232,7 @@ ogType="article"
 
     <!-- Interlinks: course pages + lodging -->
     <div style="margin-top:56px;margin-bottom:40px;">
-      <h2 style="font-family:'Playfair Display',serif;font-size:22px;font-weight:400;color:#f0f8f2;margin:0 0 20px;">Book a Package at Any of These Courses</h2>
+      <h2 style="font-family:'Playfair Display',serif;font-size:22px;font-weight:400;color:#1a2e1a;margin:0 0 20px;">Book a Package at Any of These Courses</h2>
       <div class="bgc-course-grid">
         {[
           ['Graeagle Meadows Golf Packages',  '/portfolio/graeagle-meadows-golf-packages/', 'Par 72 · 6,759 yds · Ellis Van Gorder'],
@@ -239,18 +241,18 @@ ogType="article"
           ['Grizzly Ranch Golf Packages',     '/portfolio/grizzly-ranch-golf-packages/',    'Par 72 · 7,411 yds · Bob Cupp · Golf Digest Top 100'],
           ['Nakoma Dragon Golf Packages',     '/portfolio/nakoma-dragon-golf-packages/',    'Par 72 · 7,015 yds · Robin Nelson · FLW Clubhouse'],
         ].map(([name, href, meta]) => (
-          <a href={href} style="display:block;padding:14px 16px;background:rgba(240,248,242,0.03);border:1px solid rgba(240,248,242,0.08);border-radius:12px;text-decoration:none;transition:border-color 0.2s;"
-            onmouseover="this.style.borderColor='rgba(232,168,80,0.35)'" onmouseout="this.style.borderColor='rgba(240,248,242,0.08)'">
-            <div style="font-size:14px;font-weight:600;color:#f0f8f2;margin-bottom:3px;">{name}</div>
-            <div style="font-size:11px;color:rgba(240,248,242,0.4);">{meta}</div>
+          <a href={href} style="display:block;padding:14px 16px;background:rgba(28,46,26,0.03);border:1px solid rgba(28,46,26,0.07);border-radius:12px;text-decoration:none;transition:border-color 0.2s;"
+            onmouseover="this.style.borderColor='rgba(232,168,80,0.35)'" onmouseout="this.style.borderColor='rgba(28,46,26,0.07)'">
+            <div style="font-size:14px;font-weight:600;color:#1a2e1a;margin-bottom:3px;">{name}</div>
+            <div style="font-size:11px;color:rgba(28,46,26,0.35);">{meta}</div>
           </a>
         ))}
         <a href="/all-golf-courses/" style="display:block;padding:14px 16px;background:rgba(232,168,80,0.05);border:1px solid rgba(232,168,80,0.2);border-radius:12px;text-decoration:none;">
           <div style="font-size:14px;font-weight:600;color:#e8a850;">Compare All 5 Courses →</div>
-          <div style="font-size:11px;color:rgba(240,248,242,0.4);">Side-by-side stats, slope, yardage, accolades</div>
+          <div style="font-size:11px;color:rgba(28,46,26,0.35);">Side-by-side stats, slope, yardage, accolades</div>
         </a>
       </div>
-      <h3 style="font-size:16px;font-weight:600;color:#f0f8f2;margin:0 0 12px;">Where to Stay in Graeagle</h3>
+      <h3 style="font-size:16px;font-weight:600;color:#1a2e1a;margin:0 0 12px;">Where to Stay in Graeagle</h3>
       <div style="display:flex;flex-wrap:wrap;gap:8px;">
         {[
           ['River Pines Resort',        '/portfolio/river-pines-resort-graeagle-ca/'],
@@ -265,8 +267,8 @@ ogType="article"
 
     <!-- CTA -->
     <div style="margin-top:64px;padding:40px;background:rgba(232,168,80,0.04);border:1px solid rgba(232,168,80,0.12);border-radius:20px;text-align:center;">
-      <h2 style="font-family:'Playfair Display',serif;font-size:clamp(22px,3vw,30px);font-weight:400;color:#f0f8f2;margin:0 0 12px;">Ready to Book Your Graeagle Golf Trip?</h2>
-      <p style="font-size:16px;color:rgba(240,248,242,0.5);margin:0 0 28px;max-width:480px;margin-left:auto;margin-right:auto;">Tell us your dates, group size, and which courses you want to play. We'll build a custom package with tee times and lodging.</p>
+      <h2 style="font-family:'Playfair Display',serif;font-size:clamp(22px,3vw,30px);font-weight:400;color:#1a2e1a;margin:0 0 12px;">Ready to Book Your Graeagle Golf Trip?</h2>
+      <p style="font-size:16px;color:rgba(28,46,26,0.45);margin:0 0 28px;max-width:480px;margin-left:auto;margin-right:auto;">Tell us your dates, group size, and which courses you want to play. We'll build a custom package with tee times and lodging.</p>
       <a href="/request-a-quote?utm_source=golfgraeagle&utm_medium=internal&utm_campaign=cta&utm_content=blog-best-courses" class="btn-green-glow" style="display:inline-block;font-weight:700;font-size:15px;padding:16px 40px;">Request a Free Quote →</a>
     </div>
 

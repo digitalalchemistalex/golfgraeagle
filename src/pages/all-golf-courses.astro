@@ -58,8 +58,8 @@ const bestForList = [
     grid-template-columns: 220px 1fr;
     align-items: stretch;
     border-radius: 16px;
-    background: rgba(240,248,242,0.02);
-    border: 1px solid rgba(240,248,242,0.08);
+    background: rgba(28,46,26,0.02);
+    border: 1px solid rgba(28,46,26,0.07);
     overflow: hidden;
     text-decoration: none;
     transition: border-color 0.2s, background 0.2s;
@@ -68,8 +68,8 @@ const bestForList = [
   .course-card-img { width: 220px; height: 100%; object-fit: cover; display: block; }
   .table-wrap { overflow-x: auto; }
   table { width: 100%; border-collapse: collapse; font-size: 14px; }
-  th { text-align: left; padding: 12px 16px; font-size: 11px; color: rgba(240,248,242,0.35); text-transform: uppercase; letter-spacing: .1em; border-bottom: 1px solid rgba(240,248,242,0.07); }
-  td { padding: 14px 16px; color: rgba(240,248,242,0.7); border-bottom: 1px solid rgba(240,248,242,0.05); vertical-align: middle; }
+  th { text-align: left; padding: 12px 16px; font-size: 11px; color: rgba(28,46,26,0.3); text-transform: uppercase; letter-spacing: .1em; border-bottom: 1px solid rgba(28,46,26,0.06); }
+  td { padding: 14px 16px; color: rgba(28,46,26,0.65); border-bottom: 1px solid rgba(28,46,26,0.04); vertical-align: middle; }
   tr:last-child td { border-bottom: none; }
   tr:hover td { background: rgba(232,168,80,0.03); }
   td a { color: #e8a850; text-decoration: none; font-weight: 600; }
@@ -100,15 +100,17 @@ const bestForList = [
   title="Best Golf Courses in the Sierra Nevada — Graeagle, Northern California | GolfGraeagle"
   description="5 championship golf courses in Graeagle, California — Golf Digest Top 100, Golf World Top 75, Top 20 California. All within 25 minutes in the Sierra Nevada mountains. Compare courses, slopes, and stay-and-play packages."
   schema={allCoursesSchema}
+
+  bodyClass="light-page"
 >
   <Nav />
   <section class="wrap">
 
     <!-- Header -->
     <p style="font-size:11px;color:#e8a850;letter-spacing:0.16em;text-transform:uppercase;font-weight:600;margin:0 0 16px;">5 Championship Courses · Graeagle, CA</p>
-    <h1 style="font-family:'Playfair Display',serif;font-size:clamp(32px,5vw,54px);font-weight:500;color:#f0f8f2;margin:0 0 20px;line-height:1.1;">Golf Courses in <span style="color:#e8a850;font-style:italic;">Graeagle, California</span></h1>
-    <p style="font-size:17px;color:rgba(240,248,242,0.55);max-width:680px;line-height:1.8;margin:0 0 16px;">There are five championship golf courses in the Graeagle area of Northern California, all within 5–25 minutes of each other. Most groups play two to four courses over a weekend stay.</p>
-    <p style="font-size:15px;color:rgba(240,248,242,0.4);max-width:680px;line-height:1.75;margin:0 0 60px;">Graeagle sits at 4,300–5,400 feet in the Sierra Nevada — altitude adds carry distance, speeds up greens, and keeps temperatures cooler than Sacramento or the Bay Area even in summer. The five courses offer genuine variety: classic parkland, links-style ridgelines, tight pine corridors, and a championship layout with an FLW-designed clubhouse.</p>
+    <h1 style="font-family:'Playfair Display',serif;font-size:clamp(32px,5vw,54px);font-weight:500;color:#1a2e1a;margin:0 0 20px;line-height:1.1;">Golf Courses in <span style="color:#e8a850;font-style:italic;">Graeagle, California</span></h1>
+    <p style="font-size:17px;color:rgba(28,46,26,0.5);max-width:680px;line-height:1.8;margin:0 0 16px;">There are five championship golf courses in the Graeagle area of Northern California, all within 5–25 minutes of each other. Most groups play two to four courses over a weekend stay.</p>
+    <p style="font-size:15px;color:rgba(28,46,26,0.35);max-width:680px;line-height:1.75;margin:0 0 60px;">Graeagle sits at 4,300–5,400 feet in the Sierra Nevada — altitude adds carry distance, speeds up greens, and keeps temperatures cooler than Sacramento or the Bay Area even in summer. The five courses offer genuine variety: classic parkland, links-style ridgelines, tight pine corridors, and a championship layout with an FLW-designed clubhouse.</p>
 
     <!-- Course cards -->
     <div style="display:grid;gap:14px;margin-bottom:80px;">
@@ -118,14 +120,14 @@ const bestForList = [
           <div style="padding:24px 28px;display:flex;flex-direction:column;justify-content:center;gap:10px;">
             <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:16px;flex-wrap:wrap;">
               <div>
-                <h2 style="font-family:'Playfair Display',serif;font-size:21px;color:#f0f8f2;margin:0 0 6px;">{c.name}</h2>
-                <p style="font-size:13px;color:rgba(240,248,242,0.4);margin:0;">{c.tagline}</p>
+                <h2 style="font-family:'Playfair Display',serif;font-size:21px;color:#1a2e1a;margin:0 0 6px;">{c.name}</h2>
+                <p style="font-size:13px;color:rgba(28,46,26,0.35);margin:0;">{c.tagline}</p>
               </div>
               <span style="font-size:20px;color:#e8a850;font-weight:700;flex-shrink:0;">{c.tier}</span>
             </div>
             <div style="display:flex;gap:20px;flex-wrap:wrap;">
               {[`Par ${c.par}`, `${c.yards.toLocaleString()} yds`, `Slope ${c.slope}`, `Rating ${c.rating}`, c.designer, String(c.year)].map((s) => (
-                <span style="font-size:12px;color:rgba(240,248,242,0.3);">{s}</span>
+                <span style="font-size:12px;color:rgba(28,46,26,0.28);">{s}</span>
               ))}
             </div>
             {c.awards && c.awards.length > 0 && (
@@ -135,7 +137,7 @@ const bestForList = [
                 ))}
               </div>
             )}
-            <p style="font-size:13px;color:rgba(240,248,242,0.5);margin:0;line-height:1.6;">Best for: {bestForList[i]}</p>
+            <p style="font-size:13px;color:rgba(28,46,26,0.45);margin:0;line-height:1.6;">Best for: {bestForList[i]}</p>
           </div>
         </a>
       ))}
@@ -143,8 +145,8 @@ const bestForList = [
 
     <!-- Comparison table -->
     <div style="margin-bottom:80px;">
-      <h2 style="font-family:'Playfair Display',serif;font-size:28px;color:#f0f8f2;margin:0 0 8px;font-weight:400;">Course Comparison</h2>
-      <p style="font-size:14px;color:rgba(240,248,242,0.35);margin:0 0 28px;">All five courses by key stats — sorted from most accessible to most challenging.</p>
+      <h2 style="font-family:'Playfair Display',serif;font-size:28px;color:#1a2e1a;margin:0 0 8px;font-weight:400;">Course Comparison</h2>
+      <p style="font-size:14px;color:rgba(28,46,26,0.3);margin:0 0 28px;">All five courses by key stats — sorted from most accessible to most challenging.</p>
       <div class="table-wrap">
         <table>
           <thead>
@@ -166,11 +168,11 @@ const bestForList = [
                 <td><a href={`/portfolio/${wpSlugMap[c.slug]}/`}>{c.name}</a></td>
                 <td>{c.par}</td>
                 <td>{c.yards.toLocaleString()}</td>
-                <td style="font-weight:600;color:#f0f8f2;">{c.slope}</td>
+                <td style="font-weight:600;color:#1a2e1a;">{c.slope}</td>
                 <td>{c.rating}</td>
                 <td style="white-space:nowrap;">{c.designer}</td>
                 <td>{c.year}</td>
-                <td style="color:rgba(240,248,242,0.5);font-size:13px;">{difficultyOrder[i]}</td>
+                <td style="color:rgba(28,46,26,0.45);font-size:13px;">{difficultyOrder[i]}</td>
                 <td style="color:#e8a850;font-weight:700;">{c.tier}</td>
               </tr>
             ))}
@@ -181,7 +183,7 @@ const bestForList = [
 
     <!-- AEO FAQ section -->
     <div style="margin-bottom:80px;max-width:780px;">
-      <h2 style="font-family:'Playfair Display',serif;font-size:28px;color:#f0f8f2;margin:0 0 28px;font-weight:400;">Frequently Asked Questions</h2>
+      <h2 style="font-family:'Playfair Display',serif;font-size:28px;color:#1a2e1a;margin:0 0 28px;font-weight:400;">Frequently Asked Questions</h2>
       <div style="display:flex;flex-direction:column;gap:0;">
         {[
           ['How many golf courses are in Graeagle, California?', 'There are five championship golf courses in the Graeagle area of Northern California: Graeagle Meadows Golf Course, Whitehawk Ranch Golf Course, Plumas Pines Golf Resort, Grizzly Ranch Golf Club, and Nakoma (The Dragon) Golf Course. All five are within 5 to 25 minutes of each other, making Graeagle one of the most concentrated golf destinations in California.'],
@@ -191,20 +193,20 @@ const bestForList = [
           ['When do Graeagle golf courses open for the season?', 'Most Graeagle courses open between late April and mid-May, depending on snowpack and weather. Grizzly Ranch and Nakoma, at higher elevations, often open slightly later. The season typically runs through October or early November. GolfGraeagle confirms current opening dates at time of booking.'],
           ['How far is Graeagle from Lake Tahoe for a golf trip?', 'Graeagle is approximately 45 to 55 minutes north of Truckee and North Lake Tahoe via Highway 89. It is a realistic day-trip from Tahoe, but most golfers stay in Graeagle itself to play multiple courses over a weekend without backtracking.'],
         ].map(([q, a]) => (
-          <details style="border-bottom:1px solid rgba(240,248,242,0.06);padding:0;">
-            <summary style="font-size:16px;color:#f0f8f2;font-weight:500;padding:18px 0;cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;">
+          <details style="border-bottom:1px solid rgba(28,46,26,0.06);padding:0;">
+            <summary style="font-size:16px;color:#1a2e1a;font-weight:500;padding:18px 0;cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;">
               {q}
               <span style="color:#e8a850;font-size:20px;flex-shrink:0;margin-left:16px;">+</span>
             </summary>
-            <p style="font-size:14px;color:rgba(240,248,242,0.55);line-height:1.8;padding:0 0 18px;margin:0;">{a}</p>
+            <p style="font-size:14px;color:rgba(28,46,26,0.5);line-height:1.8;padding:0 0 18px;margin:0;">{a}</p>
           </details>
         ))}
       </div>
     </div>
 
     <!-- Why Graeagle over other CA regions -->
-    <div style="background:rgba(240,248,242,0.02);border:1px solid rgba(240,248,242,0.07);border-radius:20px;padding:40px 44px;margin-bottom:80px;">
-      <h2 style="font-family:'Playfair Display',serif;font-size:26px;color:#f0f8f2;margin:0 0 24px;font-weight:400;">Why Graeagle vs Other California Golf Regions</h2>
+    <div style="background:rgba(28,46,26,0.02);border:1px solid rgba(28,46,26,0.06);border-radius:20px;padding:40px 44px;margin-bottom:80px;">
+      <h2 style="font-family:'Playfair Display',serif;font-size:26px;color:#1a2e1a;margin:0 0 24px;font-weight:400;">Why Graeagle vs Other California Golf Regions</h2>
       <div class="agc-region-grid">
         {[
           ['Monterey / Pebble Beach', 'Elite but expensive — green fees 3–5× higher than Graeagle for similar quality design.'],
@@ -212,35 +214,35 @@ const bestForList = [
           ['Truckee / North Tahoe', 'Premium-priced, courses are more scattered. Graeagle has 5 courses within 25 minutes.'],
           ['Sacramento Valley', 'Flat terrain, inconsistent quality. Graeagle offers elevation, design variety, and mountain air.'],
         ].map(([region, note]) => (
-          <div style="padding:20px;background:rgba(240,248,242,0.02);border-radius:12px;border:1px solid rgba(240,248,242,0.06);">
-            <div style="font-size:14px;font-weight:600;color:#f0f8f2;margin-bottom:6px;">{region}</div>
-            <div style="font-size:13px;color:rgba(240,248,242,0.4);line-height:1.6;">{note}</div>
+          <div style="padding:20px;background:rgba(28,46,26,0.02);border-radius:12px;border:1px solid rgba(28,46,26,0.06);">
+            <div style="font-size:14px;font-weight:600;color:#1a2e1a;margin-bottom:6px;">{region}</div>
+            <div style="font-size:13px;color:rgba(28,46,26,0.35);line-height:1.6;">{note}</div>
           </div>
         ))}
       </div>
     </div>
 
     <!-- Interlinks: lodging + dining -->
-    <div style="border-top:1px solid rgba(240,248,242,0.07);padding:48px 0 0;">
+    <div style="border-top:1px solid rgba(28,46,26,0.06);padding:48px 0 0;">
       <div class="agc-interlinks-grid">
         <div>
-          <h2 style="font-family:'Playfair Display',serif;font-size:20px;font-weight:400;color:#f0f8f2;margin:0 0 16px;">Where to Stay Near the Courses</h2>
+          <h2 style="font-family:'Playfair Display',serif;font-size:20px;font-weight:400;color:#1a2e1a;margin:0 0 16px;">Where to Stay Near the Courses</h2>
           {[
             ['River Pines Resort',       '/portfolio/river-pines-resort-graeagle-ca/',  'Family-owned 40+ years · Pool · Hot tub · Roadhouse dining'],
             ['Chalet View Lodge',         '/portfolio/chalet-view-lodge-graeagle-ca/',   '10 forested acres · Spa · Eureka Peak Brewing on-site'],
             ['The Inn at Nakoma',         '/portfolio/the-inn-at-nakoma-clio-ca/',       '42 rooms · Walk to Dragon 1st tee · FLW lodge dining'],
             ['Townhomes at Plumas Pines', '/portfolio/the-townhomes-at-plumas-pines/',   'Steps from Plumas Pines · Full kitchens · Pool'],
           ].map(([name, href, meta]) => (
-            <a href={href} style="display:flex;flex-direction:column;gap:3px;padding:12px 0;border-bottom:1px solid rgba(240,248,242,0.06);text-decoration:none;"
+            <a href={href} style="display:flex;flex-direction:column;gap:3px;padding:12px 0;border-bottom:1px solid rgba(28,46,26,0.06);text-decoration:none;"
               onmouseover="this.style.paddingLeft='6px';this.style.transition='padding 0.2s'" onmouseout="this.style.paddingLeft='0'">
-              <span style="font-size:14px;font-weight:600;color:#f0f8f2;">{name}</span>
-              <span style="font-size:11px;color:rgba(240,248,242,0.38);">{meta}</span>
+              <span style="font-size:14px;font-weight:600;color:#1a2e1a;">{name}</span>
+              <span style="font-size:11px;color:rgba(28,46,26,0.35);">{meta}</span>
             </a>
           ))}
           <a href="/lodging/" style="display:inline-block;margin-top:14px;font-size:13px;color:#e8a850;text-decoration:none;">View all lodging options →</a>
         </div>
         <div>
-          <h2 style="font-family:'Playfair Display',serif;font-size:20px;font-weight:400;color:#f0f8f2;margin:0 0 16px;">Best Dining After Your Round</h2>
+          <h2 style="font-family:'Playfair Display',serif;font-size:20px;font-weight:400;color:#1a2e1a;margin:0 0 16px;">Best Dining After Your Round</h2>
           {[
             ['Grizzly Grill',           '/portfolio/grizzly-grill/',              'At Grizzly Ranch · Gourmet · Full bar'],
             ['Iron Door Restaurant',     '/portfolio/iron-door-restaurant/',       'Historic 1906 building · Steaks · Prime rib'],
@@ -249,10 +251,10 @@ const bestForList = [
             ['The Brewing Lair',         '/portfolio/the-brewing-lair/',           'Forest brewery · 15-barrel craft operation'],
             ['Roadhouse at River Pines', '/portfolio/roadhouse-at-river-pines/',   'Steaks & ribs · At River Pines Resort'],
           ].map(([name, href, meta]) => (
-            <a href={href} style="display:flex;flex-direction:column;gap:3px;padding:12px 0;border-bottom:1px solid rgba(240,248,242,0.06);text-decoration:none;"
+            <a href={href} style="display:flex;flex-direction:column;gap:3px;padding:12px 0;border-bottom:1px solid rgba(28,46,26,0.06);text-decoration:none;"
               onmouseover="this.style.paddingLeft='6px';this.style.transition='padding 0.2s'" onmouseout="this.style.paddingLeft='0'">
-              <span style="font-size:14px;font-weight:600;color:#f0f8f2;">{name}</span>
-              <span style="font-size:11px;color:rgba(240,248,242,0.38);">{meta}</span>
+              <span style="font-size:14px;font-weight:600;color:#1a2e1a;">{name}</span>
+              <span style="font-size:11px;color:rgba(28,46,26,0.35);">{meta}</span>
             </a>
           ))}
           <a href="/dining/" style="display:inline-block;margin-top:14px;font-size:13px;color:#e8a850;text-decoration:none;">View all dining options →</a>
@@ -261,23 +263,23 @@ const bestForList = [
     </div>
 
     <!-- Real Trips (TripsCaddie) -->
-    <div style="border-top:1px solid rgba(240,248,242,0.07);padding-top:64px;margin-bottom:80px;">
+    <div style="border-top:1px solid rgba(28,46,26,0.06);padding-top:64px;margin-bottom:80px;">
       <RelatedTrips client:load slug="grizzly-ranch" type="course" showAll={true} max={6} />
     </div>
 
     <!-- Testimonials -->
-    <div style="border-top:1px solid rgba(240,248,242,0.07);padding-top:64px;margin-bottom:80px;">
+    <div style="border-top:1px solid rgba(28,46,26,0.06);padding-top:64px;margin-bottom:80px;">
       <p style="font-size:11px;color:#e8a850;letter-spacing:0.16em;text-transform:uppercase;margin:0 0 12px;">What Golfers Say</p>
-      <h2 style="font-family:'Playfair Display',serif;font-size:clamp(26px,3.5vw,40px);color:#f0f8f2;margin:0 0 40px;font-weight:400;">Real Trips. Real Groups. Real Reviews.</h2>
+      <h2 style="font-family:'Playfair Display',serif;font-size:clamp(26px,3.5vw,40px);color:#1a2e1a;margin:0 0 40px;font-weight:400;">Real Trips. Real Groups. Real Reviews.</h2>
       <Testimonials client:load slug="grizzly-ranch" type="course" max={3} />
     </div>
 
     <!-- Blog / Trip Guides -->
-    <div style="border-top:1px solid rgba(240,248,242,0.07);padding-top:64px;margin-bottom:80px;">
+    <div style="border-top:1px solid rgba(28,46,26,0.06);padding-top:64px;margin-bottom:80px;">
       <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:24px;margin-bottom:40px;flex-wrap:wrap;">
         <div>
           <p style="font-size:11px;color:#e8a850;letter-spacing:0.16em;text-transform:uppercase;margin:0 0 12px;">Plan Smarter</p>
-          <h2 style="font-family:'Playfair Display',serif;font-size:clamp(26px,3.5vw,40px);color:#f0f8f2;margin:0;font-weight:400;">Graeagle Golf Trip Guides</h2>
+          <h2 style="font-family:'Playfair Display',serif;font-size:clamp(26px,3.5vw,40px);color:#1a2e1a;margin:0;font-weight:400;">Graeagle Golf Trip Guides</h2>
         </div>
         <a href="/blog/" style="white-space:nowrap;font-size:13px;font-weight:600;color:#e8a850;text-decoration:none;">View all guides →</a>
       </div>
@@ -287,16 +289,16 @@ const bestForList = [
           { slug: 'graeagle-golf-trip-itinerary-3-days', tag: 'Weekend Trip',   tagColor: '#2d7a3a', title: '3-Day Graeagle Golf Itinerary: The Standard',        desc: 'Three courses, two nights, zero logistics headaches. The itinerary most groups book.', img: '/wp-images/whitehawk-popup-home.webp' },
           { slug: 'how-to-plan-graeagle-golf-trip',      tag: 'Planning Guide', tagColor: '#1a7a40', title: 'How to Plan a Graeagle Golf Trip',                   desc: 'Dates, group size, which courses to combine, and how to lock tee times and lodging together.', img: '/wp-images/grizzly-ranch-img0666.jpg' },
         ].map(post => (
-          <a href={`/blog/${post.slug}/`} style="display:block;text-decoration:none;background:rgba(240,248,242,0.02);border:1px solid rgba(240,248,242,0.07);border-radius:16px;overflow:hidden;transition:border-color 0.2s,background 0.2s;"
+          <a href={`/blog/${post.slug}/`} style="display:block;text-decoration:none;background:rgba(28,46,26,0.02);border:1px solid rgba(28,46,26,0.06);border-radius:16px;overflow:hidden;transition:border-color 0.2s,background 0.2s;"
             onmouseover="this.style.borderColor='rgba(232,168,80,0.25)';this.style.background='rgba(232,168,80,0.03)'"
-            onmouseout="this.style.borderColor='rgba(240,248,242,0.07)';this.style.background='rgba(240,248,242,0.02)'">
+            onmouseout="this.style.borderColor='rgba(28,46,26,0.06)';this.style.background='rgba(28,46,26,0.02)'">
             <div style="height:180px;overflow:hidden;">
               <img src={post.img} alt={post.title} loading="lazy" style="width:100%;height:100%;object-fit:cover;" />
             </div>
             <div style="padding:20px;">
               <span style={`display:inline-block;font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:#fff;background:${post.tagColor};padding:3px 10px;border-radius:100px;margin-bottom:10px;`}>{post.tag}</span>
-              <h3 style="font-family:'Playfair Display',serif;font-size:16px;font-weight:500;color:#f0f8f2;margin:0 0 8px;line-height:1.3;">{post.title}</h3>
-              <p style="font-size:13px;color:rgba(240,248,242,0.4);line-height:1.6;margin:0;">{post.desc}</p>
+              <h3 style="font-family:'Playfair Display',serif;font-size:16px;font-weight:500;color:#1a2e1a;margin:0 0 8px;line-height:1.3;">{post.title}</h3>
+              <p style="font-size:13px;color:rgba(28,46,26,0.35);line-height:1.6;margin:0;">{post.desc}</p>
             </div>
           </a>
         ))}
@@ -304,11 +306,11 @@ const bestForList = [
     </div>
 
     <!-- CTA -->
-    <div style="text-align:center;padding:60px 20px;border-top:1px solid rgba(240,248,242,0.07);">
-      <h2 style="font-family:'Playfair Display',serif;font-size:30px;color:#f0f8f2;margin:0 0 14px;font-weight:400;">Ready to Book Your Graeagle Golf Trip?</h2>
-      <p style="font-size:16px;color:rgba(240,248,242,0.45);margin:0 0 32px;max-width:480px;margin-left:auto;margin-right:auto;">Tell us your dates, group size, and which courses you want to play. We'll build a custom package with tee times and lodging.</p>
+    <div style="text-align:center;padding:60px 20px;border-top:1px solid rgba(28,46,26,0.06);">
+      <h2 style="font-family:'Playfair Display',serif;font-size:30px;color:#1a2e1a;margin:0 0 14px;font-weight:400;">Ready to Book Your Graeagle Golf Trip?</h2>
+      <p style="font-size:16px;color:rgba(28,46,26,0.4);margin:0 0 32px;max-width:480px;margin-left:auto;margin-right:auto;">Tell us your dates, group size, and which courses you want to play. We'll build a custom package with tee times and lodging.</p>
       <a href="/request-a-quote/?utm_source=golfgraeagle&utm_medium=internal&utm_campaign=cta&utm_content=all-courses-hub" class="btn-green-glow" style="display:inline-block;font-weight:700;font-size:15px;padding:16px 48px;" onmouseover="this.style.background='#f2c878'" onmouseout="this.style.background='#e8a850'">Build My Custom Package →</a>
-      <p style="font-size:12px;color:rgba(240,248,242,0.25);margin:14px 0 0;">Free quote · 24-hour response · No obligation · +1-888-586-1157</p>
+      <p style="font-size:12px;color:rgba(28,46,26,0.22);margin:14px 0 0;">Free quote · 24-hour response · No obligation · +1-888-586-1157</p>
     </div>
 
   </section>

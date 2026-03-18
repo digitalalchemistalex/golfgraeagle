@@ -76,41 +76,43 @@ const comparisons = [
   .compare-card.graeagle { background: rgba(232,168,80,0.07); border: 1px solid rgba(232,168,80,0.2); }
   .compare-card.other { background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); }
   .faq-item { border-bottom: 1px solid rgba(255,255,255,0.06); padding: 20px 0; }
-  .faq-q { font-size: 16px; color: #f0f8f2; font-weight: 500; margin-bottom: 8px; }
-  .faq-a { font-size: 15px; color: rgba(240,248,242,0.55); line-height: 1.75; margin-top: 10px; }
+  .faq-q { font-size: 16px; color: #1a2e1a; font-weight: 500; margin-bottom: 8px; }
+  .faq-a { font-size: 15px; color: rgba(28,46,26,0.5); line-height: 1.75; margin-top: 10px; }
   .stat-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin: 32px 0; }
   @media (max-width: 600px) { .stat-row { grid-template-columns: 1fr 1fr; } .compare-grid { gap: 8px; } }
 </style>
 
 ogType="article"
-<Base {title} {description} canonical="https://golfgraeagle.com/ultimate-guide-to-golfing-in-graeagle" ogType="article" schema={[blogSchema, breadcrumbSchema, faqSchema]}>
+<Base {title} {description} canonical="https://golfgraeagle.com/ultimate-guide-to-golfing-in-graeagle" ogType="article" schema={[blogSchema, breadcrumbSchema, faqSchema]}
+  bodyClass="light-page"
+>
   <Nav />
 
   <article class="blog-wrap">
 
     <!-- Breadcrumb -->
-    <nav style="font-size:12px;color:rgba(240,248,242,0.3);margin-bottom:32px;">
-      <a href="/" style="color:rgba(240,248,242,0.3);text-decoration:none;">Home</a>
+    <nav style="font-size:12px;color:rgba(28,46,26,0.28);margin-bottom:32px;">
+      <a href="/" style="color:rgba(28,46,26,0.28);text-decoration:none;">Home</a>
       <span style="margin:0 8px;">›</span>
       <span style="color:#e8a850;">Ultimate Guide to Golfing in Graeagle</span>
     </nav>
 
     <p style="font-size:11px;color:#e8a850;letter-spacing:0.16em;text-transform:uppercase;font-weight:600;margin:0 0 16px;">Golf Guide · Northern California</p>
 
-    <h1 class="speakable" style="font-family:'Playfair Display',serif;font-size:clamp(32px,5vw,52px);font-weight:400;color:#f0f8f2;line-height:1.1;margin:0 0 24px;">
+    <h1 class="speakable" style="font-family:'Playfair Display',serif;font-size:clamp(32px,5vw,52px);font-weight:400;color:#1a2e1a;line-height:1.1;margin:0 0 24px;">
       Ultimate Guide to<br/><span style="color:#e8a850;font-style:italic;">Golfing in Graeagle</span>
     </h1>
 
-    <p class="page-intro" style="font-size:18px;color:rgba(240,248,242,0.6);line-height:1.85;margin-bottom:16px;">
+    <p class="page-intro" style="font-size:18px;color:rgba(28,46,26,0.55);line-height:1.85;margin-bottom:16px;">
       Graeagle, California is a high-signal golf destination in the Northern Sierra Nevada — five championship courses within 25 minutes of each other, altitude advantages that add distance to every club, and green fees that undercut Tahoe and Monterey. This guide covers everything you need to plan a Graeagle golf trip.
     </p>
-    <p style="font-size:17px;color:rgba(240,248,242,0.5);line-height:1.85;margin-bottom:56px;">
+    <p style="font-size:17px;color:rgba(28,46,26,0.45);line-height:1.85;margin-bottom:56px;">
       The section below is structured for fast planning decisions: course comparisons, regional advantages, where to stay, where to eat, and sample itineraries. If you're ready to book, <a href="/request-a-quote?utm_source=golfgraeagle&utm_medium=internal&utm_campaign=cta&utm_content=ultimate-guide-inline" class="btn-green-glow" style="color:#e8a850;text-decoration:none;">request a custom quote</a> and we'll handle the rest.
     </p>
 
     <!-- Why Graeagle -->
-    <h2 style="font-family:'Playfair Display',serif;font-size:clamp(22px,3vw,32px);font-weight:400;color:#f0f8f2;margin:0 0 16px;">Why Graeagle vs. Other California Golf Destinations</h2>
-    <p style="font-size:17px;color:rgba(240,248,242,0.55);line-height:1.85;margin-bottom:20px;">
+    <h2 style="font-family:'Playfair Display',serif;font-size:clamp(22px,3vw,32px);font-weight:400;color:#1a2e1a;margin:0 0 16px;">Why Graeagle vs. Other California Golf Destinations</h2>
+    <p style="font-size:17px;color:rgba(28,46,26,0.5);line-height:1.85;margin-bottom:20px;">
       Most California golf regions force a compromise. Graeagle avoids all of them.
     </p>
 
@@ -119,25 +121,25 @@ ogType="article"
         <div class={`compare-card ${c.region === 'Graeagle' ? 'graeagle' : 'other'}`}>
           <span style="font-size:22px;">{c.emoji}</span>
           <div>
-            <div style={`font-size:13px;font-weight:600;margin-bottom:2px;color:${c.region === 'Graeagle' ? '#e8a850' : '#f0f8f2'};`}>{c.region}</div>
-            <div style="font-size:14px;color:rgba(240,248,242,0.5);">{c.verdict}</div>
+            <div style={`font-size:13px;font-weight:600;margin-bottom:2px;color:${c.region === 'Graeagle' ? '#e8a850' : '#1a2e1a'};`}>{c.region}</div>
+            <div style="font-size:14px;color:rgba(28,46,26,0.45);">{c.verdict}</div>
           </div>
         </div>
       ))}
     </div>
 
     <!-- Altitude Advantage -->
-    <h2 style="font-family:'Playfair Display',serif;font-size:clamp(22px,3vw,32px);font-weight:400;color:#f0f8f2;margin:0 0 16px;">The Altitude Advantage</h2>
-    <p style="font-size:17px;color:rgba(240,248,242,0.55);line-height:1.85;margin-bottom:16px;">
+    <h2 style="font-family:'Playfair Display',serif;font-size:clamp(22px,3vw,32px);font-weight:400;color:#1a2e1a;margin:0 0 16px;">The Altitude Advantage</h2>
+    <p style="font-size:17px;color:rgba(28,46,26,0.5);line-height:1.85;margin-bottom:16px;">
       Graeagle sits at approximately 4,200 feet elevation. Grizzly Ranch plays from 4,800 to 5,400 feet. At this altitude, golf balls carry 5–10% farther than at sea level — a free club-and-a-half for every golfer.
     </p>
-    <p style="font-size:17px;color:rgba(240,248,242,0.55);line-height:1.85;margin-bottom:40px;">
+    <p style="font-size:17px;color:rgba(28,46,26,0.5);line-height:1.85;margin-bottom:40px;">
       Greens also run faster at elevation. Morning temperatures in summer are cool enough for early tee times to be genuinely pleasant rather than an obligation. Air quality is clean. The combination adds up to a noticeably better day on the course than lower-elevation alternatives.
     </p>
 
     <!-- The 5 Courses -->
-    <h2 style="font-family:'Playfair Display',serif;font-size:clamp(22px,3vw,32px);font-weight:400;color:#f0f8f2;margin:0 0 16px;">The Five Courses — Fast Reference</h2>
-    <p style="font-size:17px;color:rgba(240,248,242,0.55);line-height:1.85;margin-bottom:24px;">
+    <h2 style="font-family:'Playfair Display',serif;font-size:clamp(22px,3vw,32px);font-weight:400;color:#1a2e1a;margin:0 0 16px;">The Five Courses — Fast Reference</h2>
+    <p style="font-size:17px;color:rgba(28,46,26,0.5);line-height:1.85;margin-bottom:24px;">
       All five courses are public or semi-public. GolfGraeagle can book tee times at all of them, individually or as multi-course packages.
     </p>
 
@@ -150,30 +152,30 @@ ogType="article"
     ].map(c => (
       <div style="padding:24px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.06);border-radius:16px;margin-bottom:16px;">
         <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:8px;margin-bottom:12px;">
-          <a href={`/portfolio/${c.slug === "nakoma-dragon" ? "nakoma-dragon-golf-packages" : c.slug + "-golf-packages"}`} style="font-family:'Playfair Display',serif;font-size:20px;color:#f0f8f2;text-decoration:none;font-weight:400;">{c.name}</a>
-          <div style="display:flex;gap:12px;font-size:13px;color:rgba(240,248,242,0.35);">
+          <a href={`/portfolio/${c.slug === "nakoma-dragon" ? "nakoma-dragon-golf-packages" : c.slug + "-golf-packages"}`} style="font-family:'Playfair Display',serif;font-size:20px;color:#1a2e1a;text-decoration:none;font-weight:400;">{c.name}</a>
+          <div style="display:flex;gap:12px;font-size:13px;color:rgba(28,46,26,0.3);">
             <span>Par {c.par}</span>
             <span>{c.yards} yds</span>
             <span style="color:#e8a850;">Slope {c.slope}</span>
           </div>
         </div>
-        <p style="font-size:13px;color:rgba(240,248,242,0.35);margin-bottom:8px;">{c.designer}</p>
-        <p style="font-size:15px;color:rgba(240,248,242,0.5);line-height:1.7;margin:0;">{c.note}</p>
+        <p style="font-size:13px;color:rgba(28,46,26,0.3);margin-bottom:8px;">{c.designer}</p>
+        <p style="font-size:15px;color:rgba(28,46,26,0.45);line-height:1.7;margin:0;">{c.note}</p>
       </div>
     ))}
 
     <!-- When to Go -->
-    <h2 style="font-family:'Playfair Display',serif;font-size:clamp(22px,3vw,32px);font-weight:400;color:#f0f8f2;margin:48px 0 16px;">When to Golf in Graeagle</h2>
-    <p style="font-size:17px;color:rgba(240,248,242,0.55);line-height:1.85;margin-bottom:16px;">
+    <h2 style="font-family:'Playfair Display',serif;font-size:clamp(22px,3vw,32px);font-weight:400;color:#1a2e1a;margin:48px 0 16px;">When to Golf in Graeagle</h2>
+    <p style="font-size:17px;color:rgba(28,46,26,0.5);line-height:1.85;margin-bottom:16px;">
       The Graeagle golf season runs from approximately May through October. Most courses open by May 1 and close by the end of October as snow becomes a factor. The Dragon at Nakoma specifically operates May 1–October 31.
     </p>
-    <p style="font-size:17px;color:rgba(240,248,242,0.55);line-height:1.85;margin-bottom:40px;">
+    <p style="font-size:17px;color:rgba(28,46,26,0.5);line-height:1.85;margin-bottom:40px;">
       Late June through September is peak season — warm afternoons, cool mornings, and low chance of rain. July and August book fast for weekend tee times. Plan multi-course trips for weekdays when possible, or book at least 30 days out for weekend slots during summer.
     </p>
 
     <!-- Lodging Overview -->
-    <h2 style="font-family:'Playfair Display',serif;font-size:clamp(22px,3vw,32px);font-weight:400;color:#f0f8f2;margin:0 0 16px;">Where to Stay in Graeagle</h2>
-    <p style="font-size:17px;color:rgba(240,248,242,0.55);line-height:1.85;margin-bottom:16px;">
+    <h2 style="font-family:'Playfair Display',serif;font-size:clamp(22px,3vw,32px);font-weight:400;color:#1a2e1a;margin:0 0 16px;">Where to Stay in Graeagle</h2>
+    <p style="font-size:17px;color:rgba(28,46,26,0.5);line-height:1.85;margin-bottom:16px;">
       Four lodging properties anchor most Graeagle golf trips. Each fits a different group profile.
     </p>
     {[
@@ -183,15 +185,15 @@ ogType="article"
       { name: "Townhomes at Plumas Pines", note: "2–4 bedroom rentals adjacent to Plumas Pines course. Full kitchens, pools, tennis courts. Best value for groups of 4–12.", link: "/lodging" },
     ].map(p => (
       <div style="padding:20px 24px;border-left:2px solid rgba(232,168,80,0.3);margin-bottom:16px;">
-        <div style="font-size:16px;color:#f0f8f2;font-weight:500;margin-bottom:6px;">{p.name}</div>
-        <p style="font-size:15px;color:rgba(240,248,242,0.5);margin:0 0 8px;line-height:1.7;">{p.note}</p>
+        <div style="font-size:16px;color:#1a2e1a;font-weight:500;margin-bottom:6px;">{p.name}</div>
+        <p style="font-size:15px;color:rgba(28,46,26,0.45);margin:0 0 8px;line-height:1.7;">{p.note}</p>
         <a href={p.link} style="font-size:13px;color:#e8a850;text-decoration:none;">View lodging options →</a>
       </div>
     ))}
 
     <!-- Dining -->
-    <h2 style="font-family:'Playfair Display',serif;font-size:clamp(22px,3vw,32px);font-weight:400;color:#f0f8f2;margin:48px 0 16px;">Where to Eat in Graeagle</h2>
-    <p style="font-size:17px;color:rgba(240,248,242,0.55);line-height:1.85;margin-bottom:24px;">
+    <h2 style="font-family:'Playfair Display',serif;font-size:clamp(22px,3vw,32px);font-weight:400;color:#1a2e1a;margin:48px 0 16px;">Where to Eat in Graeagle</h2>
+    <p style="font-size:17px;color:rgba(28,46,26,0.5);line-height:1.85;margin-bottom:24px;">
       The Graeagle area has a solid dining range from post-round beers to proper dinner service. A few standouts:
     </p>
     {[
@@ -202,14 +204,14 @@ ogType="article"
       { name: "Eureka Peak Brewing Co.", note: "Inside Chalet View Lodge. IPAs, stouts, saisons. Locally sourced seasonal dishes. Timber-framed setting." },
     ].map(d => (
       <div style="border-bottom:1px solid rgba(255,255,255,0.04);padding:16px 0;">
-        <span style="font-size:15px;color:#f0f8f2;font-weight:500;">{d.name}</span>
-        <span style="font-size:14px;color:rgba(240,248,242,0.4);"> — {d.note}</span>
+        <span style="font-size:15px;color:#1a2e1a;font-weight:500;">{d.name}</span>
+        <span style="font-size:14px;color:rgba(28,46,26,0.35);"> — {d.note}</span>
       </div>
     ))}
     <p style="margin-top:20px;"><a href="/dining" style="color:#e8a850;font-size:15px;text-decoration:none;">Full Graeagle dining guide →</a></p>
 
     <!-- Sample Itinerary -->
-    <h2 style="font-family:'Playfair Display',serif;font-size:clamp(22px,3vw,32px);font-weight:400;color:#f0f8f2;margin:56px 0 16px;">Sample 3-Day Graeagle Golf Itinerary</h2>
+    <h2 style="font-family:'Playfair Display',serif;font-size:clamp(22px,3vw,32px);font-weight:400;color:#1a2e1a;margin:56px 0 16px;">Sample 3-Day Graeagle Golf Itinerary</h2>
     {[
       { day: "Day 1", title: "Arrival + Graeagle Meadows", body: "Check in, play Graeagle Meadows in the afternoon (easiest course, good for shaking off travel). Post-round at Graeagle Restaurant or The Brewing Lair." },
       { day: "Day 2", title: "Whitehawk Ranch + Plumas Pines", body: "Morning round at Whitehawk Ranch (Top 20 California — the standout). Afternoon at Plumas Pines if energy allows, or dinner at Iron Door." },
@@ -217,13 +219,13 @@ ogType="article"
     ].map((d, i) => (
       <div style="padding:24px;background:rgba(255,255,255,0.02);border-radius:16px;margin-bottom:12px;border-left:3px solid #e8a850;">
         <div style="font-size:11px;color:#e8a850;letter-spacing:0.1em;text-transform:uppercase;font-weight:600;margin-bottom:6px;">{d.day}</div>
-        <div style="font-size:17px;color:#f0f8f2;font-weight:500;margin-bottom:8px;">{d.title}</div>
-        <p style="font-size:15px;color:rgba(240,248,242,0.5);margin:0;line-height:1.7;">{d.body}</p>
+        <div style="font-size:17px;color:#1a2e1a;font-weight:500;margin-bottom:8px;">{d.title}</div>
+        <p style="font-size:15px;color:rgba(28,46,26,0.45);margin:0;line-height:1.7;">{d.body}</p>
       </div>
     ))}
 
     <!-- FAQ -->
-    <h2 style="font-family:'Playfair Display',serif;font-size:clamp(22px,3vw,32px);font-weight:400;color:#f0f8f2;margin:56px 0 24px;">Frequently Asked Questions</h2>
+    <h2 style="font-family:'Playfair Display',serif;font-size:clamp(22px,3vw,32px);font-weight:400;color:#1a2e1a;margin:56px 0 24px;">Frequently Asked Questions</h2>
     <div>
       {faqSchema.mainEntity.map(item => (
         <details class="faq-item" style="cursor:pointer;">
@@ -235,7 +237,7 @@ ogType="article"
 
     <!-- Interlinks -->
     <div style="margin-top:56px;margin-bottom:40px;">
-      <h2 style="font-family:'Playfair Display',serif;font-size:22px;font-weight:400;color:#f0f8f2;margin:0 0 20px;">Explore the Graeagle Golf Courses</h2>
+      <h2 style="font-family:'Playfair Display',serif;font-size:22px;font-weight:400;color:#1a2e1a;margin:0 0 20px;">Explore the Graeagle Golf Courses</h2>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:28px;">
         {[
           ['Graeagle Meadows Golf Packages',  '/portfolio/graeagle-meadows-golf-packages/', 'Par 72 · Classic Sierra parkland since 1968'],
@@ -245,14 +247,14 @@ ogType="article"
           ['Nakoma Dragon Golf Packages',     '/portfolio/nakoma-dragon-golf-packages/',    'Par 72 · Frank Lloyd Wright clubhouse · Slope 147'],
           ['Compare All 5 Courses',           '/all-golf-courses/',                         'Side-by-side stats and stay-and-play packages'],
         ].map(([name, href, meta]) => (
-          <a href={href} style="display:block;padding:14px 16px;background:rgba(240,248,242,0.03);border:1px solid rgba(240,248,242,0.08);border-radius:12px;text-decoration:none;"
-            onmouseover="this.style.borderColor='rgba(232,168,80,0.35)'" onmouseout="this.style.borderColor='rgba(240,248,242,0.08)'">
-            <div style="font-size:14px;font-weight:600;color:#f0f8f2;margin-bottom:3px;">{name}</div>
-            <div style="font-size:11px;color:rgba(240,248,242,0.4);">{meta}</div>
+          <a href={href} style="display:block;padding:14px 16px;background:rgba(28,46,26,0.03);border:1px solid rgba(28,46,26,0.07);border-radius:12px;text-decoration:none;"
+            onmouseover="this.style.borderColor='rgba(232,168,80,0.35)'" onmouseout="this.style.borderColor='rgba(28,46,26,0.07)'">
+            <div style="font-size:14px;font-weight:600;color:#1a2e1a;margin-bottom:3px;">{name}</div>
+            <div style="font-size:11px;color:rgba(28,46,26,0.35);">{meta}</div>
           </a>
         ))}
       </div>
-      <h3 style="font-size:16px;font-weight:600;color:#f0f8f2;margin:0 0 12px;">Where to Stay</h3>
+      <h3 style="font-size:16px;font-weight:600;color:#1a2e1a;margin:0 0 12px;">Where to Stay</h3>
       <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px;">
         {[
           ['River Pines Resort',       '/portfolio/river-pines-resort-graeagle-ca/'],
@@ -263,7 +265,7 @@ ogType="article"
           <a href={href} style="font-size:13px;color:#e8a850;background:rgba(232,168,80,0.06);border:1px solid rgba(232,168,80,0.15);padding:6px 14px;border-radius:100px;text-decoration:none;">{name}</a>
         ))}
       </div>
-      <h3 style="font-size:16px;font-weight:600;color:#f0f8f2;margin:0 0 12px;">Where to Eat After Your Round</h3>
+      <h3 style="font-size:16px;font-weight:600;color:#1a2e1a;margin:0 0 12px;">Where to Eat After Your Round</h3>
       <div style="display:flex;flex-wrap:wrap;gap:8px;">
         {[
           ['Grizzly Grill',          '/portfolio/grizzly-grill/'],
@@ -273,7 +275,7 @@ ogType="article"
           ['The Brewing Lair',        '/portfolio/the-brewing-lair/'],
           ['Roadhouse at River Pines','/portfolio/roadhouse-at-river-pines/'],
         ].map(([name, href]) => (
-          <a href={href} style="font-size:13px;color:rgba(240,248,242,0.7);background:rgba(240,248,242,0.04);border:1px solid rgba(240,248,242,0.08);padding:6px 14px;border-radius:100px;text-decoration:none;">{name}</a>
+          <a href={href} style="font-size:13px;color:rgba(28,46,26,0.65);background:rgba(28,46,26,0.03);border:1px solid rgba(28,46,26,0.07);padding:6px 14px;border-radius:100px;text-decoration:none;">{name}</a>
         ))}
         <a href="/dining/" style="font-size:13px;color:#e8a850;background:rgba(232,168,80,0.06);border:1px solid rgba(232,168,80,0.15);padding:6px 14px;border-radius:100px;text-decoration:none;">All Dining →</a>
       </div>
@@ -281,8 +283,8 @@ ogType="article"
 
     <!-- CTA -->
     <div style="margin-top:64px;padding:40px;background:rgba(232,168,80,0.04);border:1px solid rgba(232,168,80,0.12);border-radius:20px;text-align:center;">
-      <h2 style="font-family:'Playfair Display',serif;font-size:clamp(22px,3vw,30px);font-weight:400;color:#f0f8f2;margin:0 0 12px;">Ready to Plan Your Graeagle Golf Trip?</h2>
-      <p style="font-size:16px;color:rgba(240,248,242,0.5);margin:0 auto 28px;max-width:480px;">Tell us your dates, group size, and which courses you want to play. We'll build a custom stay-and-play package.</p>
+      <h2 style="font-family:'Playfair Display',serif;font-size:clamp(22px,3vw,30px);font-weight:400;color:#1a2e1a;margin:0 0 12px;">Ready to Plan Your Graeagle Golf Trip?</h2>
+      <p style="font-size:16px;color:rgba(28,46,26,0.45);margin:0 auto 28px;max-width:480px;">Tell us your dates, group size, and which courses you want to play. We'll build a custom stay-and-play package.</p>
       <a href="/request-a-quote?utm_source=golfgraeagle&utm_medium=internal&utm_campaign=cta&utm_content=blog-ultimate-guide" class="btn-green-glow" style="display:inline-block;font-weight:700;font-size:15px;padding:16px 40px;">Request a Free Quote →</a>
     </div>
 
