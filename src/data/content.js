@@ -166,7 +166,7 @@ export const courses = [
       'https://graeaglemeadows.com/wp-content/uploads/sites/86/2025/03/graeagle-meadows-golf-course-course-gallery-007.webp',
       'https://graeaglemeadows.com/wp-content/uploads/sites/86/2025/03/graeagle-meadows-golf-course-Tad-McCormick.webp',
     ],
-    description: 'Graeagle Meadows Golf Course opened in 1968, making it the original championship course in the valley. Designed by Ellis Van Gorder, the layout winds through open Sierra meadows and tall ponderosa pines along the Middle Fork of the Feather River. At 6,759 yards with a slope of 120, it\'s the most approachable of the five Graeagle courses and perfect for groups with a range of handicaps.',
+    description: 'Graeagle Meadows Golf Course opened in 1968, making it the original championship course in the valley. Designed by Ellis Van Gorder, the layout winds through open Sierra meadows and tall ponderosa pines along the Middle Fork of the Feather River. At 6,759 yards with a slope of 120, it\'s the most approachable of the five Graeagle courses and perfect for groups with a range of handicaps. The signature hole — the par-4 6th, known as "English Gold" — offers elevated tees with views of Mohawk Valley, the Feather River, and the Sierra beyond.',
     bestFor: 'First-timers, mixed-handicap groups, value rounds',
     facilities: ['Pro Shop', 'Full-Service Restaurant', 'Snack Bar', 'Driving Range', 'Putting Green'],
     onSiteDining: ['meadows-restaurant'],
