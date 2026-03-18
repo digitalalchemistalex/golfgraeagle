@@ -186,21 +186,39 @@ const homeFaqSchema = {
     </div>
 
     <div class="courses-five-grid">
-      {[courses[0], courses[1], courses[2], courses[3], courses[4]].map((c,i)=>(
-        <a href={`/portfolio/${c.slug === "nakoma-dragon" ? "nakoma-dragon-golf-packages" : c.slug + "-golf-packages"}`} class={`reveal delay-${i*75} course-card-equal`} style="text-decoration:none;display:block;">
-          <img src={c.hero} alt={getImgAlt(c.hero, `${c.name} Golf Course — Graeagle, California`)} loading="lazy" class="course-card-img"/>
-          <div class="card-gradient"></div>
-          <div class="course-card-body">
-            <div style="display:flex;flex-wrap:wrap;gap:5px;margin-bottom:10px;">
-              <span class="card-pill">Par {c.par}</span>
-              <span class="card-pill">{c.yards.toLocaleString()} yds</span>
-              <span class="card-pill">{c.designer}</span>
+      {(() => {
+        const accolades: Record<string,string> = {
+          'graeagle-meadows': 'The Valley Classic',
+          'whitehawk-ranch':  'Top 20 California',
+          'plumas-pines':     'Top 5 Best Value',
+          'grizzly-ranch':    'Golf Digest Top 100',
+          'nakoma-dragon':    'Golf World Top 75',
+        };
+        const mustPlay: Record<string,boolean> = {
+          'whitehawk-ranch': true,
+          'grizzly-ranch':   true,
+          'nakoma-dragon':   true,
+        };
+        return [courses[0], courses[1], courses[2], courses[3], courses[4]].map((c,i)=>(
+          <a href={`/portfolio/${c.slug === "nakoma-dragon" ? "nakoma-dragon-golf-packages" : c.slug + "-golf-packages"}/`} class={`reveal delay-${i*75} course-card-equal`} style="text-decoration:none;display:block;">
+            <img src={c.hero} alt={getImgAlt(c.hero, `${c.name} Golf Course — Graeagle, California`)} loading="lazy" class="course-card-img"/>
+            <div class="card-gradient"></div>
+            <div class="course-card-body">
+              <div style="display:flex;flex-wrap:wrap;gap:5px;margin-bottom:10px;align-items:center;">
+                {mustPlay[c.slug] && <span style="font-size:8px;font-weight:800;text-transform:uppercase;letter-spacing:0.08em;background:#e8a850;color:#0d1a0e;padding:2px 7px;border-radius:100px;">Must Play</span>}
+                <span style="font-size:8px;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:rgba(255,255,255,0.6);border:1px solid rgba(255,255,255,0.2);padding:2px 7px;border-radius:100px;">{accolades[c.slug]}</span>
+              </div>
+              <h3 style="font-family:'Playfair Display',serif;font-size:clamp(16px,1.4vw,20px);color:#ffffff;text-shadow:0 1px 8px rgba(0,0,0,0.5);margin:0 0 8px;line-height:1.2;">{c.name}</h3>
+              <div style="display:flex;flex-wrap:wrap;gap:5px;margin-bottom:10px;">
+                <span class="card-pill">Par {c.par}</span>
+                <span class="card-pill">{c.yards.toLocaleString()} yds</span>
+                <span class="card-pill">Slope {c.slope}</span>
+              </div>
+              <span class="link-gold-sm">View course →</span>
             </div>
-            <h3 style="font-family:'Playfair Display',serif;font-size:clamp(16px,1.4vw,20px);color:#ffffff;text-shadow:0 1px 8px rgba(0,0,0,0.5);margin:0 0 12px;line-height:1.2;">{c.name}</h3>
-            <span class="link-gold-sm">View course →</span>
-          </div>
-        </a>
-      ))}
+          </a>
+        ));
+      })()}
     </div>
   </div>
 </section>
@@ -266,17 +284,29 @@ const homeFaqSchema = {
     </div>
 
     <div class="lodging-four-grid">
-      {lodging.map((l, i) => (
-        <a href={`/portfolio/${l.slug}`} class={`reveal delay-${i*75} lodging-equal-card`} style="text-decoration:none;display:block;">
-          <img src={l.hero} alt={getImgAlt(l.hero, `${l.name} — Graeagle CA lodging for golf groups`)} loading="lazy" class="course-card-img"/>
-          <div class="card-gradient"></div>
-          <div class="course-card-body">
-            <h3 style="font-family:'Playfair Display',serif;font-size:clamp(16px,1.4vw,20px);color:#ffffff;text-shadow:0 1px 8px rgba(0,0,0,0.5);margin:0 0 6px;line-height:1.2;">{l.name}</h3>
-            <p style="font-size:12px;color:rgba(255,255,255,0.6);margin:0 0 12px;">{l.subtitle}</p>
-            <span class="link-gold-sm">View →</span>
-          </div>
-        </a>
-      ))}
+      {(() => {
+        const lodgingMeta: Record<string,{badge:string;detail:string}> = {
+          'townhomes-at-plumas-pines': { badge:'Best for Large Groups', detail:'Full kitchens · On the course · 2–4 BR units' },
+          'river-pines-resort':        { badge:'Best for Groups',       detail:'On-site dining · Pool & hot tub · 40+ years family-owned' },
+          'chalet-view-lodge':         { badge:'Best Amenities',        detail:'Spa · Brewery on-site · 9-hole exec course' },
+          'inn-at-nakoma':             { badge:'Most Unique',           detail:'Frank Lloyd Wright lodge · Walk to The Dragon' },
+        };
+        return lodging.map((l: any, i: number) => {
+          const meta = lodgingMeta[l.slug] || { badge: l.subtitle, detail: '' };
+          return (
+            <a href={`/portfolio/${l.slug}/`} class={`reveal delay-${i*75} lodging-equal-card`} style="text-decoration:none;display:block;">
+              <img src={l.hero} alt={getImgAlt(l.hero, `${l.name} — Graeagle CA lodging for golf groups`)} loading="lazy" class="course-card-img"/>
+              <div class="card-gradient"></div>
+              <div class="course-card-body">
+                <span style="font-size:8px;font-weight:800;text-transform:uppercase;letter-spacing:0.08em;background:#e8a850;color:#0d1a0e;padding:2px 8px;border-radius:100px;display:inline-block;margin-bottom:8px;">{meta.badge}</span>
+                <h3 style="font-family:'Playfair Display',serif;font-size:clamp(16px,1.4vw,20px);color:#ffffff;text-shadow:0 1px 8px rgba(0,0,0,0.5);margin:0 0 6px;line-height:1.2;">{l.name}</h3>
+                <p style="font-size:11px;color:rgba(255,255,255,0.55);margin:0 0 10px;line-height:1.4;">{meta.detail}</p>
+                <span class="link-gold-sm">View →</span>
+              </div>
+            </a>
+          );
+        });
+      })()}
     </div>
 
     <div class="reveal" style="text-align:center;margin-top:48px;">
@@ -585,17 +615,6 @@ const homeFaqSchema = {
   .hero-h1 em {
     font-style: italic;
     color: #e8a850;
-    border: 2px solid rgba(210,50,130,0.85);
-    border-radius: 4px;
-    padding: 1px 8px 3px;
-    -webkit-box-decoration-break: clone;
-    box-decoration-break: clone;
-  }
-  @media (max-width: 640px) {
-    .hero-h1 em {
-      border-width: 1.5px;
-      padding: 0px 6px 2px;
-    }
   }
   .hero-sub {
     font-size: clamp(14px, 1.5vw, 17px);
