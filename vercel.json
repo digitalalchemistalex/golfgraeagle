@@ -71,11 +71,6 @@
       "permanent": true
     },
     {
-      "source": "/all-golf-courses/",
-      "destination": "/all-golf-courses/",
-      "permanent": true
-    },
-    {
       "source": "/courses/",
       "destination": "/all-golf-courses/",
       "permanent": true
