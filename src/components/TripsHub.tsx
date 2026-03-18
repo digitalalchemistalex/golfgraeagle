@@ -1,7 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 
-const API_URL = "https://golfthehighsierra.com/trips-caddie/api/api-recaps.php";
+const API_URL = "/api/trips";
 const CADDIE_URL = "https://tripscaddie.golfthehighsierra.com";
 
 const STOCK = [

@@ -32,7 +32,7 @@ const LODGING_PORTFOLIO: Record<string, string> = {
   "townhomes-at-plumas-pines":"/portfolio/the-townhomes-at-plumas-pines/",
 };
 
-const API_URL  = "https://golfthehighsierra.com/trips-caddie/api/api-recaps.php";
+const API_URL  = "/api/trips";
 const CADDIE_URL = "https://tripscaddie.golfthehighsierra.com";
 
 /* Build reverse lookup: name → portfolio URL */
