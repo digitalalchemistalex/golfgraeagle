@@ -409,3 +409,24 @@ section.hero-section,
 [data-hero] span {
   color: inherit;
 }
+
+/* ── DARK SECTION TOKENS ────────────────────────────────────────────
+   Apply class="dark-section" to any section with a dark background.
+   Children use --ds-* vars. Never use --text-primary in dark sections.
+   ─────────────────────────────────────────────────────────────────── */
+.dark-section {
+  --ds-heading:  #ffffff;
+  --ds-body:     rgba(255,255,255,0.70);
+  --ds-muted:    rgba(255,255,255,0.45);
+  --ds-faint:    rgba(255,255,255,0.28);
+  --ds-border:   rgba(255,255,255,0.08);
+  --ds-surface:  rgba(255,255,255,0.05);
+  --ds-gold:     #e8a850;
+  color: var(--ds-body);
+}
+.dark-section h1,
+.dark-section h2,
+.dark-section h3,
+.dark-section h4 { color: var(--ds-heading); }
+.dark-section p   { color: var(--ds-body); }
+.dark-section .eyebrow { color: var(--ds-gold); }
