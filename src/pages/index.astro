@@ -593,6 +593,16 @@ const homeFaqSchema = {
     -webkit-box-decoration-break: clone;
     box-decoration-break: clone;
   }
+  @media (max-width: 640px) {
+    .hero-h1 em {
+      background: none;
+      border: none;
+      padding: 0;
+      box-shadow: none;
+      color: #f472b6;
+      text-shadow: 0 0 20px rgba(220,60,140,0.7), 0 0 40px rgba(220,60,140,0.3);
+    }
+  }
   .hero-sub {
     font-size: clamp(14px, 1.5vw, 17px);
     color: rgba(240,248,242,0.52);
