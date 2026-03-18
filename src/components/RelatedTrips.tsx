@@ -324,7 +324,7 @@ function TripCard({ trip }: { trip: Trip }) {
 }
 
 /* ─── MAIN EXPORT ─── */
-export default function RelatedTrips({ slug, type, showAll = false, max = 6 }: { slug: string; type: "course" | "lodging"; showAll?: boolean; max?: number }) {
+export default function RelatedTrips({ slug, type, showAll = false, max = 6 }: { slug: string; type: "course" | "lodging" | "dining"; showAll?: boolean; max?: number }) {
   const [trips, setTrips] = useState<Trip[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -333,8 +333,8 @@ export default function RelatedTrips({ slug, type, showAll = false, max = 6 }: {
       .then(r => r.json())
       .then((data: Trip[]) => {
         let filtered: Trip[];
-        if (showAll) {
-          // Blog post mode — show top trips from any Graeagle venue
+        if (showAll || type === "dining") {
+          // Blog post mode + dining — show top trips from any Graeagle venue
           filtered = data
             .filter(t => (t.region || "").toLowerCase().includes("graeagle") || 
                         (t.courses || []).some(c => 
@@ -370,7 +370,7 @@ export default function RelatedTrips({ slug, type, showAll = false, max = 6 }: {
         {/* Header */}
         <div style={{ textAlign: "center", marginBottom: 40 }}>
           <div style={{ fontSize: 11, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.14em", color: "#e8a850", marginBottom: 10 }}>
-            {showAll ? "Real Graeagle Golf Trips" : `Real Trips Featuring This ${type === "course" ? "Course" : "Property"}`}
+            {showAll || type === "dining" ? "Real Graeagle Golf Trips" : `Real Trips Featuring This ${type === "course" ? "Course" : "Property"}`}
           </div>
           <h2 style={{
             fontFamily: "'Playfair Display', serif", fontSize: "clamp(26px,3.5vw,38px)",
