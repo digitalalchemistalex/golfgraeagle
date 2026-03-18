@@ -13,7 +13,9 @@ const year = new Date().getFullYear();
     .footer-col-cta { grid-column: 1 / -1; }
   }
   @media (max-width: 640px) {
-    .footer-grid { grid-template-columns: 1fr 1fr; gap: 24px; }
+    .footer-grid { grid-template-columns: 1fr 1fr; gap: 20px; }
+    .footer-col-brand { grid-column: 1 / -1; }
+    .footer-col-dining { display: none; }
     .footer-col-cta { grid-column: 1 / -1; }
     .footer-bottom-inner { flex-direction: column; align-items: flex-start; gap: 12px; }
   }
@@ -26,7 +28,7 @@ const year = new Date().getFullYear();
     <div class="footer-grid">
 
       <!-- Brand col -->
-      <div>
+      <div class="footer-col-brand">
         <a href="/" style="display:inline-block;font-family:'Playfair Display',serif;font-size:26px;color:var(--text-primary);text-decoration:none;margin-bottom:16px;">
           Golf <span style="color:var(--gold);">Graeagle</span>
         </a>
