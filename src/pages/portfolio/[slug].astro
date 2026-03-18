@@ -896,7 +896,7 @@ const diningSlugMap: Record<string, string> = {
         <div style="background:#ffffff;border:1px solid rgba(28,18,8,0.08);border-radius:16px;padding:22px;box-shadow:0 2px 12px rgba(0,0,0,0.04);">
           <p style="font-size:11px;color:#b09e88;text-transform:uppercase;letter-spacing:0.1em;margin:0 0 14px;font-weight:600;">Add Another Course</p>
           {courses.filter(x=>x.slug!==c.slug).map(x=>(
-            <a href={`/courses/${x.slug}`} style="display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid rgba(28,18,8,0.06);text-decoration:none;transition:opacity 0.2s;"
+            <a href={`/portfolio/${x.slug === 'nakoma-dragon' ? 'nakoma-dragon-golf-packages' : x.slug + '-golf-packages'}/`} style="display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid rgba(28,18,8,0.06);text-decoration:none;transition:opacity 0.2s;"
             onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">
               <div style="width:40px;height:40px;border-radius:8px;overflow:hidden;flex-shrink:0;">
                 <img src={x.hero} alt={x.name} style="width:100%;height:100%;object-fit:cover;"/>
