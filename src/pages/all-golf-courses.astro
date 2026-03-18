@@ -203,6 +203,46 @@ const bestForList = [
       </div>
     </div>
 
+    <!-- Interlinks: lodging + dining -->
+    <div style="border-top:1px solid rgba(240,248,242,0.07);padding:48px 0 0;">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:48px;margin-bottom:48px;">
+        <div>
+          <h2 style="font-family:'Playfair Display',serif;font-size:20px;font-weight:400;color:#f0f8f2;margin:0 0 16px;">Where to Stay Near the Courses</h2>
+          {[
+            ['River Pines Resort',       '/portfolio/river-pines-resort-graeagle-ca/',  'Family-owned 40+ years · Pool · Hot tub · Roadhouse dining'],
+            ['Chalet View Lodge',         '/portfolio/chalet-view-lodge-graeagle-ca/',   '10 forested acres · Spa · Eureka Peak Brewing on-site'],
+            ['The Inn at Nakoma',         '/portfolio/the-inn-at-nakoma-clio-ca/',       '42 rooms · Walk to Dragon 1st tee · FLW lodge dining'],
+            ['Townhomes at Plumas Pines', '/portfolio/the-townhomes-at-plumas-pines/',   'Steps from Plumas Pines · Full kitchens · Pool'],
+          ].map(([name, href, meta]) => (
+            <a href={href} style="display:flex;flex-direction:column;gap:3px;padding:12px 0;border-bottom:1px solid rgba(240,248,242,0.06);text-decoration:none;"
+              onmouseover="this.style.paddingLeft='6px';this.style.transition='padding 0.2s'" onmouseout="this.style.paddingLeft='0'">
+              <span style="font-size:14px;font-weight:600;color:#f0f8f2;">{name}</span>
+              <span style="font-size:11px;color:rgba(240,248,242,0.38);">{meta}</span>
+            </a>
+          ))}
+          <a href="/lodging/" style="display:inline-block;margin-top:14px;font-size:13px;color:#e8a850;text-decoration:none;">View all lodging options →</a>
+        </div>
+        <div>
+          <h2 style="font-family:'Playfair Display',serif;font-size:20px;font-weight:400;color:#f0f8f2;margin:0 0 16px;">Best Dining After Your Round</h2>
+          {[
+            ['Grizzly Grill',           '/portfolio/grizzly-grill/',              'At Grizzly Ranch · Gourmet · Full bar'],
+            ['Iron Door Restaurant',     '/portfolio/iron-door-restaurant/',       'Historic 1906 building · Steaks · Prime rib'],
+            ['Sardine Lake Resort',      '/portfolio/sardine-lake-resort/',        'Alpine fine dining · Book ahead'],
+            ['Eureka Peak Brewing Co.',  '/portfolio/eureka-peak-brewing-co/',     'Craft brewery at Chalet View Lodge'],
+            ['The Brewing Lair',         '/portfolio/the-brewing-lair/',           'Forest brewery · 15-barrel craft operation'],
+            ['Roadhouse at River Pines', '/portfolio/roadhouse-at-river-pines/',   'Steaks & ribs · At River Pines Resort'],
+          ].map(([name, href, meta]) => (
+            <a href={href} style="display:flex;flex-direction:column;gap:3px;padding:12px 0;border-bottom:1px solid rgba(240,248,242,0.06);text-decoration:none;"
+              onmouseover="this.style.paddingLeft='6px';this.style.transition='padding 0.2s'" onmouseout="this.style.paddingLeft='0'">
+              <span style="font-size:14px;font-weight:600;color:#f0f8f2;">{name}</span>
+              <span style="font-size:11px;color:rgba(240,248,242,0.38);">{meta}</span>
+            </a>
+          ))}
+          <a href="/dining/" style="display:inline-block;margin-top:14px;font-size:13px;color:#e8a850;text-decoration:none;">View all dining options →</a>
+        </div>
+      </div>
+    </div>
+
     <!-- CTA -->
     <div style="text-align:center;padding:60px 20px;border-top:1px solid rgba(240,248,242,0.07);">
       <h2 style="font-family:'Playfair Display',serif;font-size:30px;color:#f0f8f2;margin:0 0 14px;font-weight:400;">Ready to Book Your Graeagle Golf Trip?</h2>

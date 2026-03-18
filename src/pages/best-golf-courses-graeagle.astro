@@ -225,6 +225,41 @@ ogType="article"
       ))}
     </div>
 
+    <!-- Interlinks: course pages + lodging -->
+    <div style="margin-top:56px;margin-bottom:40px;">
+      <h2 style="font-family:'Playfair Display',serif;font-size:22px;font-weight:400;color:#f0f8f2;margin:0 0 20px;">Book a Package at Any of These Courses</h2>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:28px;">
+        {[
+          ['Graeagle Meadows Golf Packages',  '/portfolio/graeagle-meadows-golf-packages/', 'Par 72 · 6,759 yds · Ellis Van Gorder'],
+          ['Whitehawk Ranch Golf Packages',   '/portfolio/whitehawk-ranch-golf-packages/',  'Par 71 · 6,983 yds · Dick Bailey · Top 20 CA'],
+          ['Plumas Pines Golf Packages',      '/portfolio/plumas-pines-golf-packages/',     'Par 72 · 6,504 yds · Homer Flint'],
+          ['Grizzly Ranch Golf Packages',     '/portfolio/grizzly-ranch-golf-packages/',    'Par 72 · 7,411 yds · Bob Cupp · Golf Digest Top 100'],
+          ['Nakoma Dragon Golf Packages',     '/portfolio/nakoma-dragon-golf-packages/',    'Par 72 · 7,015 yds · Robin Nelson · FLW Clubhouse'],
+        ].map(([name, href, meta]) => (
+          <a href={href} style="display:block;padding:14px 16px;background:rgba(240,248,242,0.03);border:1px solid rgba(240,248,242,0.08);border-radius:12px;text-decoration:none;transition:border-color 0.2s;"
+            onmouseover="this.style.borderColor='rgba(232,168,80,0.35)'" onmouseout="this.style.borderColor='rgba(240,248,242,0.08)'">
+            <div style="font-size:14px;font-weight:600;color:#f0f8f2;margin-bottom:3px;">{name}</div>
+            <div style="font-size:11px;color:rgba(240,248,242,0.4);">{meta}</div>
+          </a>
+        ))}
+        <a href="/all-golf-courses/" style="display:block;padding:14px 16px;background:rgba(232,168,80,0.05);border:1px solid rgba(232,168,80,0.2);border-radius:12px;text-decoration:none;">
+          <div style="font-size:14px;font-weight:600;color:#e8a850;">Compare All 5 Courses →</div>
+          <div style="font-size:11px;color:rgba(240,248,242,0.4);">Side-by-side stats, slope, yardage, accolades</div>
+        </a>
+      </div>
+      <h3 style="font-size:16px;font-weight:600;color:#f0f8f2;margin:0 0 12px;">Where to Stay in Graeagle</h3>
+      <div style="display:flex;flex-wrap:wrap;gap:8px;">
+        {[
+          ['River Pines Resort',        '/portfolio/river-pines-resort-graeagle-ca/'],
+          ['Chalet View Lodge',          '/portfolio/chalet-view-lodge-graeagle-ca/'],
+          ['The Inn at Nakoma',          '/portfolio/the-inn-at-nakoma-clio-ca/'],
+          ['Townhomes at Plumas Pines',  '/portfolio/the-townhomes-at-plumas-pines/'],
+        ].map(([name, href]) => (
+          <a href={href} style="font-size:13px;color:#e8a850;background:rgba(232,168,80,0.06);border:1px solid rgba(232,168,80,0.15);padding:6px 14px;border-radius:100px;text-decoration:none;">{name}</a>
+        ))}
+      </div>
+    </div>
+
     <!-- CTA -->
     <div style="margin-top:64px;padding:40px;background:rgba(232,168,80,0.04);border:1px solid rgba(232,168,80,0.12);border-radius:20px;text-align:center;">
       <h2 style="font-family:'Playfair Display',serif;font-size:clamp(22px,3vw,30px);font-weight:400;color:#f0f8f2;margin:0 0 12px;">Ready to Book Your Graeagle Golf Trip?</h2>

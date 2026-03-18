@@ -232,6 +232,52 @@ ogType="article"
       ))}
     </div>
 
+    <!-- Interlinks -->
+    <div style="margin-top:56px;margin-bottom:40px;">
+      <h2 style="font-family:'Playfair Display',serif;font-size:22px;font-weight:400;color:#f0f8f2;margin:0 0 20px;">Explore the Graeagle Golf Courses</h2>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:28px;">
+        {[
+          ['Graeagle Meadows Golf Packages',  '/portfolio/graeagle-meadows-golf-packages/', 'Par 72 · Classic Sierra parkland since 1968'],
+          ['Whitehawk Ranch Golf Packages',   '/portfolio/whitehawk-ranch-golf-packages/',  'Par 71 · Top 20 CA · Mountain links'],
+          ['Plumas Pines Golf Packages',      '/portfolio/plumas-pines-golf-packages/',     'Par 72 · Pine forest · On-site vacation rentals'],
+          ['Grizzly Ranch Golf Packages',     '/portfolio/grizzly-ranch-golf-packages/',    'Par 72 · 7,411 yds · Golf Digest Top 100'],
+          ['Nakoma Dragon Golf Packages',     '/portfolio/nakoma-dragon-golf-packages/',    'Par 72 · Frank Lloyd Wright clubhouse · Slope 147'],
+          ['Compare All 5 Courses',           '/all-golf-courses/',                         'Side-by-side stats and stay-and-play packages'],
+        ].map(([name, href, meta]) => (
+          <a href={href} style="display:block;padding:14px 16px;background:rgba(240,248,242,0.03);border:1px solid rgba(240,248,242,0.08);border-radius:12px;text-decoration:none;"
+            onmouseover="this.style.borderColor='rgba(232,168,80,0.35)'" onmouseout="this.style.borderColor='rgba(240,248,242,0.08)'">
+            <div style="font-size:14px;font-weight:600;color:#f0f8f2;margin-bottom:3px;">{name}</div>
+            <div style="font-size:11px;color:rgba(240,248,242,0.4);">{meta}</div>
+          </a>
+        ))}
+      </div>
+      <h3 style="font-size:16px;font-weight:600;color:#f0f8f2;margin:0 0 12px;">Where to Stay</h3>
+      <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px;">
+        {[
+          ['River Pines Resort',       '/portfolio/river-pines-resort-graeagle-ca/'],
+          ['Chalet View Lodge',         '/portfolio/chalet-view-lodge-graeagle-ca/'],
+          ['The Inn at Nakoma',         '/portfolio/the-inn-at-nakoma-clio-ca/'],
+          ['Townhomes at Plumas Pines', '/portfolio/the-townhomes-at-plumas-pines/'],
+        ].map(([name, href]) => (
+          <a href={href} style="font-size:13px;color:#e8a850;background:rgba(232,168,80,0.06);border:1px solid rgba(232,168,80,0.15);padding:6px 14px;border-radius:100px;text-decoration:none;">{name}</a>
+        ))}
+      </div>
+      <h3 style="font-size:16px;font-weight:600;color:#f0f8f2;margin:0 0 12px;">Where to Eat After Your Round</h3>
+      <div style="display:flex;flex-wrap:wrap;gap:8px;">
+        {[
+          ['Grizzly Grill',          '/portfolio/grizzly-grill/'],
+          ['Iron Door Restaurant',    '/portfolio/iron-door-restaurant/'],
+          ['Sardine Lake Resort',     '/portfolio/sardine-lake-resort/'],
+          ['Eureka Peak Brewing Co.', '/portfolio/eureka-peak-brewing-co/'],
+          ['The Brewing Lair',        '/portfolio/the-brewing-lair/'],
+          ['Roadhouse at River Pines','/portfolio/roadhouse-at-river-pines/'],
+        ].map(([name, href]) => (
+          <a href={href} style="font-size:13px;color:rgba(240,248,242,0.7);background:rgba(240,248,242,0.04);border:1px solid rgba(240,248,242,0.08);padding:6px 14px;border-radius:100px;text-decoration:none;">{name}</a>
+        ))}
+        <a href="/dining/" style="font-size:13px;color:#e8a850;background:rgba(232,168,80,0.06);border:1px solid rgba(232,168,80,0.15);padding:6px 14px;border-radius:100px;text-decoration:none;">All Dining →</a>
+      </div>
+    </div>
+
     <!-- CTA -->
     <div style="margin-top:64px;padding:40px;background:rgba(232,168,80,0.04);border:1px solid rgba(232,168,80,0.12);border-radius:20px;text-align:center;">
       <h2 style="font-family:'Playfair Display',serif;font-size:clamp(22px,3vw,30px);font-weight:400;color:#f0f8f2;margin:0 0 12px;">Ready to Plan Your Graeagle Golf Trip?</h2>
