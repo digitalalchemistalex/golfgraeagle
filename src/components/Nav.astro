@@ -506,6 +506,28 @@ import { courses } from '../data/content.js';
     // Panel: keep open while mouse is inside
     menu.addEventListener('mouseenter', cancelClose);
     menu.addEventListener('mouseleave', scheduleClose);
+
+    // Touch/click toggle — mobile users tap the button to open/close
+    const btn = item.querySelector('button.nav-link');
+    if (btn) {
+      btn.addEventListener('click', e => {
+        const isOpen = item.classList.contains('open');
+        // Close all others first
+        document.querySelectorAll('.nav-item.open').forEach(other => {
+          if (other !== item) {
+            other.classList.remove('open');
+            other.querySelector('.mega-menu')?.classList.remove('open');
+          }
+        });
+        if (isOpen) {
+          item.classList.remove('open');
+          menu.classList.remove('open');
+        } else {
+          e.preventDefault();
+          open();
+        }
+      });
+    }
   });
 
   // Click outside closes all
