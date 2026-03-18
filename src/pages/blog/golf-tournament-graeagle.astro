@@ -1,0 +1,227 @@
+---
+export const prerender = true;
+import Base from '../../layouts/Base.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+
+const title = "Golf Tournament in Graeagle, CA: How to Run a Group Event Across 5 Courses";
+const description = "Planning a golf tournament in Graeagle? Here's how groups of 20–200 run scrambles, net/gross events, and charity outings across Graeagle's 5 championship courses — with tee time coordination, scoring, and banquet options.";
+const slug = "golf-tournament-graeagle";
+const datePublished = "2026-03-18";
+const dateModified = "2026-03-18";
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": title,
+  "datePublished": datePublished,
+  "dateModified": dateModified,
+  "author": { "@type": "Organization", "name": "GolfGraeagle.com" },
+  "publisher": { "@type": "Organization", "name": "Zoomaway Technologies Inc.", "url": "https://golfgraeagle.com" },
+  "mainEntityOfPage": { "@type": "WebPage", "@id": `https://golfgraeagle.com/blog/${slug}/` }
+};
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    { "@type": "Question", "name": "Can you run a golf tournament in Graeagle?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Graeagle's 5 courses can accommodate tournaments of 20–200+ players through split-field formats. Staggered tee times across multiple courses allow large groups to play simultaneously. GolfGraeagle coordinates tee sheet blocks, scoring, and banquet arrangements as part of a tournament package." } },
+    { "@type": "Question", "name": "Which is the best Graeagle course for a golf tournament?", "acceptedAnswer": { "@type": "Answer", "text": "Whitehawk Ranch and Plumas Pines are the most tournament-friendly — both have accessible difficulty ratings that work for mixed-handicap groups, strong pace of play, and staff experienced with group events. Grizzly Ranch works for competitive divisions. Nakoma Dragon suits VIP or prestige rounds." } },
+    { "@type": "Question", "name": "How much does a golf tournament in Graeagle cost?", "acceptedAnswer": { "@type": "Answer", "text": "A Graeagle golf tournament package with lodging, tee times across one or two courses, and a banquet dinner runs $865–$1,150 per person for groups of 24–52. Larger groups and multi-day events are quoted individually." } },
+    { "@type": "Question", "name": "Can GolfGraeagle handle a charity golf tournament?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. GolfGraeagle coordinates charity golf tournaments including registration, tee time coordination across multiple courses, scoring, banquet dinners, and on-course contests. Sponsorship hole setup and prize coordination can be included." } },
+    { "@type": "Question", "name": "How far in advance should you book a Graeagle golf tournament?", "acceptedAnswer": { "@type": "Answer", "text": "For summer weekends (June–August), book 8–12 weeks ahead for large groups. Tee sheet blocks at Whitehawk Ranch, Plumas Pines, and Grizzly Ranch can be limited during peak season. Fall tournaments (September–October) have more flexibility." } },
+  ]
+};
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://golfgraeagle.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://golfgraeagle.com/blog/" },
+    { "@type": "ListItem", "position": 3, "name": "Golf Tournament in Graeagle", "item": `https://golfgraeagle.com/blog/${slug}/` }
+  ]
+};
+---
+<Base title={title} description={description} ogType="article" schema={[schema, faqSchema, breadcrumbSchema]}
+  canonical={`https://golfgraeagle.com/blog/${slug}/`}
+  ogImage="https://golfgraeagle.com/wp-images/DJI_0006-Edit.jpg"
+>
+  <Nav />
+
+  <div class="bl-hero" style="background-image:url(/wp-images/graeagle-meadows-hero.jpg)">
+    <div class="bl-hero-fade"></div>
+    <div class="bl-hero-content">
+      <div class="bl-breadcrumb"><a href="/blog/">Blog</a> <span>→</span> Golf Tournament Graeagle</div>
+      <h1 class="bl-h1">Golf Tournament in Graeagle:<br/>How to Run a Group Event Right</h1>
+      <p class="bl-meta">By GolfGraeagle.com · March 2026 · 8 min read</p>
+    </div>
+  </div>
+
+  <div class="bl-wrap">
+    <article class="bl-article">
+
+      <div class="bl-answer-box">
+        <div class="bl-answer-label">Quick Answer</div>
+        <p>Graeagle can host golf tournaments from 20 to 200+ players using split-field formats across multiple courses simultaneously. Standard tournament packages with lodging, tee times, and a banquet dinner run <strong>$865–$1,150 per person</strong>. GolfGraeagle handles tee sheet coordination across all 5 courses, scoring logistics, and banquet arrangements — you run the event, we handle the infrastructure.</p>
+      </div>
+
+      <p class="bl-intro">Graeagle works for golf tournaments for the same reason it works for group trips: five championship courses within 25 minutes of each other. A 100-person tournament that would create a 6-hour round at a single venue becomes manageable when split across two courses simultaneously. The courses have handled group events for decades. The valley has the lodging, the dining, and the banquet space to support a multi-day event.</p>
+
+      <h2>Tournament Formats That Work in Graeagle</h2>
+
+      <h3>Single-Course Scramble (20–60 players)</h3>
+      <p>The most common format. One course, shotgun or staggered start, scramble format so all skill levels contribute. Works best at Whitehawk Ranch (slope 132, accommodates a range of handicaps), Plumas Pines (fast-playing, good pace control for large groups), or Graeagle Meadows (slope 120, most accessible for recreational divisions).</p>
+      <p>For 20–48 players, a single course with a shotgun start works cleanly. Tee time blocks can be secured through GolfGraeagle as part of a package — you're not calling the pro shop separately.</p>
+
+      <h3>Split-Field Tournament (60–120 players)</h3>
+      <p>Two courses simultaneously. Half the field plays Whitehawk Ranch at 8am while the other half plays Plumas Pines at 8am. Both groups finish around 1pm and converge for lunch, scoring, and awards. Drives down the per-round cost and removes pace-of-play pressure from either course.</p>
+      <p>This is how the 52-person River Pines Golf Package was structured — split across Plumas Pines, Whitehawk Ranch, and Grizzly Ranch across two days, with a banquet dinner. The same format scales to 80–100 players.</p>
+
+      <h3>Multi-Division Event (80–200 players)</h3>
+      <p>Competitive, recreational, and senior divisions on separate courses with separate scoring systems. We've run this format for groups with 56 players across multiple divisions — each playing a different course, results compiled into a single leaderboard. Requires coordination across at least two tee sheets and a central scoring system.</p>
+      <p>The Reno/Tahoe-Treasure Group (56 players, 4 rounds, 4 courses) used exactly this structure — competitive and recreational divisions, separate drink packages, results banquet on the final night.</p>
+
+      <h2>Course Selection by Tournament Type</h2>
+
+      <div class="bl-course-compare">
+        <div class="bl-course-row">
+          <div class="bl-course-name"><a href="/portfolio/whitehawk-ranch-golf-packages/">Whitehawk Ranch</a></div>
+          <div class="bl-course-note"><strong>Best for: Mixed-handicap main event.</strong> Top 20 California (1998). Par 71, slope 132. The most universally enjoyed course in the valley — works for everyone from single-digit handicappers to 25+ HCP recreational players. Staff experienced with group tee blocks. Snack bar and full bar on-site.</div>
+        </div>
+        <div class="bl-course-row">
+          <div class="bl-course-name"><a href="/portfolio/plumas-pines-golf-packages/">Plumas Pines</a></div>
+          <div class="bl-course-note"><strong>Best for: Recreational division or fast-format rounds.</strong> Top 5 Best Values Sierra Nevada. Par 72, slope 132. Fast-playing, group-friendly staff, on-site townhomes for tournament lodging. Longboards Bar & Grill on-site handles group dinners up to 200 with dedicated banquet space.</div>
+        </div>
+        <div class="bl-course-row">
+          <div class="bl-course-name"><a href="/portfolio/graeagle-meadows-golf-packages/">Graeagle Meadows</a></div>
+          <div class="bl-course-note"><strong>Best for: Senior or high-handicap division.</strong> Par 72, slope 120 — the most accessible course in the region. Open fairways, mountain views, relaxed pace. Works for groups where accessibility matters or where you want a stress-free division for recreational players.</div>
+        </div>
+        <div class="bl-course-row">
+          <div class="bl-course-name"><a href="/portfolio/grizzly-ranch-golf-packages/">Grizzly Ranch</a></div>
+          <div class="bl-course-note"><strong>Best for: Competitive division, prestige round, or VIP day.</strong> Golf Digest Top 100 US (2021). Par 72, slope 140, 7,411 yards. The course serious golfers want on their scorecard. Route your competitive division here — it's the most demanding and the most credentialed.</div>
+        </div>
+        <div class="bl-course-row">
+          <div class="bl-course-name"><a href="/portfolio/nakoma-dragon-golf-packages/">Nakoma Dragon</a></div>
+          <div class="bl-course-note"><strong>Best for: VIP day, bucket-list round, or event finale.</strong> Golf World Top 75. Par 72, slope 147. Frank Lloyd Wright clubhouse. The most visually dramatic course and the one participants will talk about after. Use it as a special-event day or awards round for a multi-day tournament.</div>
+        </div>
+      </div>
+
+      <h2>The Banquet Question</h2>
+      <p>Every serious golf tournament ends with an awards dinner. Two venues in Graeagle handle group banquets properly:</p>
+
+      <ul class="bl-list">
+        <li><strong>Longboards Bar and Grill</strong> — On-site at Plumas Pines Resort. Seats 2–200. Dedicated event space with award ceremony setup, full bar, open bar packages available. The most logistically convenient banquet venue for groups staying at Plumas Pines townhomes. Winner of Best of Show and People's Choice at Annual Taste of Plumas County. Past group packages have included seated dinner + 1-hour hosted bar + award presentations.</li>
+        <li><strong>Roadhouse at River Pines</strong> — If your group is staying at River Pines Resort, on-site dinner is the operationally simplest option. Steaks, ribs, whisky flights. Works for casual award ceremonies — less formal than Longboards but no convoy required.</li>
+      </ul>
+
+      <h2>Scoring and Registration</h2>
+      <p>GolfGraeagle doesn't run scoring software in-house, but we work with groups that bring their own systems — GHIN, USGA Tournament Management, or spreadsheet-based scoring for informal events. What we coordinate:</p>
+      <ul class="bl-list">
+        <li>Tee sheet blocks confirmed across all courses in the tournament</li>
+        <li>Staggered tee time windows so different divisions don't converge</li>
+        <li>Course pairing confirmations for each division or sub-group</li>
+        <li>Banquet coordination with the restaurant of choice</li>
+        <li>Lodging block as a single invoice — simplifies the registration/payment flow for tournament organizers</li>
+      </ul>
+
+      <div class="bl-callout">
+        <strong>What we don't do:</strong> We don't run the tournament itself — scoring, brackets, on-course contests, or prize procurement are your team's responsibility. We handle the infrastructure: tee times, lodging, and dining. You run the event.
+      </div>
+
+      <h2>Real Package Pricing for Tournament Groups</h2>
+
+      <div class="bl-price-table">
+        <div class="bl-price-row bl-price-header">
+          <span>Package</span><span>Pax</span><span>Nights</span><span>Rounds</span><span>Per Person</span>
+        </div>
+        <div class="bl-price-row">
+          <span>Whitehawk + Meadows + Plumas Pines · River Pines</span><span>24</span><span>2</span><span>3</span><span>$620</span>
+        </div>
+        <div class="bl-price-row">
+          <span>Plumas Pines + Whitehawk + Grizzly · River Pines + Banquet</span><span>52</span><span>2</span><span>3</span><span>$865</span>
+        </div>
+        <div class="bl-price-row">
+          <span>Grizzly + Whitehawk + Plumas Pines · Townhomes + Banquet</span><span>36</span><span>3</span><span>4</span><span>$1,150</span>
+        </div>
+        <div class="bl-price-row">
+          <span>Grizzly + Whitehawk + Plumas Pines · Townhomes</span><span>30</span><span>3</span><span>3</span><span>$1,067</span>
+        </div>
+      </div>
+
+      <p>All figures are from real booked packages. Prices include lodging, green fees, cart, taxes, and service charges. Banquet dinners, alcohol, prizes, and transportation are itemized separately.</p>
+
+      <h2>How to Book a Graeagle Golf Tournament</h2>
+      <p>The process is the same as any group package — with a few extra coordination steps:</p>
+      <ol class="bl-list">
+        <li><strong>Request a quote.</strong> Tell us your headcount, tournament format (scramble, stroke play, divisions), desired courses, dates, and whether you need banquet space. We'll send a full proposal.</li>
+        <li><strong>Confirm tee sheet blocks.</strong> For summer weekends, we need 8–12 weeks lead time to secure tee blocks across multiple courses simultaneously.</li>
+        <li><strong>Finalize lodging.</strong> River Pines for groups wanting one property; Plumas Pines townhomes for groups wanting on-course proximity and Longboards banquet access.</li>
+        <li><strong>Day of.</strong> You run the event — scoring, contests, awards. We've confirmed everything else in advance.</li>
+      </ol>
+
+      <!-- FAQ -->
+      <div class="bl-faq">
+        <h2>Frequently Asked Questions</h2>
+        {[
+          { q: "Can you run a golf tournament in Graeagle?", a: "Yes. Graeagle's 5 courses can accommodate tournaments of 20–200+ players through split-field formats across multiple courses simultaneously. GolfGraeagle coordinates tee sheet blocks, lodging, and banquet arrangements as part of a tournament package." },
+          { q: "Which is the best Graeagle course for a golf tournament?", a: "Whitehawk Ranch and Plumas Pines are the most tournament-friendly — both have accessible difficulty, strong pace of play, and staff experienced with group events. Grizzly Ranch works for competitive divisions. Nakoma Dragon suits VIP or prestige rounds." },
+          { q: "How much does a golf tournament in Graeagle cost?", a: "A tournament package with lodging, tee times, and a banquet dinner runs $865–$1,150 per person for groups of 24–52. The 52-person River Pines package with banquet came in at $865/person. The 36-person Plumas Pines package with 4 rounds and Longboards banquet was $1,150/person." },
+          { q: "Can GolfGraeagle handle a charity golf tournament?", a: "Yes. We coordinate charity golf tournaments including tee time blocks across multiple courses, lodging, scoring logistics, and banquet arrangements. Sponsorship hole setup and prize coordination can be included in the planning." },
+          { q: "How far in advance should you book a Graeagle golf tournament?", a: "8–12 weeks for summer weekends, 4–6 weeks for shoulder season (May–June, September–October). The longer your event and the more courses you're splitting across, the earlier you need to lock in tee sheet blocks." },
+        ].map(item => (
+          <div class="bl-faq-item">
+            <h3>{item.q}</h3>
+            <p>{item.a}</p>
+          </div>
+        ))}
+      </div>
+
+      <div class="bl-cta">
+        <h2>Planning a golf tournament in Graeagle?</h2>
+        <p>Tell us your headcount, format, and dates. We'll send back a full tournament package proposal — tee blocks confirmed, lodging, and banquet options included. Free quote, 24-hour response.</p>
+        <a href="/request-a-quote/" class="bl-cta-btn btn-green-glow">Get a Tournament Quote →</a>
+        <div class="bl-cta-links">
+          <a href="/blog/corporate-golf-outing-graeagle/">Corporate golf guide →</a>
+          <a href="/blog/large-group-golf-graeagle/">Large group logistics →</a>
+          <a href="/trips/">See real group packages →</a>
+        </div>
+      </div>
+
+    </article>
+
+    <aside class="bl-sidebar">
+      <div class="bl-sidebar-card">
+        <div class="bl-sidebar-title">Tournament Quote</div>
+        <p>20–200 players. Tee blocks across all 5 courses. Banquet coordination available.</p>
+        <a href="/request-a-quote/" class="bl-sidebar-btn btn-green-glow">Get a Quote →</a>
+      </div>
+      <div class="bl-sidebar-card">
+        <div class="bl-sidebar-title">Best Tournament Courses</div>
+        <div class="bl-sidebar-links">
+          {[
+            { name: 'Whitehawk Ranch', slug: 'whitehawk-ranch-golf-packages', note: 'Best main event · Slope 132' },
+            { name: 'Plumas Pines', slug: 'plumas-pines-golf-packages', note: 'Best recreational div · Fast-playing' },
+            { name: 'Grizzly Ranch', slug: 'grizzly-ranch-golf-packages', note: 'Best competitive div · Top 100' },
+            { name: 'Graeagle Meadows', slug: 'graeagle-meadows-golf-packages', note: 'Best senior div · Slope 120' },
+            { name: 'Nakoma Dragon', slug: 'nakoma-dragon-golf-packages', note: 'Best VIP round · FLW Clubhouse' },
+          ].map(c => (
+            <a href={`/portfolio/${c.slug}/`} class="bl-sidebar-course">
+              <div class="bl-sidebar-course-name">{c.name}</div>
+              <div class="bl-sidebar-course-note">{c.note}</div>
+            </a>
+          ))}
+        </div>
+      </div>
+      <div class="bl-sidebar-card">
+        <div class="bl-sidebar-title">Related Reading</div>
+        <div class="bl-sidebar-links">
+          <a href="/blog/corporate-golf-outing-graeagle/" class="bl-sidebar-post">Corporate Golf Outing Guide →</a>
+          <a href="/blog/large-group-golf-graeagle/" class="bl-sidebar-post">Large Group (50+) Logistics →</a>
+          <a href="/blog/graeagle-golf-trip-cost/" class="bl-sidebar-post">Real Pricing Breakdown →</a>
+        </div>
+      </div>
+    </aside>
+  </div>
+  <Footer />
+</Base>
