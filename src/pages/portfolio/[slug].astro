@@ -275,7 +275,7 @@ const diningSlugMap: Record<string, string> = {
     {courses.map((course) => {
       const isActive = course.slug === item.slug;
       return (
-        <a href={`/courses/${course.slug}`} class={`ch-strip-item${isActive ? ' is-active' : ''}`} aria-label={`View ${course.name}`}>
+        <a href={`/portfolio/${course.slug === 'nakoma-dragon' ? 'nakoma-dragon-golf-packages' : course.slug + '-golf-packages'}/`} class={`ch-strip-item${isActive ? ' is-active' : ''}`} aria-label={`View ${course.name}`}>
           <img src={course.hero} alt={course.name} class="ch-strip-thumb" loading={isActive ? 'eager' : 'lazy'} />
           <div class="ch-strip-dim"></div>
           <span class="ch-strip-label">{course.name.replace(' — The Dragon','').replace('Graeagle ','')}</span>
