@@ -98,6 +98,7 @@ function TripCard({ trip, idx }: { trip: Trip; idx: number }) {
       flexDirection: "column",
       transition: "box-shadow 0.3s, transform 0.2s",
     }}
+    id={trip.id ? `trip-${trip.id}` : undefined}
     onMouseOver={e => { e.currentTarget.style.boxShadow = "0 12px 40px rgba(0,0,0,0.12)"; e.currentTarget.style.transform = "translateY(-2px)"; }}
     onMouseOut={e => { e.currentTarget.style.boxShadow = "0 2px 16px rgba(0,0,0,0.05)"; e.currentTarget.style.transform = "translateY(0)"; }}
     >
@@ -311,6 +312,26 @@ export default function TripsHub() {
       })
       .catch(() => setLoading(false));
   }, []);
+
+  // Scroll to + highlight a specific trip when ?highlight=ID is in the URL
+  useEffect(() => {
+    if (!allTrips.length) return;
+    const params = new URLSearchParams(window.location.search);
+    const id = params.get("highlight");
+    if (!id) return;
+    const el = document.getElementById(`trip-${id}`);
+    if (!el) return;
+    setTimeout(() => {
+      el.scrollIntoView({ behavior: "smooth", block: "center" });
+      el.style.transition = "box-shadow 0.4s, outline 0.4s";
+      el.style.outline = "2px solid #e8a850";
+      el.style.boxShadow = "0 0 0 4px rgba(232,168,80,0.25)";
+      setTimeout(() => {
+        el.style.outline = "";
+        el.style.boxShadow = "0 2px 16px rgba(0,0,0,0.05)";
+      }, 2500);
+    }, 300);
+  }, [allTrips]);
 
   const filtered = allTrips.filter(t => {
     const price = t.pricePerPerson || t.pricePerPersonEstimate || 0;
