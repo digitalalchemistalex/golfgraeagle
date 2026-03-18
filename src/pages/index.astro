@@ -174,8 +174,12 @@ const homeFaqSchema = {
           <img src={c.hero} alt={getImgAlt(c.hero, `${c.name} Golf Course — Graeagle, California`)} loading="lazy" class="course-card-img"/>
           <div class="card-gradient"></div>
           <div class="course-card-body">
-            <span style="font-size:10px;color:rgba(232,168,80,0.85);letter-spacing:0.1em;text-transform:uppercase;">{c.par} par · {c.yards.toLocaleString()} yds · {c.designer}</span>
-            <h3 style="font-family:'Playfair Display',serif;font-size:clamp(16px,1.4vw,20px);color:#ffffff;text-shadow:0 1px 8px rgba(0,0,0,0.5);margin:6px 0 12px;line-height:1.2;">{c.name}</h3>
+            <div style="display:flex;flex-wrap:wrap;gap:5px;margin-bottom:10px;">
+              <span class="card-pill">Par {c.par}</span>
+              <span class="card-pill">{c.yards.toLocaleString()} yds</span>
+              <span class="card-pill">{c.designer}</span>
+            </div>
+            <h3 style="font-family:'Playfair Display',serif;font-size:clamp(16px,1.4vw,20px);color:#ffffff;text-shadow:0 1px 8px rgba(0,0,0,0.5);margin:0 0 12px;line-height:1.2;">{c.name}</h3>
             <a href={`/portfolio/${c.slug === "nakoma-dragon" ? "nakoma-dragon-golf-packages" : c.slug + "-golf-packages"}`} class="link-gold-sm">View course →</a>
           </div>
         </div>
@@ -659,6 +663,20 @@ const homeFaqSchema = {
   .card-gradient {
     position: absolute; inset: 0;
     background: linear-gradient(to top, rgba(13,26,14,0.92) 0%, transparent 55%);
+  }
+  .card-pill {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.9);
+    background: rgba(0,0,0,0.45);
+    border: 1px solid rgba(255,255,255,0.18);
+    backdrop-filter: blur(8px);
+    padding: 3px 9px;
+    border-radius: 100px;
+    white-space: nowrap;
   }
   .card-gradient-heavy {
     position: absolute; inset: 0;
