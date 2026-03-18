@@ -20,7 +20,7 @@ const allCoursesSchema = [
     name: 'Golf Courses in Graeagle, California',
     description: 'All 5 championship golf courses in the Graeagle area of Northern California',
     numberOfItems: 5,
-    itemListElement: courses.map((c: any, i: number) => ({
+    itemListElement: courses.map((c, i) => ({
       '@type': 'ListItem',
       position: i + 1,
       name: c.name,
@@ -116,7 +116,7 @@ const bestForList = [
 
     <!-- Course cards -->
     <div style="display:grid;gap:14px;margin-bottom:80px;">
-      {courses.map((c: any, i: number) => (
+      {courses.map((c, i) => (
         <a href={`/portfolio/${wpSlugMap[c.slug]}/`} class="course-card">
           <img src={c.hero} alt={`${c.name} Golf Course — Graeagle CA`} class="course-card-img" loading="lazy"/>
           <div style="padding:24px 28px;display:flex;flex-direction:column;justify-content:center;gap:10px;">
@@ -128,13 +128,13 @@ const bestForList = [
               <span style="font-size:20px;color:#e8a850;font-weight:700;flex-shrink:0;">{c.tier}</span>
             </div>
             <div style="display:flex;gap:20px;flex-wrap:wrap;">
-              {[`Par ${c.par}`, `${c.yards.toLocaleString()} yds`, `Slope ${c.slope}`, `Rating ${c.rating}`, c.designer, String(c.year)].map((s: string) => (
+              {[`Par ${c.par}`, `${c.yards.toLocaleString()} yds`, `Slope ${c.slope}`, `Rating ${c.rating}`, c.designer, String(c.year)].map((s) => (
                 <span style="font-size:12px;color:rgba(240,248,242,0.3);">{s}</span>
               ))}
             </div>
             {c.awards && c.awards.length > 0 && (
               <div style="display:flex;gap:8px;flex-wrap:wrap;">
-                {c.awards.slice(0,2).map((a: string) => (
+                {c.awards.slice(0,2).map((a) => (
                   <span class="award-pill">{a}</span>
                 ))}
               </div>
@@ -165,7 +165,7 @@ const bestForList = [
             </tr>
           </thead>
           <tbody>
-            {courses.map((c: any, i: number) => (
+            {courses.map((c, i) => (
               <tr>
                 <td><a href={`/portfolio/${wpSlugMap[c.slug]}/`}>{c.name}</a></td>
                 <td>{c.par}</td>
