@@ -1,5 +1,7 @@
 {
   "redirects": [
+    {"source":"/portfolio/sardine-lake/","destination":"/portfolio/sardine-lake-resort/","permanent":true},
+    {"source":"/portfolio/sardine-lake","destination":"/portfolio/sardine-lake-resort/","permanent":true},
     {
       "source": "/quote/",
       "destination": "/request-a-quote/",
