@@ -1031,7 +1031,7 @@ const diningSlugMap: Record<string, string> = {
     )}
 
     <!-- MAIN CONTENT -->
-    <div class="lod-body-grid">
+    <div style="max-width:1100px;margin:0 auto;padding:clamp(40px,6vw,64px) 5%;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(360px,100%),1fr));gap:clamp(32px,5vw,60px);align-items:start;">
 
       <!-- LEFT: Description + Amenities + Courses -->
       <div>
@@ -1042,7 +1042,7 @@ const diningSlugMap: Record<string, string> = {
         {item.highlights && (
           <div style="margin-bottom:52px;">
             <h2 style="font-family:'Playfair Display',serif;font-size:22px;color:var(--text-primary);margin:0 0 24px;font-weight:400;">What's Included</h2>
-            <div class="lod-amenities-grid">
+            <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(220px,45%),1fr));gap:12px;">
               {item.highlights.map((h: string) => (
                 <div style="display:flex;align-items:flex-start;gap:10px;padding:14px;background:rgba(28,18,8,0.04);border:1px solid rgba(28,18,8,0.06);border-radius:10px;">
                   <span style="color:var(--gold);flex-shrink:0;font-size:16px;margin-top:1px;">✓</span>
@@ -1215,7 +1215,7 @@ const diningSlugMap: Record<string, string> = {
     </section>
 
     <!-- MAIN CONTENT: 2-col layout -->
-    <div class="din-body-grid">
+    <div style="max-width:1100px;margin:0 auto;padding:clamp(40px,6vw,64px) 5%;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(320px,100%),1fr));gap:clamp(32px,5vw,56px);align-items:start;">
 
       <!-- LEFT -->
       <div>
