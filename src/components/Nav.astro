@@ -58,24 +58,49 @@ import { courses } from '../data/content.js';
   }
   #mobile-menu.open { display: flex; flex-direction: column; }
 
+  /* Nav tagline text beside logo */
+  .nav-tagline-text {
+    display: none;
+    flex-direction: column;
+    gap: 2px;
+    line-height: 1;
+  }
+  .nav-tagline-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--nav-text);
+  }
+  .nav-tagline-sub {
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #a06c30;
+  }
+
   @media (max-width: 860px) {
     #desktop-nav, #nav-cta { display: none !important; }
     #mobile-toggle { display: flex !important; }
+    .nav-tagline-text { display: flex; }
   }
 </style>
 
 <nav id="sitenav" style="padding: 0 36px; height: 68px; display: flex; align-items: center; justify-content: space-between; gap: 24px;">
 
   <!-- REAL LOGO from golfgraeagle.com -->
-  <a href="/" style="display:flex;align-items:center;flex-shrink:0;z-index:1;text-decoration:none;" aria-label="Golf Graeagle — Home">
+  <a href="/" style="display:flex;align-items:center;gap:10px;flex-shrink:0;z-index:1;text-decoration:none;" aria-label="Golf Graeagle — Graeagle Golf Packages">
     <img
       src="/logo.png"
-      alt="Golf Graeagle"
-      style="height:44px;width:auto;display:block;object-fit:contain;"
-      onerror="this.style.display='none';this.nextElementSibling.style.display='block';"
+      alt="Golf Graeagle — Graeagle Golf Packages"
+      style="height:44px;width:auto;display:block;object-fit:contain;flex-shrink:0;"
+      onerror="this.style.display='none';"
     />
-    <!-- Fallback text logo if image fails -->
-    <span style="display:none;font-family:'Playfair Display',serif;font-size:20px;color:var(--nav-text);letter-spacing:0.01em;">Golf <span style="color:#a06c30;">Graeagle</span></span>
+    <!-- Tagline text — hidden on desktop (nav fills space), visible on mobile -->
+    <span class="nav-tagline-text">
+      <span class="nav-tagline-name">Golf Graeagle</span>
+      <span class="nav-tagline-sub">Sierra Nevada Golf Experts</span>
+    </span>
   </a>
 
   <!-- Desktop nav -->

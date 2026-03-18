@@ -153,7 +153,7 @@ function TestimonialCard({ trip }: { trip: Trip }) {
       )}
 
       {/* Group info */}
-      <div style={{ display: "flex", flexWrap: "wrap", gap: 8, alignItems: "center" }}>
+      <div style={{ display: "flex", flexWrap: "wrap", gap: "4px 8px", alignItems: "center" }}>
         <span style={{
           fontSize: 12,
           fontWeight: 700,
@@ -161,25 +161,18 @@ function TestimonialCard({ trip }: { trip: Trip }) {
         }}>
           {trip.groupName || "Golf Group"}
         </span>
-        <span style={{ fontSize: 11, color: "rgba(28,18,8,0.35)" }}>·</span>
         {pax && (
           <span style={{ fontSize: 11, color: "rgba(28,18,8,0.5)", fontWeight: 600 }}>
-            {pax} golfers
+            · {pax} golfers
           </span>
         )}
         {when && (
-          <>
-            <span style={{ fontSize: 11, color: "rgba(28,18,8,0.35)" }}>·</span>
-            <span style={{ fontSize: 11, color: "rgba(28,18,8,0.5)" }}>{when}</span>
-          </>
+          <span style={{ fontSize: 11, color: "rgba(28,18,8,0.5)" }}>· {when}</span>
         )}
         {price && (
-          <>
-            <span style={{ fontSize: 11, color: "rgba(28,18,8,0.35)" }}>·</span>
-            <span style={{ fontSize: 11, color: "#1a7a40", fontWeight: 700 }}>
-              ${new Intl.NumberFormat("en-US", { maximumFractionDigits: 0 }).format(price)}/person
-            </span>
-          </>
+          <span style={{ fontSize: 11, color: "#1a7a40", fontWeight: 700 }}>
+            · ${new Intl.NumberFormat("en-US", { maximumFractionDigits: 0 }).format(price)}/pp
+          </span>
         )}
       </div>
 
@@ -253,7 +246,7 @@ export default function Testimonials({
       <div style={{ maxWidth: 1100, margin: "0 auto" }}>
 
         {/* Header */}
-        <div style={{ marginBottom: 28, display: "flex", alignItems: "flex-end", justifyContent: "space-between", flexWrap: "wrap", gap: 12 }}>
+        <div style={{ marginBottom: 28, display: "flex", alignItems: "flex-start", justifyContent: "space-between", flexWrap: "wrap", gap: 12 }}>
           <div>
             <div style={{
               fontSize: 10,
@@ -281,29 +274,24 @@ export default function Testimonials({
           <div style={{
             display: "flex",
             alignItems: "center",
-            gap: 10,
+            gap: 8,
             background: "#fff",
             border: "1px solid rgba(232,168,80,0.3)",
             borderRadius: 100,
-            padding: "8px 16px",
+            padding: "8px 14px",
+            flexShrink: 0,
+            maxWidth: "100%",
           }}>
             <Stars count={5} />
             <span style={{ fontSize: 13, fontWeight: 700, color: "#1c1208" }}>{avgStars}</span>
-            <span style={{ fontSize: 11, color: "rgba(28,18,8,0.4)" }}>
-              from {trips.length} verified {trips.length === 1 ? "group" : "groups"} · {totalPax} golfers
+            <span style={{ fontSize: 11, color: "rgba(28,18,8,0.4)", whiteSpace: "nowrap" }}>
+              {trips.length} {trips.length === 1 ? "group" : "groups"} · {totalPax} golfers
             </span>
           </div>
         </div>
 
-        {/* Cards grid */}
-        <div style={{
-          display: "grid",
-          gridTemplateColumns: `repeat(${Math.min(trips.length, 3)}, 1fr)`,
-          gap: 16,
-        }}
-        // Responsive via inline media not supported — use CSS class instead
-        className="testimonials-grid"
-        >
+        {/* Cards grid — responsive via .testimonials-grid CSS class in global.css */}
+        <div className="testimonials-grid">
           {trips.map((trip, i) => (
             <TestimonialCard key={trip.id || i} trip={trip} />
           ))}
