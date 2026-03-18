@@ -553,4 +553,5 @@ section.hero-section,
 @media (max-width: 580px) { .rt-grid { grid-template-columns: 1fr !important; } }
 
 /* ── RelatedTrips carousel — hide scrollbar, keep scroll */
+.rt-section { overflow: hidden; }
 .rt-carousel::-webkit-scrollbar { display: none; }
