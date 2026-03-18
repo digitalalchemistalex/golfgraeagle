@@ -5,10 +5,10 @@ const API_URL = "/api/trips";
 const CADDIE_URL = "https://tripscaddie.golfthehighsierra.com";
 
 const STOCK = [
-  "https://images.unsplash.com/photo-1587174486073-ae5e5cff23aa?auto=format&fit=crop&q=80&w=800",
-  "https://images.unsplash.com/photo-1535131749006-b7f58c99034b?auto=format&fit=crop&q=80&w=800",
-  "https://images.unsplash.com/photo-1592919505780-303950717480?auto=format&fit=crop&q=80&w=800",
-  "https://images.unsplash.com/photo-1611374243147-44a702c2d44c?auto=format&fit=crop&q=80&w=800",
+  "/wp-images/unsplash-golf-fairway.jpg",
+  "/wp-images/unsplash-golf-sunset.jpg",
+  "/wp-images/unsplash-golf-course.jpg",
+  "/wp-images/unsplash-golf-aerial.jpg",
 ];
 
 // Portfolio URL map — Graeagle courses + lodging

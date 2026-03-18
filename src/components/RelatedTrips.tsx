@@ -67,9 +67,9 @@ interface Trip {
 
 /* ─── HELPERS ─── */
 const STOCK = [
-  "https://images.unsplash.com/photo-1587174486073-ae5e5cff23aa?auto=format&fit=crop&q=80&w=800",
-  "https://images.unsplash.com/photo-1535131749006-b7f58c99034b?auto=format&fit=crop&q=80&w=800",
-  "https://images.unsplash.com/photo-1592919505780-303950717480?auto=format&fit=crop&q=80&w=800",
+  "/wp-images/unsplash-golf-fairway.jpg",
+  "/wp-images/unsplash-golf-sunset.jpg",
+  "/wp-images/unsplash-golf-course.jpg",
 ];
 function pickImage(trip: Trip): string {
   const url = trip.imageUrl?.trim() || "";
