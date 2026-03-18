@@ -849,9 +849,14 @@ const diningSlugMap: Record<string, string> = {
   }
 
   @media (max-width: 640px) {
+    /* Hide the 5-course strip — wastes vertical space on mobile */
+    .ch-strip { display: none; }
     .ch-infobar-aside { display: none; }
     .gallery-swipe-hint { display: block !important; }
     .gallery-count-desktop { display: none !important; }
+    /* Tighten section spacing on mobile */
+    .course-body { padding: 32px clamp(16px,5%,32px) 48px; }
+    .reveal { margin-bottom: 36px !important; }
   }
 
   @media (max-width: 900px) {
