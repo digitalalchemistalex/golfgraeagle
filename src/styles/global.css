@@ -450,7 +450,7 @@ body {
    ─────────────────────────────────────────────────────────────────── */
 :root {
   /* Default: LIGHT theme (all pages use light-page class) */
-  --page-bg:       #f8f4ee;
+  --page-bg:       #f0ece3;
   --surface:       #ffffff;
   --surface-2:     #f3ede4;
   --surface-3:     #ede6da;
@@ -480,7 +480,7 @@ body {
    index.astro, portfolio/[slug].astro
    ─────────────────────────────────────────────────────────────────── */
 .light-page {
-  --page-bg:       #f8f4ee;
+  --page-bg:       #f0ece3;
   --surface:       #ffffff;
   --surface-2:     #f3ede4;
   --surface-3:     #ede6da;
@@ -502,7 +502,7 @@ body {
   --nav-bg:        rgba(249,246,238,0.96);
   --nav-text:      #2a1c0e;
 
-  background-color: #f8f4ee;
+  background-color: #f0ece3;
   color: #1c1208;
 }
 
@@ -510,7 +510,7 @@ body {
 .hero-light-exempt,
 section.hero-section,
 [data-hero] {
-  color: #f8f4ee;
+  color: #f0ece3;
 }
 [data-hero] h1,
 [data-hero] p,
