@@ -170,6 +170,14 @@ export const courses = [
     bestFor: 'First-timers, mixed-handicap groups, value rounds',
     facilities: ['Pro Shop', 'Full-Service Restaurant', 'Snack Bar', 'Driving Range', 'Putting Green'],
     onSiteDining: ['meadows-restaurant'],
+    faqs: [
+      { q: 'What are the specs for Graeagle Meadows Golf Course?', a: 'Graeagle Meadows plays 6,759 yards, par 72, with a slope of 120 and course rating of 70.7. It is the most approachable of the five Graeagle courses.' },
+      { q: 'Who designed Graeagle Meadows Golf Course?', a: 'Ellis Van Gorder designed Graeagle Meadows. It opened in 1968, making it the original championship course in the Graeagle valley.' },
+      { q: 'Is Graeagle Meadows good for high-handicap golfers?', a: 'Yes. With a slope of 120, it is the most accessible of the five Graeagle courses and plays well for groups with mixed handicap levels.' },
+      { q: 'What facilities does Graeagle Meadows have?', a: 'The course features a pro shop, full-service restaurant, snack bar, driving range, and putting green.' },
+      { q: 'How far is Graeagle Meadows from downtown Graeagle?', a: 'Graeagle Meadows is the closest course to the village — approximately 2 minutes by car via CA-89.' },
+      { q: 'What is the best time to play Graeagle Meadows?', a: 'The course is open approximately April through November. Summer mornings offer the best conditions — cool temperatures and firm greens.' },
+    ],
   },
   {
     slug: 'whitehawk-ranch',
@@ -207,6 +215,14 @@ export const courses = [
     bestFor: 'Competitive players, award-winning scenery, serious rounds',
     facilities: ['Pro Shop', 'All-Grass Driving Range (complimentary balls)', 'Putting Green', 'Snack Bar', 'Full Bar'],
     onSiteDining: [],
+    faqs: [
+      { q: 'What are the specs for Whitehawk Ranch Golf Course?', a: 'Whitehawk Ranch plays 6,983 yards, par 71, with a slope of 132 and course rating of 72.3. It is rated among the top 20 public courses in California.' },
+      { q: 'Who designed Whitehawk Ranch?', a: 'Dick Bailey designed Whitehawk Ranch on 550 acres of pristine Mohawk Valley land. It opened in 1996.' },
+      { q: 'What awards has Whitehawk Ranch won?', a: 'Whitehawk Ranch has earned Golf Digest Top 20 in California, GolfWeek #10 Best Course You Can Play in California, and the California Golf Writers Environmental Award.' },
+      { q: 'What makes Whitehawk Ranch unique?', a: 'Twelve holes play through open meadows along streams with native wildflowers; six more climb through forested hillside terrain. The all-grass driving range includes complimentary range balls.' },
+      { q: 'Is Whitehawk Ranch good for a golf group?', a: 'Yes. The layout plays well for a range of handicaps and the course is consistently rated as one of the most enjoyable rounds in the Graeagle region.' },
+      { q: 'How far is Whitehawk Ranch from Graeagle?', a: 'Whitehawk Ranch is in Clio, CA — approximately 7 miles south of Graeagle, about a 10-minute drive via Hwy 89.' },
+    ],
   },
   {
     slug: 'plumas-pines',
@@ -243,6 +259,14 @@ export const courses = [
     bestFor: 'Shot-makers, value seekers, golfers who want a tough test',
     facilities: ['Pro Shop', 'Putting Green', 'On-Site Vacation Rentals & Condos'],
     onSiteDining: [],
+    faqs: [
+      { q: 'What are the specs for Plumas Pines Golf Resort?', a: 'Plumas Pines plays 6,504 yards, par 72, with a slope of 132 and course rating of 71.3. Despite the shorter yardage, the slope makes it a deceptively challenging round.' },
+      { q: 'Who designed Plumas Pines Golf Resort?', a: 'Homer Flint designed Plumas Pines. It opened in 1980 and is recognized as one of the top value courses in the Sierra Nevada region.' },
+      { q: 'Why is Plumas Pines considered a hidden gem?', a: 'It combines a slope of 132 with affordable green fees — making it one of the best value rounds in the Graeagle region. The tight pines demand shot-shaping that rewards precision over power.' },
+      { q: 'Can I stay on-site at Plumas Pines?', a: 'Yes. On-site vacation rentals and condos are available adjacent to the course, making it a true stay-and-play option. The Townhomes at Plumas Pines are steps from the first tee.' },
+      { q: 'What is the signature hole at Plumas Pines?', a: 'The signature 2nd hole features a challenging green complex looking west over the valley — one of the most memorable approach shots in the Graeagle area.' },
+      { q: 'How far is Plumas Pines from Graeagle?', a: 'Plumas Pines is in Graeagle — approximately 2 miles and 5 minutes from the village center via CA-89.' },
+    ],
   },
   {
     slug: 'grizzly-ranch',
@@ -274,13 +298,21 @@ export const courses = [
       '/wp-images/grizzly-ranch--1024x682.webp',
     ],
     images: [
-    '/wp-images/grizzly-ranch-.jpeg',
-    '/wp-images/grizzly-ranch--1024x682.webp'
-  ],
+      '/wp-images/grizzly-ranch-.jpeg',
+      '/wp-images/grizzly-ranch--1024x682.webp',
+    ],
     description: 'Grizzly Ranch Golf Club, designed by Bob Cupp and opened in 2005, is the region\'s most demanding course. At 7,411 yards with a slope of 140 and course rating of 74.9, it plays every inch of its length through dramatic mountain terrain with significant elevation changes, exposed ridgeline holes, and panoramic Sierra views. Semi-private — access is through packages.',
     bestFor: 'Scratch and low-handicap golfers, bucket-list rounds, groups wanting a serious challenge',
     facilities: ['Pro Shop', '30-Station Natural Turf Practice Range', 'Putting Green', 'Chipping Area', 'Bunker Practice Area'],
     onSiteDining: ['grizzly-grill'],
+    faqs: [
+      { q: 'What are the specs for Grizzly Ranch Golf Club?', a: 'Grizzly Ranch plays 7,411 yards, par 72, with a slope of 140 and course rating of 74.9. It is ranked among Golf Digest\'s Top 100 Greatest Public Courses in the US.' },
+      { q: 'Who designed Grizzly Ranch Golf Club?', a: 'Bob Cupp designed Grizzly Ranch. It opened in 2005 and earned Golf Digest Top 100 Greatest Public Courses in the United States in 2021.' },
+      { q: 'Is Grizzly Ranch open to the public?', a: 'Grizzly Ranch is semi-private. Public access is available through golf packages — GolfGraeagle can secure guaranteed tee times as part of a stay-and-play package.' },
+      { q: 'How difficult is Grizzly Ranch?', a: 'With a slope of 140 and 7,411 yards from the back tees, it is the most demanding course in the Graeagle region. Elevation changes range from 4,800 to 5,400 feet across the course.' },
+      { q: 'What facilities does Grizzly Ranch have?', a: 'Grizzly Ranch features a pro shop, 30-station natural turf practice range, putting green, chipping area, and bunker practice area. The Grizzly Grill is on-site for dining.' },
+      { q: 'How far is Grizzly Ranch from Graeagle?', a: 'Grizzly Ranch is in Portola, CA — approximately 11 miles east of Graeagle, about 18 minutes via Hwy 70.' },
+    ],
   },
   {
     slug: 'nakoma-dragon',
@@ -317,6 +349,14 @@ export const courses = [
     bestFor: 'Architecture enthusiasts, bucket-list golfers, those seeking the most unique experience in Northern California',
     facilities: ['Frank Lloyd Wright Clubhouse', 'Pro Shop', 'Driving Range', 'Heated Pool', '2 Hot Tubs', 'Spa', 'Gym', 'Arcade / Game Room'],
     onSiteDining: ['fifty44-restaurant', 'middle-fork-bistro'],
+    faqs: [
+      { q: 'What are the specs for Nakoma — The Dragon golf course?', a: 'The Dragon plays 7,015 yards, par 72, with a slope of 147 and course rating of 73.4. It is the most technically demanding course in the Graeagle region.' },
+      { q: 'Who designed the Nakoma Dragon golf course?', a: 'Robin Nelson and Neil Haworth designed The Dragon. Nelson is also the creator of the famous Dunes at Mauna Lani in Hawaii. The course opened in 1998.' },
+      { q: 'What is the Frank Lloyd Wright connection at Nakoma?', a: 'The Nakoma clubhouse is the only golf clubhouse in the world designed by Frank Lloyd Wright. It houses the Fifty44 Restaurant, bar, and pro shop.' },
+      { q: 'What accolades has the Nakoma Dragon received?', a: 'The Dragon debuted on Golf World\'s America\'s Top 75 Courses list. It is consistently ranked among the top golf experiences in Northern California.' },
+      { q: 'Can I stay on-site at Nakoma?', a: 'Yes. The Inn at Nakoma offers 42 rooms and suites steps from the first tee, with resort amenities including a heated pool, two hot tubs, spa, and gym.' },
+      { q: 'How far is Nakoma from Graeagle?', a: 'Nakoma Resort is in Clio, CA — approximately 8 miles from Graeagle, about 14 minutes via Hwy 89 South.' },
+    ],
   },
 ];
 
@@ -592,6 +632,11 @@ export const dining = [
     coordinates: { lat: 39.7775, lng: -120.6210 },
     location: 'River Pines Resort, off Hwy 70',
     hero: '/wp-images/unnamed-20.webp',
+    images: [
+      '/wp-images/unnamed-20.webp',
+      '/wp-images/Roadhouse-at-River-Pines-.jpg',
+      '/wp-images/Roadhouse-at-River-Pines--1000x714.jpg',
+    ],
   },
   {
     slug: 'graeagle-restaurant',
@@ -604,6 +649,9 @@ export const dining = [
     coordinates: { lat: 39.75069, lng: -120.63224 },
     location: 'Historic Box Factory Mill, downtown Graeagle',
     hero: '/wp-images/unnamed-10.webp',
+    images: [
+      '/wp-images/unnamed-10.webp',
+    ],
   },
   {
     slug: 'meadows-restaurant',
@@ -634,9 +682,6 @@ export const dining = [
     images: [
       '/wp-images/Sierra-SmokeShow-.jpg',
     ],
-  images: [
-    '/wp-images/Graeagle-Meadows-Golf-Course-Restaurant.jpg'
-  ],
   },
   {
     slug: 'gumbas',
@@ -665,6 +710,13 @@ export const dining = [
     location: '545 Mohawk Hwy, Graeagle, CA 96103',
     phone: '(530) 836-2121',
     hero: '/wp-images/Cuccias.png',
+    images: [
+      '/wp-images/Cuccias.png',
+      '/wp-images/unnamed.webp',
+      '/wp-images/unnamed2.jpg',
+      '/wp-images/unnamed1.jpg',
+      '/wp-images/unnamed3.jpg',
+    ],
   },
   // ─── Breweries & Bars ───────────────────────────────────
   {
@@ -685,10 +737,8 @@ export const dining = [
       '/wp-images/interior.jpg',
       '/wp-images/brewery-bar.jpg',
       '/wp-images/brewery-pool-table.jpg',
+      '/wp-images/eureka-peak-brewing-company.jpg',
     ],
-  images: [
-    '/wp-images/eureka-peak-brewing-company.jpg'
-  ],
   },
   {
     slug: 'brewing-lair',
@@ -700,7 +750,10 @@ export const dining = [
     highlights: ['15 acres untouched Sierra forest', '15-barrel craft brewery', 'Outdoor lawn games vibe', 'Bring layers — cools fast in the evening', 'Off Hwy 70 near Blairsden'],
     coordinates: { lat: 39.78427, lng: -120.61188 },
     location: 'Off Hwy 70 near Blairsden, 5 min from Graeagle',
-    hero: '/wp-images/DJI_0006-Edit.jpg',
+    hero: '/wp-images/brews-and-bars.jpeg',
+    images: [
+      '/wp-images/brews-and-bars.jpeg',
+    ],
   },
   {
     slug: 'mohawk-tavern',
@@ -714,6 +767,9 @@ export const dining = [
     location: '999 Johnsville Rd, Graeagle, CA 96103',
     phone: '(530) 836-1241',
     hero: 'https://grizzlyranchgolfclub.com/wp-content/uploads/2025/10/2dfdf8_95fd67b644d04d7e8f13da42bb9808f6mv2.jpg',
+    images: [
+      'https://grizzlyranchgolfclub.com/wp-content/uploads/2025/10/2dfdf8_95fd67b644d04d7e8f13da42bb9808f6mv2.jpg',
+    ],
   },
   {
     slug: 'knotty-pine',
@@ -727,6 +783,10 @@ export const dining = [
     location: '7426 CA-89, Graeagle, CA 96103',
     phone: '(530) 836-2536',
     hero: 'https://images.unsplash.com/photo-1470337458703-46ad1756a187?w=1200&q=80&auto=format',
+    images: [
+      'https://images.unsplash.com/photo-1470337458703-46ad1756a187?w=1200&q=80&auto=format',
+      '/wp-images/Longboards-Bar-and-Grill.jpg',
+    ],
   },
   // ─── Quick Bites ────────────────────────────────────────
   {
