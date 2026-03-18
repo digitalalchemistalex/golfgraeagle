@@ -303,9 +303,12 @@ export default function TripsHub() {
     fetch(`${API_URL}?t=${Date.now()}`)
       .then(r => r.json())
       .then((data: Trip[]) => {
-        // Filter to Graeagle region only
-        const graeagle = data.filter(t => t.region?.toLowerCase() === "graeagle");
-        // Sort by price ascending by default
+        const GRAEAGLE_COURSES = ["grizzly", "nakoma", "whitehawk", "plumas pines", "graeagle meadows", "graeagle"];
+        const graeagle = data.filter(t => {
+          if ((t.region || "").toLowerCase().includes("graeagle")) return true;
+          const courses = (t.courses || []).join(" ").toLowerCase();
+          return GRAEAGLE_COURSES.some(k => courses.includes(k));
+        });
         graeagle.sort((a, b) => (a.pricePerPerson || 9999) - (b.pricePerPerson || 9999));
         setAllTrips(graeagle);
         setLoading(false);
@@ -319,18 +322,25 @@ export default function TripsHub() {
     const params = new URLSearchParams(window.location.search);
     const id = params.get("highlight");
     if (!id) return;
-    const el = document.getElementById(`trip-${id}`);
-    if (!el) return;
-    setTimeout(() => {
-      el.scrollIntoView({ behavior: "smooth", block: "center" });
-      el.style.transition = "box-shadow 0.4s, outline 0.4s";
-      el.style.outline = "2px solid #e8a850";
-      el.style.boxShadow = "0 0 0 4px rgba(232,168,80,0.25)";
-      setTimeout(() => {
-        el.style.outline = "";
-        el.style.boxShadow = "0 2px 16px rgba(0,0,0,0.05)";
-      }, 2500);
-    }, 300);
+    // Ensure we're on "all" filter so the trip is visible
+    setFilter("all");
+    // Wait for React to render the full list then scroll
+    const attempt = (tries: number) => {
+      const el = document.getElementById(`trip-${id}`);
+      if (el) {
+        el.scrollIntoView({ behavior: "smooth", block: "center" });
+        el.style.transition = "box-shadow 0.4s, outline 0.4s";
+        el.style.outline = "2px solid #e8a850";
+        el.style.boxShadow = "0 0 0 4px rgba(232,168,80,0.25)";
+        setTimeout(() => {
+          el.style.outline = "";
+          el.style.boxShadow = "0 2px 16px rgba(0,0,0,0.05)";
+        }, 2500);
+      } else if (tries > 0) {
+        setTimeout(() => attempt(tries - 1), 300);
+      }
+    };
+    setTimeout(() => attempt(5), 400);
   }, [allTrips]);
 
   const filtered = allTrips.filter(t => {
