@@ -363,10 +363,10 @@ section.hero-section,
 .bl-meta { font-size:12px; color:rgba(248,250,248,0.35); margin:0; }
 
 /* Layout — bg uses page token so it matches body */
-.bl-wrap { max-width:1100px; margin:0 auto; padding:60px clamp(16px,4vw,48px) 0; display:grid; grid-template-columns:1fr 260px; gap:48px; align-items:start; background:var(--page-bg); }
+.bl-wrap { max-width:860px; margin:0 auto; padding:60px clamp(16px,4vw,48px) 0; background:var(--page-bg); }
 .bl-full { max-width:860px; margin:0 auto; padding:0 clamp(16px,4vw,48px); background:var(--page-bg); }
 .bl-full-last { padding-bottom:100px; }
-@media (max-width: 800px) { .bl-wrap { grid-template-columns:1fr; gap:32px; } .bl-sidebar { position:static !important; } }
+@media (max-width: 800px) { .bl-wrap { padding-top:40px; } }
 
 /* Article panels */
 .bl-article { min-width:0; }
@@ -487,19 +487,7 @@ section.hero-section,
 .bl-cta-links a:hover { color:var(--gold-light); }
 
 /* Sidebar */
-.bl-sidebar { display:flex; flex-direction:column; gap:16px; position:sticky; top:100px; }
-.bl-sidebar-card { background:var(--surface); border:1px solid var(--border); border-radius:16px; padding:22px; box-shadow:0 2px 12px rgba(0,0,0,0.04); }
-.bl-sidebar-title { font-size:13px; font-weight:800; color:var(--green-dark); text-transform:uppercase; letter-spacing:.06em; margin-bottom:12px; }
-.bl-sidebar-card p { font-size:13px; color:var(--text-muted); line-height:1.6; margin:0 0 16px; }
-.bl-sidebar-btn { display:block; background:var(--gold-light); color:#0d1a0e; font-size:13px; font-weight:700; padding:12px 20px; border-radius:100px; text-decoration:none; text-align:center; transition:all .2s; }
-.bl-sidebar-btn:hover { background:var(--gold-hover); }
-.bl-sidebar-course { display:block; padding:10px 12px; background:var(--surface-2); border-radius:8px; text-decoration:none; margin-bottom:4px; transition:background .15s; }
-.bl-sidebar-course:hover { background:var(--surface-3); }
-.bl-sidebar-course-name { font-size:13px; font-weight:600; color:var(--green-dark); margin-bottom:2px; }
-.bl-sidebar-course-note { font-size:11px; color:var(--text-muted); }
-.bl-sidebar-post { display:block; font-size:13px; color:var(--text-secondary); text-decoration:none; padding:8px 0; border-bottom:1px solid var(--border-light); line-height:1.4; transition:color .15s; }
-.bl-sidebar-post:last-child { border-bottom:none; }
-.bl-sidebar-post:hover { color:var(--gold-light); }
+
 
 /* Stat row */
 .bl-stat-row { display:grid; grid-template-columns:repeat(auto-fit,minmax(80px,1fr)); gap:12px; margin:24px 0 32px; padding:24px; background:#f0f8f0; border-radius:14px; border:1px solid #c8e0c8; }
@@ -545,7 +533,6 @@ section.hero-section,
   .bl-answer-box { padding:16px 18px; }
   .bl-stat-row { padding:16px; gap:8px; }
   .bl-stat-val { font-size:24px; }
-  .bl-sidebar-card { padding:18px; }
 }
 
 /* ── RelatedTrips grid — 3 col desktop, 2 tablet, 1 mobile ── */

@@ -70,7 +70,7 @@ const breadcrumbSchema = {
       </div>
   </div>
 
-  <div class="bl-wrap">
+  <div class="bl-full" style="padding-top:0;">
     <article class="bl-article">
       <p class="bl-intro">Most Graeagle trips play 3 courses over 3 days. This is not that trip. This is the version where you push — 36 holes on the big days, 4 championship courses total, 3 nights in townhomes with fairway views, and Nakoma Dragon as the centerpiece round. We've run this exact package for a group of 24. Here's how it works and what it actually costs.</p>
 
@@ -227,38 +227,6 @@ const breadcrumbSchema = {
         </div>
       </div>
     </article>
-
-    <aside class="bl-sidebar">
-      <div class="bl-sidebar-card">
-        <div class="bl-sidebar-title">Book This Trip</div>
-        <p>4 courses, 3 nights, 36-hole days. Tell us your group size and dates.</p>
-        <a href="/request-a-quote/" class="bl-sidebar-btn btn-green-glow">Get a Quote →</a>
-      </div>
-      <div class="bl-sidebar-card">
-        <div class="bl-sidebar-title">The 4 Courses</div>
-        <div class="bl-sidebar-links">
-          {[
-            { name: 'Nakoma Dragon', slug: 'nakoma-dragon-golf-packages', note: 'Slope 147 · FLW Clubhouse' },
-            { name: 'Grizzly Ranch', slug: 'grizzly-ranch-golf-packages', note: 'Slope 140 · Golf Digest Top 100' },
-            { name: 'Whitehawk Ranch', slug: 'whitehawk-ranch-golf-packages', note: 'Slope 132 · Top 20 CA' },
-            { name: 'Plumas Pines', slug: 'plumas-pines-golf-packages', note: 'Slope 132 · Best Value' },
-          ].map(c => (
-            <a href={`/portfolio/${c.slug}/`} class="bl-sidebar-course">
-              <div class="bl-sidebar-course-name">{c.name}</div>
-              <div class="bl-sidebar-course-note">{c.note}</div>
-            </a>
-          ))}
-        </div>
-      </div>
-      <div class="bl-sidebar-card">
-        <div class="bl-sidebar-title">Related Reading</div>
-        <div class="bl-sidebar-links">
-          <a href="/blog/graeagle-golf-trip-cost/" class="bl-sidebar-post">What Does a Graeagle Trip Cost? →</a>
-          <a href="/blog/graeagle-golf-trip-itinerary-3-days/" class="bl-sidebar-post">3-Day Itinerary Guide →</a>
-          <a href="/blog/graeagle-vs-lake-tahoe-golf/" class="bl-sidebar-post">Graeagle vs Lake Tahoe →</a>
-        </div>
-      </div>
-    </aside>
   </div>
 
   <RelatedTrips client:load slug="graeagle-meadows" type="course" showAll={true} max={4} />

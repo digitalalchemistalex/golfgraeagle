@@ -67,7 +67,7 @@ const breadcrumbSchema = {
       </div>
   </div>
 
-  <div class="bl-wrap">
+  <div class="bl-full" style="padding-top:0;">
     <article class="bl-article">
       <p class="bl-intro">Most golf destinations can't absorb a 50-person group without turning into chaos — one course, one parking lot, one very annoyed foursome playing in front of you. Graeagle doesn't have that problem. Five championship courses within 25 minutes of each other means you can split a large group across venues, keep everyone playing simultaneously, and reunite for dinner without it feeling like a logistics operation. Here's exactly how it works, using a real 52-person trip as the model.</p>
 
@@ -192,38 +192,6 @@ const breadcrumbSchema = {
         </div>
       </div>
     </article>
-
-    <aside class="bl-sidebar">
-      <div class="bl-sidebar-card">
-        <div class="bl-sidebar-title">Get a Group Quote</div>
-        <p>We specialize in groups of 20–100. One coordinator, one invoice, tee times locked across all 5 courses.</p>
-        <a href="/request-a-quote/" class="bl-sidebar-btn btn-green-glow">Request a Quote →</a>
-      </div>
-      <div class="bl-sidebar-card">
-        <div class="bl-sidebar-title">Best Courses for Large Groups</div>
-        <div class="bl-sidebar-links">
-          {[
-            { name: 'Plumas Pines', slug: 'plumas-pines-golf-packages', note: 'Most group-friendly' },
-            { name: 'Whitehawk Ranch', slug: 'whitehawk-ranch-golf-packages', note: 'Crowd favorite' },
-            { name: 'Grizzly Ranch', slug: 'grizzly-ranch-golf-packages', note: 'Golf Digest Top 100' },
-            { name: 'Graeagle Meadows', slug: 'graeagle-meadows-golf-packages', note: 'Fast-playing' },
-          ].map(c => (
-            <a href={`/portfolio/${c.slug}/`} class="bl-sidebar-course">
-              <div class="bl-sidebar-course-name">{c.name}</div>
-              <div class="bl-sidebar-course-note">{c.note}</div>
-            </a>
-          ))}
-        </div>
-      </div>
-      <div class="bl-sidebar-card">
-        <div class="bl-sidebar-title">Related Reading</div>
-        <div class="bl-sidebar-links">
-          <a href="/blog/corporate-golf-outing-graeagle/" class="bl-sidebar-post">Corporate Golf Outings →</a>
-          <a href="/blog/graeagle-golf-trip-cost/" class="bl-sidebar-post">What Does a Graeagle Trip Cost? →</a>
-          <a href="/blog/graeagle-golf-trip-itinerary-3-days/" class="bl-sidebar-post">3-Day Itinerary Guide →</a>
-        </div>
-      </div>
-    </aside>
   </div>
 
   <RelatedTrips client:load slug="graeagle-meadows" type="course" showAll={true} max={4} />

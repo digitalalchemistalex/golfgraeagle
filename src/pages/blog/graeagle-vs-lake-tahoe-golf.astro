@@ -67,7 +67,7 @@ const breadcrumbSchema = {
       </div>
   </div>
 
-  <div class="bl-wrap">
+  <div class="bl-full" style="padding-top:0;">
     <article class="bl-article">
       <p class="bl-intro">Most golfers planning a Northern California mountain trip type "Lake Tahoe golf" into Google by default. It's what they know. But if you talk to the golfers who've actually played both regions — and we have, for 20+ years — the conversation shifts pretty fast. Here's the unfiltered comparison.</p>
 
@@ -187,41 +187,6 @@ const breadcrumbSchema = {
         </div>
       </div>
     </article>
-
-    <aside class="bl-sidebar">
-      <div class="bl-sidebar-card">
-        <div class="bl-sidebar-title">Plan Your Graeagle Trip</div>
-        <p>Free quote. 24-hour response. Tee times at all 5 courses guaranteed.</p>
-        <a href="/request-a-quote" class="bl-sidebar-btn">Request a Quote →</a>
-      </div>
-
-      <div class="bl-sidebar-card">
-        <div class="bl-sidebar-title">The 5 Courses</div>
-        <div class="bl-sidebar-links">
-          {[
-            { name: 'Graeagle Meadows', slug: 'graeagle-meadows', note: 'Slope 120 · Most accessible' },
-            { name: 'Whitehawk Ranch', slug: 'whitehawk-ranch', note: 'Slope 132 · Top 20 CA' },
-            { name: 'Plumas Pines', slug: 'plumas-pines', note: 'Slope 132 · Best value' },
-            { name: 'Grizzly Ranch', slug: 'grizzly-ranch', note: 'Slope 140 · Golf Digest Top 100' },
-            { name: 'Nakoma Dragon', slug: 'nakoma-dragon', note: 'Slope 147 · FLW Clubhouse' },
-          ].map(c => (
-            <a href={`/portfolio/${c.slug === "nakoma-dragon" ? "nakoma-dragon-golf-packages" : c.slug + "-golf-packages"}`} class="bl-sidebar-course">
-              <div class="bl-sidebar-course-name">{c.name}</div>
-              <div class="bl-sidebar-course-note">{c.note}</div>
-            </a>
-          ))}
-        </div>
-      </div>
-
-      <div class="bl-sidebar-card">
-        <div class="bl-sidebar-title">Related Reading</div>
-        <div class="bl-sidebar-links">
-          <a href="/blog/how-to-plan-graeagle-golf-trip" class="bl-sidebar-post">How to Plan a Graeagle Golf Trip →</a>
-          <a href="/blog/best-time-to-golf-graeagle" class="bl-sidebar-post">Best Time to Golf in Graeagle →</a>
-          <a href="/blog/graeagle-golf-trip-itinerary-3-days" class="bl-sidebar-post">3-Day Graeagle Itinerary →</a>
-        </div>
-      </div>
-    </aside>
   </div>
 
   <RelatedTrips client:load slug="graeagle-meadows" type="course" showAll={true} max={3} />
