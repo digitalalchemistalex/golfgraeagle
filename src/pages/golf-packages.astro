@@ -6,247 +6,509 @@ import Footer from '../components/Footer.astro';
 import RelatedTrips from '../components/RelatedTrips.tsx';
 
 const title = "Graeagle Golf Packages — Tee Times, Lodging & Itineraries | GolfGraeagle.com";
-const description = "Graeagle golf packages from $299 per golfer. Custom stay-and-play packages at 5 championship courses — Grizzly Ranch, Nakoma Dragon, Whitehawk Ranch, Plumas Pines, and Graeagle Meadows. Free quote in 24 hours.";
+const description = "Graeagle golf packages from $620/golfer — real pricing from 76 completed trips. Custom stay-and-play packages at 5 championship courses. Free quote in 24 hours.";
 const slug = "golf-packages";
 
 const faqSchema = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
+  "@context": "https://schema.org", "@type": "FAQPage",
   "mainEntity": [
-    { "@type": "Question", "name": "What is included in a Graeagle golf package?", "acceptedAnswer": { "@type": "Answer", "text": "A GolfGraeagle package includes guaranteed tee times at your chosen courses, lodging coordination, and a day-by-day itinerary. Dining reservations are available on request. Packages start from $299 per golfer." } },
-    { "@type": "Question", "name": "How much do Graeagle golf packages cost?", "acceptedAnswer": { "@type": "Answer", "text": "Graeagle golf packages range from $379 to $1,705 per person based on real completed trips. A typical 3-night, 3-course package for a group of 12 runs $620–$850 per golfer. All pricing is available in the TripsCaddie archive at golfgraeagle.com/trips/." } },
-    { "@type": "Question", "name": "How many courses can I play in a Graeagle golf package?", "acceptedAnswer": { "@type": "Answer", "text": "GolfGraeagle can book tee times at any combination of the 5 Graeagle courses. A 2-night package typically covers 2 courses. A 3-night covers 3–4. A 5-night trip allows all 5. Most groups play 3–4 courses on a standard trip." } },
-    { "@type": "Question", "name": "Can I see real pricing from past Graeagle golf packages?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. The TripsCaddie archive at golfgraeagle.com/trips/ shows real pricing from completed group trips — course combinations, nights, group sizes, and price per person. 76 real packages from $379 to $1,705 per person." } },
-    { "@type": "Question", "name": "How do I book a Graeagle golf package?", "acceptedAnswer": { "@type": "Answer", "text": "Submit a quote request at golfgraeagle.com/request-a-quote/ with your dates, group size, and which courses interest you. GolfGraeagle responds within 24 hours with a custom package proposal." } }
+    { "@type": "Question", "name": "What is included in a Graeagle golf package?", "acceptedAnswer": { "@type": "Answer", "text": "A GolfGraeagle package includes guaranteed tee times at your chosen courses, lodging coordination, and a day-by-day itinerary. Dining reservations available on request. Packages from $620 per golfer." } },
+    { "@type": "Question", "name": "How much do Graeagle golf packages cost?", "acceptedAnswer": { "@type": "Answer", "text": "Real completed Graeagle golf packages range from $620 to $1,705 per person. A typical 2-night, 3-course package for a group of 12–24 runs $620–$875 per golfer. All pricing comes from real booked trips in the TripsCaddie archive." } },
+    { "@type": "Question", "name": "How many courses can I play in a Graeagle golf package?", "acceptedAnswer": { "@type": "Answer", "text": "Any combination of the 5 Graeagle courses. A 2-night package typically covers 2–3 courses. A 3-night covers 3–4. Most groups play 3 courses across 2–3 days." } },
+    { "@type": "Question", "name": "Can I see real pricing from past Graeagle golf packages?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Browse 76 real completed packages at golfgraeagle.com/trips/ — course combinations, nights, group sizes, and price per person. Prices range from $620 to $1,705 per person." } },
+    { "@type": "Question", "name": "How do I book a Graeagle golf package?", "acceptedAnswer": { "@type": "Answer", "text": "Submit a quote request with your dates, group size, and courses you want to play. GolfGraeagle responds within 24 hours with a custom proposal." } }
   ]
 };
-
 const breadcrumbSchema = {
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
+  "@context": "https://schema.org", "@type": "BreadcrumbList",
   "itemListElement": [
     { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://golfgraeagle.com" },
     { "@type": "ListItem", "position": 2, "name": "Golf Packages", "item": "https://golfgraeagle.com/golf-packages/" }
   ]
 };
-
-const tiers = [
-  {
-    name: 'Value',
-    range: '$379–$649',
-    nights: '2–3',
-    courses: '2–3',
-    lodging: 'River Pines Resort or Townhomes',
-    examples: ['Graeagle Meadows + Plumas Pines + Whitehawk Ranch', 'Whitehawk Ranch + Grizzly Ranch'],
-    best: 'First-time Graeagle groups, budget-conscious trips',
-  },
-  {
-    name: 'Standard',
-    range: '$649–$999',
-    nights: '3–4',
-    courses: '3–4',
-    lodging: 'River Pines Resort or Chalet View Lodge',
-    examples: ['Whitehawk + Grizzly Ranch + Nakoma Dragon', '4 courses, 3 nights, group of 12'],
-    best: 'Most golf groups — the sweet spot for value and experience',
-    highlight: true,
-  },
-  {
-    name: 'Premium',
-    range: '$999–$1,705',
-    nights: '4–5',
-    courses: 'All 5',
-    lodging: 'The Inn at Nakoma or Chalet View Lodge',
-    examples: ['All 5 courses, 5 nights, Inn at Nakoma', 'Nakoma Dragon + Grizzly Ranch + Whitehawk + Plumas + Meadows'],
-    best: 'Bucket-list trips, anniversary outings, premium groups',
-  },
-];
-
-const courses = [
-  { name: 'Graeagle Meadows', slug: 'graeagle-meadows-golf-packages', par: 72, yards: 6759, slope: 120, tier: '$$', badge: 'Since 1968', best: 'First-timers, mixed groups' },
-  { name: 'Whitehawk Ranch', slug: 'whitehawk-ranch-golf-packages', par: 71, yards: 6983, slope: 132, tier: '$$$', badge: 'Top 20 CA', best: 'Competitive players' },
-  { name: 'Plumas Pines', slug: 'plumas-pines-golf-packages', par: 72, yards: 6504, slope: 132, tier: '$$', badge: 'Top 5 Value CA', best: 'Value seekers, shot-makers' },
-  { name: 'Grizzly Ranch', slug: 'grizzly-ranch-golf-packages', par: 72, yards: 7411, slope: 140, tier: '$$$$', badge: 'Golf Digest Top 100', best: 'Low-handicap players' },
-  { name: 'Nakoma — The Dragon', slug: 'nakoma-dragon-golf-packages', par: 72, yards: 7015, slope: 147, tier: '$$$$', badge: 'FLW Clubhouse', best: 'Bucket-list golfers' },
-];
 const orgSchema = {
   "@context": "https://schema.org",
   "@graph": [
-    {
-      "@type": ["TravelAgency","Organization"],
-      "@id": "https://golfgraeagle.com/#organization",
-      "name": "GolfGraeagle.com",
-      "url": "https://golfgraeagle.com",
-      "description": "Golf trip planning and package booking for Graeagle, California. Custom stay-and-play packages with guaranteed tee times at all 5 championship courses. Operating since 2004.",
-      "email": "mike.eskuchen@golfthehighsierra.com",
-      "foundingDate": "2004",
-      "areaServed": {"@type": "Place", "name": "Graeagle, California, Sierra Nevada"}
-    },
-    {
-      "@type": "WebPage",
-      "@id": "https://golfgraeagle.com/golf-packages/#webpage",
-      "url": "https://golfgraeagle.com/golf-packages/",
-      "name": "Graeagle Golf Packages — Tee Times, Lodging & Itineraries",
-      "description": "Custom golf packages at 5 championship courses in Graeagle, California. Grizzly Ranch, Nakoma Dragon, Whitehawk Ranch, Plumas Pines, and Graeagle Meadows.",
-      "inLanguage": "en-US",
-      "isPartOf": {"@id": "https://golfgraeagle.com/#website"},
-      "speakable": {"@type": "SpeakableSpecification", "cssSelector": ["h1",".speakable"]}
-    }
+    { "@type": ["TravelAgency","Organization"], "@id": "https://golfgraeagle.com/#organization", "name": "GolfGraeagle.com", "url": "https://golfgraeagle.com" },
+    { "@type": "WebPage", "@id": "https://golfgraeagle.com/golf-packages/#webpage", "url": "https://golfgraeagle.com/golf-packages/", "name": title, "isPartOf": { "@id": "https://golfgraeagle.com/#website" } }
   ]
 };
+
+// Real pricing from TripsCaddie — verified from live data
+const realTrips = [
+  { label: 'Most Popular', vibe: 'Value',    price: 645,  nights: 2, rounds: 2, pax: 12,  courses: 'Grizzly Ranch + Whitehawk Ranch', badge: '⭐ Most Booked' },
+  { label: 'Best Value',   vibe: 'Value',    price: 620,  nights: 2, rounds: 3, pax: 24,  courses: 'Whitehawk + Graeagle Meadows + Plumas Pines', badge: '💰 Best Value' },
+  { label: 'Group Deal',   vibe: 'Value',    price: 675,  nights: 2, rounds: 3, pax: 16,  courses: 'Whitehawk + Graeagle Meadows + Grizzly Ranch', badge: '👥 Groups' },
+  { label: 'Premium Run',  vibe: 'Premium',  price: 876,  nights: 3, rounds: 3, pax: 16,  courses: 'Plumas Pines + Whitehawk + Grizzly Ranch', badge: '🏆 Premium' },
+  { label: 'Bucket List',  vibe: 'Premium',  price: 1120, nights: 3, rounds: 4, pax: 24,  courses: 'Plumas + Grizzly Ranch + Nakoma Dragon', badge: '🐉 Dragon' },
+];
+
+const courses = [
+  { name: 'Graeagle Meadows', slug: 'graeagle-meadows-golf-packages', par: 72, yards: 6759, slope: 120, priceFrom: 620, badge: 'Since 1968', badgeColor: '#2563eb', hero: '/wp-images/graeagle-meadows-hero.webp', best: 'First-timers · Mixed groups' },
+  { name: 'Whitehawk Ranch',  slug: 'whitehawk-ranch-golf-packages',  par: 71, yards: 6983, slope: 132, priceFrom: 620, badge: 'Top 20 CA',  badgeColor: '#1a7a40', hero: '/wp-images/whitehawk-hero.webp',          best: 'Competitive · All skill levels' },
+  { name: 'Plumas Pines',     slug: 'plumas-pines-golf-packages',     par: 72, yards: 6504, slope: 132, priceFrom: 620, badge: 'Top 5 Value',badgeColor: '#b45309', hero: '/wp-images/plumas-pines-hero.webp',         best: 'Shot-makers · Value seekers' },
+  { name: 'Grizzly Ranch',    slug: 'grizzly-ranch-golf-packages',    par: 72, yards: 7411, slope: 140, priceFrom: 645, badge: 'Top 100 🏆', badgeColor: '#7c3aed', hero: '/wp-images/grizzly-ranch-hero.webp',         best: 'Low-handicap · Challenge seekers' },
+  { name: 'Nakoma — The Dragon', slug: 'nakoma-dragon-golf-packages', par: 72, yards: 7015, slope: 147, priceFrom: 876, badge: 'FLW Clubhouse', badgeColor: '#be123c', hero: '/wp-images/nakoma-dragon-feather-river.webp', best: 'Bucket-list · Architecture lovers' },
+];
 ---
-<Base
-  title={title}
-  description={description}
-  ogImage="https://golfgraeagle.com/wp-images/whitehawk-hero.webp"
+<Base title={title} description={description} ogType="website"
   schema={[orgSchema, faqSchema, breadcrumbSchema]}
-  canonical={`https://golfgraeagle.com/${slug}/`}
+  canonical="https://golfgraeagle.com/golf-packages/"
+  ogImage="https://golfgraeagle.com/wp-images/whitehawk-hero.webp"
   bodyClass="light-page"
 >
   <Nav />
 
-  <!-- HERO -->
-  <section style="position:relative;height:72vh;min-height:480px;overflow:hidden;display:flex;align-items:flex-end;">
-    <img src="/wp-images/whitehawk-hero.webp" alt="Graeagle golf packages — stay and play" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" loading="eager" fetchpriority="high"/>
-    <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(13,26,14,0.92) 0%,rgba(13,26,14,0.4) 55%,transparent 100%);"></div>
-    <div style="position:relative;z-index:2;padding:0 clamp(20px,8%,120px) clamp(40px,6vw,80px);max-width:900px;">
-      <div style="font-size:11px;color:rgba(232,168,80,0.8);letter-spacing:0.16em;text-transform:uppercase;font-weight:700;margin-bottom:16px;">5 Courses · Graeagle, California · Sierra Nevada</div>
-      <h1 style="font-family:'Playfair Display',serif;font-size:clamp(32px,5vw,60px);font-weight:500;color:#f0ece3;line-height:1.1;margin:0 0 16px;" class="speakable">
-        Graeagle Golf Packages
-      </h1>
-      <p style="font-size:clamp(15px,1.8vw,19px);color:rgba(240,236,227,0.65);max-width:580px;line-height:1.7;margin:0 0 28px;">
-        Custom packages at Golf Digest Top 100, Frank Lloyd Wright, and Top 20 California courses — from $299 per golfer. Real pricing, no guessing.
+  <!-- ═══════════════ HERO ═══════════════ -->
+  <section class="pkg-hero">
+    <div class="pkg-hero-img" style="background-image:url(/wp-images/whitehawk-hero.webp)"></div>
+    <div class="pkg-hero-overlay"></div>
+    <div class="pkg-hero-inner">
+      <div class="pkg-eyebrow reveal-up">5 Championship Courses · Sierra Nevada · Since 2004</div>
+      <h1 class="pkg-h1 reveal-up" style="animation-delay:.1s">Graeagle Golf<br/><em>Packages</em></h1>
+      <p class="pkg-subhead reveal-up" style="animation-delay:.2s">
+        Real pricing. No surprises.<br/>Tee times + lodging in one package.
       </p>
-      <div style="display:flex;gap:16px;flex-wrap:wrap;align-items:center;margin-bottom:24px;">
-        <a href="/request-a-quote/?utm_source=golfgraeagle&utm_medium=internal&utm_campaign=packages&utm_content=hero" class="btn-green-glow" style="display:inline-block;background:#2d7a3a;color:#fff;font-weight:700;font-size:15px;padding:16px 36px;border-radius:100px;text-decoration:none;">
-          Get a Free Quote →
-        </a>
-        <a href="/trips/" style="font-size:14px;color:rgba(232,168,80,0.9);font-weight:600;text-decoration:none;">See real trip pricing ↗</a>
+      <div class="pkg-hero-pills reveal-up" style="animation-delay:.3s">
+        <span class="pkg-pill">From <strong>$620</strong>/golfer</span>
+        <span class="pkg-pill">⭐ 4.8 · 672 reviews</span>
+        <span class="pkg-pill">24hr quote</span>
+        <span class="pkg-pill">76 real trips</span>
       </div>
-      <!-- Social proof strip -->
-      <div style="display:flex;gap:24px;flex-wrap:wrap;">
-        <span style="font-size:12px;color:rgba(245,240,232,0.5);">⭐ 4.8/5 · 672 reviews</span>
-        <span style="font-size:12px;color:rgba(245,240,232,0.5);">📦 76 real packages in archive</span>
-        <span style="font-size:12px;color:rgba(245,240,232,0.5);">⏱ 24hr quote response</span>
+      <div class="pkg-hero-ctas reveal-up" style="animation-delay:.4s">
+        <a href="/request-a-quote/" class="btn-green-glow pkg-cta-primary">Get a Free Quote →</a>
+        <a href="/trips/" class="pkg-cta-ghost">Browse real pricing ↗</a>
+      </div>
+    </div>
+    <div class="pkg-hero-scroll-hint">scroll</div>
+  </section>
+
+  <!-- ═══════════════ HOW IT WORKS ═══════════════ -->
+  <section class="pkg-section pkg-how">
+    <div class="pkg-container">
+      <div class="pkg-section-header reveal-up">
+        <p class="pkg-label">The process</p>
+        <h2 class="pkg-h2">Three steps.<br/>Everything handled.</h2>
+      </div>
+      <div class="pkg-steps">
+        {[
+          { n:'01', icon:'📋', title:'Tell us what you want', body:'Dates, group size, how many rounds, courses you have in mind. Takes 2 minutes.' },
+          { n:'02', icon:'⚡', title:'Get your itinerary in 24h', body:'Tee times locked, lodging matched to your group, day-by-day schedule, all-in price.' },
+          { n:'03', icon:'⛳', title:'Show up and play', body:'We handle every detail. You handle the birdies.' },
+        ].map((s, i) => (
+          <div class="pkg-step reveal-up" style={`animation-delay:${i * 0.12}s`}>
+            <div class="pkg-step-num">{s.n}</div>
+            <div class="pkg-step-icon">{s.icon}</div>
+            <h3 class="pkg-step-title">{s.title}</h3>
+            <p class="pkg-step-body">{s.body}</p>
+          </div>
+        ))}
       </div>
     </div>
   </section>
 
-  <!-- BODY -->
-  <section style="background:var(--page-bg);padding:clamp(56px,8vw,96px) clamp(20px,8%,120px);">
-    <div style="max-width:1100px;margin:0 auto;">
-
-      <!-- HOW IT WORKS -->
-      <div style="text-align:center;margin-bottom:72px;">
-        <h2 style="font-family:'Playfair Display',serif;font-size:clamp(24px,3vw,40px);color:var(--text-primary);font-weight:400;margin:0 0 48px;" class="speakable">How Graeagle golf packages work</h2>
-        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:32px;position:relative;">
-          {[
-            { step: '1', title: 'Submit a quote', body: 'Tell us your dates, group size, and which courses interest you. Takes 2 minutes.' },
-            { step: '2', title: 'Get your itinerary', body: 'Within 24 hours: tee times, lodging options, day-by-day schedule, and pricing.' },
-            { step: '3', title: 'Confirm and play', body: 'Approve the package, we lock everything in. You just show up and play.' },
-          ].map((s, i) => (
-            <div style="text-align:center;">
-              <div style="width:48px;height:48px;border-radius:50%;background:rgba(232,168,80,0.12);border:2px solid rgba(232,168,80,0.25);display:flex;align-items:center;justify-content:center;margin:0 auto 16px;font-family:'Playfair Display',serif;font-size:20px;color:var(--gold);font-weight:500;">{s.step}</div>
-              <div style="font-size:15px;font-weight:700;color:var(--text-primary);margin-bottom:8px;">{s.title}</div>
-              <p style="font-size:13px;color:rgba(28,18,8,0.5);line-height:1.65;margin:0;">{s.body}</p>
-            </div>
-          ))}
-        </div>
+  <!-- ═══════════════ REAL PRICING ═══════════════ -->
+  <section class="pkg-section pkg-pricing dark-section">
+    <div class="pkg-container">
+      <div class="pkg-section-header reveal-up" style="color:rgba(245,240,232,0.9)">
+        <p class="pkg-label" style="color:#e8a850">From the TripsCaddie archive</p>
+        <h2 class="pkg-h2" style="color:#f0ece3">Real trips.<br/>Real prices.</h2>
+        <p style="color:rgba(245,240,232,0.55);font-size:15px;max-width:440px;margin:0 auto;">These are actual completed packages — not estimates. Group size, course combination, and nights affect the final number.</p>
       </div>
 
-      <!-- PRICING TIERS -->
-      <div style="margin-bottom:80px;">
-        <h2 style="font-family:'Playfair Display',serif;font-size:clamp(22px,3vw,34px);color:var(--text-primary);font-weight:400;margin:0 0 8px;text-align:center;">Package pricing ranges</h2>
-        <p style="font-size:14px;color:rgba(28,18,8,0.4);text-align:center;margin:0 0 32px;">Based on real completed trips from the <a href="/trips/" style="color:var(--gold);">TripsCaddie archive</a></p>
-        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;">
-          {tiers.map(tier => (
-            <div style={`border:${tier.highlight ? '2px solid rgba(232,168,80,0.4)' : '1px solid rgba(28,18,8,0.08)'};border-radius:20px;padding:32px 28px;background:${tier.highlight ? 'rgba(232,168,80,0.04)' : '#fff'};position:relative;`}>
-              {tier.highlight && <div style="position:absolute;top:-14px;left:50%;transform:translateX(-50%);background:var(--gold);color:#1c1208;font-size:9px;font-weight:800;padding:5px 16px;border-radius:100px;text-transform:uppercase;letter-spacing:0.1em;white-space:nowrap;">Most Popular</div>}
-              <div style="font-size:11px;font-weight:800;color:rgba(28,18,8,0.35);text-transform:uppercase;letter-spacing:0.12em;margin-bottom:8px;">{tier.name}</div>
-              <div style="font-family:'Playfair Display',serif;font-size:28px;color:var(--text-primary);font-weight:400;margin-bottom:4px;">{tier.range}</div>
-              <div style="font-size:12px;color:rgba(28,18,8,0.4);margin-bottom:20px;">per golfer</div>
-              <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:20px;">
-                <div style="display:flex;justify-content:space-between;font-size:13px;padding:8px 0;border-bottom:1px solid rgba(28,18,8,0.05);">
-                  <span style="color:rgba(28,18,8,0.4);">Nights</span><span style="font-weight:600;color:var(--text-primary);">{tier.nights}</span>
-                </div>
-                <div style="display:flex;justify-content:space-between;font-size:13px;padding:8px 0;border-bottom:1px solid rgba(28,18,8,0.05);">
-                  <span style="color:rgba(28,18,8,0.4);">Courses</span><span style="font-weight:600;color:var(--text-primary);">{tier.courses}</span>
-                </div>
-                <div style="font-size:13px;padding:8px 0;border-bottom:1px solid rgba(28,18,8,0.05);">
-                  <span style="color:rgba(28,18,8,0.4);display:block;margin-bottom:4px;">Typical lodging</span>
-                  <span style="font-weight:600;color:var(--text-primary);font-size:12px;">{tier.lodging}</span>
-                </div>
+      <div class="pkg-trips-grid">
+        {realTrips.map((t, i) => (
+          <div class={`pkg-trip-card reveal-up ${t.vibe === 'Premium' ? 'pkg-trip-premium' : ''}`} style={`animation-delay:${i * 0.08}s`}>
+            <div class="pkg-trip-badge">{t.badge}</div>
+            <div class="pkg-trip-price">
+              <span class="pkg-trip-dollar">$</span>{t.price.toLocaleString()}
+              <span class="pkg-trip-pp">/pp</span>
+            </div>
+            <div class="pkg-trip-stats">
+              <span>🌙 {t.nights} nights</span>
+              <span>⛳ {t.rounds} rounds</span>
+              <span>👥 {t.pax} golfers</span>
+            </div>
+            <p class="pkg-trip-courses">{t.courses}</p>
+            <div class={`pkg-trip-vibe ${t.vibe.toLowerCase()}`}>{t.vibe}</div>
+          </div>
+        ))}
+      </div>
+
+      <p class="pkg-pricing-note reveal-up">
+        Prices vary by group size, courses, and dates. 
+        <a href="/trips/" style="color:#e8a850;font-weight:700;text-decoration:none;">Browse all 76 real packages →</a>
+      </p>
+    </div>
+  </section>
+
+  <!-- ═══════════════ THE 5 COURSES ═══════════════ -->
+  <section class="pkg-section">
+    <div class="pkg-container">
+      <div class="pkg-section-header reveal-up">
+        <p class="pkg-label">Mix and match any combination</p>
+        <h2 class="pkg-h2">The 5 courses</h2>
+      </div>
+
+      <div class="pkg-courses-grid">
+        {courses.map((c, i) => (
+          <a href={`/portfolio/${c.slug}/`} class="pkg-course-card reveal-up" style={`animation-delay:${i * 0.08}s`}>
+            <div class="pkg-course-img" style={`background-image:url(${c.hero})`}>
+              <div class="pkg-course-img-overlay"></div>
+              <span class="pkg-course-accolade" style={`background:${c.badgeColor}`}>{c.badge}</span>
+              <div class="pkg-course-from">From <strong>${c.priceFrom}/pp</strong></div>
+            </div>
+            <div class="pkg-course-body">
+              <h3 class="pkg-course-name">{c.name}</h3>
+              <div class="pkg-course-specs">
+                <span>Par {c.par}</span>
+                <span class="pkg-spec-sep">·</span>
+                <span>{c.yards.toLocaleString()} yds</span>
+                <span class="pkg-spec-sep">·</span>
+                <span>Slope {c.slope}</span>
               </div>
-              <div style="font-size:11px;color:rgba(28,18,8,0.35);font-style:italic;margin-bottom:4px;">Best for:</div>
-              <div style="font-size:13px;color:rgba(28,18,8,0.55);">{tier.best}</div>
+              <p class="pkg-course-best">{c.best}</p>
+              <div class="pkg-course-cta">View course →</div>
             </div>
-          ))}
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ SOCIAL PROOF BAND ═══════════════ -->
+  <section class="pkg-trust-band dark-section">
+    <div class="pkg-container pkg-trust-inner">
+      {[
+        ['76', 'Real packages in archive'],
+        ['$620', 'Lowest per-person price'],
+        ['4.8★', '672 verified reviews'],
+        ['24h', 'Quote response time'],
+        ['2004', 'Years in operation'],
+      ].map(([val, label]) => (
+        <div class="pkg-trust-item reveal-up">
+          <div class="pkg-trust-val">{val}</div>
+          <div class="pkg-trust-label">{label}</div>
         </div>
-      </div>
+      ))}
+    </div>
+  </section>
 
-      <!-- THE 5 COURSES -->
-      <div style="margin-bottom:80px;">
-        <h2 style="font-family:'Playfair Display',serif;font-size:clamp(22px,3vw,34px);color:var(--text-primary);font-weight:400;margin:0 0 8px;text-align:center;">The 5 courses</h2>
-        <p style="font-size:15px;color:rgba(28,18,8,0.45);text-align:center;margin:0 0 32px;">GolfGraeagle books tee times at all 5. Mix and match any combination.</p>
-        <div style="overflow-x:auto;">
-          <table style="width:100%;border-collapse:collapse;font-size:14px;">
-            <thead>
-              <tr style="border-bottom:2px solid rgba(28,18,8,0.08);">
-                <th style="text-align:left;padding:12px 16px;font-size:11px;text-transform:uppercase;letter-spacing:0.1em;color:rgba(28,18,8,0.4);font-weight:700;">Course</th>
-                <th style="text-align:center;padding:12px 8px;font-size:11px;text-transform:uppercase;letter-spacing:0.1em;color:rgba(28,18,8,0.4);font-weight:700;">Par</th>
-                <th style="text-align:center;padding:12px 8px;font-size:11px;text-transform:uppercase;letter-spacing:0.1em;color:rgba(28,18,8,0.4);font-weight:700;">Yards</th>
-                <th style="text-align:center;padding:12px 8px;font-size:11px;text-transform:uppercase;letter-spacing:0.1em;color:rgba(28,18,8,0.4);font-weight:700;">Slope</th>
-                <th style="text-align:center;padding:12px 8px;font-size:11px;text-transform:uppercase;letter-spacing:0.1em;color:rgba(28,18,8,0.4);font-weight:700;">Price</th>
-                <th style="text-align:left;padding:12px 16px;font-size:11px;text-transform:uppercase;letter-spacing:0.1em;color:rgba(28,18,8,0.4);font-weight:700;">Best For</th>
-              </tr>
-            </thead>
-            <tbody>
-              {courses.map((c, i) => (
-                <tr style={`border-bottom:1px solid rgba(28,18,8,0.05);${i % 2 === 0 ? '' : 'background:rgba(28,18,8,0.02);'}`}>
-                  <td style="padding:14px 16px;">
-                    <a href={`/portfolio/${c.slug}/`} style="font-weight:700;color:var(--text-primary);text-decoration:none;display:block;margin-bottom:3px;">{c.name}</a>
-                    <span style="font-size:10px;font-weight:700;color:var(--gold);background:rgba(232,168,80,0.1);padding:2px 8px;border-radius:100px;">{c.badge}</span>
-                  </td>
-                  <td style="text-align:center;padding:14px 8px;color:rgba(28,18,8,0.55);">{c.par}</td>
-                  <td style="text-align:center;padding:14px 8px;color:rgba(28,18,8,0.55);">{c.yards.toLocaleString()}</td>
-                  <td style="text-align:center;padding:14px 8px;font-weight:700;color:var(--text-primary);">{c.slope}</td>
-                  <td style="text-align:center;padding:14px 8px;color:rgba(28,18,8,0.55);">{c.tier}</td>
-                  <td style="padding:14px 16px;font-size:13px;color:rgba(28,18,8,0.45);">{c.best}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+  <!-- ═══════════════ FAQ ═══════════════ -->
+  <section class="pkg-section">
+    <div class="pkg-container pkg-faq-wrap">
+      <div class="pkg-section-header reveal-up">
+        <p class="pkg-label">Common questions</p>
+        <h2 class="pkg-h2">Golf Package FAQ</h2>
       </div>
-
-      <!-- FAQ -->
-      <div style="margin-bottom:64px;">
-        <h2 style="font-family:'Playfair Display',serif;font-size:clamp(22px,3vw,34px);color:var(--text-primary);font-weight:400;margin:0 0 32px;text-align:center;">Golf Package FAQ</h2>
-        <div style="display:flex;flex-direction:column;gap:0;">
-          {faqSchema.mainEntity.map((item: any) => (
-            <details style="border-bottom:1px solid rgba(28,18,8,0.07);padding:0;">
-              <summary style="font-size:15px;font-weight:600;color:var(--text-primary);padding:20px 0;cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;">
-                {item.name}
-                <span style="color:var(--gold);font-size:20px;flex-shrink:0;margin-left:16px;">+</span>
-              </summary>
-              <p style="font-size:14px;color:rgba(28,18,8,0.55);line-height:1.75;padding:0 0 20px;margin:0;">{item.acceptedAnswer.text}</p>
-            </details>
-          ))}
-        </div>
+      <div class="pkg-faq-list">
+        {faqSchema.mainEntity.map((item: any, i: number) => (
+          <details class="pkg-faq-item reveal-up" style={`animation-delay:${i * 0.06}s`}>
+            <summary class="pkg-faq-q">
+              {item.name}
+              <span class="pkg-faq-icon">+</span>
+            </summary>
+            <p class="pkg-faq-a">{item.acceptedAnswer.text}</p>
+          </details>
+        ))}
       </div>
+    </div>
+  </section>
 
-      <!-- CTA -->
-      <div style="background:rgba(232,168,80,0.06);border:1px solid rgba(232,168,80,0.2);border-radius:20px;padding:clamp(32px,5vw,56px) clamp(24px,5vw,64px);text-align:center;">
-        <div style="font-family:'Playfair Display',serif;font-size:clamp(22px,3.5vw,38px);color:var(--text-primary);font-weight:400;margin:0 0 12px;">Get Your Graeagle Golf Package Quote</div>
-        <p style="font-size:16px;color:rgba(28,18,8,0.5);max-width:500px;margin:0 auto 24px;line-height:1.7;">Dates, group size, courses you want — we build the package. Free quote, 24-hour response, no obligation.</p>
-        <a href="/request-a-quote/?utm_source=golfgraeagle&utm_medium=internal&utm_campaign=packages&utm_content=cta-bottom" class="btn-green-glow" style="display:inline-block;background:#2d7a3a;color:#fff;font-weight:700;font-size:16px;padding:18px 48px;border-radius:100px;text-decoration:none;">
-          Request a Free Quote →
-        </a>
-        <p style="font-size:12px;color:rgba(28,18,8,0.35);margin:14px 0 0;">No obligation · 72-hr cancellation · Response within 24 hours</p>
+  <!-- ═══════════════ FINAL CTA ═══════════════ -->
+  <section class="pkg-cta-section dark-section">
+    <div class="pkg-container pkg-cta-inner">
+      <div class="pkg-cta-glow"></div>
+      <h2 class="pkg-cta-h2 reveal-up">Your Graeagle trip starts<br/><em>with one conversation.</em></h2>
+      <p class="pkg-cta-sub reveal-up" style="animation-delay:.1s">Tell us your dates, group size, and which courses you want. Quote back within 24 hours, no obligation.</p>
+      <div class="pkg-cta-actions reveal-up" style="animation-delay:.2s">
+        <a href="/request-a-quote/" class="btn-green-glow pkg-cta-primary">Request a Free Quote →</a>
+        <div class="pkg-cta-trust">No obligation · 72-hr cancellation · 4.8★ rated</div>
       </div>
-
     </div>
   </section>
 
   <RelatedTrips client:load slug="golf-packages" type="course" showAll={true} max={3} />
   <Footer />
 </Base>
+
+<style>
+/* ── Variables ── */
+:root {
+  --pkg-gold: #e8a850;
+  --pkg-dark: #0d1a0e;
+  --pkg-green: #1a7a40;
+  --pkg-text: #1c1208;
+  --pkg-muted: rgba(28,18,8,0.5);
+  --pkg-border: rgba(28,18,8,0.08);
+  --pkg-radius: 20px;
+}
+
+/* ── Reveal animations ── */
+.reveal-up {
+  opacity: 0;
+  transform: translateY(28px);
+  animation: revealUp 0.7s cubic-bezier(0.22,1,0.36,1) forwards;
+}
+@keyframes revealUp {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Layout ── */
+.pkg-container { max-width: 1140px; margin: 0 auto; padding: 0 clamp(20px,6%,80px); }
+.pkg-section { padding: clamp(64px,9vw,112px) 0; background: var(--page-bg); }
+.dark-section { background: var(--pkg-dark); }
+
+/* ── Section header ── */
+.pkg-section-header { text-align: center; margin-bottom: clamp(40px,5vw,64px); }
+.pkg-label {
+  font-size: 10px; font-weight: 800; letter-spacing: 0.18em;
+  text-transform: uppercase; color: var(--pkg-gold); margin: 0 0 12px;
+}
+.pkg-h2 {
+  font-family: 'Playfair Display', serif; font-size: clamp(30px,4vw,52px);
+  font-weight: 500; color: var(--pkg-text); line-height: 1.1; margin: 0;
+}
+.pkg-h2 em { font-style: italic; color: var(--pkg-green); }
+
+/* ── HERO ── */
+.pkg-hero {
+  position: relative; min-height: 88vh; display: flex;
+  align-items: flex-end; overflow: hidden;
+}
+.pkg-hero-img {
+  position: absolute; inset: 0; background-size: cover; background-position: center 40%;
+  transform: scale(1.05); animation: heroScale 8s ease forwards;
+}
+@keyframes heroScale { to { transform: scale(1); } }
+.pkg-hero-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(160deg, rgba(13,26,14,0.3) 0%, rgba(13,26,14,0.75) 60%, rgba(13,26,14,0.96) 100%);
+}
+.pkg-hero-inner {
+  position: relative; z-index: 2;
+  padding: 0 clamp(24px,8%,120px) clamp(56px,8vw,96px);
+  max-width: 820px;
+}
+.pkg-eyebrow {
+  font-size: 11px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase;
+  color: rgba(232,168,80,0.8); margin-bottom: 20px;
+}
+.pkg-h1 {
+  font-family: 'Playfair Display', serif; font-size: clamp(44px,7vw,88px);
+  font-weight: 500; color: #f0ece3; line-height: 1.0; margin: 0 0 20px;
+}
+.pkg-h1 em { font-style: italic; color: var(--pkg-gold); }
+.pkg-subhead {
+  font-size: clamp(16px,2vw,22px); color: rgba(245,240,232,0.65);
+  line-height: 1.55; margin: 0 0 28px;
+}
+.pkg-hero-pills {
+  display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 32px;
+}
+.pkg-pill {
+  font-size: 12px; font-weight: 600; padding: 7px 16px;
+  background: rgba(255,255,255,0.1); backdrop-filter: blur(8px);
+  border: 1px solid rgba(255,255,255,0.2); border-radius: 100px;
+  color: rgba(245,240,232,0.85);
+}
+.pkg-pill strong { color: var(--pkg-gold); }
+.pkg-hero-ctas { display: flex; gap: 16px; flex-wrap: wrap; align-items: center; }
+.pkg-cta-primary {
+  display: inline-block; background: var(--pkg-green); color: #fff;
+  font-weight: 700; font-size: 15px; padding: 16px 36px;
+  border-radius: 100px; text-decoration: none; transition: all 0.3s;
+}
+.pkg-cta-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 32px rgba(26,122,64,0.4); }
+.pkg-cta-ghost {
+  font-size: 14px; color: rgba(232,168,80,0.9); font-weight: 600;
+  text-decoration: none; border-bottom: 1px solid rgba(232,168,80,0.4);
+  padding-bottom: 2px; transition: border-color 0.2s;
+}
+.pkg-cta-ghost:hover { border-color: var(--pkg-gold); }
+.pkg-hero-scroll-hint {
+  position: absolute; bottom: 28px; left: 50%; transform: translateX(-50%);
+  font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase;
+  color: rgba(245,240,232,0.3); z-index: 2;
+  animation: scrollBounce 2s ease-in-out infinite;
+}
+@keyframes scrollBounce { 0%,100%{opacity:.3;transform:translateX(-50%) translateY(0)} 50%{opacity:.6;transform:translateX(-50%) translateY(4px)} }
+
+/* ── HOW IT WORKS ── */
+.pkg-how .pkg-container { }
+.pkg-steps {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(280px,1fr)); gap: 2px;
+}
+.pkg-step {
+  padding: 40px 36px; background: rgba(28,18,8,0.02); border: 1px solid var(--pkg-border);
+  transition: all 0.3s; position: relative; overflow: hidden;
+}
+.pkg-step::before {
+  content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(232,168,80,0.05), transparent);
+  opacity: 0; transition: opacity 0.3s;
+}
+.pkg-step:hover { border-color: rgba(232,168,80,0.35); transform: translateY(-4px); box-shadow: 0 16px 40px rgba(0,0,0,0.08); }
+.pkg-step:hover::before { opacity: 1; }
+.pkg-step-num {
+  font-family: 'Playfair Display', serif; font-size: 72px; font-weight: 400;
+  color: rgba(232,168,80,0.12); line-height: 1; margin-bottom: -16px; margin-left: -4px;
+}
+.pkg-step-icon { font-size: 32px; margin-bottom: 16px; }
+.pkg-step-title { font-size: 18px; font-weight: 700; color: var(--pkg-text); margin: 0 0 10px; }
+.pkg-step-body { font-size: 14px; color: var(--pkg-muted); line-height: 1.7; margin: 0; }
+
+/* ── REAL PRICING ── */
+.pkg-pricing .pkg-section-header { }
+.pkg-trips-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(210px,1fr));
+  gap: 16px; margin-bottom: 24px;
+}
+.pkg-trip-card {
+  background: rgba(255,255,255,0.05); border: 1px solid rgba(245,240,232,0.1);
+  border-radius: var(--pkg-radius); padding: 24px 20px;
+  transition: all 0.3s; position: relative; overflow: hidden;
+}
+.pkg-trip-card::after {
+  content: ''; position: absolute; inset: 0; border-radius: var(--pkg-radius);
+  background: linear-gradient(135deg, rgba(232,168,80,0.07), transparent);
+  opacity: 0; transition: opacity 0.3s;
+}
+.pkg-trip-card:hover { transform: translateY(-5px); border-color: rgba(232,168,80,0.3); box-shadow: 0 20px 48px rgba(0,0,0,0.3); }
+.pkg-trip-card:hover::after { opacity: 1; }
+.pkg-trip-premium { border-color: rgba(232,168,80,0.25); background: rgba(232,168,80,0.04); }
+.pkg-trip-badge {
+  font-size: 10px; font-weight: 800; color: var(--pkg-gold);
+  text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 14px;
+}
+.pkg-trip-price {
+  font-family: 'Playfair Display', serif; font-size: 40px; font-weight: 500;
+  color: #f0ece3; line-height: 1; margin-bottom: 14px; display: flex; align-items: baseline; gap: 2px;
+}
+.pkg-trip-dollar { font-size: 22px; color: var(--pkg-gold); }
+.pkg-trip-pp { font-size: 13px; color: rgba(245,240,232,0.4); font-family: inherit; margin-left: 4px; font-weight: 400; }
+.pkg-trip-stats {
+  display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px;
+}
+.pkg-trip-stats span { font-size: 11px; color: rgba(245,240,232,0.55); }
+.pkg-trip-courses { font-size: 12px; color: rgba(245,240,232,0.4); line-height: 1.5; margin: 0 0 14px; }
+.pkg-trip-vibe {
+  display: inline-block; font-size: 9px; font-weight: 800; text-transform: uppercase;
+  letter-spacing: 0.12em; padding: 3px 10px; border-radius: 100px;
+}
+.pkg-trip-vibe.value { background: rgba(26,122,64,0.25); color: #4dba7a; }
+.pkg-trip-vibe.premium { background: rgba(232,168,80,0.2); color: var(--pkg-gold); }
+.pkg-pricing-note {
+  text-align: center; font-size: 13px; color: rgba(245,240,232,0.4); margin: 8px 0 0;
+}
+
+/* ── COURSES GRID ── */
+.pkg-courses-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(300px,1fr)); gap: 20px;
+}
+.pkg-course-card {
+  border-radius: var(--pkg-radius); overflow: hidden; text-decoration: none;
+  background: #fff; border: 1px solid var(--pkg-border);
+  box-shadow: 0 2px 12px rgba(0,0,0,0.05); transition: all 0.35s;
+  display: flex; flex-direction: column;
+}
+.pkg-course-card:hover {
+  transform: translateY(-6px); box-shadow: 0 24px 56px rgba(0,0,0,0.12);
+  border-color: rgba(232,168,80,0.4);
+}
+.pkg-course-img {
+  height: 200px; background-size: cover; background-position: center;
+  position: relative; flex-shrink: 0;
+}
+.pkg-course-img-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(9,15,9,0.75) 0%, transparent 55%);
+}
+.pkg-course-accolade {
+  position: absolute; top: 12px; left: 12px;
+  font-size: 9px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em;
+  color: #fff; padding: 4px 10px; border-radius: 100px;
+}
+.pkg-course-from {
+  position: absolute; bottom: 12px; right: 12px;
+  font-size: 12px; color: rgba(255,255,255,0.8); font-weight: 600;
+}
+.pkg-course-from strong { color: var(--pkg-gold); font-size: 15px; }
+.pkg-course-body { padding: 20px 22px 22px; flex: 1; display: flex; flex-direction: column; }
+.pkg-course-name { font-size: 17px; font-weight: 700; color: var(--pkg-text); margin: 0 0 8px; }
+.pkg-course-specs {
+  display: flex; align-items: center; gap: 6px; flex-wrap: wrap;
+  font-size: 12px; color: var(--pkg-muted); margin-bottom: 8px;
+}
+.pkg-spec-sep { color: rgba(28,18,8,0.2); }
+.pkg-course-best { font-size: 12px; color: var(--pkg-muted); line-height: 1.5; flex: 1; margin: 0 0 14px; }
+.pkg-course-cta { font-size: 12px; font-weight: 700; color: var(--pkg-green); }
+.pkg-course-card:hover .pkg-course-cta { color: var(--pkg-gold); }
+
+/* ── TRUST BAND ── */
+.pkg-trust-band { padding: clamp(40px,6vw,72px) 0; }
+.pkg-trust-inner {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(140px,1fr));
+  gap: 32px; text-align: center;
+}
+.pkg-trust-val {
+  font-family: 'Playfair Display', serif; font-size: clamp(28px,4vw,44px);
+  color: var(--pkg-gold); font-weight: 400; line-height: 1; margin-bottom: 6px;
+}
+.pkg-trust-label {
+  font-size: 10px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.12em; color: rgba(245,240,232,0.4);
+}
+
+/* ── FAQ ── */
+.pkg-faq-wrap { max-width: 760px; }
+.pkg-faq-list { display: flex; flex-direction: column; }
+.pkg-faq-item {
+  border-bottom: 1px solid var(--pkg-border);
+  transition: background 0.2s;
+}
+.pkg-faq-item[open] { background: rgba(232,168,80,0.03); border-radius: 12px; border-color: rgba(232,168,80,0.2); }
+.pkg-faq-q {
+  font-size: 15px; font-weight: 600; color: var(--pkg-text);
+  padding: 20px 0; cursor: pointer; list-style: none;
+  display: flex; justify-content: space-between; align-items: center; gap: 16px;
+  transition: color 0.2s;
+}
+.pkg-faq-item[open] .pkg-faq-q { color: var(--pkg-green); }
+.pkg-faq-q::-webkit-details-marker { display: none; }
+.pkg-faq-icon {
+  font-size: 22px; color: var(--pkg-gold); flex-shrink: 0;
+  transition: transform 0.3s; line-height: 1;
+}
+.pkg-faq-item[open] .pkg-faq-icon { transform: rotate(45deg); }
+.pkg-faq-a { font-size: 14px; color: var(--pkg-muted); line-height: 1.8; padding: 0 0 20px; margin: 0; }
+
+/* ── FINAL CTA ── */
+.pkg-cta-section { padding: clamp(72px,10vw,128px) 0; position: relative; overflow: hidden; }
+.pkg-cta-inner { max-width: 680px; text-align: center; position: relative; z-index: 1; }
+.pkg-cta-glow {
+  position: absolute; width: 600px; height: 600px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(26,122,64,0.2) 0%, transparent 70%);
+  top: 50%; left: 50%; transform: translate(-50%,-50%); pointer-events: none;
+}
+.pkg-cta-h2 {
+  font-family: 'Playfair Display', serif; font-size: clamp(30px,5vw,56px);
+  color: #f0ece3; font-weight: 500; line-height: 1.2; margin: 0 0 20px;
+}
+.pkg-cta-h2 em { color: var(--pkg-gold); font-style: italic; }
+.pkg-cta-sub { font-size: 16px; color: rgba(245,240,232,0.55); line-height: 1.7; margin: 0 0 36px; }
+.pkg-cta-actions { display: flex; flex-direction: column; align-items: center; gap: 14px; }
+.pkg-cta-trust { font-size: 12px; color: rgba(245,240,232,0.35); }
+
+/* ── Mobile ── */
+@media (max-width: 860px) {
+  .pkg-hero { min-height: 100svh; }
+  .pkg-steps { grid-template-columns: 1fr; }
+  .pkg-trips-grid { grid-template-columns: 1fr 1fr; }
+  .pkg-courses-grid { grid-template-columns: 1fr; }
+  .pkg-trust-inner { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 540px) {
+  .pkg-trips-grid { grid-template-columns: 1fr; }
+  .pkg-trust-inner { grid-template-columns: 1fr 1fr; gap: 20px; }
+}
+</style>

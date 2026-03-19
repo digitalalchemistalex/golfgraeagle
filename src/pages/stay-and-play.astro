@@ -6,237 +6,297 @@ import Footer from '../components/Footer.astro';
 import RelatedTrips from '../components/RelatedTrips.tsx';
 
 const title = "Graeagle Stay and Play Golf Packages | GolfGraeagle.com";
-const description = "Graeagle stay and play golf packages from $299/golfer. Tee times at all 5 courses + lodging coordinated in one package. 5 courses within 25 minutes of each other. Free quote in 24 hours.";
-const slug = "stay-and-play";
-
-const schema = {
-  "@context": "https://schema.org",
-  "@type": "Service",
-  "name": "Graeagle Stay and Play Golf Packages",
-  "description": "Custom stay-and-play golf packages for the Graeagle, California area. Includes tee times at all 5 championship courses and lodging coordination.",
-  "provider": {
-    "@type": "TravelAgency",
-    "name": "GolfGraeagle.com",
-    "url": "https://golfgraeagle.com"
-  },
-  "areaServed": { "@type": "Place", "name": "Graeagle, California" },
-  "offers": {
-    "@type": "Offer",
-    "description": "Custom stay-and-play packages from $299 per golfer",
-    "url": "https://golfgraeagle.com/request-a-quote/"
-  }
-};
+const description = "Graeagle stay and play packages from $620/golfer. Tee times at all 5 courses + lodging in one package. 5 championship courses within 25 minutes. Free quote in 24 hours.";
 
 const faqSchema = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
+  "@context": "https://schema.org", "@type": "FAQPage",
   "mainEntity": [
-    { "@type": "Question", "name": "What is included in a Graeagle stay and play golf package?", "acceptedAnswer": { "@type": "Answer", "text": "A GolfGraeagle stay-and-play package includes guaranteed tee times at your selected courses, lodging coordination at properties in the Graeagle area, and a full day-by-day itinerary. Dining reservations can be added on request." } },
-    { "@type": "Question", "name": "How much does a Graeagle stay and play package cost?", "acceptedAnswer": { "@type": "Answer", "text": "Graeagle stay-and-play packages start from $299 per golfer. The range depends on which courses you play, lodging type, number of nights, and group size. Real pricing examples from actual bookings: $379–$1,705 per person in the TripsCaddie archive." } },
-    { "@type": "Question", "name": "How many courses can I play in a Graeagle stay and play package?", "acceptedAnswer": { "@type": "Answer", "text": "Most 3-night stay-and-play packages cover 3–4 courses. All 5 Graeagle courses are within 25 minutes of each other, making it practical to play all 5 on a 4-5 night trip. GolfGraeagle can book tee times at any combination." } },
-    { "@type": "Question", "name": "Which lodging is best for a Graeagle stay and play golf trip?", "acceptedAnswer": { "@type": "Answer", "text": "River Pines Resort is the most popular base for golf groups — flexible room types, The Roadhouse on-site, pool and hot tub. The Townhomes at Plumas Pines offer multi-bedroom units steps from Plumas Pines first tee. The Inn at Nakoma puts you inside the Frank Lloyd Wright resort with the Dragon course at your door." } },
-    { "@type": "Question", "name": "Can GolfGraeagle book stay and play packages for large groups?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. GolfGraeagle coordinates stay-and-play packages for groups of 4 to 200+ golfers. Large group bookings require consecutive tee time blocks across multiple days — we handle all coordination with courses and lodging." } }
+    { "@type": "Question", "name": "What is included in a Graeagle stay and play golf package?", "acceptedAnswer": { "@type": "Answer", "text": "A GolfGraeagle stay-and-play package includes guaranteed tee times, lodging coordination, and a full day-by-day itinerary. Dining reservations can be added. Packages from $620 per golfer." } },
+    { "@type": "Question", "name": "How much does a Graeagle stay and play package cost?", "acceptedAnswer": { "@type": "Answer", "text": "Real completed stay-and-play packages range from $620 to $1,705 per person. A typical 2-night, 3-course package for 12–24 golfers runs $620–$875 per person including lodging and tee times." } },
+    { "@type": "Question", "name": "How many courses can I play?", "acceptedAnswer": { "@type": "Answer", "text": "Any combination of the 5 Graeagle courses. Most 2-night packages cover 2–3 courses; 3-night covers 3–4. All 5 courses in one valley means no wasted driving time." } },
+    { "@type": "Question", "name": "Which lodging is best for a stay and play golf trip?", "acceptedAnswer": { "@type": "Answer", "text": "River Pines Resort is the top choice for most golf groups — flexible rooms, pool, hot tub, The Roadhouse on-site. Townhomes at Plumas Pines offer multi-bedroom units steps from the first tee. Inn at Nakoma puts you inside the Frank Lloyd Wright resort with the Dragon course at your door." } },
+    { "@type": "Question", "name": "Can GolfGraeagle book large group stay and play packages?", "acceptedAnswer": { "@type": "Answer", "text": "Yes — groups of 4 to 200+ golfers served. Large groups use consecutive tee time blocks. GolfGraeagle coordinates all courses and lodging." } }
   ]
 };
-
 const breadcrumbSchema = {
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
+  "@context": "https://schema.org", "@type": "BreadcrumbList",
   "itemListElement": [
     { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://golfgraeagle.com" },
     { "@type": "ListItem", "position": 2, "name": "Stay and Play", "item": "https://golfgraeagle.com/stay-and-play/" }
   ]
 };
-
-const courses = [
-  { name: 'Graeagle Meadows', slug: 'graeagle-meadows-golf-packages', par: 72, yards: 6759, slope: 120, tier: '$$', accolade: 'Since 1968' },
-  { name: 'Whitehawk Ranch', slug: 'whitehawk-ranch-golf-packages', par: 71, yards: 6983, slope: 132, tier: '$$$', accolade: 'Top 20 CA' },
-  { name: 'Plumas Pines', slug: 'plumas-pines-golf-packages', par: 72, yards: 6504, slope: 132, tier: '$$', accolade: 'Top 5 Value CA' },
-  { name: 'Grizzly Ranch', slug: 'grizzly-ranch-golf-packages', par: 72, yards: 7411, slope: 140, tier: '$$$$', accolade: 'Golf Digest Top 100' },
-  { name: 'Nakoma — The Dragon', slug: 'nakoma-dragon-golf-packages', par: 72, yards: 7015, slope: 147, tier: '$$$$', accolade: 'FLW Clubhouse' },
-];
-
-const lodging = [
-  { name: 'River Pines Resort', slug: 'river-pines-resort-graeagle-ca', subtitle: 'Great for Groups', note: 'Cabins, suites, pool, hot tub — The Roadhouse on-site. Best base for most golf groups.' },
-  { name: 'Chalet View Lodge', slug: 'chalet-view-lodge-graeagle-ca', subtitle: 'Great Amenities', note: '10 forested acres, spa, Eureka Peak Brewing on-site. 10 min from Graeagle village.' },
-  { name: 'The Inn at Nakoma', slug: 'the-inn-at-nakoma-clio-ca', subtitle: 'FLW Architecture', note: 'Steps from The Dragon first tee. Frank Lloyd Wright lodge. Fifty44 restaurant on-site.' },
-  { name: 'Townhomes at Plumas Pines', slug: 'the-townhomes-at-plumas-pines', subtitle: 'Great for Large Groups', note: '2–4BR units with full kitchens, pool, steps from Plumas Pines first tee.' },
-];
-
-const packages = [
-  { label: '2-Night Quick Trip', rounds: '2 courses', nights: '2', pax: '4–8', from: '$299', desc: 'Graeagle Meadows + Whitehawk Ranch. Best for a long weekend intro to the valley.' },
-  { label: '3-Night Sweet Spot', rounds: '3–4 courses', nights: '3', pax: '4–24', from: '$499', desc: 'The most popular package. Covers 3 courses comfortably, with a full day between rounds for recovery.' },
-  { label: '5-Night Full Run', rounds: 'All 5 courses', nights: '5', pax: '4–24', from: '$899', desc: 'Play all 5 Graeagle courses across 5 days. Build around Grizzly Ranch and Nakoma as anchor rounds.' },
-  { label: 'Large Group Outing', rounds: '2–3 courses', nights: '2–4', pax: '24–200+', from: 'Custom', desc: 'Consecutive tee time blocks across multiple courses. Shotgun starts available. Banquet coordination on request.' },
-];
 const orgSchema = {
   "@context": "https://schema.org",
   "@graph": [
-    {
-      "@type": ["TravelAgency","Organization"],
-      "@id": "https://golfgraeagle.com/#organization",
-      "name": "GolfGraeagle.com",
-      "url": "https://golfgraeagle.com",
-      "description": "Golf trip planning and package booking for Graeagle, California. Custom stay-and-play packages with guaranteed tee times at all 5 championship courses. Operating since 2004.",
-      "email": "mike.eskuchen@golfthehighsierra.com",
-      "foundingDate": "2004",
-      "areaServed": {"@type": "Place", "name": "Graeagle, California, Sierra Nevada"}
-    },
-    {
-      "@type": "WebPage",
-      "@id": "https://golfgraeagle.com/stay-and-play/#webpage",
-      "url": "https://golfgraeagle.com/stay-and-play/",
-      "name": "Graeagle Stay and Play Golf Packages",
-      "description": "Custom stay-and-play golf packages for the Graeagle, California area. Tee times at all 5 championship courses and lodging coordination.",
-      "inLanguage": "en-US",
-      "isPartOf": {"@id": "https://golfgraeagle.com/#website"},
-      "speakable": {"@type": "SpeakableSpecification", "cssSelector": ["h1",".speakable"]}
-    }
+    { "@type": ["TravelAgency","Organization"], "@id": "https://golfgraeagle.com/#organization", "name": "GolfGraeagle.com", "url": "https://golfgraeagle.com" },
+    { "@type": "WebPage", "@id": "https://golfgraeagle.com/stay-and-play/#webpage", "url": "https://golfgraeagle.com/stay-and-play/", "name": title, "isPartOf": { "@id": "https://golfgraeagle.com/#website" } }
   ]
 };
+
+const includes = [
+  { icon: '⛳', title: 'Guaranteed Tee Times', body: 'At any combination of the 5 Graeagle courses — including Grizzly Ranch semi-private access.' },
+  { icon: '🏨', title: 'Lodging Matched to Your Group', body: 'On-course stays or village properties — matched to group size, nights, and budget.' },
+  { icon: '📋', title: 'Day-by-Day Itinerary', body: 'Tee times, driving directions, dining suggestions — everything in one document.' },
+  { icon: '📞', title: 'Response in 24 Hours', body: 'Every quote returned within 24 hours. Changes and adjustments handled directly.' },
+];
+
+const packages = [
+  { name: 'Weekend Starter',  price: '$620', realPrice: '$620–$645/pp', nights: '2', rounds: '2–3', pax: '8–24', desc: 'Whitehawk + Graeagle Meadows + Plumas Pines. Perfect intro to the valley.', hot: false },
+  { name: '3-Night Sweet Spot', price: '$675', realPrice: '$645–$875/pp', nights: '3', rounds: '3–4', pax: '4–24', desc: 'The most popular format. Covers Grizzly Ranch + 2 supporting courses comfortably.', hot: true },
+  { name: 'Dragon Run',       price: '$876', realPrice: '$876–$1,120/pp', nights: '3', rounds: '3–4', pax: '16–24', desc: 'Includes Nakoma Dragon. Plumas + Whitehawk + Grizzly + Dragon.', hot: false },
+  { name: 'All 5 Grand Tour', price: '$1,120', realPrice: '$1,120–$1,705/pp', nights: '4–5', rounds: '5', pax: '4–24', desc: 'Play every course in the valley. The bucket-list format.', hot: false },
+];
+
+const lodging = [
+  { name: 'River Pines Resort', slug: 'river-pines-resort-graeagle-ca', tag: 'Most Popular', desc: 'Cabins, suites, pool, hot tub. The Roadhouse restaurant on-site. Best base for most groups.', hero: '/wp-images/unnamed-20.webp' },
+  { name: 'Chalet View Lodge',  slug: 'chalet-view-lodge-graeagle-ca', tag: 'Best Amenities', desc: '10 forested acres, spa, Eureka Peak Brewing on-site. 10 min from Graeagle village.', hero: '/wp-images/ChaletView-02.webp' },
+  { name: 'The Inn at Nakoma',  slug: 'the-inn-at-nakoma-clio-ca', tag: 'Bucket List Stay', desc: 'Steps from The Dragon first tee. Frank Lloyd Wright resort. Fifty44 Restaurant on-site.', hero: '/wp-images/nakoma-dining-patio.jpg' },
+  { name: 'Townhomes at Plumas', slug: 'the-townhomes-at-plumas-pines', tag: 'Best for Groups', desc: '2–4BR units, full kitchens, pool — steps from Plumas Pines first tee.', hero: '/wp-images/Cabin-3-006.webp' },
+];
 ---
-<Base
-  title={title}
-  description={description}
+<Base title={title} description={description} ogType="website"
+  schema={[orgSchema, faqSchema, breadcrumbSchema]}
+  canonical="https://golfgraeagle.com/stay-and-play/"
   ogImage="https://golfgraeagle.com/wp-images/grizzly-ranch-hero.webp"
-  schema={[orgSchema, schema, faqSchema, breadcrumbSchema]}
-  canonical={`https://golfgraeagle.com/${slug}/`}
   bodyClass="light-page"
 >
   <Nav />
 
-  <!-- HERO -->
-  <section style="position:relative;height:72vh;min-height:480px;overflow:hidden;display:flex;align-items:flex-end;">
-    <img src="/wp-images/grizzly-ranch-hero.webp" alt="Graeagle stay and play golf packages — Sierra Nevada" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" loading="eager" fetchpriority="high"/>
-    <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(13,26,14,0.92) 0%,rgba(13,26,14,0.4) 55%,transparent 100%);"></div>
-    <div style="position:relative;z-index:2;padding:0 clamp(20px,8%,120px) clamp(40px,6vw,80px);max-width:900px;">
-      <div style="font-size:11px;color:rgba(232,168,80,0.8);letter-spacing:0.16em;text-transform:uppercase;font-weight:700;margin-bottom:16px;">Graeagle, California · Sierra Nevada</div>
-      <h1 style="font-family:'Playfair Display',serif;font-size:clamp(32px,5vw,60px);font-weight:500;color:#f0ece3;line-height:1.1;margin:0 0 16px;" class="speakable">
-        Graeagle Stay and Play<br/>Golf Packages
-      </h1>
-      <p style="font-size:clamp(15px,1.8vw,19px);color:rgba(240,236,227,0.65);max-width:560px;line-height:1.7;margin:0 0 32px;">
-        Five championship courses within 25 minutes of each other. Tee times and lodging in one package — from $299 per golfer.
+  <!-- ── HERO ── -->
+  <section class="sap-hero">
+    <div class="sap-hero-bg" style="background-image:url(/wp-images/grizzly-ranch-hero.webp)"></div>
+    <div class="sap-hero-overlay"></div>
+    <div class="sap-hero-content">
+      <div class="sap-eyebrow reveal-up">Graeagle, California · Sierra Nevada</div>
+      <h1 class="sap-h1 reveal-up" style="animation-delay:.1s">Stay and Play<br/><em>Golf Packages</em></h1>
+      <p class="sap-sub reveal-up" style="animation-delay:.2s">
+        Five championship courses. One valley. Everything handled.
       </p>
-      <div style="display:flex;gap:16px;flex-wrap:wrap;align-items:center;">
-        <a href="/request-a-quote/?utm_source=golfgraeagle&utm_medium=internal&utm_campaign=sap&utm_content=hero" class="btn-green-glow" style="display:inline-block;background:#2d7a3a;color:#fff;font-weight:700;font-size:15px;padding:16px 36px;border-radius:100px;text-decoration:none;">
-          Get a Free Quote →
-        </a>
-        <a href="/trips/" style="font-size:14px;color:rgba(232,168,80,0.9);font-weight:600;text-decoration:none;">See real trip pricing ↗</a>
+      <div class="sap-pills reveal-up" style="animation-delay:.3s">
+        <span>From <strong>$620</strong>/golfer</span>
+        <span>5 courses · 25 min apart</span>
+        <span>4–200+ golfers</span>
+        <span>Free quote · 24h</span>
+      </div>
+      <div class="sap-hero-ctas reveal-up" style="animation-delay:.4s">
+        <a href="/request-a-quote/" class="btn-green-glow sap-btn-primary">Get a Free Quote →</a>
+        <a href="/trips/" class="sap-btn-ghost">See real pricing ↗</a>
+      </div>
+    </div>
+    <!-- Floating stat cards -->
+    <div class="sap-hero-floats reveal-up" style="animation-delay:.5s">
+      <div class="sap-float-card"><div class="sap-float-val">76</div><div class="sap-float-label">Real Packages</div></div>
+      <div class="sap-float-card"><div class="sap-float-val">4.8★</div><div class="sap-float-label">Avg Rating</div></div>
+      <div class="sap-float-card"><div class="sap-float-val">2004</div><div class="sap-float-label">Est.</div></div>
+    </div>
+  </section>
+
+  <!-- ── WHAT'S INCLUDED ── -->
+  <section class="sap-section">
+    <div class="sap-container">
+      <div class="sap-header reveal-up">
+        <p class="sap-label">Everything in one package</p>
+        <h2 class="sap-h2">You play.<br/>We handle everything else.</h2>
+      </div>
+      <div class="sap-includes-grid">
+        {includes.map((item, i) => (
+          <div class="sap-include-card reveal-up" style={`animation-delay:${i * 0.1}s`}>
+            <div class="sap-include-icon">{item.icon}</div>
+            <h3 class="sap-include-title">{item.title}</h3>
+            <p class="sap-include-body">{item.body}</p>
+          </div>
+        ))}
       </div>
     </div>
   </section>
 
-  <!-- WHAT'S INCLUDED -->
-  <section style="background:var(--page-bg);padding:clamp(56px,8vw,96px) clamp(20px,8%,120px);">
-    <div style="max-width:1100px;margin:0 auto;">
-
-      <div style="text-align:center;margin-bottom:64px;">
-        <div style="font-size:11px;color:var(--gold);letter-spacing:0.14em;text-transform:uppercase;font-weight:700;margin-bottom:16px;">What's Included</div>
-        <h2 style="font-family:'Playfair Display',serif;font-size:clamp(26px,3.5vw,42px);color:var(--text-primary);font-weight:400;margin:0 0 16px;" class="speakable">Everything handled. You just play.</h2>
-        <p style="font-size:17px;color:rgba(28,18,8,0.55);max-width:580px;margin:0 auto;line-height:1.75;">A GolfGraeagle stay-and-play package includes guaranteed tee times, lodging coordination, and a day-by-day itinerary built around your group and your budget.</p>
+  <!-- ── PACKAGES ── (dark) -->
+  <section class="sap-section dark-section">
+    <div class="sap-container">
+      <div class="sap-header reveal-up">
+        <p class="sap-label" style="color:#e8a850">Real pricing from the archive</p>
+        <h2 class="sap-h2" style="color:#f0ece3">Package options</h2>
       </div>
-
-      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:24px;margin-bottom:64px;">
-        {[
-          { icon: '⛳', title: 'Guaranteed Tee Times', body: 'At any combination of the 5 Graeagle courses. Including Grizzly Ranch semi-private access.' },
-          { icon: '🏨', title: 'Lodging Coordination', body: 'Matched to your group size and budget. On-course lodging or village properties.' },
-          { icon: '📋', title: 'Full Itinerary', body: 'Day-by-day schedule with tee times, driving directions, and dining suggestions.' },
-          { icon: '📞', title: '24-Hour Response', body: 'Quote returned within 24 hours. Changes and adjustments handled directly by your planner.' },
-        ].map(item => (
-          <div style="background:rgba(28,18,8,0.03);border:1px solid rgba(28,18,8,0.07);border-radius:16px;padding:28px 24px;">
-            <div style="font-size:28px;margin-bottom:16px;">{item.icon}</div>
-            <h3 style="font-size:16px;font-weight:700;color:var(--text-primary);margin:0 0 10px;">{item.title}</h3>
-            <p style="font-size:14px;color:rgba(28,18,8,0.5);line-height:1.65;margin:0;">{item.body}</p>
+      <div class="sap-packages-grid">
+        {packages.map((p, i) => (
+          <div class={`sap-pkg-card reveal-up${p.hot ? ' sap-pkg-hot' : ''}`} style={`animation-delay:${i * 0.1}s`}>
+            {p.hot && <div class="sap-hot-tag">Most Popular</div>}
+            <div class="sap-pkg-name">{p.name}</div>
+            <div class="sap-pkg-price-range">{p.realPrice}</div>
+            <div class="sap-pkg-meta">
+              <span>🌙 {p.nights}n</span>
+              <span>⛳ {p.rounds} rounds</span>
+              <span>👥 {p.pax}</span>
+            </div>
+            <p class="sap-pkg-desc">{p.desc}</p>
+            <a href="/request-a-quote/" class="sap-pkg-cta">Get this package →</a>
           </div>
         ))}
       </div>
+      <p class="sap-pricing-note reveal-up">Based on real completed trips · <a href="/trips/" style="color:#e8a850;text-decoration:none;font-weight:700;">Browse full archive →</a></p>
+    </div>
+  </section>
 
-      <!-- PACKAGE TIERS -->
-      <div style="margin-bottom:80px;">
-        <h2 style="font-family:'Playfair Display',serif;font-size:clamp(22px,3vw,34px);color:var(--text-primary);font-weight:400;margin:0 0 32px;text-align:center;">Package Options</h2>
-        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px;">
-          {packages.map((pkg, i) => (
-            <div style={`border:1px solid ${i === 1 ? 'rgba(232,168,80,0.4)' : 'rgba(28,18,8,0.08)'};border-radius:16px;padding:28px 24px;background:${i === 1 ? 'rgba(232,168,80,0.05)' : '#fff'};position:relative;`}>
-              {i === 1 && <div style="position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:var(--gold);color:#1c1208;font-size:9px;font-weight:800;padding:4px 14px;border-radius:100px;text-transform:uppercase;letter-spacing:0.1em;white-space:nowrap;">Most Popular</div>}
-              <div style="font-size:13px;font-weight:700;color:var(--text-primary);margin-bottom:8px;">{pkg.label}</div>
-              <div style="font-size:24px;font-weight:700;color:#1a7a40;margin-bottom:4px;">From {pkg.from}<span style="font-size:12px;font-weight:400;color:rgba(28,18,8,0.4);"> /golfer</span></div>
-              <div style="display:flex;gap:12px;margin:12px 0;flex-wrap:wrap;">
-                <span style="font-size:11px;color:rgba(28,18,8,0.45);">⛳ {pkg.rounds}</span>
-                <span style="font-size:11px;color:rgba(28,18,8,0.45);">🏨 {pkg.nights} nights</span>
-                <span style="font-size:11px;color:rgba(28,18,8,0.45);">👥 {pkg.pax}</span>
-              </div>
-              <p style="font-size:13px;color:rgba(28,18,8,0.5);line-height:1.6;margin:0;">{pkg.desc}</p>
+  <!-- ── LODGING ── -->
+  <section class="sap-section">
+    <div class="sap-container">
+      <div class="sap-header reveal-up">
+        <p class="sap-label">All coordinated through GolfGraeagle</p>
+        <h2 class="sap-h2">Where you'll stay</h2>
+      </div>
+      <div class="sap-lodging-grid">
+        {lodging.map((l, i) => (
+          <a href={`/portfolio/${l.slug}/`} class="sap-lodge-card reveal-up" style={`animation-delay:${i * 0.1}s`}>
+            <div class="sap-lodge-img" style={`background-image:url(${l.hero})`}>
+              <div class="sap-lodge-img-fade"></div>
+              <span class="sap-lodge-tag">{l.tag}</span>
             </div>
-          ))}
-        </div>
-        <p style="font-size:13px;color:rgba(28,18,8,0.4);text-align:center;margin:20px 0 0;">Prices are estimates based on real past packages. <a href="/trips/" style="color:var(--gold);">See actual pricing data →</a></p>
+            <div class="sap-lodge-body">
+              <h3 class="sap-lodge-name">{l.name}</h3>
+              <p class="sap-lodge-desc">{l.desc}</p>
+              <span class="sap-lodge-link">View lodging →</span>
+            </div>
+          </a>
+        ))}
       </div>
+    </div>
+  </section>
 
-      <!-- THE 5 COURSES -->
-      <div style="margin-bottom:80px;">
-        <h2 style="font-family:'Playfair Display',serif;font-size:clamp(22px,3vw,34px);color:var(--text-primary);font-weight:400;margin:0 0 8px;text-align:center;">The 5 Courses</h2>
-        <p style="font-size:15px;color:rgba(28,18,8,0.45);text-align:center;margin:0 0 32px;">All within 25 minutes of each other. All accessible through GolfGraeagle packages.</p>
-        <div style="display:flex;flex-direction:column;gap:12px;">
-          {courses.map(c => (
-            <a href={`/portfolio/${c.slug}/`} style="display:flex;align-items:center;gap:20px;padding:18px 24px;background:#fff;border:1px solid rgba(28,18,8,0.07);border-radius:14px;text-decoration:none;transition:all 0.2s;" onmouseover="this.style.borderColor='rgba(232,168,80,0.4)';this.style.background='rgba(232,168,80,0.03)'" onmouseout="this.style.borderColor='rgba(28,18,8,0.07)';this.style.background='#fff'">
-              <div style="flex:1;min-width:0;">
-                <div style="display:flex;align-items:center;gap:10px;margin-bottom:4px;flex-wrap:wrap;">
-                  <span style="font-size:15px;font-weight:700;color:var(--text-primary);">{c.name}</span>
-                  <span style="font-size:9px;font-weight:800;color:var(--gold);background:rgba(232,168,80,0.12);padding:2px 9px;border-radius:100px;text-transform:uppercase;letter-spacing:0.08em;">{c.accolade}</span>
-                </div>
-                <div style="font-size:12px;color:rgba(28,18,8,0.4);">Par {c.par} · {c.yards.toLocaleString()} yds · Slope {c.slope} · {c.tier}</div>
-              </div>
-              <span style="font-size:12px;color:var(--gold);font-weight:600;flex-shrink:0;">View course →</span>
-            </a>
-          ))}
-        </div>
+  <!-- ── FAQ ── -->
+  <section class="sap-section sap-faq-section">
+    <div class="sap-container" style="max-width:760px">
+      <div class="sap-header reveal-up">
+        <p class="sap-label">Quick answers</p>
+        <h2 class="sap-h2">Stay and Play FAQ</h2>
       </div>
-
-      <!-- LODGING OPTIONS -->
-      <div style="margin-bottom:80px;">
-        <h2 style="font-family:'Playfair Display',serif;font-size:clamp(22px,3vw,34px);color:var(--text-primary);font-weight:400;margin:0 0 8px;text-align:center;">Where to Stay</h2>
-        <p style="font-size:15px;color:rgba(28,18,8,0.45);text-align:center;margin:0 0 32px;">GolfGraeagle coordinates lodging at all four Graeagle properties.</p>
-        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px;">
-          {lodging.map(l => (
-            <a href={`/portfolio/${l.slug}/`} style="display:flex;flex-direction:column;padding:24px;background:#fff;border:1px solid rgba(28,18,8,0.07);border-radius:14px;text-decoration:none;transition:all 0.2s;" onmouseover="this.style.borderColor='rgba(232,168,80,0.4)';this.style.background='rgba(232,168,80,0.03)'" onmouseout="this.style.borderColor='rgba(28,18,8,0.07)';this.style.background='#fff'">
-              <div style="font-size:9px;font-weight:800;color:rgba(28,18,8,0.35);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:8px;">{l.subtitle}</div>
-              <div style="font-size:15px;font-weight:700;color:var(--text-primary);margin-bottom:8px;">{l.name}</div>
-              <p style="font-size:13px;color:rgba(28,18,8,0.5);line-height:1.6;margin:0 0 12px;flex:1;">{l.note}</p>
-              <span style="font-size:12px;color:var(--gold);font-weight:600;">View lodging →</span>
-            </a>
-          ))}
-        </div>
+      <div class="sap-faq">
+        {faqSchema.mainEntity.map((item: any, i: number) => (
+          <details class="sap-faq-item reveal-up" style={`animation-delay:${i * 0.06}s`}>
+            <summary class="sap-faq-q">{item.name}<span class="sap-faq-icon">+</span></summary>
+            <p class="sap-faq-a">{item.acceptedAnswer.text}</p>
+          </details>
+        ))}
       </div>
+    </div>
+  </section>
 
-      <!-- FAQ -->
-      <div style="margin-bottom:64px;">
-        <h2 style="font-family:'Playfair Display',serif;font-size:clamp(22px,3vw,34px);color:var(--text-primary);font-weight:400;margin:0 0 32px;text-align:center;">Stay and Play FAQ</h2>
-        <div style="display:flex;flex-direction:column;gap:0;">
-          {faqSchema.mainEntity.map((item: any) => (
-            <details style="border-bottom:1px solid rgba(28,18,8,0.07);padding:0;">
-              <summary style="font-size:15px;font-weight:600;color:var(--text-primary);padding:20px 0;cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;">
-                {item.name}
-                <span style="color:var(--gold);font-size:20px;flex-shrink:0;margin-left:16px;">+</span>
-              </summary>
-              <p style="font-size:14px;color:rgba(28,18,8,0.55);line-height:1.75;padding:0 0 20px;margin:0;">{item.acceptedAnswer.text}</p>
-            </details>
-          ))}
-        </div>
-      </div>
-
-      <!-- CTA -->
-      <div style="background:rgba(232,168,80,0.06);border:1px solid rgba(232,168,80,0.2);border-radius:20px;padding:clamp(32px,5vw,56px) clamp(24px,5vw,64px);text-align:center;">
-        <div style="font-family:'Playfair Display',serif;font-size:clamp(22px,3.5vw,38px);color:var(--text-primary);font-weight:400;margin:0 0 12px;">Build Your Graeagle Stay and Play Package</div>
-        <p style="font-size:16px;color:rgba(28,18,8,0.5);max-width:480px;margin:0 auto 24px;line-height:1.7;">Tell us your dates, group size, and which courses you want to play. Quote back within 24 hours, no obligation.</p>
-        <a href="/request-a-quote/?utm_source=golfgraeagle&utm_medium=internal&utm_campaign=sap&utm_content=cta-bottom" class="btn-green-glow" style="display:inline-block;background:#2d7a3a;color:#fff;font-weight:700;font-size:16px;padding:18px 48px;border-radius:100px;text-decoration:none;">
-          Request a Free Quote →
-        </a>
-        <p style="font-size:12px;color:rgba(28,18,8,0.35);margin:14px 0 0;">No obligation · 72-hr cancellation · Response within 24 hours</p>
+  <!-- ── CTA ── -->
+  <section class="sap-cta-section dark-section">
+    <div class="sap-container" style="text-align:center;max-width:640px">
+      <div class="sap-cta-ring"></div>
+      <h2 class="sap-cta-h2 reveal-up">Build your Graeagle<br/><em>stay and play package</em></h2>
+      <p class="sap-cta-sub reveal-up" style="animation-delay:.1s">Dates, group size, courses you want. Quote back in 24 hours, no obligation.</p>
+      <div class="reveal-up" style="animation-delay:.2s">
+        <a href="/request-a-quote/" class="btn-green-glow sap-btn-primary">Request a Free Quote →</a>
+        <p style="font-size:12px;color:rgba(245,240,232,0.3);margin-top:14px;">No obligation · 72-hr cancellation · 4.8★ rated</p>
       </div>
     </div>
   </section>
 
   <RelatedTrips client:load slug="stay-and-play" type="course" showAll={true} max={3} />
-
   <Footer />
 </Base>
+
+<style>
+:root {
+  --sap-gold: #e8a850; --sap-green: #1a7a40; --sap-dark: #0d1a0e;
+  --sap-text: #1c1208; --sap-muted: rgba(28,18,8,0.5);
+  --sap-border: rgba(28,18,8,0.08); --sap-radius: 18px;
+}
+.reveal-up { opacity:0; transform:translateY(28px); animation:revUp .7s cubic-bezier(.22,1,.36,1) forwards; }
+@keyframes revUp { to{opacity:1;transform:translateY(0);} }
+.sap-container { max-width:1140px; margin:0 auto; padding:0 clamp(20px,6%,80px); }
+.sap-section { padding:clamp(64px,9vw,112px) 0; background:var(--page-bg); }
+.dark-section { background:var(--sap-dark); }
+.sap-header { text-align:center; margin-bottom:clamp(40px,5vw,64px); }
+.sap-label { font-size:10px; font-weight:800; letter-spacing:.18em; text-transform:uppercase; color:var(--sap-gold); margin:0 0 12px; }
+.sap-h2 { font-family:'Playfair Display',serif; font-size:clamp(28px,4vw,50px); font-weight:500; color:var(--sap-text); line-height:1.1; margin:0; }
+.sap-h2 em { color:var(--sap-green); font-style:italic; }
+
+/* HERO */
+.sap-hero { position:relative; min-height:88vh; display:grid; grid-template-columns:1fr; }
+.sap-hero-bg { position:absolute; inset:0; background-size:cover; background-position:center 30%; transform:scale(1.06); animation:sapScale 9s ease forwards; }
+@keyframes sapScale { to { transform:scale(1); } }
+.sap-hero-overlay { position:absolute; inset:0; background:linear-gradient(155deg, rgba(13,26,14,.25) 0%, rgba(13,26,14,.7) 55%, rgba(13,26,14,.97) 100%); }
+.sap-hero-content { position:relative; z-index:2; padding:clamp(100px,16vh,160px) clamp(24px,8%,120px) clamp(48px,8vw,80px); align-self:end; }
+.sap-eyebrow { font-size:11px; font-weight:700; letter-spacing:.2em; text-transform:uppercase; color:rgba(232,168,80,.8); margin-bottom:18px; }
+.sap-h1 { font-family:'Playfair Display',serif; font-size:clamp(42px,7vw,84px); font-weight:500; color:#f0ece3; line-height:1.0; margin:0 0 18px; }
+.sap-h1 em { font-style:italic; color:var(--sap-gold); }
+.sap-sub { font-size:clamp(16px,2vw,20px); color:rgba(245,240,232,.6); margin:0 0 24px; line-height:1.5; }
+.sap-pills { display:flex; flex-wrap:wrap; gap:8px; margin-bottom:32px; }
+.sap-pills span { font-size:12px; font-weight:600; color:rgba(245,240,232,.75); padding:6px 15px; background:rgba(255,255,255,.08); backdrop-filter:blur(8px); border:1px solid rgba(255,255,255,.15); border-radius:100px; }
+.sap-pills strong { color:var(--sap-gold); }
+.sap-hero-ctas { display:flex; gap:16px; flex-wrap:wrap; align-items:center; }
+.sap-btn-primary { display:inline-block; background:var(--sap-green); color:#fff; font-weight:700; font-size:15px; padding:16px 36px; border-radius:100px; text-decoration:none; transition:all .3s; }
+.sap-btn-primary:hover { transform:translateY(-2px); box-shadow:0 12px 32px rgba(26,122,64,.4); }
+.sap-btn-ghost { font-size:14px; color:rgba(232,168,80,.9); font-weight:600; text-decoration:none; border-bottom:1px solid rgba(232,168,80,.4); padding-bottom:2px; }
+/* Floating stat cards */
+.sap-hero-floats { position:absolute; right:clamp(24px,6%,80px); bottom:clamp(48px,8vw,80px); display:flex; flex-direction:column; gap:10px; z-index:3; }
+.sap-float-card { background:rgba(255,255,255,.1); backdrop-filter:blur(12px); border:1px solid rgba(255,255,255,.2); border-radius:14px; padding:14px 20px; text-align:center; min-width:110px; }
+.sap-float-val { font-family:'Playfair Display',serif; font-size:24px; color:var(--sap-gold); font-weight:400; line-height:1; }
+.sap-float-label { font-size:9px; font-weight:700; text-transform:uppercase; letter-spacing:.12em; color:rgba(245,240,232,.5); margin-top:4px; }
+
+/* INCLUDES */
+.sap-includes-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:2px; }
+.sap-include-card { padding:36px 32px; border:1px solid var(--sap-border); position:relative; overflow:hidden; transition:all .3s; }
+.sap-include-card::after { content:''; position:absolute; inset:0; background:linear-gradient(135deg,rgba(232,168,80,.05),transparent); opacity:0; transition:opacity .3s; }
+.sap-include-card:hover { border-color:rgba(232,168,80,.3); transform:translateY(-4px); box-shadow:0 16px 40px rgba(0,0,0,.07); }
+.sap-include-card:hover::after { opacity:1; }
+.sap-include-icon { font-size:32px; margin-bottom:16px; }
+.sap-include-title { font-size:16px; font-weight:700; color:var(--sap-text); margin:0 0 10px; }
+.sap-include-body { font-size:14px; color:var(--sap-muted); line-height:1.7; margin:0; }
+
+/* PACKAGES */
+.sap-packages-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(240px,1fr)); gap:16px; margin-bottom:24px; }
+.sap-pkg-card { border:1px solid rgba(245,240,232,.1); border-radius:var(--sap-radius); padding:28px 24px; background:rgba(255,255,255,.04); transition:all .3s; position:relative; }
+.sap-pkg-card:hover { transform:translateY(-5px); border-color:rgba(232,168,80,.3); box-shadow:0 20px 48px rgba(0,0,0,.25); }
+.sap-pkg-hot { border-color:rgba(232,168,80,.3); background:rgba(232,168,80,.05); }
+.sap-hot-tag { position:absolute; top:-12px; left:50%; transform:translateX(-50%); background:var(--sap-gold); color:#1c1208; font-size:9px; font-weight:800; padding:4px 14px; border-radius:100px; text-transform:uppercase; letter-spacing:.1em; white-space:nowrap; }
+.sap-pkg-name { font-size:13px; font-weight:700; text-transform:uppercase; letter-spacing:.08em; color:rgba(245,240,232,.5); margin-bottom:10px; }
+.sap-pkg-price-range { font-family:'Playfair Display',serif; font-size:22px; color:var(--sap-gold); font-weight:400; margin-bottom:14px; }
+.sap-pkg-meta { display:flex; flex-wrap:wrap; gap:8px; margin-bottom:12px; }
+.sap-pkg-meta span { font-size:11px; color:rgba(245,240,232,.5); }
+.sap-pkg-desc { font-size:13px; color:rgba(245,240,232,.4); line-height:1.65; margin:0 0 18px; }
+.sap-pkg-cta { font-size:12px; font-weight:700; color:var(--sap-gold); text-decoration:none; }
+.sap-pricing-note { text-align:center; font-size:13px; color:rgba(245,240,232,.4); margin:0; }
+
+/* LODGING */
+.sap-lodging-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); gap:20px; }
+.sap-lodge-card { border-radius:var(--sap-radius); overflow:hidden; text-decoration:none; background:#fff; border:1px solid var(--sap-border); box-shadow:0 2px 12px rgba(0,0,0,.05); transition:all .35s; display:flex; flex-direction:column; }
+.sap-lodge-card:hover { transform:translateY(-6px); box-shadow:0 24px 56px rgba(0,0,0,.12); border-color:rgba(232,168,80,.4); }
+.sap-lodge-img { height:180px; background-size:cover; background-position:center; position:relative; }
+.sap-lodge-img-fade { position:absolute; inset:0; background:linear-gradient(to top,rgba(9,15,9,.6) 0%,transparent 55%); }
+.sap-lodge-tag { position:absolute; top:12px; right:12px; font-size:9px; font-weight:800; text-transform:uppercase; letter-spacing:.1em; color:#fff; background:rgba(0,0,0,.5); backdrop-filter:blur(6px); border:1px solid rgba(255,255,255,.2); padding:4px 10px; border-radius:100px; }
+.sap-lodge-body { padding:20px 22px 22px; flex:1; display:flex; flex-direction:column; }
+.sap-lodge-name { font-size:16px; font-weight:700; color:var(--sap-text); margin:0 0 8px; }
+.sap-lodge-desc { font-size:13px; color:var(--sap-muted); line-height:1.6; flex:1; margin:0 0 14px; }
+.sap-lodge-link { font-size:12px; font-weight:700; color:var(--sap-green); }
+.sap-lodge-card:hover .sap-lodge-link { color:var(--sap-gold); }
+
+/* FAQ */
+.sap-faq-item { border-bottom:1px solid var(--sap-border); }
+.sap-faq-item[open] { background:rgba(232,168,80,.03); border-radius:12px; border-color:rgba(232,168,80,.2); }
+.sap-faq-q { font-size:15px; font-weight:600; color:var(--sap-text); padding:20px 0; cursor:pointer; list-style:none; display:flex; justify-content:space-between; align-items:center; gap:16px; }
+.sap-faq-q::-webkit-details-marker { display:none; }
+.sap-faq-item[open] .sap-faq-q { color:var(--sap-green); }
+.sap-faq-icon { font-size:22px; color:var(--sap-gold); flex-shrink:0; transition:transform .3s; }
+.sap-faq-item[open] .sap-faq-icon { transform:rotate(45deg); }
+.sap-faq-a { font-size:14px; color:var(--sap-muted); line-height:1.8; padding:0 0 20px; margin:0; }
+
+/* CTA */
+.sap-cta-section { padding:clamp(72px,10vw,128px) 0; position:relative; overflow:hidden; }
+.sap-cta-ring { position:absolute; width:700px; height:700px; border-radius:50%; border:1px solid rgba(232,168,80,.08); top:50%; left:50%; transform:translate(-50%,-50%); pointer-events:none; }
+.sap-cta-h2 { font-family:'Playfair Display',serif; font-size:clamp(28px,5vw,52px); color:#f0ece3; font-weight:500; line-height:1.2; margin:0 0 18px; }
+.sap-cta-h2 em { color:var(--sap-gold); font-style:italic; }
+.sap-cta-sub { font-size:16px; color:rgba(245,240,232,.5); line-height:1.7; margin:0 0 36px; }
+
+@media(max-width:860px) {
+  .sap-hero { min-height:100svh; }
+  .sap-hero-floats { display:none; }
+  .sap-packages-grid { grid-template-columns:1fr 1fr; }
+  .sap-lodging-grid { grid-template-columns:1fr; }
+}
+@media(max-width:540px) {
+  .sap-packages-grid { grid-template-columns:1fr; }
+}
+</style>
