@@ -986,22 +986,26 @@ const diningSlugMap: Record<string, string> = {
       <!-- Photo gallery with lightbox -->
       {item.images.length > 1 && (
         <div class="reveal" style="margin-bottom:56px;">
-          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;">
             <h2 style="font-family:'Playfair Display',serif;font-size:24px;color:var(--text-primary);margin:0;">Course Photos</h2>
-            <span class="gallery-swipe-hint" style="font-size:10px;color:#a06c30;font-weight:600;letter-spacing:0.05em;display:none;">swipe →</span>
+            <span class="gallery-swipe-hint" style="font-size:10px;color:#a06c30;font-weight:600;letter-spacing:0.05em;display:none;">← swipe →</span>
             <span class="gallery-count-desktop" style="font-size:11px;color:rgba(28,18,8,0.3);text-transform:uppercase;letter-spacing:0.1em;">{item.images.length} photos · click to expand</span>
           </div>
-          <div class="photo-grid">
-            {item.images.slice(0,9).map((img,i) => (
-              <button class="gallery-btn" data-src={img} data-idx={i} data-total={Math.min(item.images.length,9)}
-                style={`border:none;padding:0;background:none;border-radius:${i===0?'16px 4px 4px 4px':i===2?'4px 16px 4px 4px':i===6?'4px 4px 4px 16px':i===8?'4px 4px 16px 4px':'4px'};overflow:hidden;aspect-ratio:4/3;cursor:zoom-in;position:relative;display:block;`}>
-                <img src={img} alt={getImgAlt(img, `${item.name} — golf course photo ${i+1}, Graeagle CA`)} loading="lazy"
-                  style="width:100%;height:100%;object-fit:cover;transition:transform 0.4s ease;display:block;"/>
-                <span style="position:absolute;inset:0;background:rgba(0,0,0,0);transition:background 0.3s;display:flex;align-items:center;justify-content:center;" class="gal-ov">
-                  <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" style="opacity:0;transition:opacity 0.3s;filter:drop-shadow(0 2px 4px rgba(0,0,0,0.5));"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/><path d="M11 8v6M8 11h6"/></svg>
-                </span>
-              </button>
-            ))}
+          <div class="gal-carousel-wrap" data-carousel>
+            <button class="gal-arrow gal-arrow-prev" aria-label="Previous photo">&#8249;</button>
+            <div class="gal-carousel" id={`carousel-${item.slug}`}>
+              {item.images.slice(0,9).map((img: string, i: number) => (
+                <button class="gallery-btn" data-src={img} data-idx={i} data-total={Math.min(item.images.length,9)}
+                  style="border:none;padding:0;background:none;cursor:zoom-in;position:relative;overflow:hidden;border-radius:8px;flex:0 0 calc(33.333% - 3px);aspect-ratio:4/3;display:block;">
+                  <img src={img} alt={getImgAlt(img, `${item.name} — golf course photo ${i+1}, Graeagle CA`)} loading="lazy"
+                    style="width:100%;height:100%;object-fit:cover;transition:transform 0.4s ease;display:block;"/>
+                  <span style="position:absolute;inset:0;background:rgba(0,0,0,0);transition:background 0.3s;display:flex;align-items:center;justify-content:center;" class="gal-ov">
+                    <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" style="opacity:0;transition:opacity 0.3s;filter:drop-shadow(0 2px 4px rgba(0,0,0,0.5));"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/><path d="M11 8v6M8 11h6"/></svg>
+                  </span>
+                </button>
+              ))}
+            </div>
+            <button class="gal-arrow gal-arrow-next" aria-label="Next photo">&#8250;</button>
           </div>
         </div>
       )}
@@ -1199,24 +1203,27 @@ const diningSlugMap: Record<string, string> = {
       </div>
     </section>
 
-    <!-- PHOTO STRIP with lightbox -->
+    <!-- PHOTO CAROUSEL with lightbox -->
     {item.images && item.images.length > 1 && (
-      <div>
-        <div style="padding:20px 5% 12px;display:flex;align-items:center;justify-content:space-between;">
-          <span style="font-size:11px;color:rgba(28,18,8,0.3);text-transform:uppercase;letter-spacing:0.12em;">Photo Gallery — {item.images.length} photos · click to expand</span>
-          <span class="gallery-swipe-hint" style="font-size:10px;color:#a06c30;font-weight:600;letter-spacing:0.05em;display:none;">swipe →</span>
+      <div style="margin-bottom:4px;">
+        <div style="padding:16px 5% 10px;display:flex;align-items:center;justify-content:space-between;">
+          <span class="gallery-count-desktop" style="font-size:11px;color:rgba(28,18,8,0.3);text-transform:uppercase;letter-spacing:0.12em;">{item.images.length} photos · click to expand</span>
+          <span class="gallery-swipe-hint" style="font-size:10px;color:#a06c30;font-weight:600;letter-spacing:0.05em;display:none;">← swipe →</span>
         </div>
-        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(220px,45vw),1fr));gap:3px;height:280px;overflow:hidden;"
-          class="photo-strip-grid">
-        {item.images.slice(0, 10).map((img: string, i: number) => (
-          <button class="gallery-btn" data-src={img} data-idx={i} data-total={Math.min(item.images.length,10)}
-            style="border:none;padding:0;background:none;cursor:zoom-in;position:relative;display:block;overflow:hidden;">
-            <img src={img} alt={getImgAlt(img, `${item.name} — Graeagle CA`)} style="width:100%;height:220px;object-fit:cover;transition:transform 0.4s;" loading="lazy"/>
-            <span style="position:absolute;inset:0;background:rgba(0,0,0,0);transition:background 0.3s;display:flex;align-items:center;justify-content:center;" class="gal-ov">
-              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" style="opacity:0;transition:opacity 0.3s;filter:drop-shadow(0 2px 4px rgba(0,0,0,0.5));"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/><path d="M11 8v6M8 11h6"/></svg>
-            </span>
-          </button>
-        ))}
+        <div class="gal-carousel-wrap" data-carousel style="padding:0 5%;">
+          <button class="gal-arrow gal-arrow-prev" aria-label="Previous photo">&#8249;</button>
+          <div class="gal-carousel" id={`carousel-lod-${item.slug}`}>
+            {item.images.slice(0, 10).map((img: string, i: number) => (
+              <button class="gallery-btn" data-src={img} data-idx={i} data-total={Math.min(item.images.length,10)}
+                style="border:none;padding:0;background:none;cursor:zoom-in;position:relative;overflow:hidden;border-radius:8px;flex:0 0 calc(33.333% - 3px);aspect-ratio:4/3;display:block;">
+                <img src={img} alt={getImgAlt(img, `${item.name} — Graeagle CA`)} style="width:100%;height:100%;object-fit:cover;transition:transform 0.4s;" loading="lazy"/>
+                <span style="position:absolute;inset:0;background:rgba(0,0,0,0);transition:background 0.3s;display:flex;align-items:center;justify-content:center;" class="gal-ov">
+                  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" style="opacity:0;transition:opacity 0.3s;filter:drop-shadow(0 2px 4px rgba(0,0,0,0.5));"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/><path d="M11 8v6M8 11h6"/></svg>
+                </span>
+              </button>
+            ))}
+          </div>
+          <button class="gal-arrow gal-arrow-next" aria-label="Next photo">&#8250;</button>
         </div>
       </div>
     )}
@@ -1757,6 +1764,51 @@ const diningSlugMap: Record<string, string> = {
           lbClose();
         }
       }, { passive: true });
+    });
+
+    // ── CAROUSEL: arrow nav + dot sync ─────────────────────
+    document.querySelectorAll('[data-carousel]').forEach(wrap => {
+      const track = wrap.querySelector('.gal-carousel');
+      const prev  = wrap.querySelector('.gal-arrow-prev');
+      const next  = wrap.querySelector('.gal-arrow-next');
+      if (!track) return;
+
+      const btns = Array.from(track.querySelectorAll('.gallery-btn'));
+      const total = btns.length;
+      if (total < 2) { if(prev) prev.style.display='none'; if(next) next.style.display='none'; return; }
+
+      // Build dots
+      const dotsWrap = document.createElement('div');
+      dotsWrap.className = 'gal-dots';
+      const dots = Array.from({length: total}, (_, i) => {
+        const d = document.createElement('span');
+        if (i === 0) d.classList.add('active');
+        d.addEventListener('click', () => scrollTo(i));
+        return d;
+      });
+      dots.forEach(d => dotsWrap.appendChild(d));
+      wrap.appendChild(dotsWrap);
+
+      function itemWidth() {
+        return btns[0] ? btns[0].getBoundingClientRect().width + 4 : 0;
+      }
+      function currentIdx() {
+        const w = itemWidth();
+        return w ? Math.round(track.scrollLeft / w) : 0;
+      }
+      function scrollTo(i) {
+        const w = itemWidth();
+        track.scrollTo({ left: w * i, behavior: 'smooth' });
+      }
+      function updateDots() {
+        const i = currentIdx();
+        dots.forEach((d, idx) => d.classList.toggle('active', idx === i));
+      }
+
+      if (prev) prev.addEventListener('click', () => scrollTo(Math.max(0, currentIdx() - 1)));
+      if (next) next.addEventListener('click', () => scrollTo(Math.min(total - 1, currentIdx() + 1)));
+
+      track.addEventListener('scroll', updateDots, { passive: true });
     });
   </script>
 </Base>

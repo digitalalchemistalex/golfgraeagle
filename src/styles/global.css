@@ -393,24 +393,67 @@ section.hero-section,
 /* ══════════════════════════════════════════════════════════════
    GALLERY CAROUSELS (global — Astro scoped CSS can't reach IIFE)
    ══════════════════════════════════════════════════════════════ */
-.photo-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 8px; }
-.photo-strip-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit,minmax(min(220px,45vw),1fr));
-  gap: 3px; height: 280px; overflow: hidden;
+/* ── GALLERY CAROUSEL — desktop arrows, mobile full swipe ─── */
+.gal-carousel-wrap { position:relative; }
+.gal-carousel {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  gap: 4px;
 }
+.gal-carousel::-webkit-scrollbar { display: none; }
+.gal-carousel .gallery-btn {
+  flex: 0 0 calc(33.333% - 3px);
+  scroll-snap-align: start;
+  border: none; padding: 0; background: none;
+  cursor: zoom-in; position: relative; overflow: hidden;
+  border-radius: 4px;
+  aspect-ratio: 4/3;
+  display: block;
+}
+.gal-carousel .gallery-btn img {
+  width: 100%; height: 100%; object-fit: cover;
+  transition: transform 0.4s ease; display: block;
+}
+/* Arrow buttons — desktop only */
+.gal-arrow {
+  position: absolute; top: 50%; transform: translateY(-50%);
+  width: 44px; height: 44px; border-radius: 50%;
+  background: rgba(13,26,14,0.7); border: 1.5px solid rgba(255,255,255,0.2);
+  color: #fff; font-size: 22px; cursor: pointer; z-index: 10;
+  display: flex; align-items: center; justify-content: center;
+  transition: background 0.2s; line-height: 1;
+}
+.gal-arrow:hover { background: rgba(13,26,14,0.92); }
+.gal-arrow-prev { left: 10px; }
+.gal-arrow-next { right: 10px; }
+/* Dot indicator */
+.gal-dots {
+  display: flex; justify-content: center; gap: 6px; padding: 10px 0 0;
+}
+.gal-dots span {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: rgba(28,18,8,0.2); transition: background 0.2s;
+  cursor: pointer;
+}
+.gal-dots span.active { background: var(--gold); }
+
 @media (max-width: 640px) {
-  .photo-grid { display:flex !important; overflow-x:auto; scroll-snap-type:x mandatory; -webkit-overflow-scrolling:touch; gap:8px; padding-bottom:8px; scrollbar-width:none; height:auto !important; }
-  .photo-grid::-webkit-scrollbar { display:none; }
-  .photo-grid .gallery-btn { flex:0 0 78vw; scroll-snap-align:start; border-radius:12px !important; aspect-ratio:4/3; height:auto !important; }
-  .photo-grid .gallery-btn img { width:100%; height:100%; object-fit:cover; }
-  .photo-strip-grid { display:flex !important; overflow-x:auto; scroll-snap-type:x mandatory; -webkit-overflow-scrolling:touch; gap:8px; height:auto !important; padding-bottom:8px; scrollbar-width:none; }
-  .photo-strip-grid::-webkit-scrollbar { display:none; }
-  .photo-strip-grid .gallery-btn { flex:0 0 78vw; scroll-snap-align:start; border-radius:12px; }
-  .photo-strip-grid .gallery-btn img { width:100%; height:220px; object-fit:cover; }
-  .gallery-swipe-hint { display:block !important; }
-  .gallery-count-desktop { display:none !important; }
+  .gal-carousel .gallery-btn {
+    flex: 0 0 88vw;
+    aspect-ratio: 16/9;
+    border-radius: 12px;
+  }
+  .gal-arrow { display: none !important; }
+  .gal-dots { padding: 8px 0 0; }
+  .gallery-swipe-hint { display: block !important; }
+  .gallery-count-desktop { display: none !important; }
 }
+
+/* Legacy classes — redirect to carousel */
+.photo-grid, .photo-strip-grid { display: none; }
 
 /* ══════════════════════════════════════════════════════════════
    TESTIMONIALS GRID
