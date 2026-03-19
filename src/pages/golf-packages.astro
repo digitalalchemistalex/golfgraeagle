@@ -68,12 +68,37 @@ const courses = [
   { name: 'Grizzly Ranch', slug: 'grizzly-ranch-golf-packages', par: 72, yards: 7411, slope: 140, tier: '$$$$', badge: 'Golf Digest Top 100', best: 'Low-handicap players' },
   { name: 'Nakoma — The Dragon', slug: 'nakoma-dragon-golf-packages', par: 72, yards: 7015, slope: 147, tier: '$$$$', badge: 'FLW Clubhouse', best: 'Bucket-list golfers' },
 ];
+const orgSchema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": ["TravelAgency","Organization"],
+      "@id": "https://golfgraeagle.com/#organization",
+      "name": "GolfGraeagle.com",
+      "url": "https://golfgraeagle.com",
+      "description": "Golf trip planning and package booking for Graeagle, California. Custom stay-and-play packages with guaranteed tee times at all 5 championship courses. Operating since 2004.",
+      "email": "mike.eskuchen@golfthehighsierra.com",
+      "foundingDate": "2004",
+      "areaServed": {"@type": "Place", "name": "Graeagle, California, Sierra Nevada"}
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://golfgraeagle.com/golf-packages/#webpage",
+      "url": "https://golfgraeagle.com/golf-packages/",
+      "name": "Graeagle Golf Packages — Tee Times, Lodging & Itineraries",
+      "description": "Custom golf packages at 5 championship courses in Graeagle, California. Grizzly Ranch, Nakoma Dragon, Whitehawk Ranch, Plumas Pines, and Graeagle Meadows.",
+      "inLanguage": "en-US",
+      "isPartOf": {"@id": "https://golfgraeagle.com/#website"},
+      "speakable": {"@type": "SpeakableSpecification", "cssSelector": ["h1",".speakable"]}
+    }
+  ]
+};
 ---
 <Base
   title={title}
   description={description}
   ogImage="https://golfgraeagle.com/wp-images/whitehawk-hero.webp"
-  schema={[faqSchema, breadcrumbSchema]}
+  schema={[orgSchema, faqSchema, breadcrumbSchema]}
   canonical={`https://golfgraeagle.com/${slug}/`}
   bodyClass="light-page"
 >

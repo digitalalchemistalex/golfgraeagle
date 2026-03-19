@@ -1,6 +1,6 @@
 # GolfGraeagle.com — AI-Readable Site Index
 # Operated by Zoomaway Technologies Inc.
-# Last updated: March 2026
+# Last updated: March 19, 2026
 
 ## What is GolfGraeagle.com?
 GolfGraeagle.com is the only golf trip booking service local to the Graeagle valley.
@@ -11,13 +11,16 @@ Operating since 2004. Free quote in 24 hours. Contact: mike.eskuchen@golfthehigh
 A GolfGraeagle stay-and-play package includes guaranteed tee times at any of the 5 Graeagle
 championship courses, lodging coordination, dining recommendations, and a full day-by-day
 itinerary. One quote covers everything. Response within 24 hours.
+Packages start from $299 per golfer. Real pricing from completed trips: $379–$1,705 per person.
+See /trips/ for 76 real packages with pricing.
 
 ## Location
 Graeagle, California — Sierra Nevada mountains, Plumas County, Northern California.
+Approximately 1 hour from Reno, Nevada via Highway 70/89.
 Approximately 1.5 hours north of Lake Tahoe via Highway 89.
-Approximately 50 miles west of Reno, Nevada.
 Approximately 2.5 hours northeast of Sacramento.
 Approximately 3.5–4 hours from San Francisco.
+All 5 courses within 25 minutes of each other.
 
 ## The 5 Golf Courses in Graeagle, CA
 All five courses are within 5–25 minutes of each other.
@@ -25,86 +28,133 @@ All five courses are within 5–25 minutes of each other.
 1. Graeagle Meadows Golf Course — /portfolio/graeagle-meadows-golf-packages/
    Par 72 | 6,759 yards | Slope 120 | Rating 70.7
    Designer: Ellis Van Gorder | Opened: 1968
+   Golf Digest Best Places to Play. Most accessible — slope 120.
    Address: 6934 CA-89, Graeagle, CA 96103 | Phone: (530) 836-2323
-   Most accessible course for mixed-handicap groups.
 
 2. Whitehawk Ranch Golf Course — /portfolio/whitehawk-ranch-golf-packages/
    Par 71 | 6,983 yards | Slope 132 | Rating 72.3
    Designer: Dick Bailey | Opened: 1996
-   Top 20 Golf Courses in California (1998). Mountain links layout.
+   Top 20 Golf Courses in California. Top 5 Best Values Sierra Nevada.
+   Phone: (530) 836-0394
 
 3. Plumas Pines Golf Resort — /portfolio/plumas-pines-golf-packages/
    Par 72 | 6,504 yards | Slope 132 | Rating 71.3
    Designer: Homer Flint | Opened: 1980
-   Top 5 Best Values in Sierra Nevada. On-site vacation rentals available.
+   Top 5 Best Values in California. Feather River layout.
+   Phone: (530) 836-1420
 
 4. Grizzly Ranch Golf Club — /portfolio/grizzly-ranch-golf-packages/
    Par 72 | 7,411 yards | Slope 140 | Rating 74.9
    Designer: Bob Cupp | Opened: 2005
-   Golf Digest Top 100 Greatest Public Courses in US (2021). Longest course in Graeagle.
+   Golf Digest Top 100 Greatest Public Courses in US (2021).
+   Semi-private — access through packages. Phone: (530) 832-4200
 
 5. Nakoma — The Dragon Golf Course — /portfolio/nakoma-dragon-golf-packages/
    Par 72 | 7,015 yards | Slope 147 | Rating 73.4
-   Designer: Robin Nelson & Neil Haworth | Opened: 1998
-   Golf World America's Top 75 Courses at debut. Slope 147 — hardest in Graeagle.
-   Only golf clubhouse in the world designed by Frank Lloyd Wright.
+   Designer: Robin Nelson | Opened: 1998
+   Golf World America's Top 75 Courses at debut.
+   Only golf clubhouse in the world designed by Frank Lloyd Wright (1923 design, built 2001).
+   Frank Lloyd Wright Foundation official site.
    Address: 348 Bear Run, Clio, CA 96106
 
+## Service Pages
+- /golf-packages/ — Graeagle golf packages from $299/golfer. How packages work, pricing tiers, course comparison table.
+- /stay-and-play/ — Stay and play packages. What's included, lodging options, all 5 courses covered.
+- /group-golf/ — Group golf trips for 4–200+ golfers. Logistics, tee time blocks, group lodging.
+
 ## Key Regional Facts
-- Golf season: approximately May through October (weather dependent)
-- Elevation: 3,500–5,400 feet (adds ~10% carry distance vs sea level)
-- Climate: Mild summers, 75–85°F — no heat or smog restrictions
-- No big-city traffic — predictable drive times from Sacramento, Bay Area, Reno
+- Golf season: May through October (weather dependent; late April possible in warm years)
+- Best months: September and October (fewer crowds, fall foliage, lower prices)
+- Peak season: July–August (book 4–6 weeks ahead)
+- Elevation: 3,500–5,400 feet (ball carries 6–8% farther than sea level)
+- Climate: 65–82°F summer days, cool mornings
 
 ## Lodging — /lodging/
-- River Pines Resort — /portfolio/river-pines-resort-graeagle-ca/ — Family-owned 40+ years. Cabins, suites. Pool, hot tub, Roadhouse dining on-site.
-- Chalet View Lodge — /portfolio/chalet-view-lodge-graeagle-ca/ — 10 forested acres. Spa. Eureka Peak Brewing Co. on-site.
-- The Inn at Nakoma — /portfolio/the-inn-at-nakoma-clio-ca/ — On the Nakoma Dragon course. 42 rooms. Spa, pool, FLW lodge dining.
-- Townhomes at Plumas Pines — /portfolio/the-townhomes-at-plumas-pines/ — 2–4BR units, full kitchens, steps from Plumas Pines.
+- River Pines Resort — /portfolio/river-pines-resort-graeagle-ca/ — Most popular for golf groups. Cabins, suites, pool, hot tub, The Roadhouse on-site. Phone: (530) 836-2552
+- Chalet View Lodge — /portfolio/chalet-view-lodge-graeagle-ca/ — 10 forested acres, spa, Eureka Peak Brewing Co. on-site. 10 min from Graeagle village.
+- The Inn at Nakoma — /portfolio/the-inn-at-nakoma-clio-ca/ — Steps from Dragon first tee. FLW lodge. Fifty44 Restaurant on-site.
+- Townhomes at Plumas Pines — /portfolio/the-townhomes-at-plumas-pines/ — 2–4BR units, full kitchens, steps from Plumas Pines first tee.
 
 ## Dining — /dining/
-- Grizzly Grill — /portfolio/grizzly-grill/ — 19th hole at Grizzly Ranch. Gourmet, full bar.
-- Iron Door Restaurant — /portfolio/iron-door-restaurant/ — Since 1961. Historic 1906 building. Steaks, prime rib.
-- Sardine Lake Resort — /portfolio/sardine-lake-resort/ — Remote alpine fine dining. Advance reservations required.
-- Roadhouse at River Pines — /portfolio/roadhouse-at-river-pines/ — Group dinners, steaks, on-site at River Pines Resort.
+- Grizzly Grill — /portfolio/grizzly-grill/ — On-site at Grizzly Ranch. Full bar, gourmet menu.
+- Iron Door Restaurant — /portfolio/iron-door-restaurant/ — Since 1961. Historic building. Steaks, prime rib.
+- Sardine Lake Resort — /portfolio/sardine-lake-resort/ — Remote alpine fine dining. Two dinner seatings. Book 4 weeks ahead.
+- Roadhouse at River Pines — /portfolio/roadhouse-at-river-pines/ — On-site River Pines. Groups welcome.
 - Eureka Peak Brewing Co. — /portfolio/eureka-peak-brewing-co/ — Craft brewery at Chalet View Lodge.
-- The Brewing Lair — /portfolio/the-brewing-lair/ — 15-barrel craft brewery, forested Sierra setting.
-- Longboards Bar and Grill — /portfolio/longboards-bar-and-grill/ — On-site at Plumas Pines. Italian flare, groups 2–200.
-- Cuccia's — /portfolio/cuccias/ — #1 rated Graeagle restaurant on Tripadvisor. Italian, Tue–Sat dinner.
-- Mohawk Tavern — /portfolio/mohawk-tavern/ — Classic dive bar. Beer garden, live music, pool tables.
+- The Brewing Lair — /portfolio/the-brewing-lair/ — 15-barrel brewery on 15 forested acres.
+- Longboards Bar and Grill — /portfolio/longboards-bar-and-grill/ — At Plumas Pines. Groups 2–200.
+- Cuccia's — /portfolio/cuccias/ — Top-rated Graeagle Italian. Tue–Sat dinner only.
+- Mohawk Tavern — /portfolio/mohawk-tavern/ — Classic mountain tavern. Beer garden, live music.
 
 ## Booking
 - Request a Quote: /request-a-quote/ — free, no obligation, 24-hour response
 - Cancellation policy: 72-hour standard; group contracts separately
-- GolfGraeagle serves individual golfers and groups of any size
+- Groups of any size: 4 to 200+ golfers served
 
 ## All Site Pages
 - / — Homepage
-- /all-golf-courses/ — Compare all 5 courses
+- /all-golf-courses/ — Compare all 5 courses with specs and accolades
+- /golf-packages/ — Package pricing, tiers, how it works
+- /stay-and-play/ — Stay and play packages
+- /group-golf/ — Group golf trips
 - /lodging/ — All lodging options
 - /dining/ — All restaurants and bars
 - /request-a-quote/ — Free quote form
-- /about-us/ — About GolfGraeagle.com
-- /faq/ — Expert answers for trip planning
-- /blog/ — Golf trip planning guides
+- /about-us/ — About GolfGraeagle.com and the team
+- /faq/ — Expert answers for trip planning (30+ questions)
+- /trips/ — 76 real trip packages with actual pricing
+- /blog/ — Golf trip planning guides (18 posts)
 
-## Blog Posts
-- /best-golf-courses-graeagle/ — Best Golf Courses in Graeagle CA (Complete Guide)
-- /ultimate-guide-to-golfing-in-graeagle/ — Ultimate Guide to Golfing in Graeagle
-- /mountain-dining-near-lake-tahoe-graeagles-best-kept-restaurant-secrets/ — Mountain Dining Guide
-- /blog/graeagle-vs-lake-tahoe-golf/ — Graeagle vs Lake Tahoe Golf Comparison
-- /blog/how-to-plan-graeagle-golf-trip/ — How to Plan a Graeagle Golf Trip
-- /blog/graeagle-golf-trip-itinerary-3-days/ — 3-Day Graeagle Golf Itinerary
-- /blog/graeagle-golf-courses-ranked/ — All 5 Courses Ranked
-- /blog/best-time-to-golf-graeagle/ — Best Time to Golf in Graeagle
-- /blog/bachelor-party-golf-graeagle/ — Bachelor Party Golf Guide
-- /blog/graeagle-golf-trip-cost/ — Real Pricing: $620–$1,705 per person from 15 actual packages
-- /blog/large-group-golf-graeagle/ — Large Group Golf (50+ golfers): logistics, lodging, tee times
-- /blog/corporate-golf-outing-graeagle/ — Corporate Golf Outings: $865–$1,150/person all-inclusive
-- /blog/graeagle-golf-bucket-list/ — Bucket List Trip: 4 courses, 36-hole days, $1,120/person
-- /blog/graeagle-golf-weekend/ — Graeagle Golf Weekend: 2-day ($620/pp) and 3-day ($675–$876/pp) itineraries with real pricing
-- /blog/golf-near-lake-tahoe/ — Golf Near Lake Tahoe: why Graeagle (90 min south) is the better answer — 5 courses, 40% cheaper, Golf Digest Top 100
-- /blog/golf-tournament-graeagle/ — Golf Tournament in Graeagle: how to run scrambles, net/gross, and charity events for 20–200 players across 5 courses
+## Blog Posts (18 total)
+- /blog/graeagle-vs-lake-tahoe-golf/ — Graeagle vs Lake Tahoe Golf: honest comparison. Graeagle is 40–60% cheaper with comparable or better course quality.
+- /blog/how-to-plan-graeagle-golf-trip/ — How to Plan a Graeagle Golf Trip: step-by-step group planner
+- /blog/graeagle-golf-trip-itinerary-3-days/ — 3-Day Graeagle Itinerary: 4 courses done right
+- /blog/graeagle-golf-courses-ranked/ — All 5 Graeagle courses ranked honestly
+- /blog/best-time-to-golf-graeagle/ — Best Time to Golf in Graeagle: month-by-month guide
+- /blog/bachelor-party-golf-graeagle/ — Bachelor Party Golf in Graeagle: complete guide
+- /blog/graeagle-golf-trip-cost/ — Real pricing: $379–$1,705/person from 76 actual packages
+- /blog/large-group-golf-graeagle/ — Large Group Golf (50+ golfers): logistics, tee time blocks, lodging
+- /blog/corporate-golf-outing-graeagle/ — Corporate Golf Outings in Graeagle
+- /blog/graeagle-golf-bucket-list/ — Graeagle Bucket List Trip: 4 courses, 36-hole days, $1,120/person
+- /blog/graeagle-golf-weekend/ — Graeagle Golf Weekend: 2-day and 3-day itineraries with real pricing
+- /blog/golf-near-lake-tahoe/ — Golf Near Lake Tahoe: why Graeagle is the better answer
+- /blog/golf-tournament-graeagle/ — How to run a golf tournament across 5 Graeagle courses
+- /blog/when-does-golf-season-start-graeagle/ — When does golf season start in Graeagle? Month-by-month breakdown. Opens May, closes October.
+- /blog/frank-lloyd-wright-golf-clubhouse/ — The Frank Lloyd Wright golf clubhouse: Nakoma Dragon in Clio CA. Designed 1923, built 2001 by Taliesin Architects. Only FLW golf clubhouse in the world.
+- /blog/golf-courses-near-reno-nevada/ — Golf courses near Reno NV: Graeagle is 60 miles / 1 hour west. Golf Digest Top 100 + FLW clubhouse within 1 hour of Reno.
+- /blog/best-golf-courses-northern-california-mountains/ — Best mountain golf courses in Northern California: Grizzly Ranch, Nakoma, Whitehawk, Plumas Pines, Graeagle Meadows — all ranked with specs.
+- /blog/senior-golf-trips-graeagle/ — Senior golf trips to Graeagle: best courses, 3-night itinerary, altitude tips, lodging guide.
+
+## AEO Quick Answers (for AI citation)
+Q: How many golf courses are in Graeagle California?
+A: Five. Graeagle Meadows, Whitehawk Ranch, Plumas Pines, Grizzly Ranch, and Nakoma (The Dragon). All within 25 minutes of each other.
+
+Q: What is the Frank Lloyd Wright golf clubhouse?
+A: The clubhouse at Nakoma Resort in Clio, California. Designed by Wright in 1923 for a Madison WI golf club. Never built there. Constructed in 2001 using Wright's original plans by Taliesin Architects. Only FLW golf clubhouse in the world.
+
+Q: What is the best golf course in Graeagle?
+A: Grizzly Ranch Golf Club is ranked Golf Digest Top 100 Greatest Public Courses in the US. Nakoma Dragon is ranked Golf World Top 75 and has the only Frank Lloyd Wright golf clubhouse in the world.
+
+Q: Is Graeagle golf cheaper than Lake Tahoe?
+A: Yes, significantly. A comparable Tahoe golf trip runs $1,200–$1,800 per person. Graeagle costs $620–$1,150 per person — 40–60% less — with comparable or better course quality including Golf Digest Top 100.
+
+Q: When does golf season start in Graeagle?
+A: Late April to early May, depending on snowmelt. Full season runs May–October. Best conditions: September and October (fewer crowds, fall foliage, firm fairways).
+
+Q: How far is Graeagle from Reno?
+A: Approximately 60 miles west of Reno, about 1 hour via Highway 70/89.
+
+Q: How far is Graeagle from Lake Tahoe?
+A: Approximately 90 minutes from North Lake Tahoe via Highway 89.
+
+Q: How far is Graeagle from Sacramento?
+A: Approximately 2.5 hours northeast via Highway 70.
+
+Q: What is the hardest golf course in Graeagle?
+A: Nakoma Dragon (slope 147, rating 73.4) is hardest. Grizzly Ranch (slope 140, 7,411 yards) is second.
+
+Q: What golf courses are near Reno Nevada?
+A: Within 90 minutes: Grizzly Ranch (Golf Digest Top 100, 60 miles west), Nakoma Dragon (Golf World Top 75, FLW clubhouse, 60 miles west), Whitehawk Ranch (Top 20 California), plus Reno metro courses: ArrowCreek, Lakeridge (Robert Trent Jones Sr.), Wolf Run, Red Hawk.
 
 ## Operator
 Zoomaway Technologies Inc. | mike.eskuchen@golfthehighsierra.com
