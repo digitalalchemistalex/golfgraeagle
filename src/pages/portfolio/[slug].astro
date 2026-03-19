@@ -472,6 +472,12 @@ const diningSlugMap: Record<string, string> = {
       <h1 class="ch-h1 speakable">{item.name} <span style="display:block;font-size:0.55em;font-weight:400;color:rgba(255,255,255,0.5);font-style:italic;margin-top:4px;">Golf Packages &amp; Tee Times — Graeagle, CA</span></h1>
       <p class="ch-tagline page-intro">{item.tagline}</p>
 
+      {item.fomoLine && (
+        <div style="display:inline-flex;align-items:center;gap:8px;background:rgba(232,168,80,0.18);border:1px solid rgba(232,168,80,0.4);border-radius:100px;padding:6px 16px;margin-bottom:20px;">
+          <span style="font-size:12px;color:#f2c878;font-weight:700;letter-spacing:0.02em;">⚡ {item.fomoLine}</span>
+        </div>
+      )}
+
       <div class="ch-ctas">
         <a href={`/request-a-quote?utm_source=golfgraeagle&utm_medium=internal&utm_campaign=cta&utm_content=${item.slug}-hero`} class="btn-green-glow ch-btn-primary">Book a Package →</a>
         {item.website && (
@@ -868,7 +874,7 @@ const diningSlugMap: Record<string, string> = {
 
   /* ─── BODY LAYOUT ─── */
   .course-body { background:var(--page-bg); padding: clamp(40px, 8vw, 80px) clamp(20px, 10%, 10%); }
-  .course-layout { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 380px; gap: 64px; }
+  .course-layout { max-width: 1100px; margin: 0 auto; }
   .photo-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 8px; }
 
   /* ─── MOBILE ─── */
@@ -892,43 +898,9 @@ const diningSlugMap: Record<string, string> = {
     .reveal { margin-bottom: 36px !important; }
   }
 
-  @media (max-width: 900px) {
-    .course-layout { grid-template-columns: 1fr; }
-    .course-sidebar { order: -1; }
-    .course-sidebar-inner { position: static !important; }
-  }
 
-  /* ─── LODGING / DINING BODY GRIDS ─── */
-  .lod-body-grid {
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 64px 5%;
-    display: grid;
-    grid-template-columns: 1fr 380px;
-    gap: 60px;
-    align-items: start;
-  }
-  .lod-amenities-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 12px;
-  }
-  .din-body-grid {
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 64px 5%;
-    display: grid;
-    grid-template-columns: 1fr 340px;
-    gap: 56px;
-    align-items: start;
-  }
 
   @media (max-width: 860px) {
-    .lod-body-grid {
-      grid-template-columns: 1fr;
-      padding: 40px 6%;
-      gap: 40px;
-    }
     .lod-amenities-grid {
       grid-template-columns: 1fr;
     }
@@ -960,10 +932,29 @@ const diningSlugMap: Record<string, string> = {
 </style>
 
 <div class="course-body">
-  <div class="course-layout">
 
-    <!-- LEFT: Content -->
-    <div>
+  {/* Mobile FOMO strip — hidden desktop */}
+  {item.fomoLine && <div class="crs-fomo-strip">⚡ {item.fomoLine}</div>}
+
+  {/* Mobile stat pills */}
+  <div class="crs-stat-pills">
+    <span>Par {item.par}</span>
+    <span>{item.yards} yds</span>
+    <span>Slope {item.slope}</span>
+    <span>Rating {item.rating}</span>
+    {item.altitude && <span>{item.altitude}</span>}
+  </div>
+
+  {/* Mobile early CTA */}
+  <div class="crs-mobile-cta">
+    <a href={`/request-a-quote?utm_source=golfgraeagle&utm_medium=internal&utm_campaign=cta&utm_content=${item.slug}-mobile-top`}
+       class="btn-green-glow"
+       style="display:block;text-align:center;background:var(--gold-light);color:#0d1a0e;font-weight:700;font-size:15px;padding:16px;border-radius:12px;text-decoration:none;">
+      Book a Package →
+    </a>
+  </div>
+
+  <div class="course-layout">
       <!-- Description — speakable intro -->
       <div class="reveal" style="margin-bottom:56px;">
         <h2 style="font-family:'Playfair Display',serif;font-size:28px;color:var(--text-primary);margin:0 0 20px;">About {item.name}</h2>
@@ -1119,56 +1110,48 @@ const diningSlugMap: Record<string, string> = {
         </div>
       </div>
 
-    </div>
 
-    <!-- RIGHT: Booking sidebar -->
-    <div style="align-self:start;">
-      <div style="position:sticky;top:100px;">
-        <div style="background:var(--surface);border:1px solid rgba(184,130,10,0.2);border-radius:20px;padding:28px;margin-bottom:16px;box-shadow:0 4px 24px rgba(0,0,0,0.08);">
-          <!-- Social proof strip -->
-          <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px;padding-bottom:14px;border-bottom:1px solid rgba(28,18,8,0.07);">
-            <span style="font-size:13px;color:#b8820a;font-weight:700;">★★★★★</span>
-            <span style="font-size:12px;color:#7a6a56;">4.8/5 · 672 reviews</span>
+      <!-- Full-width CTA block -->
+        <div style="background:rgba(232,168,80,0.06);border:1px solid rgba(232,168,80,0.2);border-radius:20px;padding:40px;margin-bottom:48px;text-align:center;">
+          <div style="display:flex;align-items:center;justify-content:center;gap:6px;margin-bottom:12px;">
+            <span style="font-size:14px;color:#b8820a;font-weight:700;">★★★★★</span>
+            <span style="font-size:13px;color:rgba(28,18,8,0.45);">4.8/5 · 672 verified reviews</span>
           </div>
-
-          <h3 style="font-family:'Playfair Display',serif;font-size:20px;color:#1c1208;margin:0 0 4px;">Book {item.name}</h3>
-          <p style="font-size:13px;color:#7a6a56;margin:0 0 6px;line-height:1.5;">Tee times · Lodging · Dining · Logistics</p>
-          <p style="font-size:14px;font-weight:700;color:#1a7a40;margin:0 0 18px;">Packages from $299 per golfer</p>
-
-          <div style="display:flex;flex-direction:column;margin-bottom:22px;">
-            {[['Par',`${item.par}`],['Course Rating',`${item.rating}`],['Slope',`${item.slope}`],['Yardage',`${item.yards.toLocaleString()} yds`]].map(([k,v])=>(
-              <div style="display:flex;justify-content:space-between;font-size:14px;padding:9px 0;border-bottom:1px solid rgba(28,18,8,0.07);">
-                <span style="color:#7a6a56;">{k}</span>
-                <span style="color:#1c1208;font-weight:600;">{v}</span>
-              </div>
-            ))}
-          </div>
-
-          <a href={`/request-a-quote?utm_source=golfgraeagle&utm_medium=internal&utm_campaign=cta&utm_content=${item.slug}-sidebar`} class="btn-green-glow" style="display:block;text-align:center;font-size:15px;padding:15px;margin-bottom:10px;">
+          <h3 style="font-family:'Playfair Display',serif;font-size:26px;color:var(--text-primary);margin:0 0 10px;font-weight:500;">Book {item.name}</h3>
+          <p style="font-size:15px;color:rgba(28,18,8,0.45);margin:0 0 12px;line-height:1.65;max-width:480px;margin-left:auto;margin-right:auto;">Tee times + lodging + dining — handled. Packages from $299/golfer. Free quote, 24-hour response.</p>
+          {item.fomoLine && <p style="font-size:13px;color:#c8862a;font-weight:700;margin:0 0 20px;">⚡ {item.fomoLine}</p>}
+          <a href={`/request-a-quote?utm_source=golfgraeagle&utm_medium=internal&utm_campaign=cta&utm_content=${item.slug}-bottom`}
+             class="btn-green-glow"
+             style="display:inline-block;background:var(--gold-light);color:#0d1a0e;font-weight:700;font-size:15px;padding:16px 44px;border-radius:100px;text-decoration:none;transition:transform 0.2s;"
+             onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='translateY(0)'">
             Request a Free Quote →
           </a>
-          <p style="font-size:11px;color:#b09e88;text-align:center;margin:0;">No obligation · 72-hr cancellation · 24hr response</p>
+          <p style="font-size:11px;color:rgba(28,18,8,0.3);margin:12px 0 0;">No obligation · 72-hr cancellation · Response within 24 hours</p>
         </div>
 
-        <!-- Add other courses -->
-        <div style="background:var(--surface);border:1px solid rgba(28,18,8,0.08);border-radius:16px;padding:22px;box-shadow:0 2px 12px rgba(0,0,0,0.04);">
-          <p style="font-size:11px;color:#b09e88;text-transform:uppercase;letter-spacing:0.1em;margin:0 0 14px;font-weight:600;">Add Another Course</p>
-          {courses.filter(x=>x.slug!==c.slug).map(x=>(
-            <a href={`/portfolio/${x.slug === 'nakoma-dragon' ? 'nakoma-dragon-golf-packages' : x.slug + '-golf-packages'}/`} style="display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid rgba(28,18,8,0.06);text-decoration:none;transition:opacity 0.2s;"
-            onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">
-              <div style="width:40px;height:40px;border-radius:8px;overflow:hidden;flex-shrink:0;">
-                <img src={x.hero} alt={x.name} style="width:100%;height:100%;object-fit:cover;"/>
-              </div>
-              <div>
-                <div style="font-size:13px;color:#1c1208;font-weight:500;">{x.name}</div>
-                <div style="font-size:11px;color:#b09e88;">Par {x.par} · Slope {x.slope}</div>
-              </div>
-            </a>
-          ))}
+        <!-- Compare other courses -->
+        <div style="margin-bottom:48px;">
+          <h2 style="font-family:'Playfair Display',serif;font-size:22px;color:var(--text-primary);margin:0 0 20px;font-weight:400;">Compare All 5 Graeagle Courses</h2>
+          <div style="display:flex;flex-direction:column;gap:10px;">
+            {courses.filter((x: any) => x.slug !== item.slug).map((x: any) => (
+              <a href={`/portfolio/${wpCourseSlugMap[x.slug] || x.slug + '-golf-packages'}/`}
+                 style="display:flex;align-items:center;gap:14px;padding:14px 18px;background:rgba(28,18,8,0.03);border:1px solid rgba(28,18,8,0.07);border-radius:12px;text-decoration:none;transition:all 0.2s;"
+                 onmouseover="this.style.borderColor='rgba(232,168,80,0.3)';this.style.background='rgba(232,168,80,0.04)'"
+                 onmouseout="this.style.borderColor='rgba(28,18,8,0.07)';this.style.background='rgba(28,18,8,0.03)'">
+                <div style="width:48px;height:48px;border-radius:8px;overflow:hidden;flex-shrink:0;">
+                  <img src={x.hero} alt={x.name} style="width:100%;height:100%;object-fit:cover;" loading="lazy"/>
+                </div>
+                <div style="flex:1;min-width:0;">
+                  <div style="font-size:14px;font-weight:700;color:var(--text-primary);margin-bottom:2px;">{x.name}</div>
+                  <div style="font-size:12px;color:rgba(28,18,8,0.4);">Par {x.par} · Slope {x.slope} · {x.tier}</div>
+                </div>
+                <span style="font-size:12px;color:var(--gold);flex-shrink:0;">View →</span>
+              </a>
+            ))}
+          </div>
         </div>
-      </div>
+
     </div>
-
   </div>
 </div>
 

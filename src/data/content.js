@@ -199,6 +199,10 @@ export const courses = [
       '/wp-images/DJI_0016.webp',
     ],
     description: 'Graeagle Meadows Golf Course opened in 1968, making it the original championship course in the valley. Designed by Ellis Van Gorder, the layout winds through open Sierra meadows and tall ponderosa pines along the Middle Fork of the Feather River. At 6,759 yards with a slope of 120, it\'s the most approachable of the five Graeagle courses and perfect for groups with a range of handicaps. The signature hole — the par-4 6th, known as "English Gold" — offers elevated tees with views of Mohawk Valley, the Feather River, and the Sierra beyond.',
+    fomoLine: 'Summer tee times fill 2–3 weeks out — GolfGraeagle holds allocation year-round',
+    signatureHoles: [
+      { hole: 6, par: 4, name: 'English Gold', description: 'Elevated tees drop to a tree-lined fairway with sweeping views of Mohawk Valley, the Feather River, and the Sierra Nevada beyond. One of the most photographed holes in the valley.' },
+    ],
     bestFor: 'First-timers, mixed-handicap groups, value rounds',
     facilities: ['Pro Shop', 'Full-Service Restaurant', 'Snack Bar', 'Driving Range', 'Putting Green'],
     onSiteDining: ['meadows-restaurant'],
@@ -246,6 +250,10 @@ export const courses = [
       '/wp-images/DJI_0027.jpg',
     ],
     description: 'Whitehawk Ranch Golf Course opened in 1996, designed by Dick Bailey on 550 acres of pristine Mohawk Valley land. Twelve holes play through open meadows along meandering streams; six more climb through forested hillside terrain. Water features, native wildflowers, and elevation changes create a constantly varied round. Winner of four major regional awards including Golf Digest Top 20 in California.',
+    fomoLine: 'Top 20 CA course — weekend tee times limited, book 2 weeks out',
+    signatureHoles: [
+      { hole: 18, par: 4, name: 'The Homecoming', description: 'Plays back through the meadow with Sulphur Creek running the length of the left side. The final approach requires a precise carry over water to a green framed by the Sierra peaks — a finishing hole that demands everything.' },
+    ],
     bestFor: 'Competitive players, award-winning scenery, serious rounds',
     facilities: ['Pro Shop', 'All-Grass Driving Range (complimentary balls)', 'Putting Green', 'Snack Bar', 'Full Bar'],
     onSiteDining: [],
@@ -292,6 +300,10 @@ export const courses = [
       '/wp-images/plumas-pines-longboards-deck.png',
     ],
     description: 'Plumas Pines Golf Resort, designed by Homer Flint and opened in 1980, sits deep in the pines with tighter fairways than its Graeagle neighbors. Despite playing just 6,504 yards, a slope of 132 means every shot demands precision. The signature second hole features a dramatic green complex looking west over the valley. Outstanding value among the five Graeagle courses.',
+    fomoLine: 'Best-value round in the valley — group tee times book out in July/August',
+    signatureHoles: [
+      { hole: 2, par: 3, description: 'A demanding par-3 with a multi-tiered green complex perched above the valley floor. The westward vista from the tee box is one of the most dramatic views in Graeagle golf — and the wind off the ridge makes club selection a genuine puzzle.' },
+    ],
     bestFor: 'Shot-makers, value seekers, golfers who want a tough test',
     facilities: ['Pro Shop', 'Putting Green', 'On-Site Vacation Rentals & Condos'],
     onSiteDining: [],
@@ -339,6 +351,11 @@ export const courses = [
     ],
     
     description: 'Grizzly Ranch Golf Club, designed by Bob Cupp and opened in 2005, is the region\'s most demanding course. At 7,411 yards with a slope of 140 and course rating of 74.9, it plays every inch of its length through dramatic mountain terrain with significant elevation changes, exposed ridgeline holes, and panoramic Sierra views. Semi-private — access is through packages.',
+    fomoLine: 'Golf Digest Top 100 — semi-private tee times release 30 days out and fill within days',
+    signatureHoles: [
+      { hole: 1, par: 4, name: 'The Opening Statement', description: 'Plays downhill from an elevated tee with the entire course spread below. At 7,411 yards this course earns every foot — and hole 1 makes that clear immediately.' },
+      { hole: 14, par: 3, description: 'The most talked-about hole at Grizzly Ranch. A forced carry over a deep ravine to a green cut into the hillside, with panoramic views of the Sierra Nevada at 5,200 feet elevation. Three clubs of wind possible.' },
+    ],
     bestFor: 'Scratch and low-handicap golfers, bucket-list rounds, groups wanting a serious challenge',
     facilities: ['Pro Shop', '30-Station Natural Turf Practice Range', 'Putting Green', 'Chipping Area', 'Bunker Practice Area'],
     onSiteDining: ['grizzly-grill'],
@@ -386,6 +403,11 @@ export const courses = [
       '/wp-images/nakoma-flw-lodge-exterior.jpg',
     ],
     description: 'Nakoma Resort\'s Dragon course, designed by Robin Nelson (creator of the famous Dunes at Mauna Lani) and opened in 1998, debuted as one of Golf World\'s America\'s Top 75 Courses. The course plays 7,015 yards with a fearsome slope of 147 — the most challenging rating in the valley. The Frank Lloyd Wright-designed clubhouse is the only golf clubhouse in the world built to his design.',
+    fomoLine: 'Only FLW golf clubhouse on earth — tee time slots are limited by design, not demand',
+    signatureHoles: [
+      { hole: 18, par: 5, name: 'The Dragon\'s Lair', description: 'The finishing hole returns to the Frank Lloyd Wright clubhouse in dramatic fashion — a long par-5 that winds through canyon terrain with the famous FLW roofline visible from the 150-yard marker. Every golfer who plays The Dragon remembers this approach.' },
+      { hole: 7, par: 3, description: 'Plays over a canyon chasm to a green with no bail-out. The Feather River gorge is fully visible below. Slope 147 is earned here.' },
+    ],
     bestFor: 'Architecture enthusiasts, bucket-list golfers, those seeking the most unique experience in Northern California',
     facilities: ['Frank Lloyd Wright Clubhouse', 'Pro Shop', 'Driving Range', 'Heated Pool', '2 Hot Tubs', 'Spa', 'Gym', 'Arcade / Game Room'],
     onSiteDining: ['fifty44-restaurant', 'middle-fork-bistro'],
