@@ -61,6 +61,11 @@ const blogUrls = [
   '/blog/graeagle-golf-weekend',
   '/blog/golf-near-lake-tahoe',
   '/blog/golf-tournament-graeagle',
+  '/blog/when-does-golf-season-start-graeagle',
+  '/blog/frank-lloyd-wright-golf-clubhouse',
+  '/blog/golf-courses-near-reno-nevada',
+  '/blog/best-golf-courses-northern-california-mountains',
+  '/blog/senior-golf-trips-graeagle',
 ].map(s => url(s,'0.7','monthly'));
 
 const sitemap = `<?xml version="1.0" encoding="UTF-8"?>

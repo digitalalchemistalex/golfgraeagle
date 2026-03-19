@@ -1,0 +1,175 @@
+---
+export const prerender = true;
+import Base from '../../layouts/Base.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+import RelatedTrips from '../../components/RelatedTrips.tsx';
+
+const title = "Golf Courses Near Reno, Nevada: Why Graeagle Is the Best Day Trip (and Overnight)";
+const description = "Graeagle, CA is 60 miles and 1 hour from Reno — with 5 championship courses including Golf Digest Top 100 and a Frank Lloyd Wright clubhouse. Here's how Graeagle compares to Reno's local courses.";
+const slug = "golf-courses-near-reno-nevada";
+const datePublished = "2026-03-19";
+const dateModified = "2026-03-19";
+
+const schema = {
+  "@context": "https://schema.org", "@type": "BlogPosting",
+  "headline": title, "datePublished": datePublished, "dateModified": dateModified,
+  "author": { "@type": "Organization", "name": "GolfGraeagle.com" },
+  "publisher": { "@type": "Organization", "name": "Zoomaway Technologies Inc.", "url": "https://golfgraeagle.com" },
+  "mainEntityOfPage": { "@type": "WebPage", "@id": `https://golfgraeagle.com/blog/${slug}/` }
+};
+
+const faqSchema = {
+  "@context": "https://schema.org", "@type": "FAQPage",
+  "mainEntity": [
+    { "@type": "Question", "name": "How far is Graeagle from Reno?", "acceptedAnswer": { "@type": "Answer", "text": "Graeagle is approximately 60 miles west of Reno, about 1 hour by car via Highway 70/89. It is a straightforward drive through the Sierra Nevada foothills with no mountain pass crossings." } },
+    { "@type": "Question", "name": "What are the best golf courses near Reno, Nevada?", "acceptedAnswer": { "@type": "Answer", "text": "The highest-rated courses within 90 minutes of Reno include Grizzly Ranch Golf Club (Golf Digest Top 100, 60 miles west in Graeagle), Nakoma Dragon (Golf World Top 75, FLW clubhouse, 60 miles west), Whitehawk Ranch (Top 20 California, 55 miles west), and in Reno itself: ArrowCreek Golf Course, Lakeridge Golf Course (Robert Trent Jones Sr. design), and Wolf Run Golf Club." } },
+    { "@type": "Question", "name": "Is Graeagle worth the drive from Reno for golf?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Graeagle offers Golf Digest Top 100 (Grizzly Ranch) and Golf World Top 75 (Nakoma Dragon) courses that outrank anything in the Reno metro area. The drive is 60 miles on a single highway with no difficult mountain passes. Many Reno golfers make Graeagle a day trip; others stay 2–3 nights to play multiple courses." } },
+    { "@type": "Question", "name": "Can you do a Graeagle golf day trip from Reno?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. A day trip from Reno to Graeagle is practical — 1 hour each way, leaving time for a round and lunch. Most Reno golfers doing a day trip play Graeagle Meadows (easiest logistics, in the center of the valley) or Whitehawk Ranch. For a full Graeagle experience with multiple courses, a 2–3 night stay makes more sense." } },
+  ]
+};
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org", "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://golfgraeagle.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://golfgraeagle.com/blog/" },
+    { "@type": "ListItem", "position": 3, "name": title, "item": `https://golfgraeagle.com/blog/${slug}/` }
+  ]
+};
+
+const reno = [
+  { name: 'Lakeridge Golf Course', designer: 'Robert Trent Jones Sr.', note: 'Signature 15th over Lake Stanley. Voted Best of Reno. Public, full amenities.' },
+  { name: 'ArrowCreek Golf Course', designer: 'Arnold Palmer / Fuzzy Zoeller', note: 'South Reno. Two 18-hole courses. Lessons available. Mountain views.' },
+  { name: 'Wolf Run Golf Club', designer: 'John Harbottle III', note: 'Home of UNR golf teams. Practice range, short game area. Full bar and restaurant.' },
+  { name: 'Red Hawk Golf and Resort', designer: 'Robert Trent Jones Jr.', note: 'Sparks / Spanish Springs. Natural lakes, cottonwood trees. Relaxed atmosphere.' },
+  { name: 'Somersett Golf & Country Club', designer: 'Peter Jacobsen / Jim Hardy', note: 'Northwest Reno. Private — limited public access. Championship layout.' },
+];
+
+const graeagle = [
+  { name: 'Grizzly Ranch', badge: 'Golf Digest Top 100', par: 72, yards: 7411, slope: 140, note: '18 min from Graeagle. Most demanding course in region. Semi-private access through packages.', slug: 'grizzly-ranch-golf-packages' },
+  { name: 'Nakoma Dragon', badge: 'Golf World Top 75 · FLW Clubhouse', par: 72, yards: 7015, slope: 147, note: 'Frank Lloyd Wright clubhouse. Canyon carries. Feather River views.', slug: 'nakoma-dragon-golf-packages' },
+  { name: 'Whitehawk Ranch', badge: 'Top 20 California', par: 71, yards: 6983, slope: 132, note: 'Mohawk Valley meadow setting. Seven streams. Dick Bailey design.', slug: 'whitehawk-ranch-golf-packages' },
+  { name: 'Plumas Pines', badge: 'Top 5 Value CA', par: 72, yards: 6504, slope: 132, note: 'Feather River layout. Precision course. Longboards on-site.', slug: 'plumas-pines-golf-packages' },
+  { name: 'Graeagle Meadows', badge: 'Since 1968', par: 72, yards: 6759, slope: 120, note: 'Most accessible. Mountain views. Central valley location.', slug: 'graeagle-meadows-golf-packages' },
+];
+---
+<Base title={title} description={description} ogType="article" schema={[schema, faqSchema, breadcrumbSchema]}
+  canonical={`https://golfgraeagle.com/blog/${slug}/`}
+  ogImage="https://golfgraeagle.com/wp-images/grizzly-ranch-hero.webp"
+  bodyClass="light-page"
+>
+  <Nav />
+
+  <div class="bl-hero" style="background-image:url(/wp-images/grizzly-ranch-hero.webp)">
+    <div class="bl-hero-fade"></div>
+    <div class="bl-hero-content">
+      <div class="bl-breadcrumb"><a href="/blog/">Blog</a> <span>→</span> Golf Near Reno</div>
+      <h1 class="bl-h1">Golf Courses Near Reno, Nevada</h1>
+      <p class="bl-meta">By GolfGraeagle.com · March 2026 · 6 min read · 60 miles from Reno</p>
+    </div>
+  </div>
+
+  <div class="bl-wrap">
+    <article class="bl-article">
+
+      <p class="bl-intro">Reno has golf. But the best golf within 90 minutes of Reno isn't in Reno — it's in Graeagle, California, 60 miles west on Highway 70. Five championship courses, including Golf Digest Top 100 and a Frank Lloyd Wright clubhouse, all within 25 minutes of each other. Here's the full picture.</p>
+
+      <h2>How Far Is Graeagle from Reno?</h2>
+      <p>Graeagle is approximately 60 miles southwest of Reno — about 1 hour via Highway 80 West to Highway 89 South, or via Highway 70 West through Portola. There's no mountain pass crossing, no significant elevation change on the drive, and no traffic. It's one of the more straightforward 60-mile drives in the Sierra Nevada region.</p>
+      <p>Many Reno golfers make Graeagle a regular day trip: leave at 7am, tee off at 8:30am, have lunch on the deck at Graeagle Meadows, drive back by 3pm. Others stay 2–3 nights to play all five courses — which is where the real value is.</p>
+
+      <h2>Reno's Best Local Courses</h2>
+      <p>Reno has over 40 golf courses within the metro area, and several are worth playing:</p>
+
+      <div style="display:flex;flex-direction:column;gap:12px;margin:24px 0 32px;">
+        {reno.map(c => (
+          <div style="padding:16px 20px;background:rgba(28,18,8,0.03);border:1px solid rgba(28,18,8,0.07);border-radius:12px;">
+            <div style="font-weight:700;font-size:14px;color:var(--text-primary);margin-bottom:4px;">{c.name}</div>
+            <div style="font-size:11px;color:var(--gold);font-weight:600;margin-bottom:6px;">Design: {c.designer}</div>
+            <div style="font-size:13px;color:rgba(28,18,8,0.5);line-height:1.6;">{c.note}</div>
+          </div>
+        ))}
+      </div>
+
+      <p>These are solid courses. Lakeridge in particular has one of the more dramatic single holes in the region. But none of them are ranked among the best courses in California, and none have the concentration of championship-level options that Graeagle provides.</p>
+
+      <h2>The 5 Graeagle Courses: 60 Miles from Reno</h2>
+      <p>One hour west of Reno, all five Graeagle courses are within 25 minutes of each other. Here's what you get:</p>
+
+      <div style="display:flex;flex-direction:column;gap:14px;margin:24px 0 32px;">
+        {graeagle.map(c => (
+          <a href={`/portfolio/${c.slug}/`} style="display:block;padding:20px 24px;background:#fff;border:1px solid rgba(28,18,8,0.07);border-radius:14px;text-decoration:none;transition:all 0.2s;" onmouseover="this.style.borderColor='rgba(232,168,80,0.4)';this.style.background='rgba(232,168,80,0.03)'" onmouseout="this.style.borderColor='rgba(28,18,8,0.07)';this.style.background='#fff'">
+            <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px;flex-wrap:wrap;">
+              <span style="font-weight:700;font-size:15px;color:var(--text-primary);">{c.name}</span>
+              <span style="font-size:9px;font-weight:800;color:var(--gold);background:rgba(232,168,80,0.12);padding:2px 9px;border-radius:100px;text-transform:uppercase;">{c.badge}</span>
+            </div>
+            <div style="font-size:12px;color:rgba(28,18,8,0.4);margin-bottom:6px;">Par {c.par} · {c.yards.toLocaleString()} yds · Slope {c.slope}</div>
+            <div style="font-size:13px;color:rgba(28,18,8,0.5);line-height:1.6;">{c.note}</div>
+          </a>
+        ))}
+      </div>
+
+      <h2>Reno Courses vs Graeagle: Honest Comparison</h2>
+      <table class="bl-table">
+        <thead>
+          <tr><th></th><th>Reno Metro Courses</th><th>Graeagle Courses</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Drive from Reno</td><td>10–30 min</td><td>60 min</td></tr>
+          <tr><td>Top-ranked courses</td><td>None in national top 100</td><td>Golf Digest Top 100, Golf World Top 75</td></tr>
+          <tr><td>Courses in one area</td><td>Spread across metro</td><td>5 courses within 25 min of each other</td></tr>
+          <tr><td>Elevation</td><td>4,400 ft (Reno)</td><td>3,500–5,000 ft</td></tr>
+          <tr><td>Architecture</td><td>Standard clubhouses</td><td>Frank Lloyd Wright clubhouse (Nakoma)</td></tr>
+          <tr><td>Season</td><td>March–November</td><td>May–October</td></tr>
+          <tr><td>Price tier</td><td>$$ typical</td><td>$$–$$$$</td></tr>
+        </tbody>
+      </table>
+
+      <h2>Day Trip vs Overnight: Which Makes Sense?</h2>
+      <p><strong>Day trip from Reno works best for:</strong> One round at Graeagle Meadows or Whitehawk Ranch. Leave Reno by 7am, tee off at 8:30–9am, lunch on course, back by 3pm. Simple, no hotel needed.</p>
+      <p><strong>Overnight (2–3 nights) makes sense when:</strong> You want to play multiple courses. The three-night sweet spot covers 3–4 courses — enough to get Grizzly Ranch and Nakoma Dragon alongside two value courses. Packages from $299/golfer including lodging. The per-night cost at River Pines Resort or the Townhomes at Plumas Pines is comparable to a casino hotel in Reno, but you're waking up in the Sierra Nevada.</p>
+
+      <div class="bl-faq">
+        <h2>Frequently Asked Questions</h2>
+        {faqSchema.mainEntity.map((item: any) => (
+          <div class="bl-faq-item">
+            <h3>{item.name}</h3>
+            <p>{item.acceptedAnswer.text}</p>
+          </div>
+        ))}
+      </div>
+
+      <div class="bl-cta">
+        <h2>Plan a Graeagle golf trip from Reno</h2>
+        <p>Tell us your group size, dates, and how many rounds you want. We'll build a package — day trip or overnight — around your schedule.</p>
+        <a href="/request-a-quote/" class="bl-cta-btn btn-green-glow">Get Your Quote →</a>
+        <div class="bl-cta-links">
+          <a href="/all-golf-courses/">Compare all 5 Graeagle courses →</a>
+          <a href="/stay-and-play/">Stay and play packages →</a>
+          <a href="/blog/graeagle-vs-lake-tahoe-golf/">Graeagle vs Lake Tahoe →</a>
+        </div>
+      </div>
+    </article>
+
+    <aside style="margin-top:48px;">
+      <div style="display:flex;flex-wrap:wrap;gap:10px;">
+        {[
+          ['Grizzly Ranch','grizzly-ranch-golf-packages','Golf Digest Top 100 · Slope 140'],
+          ['Nakoma Dragon','nakoma-dragon-golf-packages','FLW Clubhouse · Slope 147'],
+          ['Whitehawk Ranch','whitehawk-ranch-golf-packages','Top 20 CA · Slope 132'],
+          ['Plumas Pines','plumas-pines-golf-packages','Top 5 Value CA · Slope 132'],
+          ['Graeagle Meadows','graeagle-meadows-golf-packages','Since 1968 · Slope 120'],
+        ].map(([name, s, note]) => (
+          <a href={`/portfolio/${s}/`} style="display:inline-flex;flex-direction:column;padding:12px 16px;background:rgba(28,18,8,0.04);border:1px solid rgba(28,18,8,0.07);border-radius:10px;text-decoration:none;min-width:160px;transition:all 0.2s;" onmouseover="this.style.borderColor='rgba(232,168,80,0.4)'" onmouseout="this.style.borderColor='rgba(28,18,8,0.07)'">
+            <span style="font-size:13px;font-weight:700;color:var(--text-primary);margin-bottom:3px;">{name}</span>
+            <span style="font-size:11px;color:rgba(28,18,8,0.4);">{note}</span>
+          </a>
+        ))}
+      </div>
+    </aside>
+  </div>
+
+  <RelatedTrips client:load slug="grizzly-ranch" type="course" showAll={true} max={4} />
+  <Footer />
+</Base>

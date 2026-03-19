@@ -1,0 +1,133 @@
+---
+export const prerender = true;
+import Base from '../../layouts/Base.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+import RelatedTrips from '../../components/RelatedTrips.tsx';
+
+const title = "The Frank Lloyd Wright Golf Clubhouse: Nakoma's Dragon Course in California";
+const description = "The only golf clubhouse in the world designed by Frank Lloyd Wright sits in Clio, California — at the Nakoma Dragon golf course, 90 minutes from Lake Tahoe. Here's the full story.";
+const slug = "frank-lloyd-wright-golf-clubhouse";
+const datePublished = "2026-03-19";
+const dateModified = "2026-03-19";
+
+const schema = {
+  "@context": "https://schema.org", "@type": "BlogPosting",
+  "headline": title, "datePublished": datePublished, "dateModified": dateModified,
+  "author": { "@type": "Organization", "name": "GolfGraeagle.com" },
+  "publisher": { "@type": "Organization", "name": "Zoomaway Technologies Inc.", "url": "https://golfgraeagle.com" },
+  "mainEntityOfPage": { "@type": "WebPage", "@id": `https://golfgraeagle.com/blog/${slug}/` }
+};
+
+const faqSchema = {
+  "@context": "https://schema.org", "@type": "FAQPage",
+  "mainEntity": [
+    { "@type": "Question", "name": "What is the Frank Lloyd Wright golf clubhouse?", "acceptedAnswer": { "@type": "Answer", "text": "The Frank Lloyd Wright golf clubhouse is at Nakoma Resort in Clio, California. Wright designed it in 1923 for a golf club in Madison, Wisconsin, but it was never built there. In 2001, Taliesin Architects — Wright's own firm — built the design in California for the Nakoma golf resort. It is the only golf clubhouse in the world built to a Frank Lloyd Wright design." } },
+    { "@type": "Question", "name": "Where is the Frank Lloyd Wright golf clubhouse?", "acceptedAnswer": { "@type": "Answer", "text": "The Frank Lloyd Wright golf clubhouse is at Nakoma Resort, 348 Bear Run Rd, Clio, CA 96106 — in the Sierra Nevada mountains of Northern California, approximately 90 minutes from North Lake Tahoe and 60 minutes from Reno." } },
+    { "@type": "Question", "name": "Is the Nakoma golf clubhouse open to the public?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. The Nakoma Dragon golf course and clubhouse are open to public play. Non-resort guests can book tee times and dine in the Fifty44 Restaurant inside the Frank Lloyd Wright clubhouse. GolfGraeagle can book guaranteed tee times at Nakoma as part of a stay-and-play package." } },
+    { "@type": "Question", "name": "When was the Nakoma FLW clubhouse built?", "acceptedAnswer": { "@type": "Answer", "text": "Frank Lloyd Wright designed the Nakoma clubhouse in 1923 for a Madison, Wisconsin golf club. The Wisconsin project was never completed. The current California clubhouse was built in 2001 by Taliesin Architects using Wright's original plans." } },
+    { "@type": "Question", "name": "How hard is the Nakoma Dragon golf course?", "acceptedAnswer": { "@type": "Answer", "text": "The Nakoma Dragon is the most challenging course in the Graeagle area — par 72, 7,015 yards, slope 147, and course rating 73.4. Designed by Robin Nelson, it features canyon carries, ridge hole views, and significant elevation changes. It debuted on Golf World's America's Top 75 Courses list." } },
+  ]
+};
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org", "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://golfgraeagle.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://golfgraeagle.com/blog/" },
+    { "@type": "ListItem", "position": 3, "name": title, "item": `https://golfgraeagle.com/blog/${slug}/` }
+  ]
+};
+---
+<Base title={title} description={description} ogType="article" schema={[schema, faqSchema, breadcrumbSchema]}
+  canonical={`https://golfgraeagle.com/blog/${slug}/`}
+  ogImage="https://golfgraeagle.com/wp-images/nakoma-dragon-feather-river.webp"
+  bodyClass="light-page"
+>
+  <Nav />
+
+  <div class="bl-hero" style="background-image:url(/wp-images/nakoma-flw-lodge-exterior.jpg)">
+    <div class="bl-hero-fade"></div>
+    <div class="bl-hero-content">
+      <div class="bl-breadcrumb"><a href="/blog/">Blog</a> <span>→</span> Frank Lloyd Wright Golf Clubhouse</div>
+      <h1 class="bl-h1">The Frank Lloyd Wright Golf Clubhouse</h1>
+      <p class="bl-meta">By GolfGraeagle.com · March 2026 · 6 min read · Architecture + Golf</p>
+    </div>
+  </div>
+
+  <div class="bl-wrap">
+    <article class="bl-article">
+
+      <p class="bl-intro">There is exactly one golf clubhouse in the world designed by Frank Lloyd Wright. It sits in Clio, California — a small mountain town in Plumas County, about 90 minutes from Lake Tahoe and 60 minutes from Reno. Most golfers drive past it without knowing what they're looking at. Here's the full story.</p>
+
+      <h2>Where It Is and What It Is</h2>
+      <p>The clubhouse at <a href="/portfolio/nakoma-dragon-golf-packages/">Nakoma Resort</a> in Clio, California was built using Frank Lloyd Wright's original architectural plans. It houses the Fifty44 Restaurant and Bar, the pro shop, and the main resort lobby. The structure is open to resort guests and golfers playing The Dragon course — it is not a private facility or a museum-only attraction.</p>
+      <p>Wright's design draws on Native American architecture — a teepee-like pyramidal roof, octagonal great room anchored by a central four-sided fireplace, stained glass windows, and wood paneling throughout. The Wisconsin State Journal described Wright's original plan as "the most unique building of its kind in America." Standing inside it, that feels accurate.</p>
+
+      <h2>The History: From Madison to California</h2>
+      <p>In 1923, Frank Lloyd Wright was commissioned to design a clubhouse for the newly formed Nakoma Country Club in Madison, Wisconsin. The club occupied land adjacent to the Nakoma residential subdivision — a development that used Native American place names for its streets (Seminole Highway, Mohican Pass, Oneida Place). Wright embraced that theme in his design, incorporating wigwam shapes, limestone, wood, and colored glass into a structure unlike anything else in American golf architecture.</p>
+      <p>The Madison project never got built. Costs were prohibitive, and the country club development stalled. Wright's plans sat unrealized for nearly 75 years — one of the most significant unbuilt designs in his portfolio.</p>
+      <p>In the 1990s, a California couple named Daniel and Peggy Garner were developing a golf community in Clio, California, 50 miles north of Lake Tahoe. They contacted Taliesin West — Wright's own architectural firm, which continued under his associates after his death in 1959 — about designing a clubhouse. Someone at Taliesin suggested the Nakoma plans. The Garners purchased the design and built it.</p>
+      <p>The clubhouse opened in 2001. <a href="https://franklloydwright.org/site/nakoma-golf-resort/" target="_blank" rel="noopener">The Frank Lloyd Wright Foundation</a> lists Nakoma Resort as an official Wright site open to the public.</p>
+
+      <h2>The Architecture Up Close</h2>
+      <p>The centerpiece is the Wigwam Room — the main dining space inside the clubhouse. The soaring wood-paneled ceiling rises to a pyramidal peak, with the four-sided central fireplace below it. Stained glass carries the Native American design motifs through every window. The low-ceilinged entrance — a characteristic Wright device to create contrast with the dramatic interior — leads into the room with an effect that still surprises first-time visitors.</p>
+      <p>Two large sculptural figures stand at the resort entrance: Nakoma (representing Mother Nature) and Nakomis (a warrior teaching his son to use a bow). Both were built at 90% of Wright's original planned height — 16 feet and 11.5 feet respectively.</p>
+
+      <h2>The Golf Course: The Dragon</h2>
+      <p>The clubhouse is worth seeing. The golf course is the reason to stay.</p>
+      <p><a href="/portfolio/nakoma-dragon-golf-packages/">Nakoma Dragon</a> was designed by Robin Nelson — also the creator of the Dunes at Mauna Lani in Hawaii — and opened in 1998. The course debuted on Golf World's America's Top 75 Courses list. It plays 7,015 yards, par 72, with a slope of 147 and course rating of 73.4 — the most technically demanding course in the Graeagle area and one of the most challenging in Northern California.</p>
+      <p>The course uses the terrain aggressively: canyon carries, Feather River gorge views from multiple tee boxes, exposed ridgeline holes where wind adds two or three clubs to any approach. The par-5 finishing hole returns to the FLW clubhouse in full view from the 150-yard marker — one of the more theatrical finishing sequences in California golf.</p>
+      <p>The Dragon has five tee boxes on every hole. It accommodates skilled players well without being purely punishing to average golfers who choose sensible tees.</p>
+
+      <h2>Who Should Play It (and Who Shouldn't)</h2>
+      <p>Nakoma Dragon is not the right first course for someone visiting Graeagle for the first time. Slope 147 at 4,500 feet elevation is a genuine physical and mental challenge. Most first-time Graeagle visitors should play <a href="/portfolio/graeagle-meadows-golf-packages/">Graeagle Meadows</a> or <a href="/portfolio/whitehawk-ranch-golf-packages/">Whitehawk Ranch</a> before attempting The Dragon.</p>
+      <p>That said, architecture and golf history enthusiasts should make Nakoma a priority regardless of their handicap. Even a difficult round inside a Frank Lloyd Wright building, finishing with a drink at Fifty44, is a worthwhile experience. The course can be played from forward tees that make it more accessible.</p>
+      <p>For low-handicap golfers: play The Dragon last. Save it for the final day when your elevation adjustment is dialed in and you've experienced the other courses. Then earn the Frank Lloyd Wright round.</p>
+
+      <h2>Where It Fits in a Graeagle Trip</h2>
+      <p>Nakoma is in Clio, California — 8 miles south of Graeagle village via Highway 89. It's 14 minutes by car from the Graeagle Meadows tee box. Most golfers stay at River Pines Resort or Chalet View Lodge and drive to Nakoma for their Dragon round. <a href="/portfolio/the-inn-at-nakoma-clio-ca/">The Inn at Nakoma</a> is on the resort property itself — steps from the first tee, inside the FLW resort complex — for golfers who want the full experience.</p>
+
+      <div class="bl-faq">
+        <h2>Frequently Asked Questions</h2>
+        {faqSchema.mainEntity.map((item: any) => (
+          <div class="bl-faq-item">
+            <h3>{item.name}</h3>
+            <p>{item.acceptedAnswer.text}</p>
+          </div>
+        ))}
+      </div>
+
+      <div class="bl-cta">
+        <h2>Book a Nakoma Dragon package</h2>
+        <p>GolfGraeagle can secure guaranteed tee times at Nakoma as part of a multi-course stay-and-play package. Tell us your dates and group size.</p>
+        <a href="/request-a-quote/" class="bl-cta-btn btn-green-glow">Get Your Quote →</a>
+        <div class="bl-cta-links">
+          <a href="/portfolio/nakoma-dragon-golf-packages/">Nakoma Dragon course page →</a>
+          <a href="/portfolio/the-inn-at-nakoma-clio-ca/">The Inn at Nakoma →</a>
+          <a href="/all-golf-courses/">Compare all 5 Graeagle courses →</a>
+        </div>
+      </div>
+    </article>
+
+    <aside style="margin-top:48px;">
+      <div style="display:flex;flex-wrap:wrap;gap:10px;">
+        {[
+          ['Nakoma Dragon','nakoma-dragon-golf-packages','FLW Clubhouse · Slope 147'],
+          ['Grizzly Ranch','grizzly-ranch-golf-packages','Golf Digest Top 100 · Slope 140'],
+          ['Whitehawk Ranch','whitehawk-ranch-golf-packages','Top 20 CA · Slope 132'],
+          ['Plumas Pines','plumas-pines-golf-packages','Top 5 Value CA · Slope 132'],
+          ['Graeagle Meadows','graeagle-meadows-golf-packages','Since 1968 · Slope 120'],
+        ].map(([name, s, note]) => (
+          <a href={`/portfolio/${s}/`} style="display:inline-flex;flex-direction:column;padding:12px 16px;background:rgba(28,18,8,0.04);border:1px solid rgba(28,18,8,0.07);border-radius:10px;text-decoration:none;min-width:160px;transition:all 0.2s;" onmouseover="this.style.borderColor='rgba(232,168,80,0.4)'" onmouseout="this.style.borderColor='rgba(28,18,8,0.07)'">
+            <span style="font-size:13px;font-weight:700;color:var(--text-primary);margin-bottom:3px;">{name}</span>
+            <span style="font-size:11px;color:rgba(28,18,8,0.4);">{note}</span>
+          </a>
+        ))}
+      </div>
+    </aside>
+  </div>
+
+  <RelatedTrips client:load slug="nakoma-dragon" type="course" showAll={true} max={4} />
+  <Footer />
+</Base>

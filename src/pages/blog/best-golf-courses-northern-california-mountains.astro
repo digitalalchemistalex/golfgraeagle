@@ -1,0 +1,178 @@
+---
+export const prerender = true;
+import Base from '../../layouts/Base.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+import RelatedTrips from '../../components/RelatedTrips.tsx';
+
+const title = "Best Golf Courses in Northern California Mountains (Ranked Honestly)";
+const description = "The best mountain golf courses in Northern California — Grizzly Ranch, Nakoma Dragon, Whitehawk Ranch, and more. Ranked by accolades, course quality, and value. All within 25 minutes of each other in Graeagle.";
+const slug = "best-golf-courses-northern-california-mountains";
+const datePublished = "2026-03-19";
+const dateModified = "2026-03-19";
+
+const schema = {
+  "@context": "https://schema.org", "@type": "BlogPosting",
+  "headline": title, "datePublished": datePublished, "dateModified": dateModified,
+  "author": { "@type": "Organization", "name": "GolfGraeagle.com" },
+  "publisher": { "@type": "Organization", "name": "Zoomaway Technologies Inc.", "url": "https://golfgraeagle.com" },
+  "mainEntityOfPage": { "@type": "WebPage", "@id": `https://golfgraeagle.com/blog/${slug}/` }
+};
+
+const faqSchema = {
+  "@context": "https://schema.org", "@type": "FAQPage",
+  "mainEntity": [
+    { "@type": "Question", "name": "What is the best golf course in Northern California mountains?", "acceptedAnswer": { "@type": "Answer", "text": "Grizzly Ranch Golf Club in Portola, CA is the highest-ranked mountain golf course in Northern California — Golf Digest Top 100 Greatest Public Courses in the US. Nakoma Dragon in Clio, CA is ranked Golf World Top 75 and features the only Frank Lloyd Wright-designed golf clubhouse in the world. Both are in the Graeagle area of Plumas County." } },
+    { "@type": "Question", "name": "Where is the most concentrated area of mountain golf courses in Northern California?", "acceptedAnswer": { "@type": "Answer", "text": "The Graeagle valley in Plumas County has five championship courses within 25 minutes of each other: Grizzly Ranch, Nakoma Dragon, Whitehawk Ranch, Plumas Pines, and Graeagle Meadows. This concentration is unmatched anywhere else in Northern California's mountain region." } },
+    { "@type": "Question", "name": "What is the hardest golf course in Northern California?", "acceptedAnswer": { "@type": "Answer", "text": "Nakoma Dragon (slope 147, course rating 73.4) is one of the most technically demanding courses in Northern California. Grizzly Ranch (slope 140, 7,411 yards at 4,800–5,400 ft) is also among the most challenging. Both are in the Graeagle area." } },
+    { "@type": "Question", "name": "How do Graeagle courses compare to Tahoe golf courses?", "acceptedAnswer": { "@type": "Answer", "text": "Graeagle courses are comparable in quality to the best Tahoe-area courses (Old Greenwood, Gray's Crossing, Edgewood) but cost 30–50% less per round. Grizzly Ranch (Golf Digest Top 100) and Nakoma Dragon (Golf World Top 75) outrank most Tahoe courses in national accolades." } },
+  ]
+};
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org", "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://golfgraeagle.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://golfgraeagle.com/blog/" },
+    { "@type": "ListItem", "position": 3, "name": title, "item": `https://golfgraeagle.com/blog/${slug}/` }
+  ]
+};
+
+const courses = [
+  {
+    rank: 1, name: 'Grizzly Ranch Golf Club', location: 'Portola, CA (Graeagle area)',
+    slug: 'grizzly-ranch-golf-packages',
+    accolade: 'Golf Digest Top 100 Greatest Public Courses — US',
+    par: 72, yards: 7411, slope: 140, rating: '74.9', designer: 'Bob Cupp', opened: 2005,
+    verdict: 'The benchmark. Golf Digest Top 100 for sustained course quality. 7,411 yards at 4,800–5,400 ft elevation with dramatic ridgeline holes and forced carries. Semi-private — accessible through packages only.',
+  },
+  {
+    rank: 2, name: 'Nakoma Dragon', location: 'Clio, CA (Graeagle area)',
+    slug: 'nakoma-dragon-golf-packages',
+    accolade: 'Golf World Top 75 · Only Frank Lloyd Wright golf clubhouse in the world',
+    par: 72, yards: 7015, slope: 147, rating: '73.4', designer: 'Robin Nelson', opened: 1998,
+    verdict: 'Highest slope rating in the valley. Canyon carries over the Feather River gorge. The FLW clubhouse is worth visiting even on a tough round. The combination of course difficulty, design pedigree, and architectural landmark is unique in California.',
+  },
+  {
+    rank: 3, name: 'Whitehawk Ranch Golf Course', location: 'Clio, CA (Graeagle area)',
+    slug: 'whitehawk-ranch-golf-packages',
+    accolade: 'Top 20 California · Top 5 Best Values Sierra Nevada',
+    par: 71, yards: 6983, slope: 132, rating: '73.5', designer: 'Dick Bailey', opened: 1996,
+    verdict: 'The most versatile course in the valley. Seven streams, meadow and forest alternating across 18 holes, four sets of tees. Competitive enough to test low handicaps without punishing everyone else. Dick Bailey design holds up well.',
+  },
+  {
+    rank: 4, name: 'Plumas Pines Golf Resort', location: 'Graeagle, CA',
+    slug: 'plumas-pines-golf-packages',
+    accolade: 'Top 5 Best Values in California · Top 5 Best Values Sierra Nevada',
+    par: 72, yards: 6504, slope: 132, rating: '70.5', designer: 'Homer Flint', opened: 1978,
+    verdict: 'The precision course. Feather River layout with tight, tree-lined fairways that demand accuracy off the tee. Often underestimated. Longboards Bar and Grill on-site makes it a good social round.',
+  },
+  {
+    rank: 5, name: 'Graeagle Meadows Golf Course', location: 'Graeagle, CA',
+    slug: 'graeagle-meadows-golf-packages',
+    accolade: 'Golf Digest Best Places to Play · Since 1968',
+    par: 72, yards: 6759, slope: 120, rating: '71.8', designer: 'Ellis Van Gorder', opened: 1968,
+    verdict: 'The original. Open meadows and ponderosa pines, signature Hole 6 "English Gold" with Mohawk Valley views. Slope 120 is the most accessible in the valley. Best choice for mixed-handicap groups or anyone new to Graeagle.',
+  },
+];
+---
+<Base title={title} description={description} ogType="article" schema={[schema, faqSchema, breadcrumbSchema]}
+  canonical={`https://golfgraeagle.com/blog/${slug}/`}
+  ogImage="https://golfgraeagle.com/wp-images/whitehawk-hero.webp"
+  bodyClass="light-page"
+>
+  <Nav />
+
+  <div class="bl-hero" style="background-image:url(/wp-images/whitehawk-hero.webp)">
+    <div class="bl-hero-fade"></div>
+    <div class="bl-hero-content">
+      <div class="bl-breadcrumb"><a href="/blog/">Blog</a> <span>→</span> Best Mountain Golf NorCal</div>
+      <h1 class="bl-h1">Best Golf Courses in Northern California Mountains</h1>
+      <p class="bl-meta">By GolfGraeagle.com · March 2026 · 7 min read · Ranked by accolades and course quality</p>
+    </div>
+  </div>
+
+  <div class="bl-wrap">
+    <article class="bl-article">
+
+      <p class="bl-intro">The best mountain golf in Northern California is concentrated in one valley: Graeagle, in Plumas County, at 3,500–5,000 feet elevation. Five championship courses within 25 minutes of each other — including Golf Digest Top 100, Golf World Top 75, and the only Frank Lloyd Wright golf clubhouse in the world. Here they are, ranked honestly.</p>
+
+      <h2>Why Graeagle Is Northern California's Mountain Golf Capital</h2>
+      <p>No other location in Northern California's mountain zone puts five nationally ranked courses within a 25-minute drive of each other. Tahoe has excellent golf spread across a 40-mile corridor. Truckee has a cluster of good courses. Graeagle has five championship courses in one compact valley — all operating May through October, all within 5–25 minutes of each other.</p>
+      <p>The elevation advantage is real: at 3,500–5,000 feet, golf balls carry 6–8% farther than at sea level. A 150-yard approach at Graeagle elevation is closer to a 160-yard carry. Factor this into every club selection.</p>
+
+      <h2>The 5 Courses, Ranked</h2>
+
+      {courses.map(c => (
+        <div style="margin-bottom:40px;padding:28px;border:1px solid rgba(28,18,8,0.08);border-radius:16px;background:#fff;">
+          <div style="display:flex;align-items:flex-start;gap:16px;margin-bottom:16px;flex-wrap:wrap;">
+            <div style="width:44px;height:44px;border-radius:50%;background:rgba(232,168,80,0.1);border:2px solid rgba(232,168,80,0.25);display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:20px;color:var(--gold);font-weight:400;flex-shrink:0;">#{c.rank}</div>
+            <div style="flex:1;">
+              <a href={`/portfolio/${c.slug}/`} style="font-size:18px;font-weight:700;color:var(--text-primary);text-decoration:none;display:block;margin-bottom:4px;">{c.name}</a>
+              <div style="font-size:11px;color:rgba(28,18,8,0.4);margin-bottom:6px;">{c.location}</div>
+              <div style="font-size:10px;font-weight:800;color:var(--gold);background:rgba(232,168,80,0.1);padding:3px 10px;border-radius:100px;display:inline-block;">{c.accolade}</div>
+            </div>
+          </div>
+          <div style="display:flex;gap:16px;flex-wrap:wrap;margin-bottom:14px;padding:12px 0;border-top:1px solid rgba(28,18,8,0.05);border-bottom:1px solid rgba(28,18,8,0.05);">
+            {[['Par', c.par], ['Yards', c.yards.toLocaleString()], ['Slope', c.slope], ['Rating', c.rating], ['Designer', c.designer], ['Opened', c.opened]].map(([l, v]) => (
+              <div style="text-align:center;">
+                <div style="font-size:9px;color:rgba(28,18,8,0.35);text-transform:uppercase;letter-spacing:0.1em;font-weight:700;margin-bottom:3px;">{l}</div>
+                <div style="font-size:13px;font-weight:700;color:var(--text-primary);">{v}</div>
+              </div>
+            ))}
+          </div>
+          <p style="font-size:14px;color:rgba(28,18,8,0.55);line-height:1.7;margin:0;">{c.verdict}</p>
+        </div>
+      ))}
+
+      <h2>How Graeagle Compares to Tahoe and Truckee</h2>
+      <table class="bl-table">
+        <thead><tr><th>Factor</th><th>Graeagle</th><th>Tahoe / Truckee</th></tr></thead>
+        <tbody>
+          <tr><td>Courses in one area</td><td>5 within 25 min</td><td>5–6 spread over 40 miles</td></tr>
+          <tr><td>Highest accolade</td><td>Golf Digest Top 100</td><td>Golf Digest Top 25 (Edgewood)</td></tr>
+          <tr><td>Average green fee</td><td>$$–$$$</td><td>$$$–$$$$</td></tr>
+          <tr><td>Package cost per golfer</td><td>$620–$1,705</td><td>$1,200–$1,800 typical</td></tr>
+          <tr><td>Season</td><td>May–October</td><td>May–October</td></tr>
+          <tr><td>Drive from Bay Area</td><td>3.5–4 hrs</td><td>3–4 hrs</td></tr>
+          <tr><td>Drive from Reno</td><td>1 hr</td><td>30–60 min</td></tr>
+        </tbody>
+      </table>
+
+      <div class="bl-faq">
+        <h2>Frequently Asked Questions</h2>
+        {faqSchema.mainEntity.map((item: any) => (
+          <div class="bl-faq-item">
+            <h3>{item.name}</h3>
+            <p>{item.acceptedAnswer.text}</p>
+          </div>
+        ))}
+      </div>
+
+      <div class="bl-cta">
+        <h2>Book a Northern California mountain golf package</h2>
+        <p>GolfGraeagle builds custom packages at any combination of these five courses. Tell us your group size and dates.</p>
+        <a href="/request-a-quote/" class="bl-cta-btn btn-green-glow">Get Your Quote →</a>
+        <div class="bl-cta-links">
+          <a href="/all-golf-courses/">Full course comparison →</a>
+          <a href="/golf-packages/">Package pricing →</a>
+          <a href="/blog/graeagle-vs-lake-tahoe-golf/">Graeagle vs Lake Tahoe →</a>
+        </div>
+      </div>
+    </article>
+
+    <aside style="margin-top:48px;">
+      <div style="display:flex;flex-wrap:wrap;gap:10px;">
+        {courses.map(c => (
+          <a href={`/portfolio/${c.slug}/`} style="display:inline-flex;flex-direction:column;padding:12px 16px;background:rgba(28,18,8,0.04);border:1px solid rgba(28,18,8,0.07);border-radius:10px;text-decoration:none;min-width:160px;transition:all 0.2s;" onmouseover="this.style.borderColor='rgba(232,168,80,0.4)'" onmouseout="this.style.borderColor='rgba(28,18,8,0.07)'">
+            <span style="font-size:13px;font-weight:700;color:var(--text-primary);margin-bottom:3px;">#{c.rank} {c.name}</span>
+            <span style="font-size:11px;color:rgba(28,18,8,0.4);">Slope {c.slope} · {c.yards.toLocaleString()} yds</span>
+          </a>
+        ))}
+      </div>
+    </aside>
+  </div>
+
+  <RelatedTrips client:load slug="grizzly-ranch" type="course" showAll={true} max={4} />
+  <Footer />
+</Base>

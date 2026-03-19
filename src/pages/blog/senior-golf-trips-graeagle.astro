@@ -1,0 +1,163 @@
+---
+export const prerender = true;
+import Base from '../../layouts/Base.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+import RelatedTrips from '../../components/RelatedTrips.tsx';
+
+const title = "Senior Golf Trips to Graeagle, CA: The Complete Planning Guide";
+const description = "Graeagle is ideal for senior golf groups — 5 courses with multiple tee box options, mountain air, and lodging steps from the first tee. Here's how to plan a senior golf trip to Graeagle.";
+const slug = "senior-golf-trips-graeagle";
+const datePublished = "2026-03-19";
+const dateModified = "2026-03-19";
+
+const schema = {
+  "@context": "https://schema.org", "@type": "BlogPosting",
+  "headline": title, "datePublished": datePublished, "dateModified": dateModified,
+  "author": { "@type": "Organization", "name": "GolfGraeagle.com" },
+  "publisher": { "@type": "Organization", "name": "Zoomaway Technologies Inc.", "url": "https://golfgraeagle.com" },
+  "mainEntityOfPage": { "@type": "WebPage", "@id": `https://golfgraeagle.com/blog/${slug}/` }
+};
+
+const faqSchema = {
+  "@context": "https://schema.org", "@type": "FAQPage",
+  "mainEntity": [
+    { "@type": "Question", "name": "Is Graeagle good for senior golfers?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Graeagle Meadows (slope 120) and Plumas Pines (slope 132) are well-suited for senior golfers, with multiple forward tee options on every hole. All five courses have 4–5 tee box sets. The mountain air and cart-friendly terrain make for comfortable rounds, and the scenery is exceptional." } },
+    { "@type": "Question", "name": "What is the easiest golf course in Graeagle for seniors?", "acceptedAnswer": { "@type": "Answer", "text": "Graeagle Meadows is the most accessible course for senior golfers — slope 120, open fairways, and the lowest elevation in the valley. Plumas Pines (slope 132) is the second most accessible. Both have generous forward tee options and forgiving layouts." } },
+    { "@type": "Question", "name": "Does the altitude affect senior golfers in Graeagle?", "acceptedAnswer": { "@type": "Answer", "text": "Altitude affects all golfers at Graeagle — but in a positive way for distance. At 3,500–5,000 feet elevation, the ball carries 6–8% farther than at sea level. Seniors who normally hit their driver 200 yards will see 210–215 yards at Graeagle elevation. The trade-off is that high-exertion walking can feel slightly harder for those not accustomed to elevation — carts are available at all five courses." } },
+    { "@type": "Question", "name": "What lodging is best for senior golf groups in Graeagle?", "acceptedAnswer": { "@type": "Answer", "text": "River Pines Resort is the most practical option for senior golf groups — resort amenities, pool and hot tub, The Roadhouse restaurant on-site, and flexible room configurations. The Townhomes at Plumas Pines work well for groups of 8+ who want to cook some meals and share a comfortable common space adjacent to the Plumas Pines first tee." } },
+    { "@type": "Question", "name": "When is the best time for senior golfers to visit Graeagle?", "acceptedAnswer": { "@type": "Answer", "text": "September and early October are the best months for senior golfers visiting Graeagle. Temperatures are comfortable (low-to-mid 60s), courses are in peak condition, tee times are easy to get Monday–Thursday, and prices are lower than summer peak. The fall foliage in the Mohawk Valley is also at its best." } },
+  ]
+};
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org", "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://golfgraeagle.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://golfgraeagle.com/blog/" },
+    { "@type": "ListItem", "position": 3, "name": title, "item": `https://golfgraeagle.com/blog/${slug}/` }
+  ]
+};
+
+const coursesFit = [
+  { name: 'Graeagle Meadows', slug: 'graeagle-meadows-golf-packages', slope: 120, yards: 6759, senior: '⭐⭐⭐⭐⭐ Best for seniors', note: 'Open fairways, lowest slope in valley, central location. Multiple forward tee options. Start here if it\'s your first Graeagle trip.' },
+  { name: 'Plumas Pines', slug: 'plumas-pines-golf-packages', slope: 132, yards: 6504, senior: '⭐⭐⭐⭐ Very good', note: 'Shorter total yardage helps. Tree-lined — accuracy matters more than length. Longboards on-site for post-round.' },
+  { name: 'Whitehawk Ranch', slug: 'whitehawk-ranch-golf-packages', slope: 132, yards: 6983, senior: '⭐⭐⭐⭐ Good from forward tees', note: 'Four tee sets. Valley meadow terrain is cart-friendly. Seven streams add strategic interest without being punishing from forward tees.' },
+  { name: 'Grizzly Ranch', slug: 'grizzly-ranch-golf-packages', slope: 140, yards: 7411, senior: '⭐⭐⭐ Challenging — best for competitive seniors', note: 'Significant elevation changes. Long from any tee. Rewarding for capable players, tough for those less familiar with mountain golf.' },
+  { name: 'Nakoma Dragon', slug: 'nakoma-dragon-golf-packages', slope: 147, yards: 7015, senior: '⭐⭐⭐ Worth it for the experience', note: 'Most demanding, but 5 tee boxes make it more accessible than the slope suggests. The FLW clubhouse is reason enough to visit at any ability level.' },
+];
+---
+<Base title={title} description={description} ogType="article" schema={[schema, faqSchema, breadcrumbSchema]}
+  canonical={`https://golfgraeagle.com/blog/${slug}/`}
+  ogImage="https://golfgraeagle.com/wp-images/graeagle-meadows-hero.webp"
+  bodyClass="light-page"
+>
+  <Nav />
+
+  <div class="bl-hero" style="background-image:url(/wp-images/graeagle-meadows-hero.webp)">
+    <div class="bl-hero-fade"></div>
+    <div class="bl-hero-content">
+      <div class="bl-breadcrumb"><a href="/blog/">Blog</a> <span>→</span> Senior Golf Trips</div>
+      <h1 class="bl-h1">Senior Golf Trips to Graeagle, CA</h1>
+      <p class="bl-meta">By GolfGraeagle.com · March 2026 · 6 min read · Planning guide for senior golf groups</p>
+    </div>
+  </div>
+
+  <div class="bl-wrap">
+    <article class="bl-article">
+
+      <p class="bl-intro">Graeagle works exceptionally well for senior golf trips. Five championship courses, all with multiple forward tee options, within 25 minutes of each other. Mountain air, no crowds in the shoulder seasons, and lodging either steps from the first tee or 10 minutes away. Here's how to plan it right.</p>
+
+      <h2>Why Graeagle Is Well-Suited for Senior Golfers</h2>
+      <p>The practical case for Graeagle as a senior golf destination:</p>
+      <ul class="bl-list">
+        <li><strong>Multiple tee box options on every course.</strong> All five Graeagle courses have 4–5 sets of tees. Nobody has to play from the tips to have a good round. Graeagle Meadows (slope 120) from forward tees is an enjoyable, non-punishing round for any handicap.</li>
+        <li><strong>Carts available at all five courses.</strong> The terrain at Grizzly Ranch and Nakoma involves significant elevation changes — carts are the right call regardless of age.</li>
+        <li><strong>The elevation actually helps your distance.</strong> At 3,500–5,000 feet, golf balls carry 6–8% farther than at sea level. A golfer who hits their 7-iron 140 yards at sea level will carry it 150 yards in Graeagle. This levels the playing field in a useful way.</li>
+        <li><strong>September–October is the best time to visit.</strong> Lower crowds, comfortable temperatures in the 60s, firm fairways, and reduced prices compared to peak summer. Senior golfers who can travel mid-week have the courses nearly to themselves.</li>
+        <li><strong>Compact geography means no wasted driving.</strong> All five courses are within a 25-minute radius. A well-organized itinerary has the group playing a different course each day without significant logistics overhead.</li>
+      </ul>
+
+      <h2>Which Courses Work Best for Senior Groups</h2>
+
+      <div style="display:flex;flex-direction:column;gap:14px;margin:24px 0 32px;">
+        {coursesFit.map(c => (
+          <a href={`/portfolio/${c.slug}/`} style="display:block;padding:20px 24px;background:#fff;border:1px solid rgba(28,18,8,0.07);border-radius:14px;text-decoration:none;transition:all 0.2s;" onmouseover="this.style.borderColor='rgba(232,168,80,0.4)';this.style.background='rgba(232,168,80,0.03)'" onmouseout="this.style.borderColor='rgba(28,18,8,0.07)';this.style.background='#fff'">
+            <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:6px;">
+              <span style="font-weight:700;font-size:15px;color:var(--text-primary);">{c.name}</span>
+              <span style="font-size:11px;color:rgba(28,18,8,0.4);">Slope {c.slope} · {c.yards.toLocaleString()} yds</span>
+            </div>
+            <div style="font-size:12px;color:var(--gold);font-weight:700;margin-bottom:8px;">{c.senior}</div>
+            <p style="font-size:13px;color:rgba(28,18,8,0.5);line-height:1.65;margin:0;">{c.note}</p>
+          </a>
+        ))}
+      </div>
+
+      <h2>Recommended 3-Night Senior Golf Itinerary</h2>
+      <table class="bl-table">
+        <thead><tr><th>Day</th><th>Morning</th><th>Afternoon / Evening</th></tr></thead>
+        <tbody>
+          <tr><td>Day 1</td><td>Arrive, check in to River Pines Resort. Optional warm-up at Graeagle Meadows driving range.</td><td>Dinner at Iron Door Restaurant (Blairsden) or Graeagle Meadows Restaurant deck.</td></tr>
+          <tr><td>Day 2</td><td>Graeagle Meadows Golf Course. 8:30am tee time. Lunch on course deck.</td><td>Explore Graeagle village. Dinner at The Roadhouse (River Pines Resort).</td></tr>
+          <tr><td>Day 3</td><td>Whitehawk Ranch Golf Course. 9am tee time. Post-round at Whitehawk Lodge restaurant.</td><td>Afternoon rest. Dinner at Middle Fork Bar and Grill or Longboards (Plumas Pines).</td></tr>
+          <tr><td>Day 4</td><td>Plumas Pines Golf Resort. 9am tee time. Lunch at Longboards Bar and Grill on course.</td><td>Drive home, or extend with Grizzly Ranch on Day 4 for groups wanting a challenge.</td></tr>
+        </tbody>
+      </table>
+
+      <h2>Altitude: What to Expect and How to Prepare</h2>
+      <p>Graeagle sits at 3,500–5,000 feet. For golfers coming from sea level or low elevation, a few adjustments help:</p>
+      <ul class="bl-list">
+        <li><strong>Hydration matters more at elevation.</strong> Bring water to the course and drink regularly. Alcohol dehydrates faster at altitude — pace accordingly.</li>
+        <li><strong>Physical exertion feels slightly harder.</strong> Walking uphill holes (common at Grizzly Ranch and Nakoma) will be more tiring than at sea level. If your group walks, plan a slower pace on the first day as you acclimatize.</li>
+        <li><strong>Club selection shifts up.</strong> At elevation, expect each club to carry 1–2 clubs farther than normal. Practice with a few shots on the range before your first round to calibrate.</li>
+        <li><strong>Morning temperatures are cool even in summer.</strong> A light jacket for the first two holes is standard in June. By July, it warms up by 9am. In September and October, pack layers.</li>
+      </ul>
+
+      <h2>Lodging for Senior Golf Groups</h2>
+      <p><a href="/portfolio/river-pines-resort-graeagle-ca/">River Pines Resort</a> is the most practical base for most senior groups — pool, hot tub, The Roadhouse restaurant on-site, and a variety of room types from standard rooms to cabins. No stairs required for ground-floor units.</p>
+      <p>For groups of 8+ who want to share costs and cook some meals, the <a href="/portfolio/the-townhomes-at-plumas-pines/">Townhomes at Plumas Pines</a> offer 2–4 bedroom units with full kitchens, shared pool, and views directly over the Plumas Pines Golf Resort. It's the most socially comfortable format for a multi-day golf trip — everyone together under one roof.</p>
+      <p>The bucket-list option: <a href="/portfolio/the-inn-at-nakoma-clio-ca/">The Inn at Nakoma</a>, steps from the Dragon first tee inside the Frank Lloyd Wright resort complex. The spa services and Fifty44 Restaurant make it the right choice for a group that wants a full resort experience around the golf.</p>
+
+      <div class="bl-faq">
+        <h2>Frequently Asked Questions</h2>
+        {faqSchema.mainEntity.map((item: any) => (
+          <div class="bl-faq-item">
+            <h3>{item.name}</h3>
+            <p>{item.acceptedAnswer.text}</p>
+          </div>
+        ))}
+      </div>
+
+      <div class="bl-cta">
+        <h2>Plan your senior golf trip to Graeagle</h2>
+        <p>Tell us your group size, preferred dates, and which courses interest you. We'll build a package around the right tee times and lodging for your group.</p>
+        <a href="/request-a-quote/" class="bl-cta-btn btn-green-glow">Get Your Quote →</a>
+        <div class="bl-cta-links">
+          <a href="/stay-and-play/">Stay and play packages →</a>
+          <a href="/lodging/">Compare lodging options →</a>
+          <a href="/blog/best-time-to-golf-graeagle/">Best time to visit Graeagle →</a>
+        </div>
+      </div>
+    </article>
+
+    <aside style="margin-top:48px;">
+      <div style="display:flex;flex-wrap:wrap;gap:10px;">
+        {[
+          ['Graeagle Meadows','graeagle-meadows-golf-packages','Slope 120 · Best for seniors'],
+          ['Plumas Pines','plumas-pines-golf-packages','Slope 132 · Great value'],
+          ['Whitehawk Ranch','whitehawk-ranch-golf-packages','Slope 132 · Top 20 CA'],
+          ['Grizzly Ranch','grizzly-ranch-golf-packages','Slope 140 · Top 100'],
+          ['Nakoma Dragon','nakoma-dragon-golf-packages','Slope 147 · FLW'],
+        ].map(([name, s, note]) => (
+          <a href={`/portfolio/${s}/`} style="display:inline-flex;flex-direction:column;padding:12px 16px;background:rgba(28,18,8,0.04);border:1px solid rgba(28,18,8,0.07);border-radius:10px;text-decoration:none;min-width:160px;transition:all 0.2s;" onmouseover="this.style.borderColor='rgba(232,168,80,0.4)'" onmouseout="this.style.borderColor='rgba(28,18,8,0.07)'">
+            <span style="font-size:13px;font-weight:700;color:var(--text-primary);margin-bottom:3px;">{name}</span>
+            <span style="font-size:11px;color:rgba(28,18,8,0.4);">{note}</span>
+          </a>
+        ))}
+      </div>
+    </aside>
+  </div>
+
+  <RelatedTrips client:load slug="plumas-pines" type="course" showAll={true} max={4} />
+  <Footer />
+</Base>

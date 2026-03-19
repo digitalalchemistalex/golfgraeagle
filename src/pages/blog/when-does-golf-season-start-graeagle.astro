@@ -1,0 +1,155 @@
+---
+export const prerender = true;
+import Base from '../../layouts/Base.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+import RelatedTrips from '../../components/RelatedTrips.tsx';
+
+const title = "When Does Golf Season Start in Graeagle, CA? Month-by-Month Guide";
+const description = "Graeagle golf season runs May through October. Peak months are June, September, and October. Here's exactly what to expect each month — conditions, crowds, and when to book.";
+const slug = "when-does-golf-season-start-graeagle";
+const datePublished = "2026-03-19";
+const dateModified = "2026-03-19";
+
+const schema = {
+  "@context": "https://schema.org", "@type": "BlogPosting",
+  "headline": title, "datePublished": datePublished, "dateModified": dateModified,
+  "author": { "@type": "Organization", "name": "GolfGraeagle.com" },
+  "publisher": { "@type": "Organization", "name": "Zoomaway Technologies Inc.", "url": "https://golfgraeagle.com" },
+  "mainEntityOfPage": { "@type": "WebPage", "@id": `https://golfgraeagle.com/blog/${slug}/` }
+};
+
+const faqSchema = {
+  "@context": "https://schema.org", "@type": "FAQPage",
+  "mainEntity": [
+    { "@type": "Question", "name": "When does golf season start in Graeagle, California?", "acceptedAnswer": { "@type": "Answer", "text": "Graeagle golf courses typically open in late April or early May, depending on snowmelt and course conditions. Most years, all five courses are fully operational by the second week of May." } },
+    { "@type": "Question", "name": "When does golf season end in Graeagle?", "acceptedAnswer": { "@type": "Answer", "text": "Graeagle golf season typically ends in late October or early November. Some courses may close in mid-October if early snowfall arrives. Graeagle Meadows sometimes stays open into November in mild years." } },
+    { "@type": "Question", "name": "What is the best month to golf in Graeagle?", "acceptedAnswer": { "@type": "Answer", "text": "September and October are the best months to golf in Graeagle — cooler temperatures, firm fairways, fall color in the aspens, and significantly fewer crowds than peak summer. June is also excellent for a lush, green course experience with long daylight hours." } },
+    { "@type": "Question", "name": "Is July a good time to golf in Graeagle?", "acceptedAnswer": { "@type": "Answer", "text": "July is peak season in Graeagle — courses are in excellent condition and days are long, but tee times are in highest demand and prices are at their seasonal peak. Book 4–6 weeks in advance for summer weekends." } },
+    { "@type": "Question", "name": "Can you golf in Graeagle in April?", "acceptedAnswer": { "@type": "Answer", "text": "Occasionally, in warm years, some Graeagle courses open in late April. However, snow lingering at elevation can delay openings. It's not reliable enough to plan a trip around April dates without calling ahead to confirm." } },
+  ]
+};
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org", "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://golfgraeagle.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://golfgraeagle.com/blog/" },
+    { "@type": "ListItem", "position": 3, "name": title, "item": `https://golfgraeagle.com/blog/${slug}/` }
+  ]
+};
+
+const months = [
+  { name: 'April', status: '⚠️ Unreliable', conditions: 'Snow still possible at elevation. Most courses closed. Some warm years see Graeagle Meadows (lowest elevation) attempt an opening by late April. Call ahead — do not plan a trip around April without confirmation.', book: false },
+  { name: 'May', status: '✅ Open — soft', conditions: 'All courses typically open by mid-May. Course conditions are lush but soft — fairways play longer, some morning frost possible early in the month. Crowds are minimal. Excellent value. Book 2 weeks out.', book: true },
+  { name: 'June', status: '✅ Peak season begins', conditions: 'Courses firming up. Long daylight (7am–8pm). Wildflowers at Whitehawk Ranch in full bloom. Temperatures in the low-to-mid 70s. Tee times start filling — book 3–4 weeks out for weekends.', book: true },
+  { name: 'July', status: '🔥 Peak — busiest', conditions: 'Best overall conditions but highest demand. Fairways firm, greens fast, mornings cool. Tee times at Grizzly Ranch and Nakoma sell out weeks in advance. Book 4–6 weeks out. Peak pricing.', book: true },
+  { name: 'August', status: '🔥 Peak — still busy', conditions: 'Similar to July. Afternoon thunderstorms possible on the ridge. Nakoma and Grizzly Ranch can be affected by late-afternoon weather. Morning rounds preferred. Book 3–4 weeks out.', book: true },
+  { name: 'September', status: '🏆 Best month', conditions: 'The sweet spot. Crowds drop sharply after Labor Day. Temperatures moderate to the mid-60s. Aspen trees begin turning gold. Courses in prime condition. Tee times easy to get Monday–Thursday. Book 2 weeks out. Best value of the season.', book: true },
+  { name: 'October', status: '🏆 Excellent', conditions: 'Fall foliage at peak — aspens gold, mornings crisp, afternoons comfortable. Least crowded. Some courses may reduce hours mid-month. Verify hours with individual courses. Potentially the most beautiful month on the course.', book: true },
+  { name: 'November', status: '⚠️ Closing', conditions: 'Most courses close by early November. Graeagle Meadows may stay open a few extra weeks in mild years. First snow typically arrives in November. Do not plan a full-valley trip in November without confirming all courses are open.', book: false },
+];
+---
+<Base title={title} description={description} ogType="article" schema={[schema, faqSchema, breadcrumbSchema]}
+  canonical={`https://golfgraeagle.com/blog/${slug}/`}
+  ogImage="https://golfgraeagle.com/wp-images/graeagle-meadows-dji0536.jpg"
+  bodyClass="light-page"
+>
+  <Nav />
+
+  <div class="bl-hero" style="background-image:url(/wp-images/graeagle-meadows-dji0536.jpg)">
+    <div class="bl-hero-fade"></div>
+    <div class="bl-hero-content">
+      <div class="bl-breadcrumb"><a href="/blog/">Blog</a> <span>→</span> Graeagle Golf Season</div>
+      <h1 class="bl-h1">When Does Golf Season Start in Graeagle?</h1>
+      <p class="bl-meta">By GolfGraeagle.com · March 2026 · 5 min read · Sierra Nevada mountain golf</p>
+    </div>
+  </div>
+
+  <div class="bl-wrap">
+    <article class="bl-article">
+
+      <p class="bl-intro">Graeagle golf season runs from May through October — six months at 3,500–5,000 feet elevation in the Sierra Nevada. The courses don't open until snowmelt clears the fairways, and they close when the first hard freeze arrives in fall. Within that window, the month you choose matters more than most golfers realize.</p>
+
+      <h2>The Short Answer</h2>
+      <p>Most Graeagle courses open in <strong>early to mid-May</strong>. The season peaks through summer, hits its most enjoyable stretch in <strong>September and October</strong>, and closes by early November. The best combination of conditions, availability, and price is September — not July.</p>
+
+      <h2>Month-by-Month Breakdown</h2>
+      {months.map(m => (
+        <div style="margin-bottom:24px;padding:20px 24px;border-left:3px solid rgba(232,168,80,0.4);background:rgba(232,168,80,0.03);border-radius:0 12px 12px 0;">
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:8px;flex-wrap:wrap;">
+            <span style="font-weight:700;font-size:16px;color:var(--text-primary);">{m.name}</span>
+            <span style="font-size:12px;font-weight:700;color:rgba(28,18,8,0.5);">{m.status}</span>
+          </div>
+          <p style="font-size:14px;color:rgba(28,18,8,0.6);line-height:1.7;margin:0;">{m.conditions}</p>
+        </div>
+      ))}
+
+      <h2>What "Elevation Golf" Means for Conditions</h2>
+      <p>Graeagle's five courses sit between 3,500 and 5,000 feet. At this elevation:</p>
+      <ul class="bl-list">
+        <li><strong>The ball flies 6–8% farther.</strong> Your 150-yard 7-iron becomes a 160-yard carry. Adjust every club selection.</li>
+        <li><strong>Mornings are cold even in July.</strong> Tee times before 8am in early June can mean frost delays or cart restrictions. Book the 9am–11am window for the best conditions.</li>
+        <li><strong>Afternoon thunderstorms are possible in July–August</strong>, especially at Nakoma Dragon and Grizzly Ranch, which sit higher on ridgelines. Check weather morning-of. Most courses will clear you off the course if lightning approaches.</li>
+        <li><strong>September–October conditions are exceptional.</strong> Firm fairways, fast greens, cool air, and the aspens turning gold in the Mohawk Valley are reasons experienced Graeagle golfers return every fall.</li>
+      </ul>
+
+      <h2>When to Book for Each Season</h2>
+      <table class="bl-table">
+        <thead><tr><th>Month</th><th>Book ahead</th><th>Why</th></tr></thead>
+        <tbody>
+          <tr><td>May</td><td>1–2 weeks</td><td>Low demand, easy availability</td></tr>
+          <tr><td>June</td><td>2–3 weeks</td><td>Season ramping up, weekends fill</td></tr>
+          <tr><td>July–Aug</td><td>4–6 weeks</td><td>Peak season — Grizzly Ranch and Nakoma fill fastest</td></tr>
+          <tr><td>September</td><td>1–2 weeks</td><td>Demand drops sharply after Labor Day</td></tr>
+          <tr><td>October</td><td>Call ahead</td><td>Verify courses are still open — some reduce hours</td></tr>
+        </tbody>
+      </table>
+
+      <h2>Which Courses Open First and Close Last?</h2>
+      <p><a href="/portfolio/graeagle-meadows-golf-packages/">Graeagle Meadows</a> sits at the lowest elevation in the valley and typically opens first in spring — sometimes late April in warm years. <a href="/portfolio/nakoma-dragon-golf-packages/">Nakoma Dragon</a> and <a href="/portfolio/grizzly-ranch-golf-packages/">Grizzly Ranch</a> sit higher and may open a week or two later if snow is slow to melt. All five courses are generally open by mid-May.</p>
+      <p>In fall, the same pattern reverses: Graeagle Meadows tends to stay open latest, sometimes through early November. The higher-elevation courses may close in mid-October if an early storm arrives.</p>
+
+      <div class="bl-faq">
+        <h2>Frequently Asked Questions</h2>
+        {faqSchema.mainEntity.map((item: any) => (
+          <div class="bl-faq-item">
+            <h3>{item.name}</h3>
+            <p>{item.acceptedAnswer.text}</p>
+          </div>
+        ))}
+      </div>
+
+      <div class="bl-cta">
+        <h2>Plan your Graeagle golf trip</h2>
+        <p>Tell us your preferred month, group size, and which courses you want to play. We'll build a package around the best conditions of the season.</p>
+        <a href="/request-a-quote/" class="bl-cta-btn btn-green-glow">Get Your Quote →</a>
+        <div class="bl-cta-links">
+          <a href="/blog/best-time-to-golf-graeagle/">Full month-by-month weather guide →</a>
+          <a href="/blog/graeagle-golf-trip-itinerary-3-days/">3-day Graeagle itinerary →</a>
+          <a href="/all-golf-courses/">Compare all 5 courses →</a>
+        </div>
+      </div>
+    </article>
+
+    <aside style="margin-top:48px;">
+      <div style="display:flex;flex-wrap:wrap;gap:10px;">
+        {[
+          ['Graeagle Meadows','graeagle-meadows-golf-packages','Opens first · Slope 120'],
+          ['Whitehawk Ranch','whitehawk-ranch-golf-packages','Top 20 CA · Slope 132'],
+          ['Plumas Pines','plumas-pines-golf-packages','Top 5 Value CA · Slope 132'],
+          ['Grizzly Ranch','grizzly-ranch-golf-packages','Golf Digest Top 100 · Slope 140'],
+          ['Nakoma Dragon','nakoma-dragon-golf-packages','FLW Clubhouse · Slope 147'],
+        ].map(([name, slug2, note]) => (
+          <a href={`/portfolio/${slug2}/`} style="display:inline-flex;flex-direction:column;padding:12px 16px;background:rgba(28,18,8,0.04);border:1px solid rgba(28,18,8,0.07);border-radius:10px;text-decoration:none;min-width:160px;transition:all 0.2s;" onmouseover="this.style.borderColor='rgba(232,168,80,0.4)'" onmouseout="this.style.borderColor='rgba(28,18,8,0.07)'">
+            <span style="font-size:13px;font-weight:700;color:var(--text-primary);margin-bottom:3px;">{name}</span>
+            <span style="font-size:11px;color:rgba(28,18,8,0.4);">{note}</span>
+          </a>
+        ))}
+      </div>
+    </aside>
+  </div>
+
+  <RelatedTrips client:load slug="graeagle-meadows" type="course" showAll={true} max={4} />
+  <Footer />
+</Base>
