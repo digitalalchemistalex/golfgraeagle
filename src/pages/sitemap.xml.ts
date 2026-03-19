@@ -69,6 +69,9 @@ const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <!-- Core Pages -->
 ${url('/','1.0','weekly')}
 ${url('/request-a-quote','1.0','monthly')}
+${url('/stay-and-play','0.9','monthly')}
+${url('/group-golf','0.9','monthly')}
+${url('/golf-packages','0.9','monthly')}
 ${url('/all-golf-courses','0.9','monthly')}
 ${url('/lodging','0.8','monthly')}
 ${url('/dining','0.8','monthly')}

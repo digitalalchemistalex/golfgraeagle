@@ -1,0 +1,227 @@
+---
+export const prerender = true;
+import Base from '../layouts/Base.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import RelatedTrips from '../components/RelatedTrips.tsx';
+
+const title = "Graeagle Golf Packages — Tee Times, Lodging & Itineraries | GolfGraeagle.com";
+const description = "Graeagle golf packages from $299 per golfer. Custom stay-and-play packages at 5 championship courses — Grizzly Ranch, Nakoma Dragon, Whitehawk Ranch, Plumas Pines, and Graeagle Meadows. Free quote in 24 hours.";
+const slug = "golf-packages";
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    { "@type": "Question", "name": "What is included in a Graeagle golf package?", "acceptedAnswer": { "@type": "Answer", "text": "A GolfGraeagle package includes guaranteed tee times at your chosen courses, lodging coordination, and a day-by-day itinerary. Dining reservations are available on request. Packages start from $299 per golfer." } },
+    { "@type": "Question", "name": "How much do Graeagle golf packages cost?", "acceptedAnswer": { "@type": "Answer", "text": "Graeagle golf packages range from $379 to $1,705 per person based on real completed trips. A typical 3-night, 3-course package for a group of 12 runs $620–$850 per golfer. All pricing is available in the TripsCaddie archive at golfgraeagle.com/trips/." } },
+    { "@type": "Question", "name": "How many courses can I play in a Graeagle golf package?", "acceptedAnswer": { "@type": "Answer", "text": "GolfGraeagle can book tee times at any combination of the 5 Graeagle courses. A 2-night package typically covers 2 courses. A 3-night covers 3–4. A 5-night trip allows all 5. Most groups play 3–4 courses on a standard trip." } },
+    { "@type": "Question", "name": "Can I see real pricing from past Graeagle golf packages?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. The TripsCaddie archive at golfgraeagle.com/trips/ shows real pricing from completed group trips — course combinations, nights, group sizes, and price per person. 76 real packages from $379 to $1,705 per person." } },
+    { "@type": "Question", "name": "How do I book a Graeagle golf package?", "acceptedAnswer": { "@type": "Answer", "text": "Submit a quote request at golfgraeagle.com/request-a-quote/ with your dates, group size, and which courses interest you. GolfGraeagle responds within 24 hours with a custom package proposal." } }
+  ]
+};
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://golfgraeagle.com" },
+    { "@type": "ListItem", "position": 2, "name": "Golf Packages", "item": "https://golfgraeagle.com/golf-packages/" }
+  ]
+};
+
+const tiers = [
+  {
+    name: 'Value',
+    range: '$379–$649',
+    nights: '2–3',
+    courses: '2–3',
+    lodging: 'River Pines Resort or Townhomes',
+    examples: ['Graeagle Meadows + Plumas Pines + Whitehawk Ranch', 'Whitehawk Ranch + Grizzly Ranch'],
+    best: 'First-time Graeagle groups, budget-conscious trips',
+  },
+  {
+    name: 'Standard',
+    range: '$649–$999',
+    nights: '3–4',
+    courses: '3–4',
+    lodging: 'River Pines Resort or Chalet View Lodge',
+    examples: ['Whitehawk + Grizzly Ranch + Nakoma Dragon', '4 courses, 3 nights, group of 12'],
+    best: 'Most golf groups — the sweet spot for value and experience',
+    highlight: true,
+  },
+  {
+    name: 'Premium',
+    range: '$999–$1,705',
+    nights: '4–5',
+    courses: 'All 5',
+    lodging: 'The Inn at Nakoma or Chalet View Lodge',
+    examples: ['All 5 courses, 5 nights, Inn at Nakoma', 'Nakoma Dragon + Grizzly Ranch + Whitehawk + Plumas + Meadows'],
+    best: 'Bucket-list trips, anniversary outings, premium groups',
+  },
+];
+
+const courses = [
+  { name: 'Graeagle Meadows', slug: 'graeagle-meadows-golf-packages', par: 72, yards: 6759, slope: 120, tier: '$$', badge: 'Since 1968', best: 'First-timers, mixed groups' },
+  { name: 'Whitehawk Ranch', slug: 'whitehawk-ranch-golf-packages', par: 71, yards: 6983, slope: 132, tier: '$$$', badge: 'Top 20 CA', best: 'Competitive players' },
+  { name: 'Plumas Pines', slug: 'plumas-pines-golf-packages', par: 72, yards: 6504, slope: 132, tier: '$$', badge: 'Top 5 Value CA', best: 'Value seekers, shot-makers' },
+  { name: 'Grizzly Ranch', slug: 'grizzly-ranch-golf-packages', par: 72, yards: 7411, slope: 140, tier: '$$$$', badge: 'Golf Digest Top 100', best: 'Low-handicap players' },
+  { name: 'Nakoma — The Dragon', slug: 'nakoma-dragon-golf-packages', par: 72, yards: 7015, slope: 147, tier: '$$$$', badge: 'FLW Clubhouse', best: 'Bucket-list golfers' },
+];
+---
+<Base
+  title={title}
+  description={description}
+  ogImage="https://golfgraeagle.com/wp-images/whitehawk-hero.webp"
+  schema={[faqSchema, breadcrumbSchema]}
+  canonical={`https://golfgraeagle.com/${slug}/`}
+  bodyClass="light-page"
+>
+  <Nav />
+
+  <!-- HERO -->
+  <section style="position:relative;height:72vh;min-height:480px;overflow:hidden;display:flex;align-items:flex-end;">
+    <img src="/wp-images/whitehawk-hero.webp" alt="Graeagle golf packages — stay and play" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" loading="eager" fetchpriority="high"/>
+    <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(13,26,14,0.92) 0%,rgba(13,26,14,0.4) 55%,transparent 100%);"></div>
+    <div style="position:relative;z-index:2;padding:0 clamp(20px,8%,120px) clamp(40px,6vw,80px);max-width:900px;">
+      <div style="font-size:11px;color:rgba(232,168,80,0.8);letter-spacing:0.16em;text-transform:uppercase;font-weight:700;margin-bottom:16px;">5 Courses · Graeagle, California · Sierra Nevada</div>
+      <h1 style="font-family:'Playfair Display',serif;font-size:clamp(32px,5vw,60px);font-weight:500;color:#f0ece3;line-height:1.1;margin:0 0 16px;" class="speakable">
+        Graeagle Golf Packages
+      </h1>
+      <p style="font-size:clamp(15px,1.8vw,19px);color:rgba(240,236,227,0.65);max-width:580px;line-height:1.7;margin:0 0 28px;">
+        Custom packages at Golf Digest Top 100, Frank Lloyd Wright, and Top 20 California courses — from $299 per golfer. Real pricing, no guessing.
+      </p>
+      <div style="display:flex;gap:16px;flex-wrap:wrap;align-items:center;margin-bottom:24px;">
+        <a href="/request-a-quote/?utm_source=golfgraeagle&utm_medium=internal&utm_campaign=packages&utm_content=hero" class="btn-green-glow" style="display:inline-block;background:#2d7a3a;color:#fff;font-weight:700;font-size:15px;padding:16px 36px;border-radius:100px;text-decoration:none;">
+          Get a Free Quote →
+        </a>
+        <a href="/trips/" style="font-size:14px;color:rgba(232,168,80,0.9);font-weight:600;text-decoration:none;">See real trip pricing ↗</a>
+      </div>
+      <!-- Social proof strip -->
+      <div style="display:flex;gap:24px;flex-wrap:wrap;">
+        <span style="font-size:12px;color:rgba(245,240,232,0.5);">⭐ 4.8/5 · 672 reviews</span>
+        <span style="font-size:12px;color:rgba(245,240,232,0.5);">📦 76 real packages in archive</span>
+        <span style="font-size:12px;color:rgba(245,240,232,0.5);">⏱ 24hr quote response</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- BODY -->
+  <section style="background:var(--page-bg);padding:clamp(56px,8vw,96px) clamp(20px,8%,120px);">
+    <div style="max-width:1100px;margin:0 auto;">
+
+      <!-- HOW IT WORKS -->
+      <div style="text-align:center;margin-bottom:72px;">
+        <h2 style="font-family:'Playfair Display',serif;font-size:clamp(24px,3vw,40px);color:var(--text-primary);font-weight:400;margin:0 0 48px;" class="speakable">How Graeagle golf packages work</h2>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:32px;position:relative;">
+          {[
+            { step: '1', title: 'Submit a quote', body: 'Tell us your dates, group size, and which courses interest you. Takes 2 minutes.' },
+            { step: '2', title: 'Get your itinerary', body: 'Within 24 hours: tee times, lodging options, day-by-day schedule, and pricing.' },
+            { step: '3', title: 'Confirm and play', body: 'Approve the package, we lock everything in. You just show up and play.' },
+          ].map((s, i) => (
+            <div style="text-align:center;">
+              <div style="width:48px;height:48px;border-radius:50%;background:rgba(232,168,80,0.12);border:2px solid rgba(232,168,80,0.25);display:flex;align-items:center;justify-content:center;margin:0 auto 16px;font-family:'Playfair Display',serif;font-size:20px;color:var(--gold);font-weight:500;">{s.step}</div>
+              <div style="font-size:15px;font-weight:700;color:var(--text-primary);margin-bottom:8px;">{s.title}</div>
+              <p style="font-size:13px;color:rgba(28,18,8,0.5);line-height:1.65;margin:0;">{s.body}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- PRICING TIERS -->
+      <div style="margin-bottom:80px;">
+        <h2 style="font-family:'Playfair Display',serif;font-size:clamp(22px,3vw,34px);color:var(--text-primary);font-weight:400;margin:0 0 8px;text-align:center;">Package pricing ranges</h2>
+        <p style="font-size:14px;color:rgba(28,18,8,0.4);text-align:center;margin:0 0 32px;">Based on real completed trips from the <a href="/trips/" style="color:var(--gold);">TripsCaddie archive</a></p>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;">
+          {tiers.map(tier => (
+            <div style={`border:${tier.highlight ? '2px solid rgba(232,168,80,0.4)' : '1px solid rgba(28,18,8,0.08)'};border-radius:20px;padding:32px 28px;background:${tier.highlight ? 'rgba(232,168,80,0.04)' : '#fff'};position:relative;`}>
+              {tier.highlight && <div style="position:absolute;top:-14px;left:50%;transform:translateX(-50%);background:var(--gold);color:#1c1208;font-size:9px;font-weight:800;padding:5px 16px;border-radius:100px;text-transform:uppercase;letter-spacing:0.1em;white-space:nowrap;">Most Popular</div>}
+              <div style="font-size:11px;font-weight:800;color:rgba(28,18,8,0.35);text-transform:uppercase;letter-spacing:0.12em;margin-bottom:8px;">{tier.name}</div>
+              <div style="font-family:'Playfair Display',serif;font-size:28px;color:var(--text-primary);font-weight:400;margin-bottom:4px;">{tier.range}</div>
+              <div style="font-size:12px;color:rgba(28,18,8,0.4);margin-bottom:20px;">per golfer</div>
+              <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:20px;">
+                <div style="display:flex;justify-content:space-between;font-size:13px;padding:8px 0;border-bottom:1px solid rgba(28,18,8,0.05);">
+                  <span style="color:rgba(28,18,8,0.4);">Nights</span><span style="font-weight:600;color:var(--text-primary);">{tier.nights}</span>
+                </div>
+                <div style="display:flex;justify-content:space-between;font-size:13px;padding:8px 0;border-bottom:1px solid rgba(28,18,8,0.05);">
+                  <span style="color:rgba(28,18,8,0.4);">Courses</span><span style="font-weight:600;color:var(--text-primary);">{tier.courses}</span>
+                </div>
+                <div style="font-size:13px;padding:8px 0;border-bottom:1px solid rgba(28,18,8,0.05);">
+                  <span style="color:rgba(28,18,8,0.4);display:block;margin-bottom:4px;">Typical lodging</span>
+                  <span style="font-weight:600;color:var(--text-primary);font-size:12px;">{tier.lodging}</span>
+                </div>
+              </div>
+              <div style="font-size:11px;color:rgba(28,18,8,0.35);font-style:italic;margin-bottom:4px;">Best for:</div>
+              <div style="font-size:13px;color:rgba(28,18,8,0.55);">{tier.best}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- THE 5 COURSES -->
+      <div style="margin-bottom:80px;">
+        <h2 style="font-family:'Playfair Display',serif;font-size:clamp(22px,3vw,34px);color:var(--text-primary);font-weight:400;margin:0 0 8px;text-align:center;">The 5 courses</h2>
+        <p style="font-size:15px;color:rgba(28,18,8,0.45);text-align:center;margin:0 0 32px;">GolfGraeagle books tee times at all 5. Mix and match any combination.</p>
+        <div style="overflow-x:auto;">
+          <table style="width:100%;border-collapse:collapse;font-size:14px;">
+            <thead>
+              <tr style="border-bottom:2px solid rgba(28,18,8,0.08);">
+                <th style="text-align:left;padding:12px 16px;font-size:11px;text-transform:uppercase;letter-spacing:0.1em;color:rgba(28,18,8,0.4);font-weight:700;">Course</th>
+                <th style="text-align:center;padding:12px 8px;font-size:11px;text-transform:uppercase;letter-spacing:0.1em;color:rgba(28,18,8,0.4);font-weight:700;">Par</th>
+                <th style="text-align:center;padding:12px 8px;font-size:11px;text-transform:uppercase;letter-spacing:0.1em;color:rgba(28,18,8,0.4);font-weight:700;">Yards</th>
+                <th style="text-align:center;padding:12px 8px;font-size:11px;text-transform:uppercase;letter-spacing:0.1em;color:rgba(28,18,8,0.4);font-weight:700;">Slope</th>
+                <th style="text-align:center;padding:12px 8px;font-size:11px;text-transform:uppercase;letter-spacing:0.1em;color:rgba(28,18,8,0.4);font-weight:700;">Price</th>
+                <th style="text-align:left;padding:12px 16px;font-size:11px;text-transform:uppercase;letter-spacing:0.1em;color:rgba(28,18,8,0.4);font-weight:700;">Best For</th>
+              </tr>
+            </thead>
+            <tbody>
+              {courses.map((c, i) => (
+                <tr style={`border-bottom:1px solid rgba(28,18,8,0.05);${i % 2 === 0 ? '' : 'background:rgba(28,18,8,0.02);'}`}>
+                  <td style="padding:14px 16px;">
+                    <a href={`/portfolio/${c.slug}/`} style="font-weight:700;color:var(--text-primary);text-decoration:none;display:block;margin-bottom:3px;">{c.name}</a>
+                    <span style="font-size:10px;font-weight:700;color:var(--gold);background:rgba(232,168,80,0.1);padding:2px 8px;border-radius:100px;">{c.badge}</span>
+                  </td>
+                  <td style="text-align:center;padding:14px 8px;color:rgba(28,18,8,0.55);">{c.par}</td>
+                  <td style="text-align:center;padding:14px 8px;color:rgba(28,18,8,0.55);">{c.yards.toLocaleString()}</td>
+                  <td style="text-align:center;padding:14px 8px;font-weight:700;color:var(--text-primary);">{c.slope}</td>
+                  <td style="text-align:center;padding:14px 8px;color:rgba(28,18,8,0.55);">{c.tier}</td>
+                  <td style="padding:14px 16px;font-size:13px;color:rgba(28,18,8,0.45);">{c.best}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- FAQ -->
+      <div style="margin-bottom:64px;">
+        <h2 style="font-family:'Playfair Display',serif;font-size:clamp(22px,3vw,34px);color:var(--text-primary);font-weight:400;margin:0 0 32px;text-align:center;">Golf Package FAQ</h2>
+        <div style="display:flex;flex-direction:column;gap:0;">
+          {faqSchema.mainEntity.map((item: any) => (
+            <details style="border-bottom:1px solid rgba(28,18,8,0.07);padding:0;">
+              <summary style="font-size:15px;font-weight:600;color:var(--text-primary);padding:20px 0;cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;">
+                {item.name}
+                <span style="color:var(--gold);font-size:20px;flex-shrink:0;margin-left:16px;">+</span>
+              </summary>
+              <p style="font-size:14px;color:rgba(28,18,8,0.55);line-height:1.75;padding:0 0 20px;margin:0;">{item.acceptedAnswer.text}</p>
+            </details>
+          ))}
+        </div>
+      </div>
+
+      <!-- CTA -->
+      <div style="background:rgba(232,168,80,0.06);border:1px solid rgba(232,168,80,0.2);border-radius:20px;padding:clamp(32px,5vw,56px) clamp(24px,5vw,64px);text-align:center;">
+        <div style="font-family:'Playfair Display',serif;font-size:clamp(22px,3.5vw,38px);color:var(--text-primary);font-weight:400;margin:0 0 12px;">Get Your Graeagle Golf Package Quote</div>
+        <p style="font-size:16px;color:rgba(28,18,8,0.5);max-width:500px;margin:0 auto 24px;line-height:1.7;">Dates, group size, courses you want — we build the package. Free quote, 24-hour response, no obligation.</p>
+        <a href="/request-a-quote/?utm_source=golfgraeagle&utm_medium=internal&utm_campaign=packages&utm_content=cta-bottom" class="btn-green-glow" style="display:inline-block;background:#2d7a3a;color:#fff;font-weight:700;font-size:16px;padding:18px 48px;border-radius:100px;text-decoration:none;">
+          Request a Free Quote →
+        </a>
+        <p style="font-size:12px;color:rgba(28,18,8,0.35);margin:14px 0 0;">No obligation · 72-hr cancellation · Response within 24 hours</p>
+      </div>
+
+    </div>
+  </section>
+
+  <RelatedTrips client:load slug="golf-packages" type="course" showAll={true} max={3} />
+  <Footer />
+</Base>

@@ -1,0 +1,185 @@
+---
+export const prerender = true;
+import Base from '../layouts/Base.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import RelatedTrips from '../components/RelatedTrips.tsx';
+
+const title = "Group Golf in Graeagle, CA — Outings for 4 to 200+ Golfers";
+const description = "Plan a group golf trip to Graeagle, CA. GolfGraeagle coordinates tee times, lodging, and itineraries for golf groups of any size — 4 players to 200+. Free quote in 24 hours.";
+const slug = "group-golf";
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    { "@type": "Question", "name": "How far in advance should a golf group book Graeagle tee times?", "acceptedAnswer": { "@type": "Answer", "text": "For summer weekends (June–August), book 6–8 weeks ahead for groups. Spring and fall shoulder seasons can often be arranged 3–4 weeks out. Large groups requiring consecutive tee time blocks across multiple courses need the most lead time." } },
+    { "@type": "Question", "name": "What is the maximum group size GolfGraeagle can handle?", "acceptedAnswer": { "@type": "Answer", "text": "GolfGraeagle has coordinated trips for groups of 4 to 200+ golfers. Large outings use consecutive tee time blocks across multiple start times. Shotgun starts and tournament formats can be arranged at select courses." } },
+    { "@type": "Question", "name": "Which Graeagle course is best for a large group outing?", "acceptedAnswer": { "@type": "Answer", "text": "Graeagle Meadows is the most accessible for mixed-handicap groups. Whitehawk Ranch works well for competitive groups. Grizzly Ranch is ideal as the anchor round for serious golfers. Most large groups play 2–3 courses across their stay." } },
+    { "@type": "Question", "name": "Can GolfGraeagle coordinate group lodging and dining?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Every GolfGraeagle group package includes lodging coordination and can include dining reservations. River Pines Resort and the Townhomes at Plumas Pines are the most popular options for large groups." } },
+    { "@type": "Question", "name": "Does GolfGraeagle offer corporate golf outing planning?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Corporate golf outings, charity tournaments, and company retreats are handled with the same process as leisure group trips. Banquet coordination, scoring, and prizes can be arranged on request." } }
+  ]
+};
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://golfgraeagle.com" },
+    { "@type": "ListItem", "position": 2, "name": "Group Golf", "item": "https://golfgraeagle.com/group-golf/" }
+  ]
+};
+
+const groupTypes = [
+  { icon: '🍻', label: 'Golf Buddies Trip', size: '4–16', desc: 'Annual guys trip, bachelor parties, or friend group weekends. The most common Graeagle trip. 3 nights, 3–4 courses, one good dinner reservation.' },
+  { icon: '🏆', label: 'Golf Tournament', size: '20–100', desc: 'Charity events, club championships, and competitive outings. Consecutive tee time blocks. Scoring, prizes, and banquet coordination available.' },
+  { icon: '💼', label: 'Corporate Outing', size: '12–60', desc: 'Client entertainment, team building, or company retreats. GolfGraeagle handles logistics so you focus on the relationships.' },
+  { icon: '🎓', label: 'Alumni & Club Groups', size: '16–200', desc: 'College alumni golf days, club championships, and association outings. Multi-course itineraries with group lodging blocks.' },
+];
+
+const logistics = [
+  { q: 'Tee time coordination', a: 'Consecutive tee time blocks at one or multiple courses. GolfGraeagle deals directly with the pro shop at all 5 courses.' },
+  { q: 'Group lodging', a: 'River Pines Resort handles groups well with its mix of cabins, suites, and rooms. Townhomes at Plumas Pines fit groups of 8–24 in multi-bedroom units.' },
+  { q: 'Multi-course routing', a: 'Sequence matters. Most groups start at Graeagle Meadows or Plumas Pines, save Grizzly Ranch and Nakoma for the back half when everyone is warmed up.' },
+  { q: 'Dining reservations', a: 'Sardine Lake (book 4 weeks out), Grizzly Grill, and Iron Door are popular for group dinners. GolfGraeagle includes these in the itinerary on request.' },
+  { q: 'Transportation', a: 'All 5 courses are within 25 minutes. Most groups drive themselves — carpooling from a central lodging base is the standard approach.' },
+];
+---
+<Base
+  title={title}
+  description={description}
+  ogImage="https://golfgraeagle.com/wp-images/graeagle-meadows-aerial.jpg"
+  schema={[faqSchema, breadcrumbSchema]}
+  canonical={`https://golfgraeagle.com/${slug}/`}
+  bodyClass="light-page"
+>
+  <Nav />
+
+  <!-- HERO -->
+  <section style="position:relative;height:72vh;min-height:480px;overflow:hidden;display:flex;align-items:flex-end;">
+    <img src="/wp-images/graeagle-meadows-aerial.jpg" alt="Group golf trip in Graeagle California" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" loading="eager" fetchpriority="high"/>
+    <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(13,26,14,0.92) 0%,rgba(13,26,14,0.4) 55%,transparent 100%);"></div>
+    <div style="position:relative;z-index:2;padding:0 clamp(20px,8%,120px) clamp(40px,6vw,80px);max-width:900px;">
+      <div style="font-size:11px;color:rgba(232,168,80,0.8);letter-spacing:0.16em;text-transform:uppercase;font-weight:700;margin-bottom:16px;">Groups of 4 to 200+ · Graeagle, California</div>
+      <h1 style="font-family:'Playfair Display',serif;font-size:clamp(32px,5vw,60px);font-weight:500;color:#f0ece3;line-height:1.1;margin:0 0 16px;" class="speakable">
+        Group Golf Trips<br/>to Graeagle, CA
+      </h1>
+      <p style="font-size:clamp(15px,1.8vw,19px);color:rgba(240,236,227,0.65);max-width:580px;line-height:1.7;margin:0 0 32px;">
+        Five championship courses within 25 minutes of each other. GolfGraeagle handles tee times, lodging, and the itinerary — so the group just shows up and plays.
+      </p>
+      <div style="display:flex;gap:16px;flex-wrap:wrap;align-items:center;">
+        <a href="/request-a-quote/?utm_source=golfgraeagle&utm_medium=internal&utm_campaign=group&utm_content=hero" class="btn-green-glow" style="display:inline-block;background:#2d7a3a;color:#fff;font-weight:700;font-size:15px;padding:16px 36px;border-radius:100px;text-decoration:none;">
+          Plan My Group Trip →
+        </a>
+        <a href="/trips/" style="font-size:14px;color:rgba(232,168,80,0.9);font-weight:600;text-decoration:none;">See real trip pricing ↗</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- BODY -->
+  <section style="background:var(--page-bg);padding:clamp(56px,8vw,96px) clamp(20px,8%,120px);">
+    <div style="max-width:1100px;margin:0 auto;">
+
+      <!-- WHY GRAEAGLE FOR GROUPS -->
+      <div style="max-width:760px;margin:0 auto 72px;">
+        <h2 style="font-family:'Playfair Display',serif;font-size:clamp(22px,3vw,36px);color:var(--text-primary);font-weight:400;margin:0 0 24px;" class="speakable">Why groups choose Graeagle</h2>
+        <p style="font-size:17px;color:rgba(28,18,8,0.6);line-height:1.85;margin:0 0 20px;">Five championship courses within 25 minutes of each other means a group can play a different course every day without logistical friction. No long drives. No shuttles. No scattered hotels. The valley is compact enough that everyone stays in the same place and drives to each course in under 30 minutes.</p>
+        <p style="font-size:17px;color:rgba(28,18,8,0.6);line-height:1.85;margin:0 0 20px;">Graeagle's courses cover every skill level in the same valley — Graeagle Meadows (slope 120) for mixed-handicap groups, Whitehawk Ranch (Top 20 California) for competitive rounds, Grizzly Ranch (Golf Digest Top 100, slope 140) for the serious challenge, and Nakoma Dragon (slope 147, FLW clubhouse) for the bucket-list experience.</p>
+        <p style="font-size:17px;color:rgba(28,18,8,0.6);line-height:1.85;margin:0;">Compared to Tahoe, Monterey, or Palm Springs, Graeagle costs 30–50% less per golfer for comparable or better course quality. The pricing gap is what makes annual group trips viable year after year.</p>
+      </div>
+
+      <!-- GROUP TYPES -->
+      <div style="margin-bottom:72px;">
+        <h2 style="font-family:'Playfair Display',serif;font-size:clamp(22px,3vw,34px);color:var(--text-primary);font-weight:400;margin:0 0 32px;text-align:center;">Every kind of group</h2>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px;">
+          {groupTypes.map(g => (
+            <div style="background:#fff;border:1px solid rgba(28,18,8,0.07);border-radius:16px;padding:28px 24px;">
+              <div style="font-size:28px;margin-bottom:14px;">{g.icon}</div>
+              <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;flex-wrap:wrap;">
+                <span style="font-size:15px;font-weight:700;color:var(--text-primary);">{g.label}</span>
+                <span style="font-size:10px;color:rgba(28,18,8,0.4);font-weight:600;">{g.size} golfers</span>
+              </div>
+              <p style="font-size:13px;color:rgba(28,18,8,0.5);line-height:1.65;margin:0;">{g.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- LOGISTICS BREAKDOWN -->
+      <div style="margin-bottom:72px;">
+        <h2 style="font-family:'Playfair Display',serif;font-size:clamp(22px,3vw,34px);color:var(--text-primary);font-weight:400;margin:0 0 32px;text-align:center;">How group logistics work</h2>
+        <div style="display:flex;flex-direction:column;gap:0;">
+          {logistics.map(item => (
+            <div style="display:grid;grid-template-columns:200px 1fr;gap:24px;padding:22px 0;border-bottom:1px solid rgba(28,18,8,0.06);align-items:start;">
+              <div style="font-size:13px;font-weight:700;color:var(--text-primary);">{item.q}</div>
+              <div style="font-size:14px;color:rgba(28,18,8,0.55);line-height:1.7;">{item.a}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- STATS BAR -->
+      <div style="background:rgba(232,168,80,0.06);border:1px solid rgba(232,168,80,0.15);border-radius:20px;padding:40px;display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:32px;text-align:center;margin-bottom:72px;">
+        {[
+          ['5', 'Courses in one valley'],
+          ['25 min', 'Max drive between courses'],
+          ['4–200+', 'Group sizes served'],
+          ['$299', 'Packages from per golfer'],
+          ['24 hrs', 'Quote turnaround'],
+        ].map(([val, label]) => (
+          <div>
+            <div style="font-family:'Playfair Display',serif;font-size:32px;color:var(--gold);font-weight:400;margin-bottom:6px;">{val}</div>
+            <div style="font-size:11px;color:rgba(28,18,8,0.45);text-transform:uppercase;letter-spacing:0.1em;font-weight:600;">{label}</div>
+          </div>
+        ))}
+      </div>
+
+      <!-- BLOGS LINK -->
+      <div style="margin-bottom:72px;">
+        <h2 style="font-family:'Playfair Display',serif;font-size:clamp(20px,2.5vw,30px);color:var(--text-primary);font-weight:400;margin:0 0 24px;">Group trip planning guides</h2>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;">
+          {[
+            { href: '/blog/large-group-golf-graeagle/', title: 'Large Group Golf in Graeagle: How 50+ Golfers Do It Right' },
+            { href: '/blog/bachelor-party-golf-graeagle/', title: 'Bachelor Party Golf in Graeagle: The Complete Group Guide' },
+            { href: '/blog/corporate-golf-outing-graeagle/', title: 'Corporate Golf Outing in Graeagle: Complete Planning Guide' },
+            { href: '/blog/golf-tournament-graeagle/', title: 'How to Run a Golf Tournament Across 5 Graeagle Courses' },
+          ].map(link => (
+            <a href={link.href} style="padding:18px 20px;background:#fff;border:1px solid rgba(28,18,8,0.07);border-radius:12px;text-decoration:none;font-size:14px;font-weight:600;color:var(--text-primary);line-height:1.45;transition:all 0.2s;" onmouseover="this.style.borderColor='rgba(232,168,80,0.4)';this.style.background='rgba(232,168,80,0.03)'" onmouseout="this.style.borderColor='rgba(28,18,8,0.07)';this.style.background='#fff'">
+              {link.title} →
+            </a>
+          ))}
+        </div>
+      </div>
+
+      <!-- FAQ -->
+      <div style="margin-bottom:64px;">
+        <h2 style="font-family:'Playfair Display',serif;font-size:clamp(22px,3vw,34px);color:var(--text-primary);font-weight:400;margin:0 0 32px;text-align:center;">Group Golf FAQ</h2>
+        <div style="display:flex;flex-direction:column;gap:0;">
+          {faqSchema.mainEntity.map((item: any) => (
+            <details style="border-bottom:1px solid rgba(28,18,8,0.07);padding:0;">
+              <summary style="font-size:15px;font-weight:600;color:var(--text-primary);padding:20px 0;cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;">
+                {item.name}
+                <span style="color:var(--gold);font-size:20px;flex-shrink:0;margin-left:16px;">+</span>
+              </summary>
+              <p style="font-size:14px;color:rgba(28,18,8,0.55);line-height:1.75;padding:0 0 20px;margin:0;">{item.acceptedAnswer.text}</p>
+            </details>
+          ))}
+        </div>
+      </div>
+
+      <!-- CTA -->
+      <div style="background:rgba(232,168,80,0.06);border:1px solid rgba(232,168,80,0.2);border-radius:20px;padding:clamp(32px,5vw,56px) clamp(24px,5vw,64px);text-align:center;">
+        <div style="font-family:'Playfair Display',serif;font-size:clamp(22px,3.5vw,38px);color:var(--text-primary);font-weight:400;margin:0 0 12px;">Ready to Plan Your Group Trip?</div>
+        <p style="font-size:16px;color:rgba(28,18,8,0.5);max-width:480px;margin:0 auto 24px;line-height:1.7;">Tell us your group size, dates, and which courses interest you. Quote back within 24 hours.</p>
+        <a href="/request-a-quote/?utm_source=golfgraeagle&utm_medium=internal&utm_campaign=group&utm_content=cta-bottom" class="btn-green-glow" style="display:inline-block;background:#2d7a3a;color:#fff;font-weight:700;font-size:16px;padding:18px 48px;border-radius:100px;text-decoration:none;">
+          Plan My Group Trip →
+        </a>
+        <p style="font-size:12px;color:rgba(28,18,8,0.35);margin:14px 0 0;">No obligation · Groups of 4 to 200+ · Response within 24 hours</p>
+      </div>
+
+    </div>
+  </section>
+
+  <RelatedTrips client:load slug="group-golf" type="course" showAll={true} max={3} />
+  <Footer />
+</Base>

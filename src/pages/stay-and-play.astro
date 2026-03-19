@@ -1,0 +1,217 @@
+---
+export const prerender = true;
+import Base from '../layouts/Base.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import RelatedTrips from '../components/RelatedTrips.tsx';
+
+const title = "Graeagle Stay and Play Golf Packages | GolfGraeagle.com";
+const description = "Graeagle stay and play golf packages from $299/golfer. Tee times at all 5 courses + lodging coordinated in one package. 5 courses within 25 minutes of each other. Free quote in 24 hours.";
+const slug = "stay-and-play";
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "Graeagle Stay and Play Golf Packages",
+  "description": "Custom stay-and-play golf packages for the Graeagle, California area. Includes tee times at all 5 championship courses and lodging coordination.",
+  "provider": {
+    "@type": "TravelAgency",
+    "name": "GolfGraeagle.com",
+    "url": "https://golfgraeagle.com"
+  },
+  "areaServed": { "@type": "Place", "name": "Graeagle, California" },
+  "offers": {
+    "@type": "Offer",
+    "description": "Custom stay-and-play packages from $299 per golfer",
+    "url": "https://golfgraeagle.com/request-a-quote/"
+  }
+};
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    { "@type": "Question", "name": "What is included in a Graeagle stay and play golf package?", "acceptedAnswer": { "@type": "Answer", "text": "A GolfGraeagle stay-and-play package includes guaranteed tee times at your selected courses, lodging coordination at properties in the Graeagle area, and a full day-by-day itinerary. Dining reservations can be added on request." } },
+    { "@type": "Question", "name": "How much does a Graeagle stay and play package cost?", "acceptedAnswer": { "@type": "Answer", "text": "Graeagle stay-and-play packages start from $299 per golfer. The range depends on which courses you play, lodging type, number of nights, and group size. Real pricing examples from actual bookings: $379–$1,705 per person in the TripsCaddie archive." } },
+    { "@type": "Question", "name": "How many courses can I play in a Graeagle stay and play package?", "acceptedAnswer": { "@type": "Answer", "text": "Most 3-night stay-and-play packages cover 3–4 courses. All 5 Graeagle courses are within 25 minutes of each other, making it practical to play all 5 on a 4-5 night trip. GolfGraeagle can book tee times at any combination." } },
+    { "@type": "Question", "name": "Which lodging is best for a Graeagle stay and play golf trip?", "acceptedAnswer": { "@type": "Answer", "text": "River Pines Resort is the most popular base for golf groups — flexible room types, The Roadhouse on-site, pool and hot tub. The Townhomes at Plumas Pines offer multi-bedroom units steps from Plumas Pines first tee. The Inn at Nakoma puts you inside the Frank Lloyd Wright resort with the Dragon course at your door." } },
+    { "@type": "Question", "name": "Can GolfGraeagle book stay and play packages for large groups?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. GolfGraeagle coordinates stay-and-play packages for groups of 4 to 200+ golfers. Large group bookings require consecutive tee time blocks across multiple days — we handle all coordination with courses and lodging." } }
+  ]
+};
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://golfgraeagle.com" },
+    { "@type": "ListItem", "position": 2, "name": "Stay and Play", "item": "https://golfgraeagle.com/stay-and-play/" }
+  ]
+};
+
+const courses = [
+  { name: 'Graeagle Meadows', slug: 'graeagle-meadows-golf-packages', par: 72, yards: 6759, slope: 120, tier: '$$', accolade: 'Since 1968' },
+  { name: 'Whitehawk Ranch', slug: 'whitehawk-ranch-golf-packages', par: 71, yards: 6983, slope: 132, tier: '$$$', accolade: 'Top 20 CA' },
+  { name: 'Plumas Pines', slug: 'plumas-pines-golf-packages', par: 72, yards: 6504, slope: 132, tier: '$$', accolade: 'Top 5 Value CA' },
+  { name: 'Grizzly Ranch', slug: 'grizzly-ranch-golf-packages', par: 72, yards: 7411, slope: 140, tier: '$$$$', accolade: 'Golf Digest Top 100' },
+  { name: 'Nakoma — The Dragon', slug: 'nakoma-dragon-golf-packages', par: 72, yards: 7015, slope: 147, tier: '$$$$', accolade: 'FLW Clubhouse' },
+];
+
+const lodging = [
+  { name: 'River Pines Resort', slug: 'river-pines-resort-graeagle-ca', subtitle: 'Great for Groups', note: 'Cabins, suites, pool, hot tub — The Roadhouse on-site. Best base for most golf groups.' },
+  { name: 'Chalet View Lodge', slug: 'chalet-view-lodge-graeagle-ca', subtitle: 'Great Amenities', note: '10 forested acres, spa, Eureka Peak Brewing on-site. 10 min from Graeagle village.' },
+  { name: 'The Inn at Nakoma', slug: 'the-inn-at-nakoma-clio-ca', subtitle: 'FLW Architecture', note: 'Steps from The Dragon first tee. Frank Lloyd Wright lodge. Fifty44 restaurant on-site.' },
+  { name: 'Townhomes at Plumas Pines', slug: 'the-townhomes-at-plumas-pines', subtitle: 'Great for Large Groups', note: '2–4BR units with full kitchens, pool, steps from Plumas Pines first tee.' },
+];
+
+const packages = [
+  { label: '2-Night Quick Trip', rounds: '2 courses', nights: '2', pax: '4–8', from: '$299', desc: 'Graeagle Meadows + Whitehawk Ranch. Best for a long weekend intro to the valley.' },
+  { label: '3-Night Sweet Spot', rounds: '3–4 courses', nights: '3', pax: '4–24', from: '$499', desc: 'The most popular package. Covers 3 courses comfortably, with a full day between rounds for recovery.' },
+  { label: '5-Night Full Run', rounds: 'All 5 courses', nights: '5', pax: '4–24', from: '$899', desc: 'Play all 5 Graeagle courses across 5 days. Build around Grizzly Ranch and Nakoma as anchor rounds.' },
+  { label: 'Large Group Outing', rounds: '2–3 courses', nights: '2–4', pax: '24–200+', from: 'Custom', desc: 'Consecutive tee time blocks across multiple courses. Shotgun starts available. Banquet coordination on request.' },
+];
+---
+<Base
+  title={title}
+  description={description}
+  ogImage="https://golfgraeagle.com/wp-images/grizzly-ranch-hero.webp"
+  schema={[schema, faqSchema, breadcrumbSchema]}
+  canonical={`https://golfgraeagle.com/${slug}/`}
+  bodyClass="light-page"
+>
+  <Nav />
+
+  <!-- HERO -->
+  <section style="position:relative;height:72vh;min-height:480px;overflow:hidden;display:flex;align-items:flex-end;">
+    <img src="/wp-images/grizzly-ranch-hero.webp" alt="Graeagle stay and play golf packages — Sierra Nevada" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" loading="eager" fetchpriority="high"/>
+    <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(13,26,14,0.92) 0%,rgba(13,26,14,0.4) 55%,transparent 100%);"></div>
+    <div style="position:relative;z-index:2;padding:0 clamp(20px,8%,120px) clamp(40px,6vw,80px);max-width:900px;">
+      <div style="font-size:11px;color:rgba(232,168,80,0.8);letter-spacing:0.16em;text-transform:uppercase;font-weight:700;margin-bottom:16px;">Graeagle, California · Sierra Nevada</div>
+      <h1 style="font-family:'Playfair Display',serif;font-size:clamp(32px,5vw,60px);font-weight:500;color:#f0ece3;line-height:1.1;margin:0 0 16px;" class="speakable">
+        Graeagle Stay and Play<br/>Golf Packages
+      </h1>
+      <p style="font-size:clamp(15px,1.8vw,19px);color:rgba(240,236,227,0.65);max-width:560px;line-height:1.7;margin:0 0 32px;">
+        Five championship courses within 25 minutes of each other. Tee times and lodging in one package — from $299 per golfer.
+      </p>
+      <div style="display:flex;gap:16px;flex-wrap:wrap;align-items:center;">
+        <a href="/request-a-quote/?utm_source=golfgraeagle&utm_medium=internal&utm_campaign=sap&utm_content=hero" class="btn-green-glow" style="display:inline-block;background:#2d7a3a;color:#fff;font-weight:700;font-size:15px;padding:16px 36px;border-radius:100px;text-decoration:none;">
+          Get a Free Quote →
+        </a>
+        <a href="/trips/" style="font-size:14px;color:rgba(232,168,80,0.9);font-weight:600;text-decoration:none;">See real trip pricing ↗</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHAT'S INCLUDED -->
+  <section style="background:var(--page-bg);padding:clamp(56px,8vw,96px) clamp(20px,8%,120px);">
+    <div style="max-width:1100px;margin:0 auto;">
+
+      <div style="text-align:center;margin-bottom:64px;">
+        <div style="font-size:11px;color:var(--gold);letter-spacing:0.14em;text-transform:uppercase;font-weight:700;margin-bottom:16px;">What's Included</div>
+        <h2 style="font-family:'Playfair Display',serif;font-size:clamp(26px,3.5vw,42px);color:var(--text-primary);font-weight:400;margin:0 0 16px;" class="speakable">Everything handled. You just play.</h2>
+        <p style="font-size:17px;color:rgba(28,18,8,0.55);max-width:580px;margin:0 auto;line-height:1.75;">A GolfGraeagle stay-and-play package includes guaranteed tee times, lodging coordination, and a day-by-day itinerary built around your group and your budget.</p>
+      </div>
+
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:24px;margin-bottom:64px;">
+        {[
+          { icon: '⛳', title: 'Guaranteed Tee Times', body: 'At any combination of the 5 Graeagle courses. Including Grizzly Ranch semi-private access.' },
+          { icon: '🏨', title: 'Lodging Coordination', body: 'Matched to your group size and budget. On-course lodging or village properties.' },
+          { icon: '📋', title: 'Full Itinerary', body: 'Day-by-day schedule with tee times, driving directions, and dining suggestions.' },
+          { icon: '📞', title: '24-Hour Response', body: 'Quote returned within 24 hours. Changes and adjustments handled directly by your planner.' },
+        ].map(item => (
+          <div style="background:rgba(28,18,8,0.03);border:1px solid rgba(28,18,8,0.07);border-radius:16px;padding:28px 24px;">
+            <div style="font-size:28px;margin-bottom:16px;">{item.icon}</div>
+            <h3 style="font-size:16px;font-weight:700;color:var(--text-primary);margin:0 0 10px;">{item.title}</h3>
+            <p style="font-size:14px;color:rgba(28,18,8,0.5);line-height:1.65;margin:0;">{item.body}</p>
+          </div>
+        ))}
+      </div>
+
+      <!-- PACKAGE TIERS -->
+      <div style="margin-bottom:80px;">
+        <h2 style="font-family:'Playfair Display',serif;font-size:clamp(22px,3vw,34px);color:var(--text-primary);font-weight:400;margin:0 0 32px;text-align:center;">Package Options</h2>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px;">
+          {packages.map((pkg, i) => (
+            <div style={`border:1px solid ${i === 1 ? 'rgba(232,168,80,0.4)' : 'rgba(28,18,8,0.08)'};border-radius:16px;padding:28px 24px;background:${i === 1 ? 'rgba(232,168,80,0.05)' : '#fff'};position:relative;`}>
+              {i === 1 && <div style="position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:var(--gold);color:#1c1208;font-size:9px;font-weight:800;padding:4px 14px;border-radius:100px;text-transform:uppercase;letter-spacing:0.1em;white-space:nowrap;">Most Popular</div>}
+              <div style="font-size:13px;font-weight:700;color:var(--text-primary);margin-bottom:8px;">{pkg.label}</div>
+              <div style="font-size:24px;font-weight:700;color:#1a7a40;margin-bottom:4px;">From {pkg.from}<span style="font-size:12px;font-weight:400;color:rgba(28,18,8,0.4);"> /golfer</span></div>
+              <div style="display:flex;gap:12px;margin:12px 0;flex-wrap:wrap;">
+                <span style="font-size:11px;color:rgba(28,18,8,0.45);">⛳ {pkg.rounds}</span>
+                <span style="font-size:11px;color:rgba(28,18,8,0.45);">🏨 {pkg.nights} nights</span>
+                <span style="font-size:11px;color:rgba(28,18,8,0.45);">👥 {pkg.pax}</span>
+              </div>
+              <p style="font-size:13px;color:rgba(28,18,8,0.5);line-height:1.6;margin:0;">{pkg.desc}</p>
+            </div>
+          ))}
+        </div>
+        <p style="font-size:13px;color:rgba(28,18,8,0.4);text-align:center;margin:20px 0 0;">Prices are estimates based on real past packages. <a href="/trips/" style="color:var(--gold);">See actual pricing data →</a></p>
+      </div>
+
+      <!-- THE 5 COURSES -->
+      <div style="margin-bottom:80px;">
+        <h2 style="font-family:'Playfair Display',serif;font-size:clamp(22px,3vw,34px);color:var(--text-primary);font-weight:400;margin:0 0 8px;text-align:center;">The 5 Courses</h2>
+        <p style="font-size:15px;color:rgba(28,18,8,0.45);text-align:center;margin:0 0 32px;">All within 25 minutes of each other. All accessible through GolfGraeagle packages.</p>
+        <div style="display:flex;flex-direction:column;gap:12px;">
+          {courses.map(c => (
+            <a href={`/portfolio/${c.slug}/`} style="display:flex;align-items:center;gap:20px;padding:18px 24px;background:#fff;border:1px solid rgba(28,18,8,0.07);border-radius:14px;text-decoration:none;transition:all 0.2s;" onmouseover="this.style.borderColor='rgba(232,168,80,0.4)';this.style.background='rgba(232,168,80,0.03)'" onmouseout="this.style.borderColor='rgba(28,18,8,0.07)';this.style.background='#fff'">
+              <div style="flex:1;min-width:0;">
+                <div style="display:flex;align-items:center;gap:10px;margin-bottom:4px;flex-wrap:wrap;">
+                  <span style="font-size:15px;font-weight:700;color:var(--text-primary);">{c.name}</span>
+                  <span style="font-size:9px;font-weight:800;color:var(--gold);background:rgba(232,168,80,0.12);padding:2px 9px;border-radius:100px;text-transform:uppercase;letter-spacing:0.08em;">{c.accolade}</span>
+                </div>
+                <div style="font-size:12px;color:rgba(28,18,8,0.4);">Par {c.par} · {c.yards.toLocaleString()} yds · Slope {c.slope} · {c.tier}</div>
+              </div>
+              <span style="font-size:12px;color:var(--gold);font-weight:600;flex-shrink:0;">View course →</span>
+            </a>
+          ))}
+        </div>
+      </div>
+
+      <!-- LODGING OPTIONS -->
+      <div style="margin-bottom:80px;">
+        <h2 style="font-family:'Playfair Display',serif;font-size:clamp(22px,3vw,34px);color:var(--text-primary);font-weight:400;margin:0 0 8px;text-align:center;">Where to Stay</h2>
+        <p style="font-size:15px;color:rgba(28,18,8,0.45);text-align:center;margin:0 0 32px;">GolfGraeagle coordinates lodging at all four Graeagle properties.</p>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px;">
+          {lodging.map(l => (
+            <a href={`/portfolio/${l.slug}/`} style="display:flex;flex-direction:column;padding:24px;background:#fff;border:1px solid rgba(28,18,8,0.07);border-radius:14px;text-decoration:none;transition:all 0.2s;" onmouseover="this.style.borderColor='rgba(232,168,80,0.4)';this.style.background='rgba(232,168,80,0.03)'" onmouseout="this.style.borderColor='rgba(28,18,8,0.07)';this.style.background='#fff'">
+              <div style="font-size:9px;font-weight:800;color:rgba(28,18,8,0.35);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:8px;">{l.subtitle}</div>
+              <div style="font-size:15px;font-weight:700;color:var(--text-primary);margin-bottom:8px;">{l.name}</div>
+              <p style="font-size:13px;color:rgba(28,18,8,0.5);line-height:1.6;margin:0 0 12px;flex:1;">{l.note}</p>
+              <span style="font-size:12px;color:var(--gold);font-weight:600;">View lodging →</span>
+            </a>
+          ))}
+        </div>
+      </div>
+
+      <!-- FAQ -->
+      <div style="margin-bottom:64px;">
+        <h2 style="font-family:'Playfair Display',serif;font-size:clamp(22px,3vw,34px);color:var(--text-primary);font-weight:400;margin:0 0 32px;text-align:center;">Stay and Play FAQ</h2>
+        <div style="display:flex;flex-direction:column;gap:0;">
+          {faqSchema.mainEntity.map((item: any) => (
+            <details style="border-bottom:1px solid rgba(28,18,8,0.07);padding:0;">
+              <summary style="font-size:15px;font-weight:600;color:var(--text-primary);padding:20px 0;cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;">
+                {item.name}
+                <span style="color:var(--gold);font-size:20px;flex-shrink:0;margin-left:16px;">+</span>
+              </summary>
+              <p style="font-size:14px;color:rgba(28,18,8,0.55);line-height:1.75;padding:0 0 20px;margin:0;">{item.acceptedAnswer.text}</p>
+            </details>
+          ))}
+        </div>
+      </div>
+
+      <!-- CTA -->
+      <div style="background:rgba(232,168,80,0.06);border:1px solid rgba(232,168,80,0.2);border-radius:20px;padding:clamp(32px,5vw,56px) clamp(24px,5vw,64px);text-align:center;">
+        <div style="font-family:'Playfair Display',serif;font-size:clamp(22px,3.5vw,38px);color:var(--text-primary);font-weight:400;margin:0 0 12px;">Build Your Graeagle Stay and Play Package</div>
+        <p style="font-size:16px;color:rgba(28,18,8,0.5);max-width:480px;margin:0 auto 24px;line-height:1.7;">Tell us your dates, group size, and which courses you want to play. Quote back within 24 hours, no obligation.</p>
+        <a href="/request-a-quote/?utm_source=golfgraeagle&utm_medium=internal&utm_campaign=sap&utm_content=cta-bottom" class="btn-green-glow" style="display:inline-block;background:#2d7a3a;color:#fff;font-weight:700;font-size:16px;padding:18px 48px;border-radius:100px;text-decoration:none;">
+          Request a Free Quote →
+        </a>
+        <p style="font-size:12px;color:rgba(28,18,8,0.35);margin:14px 0 0;">No obligation · 72-hr cancellation · Response within 24 hours</p>
+      </div>
+    </div>
+  </section>
+
+  <RelatedTrips client:load slug="stay-and-play" type="course" showAll={true} max={3} />
+
+  <Footer />
+</Base>
