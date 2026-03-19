@@ -97,7 +97,7 @@ const lodgingMeta = {'townhomes-at-plumas-pines':{badge:'Great for Large Groups'
 <Base
   title="Graeagle Golf Packages — 5 Courses, Custom Itineraries, Tee Times + Lodging Guaranteed | GolfGraeagle.com"
   description="Plan a Graeagle golf trip in the Sierra Nevada. Compare Nakoma Dragon, Whitehawk Ranch, Plumas Pines, Graeagle Meadows and Grizzly Ranch golf courses with stay and play golf packages."
-  preloadImage={HERO_IMG}
+  preloadImage={courses[0].hero}
   schema={[courseListSchema, homeFaqSchema]}
   bodyClass="light-page"
 >
@@ -106,29 +106,34 @@ const lodgingMeta = {'townhomes-at-plumas-pines':{badge:'Great for Large Groups'
 <!-- ══════ HERO ══════ -->
 <section class="hero-section">
 
-  <!-- LCP image — full bleed, eager load -->
-  <img
-    src={HERO_IMG}
-    alt="Graeagle California — aerial view of Feather River, golf courses and Sierra Nevada mountains"
-    class="hero-img"
-    loading="eager"
-    fetchpriority="high"
-    decoding="sync"
-    width="1920"
-    height="1080"
-  />
+  <!-- Hero carousel — cycles through all 5 course images -->
+  <div class="hero-carousel" aria-hidden="true">
+    {courses.map((c, i) => (
+      <img
+        src={c.hero}
+        alt={getImgAlt(c.hero, `${c.name} Golf Course — Graeagle CA`)}
+        class={`hero-slide${i === 0 ? ' active' : ''}`}
+        loading={i === 0 ? 'eager' : 'lazy'}
+        fetchpriority={i === 0 ? 'high' : 'auto'}
+        decoding={i === 0 ? 'sync' : 'async'}
+        width="1920"
+        height="1080"
+      />
+    ))}
+  </div>
 
-  <!-- Gradient overlay: dark top (behind nav), transparent mid, heavy dark bottom -->
+  <!-- Gradient overlay -->
   <div class="hero-overlay"></div>
 
-  <!-- Film strip: 5 courses, sits just below nav -->
-  <div class="hero-strip">
-    {courses.map((c) => (
-      <a href={`/portfolio/${wpSlugMap[c.slug]}/`} class="strip-item" aria-label={`View ${c.name}`}>
-        <img src={c.hero} alt={getImgAlt(c.hero, `${c.name} Golf Course — Graeagle CA`)} class="strip-thumb" loading="lazy" />
-        <div class="strip-dim"></div>
-        <span class="strip-label">{c.name.replace(' — The Dragon','')}</span>
-      </a>
+  <!-- Carousel dots -->
+  <div class="hero-dots" role="tablist" aria-label="Course photos">
+    {courses.map((c, i) => (
+      <button
+        class={`hero-dot${i === 0 ? ' active' : ''}`}
+        data-idx={String(i)}
+        aria-label={c.name.replace(' — The Dragon','')}
+        role="tab"
+      />
     ))}
   </div>
 
@@ -492,14 +497,6 @@ const lodgingMeta = {'townhomes-at-plumas-pines':{badge:'Great for Large Groups'
     display: flex;
     flex-direction: column;
   }
-  .hero-img {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center 40%;
-  }
   .hero-overlay {
     position: absolute;
     inset: 0;
@@ -514,53 +511,51 @@ const lodgingMeta = {'townhomes-at-plumas-pines':{badge:'Great for Large Groups'
     z-index: 1;
   }
 
-  /* Film strip */
-  .hero-strip {
-    position: relative;
-    z-index: 2;
-    display: flex;
-    gap: 3px;
-    padding: 3px clamp(20px,4vw,48px);
-    padding-top: calc(68px + 3px); /* nav height + gap */
+  /* ── Hero carousel ── */
+  .hero-carousel {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
   }
-  .strip-item {
-    flex: 1;
-    height: 58px;
-    overflow: hidden;
-    border-radius: 6px;
-    position: relative;
-    text-decoration: none;
-    display: block;
-    transition: flex 0.4s cubic-bezier(0.4,0,0.2,1);
-  }
-  .strip-item:hover { flex: 2; }
-  .strip-thumb {
+  .hero-slide {
+    position: absolute;
+    inset: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;
-    display: block;
-    transition: transform 6s ease;
+    object-position: center 40%;
+    opacity: 0;
+    transition: opacity 1.2s ease;
   }
-  .strip-item:hover .strip-thumb { transform: scale(1.08); }
-  .strip-dim {
+  .hero-slide.active { opacity: 1; }
+
+  /* Dots */
+  .hero-dots {
     position: absolute;
-    inset: 0;
-    background: rgba(0,0,0,0.42);
-    transition: background 0.3s;
+    bottom: 28px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 3;
+    display: flex;
+    gap: 8px;
+    align-items: center;
   }
-  .strip-item:hover .strip-dim { background: rgba(0,0,0,0.12); }
-  .strip-label {
-    position: absolute;
-    bottom: 7px;
-    left: 9px;
-    font-size: 9px;
-    color: rgba(255,255,255,0.85);
-    font-weight: 600;
-    letter-spacing: 0.05em;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    max-width: 90%;
+  .hero-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(255,255,255,0.35);
+    cursor: pointer;
+    padding: 0;
+    transition: background 0.3s, transform 0.3s;
+  }
+  .hero-dot.active {
+    background: #e8a850;
+    transform: scale(1.3);
+  }
+  @media (max-width: 860px) {
+    .hero-dots { bottom: 18px; }
   }
 
   /* Hero main content — bottom-anchored, two-column */
@@ -928,7 +923,6 @@ const lodgingMeta = {'townhomes-at-plumas-pines':{badge:'Great for Large Groups'
   ════════════════════════════════════ */
   @media (max-width: 860px) {
     .scroll-hint { display: none; }
-    .hero-strip { display: none; }
 
     /* Hero → stack vertically */
     .hero-content {
@@ -987,6 +981,39 @@ const lodgingMeta = {'townhomes-at-plumas-pines':{badge:'Great for Large Groups'
     entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); cardObs.unobserve(e.target); } });
   }, { threshold: 0.15 });
   document.querySelectorAll('.courses-five-grid .course-card-equal').forEach(c => cardObs.observe(c));
+
+  // Hero carousel
+  (function() {
+    const slides = document.querySelectorAll('.hero-slide');
+    const dots   = document.querySelectorAll('.hero-dot');
+    if (!slides.length) return;
+    let current = 0;
+    let timer;
+
+    function goTo(idx) {
+      slides[current].classList.remove('active');
+      dots[current].classList.remove('active');
+      current = (idx + slides.length) % slides.length;
+      slides[current].classList.add('active');
+      dots[current].classList.add('active');
+    }
+
+    function next() { goTo(current + 1); }
+
+    function startTimer() {
+      clearInterval(timer);
+      timer = setInterval(next, 5000);
+    }
+
+    dots.forEach(dot => {
+      dot.addEventListener('click', () => {
+        goTo(parseInt(dot.dataset.idx));
+        startTimer();
+      });
+    });
+
+    startTimer();
+  })();
 </script>
 
 <script>
