@@ -6,7 +6,7 @@ import Footer from '../components/Footer.astro';
 import { courses, lodging, siteConfig, imageAlts } from '../data/content.js';
 const getImgAlt = (src, fallback) => { const f = (src || '').split('/').pop().split('?')[0]; return (imageAlts || {})[f] || fallback; };
 
-const HERO_IMG = '/wp-images/DJI_0006-Edit.webp';
+
 
 const mustPlay = {
   'grizzly-ranch': true,
