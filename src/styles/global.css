@@ -422,6 +422,7 @@ section.hero-section,
 .crs-fomo-strip { display: none; }
 .crs-stat-pills { display: none; }
 .crs-mobile-cta { display: none; }
+.crs-feature-rows { display: block; } /* desktop: shows feature rows */
 
 @media (max-width: 860px) {
   .crs-fomo-strip {
