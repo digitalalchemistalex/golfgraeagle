@@ -138,11 +138,11 @@ import { courses } from '../data/content.js';
             <div style="font-size:9px;font-weight:800;color:#a06c30;text-transform:uppercase;letter-spacing:0.12em;margin-bottom:14px;">5 courses · all within 25 min · most golfers play 3–4 in one trip</div>
 
             {[
-              { slug:'graeagle-meadows',    url:'graeagle-meadows-golf-packages',    name:'Graeagle Meadows',  note:'Start here — easiest read, best scenery',     slope:'120', badge:'Best intro',    bc:'rgba(40,120,200,0.12)', bct:'#1050a0' },
-              { slug:'whitehawk-ranch',     url:'whitehawk-ranch-golf-packages',     name:'Whitehawk Ranch',   note:'Top 20 CA — meadow & forest mix',              slope:'132', badge:'Top 20 CA',    bc:'rgba(40,140,60,0.12)',  bct:'#1a6030' },
-              { slug:'plumas-pines',        url:'plumas-pines-golf-packages',        name:'Plumas Pines',      note:'Best value in the valley. No ego.',            slope:'132', badge:'Best value',   bc:'rgba(40,100,180,0.12)', bct:'#1050a0' },
-              { slug:'grizzly-ranch',       url:'grizzly-ranch-golf-packages',       name:'Grizzly Ranch',     note:'Golf Digest Top 100 — earn this one last',     slope:'140', badge:'Top 100 🏆',  bc:'rgba(180,120,20,0.15)', bct:'#8a5810' },
-              { slug:'nakoma-dragon',       url:'nakoma-dragon-golf-packages',       name:'Nakoma — The Dragon', note:"Only FLW golf clubhouse on earth. Period.", slope:'147', badge:'FLW Clubhouse', bc:'rgba(100,60,180,0.12)', bct:'#502090' },
+              { slug:'graeagle-meadows',    url:'graeagle-meadows-golf-packages',    name:'Graeagle Meadows',  note:'Slope 120 — open meadows, the valley\'s original course',  slope:'120', badge:'Since 1968',      bc:'rgba(40,120,200,0.12)', bct:'#1050a0' },
+              { slug:'whitehawk-ranch',     url:'whitehawk-ranch-golf-packages',     name:'Whitehawk Ranch',   note:'Top 20 CA — meadow & forest mix',                            slope:'132', badge:'Top 20 CA',      bc:'rgba(40,140,60,0.12)',  bct:'#1a6030' },
+              { slug:'plumas-pines',        url:'plumas-pines-golf-packages',        name:'Plumas Pines',      note:'Slope 132 at 6,504 yds — precision over power',              slope:'132', badge:'Top 5 Value CA',  bc:'rgba(40,100,180,0.12)', bct:'#1050a0' },
+              { slug:'grizzly-ranch',       url:'grizzly-ranch-golf-packages',       name:'Grizzly Ranch',     note:'Golf Digest Top 100 — 7,411 yds at 4,800 ft',               slope:'140', badge:'Top 100 🏆',     bc:'rgba(180,120,20,0.15)', bct:'#8a5810' },
+              { slug:'nakoma-dragon',       url:'nakoma-dragon-golf-packages',       name:'Nakoma — The Dragon', note:'Only FLW golf clubhouse on earth. Slope 147.',             slope:'147', badge:'FLW Clubhouse',  bc:'rgba(100,60,180,0.12)', bct:'#502090' },
             ].map(c => (
               <a href={`/portfolio/${c.url}/`}
                 style="display:flex;align-items:center;gap:10px;padding:7px 9px;border-radius:8px;text-decoration:none;margin-bottom:2px;transition:background 0.15s;"
@@ -200,7 +200,7 @@ import { courses } from '../data/content.js';
                 name: 'River Pines Resort',
                 note: 'Family-owned 40+ years. Groups book cabins fast in July/Aug.',
                 tag: 'Great for Groups',
-                fomo: '🔥 Most booked',
+                fomo: '🏕️ Cabins & Suites',
                 tc: '#8a2010',
                 bc: 'rgba(200,60,20,0.1)',
               },
@@ -208,8 +208,8 @@ import { courses } from '../data/content.js';
                 href: '/portfolio/chalet-view-lodge-graeagle-ca/',
                 name: 'Chalet View Lodge',
                 note: '10 forested acres · spa · Eureka Peak Brewing on-site.',
-                tag: 'Best amenities',
-                fomo: '⭐ Golfer favourite',
+                tag: 'Great Amenities',
+                fomo: '🌲 10 Forested Acres',
                 tc: '#1a6030',
                 bc: 'rgba(40,140,60,0.1)',
               },
@@ -217,7 +217,7 @@ import { courses } from '../data/content.js';
                 href: '/portfolio/the-inn-at-nakoma-clio-ca/',
                 name: 'The Inn at Nakoma',
                 note: 'Walk to the 1st tee. Fifty44 restaurant. Frette linens.',
-                tag: 'Most unique',
+                tag: 'FLW Architecture',
                 fomo: '🏛️ FLW Clubhouse',
                 tc: '#502090',
                 bc: 'rgba(100,60,180,0.1)',
