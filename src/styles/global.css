@@ -309,13 +309,56 @@ section.hero-section,
   display: grid; grid-template-columns: 1fr 380px; gap: 60px; align-items: start;
 }
 .lod-amenities-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+/* ── DINING: single-column body ───────────────────────────── */
 .din-body-grid {
-  max-width: 1100px; margin: 0 auto; padding: 64px 5%;
-  display: grid; grid-template-columns: 1fr 340px; gap: 56px; align-items: start;
+  max-width: 860px; margin: 0 auto; padding: 56px 5%;
 }
+/* Desktop: horizontal info bar below hero */
+.din-info-bar {
+  display: flex; flex-wrap: wrap; gap: 20px; align-items: center;
+  padding: 14px 10%;
+  background: rgba(28,18,8,0.03);
+  border-top: 1px solid rgba(28,18,8,0.06);
+  border-bottom: 1px solid rgba(28,18,8,0.06);
+}
+/* Mobile FOMO strip — full-width, shown immediately after hero */
+.din-fomo-strip { display: none; }
+/* Mobile action bar — call + directions tap targets */
+.din-action-bar { display: none; }
+/* Mobile hours pill */
+.din-hours-pill { display: none; }
+
 @media (max-width: 860px) {
-  .lod-body-grid, .din-body-grid { grid-template-columns: 1fr; padding: 40px 6%; gap: 40px; }
+  .lod-body-grid { grid-template-columns: 1fr; padding: 40px 6%; gap: 40px; }
   .lod-amenities-grid { grid-template-columns: 1fr; }
+  .din-body-grid { padding: 32px 5%; }
+  .din-info-bar { display: none; }
+  .din-fomo-strip {
+    display: block;
+    background: rgba(232,168,80,0.12);
+    border-bottom: 1px solid rgba(232,168,80,0.25);
+    padding: 12px 5%;
+    font-size: 13px; font-weight: 700; color: #c8862a; text-align: center;
+  }
+  .din-action-bar {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 10px;
+    padding: 16px 5%;
+    background: var(--page-bg);
+    border-bottom: 1px solid rgba(28,18,8,0.07);
+  }
+  .din-action-bar a {
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+    padding: 14px 10px; border-radius: 12px; text-decoration: none;
+    font-size: 14px; font-weight: 700; border: 1px solid rgba(28,18,8,0.12);
+    color: var(--text-primary); background: rgba(28,18,8,0.04);
+  }
+  .din-hours-pill {
+    display: block;
+    padding: 10px 5%;
+    font-size: 14px; font-weight: 600; color: rgba(28,18,8,0.55);
+    border-bottom: 1px solid rgba(28,18,8,0.05);
+  }
+  .din-mobile-cta { display: block !important; }
 }
 
 /* ══════════════════════════════════════════════════════════════

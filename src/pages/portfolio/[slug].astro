@@ -924,8 +924,7 @@ const diningSlugMap: Record<string, string> = {
   }
 
   @media (max-width: 860px) {
-    .lod-body-grid,
-    .din-body-grid {
+    .lod-body-grid {
       grid-template-columns: 1fr;
       padding: 40px 6%;
       gap: 40px;
@@ -1416,11 +1415,45 @@ const diningSlugMap: Record<string, string> = {
       </div>
     </section>
 
-    <!-- MAIN CONTENT: 2-col layout -->
+    <!-- ── DESKTOP: horizontal info bar (hidden mobile) ─────── -->
+    <div class="din-info-bar">
+      {item.location && <span style="font-size:13px;color:rgba(28,18,8,0.5);display:flex;align-items:center;gap:6px;">📍 {item.location}</span>}
+      {item.phone && <a href={`tel:${item.phone}`} style="font-size:13px;color:rgba(28,18,8,0.5);text-decoration:none;display:flex;align-items:center;gap:6px;">📞 {item.phone}</a>}
+      {item.hours && <span style="font-size:13px;color:rgba(28,18,8,0.5);display:flex;align-items:center;gap:6px;">🕐 {item.hours}</span>}
+    </div>
+
+    <!-- ── MOBILE ONLY: FOMO strip ────────────────────────────── -->
+    {item.fomoLine && <div class="din-fomo-strip">⚡ {item.fomoLine}</div>}
+
+    <!-- ── MOBILE ONLY: Call + Directions action bar ──────────── -->
+    <div class="din-action-bar">
+      {item.phone
+        ? <a href={`tel:${item.phone}`}>📞 Call</a>
+        : <span style="opacity:0.3;display:flex;align-items:center;justify-content:center;gap:8px;padding:14px;font-size:14px;">📞 No phone</span>
+      }
+      {item.coordinates
+        ? <a href={`https://www.google.com/maps/search/?api=1&query=${item.coordinates.lat},${item.coordinates.lng}`} target="_blank" rel="noopener">📍 Directions</a>
+        : item.location
+          ? <a href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(item.location + ' Graeagle CA')}`} target="_blank" rel="noopener">📍 Directions</a>
+          : <span></span>
+      }
+    </div>
+
+    <!-- ── MOBILE ONLY: Hours pill ───────────────────────────── -->
+    {item.hours && <div class="din-hours-pill">🕐 {item.hours}</div>}
+
+    <!-- ── MOBILE ONLY: Early CTA (before content) ───────────── -->
+    <div style="display:none;" class="din-mobile-cta">
+      <a href={`/request-a-quote/?utm_source=golfgraeagle&utm_medium=internal&utm_campaign=cta&utm_content=${item.slug}-mobile-top`}
+         class="btn-green-glow"
+         style="display:block;text-align:center;background:var(--gold-light);color:#0d1a0e;font-weight:700;font-size:15px;padding:15px 20px;border-radius:12px;text-decoration:none;margin:16px 5%;">
+        Add to My Golf Package →
+      </a>
+    </div>
+
+    <!-- ── BODY ───────────────────────────────────────────────── -->
     <div class="din-body-grid">
 
-      <!-- LEFT -->
-      <div>
         <!-- Description -->
         <p style="font-size:17px;color:rgba(28,18,8,0.65);line-height:1.85;margin:0 0 36px;">{item.description}</p>
 
@@ -1580,66 +1613,19 @@ const diningSlugMap: Record<string, string> = {
             ))}
           </div>
         </div>
-      </div>
 
-      <!-- RIGHT: Sticky info card -->
-      <div style="position:sticky;top:100px;">
-        <!-- Info card -->
-        <div style="background:rgba(28,18,8,0.04);border:1px solid rgba(28,18,8,0.07);border-radius:20px;padding:28px;margin-bottom:16px;">
-          <div style="font-size:11px;color:rgba(28,18,8,0.25);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:16px;">Restaurant Info</div>
-          <div style="display:flex;flex-direction:column;gap:12px;">
-            {item.location && (
-              <div style="display:flex;gap:10px;">
-                <span style="color:var(--gold);flex-shrink:0;">📍</span>
-                <span style="font-size:13px;color:rgba(28,18,8,0.55);line-height:1.5;">{item.location}</span>
-              </div>
-            )}
-            {item.phone && (
-              <a href={`tel:${item.phone}`} style="display:flex;gap:10px;text-decoration:none;">
-                <span style="color:var(--gold);flex-shrink:0;">📞</span>
-                <span style="font-size:13px;color:rgba(28,18,8,0.55);">{item.phone}</span>
-              </a>
-            )}
-            {item.cuisine && (
-              <div style="display:flex;gap:10px;">
-                <span style="color:var(--gold);flex-shrink:0;">🍽</span>
-                <span style="font-size:13px;color:rgba(28,18,8,0.55);">{item.cuisine}</span>
-              </div>
-            )}
-            {item.hours && (
-              <div style="display:flex;gap:10px;">
-                <span style="color:var(--gold);flex-shrink:0;">🕐</span>
-                <span style="font-size:13px;color:rgba(28,18,8,0.55);line-height:1.5;">{item.hours}</span>
-              </div>
-            )}
-            {item.bestFor && (
-              <div style="display:flex;gap:10px;">
-                <span style="color:var(--gold);flex-shrink:0;">⛳</span>
-                <span style="font-size:13px;color:rgba(28,18,8,0.55);">{item.bestFor}</span>
-              </div>
-            )}
-          </div>
-        </div>
-
-        {item.fomoLine && (
-          <div style="background:rgba(232,168,80,0.08);border:1px solid rgba(232,168,80,0.25);border-radius:14px;padding:16px 20px;margin-bottom:16px;">
-            <div style="font-size:11px;color:var(--gold);letter-spacing:0.1em;text-transform:uppercase;font-weight:700;margin-bottom:6px;">Plan Ahead</div>
-            <p style="font-size:13px;color:rgba(28,18,8,0.6);line-height:1.5;margin:0;">⚡ {item.fomoLine}</p>
-          </div>
-        )}
-
-        <!-- CTA card -->
-        <div style="background:rgba(232,168,80,0.06);border:1px solid rgba(232,168,80,0.2);border-radius:20px;padding:28px;">
-          <h3 style="font-family:'Playfair Display',serif;font-size:20px;color:var(--text-primary);margin:0 0 8px;font-weight:500;">Add to Your Golf Package</h3>
-          <p style="font-size:14px;color:rgba(28,18,8,0.35);margin:0 0 20px;line-height:1.6;">We coordinate group dining reservations alongside tee times and lodging — one package, one call.</p>
-          <a href={`/request-a-quote/?utm_source=golfgraeagle&utm_medium=internal&utm_campaign=cta&utm_content=${item.slug}-dining-cta`}
-             style="display:block;text-align:center;background:var(--gold-light);color:#0d1a0e;font-weight:700;font-size:14px;padding:14px;border-radius:100px;text-decoration:none;transition:all 0.2s;"
-             onmouseover="this.style.background='#f2c878';this.style.transform='translateY(-2px)'"
-             onmouseout="this.style.background='#e8a850';this.style.transform='translateY(0)'">
-            Include in My Golf Package →
-          </a>
-          <a href="/dining/" style="display:block;text-align:center;margin-top:10px;font-size:12px;color:rgba(28,18,8,0.25);text-decoration:none;" onmouseover="this.style.color='rgba(28,18,8,0.55)'" onmouseout="this.style.color='rgba(28,18,8,0.25)'">Browse all Graeagle dining →</a>
-        </div>
+      <!-- ── CTA block — full width, single column ─────────── -->
+      <div style="background:rgba(232,168,80,0.06);border:1px solid rgba(232,168,80,0.2);border-radius:20px;padding:40px;margin-bottom:48px;text-align:center;">
+        {item.fomoLine && <div style="display:inline-block;background:rgba(232,168,80,0.15);border:1px solid rgba(232,168,80,0.35);border-radius:100px;padding:5px 14px;margin-bottom:16px;font-size:12px;color:#c8862a;font-weight:700;">⚡ {item.fomoLine}</div>}
+        <h3 style="font-family:'Playfair Display',serif;font-size:24px;color:var(--text-primary);margin:0 0 10px;font-weight:500;">Add to Your Golf Package</h3>
+        <p style="font-size:15px;color:rgba(28,18,8,0.45);margin:0 0 24px;line-height:1.65;max-width:480px;margin-left:auto;margin-right:auto;">We coordinate group dining reservations alongside tee times and lodging — one package, one call.</p>
+        <a href={`/request-a-quote/?utm_source=golfgraeagle&utm_medium=internal&utm_campaign=cta&utm_content=${item.slug}-dining-cta`}
+           class="btn-green-glow"
+           style="display:inline-block;background:var(--gold-light);color:#0d1a0e;font-weight:700;font-size:15px;padding:16px 44px;border-radius:100px;text-decoration:none;transition:transform 0.2s;"
+           onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='translateY(0)'">
+          Include in My Golf Package →
+        </a>
+        <div style="margin-top:14px;"><a href="/dining/" style="font-size:13px;color:rgba(28,18,8,0.28);text-decoration:none;" onmouseover="this.style.color='rgba(28,18,8,0.5)'" onmouseout="this.style.color='rgba(28,18,8,0.28)'">Browse all Graeagle dining →</a></div>
       </div>
     </div>
 
