@@ -100,19 +100,19 @@ export default function SearchBar() {
         aria-label="Search courses, lodging, dining"
         style={{
           display: 'flex', alignItems: 'center', gap: 6,
-          background: 'rgba(255,255,255,0.08)', border: '1px solid rgba(255,255,255,0.15)',
+          background: 'rgba(28,18,8,0.07)', border: '1px solid rgba(28,18,8,0.14)',
           borderRadius: 8, padding: '6px 12px', cursor: 'pointer',
-          color: 'rgba(255,255,255,0.7)', fontSize: 13, fontWeight: 500,
+          color: 'rgba(28,18,8,0.6)', fontSize: 13, fontWeight: 500,
           transition: 'all 0.2s',
         }}
-        onMouseOver={e => { (e.currentTarget as HTMLButtonElement).style.background = 'rgba(255,255,255,0.14)'; }}
-        onMouseOut={e => { (e.currentTarget as HTMLButtonElement).style.background = 'rgba(255,255,255,0.08)'; }}
+        onMouseOver={e => { (e.currentTarget as HTMLButtonElement).style.background = 'rgba(28,18,8,0.11)'; (e.currentTarget as HTMLButtonElement).style.color = 'rgba(28,18,8,0.85)'; }}
+        onMouseOut={e => { (e.currentTarget as HTMLButtonElement).style.background = 'rgba(28,18,8,0.07)'; (e.currentTarget as HTMLButtonElement).style.color = 'rgba(28,18,8,0.6)'; }}
       >
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
           <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
         </svg>
         <span style={{ display: 'none', whiteSpace: 'nowrap' }} className="search-label">Search</span>
-        <kbd style={{ fontSize: 10, opacity: 0.5, background: 'rgba(255,255,255,0.1)', padding: '1px 5px', borderRadius: 4, fontFamily: 'inherit' }}>/</kbd>
+        <kbd style={{ fontSize: 10, opacity: 0.45, background: 'rgba(28,18,8,0.08)', padding: '1px 5px', borderRadius: 4, fontFamily: 'inherit' }}>/</kbd>
       </button>
 
       {/* Dropdown */}

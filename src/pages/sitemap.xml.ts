@@ -55,6 +55,8 @@ const blogUrls = [
   '/blog/best-time-to-golf-graeagle',
   '/blog/bachelor-party-golf-graeagle',
   '/blog/graeagle-golf-trip-cost',
+  '/blog/graeagle-golf-trip-planner',
+  '/blog/graeagle-golf-packages-4-golfers',
   '/blog/large-group-golf-graeagle',
   '/blog/corporate-golf-outing-graeagle',
   '/blog/graeagle-golf-bucket-list',

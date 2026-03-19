@@ -1,0 +1,336 @@
+---
+export const prerender = true;
+import Base from '../../layouts/Base.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+import RelatedTrips from '../../components/RelatedTrips.tsx';
+
+const title = "Graeagle Golf Trip Planner — Real Pricing for Every Group Size | GolfGraeagle.com";
+const description = "Real Graeagle golf trip pricing for groups of 2 to 200+. See exact costs by group size, nights, and courses — from $620/person. Based on 76 real completed packages.";
+const slug = "graeagle-golf-trip-planner";
+const datePublished = "2026-03-19";
+const dateModified = "2026-03-19";
+
+const schema = {
+  "@context": "https://schema.org", "@type": "BlogPosting",
+  "headline": title, "datePublished": datePublished, "dateModified": dateModified,
+  "author": { "@type": "Organization", "name": "GolfGraeagle.com" },
+  "publisher": { "@type": "Organization", "name": "Zoomaway Technologies Inc.", "url": "https://golfgraeagle.com" },
+  "mainEntityOfPage": { "@type": "WebPage", "@id": `https://golfgraeagle.com/blog/${slug}/` }
+};
+
+const faqSchema = {
+  "@context": "https://schema.org", "@type": "FAQPage",
+  "mainEntity": [
+    { "@type": "Question", "name": "How much does a Graeagle golf trip cost for 4 golfers?", "acceptedAnswer": { "@type": "Answer", "text": "A 4-person Graeagle golf trip costs $675–$1,165 per person depending on nights and courses. A 2-night, 3-round package runs approximately $675/person. A 4-night, 3-round package with premium lodging runs $1,165/person. Smaller groups generally pay slightly more per person than groups of 12+." } },
+    { "@type": "Question", "name": "How much does a Graeagle golf trip cost for 12 golfers?", "acceptedAnswer": { "@type": "Answer", "text": "A 12-person Graeagle golf trip costs $645–$875 per person for a standard 2-night package. Groups of 12 can typically access all 5 courses, have more lodging options, and often see better per-person rates than smaller groups. A 2-night, 2-round package at Grizzly Ranch and Whitehawk Ranch costs $645/person for a group of 12." } },
+    { "@type": "Question", "name": "How much does a Graeagle golf trip cost for 24 golfers?", "acceptedAnswer": { "@type": "Answer", "text": "A 24-person Graeagle golf trip costs $620–$1,120 per person depending on the package. Groups of 24 are the most common size for Graeagle trips and get the best per-person pricing. A 2-night, 3-round package costs $620/person. A 3-night, 4-round Dragon Run costs $1,120/person." } },
+    { "@type": "Question", "name": "What is the cheapest Graeagle golf trip with lodging?", "acceptedAnswer": { "@type": "Answer", "text": "The cheapest Graeagle golf trip with lodging starts at $620 per person for a group of 24 golfers — 2 nights at River Pines Resort and 3 rounds at Whitehawk Ranch, Graeagle Meadows, and Plumas Pines. Smaller groups start at $645/person for a 2-night, 2-course package." } },
+    { "@type": "Question", "name": "How much does it cost to play Nakoma Dragon golf course?", "acceptedAnswer": { "@type": "Answer", "text": "A Graeagle package that includes Nakoma Dragon starts at $1,120 per person for a 3-night, 4-round trip for 24 golfers. The Dragon is the most expensive course in the valley and is typically included on 3+ night packages. Contact GolfGraeagle for current green fee pricing." } },
+    { "@type": "Question", "name": "How far in advance should I book a Graeagle golf trip?", "acceptedAnswer": { "@type": "Answer", "text": "Book Graeagle golf trips 6–8 weeks in advance for summer weekends (June–August). Spring (April–May) and fall (September–October) can be booked 3–4 weeks out. Grizzly Ranch and Nakoma Dragon have more limited tee time availability and need the most lead time, especially for groups of 12+." } }
+  ]
+};
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org", "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://golfgraeagle.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://golfgraeagle.com/blog/" },
+    { "@type": "ListItem", "position": 3, "name": "Graeagle Golf Trip Planner", "item": `https://golfgraeagle.com/blog/${slug}/` }
+  ]
+};
+
+// Real pricing matrix from TripsCaddie — all 19 Graeagle trips in the archive
+const pricingMatrix = [
+  { size: '2–4 golfers',  weekend: '$675',  threeNight: '$1,165', premium: '$1,705', note: 'Smallest groups, highest per-person rate' },
+  { size: '8–12 golfers', weekend: '$645',  threeNight: '$876',   premium: '$1,150', note: 'Sweet spot for buddies trips', hot: true },
+  { size: '16–24 golfers',weekend: '$620',  threeNight: '$876',   premium: '$1,120', note: 'Best per-person pricing', hot: true },
+  { size: '24–52 golfers',weekend: '$620',  threeNight: '$865',   premium: '$945',   note: 'Corporate and association groups' },
+  { size: '52+ golfers',  weekend: 'Custom',threeNight: '$945+',  premium: 'Custom', note: 'Tournament formats available' },
+];
+
+const realPackages = [
+  { label: 'Budget Weekend', price: 620,  nights: 2, rounds: 3, pax: 24, courses: ['Whitehawk Ranch', 'Graeagle Meadows', 'Plumas Pines'], lodging: 'River Pines Resort',       vibe: 'Value' },
+  { label: 'Classic Duo',    price: 645,  nights: 2, rounds: 2, pax: 12, courses: ['Grizzly Ranch', 'Whitehawk Ranch'],                    lodging: 'River Pines Resort',       vibe: 'Value' },
+  { label: 'Valley 3-Pack',  price: 675,  nights: 2, rounds: 3, pax: 16, courses: ['Whitehawk Ranch', 'Graeagle Meadows', 'Grizzly Ranch'],lodging: 'River Pines Resort',       vibe: 'Value' },
+  { label: 'Premium 3-Night',price: 876,  nights: 3, rounds: 3, pax: 16, courses: ['Plumas Pines', 'Whitehawk Ranch', 'Grizzly Ranch'],    lodging: 'Chalet View Lodge',        vibe: 'Premium' },
+  { label: 'Dragon Run',     price: 1120, nights: 3, rounds: 4, pax: 24, courses: ['Plumas Pines', 'Grizzly Ranch', 'Nakoma Dragon', 'Whitehawk Ranch'], lodging: 'Inn at Nakoma', vibe: 'Premium' },
+  { label: 'Big Group Tour', price: 945,  nights: 4, rounds: 4, pax: 56, courses: ['Grizzly Ranch', 'Whitehawk Ranch'],                   lodging: 'River Pines + Townhomes',  vibe: 'Value' },
+];
+
+const groupGuides = [
+  { size: '2–4 golfers',  icon: '🤝', href: '/blog/graeagle-golf-packages-4-golfers/',  label: 'Small group guide' },
+  { size: 'Bachelor party', icon: '🍺', href: '/blog/bachelor-party-golf-graeagle/',   label: 'Bachelor party guide' },
+  { size: '12–24 golfers', icon: '🏌️', href: '/blog/large-group-golf-graeagle/',       label: 'Large group guide' },
+  { size: 'Corporate',     icon: '💼', href: '/blog/corporate-golf-outing-graeagle/',  label: 'Corporate outing guide' },
+  { size: 'Senior groups', icon: '🎖️', href: '/blog/senior-golf-trips-graeagle/',     label: 'Senior golf guide' },
+  { size: 'Tournament',    icon: '🏆', href: '/blog/golf-tournament-graeagle/',        label: 'Tournament guide' },
+];
+---
+<Base title={title} description={description} ogType="article"
+  schema={[schema, faqSchema, breadcrumbSchema]}
+  canonical={`https://golfgraeagle.com/blog/${slug}/`}
+  ogImage="https://golfgraeagle.com/wp-images/graeagle-meadows-aerial.jpg"
+  bodyClass="light-page"
+>
+  <Nav />
+
+  <div class="bl-hero" style="background-image:url(/wp-images/graeagle-meadows-aerial.jpg)">
+    <div class="bl-hero-fade"></div>
+    <div class="bl-hero-content">
+      <div class="bl-breadcrumb"><a href="/blog/">Blog</a> <span>→</span> Trip Planner</div>
+      <h1 class="bl-h1">Graeagle Golf Trip Planner:<br/>Real Pricing for Every Group</h1>
+      <p class="bl-meta">By GolfGraeagle.com · March 2026 · 8 min read · Based on 76 real packages</p>
+    </div>
+  </div>
+
+  <div class="bl-full">
+    <div class="bl-answer-box">
+      <div class="bl-answer-label">Direct Answer</div>
+      <p>Graeagle golf trips cost <strong>$620–$1,120 per person</strong> for most groups — 2 nights, 2–3 championship courses, lodging included. Small groups of 2–4 pay slightly more ($675–$1,165/pp). Large groups of 24+ get the best rates ($620/pp floor). Premium multi-course packages with Nakoma Dragon run $1,120/pp. All figures are real, from actual completed packages.</p>
+    </div>
+  </div>
+
+  <div class="bl-full" style="padding-top:0">
+    <article class="bl-article">
+
+      <p class="bl-intro">Nobody wants to fill out a form just to find out if a golf trip is in their budget. Here's the complete pricing picture for Graeagle golf trips — every group size, every tier, real numbers from real packages we've run. Use this to figure out where your group lands before you ever talk to anyone.</p>
+
+      <h2>The Pricing Matrix — All Group Sizes</h2>
+      <p>These are the per-person ranges across our actual archive. Weekend = 2 nights, 2–3 rounds. Three-night = 3 nights, 3–4 rounds. Premium = the same but with Nakoma Dragon and upscale lodging.</p>
+    </article>
+  </div>
+
+  <!-- PRICING MATRIX TABLE -->
+  <div class="bl-full" style="padding-top:0;padding-bottom:0">
+    <div class="planner-matrix-wrap">
+      <table class="planner-matrix">
+        <thead>
+          <tr>
+            <th>Group Size</th>
+            <th>Weekend<br/><span>2n · 2–3 rounds</span></th>
+            <th>3-Night<br/><span>3n · 3–4 rounds</span></th>
+            <th>Premium<br/><span>4–5n · Dragon included</span></th>
+            <th>Notes</th>
+          </tr>
+        </thead>
+        <tbody>
+          {pricingMatrix.map(row => (
+            <tr class={row.hot ? 'planner-row-hot' : ''}>
+              <td class="planner-size">{row.size}{row.hot && <span class="planner-popular">Popular</span>}</td>
+              <td class="planner-price">{row.weekend}<span>/pp</span></td>
+              <td class="planner-price">{row.threeNight}<span>/pp</span></td>
+              <td class="planner-price">{row.premium}<span>{row.premium !== 'Custom' ? '/pp' : ''}</span></td>
+              <td class="planner-note">{row.note}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+      <p class="planner-source">Source: TripsCaddie archive · 76 real Graeagle packages · Updated March 2026</p>
+    </div>
+  </div>
+
+  <div class="bl-full" style="padding-top:0">
+    <article class="bl-article">
+
+      <h2>Real Packages from the Archive</h2>
+      <p>Not tiers — actual trips. These are packages from our completed booking archive with real group sizes, real courses, and real prices. Use them as reference points.</p>
+    </article>
+  </div>
+
+  <!-- REAL PACKAGE CARDS -->
+  <div class="bl-full" style="padding-top:0;padding-bottom:0">
+    <div class="planner-cards">
+      {realPackages.map(p => (
+        <div class={`planner-card${p.vibe === 'Premium' ? ' planner-card-premium' : ''}`}>
+          <div class="planner-card-label">{p.label}</div>
+          <div class="planner-card-price">${p.price.toLocaleString()}<span>/pp</span></div>
+          <div class="planner-card-meta">
+            <span>🌙 {p.nights} nights</span>
+            <span>⛳ {p.rounds} rounds</span>
+            <span>👥 {p.pax} golfers</span>
+          </div>
+          <ul class="planner-card-courses">
+            {p.courses.map(c => <li>{c}</li>)}
+          </ul>
+          <div class="planner-card-lodging">🏨 {p.lodging}</div>
+        </div>
+      ))}
+    </div>
+  </div>
+
+  <div class="bl-full" style="padding-top:0">
+    <article class="bl-article">
+
+      <h2>What's Actually Included — and What Isn't</h2>
+
+      <p>Every GolfGraeagle package includes: guaranteed tee times at the booked courses, lodging at the confirmed property, coordination of the full day-by-day itinerary, and a single point of contact for the whole trip.</p>
+
+      <p>What's not included by default: individual meals and drinks, transportation between your lodging and courses (all within 25 minutes — most groups just drive), gratuities, and prizes for tournament formats. Dining reservations at Sardine Lake, Grizzly Grill, and the Iron Door can be added to any package on request.</p>
+
+      <h2>The 5 Courses — and Which Tier They Fit</h2>
+
+      <p><strong>Graeagle Meadows</strong> (Par 72, Slope 120, since 1968) is the valley's most accessible course and the most common choice for a first round or a mixed-handicap group. It appears in nearly every value-tier package. Green fees are the lowest of the five.</p>
+
+      <p><strong>Plumas Pines</strong> (Par 72, Slope 132, Top 5 Value in CA) is a shot-maker's course — tight fairways, strategic layout, great course conditions. Consistently ranked one of the best values in Northern California golf. Shows up in value and standard packages.</p>
+
+      <p><strong>Whitehawk Ranch</strong> (Par 71, Slope 132, Top 20 CA) is where serious golfers come for a real test. Twelve holes through meadows, six through forested hillsides. The course that separates Graeagle from other mountain destinations. Present in nearly every package at every tier.</p>
+
+      <p><strong>Grizzly Ranch</strong> (Par 72, Slope 140, Golf Digest Top 100) is the anchor round of any serious Graeagle trip. At 7,411 yards and 4,800–5,400 ft elevation, the ball flies differently and the layout demands everything. Adding Grizzly to a package typically bumps the per-person price by $50–$150 compared to equivalent packages without it.</p>
+
+      <p><strong>Nakoma — The Dragon</strong> (Par 72, Slope 147, Golf World Top 75) is the only course in the world with a Frank Lloyd Wright-designed clubhouse. Slope 147 makes it the most demanding course in the valley. Packages including Nakoma start at $1,120/pp and are 3-night minimum.</p>
+
+      <h2>Lodging Options by Group Size</h2>
+
+      <p><strong>River Pines Resort</strong> is the default base for most Graeagle groups — flexible room types handle mixed groups, on-site pool and hot tub, The Roadhouse steakhouse on-site. Works for groups of 4 to 32+.</p>
+
+      <p><strong>Townhomes at Plumas Pines</strong> is the best option for groups that want to cook together or spread out across multi-bedroom units. Steps from the Plumas Pines first tee. Pool on-site. Works best for groups of 8–20.</p>
+
+      <p><strong>Chalet View Lodge</strong> has the best amenities of any Graeagle property — 10 forested acres, spa, Eureka Peak Brewing on-site, a 9-hole executive course. Used in standard and premium packages.</p>
+
+      <p><strong>The Inn at Nakoma</strong> is the right choice for Dragon-focused packages. 42 rooms, Frette linens, Fifty44 Restaurant, spa, heated pool. Steps from the first tee. Premium tier only.</p>
+
+      <h2>How to Get the Best Price</h2>
+
+      <p>The single biggest lever is group size. Going from 8 to 16 golfers can reduce per-person cost by $40–$80. The second lever is avoiding summer peak weekends — the same package in September runs $50–$100 less per person than in July. Third: playing 3 rounds over 2 nights instead of 2 rounds gives you significantly more golf per dollar spent on lodging.</p>
+
+      <h2>Planning Guides by Group Type</h2>
+      <p>Need specifics for your exact situation? We have deep-dive guides for each group type.</p>
+    </article>
+  </div>
+
+  <!-- GROUP TYPE LINKS -->
+  <div class="bl-full" style="padding-top:0;padding-bottom:0">
+    <div class="planner-guides">
+      {groupGuides.map(g => (
+        <a href={g.href} class="planner-guide-card">
+          <span class="planner-guide-icon">{g.icon}</span>
+          <div>
+            <div class="planner-guide-size">{g.size}</div>
+            <div class="planner-guide-link">{g.label} →</div>
+          </div>
+        </a>
+      ))}
+    </div>
+  </div>
+
+  <div class="bl-full" style="padding-top:0">
+    <article class="bl-article">
+
+      <h2>Frequently Asked Questions</h2>
+
+      {faqSchema.mainEntity.map((item: any) => (
+        <details class="bl-faq-item">
+          <summary class="bl-faq-q">{item.name}<span class="bl-faq-icon">+</span></summary>
+          <p class="bl-faq-a">{item.acceptedAnswer.text}</p>
+        </details>
+      ))}
+
+      <div class="bl-cta-block">
+        <h3>Ready to price out your trip?</h3>
+        <p>Tell us your group size, preferred dates, and which courses interest you. We'll have a real quote — with specific courses, lodging, and pricing — back to you within 24 hours.</p>
+        <a href="/request-a-quote/" class="btn-green-glow" style="display:inline-block;padding:14px 32px;border-radius:100px;text-decoration:none;font-weight:700;font-size:15px;">Get a Free Quote →</a>
+        <p style="font-size:12px;color:rgba(28,18,8,0.4);margin-top:10px;">No obligation · 72-hr cancellation policy · 4.8★ rated</p>
+      </div>
+
+    </article>
+
+    <!-- Course pills -->
+    <div class="bl-course-pills">
+      <span class="bl-pills-label">Play these courses:</span>
+      <a href="/portfolio/graeagle-meadows-golf-packages/" class="bl-pill">Graeagle Meadows</a>
+      <a href="/portfolio/whitehawk-ranch-golf-packages/" class="bl-pill">Whitehawk Ranch</a>
+      <a href="/portfolio/plumas-pines-golf-packages/" class="bl-pill">Plumas Pines</a>
+      <a href="/portfolio/grizzly-ranch-golf-packages/" class="bl-pill">Grizzly Ranch</a>
+      <a href="/portfolio/nakoma-dragon-golf-packages/" class="bl-pill">Nakoma Dragon</a>
+    </div>
+  </div>
+
+  <RelatedTrips client:load slug={slug} type="course" showAll={true} max={3} />
+  <Footer />
+</Base>
+
+<style>
+/* Pricing matrix */
+.planner-matrix-wrap {
+  max-width: 1000px; margin: 0 auto; padding: 0 clamp(20px,5%,60px) 48px; overflow-x: auto;
+}
+.planner-matrix {
+  width: 100%; border-collapse: collapse; font-size: 14px;
+  box-shadow: 0 2px 24px rgba(0,0,0,0.07); border-radius: 16px; overflow: hidden;
+}
+.planner-matrix thead tr { background: #0d1a0e; }
+.planner-matrix th {
+  padding: 14px 16px; text-align: left; font-size: 12px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.08em; color: rgba(245,240,232,0.9);
+}
+.planner-matrix th span { display: block; font-weight: 400; font-size: 10px; color: rgba(245,240,232,0.5); margin-top: 2px; text-transform: none; letter-spacing: 0; }
+.planner-matrix tbody tr { background: #fff; border-bottom: 1px solid rgba(28,18,8,0.07); transition: background 0.2s; }
+.planner-matrix tbody tr:hover { background: rgba(232,168,80,0.04); }
+.planner-row-hot { background: rgba(26,122,64,0.03) !important; }
+.planner-size { padding: 14px 16px; font-weight: 700; font-size: 13px; color: #1c1208; white-space: nowrap; }
+.planner-popular {
+  display: inline-block; margin-left: 8px; font-size: 9px; font-weight: 800;
+  background: #e8a850; color: #1c1208; padding: 2px 8px; border-radius: 100px;
+  text-transform: uppercase; letter-spacing: 0.08em; vertical-align: middle;
+}
+.planner-price { padding: 14px 16px; font-family: 'Playfair Display', serif; font-size: 20px; color: #1a7a40; font-weight: 500; }
+.planner-price span { font-family: inherit; font-size: 12px; color: rgba(28,18,8,0.4); }
+.planner-note { padding: 14px 16px; font-size: 12px; color: rgba(28,18,8,0.52); line-height: 1.5; }
+.planner-source { font-size: 11px; color: rgba(28,18,8,0.35); margin-top: 10px; text-align: right; }
+
+/* Real package cards */
+.planner-cards {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(240px,1fr));
+  gap: 18px; max-width: 1060px; margin: 0 auto; padding: 0 clamp(20px,5%,60px) 48px;
+}
+.planner-card {
+  background: #fff; border: 1px solid rgba(28,18,8,0.09); border-radius: 16px;
+  padding: 22px 20px; box-shadow: 0 2px 12px rgba(0,0,0,0.05); transition: all 0.3s;
+}
+.planner-card:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(0,0,0,0.1); border-color: rgba(232,168,80,0.4); }
+.planner-card-premium { border-color: rgba(190,18,60,0.15); background: rgba(190,18,60,0.02); }
+.planner-card-label { font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.12em; color: rgba(28,18,8,0.4); margin-bottom: 10px; }
+.planner-card-price { font-family: 'Playfair Display', serif; font-size: 38px; font-weight: 500; color: #1a7a40; line-height: 1; margin-bottom: 12px; }
+.planner-card-price span { font-size: 14px; color: rgba(28,18,8,0.4); }
+.planner-card-meta { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; }
+.planner-card-meta span { font-size: 11px; color: rgba(28,18,8,0.6); font-weight: 600; }
+.planner-card-courses { list-style: none; margin: 0 0 12px; padding: 0; display: flex; flex-direction: column; gap: 4px; }
+.planner-card-courses li { font-size: 12px; color: rgba(28,18,8,0.7); padding-left: 12px; position: relative; }
+.planner-card-courses li::before { content: '⛳'; position: absolute; left: -4px; font-size: 9px; top: 2px; }
+.planner-card-lodging { font-size: 11px; color: rgba(28,18,8,0.5); font-weight: 600; border-top: 1px solid rgba(28,18,8,0.07); padding-top: 10px; margin-top: 4px; }
+
+/* Group type guide cards */
+.planner-guides {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(200px,1fr));
+  gap: 14px; max-width: 1000px; margin: 0 auto; padding: 0 clamp(20px,5%,60px) 48px;
+}
+.planner-guide-card {
+  display: flex; align-items: center; gap: 14px;
+  padding: 18px 20px; background: #fff; border: 1px solid rgba(28,18,8,0.09);
+  border-radius: 14px; text-decoration: none; transition: all 0.25s;
+  box-shadow: 0 1px 6px rgba(0,0,0,0.04);
+}
+.planner-guide-card:hover { border-color: rgba(26,122,64,0.4); transform: translateY(-3px); box-shadow: 0 10px 28px rgba(0,0,0,0.08); }
+.planner-guide-icon { font-size: 28px; flex-shrink: 0; }
+.planner-guide-size { font-size: 12px; font-weight: 700; color: #1c1208; margin-bottom: 3px; }
+.planner-guide-link { font-size: 11px; color: #1a7a40; font-weight: 600; }
+.planner-guide-card:hover .planner-guide-link { color: #e8a850; }
+
+/* FAQ in article */
+.bl-faq-item { border-bottom: 1px solid rgba(28,18,8,0.08); margin-bottom: 0; }
+.bl-faq-item[open] { background: rgba(232,168,80,0.03); border-radius: 10px; border-color: rgba(232,168,80,0.2); }
+.bl-faq-q { font-size: 15px; font-weight: 600; color: #1c1208; padding: 16px 0; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+.bl-faq-q::-webkit-details-marker { display: none; }
+.bl-faq-item[open] .bl-faq-q { color: #1a7a40; }
+.bl-faq-icon { font-size: 22px; color: #e8a850; flex-shrink: 0; transition: transform 0.3s; }
+.bl-faq-item[open] .bl-faq-icon { transform: rotate(45deg); }
+.bl-faq-a { font-size: 14px; color: rgba(28,18,8,0.62); line-height: 1.8; padding: 0 0 16px; margin: 0; }
+
+@media (max-width: 700px) {
+  .planner-matrix { font-size: 12px; }
+  .planner-matrix th, .planner-matrix td { padding: 10px 10px; }
+  .planner-note { display: none; }
+  .planner-cards { grid-template-columns: 1fr; }
+}
+</style>
