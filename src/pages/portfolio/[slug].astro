@@ -1221,10 +1221,38 @@ const diningSlugMap: Record<string, string> = {
       </div>
     )}
 
-    <!-- MAIN CONTENT -->
-    <div class="lod-body-grid">
+    <!-- ── MOBILE: key facts strip ──────────────────────────── -->
+    <div class="lod-facts-strip">
+      {item.distanceFromGraeagle && <span>🚗 {item.distanceFromGraeagle}</span>}
+      <span>⛳ {nearbyCourses.length} courses nearby</span>
+      <span>⭐ 4.8/5 · 672 reviews</span>
+    </div>
 
-      <!-- LEFT: Description + Amenities + Courses -->
+    <!-- ── MOBILE: Call + Directions action bar ───────────── -->
+    <div class="lod-action-bar">
+      {item.phone
+        ? <a href={`tel:${item.phone}`}>📞 Call property</a>
+        : <span style="opacity:0.3;display:flex;align-items:center;justify-content:center;padding:14px;font-size:14px;">📞 No phone listed</span>
+      }
+      {item.coordinates
+        ? <a href={`https://www.google.com/maps/search/?api=1&query=${item.coordinates.lat},${item.coordinates.lng}`} target="_blank" rel="noopener">🗺 Directions</a>
+        : item.address
+          ? <a href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(item.address)}`} target="_blank" rel="noopener">🗺 Directions</a>
+          : <a href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(item.name + ' Graeagle CA')}`} target="_blank" rel="noopener">🗺 Directions</a>
+      }
+    </div>
+
+    <!-- ── MOBILE: Early CTA ──────────────────────────────── -->
+    <div class="lod-mobile-cta" style="padding:14px 5%;">
+      <a href={`/request-a-quote/?lodging=${item.slug}&lodgingName=${encodeURIComponent(item.name)}`}
+         class="btn-green-glow"
+         style="display:block;text-align:center;background:var(--gold-light);color:#0d1a0e;font-weight:700;font-size:15px;padding:16px;border-radius:12px;text-decoration:none;">
+        Request Stay & Play Quote →
+      </a>
+    </div>
+
+    <!-- ── BODY: single column ───────────────────────────── -->
+    <div class="lod-body-grid">
       <div>
         <!-- Description -->
         <p style="font-size:17px;color:rgba(28,18,8,0.65);line-height:1.85;margin:0 0 48px;">{item.description}</p>
@@ -1333,47 +1361,40 @@ const diningSlugMap: Record<string, string> = {
         </div>
       </div>
 
-      <!-- RIGHT: Sticky CTA card -->
-      <div style="position:sticky;top:100px;">
-        <div style="background:rgba(232,168,80,0.06);border:1px solid rgba(232,168,80,0.2);border-radius:20px;padding:32px;">
-          <div style="font-size:11px;color:var(--gold);letter-spacing:0.12em;text-transform:uppercase;font-weight:700;margin-bottom:8px;">Stay & Play Package</div>
-          <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px;">
-            <span style="font-size:13px;color:#b8820a;font-weight:700;">★★★★★</span>
-            <span style="font-size:12px;color:rgba(28,18,8,0.5);">4.8/5 · 672 reviews</span>
+
+        <!-- ── DESKTOP: package anchor bar ──────────────── -->
+        <div class="lod-package-bar">
+          {[['From','$299 per golfer'],['Includes','Lodging + tee times'],['Response','Within 24 hours'],['Cancellation','72-hour policy']].map(([k,v]) => (
+            <div style="text-align:center;">
+              <div style="font-size:11px;color:rgba(28,18,8,0.35);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:4px;">{k}</div>
+              <div style="font-size:15px;font-weight:700;color:var(--text-primary);">{v}</div>
+            </div>
+          ))}
+        </div>
+
+        <!-- ── CTA block — full width, single column ─── -->
+        <div style="background:rgba(232,168,80,0.06);border:1px solid rgba(232,168,80,0.2);border-radius:20px;padding:40px;margin-bottom:48px;text-align:center;">
+          <div style="display:flex;align-items:center;justify-content:center;gap:6px;margin-bottom:12px;">
+            <span style="font-size:14px;color:#b8820a;font-weight:700;">★★★★★</span>
+            <span style="font-size:13px;color:rgba(28,18,8,0.45);">4.8/5 · 672 verified reviews</span>
           </div>
-          <h3 style="font-family:'Playfair Display',serif;font-size:22px;color:var(--text-primary);margin:0 0 8px;font-weight:500;">Stay at {item.name}</h3>
-          <p style="font-size:14px;color:rgba(28,18,8,0.4);margin:0 0 24px;line-height:1.6;">We pair your stay with guaranteed tee times at any of the 5 Graeagle courses. Free quote, 24-hour response.</p>
-          <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:24px;padding:16px;background:rgba(237,230,218,0.5);border-radius:12px;">
-            {[['From','$299 per golfer'],['Includes','Lodging + tee times'],['Response','Within 24 hours'],['Cancellation','72-hour policy']].map(([k,v]) => (
-              <div style="display:flex;justify-content:space-between;font-size:13px;">
-                <span style="color:rgba(28,18,8,0.35);">{k}</span>
-                <span style="color:var(--text-primary);font-weight:600;">{v}</span>
-              </div>
-            ))}
-          </div>
+          <h3 style="font-family:'Playfair Display',serif;font-size:26px;color:var(--text-primary);margin:0 0 10px;font-weight:500;">Stay at {item.name}</h3>
+          <p style="font-size:15px;color:rgba(28,18,8,0.45);margin:0 0 24px;line-height:1.65;max-width:480px;margin-left:auto;margin-right:auto;">Guaranteed tee times at all 5 Graeagle courses — paired with your stay. Free quote, 24-hour response.</p>
           <a href={`/request-a-quote/?lodging=${item.slug}&lodgingName=${encodeURIComponent(item.name)}`}
-             style="display:block;text-align:center;background:var(--gold-light);color:#0d1a0e;font-weight:700;font-size:15px;padding:16px;border-radius:100px;text-decoration:none;transition:all 0.2s;"
-             onmouseover="this.style.background='#f2c878';this.style.transform='translateY(-2px)'"
-             onmouseout="this.style.background='#e8a850';this.style.transform='translateY(0)'">
+             class="btn-green-glow"
+             style="display:inline-block;background:var(--gold-light);color:#0d1a0e;font-weight:700;font-size:15px;padding:16px 44px;border-radius:100px;text-decoration:none;transition:transform 0.2s;"
+             onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='translateY(0)'">
             Request a Stay & Play Quote →
           </a>
           {item.website && (
-            <a href={item.website} target="_blank" rel="noopener noreferrer"
-               style="display:block;text-align:center;margin-top:12px;font-size:13px;color:rgba(28,18,8,0.3);text-decoration:none;"
-               onmouseover="this.style.color='rgba(28,18,8,0.65)'" onmouseout="this.style.color='rgba(28,18,8,0.3)'">
-              Visit {item.name} website →
-            </a>
+            <div style="margin-top:14px;">
+              <a href={item.website} target="_blank" rel="noopener noreferrer"
+                 style="font-size:13px;color:rgba(28,18,8,0.3);text-decoration:none;"
+                 onmouseover="this.style.color='rgba(28,18,8,0.55)'" onmouseout="this.style.color='rgba(28,18,8,0.3)'">
+                Visit {item.name} website →
+              </a>
+            </div>
           )}
-        </div>
-
-        <!-- Quick specs -->
-        <div style="margin-top:20px;padding:20px;background:rgba(28,18,8,0.03);border:1px solid rgba(28,18,8,0.06);border-radius:14px;">
-          <div style="font-size:11px;color:rgba(28,18,8,0.25);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:14px;">Property Details</div>
-          <div style="display:flex;flex-direction:column;gap:10px;">
-            {item.address && <div style="font-size:12px;color:rgba(28,18,8,0.45);">📍 {item.address}</div>}
-            {item.distanceFromGraeagle && <div style="font-size:12px;color:rgba(28,18,8,0.45);">🚗 {item.distanceFromGraeagle}</div>}
-            {item.website && <a href={item.website} target="_blank" rel="noopener noreferrer" style="font-size:12px;color:var(--gold);text-decoration:none;">🌐 {item.website.replace('https://www.','').replace('https://','')}</a>}
-          </div>
         </div>
       </div>
     </div>
