@@ -339,9 +339,11 @@ section.hero-section,
   .lod-body-grid { padding: 28px 5%; }
   .lod-amenities-grid { grid-template-columns: 1fr; }
   .lod-facts-strip {
-    display: flex; gap: 10px; overflow-x: auto; padding: 12px 5%;
+    display: flex; gap: 10px; overflow-x: auto; padding: 12px 5% 12px;
     border-bottom: 1px solid rgba(28,18,8,0.06);
     -webkit-overflow-scrolling: touch; scrollbar-width: none;
+    /* right padding prevents last pill clipping */
+    padding-right: calc(5% + 16px);
   }
   .lod-facts-strip span {
     flex-shrink: 0; background: rgba(28,18,8,0.04); border: 1px solid rgba(28,18,8,0.08);

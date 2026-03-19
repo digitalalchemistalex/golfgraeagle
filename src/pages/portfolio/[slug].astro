@@ -1239,7 +1239,7 @@ const diningSlugMap: Record<string, string> = {
     <div class="lod-action-bar">
       {item.phone
         ? <a href={`tel:${item.phone}`}>📞 Call property</a>
-        : <span style="opacity:0.3;display:flex;align-items:center;justify-content:center;padding:14px;font-size:14px;">📞 No phone listed</span>
+        : <a href="tel:+18885861157">📞 Call GolfGraeagle</a>
       }
       {item.coordinates
         ? <a href={`https://www.google.com/maps/search/?api=1&query=${item.coordinates.lat},${item.coordinates.lng}`} target="_blank" rel="noopener">🗺 Directions</a>
@@ -1457,7 +1457,7 @@ const diningSlugMap: Record<string, string> = {
     <div class="din-action-bar">
       {item.phone
         ? <a href={`tel:${item.phone}`}>📞 Call</a>
-        : <span style="opacity:0.3;display:flex;align-items:center;justify-content:center;gap:8px;padding:14px;font-size:14px;">📞 No phone</span>
+        : <a href="tel:+18885861157">📞 Call GolfGraeagle</a>
       }
       {item.coordinates
         ? <a href={`https://www.google.com/maps/search/?api=1&query=${item.coordinates.lat},${item.coordinates.lng}`} target="_blank" rel="noopener">📍 Directions</a>
