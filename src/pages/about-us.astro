@@ -334,7 +334,29 @@ const aboutSchema = [
       grid.innerHTML = picks.map(t => {
         const col = vc[t.vibe]||'#2d7a3a';
         const crs = (t.courses||[]).slice(0,2).join(' + ');
-        const img = t.imageUrl ? t.imageUrl : '/wp-images/DJI_0006-Edit.jpg';
+        // Map course names to verified local hero images — fallback if API image missing/wrong
+        const courseHeroes = {
+          'Grizzly Ranch': '/wp-images/grizzly-ranch-hero.webp',
+          'Whitehawk Ranch': '/wp-images/whitehawk-hero.webp',
+          'Plumas Pines': '/wp-images/plumas-pines-hero.webp',
+          'Nakoma': '/wp-images/nakoma-dragon-feather-river.webp',
+          'Graeagle Meadows': '/wp-images/graeagle-meadows-hero.webp',
+          'Graeagle': '/wp-images/graeagle-meadows-hero.webp',
+          'Old Greenwood': '/wp-images/grizzly-ranch-hero.webp',
+          "Gray's Crossing": '/wp-images/grizzly-ranch-hero.webp',
+          'Edgewood': '/wp-images/grizzly-ranch-hero.webp',
+        };
+        // Use API image only if it exists and is a real URL (not base64 blob)
+        let img = '/wp-images/graeagle-meadows-hero.webp';
+        if (t.imageUrl && !t.imageUrl.startsWith('data:')) {
+          img = t.imageUrl;
+        } else {
+          // Pick hero from first recognisable course
+          const matchedCourse = Object.keys(courseHeroes).find(k =>
+            (t.courses||[]).some(c => c.includes(k))
+          );
+          if (matchedCourse) img = courseHeroes[matchedCourse];
+        }
         return `<div style="background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);border-radius:16px;overflow:hidden;">
           <div style="height:160px;overflow:hidden;"><img src="${img}" loading="lazy" style="width:100%;height:100%;object-fit:cover;"/></div>
           <div style="padding:18px;">
