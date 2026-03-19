@@ -1001,6 +1001,26 @@ const diningSlugMap: Record<string, string> = {
         </div>
       )}
 
+      <!-- Signature Holes -->
+      {item.signatureHoles && item.signatureHoles.length > 0 && (
+        <div class="reveal" style="margin-bottom:56px;">
+          <h2 style="font-family:'Playfair Display',serif;font-size:24px;color:var(--text-primary);margin:0 0 24px;">Signature Holes</h2>
+          <div style="display:flex;flex-direction:column;gap:16px;">
+            {item.signatureHoles.map((h: any) => (
+              <div style="border-left:3px solid var(--gold);padding:20px 24px;background:rgba(232,168,80,0.04);border-radius:0 14px 14px 0;">
+                <div style="display:flex;align-items:center;gap:12px;margin-bottom:10px;flex-wrap:wrap;">
+                  <span style="font-size:11px;color:var(--gold);letter-spacing:0.12em;text-transform:uppercase;font-weight:700;">
+                    Hole {h.hole} · Par {h.par}{h.yards ? ` · ${h.yards} yds` : ''}
+                  </span>
+                  {h.name && <span style="font-family:'Playfair Display',serif;font-size:15px;color:var(--text-primary);font-style:italic;">"{h.name}"</span>}
+                </div>
+                <p style="font-size:15px;color:rgba(28,18,8,0.6);line-height:1.75;margin:0;">{h.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
       <!-- Best for -->
       <div class="reveal" style="background:rgba(232,168,80,0.05);border:1px solid rgba(232,168,80,0.1);border-radius:16px;padding:28px 32px;margin-bottom:56px;">
         <div style="font-size:11px;color:rgba(232,168,80,0.6);text-transform:uppercase;letter-spacing:0.12em;margin-bottom:10px;">Best For</div>
