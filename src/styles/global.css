@@ -304,8 +304,110 @@ section.hero-section,
 /* ══════════════════════════════════════════════════════════════
    PORTFOLIO LAYOUT GRIDS (global — not scoped, used in IIFE)
    ══════════════════════════════════════════════════════════════ */
-/* ── LODGING: single-column, no sidebar ──────────────────── */
-.lod-body-grid { max-width: 860px; margin: 0 auto; padding: 56px 5%; }
+/* ── LODGING: desktop enriched layout ────────────────────── */
+.lod-body-grid { max-width: 1100px; margin: 0 auto; padding: 56px 5%; }
+
+/* Feature rows: alternating image + text, desktop only */
+.lod-feature-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  margin-bottom: 64px;
+  border-radius: 20px;
+  overflow: hidden;
+  min-height: 380px;
+}
+.lod-feature-row.reverse { direction: rtl; }
+.lod-feature-row.reverse > * { direction: ltr; }
+.lod-feature-img {
+  position: relative;
+  overflow: hidden;
+  min-height: 320px;
+}
+.lod-feature-img img {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  transition: transform 0.8s ease;
+}
+.lod-feature-row:hover .lod-feature-img img { transform: scale(1.04); }
+.lod-feature-text {
+  padding: 48px 44px;
+  background: rgba(28,18,8,0.03);
+  border: 1px solid rgba(28,18,8,0.07);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.lod-feature-row.reverse .lod-feature-text {
+  border-right: none;
+  border-radius: 0 20px 20px 0;
+}
+.lod-feature-row:not(.reverse) .lod-feature-text {
+  border-left: none;
+  border-radius: 0 20px 20px 0;
+}
+.lod-feature-row:not(.reverse) .lod-feature-img {
+  border-radius: 20px 0 0 20px;
+}
+.lod-feature-row.reverse .lod-feature-img {
+  border-radius: 0 20px 20px 0;
+}
+
+/* Pull-quote dark band */
+.lod-pullquote {
+  background: #0d1a0e;
+  margin: 0 calc(-5%) 64px;
+  padding: 64px 10%;
+  text-align: center;
+}
+.lod-pullquote p {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(22px, 3vw, 38px);
+  color: #f0ece3;
+  line-height: 1.35;
+  font-weight: 400;
+  font-style: italic;
+  max-width: 720px;
+  margin: 0 auto 16px;
+}
+.lod-pullquote cite {
+  font-size: 13px;
+  color: rgba(232,168,80,0.7);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-style: normal;
+  font-weight: 600;
+}
+
+/* Course cards with hero background tint */
+.lod-course-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 14px;
+  text-decoration: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 24px;
+  border: 1px solid rgba(232,168,80,0.15);
+  transition: all 0.3s ease;
+  background: rgba(232,168,80,0.03);
+  margin-bottom: 10px;
+}
+.lod-course-card:hover {
+  border-color: rgba(232,168,80,0.4);
+  background: rgba(232,168,80,0.07);
+  transform: translateX(4px);
+}
+.lod-course-card-bg {
+  position: absolute; inset: 0;
+  background-size: cover;
+  background-position: center;
+  opacity: 0.07;
+  transition: opacity 0.3s;
+}
+.lod-course-card:hover .lod-course-card-bg { opacity: 0.13; }
 .lod-amenities-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
 .lod-facts-strip { display: none; }
 .lod-action-bar { display: none; }
@@ -336,8 +438,14 @@ section.hero-section,
 .din-hours-pill { display: none; }
 
 @media (max-width: 860px) {
-  .lod-body-grid { padding: 28px 5%; }
+  .lod-body-grid { padding: 28px 5%; max-width: 100%; }
   .lod-amenities-grid { grid-template-columns: 1fr; }
+  .lod-feature-row { grid-template-columns: 1fr; min-height: auto; margin-bottom: 32px; direction: ltr !important; }
+  .lod-feature-img { min-height: 220px; border-radius: 16px 16px 0 0 !important; }
+  .lod-feature-text { padding: 28px 24px; border-radius: 0 0 16px 16px !important; border-top: none !important; border-left: 1px solid rgba(28,18,8,0.07) !important; }
+  .lod-pullquote { margin: 0 0 40px; padding: 40px 6%; }
+  .lod-pullquote p { font-size: clamp(18px,5vw,26px); }
+  .lod-course-card:hover { transform: none; }
   .lod-facts-strip {
     display: flex; gap: 10px; overflow-x: auto; padding: 12px 5% 12px;
     border-bottom: 1px solid rgba(28,18,8,0.06);

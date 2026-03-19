@@ -1261,12 +1261,52 @@ const diningSlugMap: Record<string, string> = {
     <!-- ── BODY: single column ───────────────────────────── -->
     <div class="lod-body-grid">
       <div>
-        <!-- Description -->
-        <p style="font-size:17px;color:rgba(28,18,8,0.65);line-height:1.85;margin:0 0 48px;">{item.description}</p>
+        <!-- Description with reveal -->
+        <p class="reveal" style="font-size:18px;color:rgba(28,18,8,0.65);line-height:1.9;margin:0 0 64px;max-width:780px;">{item.description}</p>
 
-        <!-- Amenities grid -->
-        {item.highlights && (
-          <div style="margin-bottom:52px;">
+        <!-- Feature rows: alternating image + text — desktop editorial layout -->
+        {item.images && item.images.length >= 2 && item.highlights && item.highlights.length >= 2 && (() => {
+          const featurePairs = item.highlights.slice(0, 4).map((h: string, i: number) => ({
+            highlight: h,
+            img: item.images[i + 1] || item.images[0],
+            reverse: i % 2 === 1,
+          }));
+          return (
+            <div style="margin-bottom:64px;">
+              {featurePairs.map(({ highlight, img, reverse }: any, i: number) => (
+                <div class={`lod-feature-row reveal${reverse ? ' reverse' : ''}`} style={`transition-delay:${i * 0.1}s`}>
+                  <div class="lod-feature-img">
+                    <img src={img} alt={`${item.name} — ${highlight.split('—')[0].trim()}`} loading="lazy"/>
+                  </div>
+                  <div class="lod-feature-text">
+                    <div style="font-size:10px;color:var(--gold);letter-spacing:0.14em;text-transform:uppercase;font-weight:700;margin-bottom:16px;">What's Included</div>
+                    <p style="font-family:'Playfair Display',serif;font-size:clamp(18px,2vw,26px);color:var(--text-primary);line-height:1.35;font-weight:400;margin:0 0 20px;">{highlight.split('—')[0].trim()}</p>
+                    {highlight.includes('—') && <p style="font-size:14px;color:rgba(28,18,8,0.45);line-height:1.6;margin:0;">{highlight.split('—')[1]?.trim()}</p>}
+                  </div>
+                </div>
+              ))}
+            </div>
+          );
+        })()}
+
+        <!-- Remaining amenities as compact 2-col grid -->
+        {item.highlights && item.highlights.length > 4 && (
+          <div class="reveal" style="margin-bottom:64px;">
+            <h2 style="font-family:'Playfair Display',serif;font-size:22px;color:var(--text-primary);margin:0 0 24px;font-weight:400;">More Amenities</h2>
+            <div class="lod-amenities-grid">
+              {item.highlights.slice(4).map((h: string) => (
+                <div style="display:flex;align-items:flex-start;gap:10px;padding:14px;background:rgba(28,18,8,0.04);border:1px solid rgba(28,18,8,0.06);border-radius:10px;">
+                  <span style="color:var(--gold);flex-shrink:0;font-size:16px;margin-top:1px;">✓</span>
+                  <span style="font-size:13px;color:rgba(28,18,8,0.6);line-height:1.5;">{h}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        <!-- Fallback: if < 2 images or < 2 highlights, plain amenities grid -->
+        {(!item.images || item.images.length < 2 || !item.highlights || item.highlights.length < 2) && item.highlights && (
+          <div class="reveal" style="margin-bottom:64px;">
             <h2 style="font-family:'Playfair Display',serif;font-size:22px;color:var(--text-primary);margin:0 0 24px;font-weight:400;">What's Included</h2>
             <div class="lod-amenities-grid">
               {item.highlights.map((h: string) => (
@@ -1279,24 +1319,29 @@ const diningSlugMap: Record<string, string> = {
           </div>
         )}
 
-        <!-- Courses you can play -->
+        <!-- Pull-quote dark band -->
+        <div class="lod-pullquote reveal">
+          <p>"{item.tagline}"</p>
+          <cite>{item.name} · Graeagle, CA</cite>
+        </div>
+
+        <!-- Courses you can play — enriched cards with hero background -->
         {nearbyCourses.length > 0 && (
-          <div style="margin-bottom:52px;">
+          <div class="reveal" style="margin-bottom:64px;">
             <h2 style="font-family:'Playfair Display',serif;font-size:22px;color:var(--text-primary);margin:0 0 8px;font-weight:400;">Golf Courses From Here</h2>
             <p style="font-size:14px;color:rgba(28,18,8,0.3);margin:0 0 24px;">All distances from {item.name}</p>
-            <div style="display:flex;flex-direction:column;gap:10px;">
+            <div>
               {nearbyCourses.map(({ course, dist, distNote }: any) => (
-                <a href={`/portfolio/${wpCourseSlugMap[course.slug]}/`}
-                   style="display:flex;justify-content:space-between;align-items:center;padding:16px 20px;background:rgba(232,168,80,0.04);border:1px solid rgba(232,168,80,0.12);border-radius:12px;text-decoration:none;transition:all 0.2s;"
-                   onmouseover="this.style.borderColor='rgba(232,168,80,0.35)';this.style.background='rgba(232,168,80,0.08)'"
-                   onmouseout="this.style.borderColor='rgba(232,168,80,0.12)';this.style.background='rgba(232,168,80,0.04)'">
-                  <div>
-                    <div style="font-size:14px;font-weight:700;color:var(--text-primary);margin-bottom:3px;">{course.name}</div>
-                    <div style="font-size:12px;color:rgba(28,18,8,0.35);">Par {course.par} · Slope {course.slope} · {course.designer}</div>
+                <a href={`/portfolio/${wpCourseSlugMap[course.slug]}/`} class="lod-course-card">
+                  <div class="lod-course-card-bg" style={`background-image:url(${course.hero})`}></div>
+                  <div style="position:relative;z-index:1;">
+                    <div style="font-size:16px;font-weight:700;color:var(--text-primary);margin-bottom:4px;">{course.name}</div>
+                    <div style="font-size:12px;color:rgba(28,18,8,0.4);">Par {course.par} · Slope {course.slope} · {course.designer}</div>
+                    {course.awards?.[0] && <div style="font-size:11px;color:var(--gold);margin-top:4px;font-weight:600;">🏆 {course.awards[0]}</div>}
                   </div>
-                  <div style="text-align:right;flex-shrink:0;margin-left:16px;">
-                    <div style="font-size:13px;color:var(--gold);font-weight:600;">{dist}</div>
-                    <div style="font-size:11px;color:rgba(28,18,8,0.25);">{distNote}</div>
+                  <div style="text-align:right;flex-shrink:0;margin-left:16px;position:relative;z-index:1;">
+                    <div style="font-size:15px;color:var(--gold);font-weight:700;">{dist}</div>
+                    <div style="font-size:11px;color:rgba(28,18,8,0.3);margin-top:2px;">{distNote}</div>
                   </div>
                 </a>
               ))}
