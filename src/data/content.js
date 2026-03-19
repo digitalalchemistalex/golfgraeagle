@@ -243,11 +243,10 @@ export const courses = [
     hero: '/wp-images/whitehawk-hero.webp',
     images: [
       '/wp-images/whitehawk-popup-home.webp',
-      '/wp-images/unsplash-golf-sunset.jpg',
-      '/wp-images/unsplash-golf-aerial.jpg',
-      '/wp-images/unsplash-golf-fairway.jpg',
-      '/wp-images/DJI_0026.jpg',
-      '/wp-images/DJI_0027.jpg',
+      '/wp-images/grizzly-ranch-img0666.webp',
+      '/wp-images/graeagle-meadows-dji0536.jpg',
+      '/wp-images/DJI_0949-Edit.webp',
+      '/wp-images/DJI_0965-Edit.webp',
     ],
     description: 'Whitehawk Ranch Golf Course opened in 1996, designed by Dick Bailey on 550 acres of pristine Mohawk Valley land. Twelve holes play through open meadows along meandering streams; six more climb through forested hillside terrain. Water features, native wildflowers, and elevation changes create a constantly varied round. Winner of four major regional awards including Golf Digest Top 20 in California.',
     fomoLine: 'Top 20 CA course — weekend tee times limited, book 2 weeks out',
@@ -1086,9 +1085,9 @@ export const dining = [
     nearbyLodging: ['townhomes-at-plumas-pines', 'chalet-view-lodge'],
     coordinates: { lat: 39.77255, lng: -120.60798 },
     location: 'Hwy 89, Blairsden-Graeagle, CA 96103',
-    hero: '/wp-images/unsplash-golf-mountain.webp',
+    hero: '/wp-images/outdoor-seating.webp',
     images: [
-      '/wp-images/unsplash-golf-mountain.jpg',
+      '/wp-images/outdoor-seating.webp',
     ],
   },
   {

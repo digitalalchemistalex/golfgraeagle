@@ -1,5 +1,6 @@
 ---
 import { courses } from '../data/content.js';
+import SearchBar from './SearchBar.tsx';
 ---
 
 <style>
@@ -366,6 +367,9 @@ import { courses } from '../data/content.js';
     <a href="/trips/" class="nav-link" style="padding: 8px 12px;">Real Trips</a>
 
   </div>
+
+  <!-- Search -->
+  <SearchBar client:load />
 
   <!-- CTA -->
   <a id="nav-cta" href="/request-a-quote/"

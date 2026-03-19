@@ -66,16 +66,35 @@ interface Trip {
 }
 
 /* ─── HELPERS ─── */
+// Real course hero images — rotate as fallback (no external/unsplash)
 const STOCK = [
-  "/wp-images/unsplash-golf-fairway.jpg",
-  "/wp-images/unsplash-golf-sunset.jpg",
-  "/wp-images/unsplash-golf-course.jpg",
+  "/wp-images/grizzly-ranch-hero.webp",
+  "/wp-images/whitehawk-hero.webp",
+  "/wp-images/graeagle-meadows-hero.webp",
 ];
+// Course keyword → hero mapping for relevance
+const COURSE_HERO_MAP: Record<string, string> = {
+  "Grizzly Ranch":     "/wp-images/grizzly-ranch-hero.webp",
+  "Whitehawk":         "/wp-images/whitehawk-hero.webp",
+  "Plumas Pines":      "/wp-images/plumas-pines-hero.webp",
+  "Nakoma":            "/wp-images/nakoma-dragon-feather-river.webp",
+  "Graeagle Meadows":  "/wp-images/graeagle-meadows-hero.webp",
+  "Old Greenwood":     "/wp-images/grizzly-ranch-img0666.webp",
+  "Gray's Crossing":   "/wp-images/grizzly-ranch--1024x682.webp",
+  "Edgewood":          "/wp-images/graeagle-meadows-aerial.jpg",
+};
 function pickImage(trip: Trip): string {
   const url = trip.imageUrl?.trim() || "";
-  // Reject base64 data URIs — use stock fallback
+  // Use API image if it's a real URL (not base64)
   if (url && !url.startsWith("data:") && url.startsWith("http")) return url;
-  const idx = (trip.id || trip.groupName || "").split("").reduce((a, c) => a + c.charCodeAt(0), 0);
+  // Pick by first matching course name
+  const courses = trip.courses || [];
+  for (const [key, hero] of Object.entries(COURSE_HERO_MAP)) {
+    if (courses.some((c: string) => c.includes(key))) return hero;
+  }
+  // Hash fallback from our own images
+  const idx = (String(trip.id || "") + (trip.groupName || ""))
+    .split("").reduce((a, c) => a + c.charCodeAt(0), 0);
   return STOCK[idx % STOCK.length];
 }
 function matchesCourse(trip: Trip, names: string[]): boolean {

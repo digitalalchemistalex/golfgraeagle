@@ -4,12 +4,23 @@ import { useState, useEffect } from "react";
 const API_URL = "/api/trips";
 const CADDIE_URL = "https://tripscaddie.golfthehighsierra.com";
 
+// Real course hero images — no external/unsplash dependencies
 const STOCK = [
-  "/wp-images/unsplash-golf-fairway.jpg",
-  "/wp-images/unsplash-golf-sunset.jpg",
-  "/wp-images/unsplash-golf-course.jpg",
-  "/wp-images/unsplash-golf-aerial.jpg",
+  "/wp-images/grizzly-ranch-hero.webp",
+  "/wp-images/whitehawk-hero.webp",
+  "/wp-images/graeagle-meadows-hero.webp",
+  "/wp-images/plumas-pines-hero.webp",
 ];
+const COURSE_HERO_MAP: Record<string, string> = {
+  "Grizzly Ranch":     "/wp-images/grizzly-ranch-hero.webp",
+  "Whitehawk":         "/wp-images/whitehawk-hero.webp",
+  "Plumas Pines":      "/wp-images/plumas-pines-hero.webp",
+  "Nakoma":            "/wp-images/nakoma-dragon-feather-river.webp",
+  "Graeagle Meadows":  "/wp-images/graeagle-meadows-hero.webp",
+  "Old Greenwood":     "/wp-images/grizzly-ranch-img0666.webp",
+  "Gray's Crossing":   "/wp-images/grizzly-ranch--1024x682.webp",
+  "Edgewood":          "/wp-images/graeagle-meadows-aerial.jpg",
+};
 
 // Portfolio URL map — Graeagle courses + lodging
 const PORTFOLIO_URLS: Record<string, string> = {
@@ -52,6 +63,11 @@ interface Trip {
 function pickImage(trip: Trip, idx: number): string {
   const url = trip.imageUrl?.trim() || "";
   if (url && !url.startsWith("data:") && url.startsWith("http")) return url;
+  // Pick by first matching course name for relevance
+  const courses = trip.courses || [];
+  for (const [key, hero] of Object.entries(COURSE_HERO_MAP)) {
+    if (courses.some((c: string) => c.includes(key))) return hero;
+  }
   const hash = (trip.id || trip.groupName || "").split("").reduce((a, c) => a + c.charCodeAt(0), idx);
   return STOCK[hash % STOCK.length];
 }
