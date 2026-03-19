@@ -35,11 +35,16 @@ const orgSchema = {
 
 // Real TripsCaddie data — verified from live API
 const realTrips = [
-  { vibe: 'Value',   price: 620,  nights: 2, rounds: 3, pax: 24, courses: 'Whitehawk + Graeagle Meadows + Plumas Pines', badge: '💰 Best Value' },
-  { vibe: 'Value',   price: 645,  nights: 2, rounds: 2, pax: 12, courses: 'Grizzly Ranch + Whitehawk Ranch',              badge: '⭐ Most Booked', hot: true },
-  { vibe: 'Value',   price: 675,  nights: 2, rounds: 3, pax: 16, courses: 'Whitehawk + Graeagle Meadows + Grizzly Ranch', badge: '👥 Groups' },
-  { vibe: 'Premium', price: 876,  nights: 3, rounds: 3, pax: 16, courses: 'Plumas Pines + Whitehawk + Grizzly Ranch',     badge: '🏆 3-Night' },
-  { vibe: 'Premium', price: 1120, nights: 3, rounds: 4, pax: 24, courses: 'Plumas + Grizzly Ranch + Nakoma Dragon',       badge: '🐉 Dragon' },
+  { vibe: 'Value',   price: 620,  nights: 2, rounds: 3, pax: 24, courses: 'Whitehawk + Graeagle Meadows + Plumas Pines', badge: '💰 Best Value',  hot: false,
+    includes: ['Tee times at 3 courses', '2 nights lodging', 'Day-by-day itinerary', 'Group of 8–24'] },
+  { vibe: 'Value',   price: 645,  nights: 2, rounds: 2, pax: 12, courses: 'Grizzly Ranch + Whitehawk Ranch',              badge: '⭐ Most Booked', hot: true,
+    includes: ['Tee times at 2 top-rated courses', '2 nights lodging', 'Day-by-day itinerary', 'Group of 8–12'] },
+  { vibe: 'Value',   price: 675,  nights: 2, rounds: 3, pax: 16, courses: 'Whitehawk + Graeagle Meadows + Grizzly Ranch', badge: '👥 Groups',      hot: false,
+    includes: ['Tee times at 3 courses inc. Grizzly', '2 nights lodging', 'Itinerary + dining tips', 'Group of 12–24'] },
+  { vibe: 'Premium', price: 876,  nights: 3, rounds: 3, pax: 16, courses: 'Plumas Pines + Whitehawk + Grizzly Ranch',     badge: '🏆 3-Night',     hot: false,
+    includes: ['Tee times at 3 courses', '3 nights lodging', 'Full itinerary + dining res.', 'Group of 8–16'] },
+  { vibe: 'Premium', price: 1120, nights: 3, rounds: 4, pax: 24, courses: 'Plumas + Grizzly Ranch + Nakoma Dragon',       badge: '🐉 Dragon',      hot: false,
+    includes: ['Tee times at 4 courses inc. Nakoma', '3 nights at Inn at Nakoma', 'Fifty44 dining res.', 'Group of 16–24'] },
 ];
 
 const courses = [
@@ -131,9 +136,12 @@ const courses = [
             <div class="gp-trip-meta">
               <span>🌙 {t.nights}n</span>
               <span>⛳ {t.rounds}r</span>
-              <span>👥 {t.pax}</span>
+              <span>👥 {t.pax} golfers</span>
             </div>
-            <p class="gp-trip-courses">{t.courses}</p>
+            <ul class="gp-trip-includes">
+              {t.includes.map((item: string) => <li>✓ {item}</li>)}
+            </ul>
+            <p class="gp-trip-courses">e.g. {t.courses}</p>
             <div class={`gp-trip-vibe ${t.vibe.toLowerCase()}`}>{t.vibe}</div>
           </div>
         ))}
@@ -247,7 +255,7 @@ const courses = [
 .gp-h2 em { font-style:italic; color:var(--gp-green); }
 .gp-h2-light { color: #f0ece3; }
 .gp-h2-light em { color: var(--gp-gold); }
-.gp-pricing-intro { font-size:15px; color:rgba(245,240,232,0.5); max-width:480px; margin:16px auto 0; line-height:1.7; }
+.gp-pricing-intro { font-size:15px; color:rgba(245,240,232,0.72); max-width:480px; margin:16px auto 0; line-height:1.7; }
 
 /* ── HERO ── */
 .gp-hero { position:relative; min-height:90vh; display:flex; align-items:flex-end; overflow:hidden; }
@@ -278,7 +286,7 @@ const courses = [
 
 /* ── PRICING CARDS ── */
 .gp-trips-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(200px,1fr)); gap:16px; margin-bottom:28px; }
-.gp-trip-card { background:rgba(255,255,255,0.05); border:1px solid rgba(245,240,232,0.1); border-radius:var(--gp-r); padding:26px 22px; transition:all .35s; position:relative; overflow:hidden; }
+.gp-trip-card { background:rgba(255,255,255,0.09); border:1px solid rgba(245,240,232,0.18); border-radius:var(--gp-r); padding:26px 22px; transition:all .35s; position:relative; overflow:hidden; }
 .gp-trip-card::after { content:''; position:absolute; inset:0; border-radius:var(--gp-r); background:linear-gradient(135deg,rgba(232,168,80,0.08),transparent); opacity:0; transition:opacity .3s; pointer-events:none; }
 .gp-trip-card:hover { transform:translateY(-6px); border-color:rgba(232,168,80,0.3); box-shadow:0 24px 56px rgba(0,0,0,0.3); }
 .gp-trip-card:hover::after { opacity:1; }
@@ -288,14 +296,17 @@ const courses = [
 .gp-trip-price { display:flex; align-items:baseline; gap:1px; margin-bottom:14px; }
 .gp-trip-dollar { font-size:22px; color:var(--gp-gold); font-weight:700; }
 .gp-trip-num { font-family:'Playfair Display',serif; font-size:42px; font-weight:500; color:#f5f0e8; line-height:1; }
-.gp-trip-pp { font-size:13px; color:rgba(245,240,232,0.38); margin-left:3px; }
+.gp-trip-pp { font-size:13px; color:rgba(245,240,232,0.6); margin-left:3px; }
 .gp-trip-meta { display:flex; flex-wrap:wrap; gap:8px; margin-bottom:10px; }
-.gp-trip-meta span { font-size:11px; color:rgba(245,240,232,0.52); }
-.gp-trip-courses { font-size:12px; color:rgba(245,240,232,0.38); line-height:1.55; margin:0 0 14px; }
+.gp-trip-meta span { font-size:11px; color:rgba(245,240,232,0.78); }
+.gp-trip-includes { list-style:none; margin:0 0 12px; padding:0; display:flex; flex-direction:column; gap:5px; }
+.gp-trip-includes li { font-size:11px; color:rgba(245,240,232,0.85); display:flex; align-items:flex-start; gap:6px; line-height:1.4; }
+.gp-trip-includes li::before { content: ''; }
+.gp-trip-courses { font-size:11px; font-style:italic; color:rgba(245,240,232,0.48); line-height:1.55; margin:0 0 14px; }
 .gp-trip-vibe { display:inline-block; font-size:9px; font-weight:800; text-transform:uppercase; letter-spacing:.12em; padding:3px 10px; border-radius:100px; }
 .gp-trip-vibe.value { background:rgba(26,122,64,0.25); color:#52c27d; }
 .gp-trip-vibe.premium { background:rgba(232,168,80,0.18); color:var(--gp-gold); }
-.gp-archive-link { text-align:center; font-size:14px; color:rgba(245,240,232,0.4); margin:4px 0 0; }
+.gp-archive-link { text-align:center; font-size:14px; color:rgba(245,240,232,0.65); margin:4px 0 0; }
 
 /* ── COURSES ── */
 .gp-courses-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:22px; }
@@ -320,7 +331,7 @@ const courses = [
 .gp-trust { padding:clamp(48px,6vw,80px) 0; }
 .gp-trust-row { display:grid; grid-template-columns:repeat(5,1fr); gap:32px; text-align:center; }
 .gp-stat-val { font-family:'Playfair Display',serif; font-size:clamp(30px,4vw,48px); color:var(--gp-gold); font-weight:400; line-height:1; margin-bottom:8px; }
-.gp-stat-label { font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:.14em; color:rgba(245,240,232,0.38); }
+.gp-stat-label { font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:.14em; color:rgba(245,240,232,0.62); }
 
 /* ── FAQ ── */
 .gp-faq { border-bottom:1px solid var(--gp-border); }
@@ -338,7 +349,7 @@ const courses = [
 .gp-cta-ring::before { content:''; position:absolute; inset:80px; border-radius:50%; border:1px solid rgba(232,168,80,0.04); }
 .gp-cta-h2 { font-family:'Playfair Display',serif; font-size:clamp(30px,5.5vw,58px); color:#f5f0e8; font-weight:500; line-height:1.15; margin:0 0 20px; }
 .gp-cta-h2 em { color:var(--gp-gold); font-style:italic; }
-.gp-cta-sub { font-size:16px; color:rgba(245,240,232,0.52); line-height:1.75; margin:0 0 36px; }
+.gp-cta-sub { font-size:16px; color:rgba(245,240,232,0.75); line-height:1.75; margin:0 0 36px; }
 .gp-cta-trust { font-size:12px; color:rgba(245,240,232,0.3); margin-top:14px; }
 
 /* ── Mobile ── */

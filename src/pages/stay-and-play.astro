@@ -31,10 +31,18 @@ const orgSchema = { "@context":"https://schema.org","@graph":[
 ]};
 
 const packages = [
-  { name:'Weekend Starter',    priceRange:'$620–$645/pp', nights:'2', rounds:'2–3', pax:'8–24', desc:'Whitehawk + Graeagle Meadows + Plumas Pines. The valley intro.',          hot:false },
-  { name:'3-Night Sweet Spot', priceRange:'$645–$875/pp', nights:'3', rounds:'3–4', pax:'4–24', desc:'Most popular format. Grizzly Ranch + 2 supporting courses.',              hot:true  },
-  { name:'Dragon Run',         priceRange:'$876–$1,120/pp',nights:'3',rounds:'3–4',pax:'16–24',desc:'Includes Nakoma Dragon. Plumas + Whitehawk + Grizzly + Dragon.',          hot:false },
-  { name:'Grand Tour',         priceRange:'$1,120–$1,705/pp',nights:'4–5',rounds:'5',pax:'4–24',desc:'All 5 courses in one trip. The bucket-list format.',                     hot:false },
+  { name:'Weekend Starter',    priceRange:'$620–$645/pp', nights:'2', rounds:'2–3', pax:'8–24', hot:false,
+    desc:'The valley intro. Whitehawk + Graeagle Meadows + Plumas Pines.',
+    includes:['Tee times at 3 courses','2 nights lodging at River Pines or Townhomes','Day-by-day itinerary','Dining suggestions included'] },
+  { name:'3-Night Sweet Spot', priceRange:'$645–$875/pp', nights:'3', rounds:'3–4', pax:'4–24', hot:true,
+    desc:'Most popular format. Grizzly Ranch as the anchor round.',
+    includes:['Tee times at 3–4 courses','3 nights lodging (River Pines or Chalet View)','Full itinerary + dining reservations','Quote in 24 hours'] },
+  { name:'Dragon Run',         priceRange:'$876–$1,120/pp',nights:'3',rounds:'3–4',pax:'16–24',hot:false,
+    desc:'Includes Nakoma Dragon — the Frank Lloyd Wright course.',
+    includes:['Tee times at 4 courses incl. Nakoma','3 nights lodging (Chalet View or Nakoma Inn)','Fifty44 dining reservation','All logistics handled'] },
+  { name:'Grand Tour',         priceRange:'$1,120–$1,705/pp',nights:'4–5',rounds:'5',pax:'4–24',hot:false,
+    desc:'All 5 courses in one trip. The bucket-list Graeagle experience.',
+    includes:['Tee times at all 5 courses','4–5 nights at Inn at Nakoma','All dining reservations','Single itinerary, one invoice'] },
 ];
 
 const lodging = [
@@ -122,6 +130,9 @@ const includes = [
               <span>🌙 {p.nights}n</span><span>⛳ {p.rounds}r</span><span>👥 {p.pax}</span>
             </div>
             <p class="sap-pkg-desc">{p.desc}</p>
+            <ul class="sap-pkg-includes">
+              {p.includes.map((item: string) => <li>✓ {item}</li>)}
+            </ul>
             <a href="/request-a-quote/" class="sap-pkg-cta underline-draw">Get this package →</a>
           </div>
         ))}
@@ -231,17 +242,19 @@ const includes = [
 
 /* PACKAGES */
 .sap-pkgs{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px;margin-bottom:24px}
-.sap-pkg{border:1px solid rgba(245,240,232,.1);border-radius:var(--sap-r);padding:30px 26px;background:rgba(255,255,255,.04);transition:all .35s;position:relative}
+.sap-pkg{border:1px solid rgba(245,240,232,.2);border-radius:var(--sap-r);padding:30px 26px;background:rgba(255,255,255,.1);transition:all .35s;position:relative}
 .sap-pkg:hover{transform:translateY(-5px);border-color:rgba(232,168,80,.32);box-shadow:0 22px 52px rgba(0,0,0,.25)}
 .sap-pkg-hot{border-color:rgba(232,168,80,.3)!important;background:rgba(232,168,80,.05)!important}
 .sap-hot-tag{position:absolute;top:-1px;left:50%;transform:translateX(-50%);background:var(--sap-gold);color:#1c1208;font-size:9px;font-weight:800;padding:4px 14px;border-radius:0 0 10px 10px;text-transform:uppercase;letter-spacing:.1em;white-space:nowrap}
-.sap-pkg-label{font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.1em;color:rgba(245,240,232,.45);margin-bottom:10px}
+.sap-pkg-label{font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.1em;color:rgba(245,240,232,.7);margin-bottom:10px}
 .sap-pkg-price{font-family:'Playfair Display',serif;font-size:22px;color:var(--sap-gold);font-weight:400;margin-bottom:14px}
 .sap-pkg-meta{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px}
-.sap-pkg-meta span{font-size:11px;color:rgba(245,240,232,.5)}
-.sap-pkg-desc{font-size:13px;color:rgba(245,240,232,.4);line-height:1.68;margin:0 0 18px}
+.sap-pkg-meta span{font-size:11px;color:rgba(245,240,232,.8)}
+.sap-pkg-includes{list-style:none;margin:0 0 16px;padding:0;display:flex;flex-direction:column;gap:6px}
+.sap-pkg-includes li{font-size:11px;color:rgba(245,240,232,.88);display:flex;align-items:flex-start;gap:6px;line-height:1.45}
+.sap-pkg-desc{font-size:13px;color:rgba(245,240,232,.72);line-height:1.68;margin:0 0 18px}
 .sap-pkg-cta{font-size:12px;font-weight:700;color:var(--sap-gold);text-decoration:none}
-.sap-note{text-align:center;font-size:14px;color:rgba(245,240,232,.38);margin:0}
+.sap-note{text-align:center;font-size:14px;color:rgba(245,240,232,.65);margin:0}
 
 /* LODGING */
 .sap-lodging{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:22px}
@@ -271,7 +284,7 @@ const includes = [
 .sap-cta-glow{position:absolute;width:700px;height:700px;border-radius:50%;background:radial-gradient(circle,rgba(26,122,64,.18) 0%,transparent 70%);top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none}
 .sap-cta-h2{font-family:'Playfair Display',serif;font-size:clamp(30px,5.5vw,56px);color:#f5f0e8;font-weight:500;line-height:1.15;margin:0 0 18px}
 .sap-cta-h2 em{color:var(--sap-gold);font-style:italic}
-.sap-cta-sub{font-size:16px;color:rgba(245,240,232,.52);line-height:1.75;margin:0 0 36px}
+.sap-cta-sub{font-size:16px;color:rgba(245,240,232,.76);line-height:1.75;margin:0 0 36px}
 
 @media(max-width:900px){
   .sap-hero{min-height:100svh}
