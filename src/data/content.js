@@ -75,7 +75,7 @@ export const imageAlts = {
   'Chalet-View-Lodge_-Your-High-Sierra-Escape-visual-selection-3.png': 'Chalet View Lodge — 10-acre Sierra Nevada retreat with golf access, Graeagle CA',
   // NAKOMA DRAGON — additional course shots
   'nakoma-dragon-overview.jpg': 'Nakoma Dragon Golf Course — aerial overview of Golf World Top 75 layout, Clio CA',
-  'nakoma-dragon-feather-river.jpg': 'Nakoma Dragon Golf Course — Feather River canyon views from the Dragon course, Clio CA',
+  'nakoma-dragon-feather-river.webp': 'Nakoma Dragon Golf Course — Feather River canyon views from the Dragon course, Clio CA',
   // RIVER PINES RESORT
   'sign.jpg': 'River Pines Resort entrance sign — golf and lodging packages, Graeagle California',
   'DJI_0949-Edit.jpg': 'River Pines Resort — aerial view of main lodge and entrance, Graeagle CA',
@@ -376,11 +376,11 @@ export const courses = [
       'Designed by Robin Nelson — creator of Dunes at Mauna Lani',
     ],
     // Official photos from nakomaresort.com
-    hero: '/wp-images/nakoma-dragon-feather-river.jpg',
+    hero: '/wp-images/nakoma-dragon-feather-river.webp',
     images: [
       '/wp-images/nakoma-dragon-18-hole.jpg',
       '/wp-images/nakoma-dragon-overview.webp',
-      '/wp-images/nakoma-dragon-feather-river.jpg',
+      '/wp-images/nakoma-dragon-feather-river.webp',
       '/wp-images/nakoma-flw-outdoor-dining.jpg',
       '/wp-images/nakoma-recreation-dusk.jpg',
       '/wp-images/nakoma-flw-lodge-exterior.jpg',

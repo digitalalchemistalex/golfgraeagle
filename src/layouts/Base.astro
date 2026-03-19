@@ -130,9 +130,10 @@ const baseSchema = {
   <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
   <!-- JSON-LD -->
   <script type="application/ld+json" set:html={JSON.stringify(baseSchema)} />
-  <!-- Google Tag Manager -->\n  <script is:inline>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-NTBX7XK5');</script>
 </head>
 <body class={bodyClass} style="font-family:'Inter',system-ui,sans-serif;-webkit-font-smoothing:antialiased;">
+  <!-- Google Tag Manager — async, injected after body start -->
+  <script is:inline>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-NTBX7XK5');</script>
   <!-- Google Tag Manager (noscript) -->
   <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NTBX7XK5" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <slot />
