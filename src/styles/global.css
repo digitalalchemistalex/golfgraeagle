@@ -798,3 +798,80 @@ section.hero-section,
 /* ── RelatedTrips carousel — hide scrollbar, keep scroll */
 .rt-section { overflow: hidden; }
 .rt-carousel::-webkit-scrollbar { display: none; }
+
+/* ─────────────────────────────────────────────
+   EXTENDED REVEAL SYSTEM — scroll-triggered
+   (used by service pages + enriched course pages)
+───────────────────────────────────────────── */
+
+/* Variants */
+.reveal-up {
+  opacity: 0;
+  transform: translateY(36px);
+  transition: opacity 0.75s cubic-bezier(0.22,1,0.36,1), transform 0.75s cubic-bezier(0.22,1,0.36,1);
+}
+.reveal-up.visible { opacity: 1; transform: translateY(0); }
+
+.reveal-scale {
+  opacity: 0;
+  transform: scale(0.93);
+  transition: opacity 0.8s cubic-bezier(0.22,1,0.36,1), transform 0.8s cubic-bezier(0.22,1,0.36,1);
+}
+.reveal-scale.visible { opacity: 1; transform: scale(1); }
+
+.reveal-fade {
+  opacity: 0;
+  transition: opacity 1s ease;
+}
+.reveal-fade.visible { opacity: 1; }
+
+/* Stagger delays — composable */
+.delay-1 { transition-delay: 0.08s !important; }
+.delay-2 { transition-delay: 0.16s !important; }
+.delay-3 { transition-delay: 0.24s !important; }
+.delay-4 { transition-delay: 0.32s !important; }
+.delay-5 { transition-delay: 0.40s !important; }
+.delay-6 { transition-delay: 0.50s !important; }
+
+/* ─── Glow card — cursor-tracked radial gradient ─── */
+.glow-card {
+  position: relative;
+  overflow: hidden;
+}
+.glow-card::before {
+  content: '';
+  position: absolute;
+  width: 280px; height: 280px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(232,168,80,0.12) 0%, transparent 70%);
+  left: var(--glow-x, 50%); top: var(--glow-y, 50%);
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  transition: opacity 0.3s;
+  opacity: 0;
+}
+.glow-card:hover::before { opacity: 1; }
+
+/* ─── Underline draw — hover text link effect ─── */
+.underline-draw {
+  position: relative;
+  text-decoration: none;
+}
+.underline-draw::after {
+  content: '';
+  position: absolute;
+  bottom: -2px; left: 0;
+  width: 0; height: 1.5px;
+  background: currentColor;
+  transition: width 0.35s cubic-bezier(0.22,1,0.36,1);
+}
+.underline-draw:hover::after { width: 100%; }
+
+/* ─── Section label pill ─── */
+.sec-label {
+  display: inline-block;
+  font-size: 10px; font-weight: 800;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  color: #e8a850; margin-bottom: 14px;
+}
+.sec-label-dark { color: rgba(245,240,232,0.45); }

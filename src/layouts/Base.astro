@@ -148,7 +148,9 @@ const baseSchema = {
       });
     }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
 
-    document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => {
+    document.querySelectorAll(
+      '.reveal, .reveal-left, .reveal-right, .reveal-up, .reveal-scale, .reveal-fade'
+    ).forEach(el => {
       observer.observe(el);
     });
 

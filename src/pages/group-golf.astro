@@ -6,61 +6,48 @@ import Footer from '../components/Footer.astro';
 import RelatedTrips from '../components/RelatedTrips.tsx';
 
 const title = "Group Golf in Graeagle, CA — Outings for 4 to 200+ Golfers";
-const description = "Plan a group golf trip to Graeagle. 5 championship courses within 25 minutes, tee time blocks for any group size, lodging coordination. Real packages from $620/person. Free quote.";
+const description = "Plan a group golf trip to Graeagle. 5 championship courses within 25 minutes, tee time blocks for any group size. Real packages from $620/person. Free quote.";
 
 const faqSchema = {
-  "@context": "https://schema.org", "@type": "FAQPage",
-  "mainEntity": [
-    { "@type": "Question", "name": "How far in advance should a golf group book Graeagle tee times?", "acceptedAnswer": { "@type": "Answer", "text": "For summer weekends (June–August), book 6–8 weeks ahead for groups. Spring and fall can be arranged 3–4 weeks out. Large groups requiring consecutive tee time blocks across multiple courses need the most lead time." } },
-    { "@type": "Question", "name": "What is the maximum group size GolfGraeagle can handle?", "acceptedAnswer": { "@type": "Answer", "text": "GolfGraeagle has coordinated trips for groups from 4 to 200+ golfers. Large outings use consecutive tee time blocks across multiple start times. Shotgun starts and tournament formats can be arranged." } },
-    { "@type": "Question", "name": "Which Graeagle course is best for a large group outing?", "acceptedAnswer": { "@type": "Answer", "text": "Graeagle Meadows is most accessible for mixed-handicap groups. Whitehawk Ranch works well for competitive groups. Grizzly Ranch is ideal as the anchor round for serious golfers. Most large groups play 2–3 courses across their stay." } },
-    { "@type": "Question", "name": "Can GolfGraeagle coordinate group lodging and dining?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Every GolfGraeagle group package includes lodging coordination and can include dining reservations. River Pines Resort and the Townhomes at Plumas Pines are the most popular options for large groups." } },
-    { "@type": "Question", "name": "How much does a group golf trip to Graeagle cost?", "acceptedAnswer": { "@type": "Answer", "text": "Real completed group packages range from $620 to $1,705 per person. Most groups of 12–24 golfers pay $620–$875/person for a 2-night, 3-course package with lodging. Larger groups (50+) often get better per-person rates." } },
+  "@context":"https://schema.org","@type":"FAQPage",
+  "mainEntity":[
+    {"@type":"Question","name":"How far in advance should a golf group book Graeagle tee times?","acceptedAnswer":{"@type":"Answer","text":"For summer weekends (June–August), book 6–8 weeks ahead for groups. Spring and fall can be arranged 3–4 weeks out. Large groups requiring consecutive tee time blocks across multiple courses need the most lead time."}},
+    {"@type":"Question","name":"What is the maximum group size GolfGraeagle can handle?","acceptedAnswer":{"@type":"Answer","text":"GolfGraeagle has coordinated trips for groups from 4 to 200+ golfers. Large outings use consecutive tee time blocks across multiple start times. Shotgun starts and tournament formats can be arranged."}},
+    {"@type":"Question","name":"Which Graeagle course is best for a large group outing?","acceptedAnswer":{"@type":"Answer","text":"Graeagle Meadows is most accessible for mixed-handicap groups. Whitehawk Ranch works well for competitive groups. Grizzly Ranch is ideal as the anchor round for serious golfers. Most large groups play 2–3 courses across their stay."}},
+    {"@type":"Question","name":"Can GolfGraeagle coordinate group lodging and dining?","acceptedAnswer":{"@type":"Answer","text":"Yes. Every group package includes lodging coordination and can include dining reservations. River Pines Resort and Townhomes at Plumas Pines are most popular for large groups."}},
+    {"@type":"Question","name":"How much does a group golf trip to Graeagle cost?","acceptedAnswer":{"@type":"Answer","text":"Real completed group packages range from $620 to $1,705 per person. Most groups of 12–24 golfers pay $620–$875/person for a 2-night, 3-course package with lodging. Larger groups (50+) often get better per-person rates."}}
   ]
 };
-const breadcrumbSchema = {
-  "@context": "https://schema.org", "@type": "BreadcrumbList",
-  "itemListElement": [
-    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://golfgraeagle.com" },
-    { "@type": "ListItem", "position": 2, "name": "Group Golf", "item": "https://golfgraeagle.com/group-golf/" }
-  ]
-};
-const orgSchema = {
-  "@context": "https://schema.org",
-  "@graph": [
-    { "@type": ["TravelAgency","Organization"], "@id": "https://golfgraeagle.com/#organization", "name": "GolfGraeagle.com", "url": "https://golfgraeagle.com" },
-    { "@type": "WebPage", "@id": "https://golfgraeagle.com/group-golf/#webpage", "url": "https://golfgraeagle.com/group-golf/", "name": title, "isPartOf": { "@id": "https://golfgraeagle.com/#website" } }
-  ]
-};
+const breadcrumbSchema = {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
+  {"@type":"ListItem","position":1,"name":"Home","item":"https://golfgraeagle.com"},
+  {"@type":"ListItem","position":2,"name":"Group Golf","item":"https://golfgraeagle.com/group-golf/"}
+]};
+const orgSchema = {"@context":"https://schema.org","@graph":[
+  {"@type":["TravelAgency","Organization"],"@id":"https://golfgraeagle.com/#organization","name":"GolfGraeagle.com","url":"https://golfgraeagle.com"},
+  {"@type":"WebPage","url":"https://golfgraeagle.com/group-golf/","name":title}
+]};
 
 const groupTypes = [
-  { icon: '🍺', title: 'Golf Buddies Trip', size: '4–16', color: '#1a7a40', desc: 'Annual guys trip, bachelor parties, friend group weekends. 3 nights, 3–4 courses, one legendary dinner.' },
-  { icon: '🏆', title: 'Tournament & Outing', size: '20–100', color: '#b45309', desc: 'Charity events, club championships, competitive outings. Scrambles, net/gross, shotgun starts.' },
-  { icon: '💼', title: 'Corporate Retreat', size: '12–60', color: '#1d4ed8', desc: 'Client entertainment, team building, company offsites. We handle logistics — you handle relationships.' },
-  { icon: '🎓', title: 'Alumni & Club Groups', size: '16–200', color: '#7c3aed', desc: 'College alumni golf days, club championships, association outings. Multi-course itineraries.' },
+  { icon:'🍺', title:'Golf Buddies Trip',     size:'4–16',    color:'#1a7a40', desc:'Annual guys trip, bachelor parties, friend group weekends. 3 nights, 3–4 courses, one legendary dinner.' },
+  { icon:'🏆', title:'Tournament & Outing',   size:'20–100',  color:'#b45309', desc:'Charity events, club championships, competitive outings. Scrambles, net/gross, shotgun starts arranged.' },
+  { icon:'💼', title:'Corporate Retreat',     size:'12–60',   color:'#1d4ed8', desc:'Client entertainment, team building, company offsites. We handle logistics — you handle relationships.' },
+  { icon:'🎓', title:'Alumni & Club Groups',  size:'16–200+', color:'#7c3aed', desc:'College alumni golf days, club championships, association outings. Multi-course itineraries.' },
 ];
 
-// Real pricing by group size from TripsCaddie
-const realBySize = [
-  { range: '4–8 golfers',   priceRange: '$620–$876/pp',   note: 'Smaller groups pay slightly more per person. Still the most affordable championship golf in Northern CA.' },
-  { range: '12–24 golfers', priceRange: '$620–$875/pp',   note: 'The sweet spot. Best selection of courses and lodging options.', hot: true },
-  { range: '24–52 golfers', priceRange: '$645–$945/pp',   note: 'Group tee time blocks. Preferred rates. Consecutive starts across multiple courses.' },
-  { range: '50–200+ golfers', priceRange: 'Custom pricing', note: 'Full group contracts. Banquet coordination. Tournament scoring. Single invoice.' },
+// Real pricing by group size — TripsCaddie data
+const bySize = [
+  { range:'4–8 golfers',      price:'$620–$876/pp',   note:'Smaller groups pay slightly more per person. Still the most affordable championship golf in Northern CA.', hot:false },
+  { range:'12–24 golfers',    price:'$620–$875/pp',   note:'The sweet spot. Best selection of courses and lodging. Most real packages fall in this range.',               hot:true  },
+  { range:'24–52 golfers',    price:'$645–$945/pp',   note:'Group tee time blocks. Preferred rates on multi-course days. Consecutive starts available.',                  hot:false },
+  { range:'50–200+ golfers',  price:'Custom pricing', note:'Full group contracts. Banquet coordination. Tournament scoring. Single invoice.',                             hot:false },
 ];
 
 const logistics = [
-  { title: 'Tee time coordination', body: 'Consecutive blocks at one or multiple courses. We deal directly with the pro shop at all 5.' },
-  { title: 'Group lodging', body: 'River Pines Resort handles groups with mixed room types. Townhomes at Plumas Pines fits 8–24 in multi-bedroom units.' },
-  { title: 'Multi-course routing', body: 'Sequence matters. Most groups start at Graeagle Meadows or Plumas Pines, save Grizzly Ranch and Nakoma for later days.' },
-  { title: 'Dining reservations', body: 'Sardine Lake (book 4 weeks out), Grizzly Grill, and Iron Door are popular for group dinners — included in the itinerary on request.' },
-  { title: 'Transportation', body: 'All 5 courses are within 25 minutes. Most groups drive from one central lodging base — no shuttles needed.' },
-];
-
-const blogs = [
-  { href: '/blog/large-group-golf-graeagle/',    title: 'How 50+ Golfers Do It Right' },
-  { href: '/blog/bachelor-party-golf-graeagle/', title: 'Bachelor Party Golf Guide' },
-  { href: '/blog/corporate-golf-outing-graeagle/', title: 'Corporate Golf Outing Guide' },
-  { href: '/blog/golf-tournament-graeagle/',     title: 'Running a Tournament Across 5 Courses' },
+  { title:'Tee time coordination',  body:'Consecutive blocks at one or multiple courses. We deal directly with the pro shop at all 5.' },
+  { title:'Group lodging',          body:'River Pines Resort handles mixed room types. Townhomes at Plumas Pines fits 8–24 in multi-bedroom units.' },
+  { title:'Multi-course routing',   body:'Sequence matters. Most groups start at Graeagle Meadows or Plumas Pines, save Grizzly Ranch and Nakoma for the challenge rounds.' },
+  { title:'Dining reservations',    body:'Sardine Lake (book 4 weeks out), Grizzly Grill, and Iron Door are popular for group dinners — included in the itinerary on request.' },
+  { title:'Transportation',         body:'All 5 courses are within 25 minutes. Most groups drive from one central lodging base — no shuttles needed.' },
 ];
 ---
 <Base title={title} description={description} ogType="website"
@@ -71,39 +58,38 @@ const blogs = [
 >
   <Nav />
 
-  <!-- ── HERO ── -->
+  <!-- ═══ HERO ═══ -->
   <section class="gg-hero">
-    <div class="gg-hero-bg" style="background-image:url(/wp-images/graeagle-meadows-aerial.jpg)"></div>
-    <div class="gg-hero-overlay"></div>
+    <div class="gg-bg" style="background-image:url(/wp-images/graeagle-meadows-aerial.jpg)"></div>
+    <div class="gg-overlay"></div>
     <div class="gg-hero-inner">
-      <div class="gg-eyebrow reveal-up">4 to 200+ Golfers · Graeagle, California</div>
-      <h1 class="gg-h1 reveal-up" style="animation-delay:.1s">Group Golf<br/><em>Made Easy.</em></h1>
-      <p class="gg-sub reveal-up" style="animation-delay:.2s">Five courses within 25 minutes of each other.<br/>One planner handles all of it.</p>
-      <div class="gg-hero-pills reveal-up" style="animation-delay:.3s">
+      <p class="gg-eyebrow reveal-up">4 to 200+ Golfers · Graeagle, California</p>
+      <h1 class="gg-h1 reveal-up delay-1">Group Golf<br/><em>Made Easy.</em></h1>
+      <p class="gg-sub reveal-up delay-2">Five courses within 25 minutes of each other.<br/>One planner handles all of it.</p>
+      <div class="gg-pills reveal-up delay-3">
         <span>From <strong>$620</strong>/golfer</span>
         <span>4–200+ golfers</span>
         <span>All group types</span>
         <span>24h quote</span>
       </div>
-      <div class="gg-hero-ctas reveal-up" style="animation-delay:.4s">
-        <a href="/request-a-quote/" class="btn-green-glow gg-cta-primary">Plan My Group Trip →</a>
-        <a href="/trips/" class="gg-cta-ghost">See real group pricing ↗</a>
+      <div class="gg-ctas reveal-up delay-4">
+        <a href="/request-a-quote/" class="btn-green-glow gg-btn">Plan My Group Trip →</a>
+        <a href="/trips/" class="gg-ghost underline-draw">See real group pricing ↗</a>
       </div>
     </div>
-    <!-- Diagonal accent -->
-    <div class="gg-hero-accent"></div>
   </section>
 
-  <!-- ── GROUP TYPES ── -->
+  <!-- ═══ GROUP TYPES ═══ -->
   <section class="gg-section">
     <div class="gg-container">
       <div class="gg-header reveal-up">
-        <p class="gg-label">All group types welcome</p>
-        <h2 class="gg-h2">Every kind of<br/><em>group</em> we handle.</h2>
+        <span class="sec-label">All group types welcome</span>
+        <h2 class="gg-h2">Every kind of<br/><em>group we handle.</em></h2>
       </div>
-      <div class="gg-types-grid">
+      <div class="gg-types">
         {groupTypes.map((g, i) => (
-          <div class="gg-type-card reveal-up" style={`animation-delay:${i * 0.1}s;--accent:${g.color}`}>
+          <div class={`gg-type glow-card reveal-${i<2?'left':'right'} delay-${(i%3)+1}`} style={`--accent:${g.color}`}>
+            <div class="gg-type-top"></div>
             <div class="gg-type-icon">{g.icon}</div>
             <div class="gg-type-size">{g.size} golfers</div>
             <h3 class="gg-type-title">{g.title}</h3>
@@ -114,76 +100,74 @@ const blogs = [
     </div>
   </section>
 
-  <!-- ── WHY GRAEAGLE FOR GROUPS ── (dark with image) -->
-  <section class="gg-why dark-section">
+  <!-- ═══ WHY GRAEAGLE — dark split ═══ -->
+  <section class="gg-section gg-dark gg-why">
     <div class="gg-container gg-why-inner">
       <div class="gg-why-text">
-        <p class="gg-label" style="color:#e8a850">The group golf case</p>
-        <h2 class="gg-h2 reveal-up" style="color:#f0ece3">Why groups<br/><em>choose Graeagle</em></h2>
-        <div class="gg-why-points">
+        <span class="sec-label">The group golf case</span>
+        <h2 class="gg-h2 reveal-up" style="color:#f5f0e8;margin-top:10px">Why groups<br/><em>choose Graeagle</em></h2>
+        <div class="gg-points">
           {[
-            ['⛳', '5 courses, 25 min apart', 'Play a different course every day without logistics headaches. No long drives. No shuttles.'],
-            ['🎯', 'Every skill level covered', 'Slope 120 to 147. Graeagle Meadows for mixed groups, Grizzly Ranch for the challenge round.'],
-            ['💰', '40% cheaper than Tahoe', 'Same or better golf than the Truckee corridor — at significantly lower green fees and lodging costs.'],
-            ['📋', 'One planner, everything handled', 'Tee times, lodging, dining, itinerary — single invoice, single point of contact.'],
-          ].map(([icon, title, body], i) => (
-            <div class="gg-why-point reveal-up" style={`animation-delay:${i * 0.1}s`}>
-              <span class="gg-why-icon">{icon}</span>
+            ['⛳','5 courses, 25 min apart','Play a different course every day without logistics headaches. No long drives.'],
+            ['🎯','Every skill level covered','Slope 120 to 147. Graeagle Meadows for mixed groups, Grizzly Ranch for the challenge round.'],
+            ['💰','~40% cheaper than Tahoe','Same championship golf as the Truckee corridor — at significantly lower green fees and lodging.'],
+            ['📋','One planner, everything handled','Tee times, lodging, dining, itinerary — single invoice, single contact.'],
+          ].map(([icon,title,body],i) => (
+            <div class={`gg-point reveal-${i%2===0?'left':'right'} delay-${(i%3)+1}`}>
+              <span class="gg-pt-icon">{icon}</span>
               <div>
-                <div class="gg-why-ptitle">{title}</div>
-                <div class="gg-why-pbody">{body}</div>
+                <div class="gg-pt-title">{title}</div>
+                <div class="gg-pt-body">{body}</div>
               </div>
             </div>
           ))}
         </div>
       </div>
-      <div class="gg-why-image reveal-up" style="animation-delay:.2s">
-        <img src="/wp-images/grizzly-ranch-hero.webp" alt="Grizzly Ranch — group golf Graeagle" loading="lazy"/>
-        <div class="gg-why-img-badge">
-          <div style="font-family:'Playfair Display',serif;font-size:28px;color:#e8a850;font-weight:400;">Golf Digest</div>
-          <div style="font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.12em;color:rgba(245,240,232,.6);margin-top:4px;">Top 100 Course</div>
+      <div class="gg-why-img reveal-scale delay-2">
+        <img src="/wp-images/grizzly-ranch-hero.webp" alt="Grizzly Ranch Golf Club — group golf Graeagle, Golf Digest Top 100" loading="lazy"/>
+        <div class="gg-why-badge">
+          <div style="font-family:'Playfair Display',serif;font-size:26px;color:#e8a850;font-weight:400;line-height:1">Golf Digest</div>
+          <div style="font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.14em;color:rgba(245,240,232,.55);margin-top:5px">Top 100 Course</div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ── PRICING BY GROUP SIZE ── -->
+  <!-- ═══ PRICING BY SIZE ═══ -->
   <section class="gg-section">
     <div class="gg-container">
       <div class="gg-header reveal-up">
-        <p class="gg-label">From the TripsCaddie archive</p>
+        <span class="sec-label">From the TripsCaddie archive</span>
         <h2 class="gg-h2">Real pricing<br/>by group size</h2>
       </div>
       <div class="gg-price-grid">
-        {realBySize.map((r, i) => (
-          <div class={`gg-price-card reveal-up${r.hot ? ' gg-price-hot' : ''}`} style={`animation-delay:${i * 0.1}s`}>
-            {r.hot && <div class="gg-price-hot-tag">Most Popular</div>}
-            <div class="gg-price-range-label">{r.range}</div>
-            <div class="gg-price-amount">{r.priceRange}</div>
+        {bySize.map((r,i) => (
+          <div class={`gg-price-card glow-card reveal-scale delay-${i+1}${r.hot?' gg-price-hot':''}`}>
+            {r.hot && <div class="gg-hot-tag">Most Popular</div>}
+            <div class="gg-price-range">{r.range}</div>
+            <div class="gg-price-amt">{r.price}</div>
             <p class="gg-price-note">{r.note}</p>
           </div>
         ))}
       </div>
-      <p class="gg-price-disclaimer reveal-up">
-        Based on real completed trips · <a href="/trips/" style="color:var(--gg-gold);font-weight:700;text-decoration:none;">Browse 76 real packages →</a>
-      </p>
+      <p class="gg-archive-note reveal-up">Based on real completed trips · <a href="/trips/" class="underline-draw" style="color:var(--gg-gold);font-weight:700;">Browse 76 real packages →</a></p>
     </div>
   </section>
 
-  <!-- ── LOGISTICS ── -->
-  <section class="gg-section gg-logistics-section dark-section">
-    <div class="gg-container">
+  <!-- ═══ LOGISTICS — dark ═══ -->
+  <section class="gg-section gg-dark">
+    <div class="gg-container" style="max-width:840px">
       <div class="gg-header reveal-up">
-        <p class="gg-label" style="color:#e8a850">How it works</p>
-        <h2 class="gg-h2" style="color:#f0ece3">Group trip logistics,<br/><em>handled.</em></h2>
+        <span class="sec-label" style="color:#e8a850">How we do it</span>
+        <h2 class="gg-h2" style="color:#f5f0e8">Group logistics,<br/><em>handled.</em></h2>
       </div>
-      <div class="gg-logistics-grid">
-        {logistics.map((l, i) => (
-          <div class="gg-logistics-item reveal-up" style={`animation-delay:${i * 0.08}s`}>
-            <div class="gg-logistics-num">{String(i+1).padStart(2,'0')}</div>
+      <div class="gg-logistics">
+        {logistics.map((l,i) => (
+          <div class={`gg-log reveal-${i%2===0?'left':'right'} delay-${(i%3)+1}`}>
+            <div class="gg-log-n">{String(i+1).padStart(2,'0')}</div>
             <div>
-              <div class="gg-logistics-title">{l.title}</div>
-              <div class="gg-logistics-body">{l.body}</div>
+              <div class="gg-log-title">{l.title}</div>
+              <div class="gg-log-body">{l.body}</div>
             </div>
           </div>
         ))}
@@ -191,50 +175,31 @@ const blogs = [
     </div>
   </section>
 
-  <!-- ── BLOG LINKS ── -->
-  <section class="gg-section">
-    <div class="gg-container">
-      <div class="gg-header reveal-up">
-        <p class="gg-label">Deep dives</p>
-        <h2 class="gg-h2">Group trip planning guides</h2>
-      </div>
-      <div class="gg-blogs-grid">
-        {blogs.map((b, i) => (
-          <a href={b.href} class="gg-blog-card reveal-up" style={`animation-delay:${i * 0.08}s`}>
-            <span class="gg-blog-arrow">↗</span>
-            <span class="gg-blog-title">{b.title}</span>
-          </a>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <!-- ── FAQ ── -->
+  <!-- ═══ FAQ ═══ -->
   <section class="gg-section">
     <div class="gg-container" style="max-width:760px">
       <div class="gg-header reveal-up">
-        <p class="gg-label">Questions</p>
+        <span class="sec-label">Questions</span>
         <h2 class="gg-h2">Group Golf FAQ</h2>
       </div>
-      <div class="gg-faq">
-        {faqSchema.mainEntity.map((item: any, i: number) => (
-          <details class="gg-faq-item reveal-up" style={`animation-delay:${i * 0.06}s`}>
-            <summary class="gg-faq-q">{item.name}<span class="gg-faq-icon">+</span></summary>
-            <p class="gg-faq-a">{item.acceptedAnswer.text}</p>
-          </details>
-        ))}
-      </div>
+      {faqSchema.mainEntity.map((item:any,i:number) => (
+        <details class={`gg-faq reveal-up delay-${(i%4)+1}`}>
+          <summary class="gg-faq-q">{item.name}<span class="gg-faq-icon">+</span></summary>
+          <p class="gg-faq-a">{item.acceptedAnswer.text}</p>
+        </details>
+      ))}
     </div>
   </section>
 
-  <!-- ── CTA ── -->
-  <section class="gg-cta-section dark-section">
-    <div class="gg-container" style="text-align:center;max-width:640px">
+  <!-- ═══ CTA — dark ═══ -->
+  <section class="gg-cta gg-dark">
+    <div class="gg-cta-glow"></div>
+    <div class="gg-container" style="text-align:center;max-width:640px;position:relative;z-index:1">
       <h2 class="gg-cta-h2 reveal-up">Ready to plan your<br/><em>group trip?</em></h2>
-      <p class="gg-cta-sub reveal-up" style="animation-delay:.1s">Group size, dates, courses you want. Quote back within 24 hours.</p>
-      <div class="reveal-up" style="animation-delay:.2s">
-        <a href="/request-a-quote/" class="btn-green-glow gg-cta-primary">Plan My Group Trip →</a>
-        <p style="font-size:12px;color:rgba(245,240,232,.3);margin-top:14px;">No obligation · Groups of 4 to 200+ · 4.8★ rated</p>
+      <p class="gg-cta-sub reveal-up delay-1">Group size, dates, courses you want. Quote back within 24 hours.</p>
+      <div class="reveal-scale delay-2">
+        <a href="/request-a-quote/" class="btn-green-glow gg-btn">Plan My Group Trip →</a>
+        <p style="font-size:12px;color:rgba(245,240,232,.28);margin-top:14px;">No obligation · Groups of 4 to 200+ · 4.8★ rated</p>
       </div>
     </div>
   </section>
@@ -244,112 +209,94 @@ const blogs = [
 </Base>
 
 <style>
-:root {
-  --gg-gold: #e8a850; --gg-green: #1a7a40; --gg-dark: #0d1a0e;
-  --gg-text: #1c1208; --gg-muted: rgba(28,18,8,0.5);
-  --gg-border: rgba(28,18,8,0.08); --gg-radius: 18px;
-}
-.reveal-up { opacity:0; transform:translateY(28px); animation:gRevUp .7s cubic-bezier(.22,1,.36,1) forwards; }
-@keyframes gRevUp { to{opacity:1;transform:translateY(0);} }
-.gg-container { max-width:1140px; margin:0 auto; padding:0 clamp(20px,6%,80px); }
-.gg-section { padding:clamp(64px,9vw,112px) 0; background:var(--page-bg); }
-.dark-section { background:var(--gg-dark); }
-.gg-header { text-align:center; margin-bottom:clamp(40px,5vw,64px); }
-.gg-label { font-size:10px; font-weight:800; letter-spacing:.18em; text-transform:uppercase; color:var(--gg-gold); margin:0 0 12px; }
-.gg-h2 { font-family:'Playfair Display',serif; font-size:clamp(28px,4vw,50px); font-weight:500; color:var(--gg-text); line-height:1.1; margin:0; }
-.gg-h2 em { color:var(--gg-green); font-style:italic; }
+:root{--gg-gold:#e8a850;--gg-green:#1a7a40;--gg-dark:#0d1a0e;--gg-text:#1c1208;--gg-muted:rgba(28,18,8,0.52);--gg-border:rgba(28,18,8,0.08);--gg-r:20px}
+.gg-container{max-width:1140px;margin:0 auto;padding:0 clamp(20px,6%,80px)}
+.gg-section{padding:clamp(72px,9vw,120px) 0;background:var(--page-bg,#f8f5f0)}
+.gg-dark{background:var(--gg-dark)!important}
+.gg-header{text-align:center;margin-bottom:clamp(40px,5vw,68px)}
+.gg-h2{font-family:'Playfair Display',serif;font-size:clamp(28px,4vw,50px);font-weight:500;color:var(--gg-text);line-height:1.1;margin:8px 0 0}
+.gg-h2 em{font-style:italic;color:var(--gg-green)}
 
 /* HERO */
-.gg-hero { position:relative; min-height:88vh; display:flex; align-items:flex-end; overflow:hidden; }
-.gg-hero-bg { position:absolute; inset:0; background-size:cover; background-position:center 25%; transform:scale(1.06); animation:ggScale 9s ease forwards; }
-@keyframes ggScale { to{transform:scale(1);} }
-.gg-hero-overlay { position:absolute; inset:0; background:linear-gradient(160deg, rgba(13,26,14,.2) 0%, rgba(13,26,14,.65) 55%, rgba(13,26,14,.97) 100%); }
-.gg-hero-accent { position:absolute; bottom:0; right:0; width:45%; height:100%; background:linear-gradient(135deg, transparent 40%, rgba(232,168,80,.04) 100%); pointer-events:none; }
-.gg-hero-inner { position:relative; z-index:2; padding:0 clamp(24px,8%,120px) clamp(56px,8vw,96px); max-width:780px; }
-.gg-eyebrow { font-size:11px; font-weight:700; letter-spacing:.2em; text-transform:uppercase; color:rgba(232,168,80,.8); margin-bottom:18px; }
-.gg-h1 { font-family:'Playfair Display',serif; font-size:clamp(44px,7vw,88px); font-weight:500; color:#f0ece3; line-height:1.0; margin:0 0 18px; }
-.gg-h1 em { font-style:italic; color:var(--gg-gold); }
-.gg-sub { font-size:clamp(16px,2vw,20px); color:rgba(245,240,232,.6); line-height:1.55; margin:0 0 24px; }
-.gg-hero-pills { display:flex; flex-wrap:wrap; gap:8px; margin-bottom:32px; }
-.gg-hero-pills span { font-size:12px; font-weight:600; color:rgba(245,240,232,.75); padding:6px 15px; background:rgba(255,255,255,.08); backdrop-filter:blur(8px); border:1px solid rgba(255,255,255,.15); border-radius:100px; }
-.gg-hero-pills strong { color:var(--gg-gold); }
-.gg-hero-ctas { display:flex; gap:16px; flex-wrap:wrap; align-items:center; }
-.gg-cta-primary { display:inline-block; background:var(--gg-green); color:#fff; font-weight:700; font-size:15px; padding:16px 36px; border-radius:100px; text-decoration:none; transition:all .3s; }
-.gg-cta-primary:hover { transform:translateY(-2px); box-shadow:0 12px 32px rgba(26,122,64,.4); }
-.gg-cta-ghost { font-size:14px; color:rgba(232,168,80,.9); font-weight:600; text-decoration:none; border-bottom:1px solid rgba(232,168,80,.4); padding-bottom:2px; }
+.gg-hero{position:relative;min-height:90vh;display:flex;align-items:flex-end;overflow:hidden}
+.gg-bg{position:absolute;inset:0;background-size:cover;background-position:center 22%;transform:scale(1.07);animation:ggZoom 10s ease forwards}
+@keyframes ggZoom{to{transform:scale(1)}}
+.gg-overlay{position:absolute;inset:0;background:linear-gradient(160deg,rgba(13,26,14,.15) 0%,rgba(13,26,14,.6) 50%,rgba(13,26,14,.97) 100%)}
+.gg-hero-inner{position:relative;z-index:2;padding:0 clamp(24px,8%,120px) clamp(60px,8vw,100px);max-width:800px}
+.gg-eyebrow{font-size:11px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:rgba(232,168,80,.82);margin:0 0 18px}
+.gg-h1{font-family:'Playfair Display',serif;font-size:clamp(46px,7.5vw,92px);font-weight:500;color:#f5f0e8;line-height:.98;margin:0 0 18px}
+.gg-h1 em{font-style:italic;color:var(--gg-gold)}
+.gg-sub{font-size:clamp(16px,2vw,21px);color:rgba(245,240,232,.62);line-height:1.55;margin:0 0 26px}
+.gg-pills{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:32px}
+.gg-pills span{font-size:12px;font-weight:600;color:rgba(245,240,232,.8);padding:6px 15px;background:rgba(255,255,255,.1);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.18);border-radius:100px}
+.gg-pills strong{color:var(--gg-gold)}
+.gg-ctas{display:flex;gap:20px;align-items:center;flex-wrap:wrap}
+.gg-btn{display:inline-block;padding:15px 36px;border-radius:100px;font-size:15px;font-weight:700;text-decoration:none}
+.gg-ghost{font-size:14px;font-weight:600;color:rgba(232,168,80,.9);text-decoration:none}
 
 /* GROUP TYPES */
-.gg-types-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); gap:20px; }
-.gg-type-card { border-radius:var(--gg-radius); padding:32px 28px; border:1px solid var(--gg-border); background:#fff; box-shadow:0 2px 12px rgba(0,0,0,.04); transition:all .3s; position:relative; overflow:hidden; }
-.gg-type-card::before { content:''; position:absolute; top:0; left:0; right:0; height:4px; background:var(--accent); opacity:.7; transition:opacity .3s; }
-.gg-type-card:hover { transform:translateY(-6px); box-shadow:0 24px 56px rgba(0,0,0,.1); border-color:rgba(232,168,80,.3); }
-.gg-type-card:hover::before { opacity:1; }
-.gg-type-icon { font-size:36px; margin-bottom:10px; }
-.gg-type-size { font-size:10px; font-weight:800; text-transform:uppercase; letter-spacing:.12em; color:var(--gg-muted); margin-bottom:12px; }
-.gg-type-title { font-size:17px; font-weight:700; color:var(--gg-text); margin:0 0 10px; }
-.gg-type-body { font-size:13px; color:var(--gg-muted); line-height:1.7; margin:0; }
+.gg-types{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:20px}
+.gg-type{border-radius:var(--gg-r);padding:32px 28px;border:1px solid var(--gg-border);background:#fff;box-shadow:0 2px 12px rgba(0,0,0,.04);transition:all .35s;position:relative;overflow:hidden}
+.gg-type-top{position:absolute;top:0;left:0;right:0;height:4px;background:var(--accent);opacity:.75;transition:opacity .3s}
+.gg-type:hover{transform:translateY(-6px);box-shadow:0 24px 56px rgba(0,0,0,.1);border-color:rgba(232,168,80,.3)}
+.gg-type:hover .gg-type-top{opacity:1}
+.gg-type-icon{font-size:36px;margin-bottom:10px}
+.gg-type-size{font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.14em;color:var(--gg-muted);margin-bottom:10px}
+.gg-type-title{font-size:17px;font-weight:700;color:var(--gg-text);margin:0 0 10px}
+.gg-type-body{font-size:13px;color:var(--gg-muted);line-height:1.75;margin:0}
 
 /* WHY GRAEAGLE */
-.gg-why-inner { display:grid; grid-template-columns:1fr 1fr; gap:72px; align-items:center; }
-.gg-why-points { display:flex; flex-direction:column; gap:24px; margin-top:32px; }
-.gg-why-point { display:flex; gap:16px; align-items:flex-start; }
-.gg-why-icon { font-size:24px; flex-shrink:0; margin-top:2px; }
-.gg-why-ptitle { font-size:15px; font-weight:700; color:#f0ece3; margin-bottom:4px; }
-.gg-why-pbody { font-size:13px; color:rgba(245,240,232,.5); line-height:1.6; }
-.gg-why-image { position:relative; border-radius:20px; overflow:hidden; box-shadow:0 32px 80px rgba(0,0,0,.4); }
-.gg-why-image img { width:100%; height:400px; object-fit:cover; display:block; }
-.gg-why-img-badge { position:absolute; bottom:20px; left:20px; background:rgba(13,26,14,.9); backdrop-filter:blur(12px); border:1px solid rgba(232,168,80,.25); border-radius:14px; padding:14px 18px; }
+.gg-why-inner{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center}
+.gg-points{display:flex;flex-direction:column;gap:22px;margin-top:32px}
+.gg-point{display:flex;gap:16px;align-items:flex-start}
+.gg-pt-icon{font-size:24px;flex-shrink:0;margin-top:2px}
+.gg-pt-title{font-size:15px;font-weight:700;color:#f5f0e8;margin-bottom:4px}
+.gg-pt-body{font-size:13px;color:rgba(245,240,232,.48);line-height:1.65}
+.gg-why-img{position:relative;border-radius:22px;overflow:hidden;box-shadow:0 32px 80px rgba(0,0,0,.42)}
+.gg-why-img img{width:100%;height:420px;object-fit:cover;display:block}
+.gg-why-badge{position:absolute;bottom:20px;left:20px;background:rgba(13,26,14,.88);backdrop-filter:blur(14px);border:1px solid rgba(232,168,80,.22);border-radius:16px;padding:14px 20px}
 
-/* PRICING BY SIZE */
-.gg-price-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(240px,1fr)); gap:16px; margin-bottom:24px; }
-.gg-price-card { border-radius:var(--gg-radius); padding:28px 24px; border:1px solid var(--gg-border); background:#fff; box-shadow:0 2px 8px rgba(0,0,0,.04); transition:all .3s; position:relative; }
-.gg-price-card:hover { transform:translateY(-4px); box-shadow:0 16px 40px rgba(0,0,0,.09); border-color:rgba(232,168,80,.3); }
-.gg-price-hot { border-color:rgba(232,168,80,.3); background:rgba(232,168,80,.04); box-shadow:0 4px 20px rgba(232,168,80,.1); }
-.gg-price-hot-tag { position:absolute; top:-12px; left:50%; transform:translateX(-50%); background:var(--gg-gold); color:#1c1208; font-size:9px; font-weight:800; padding:4px 14px; border-radius:100px; text-transform:uppercase; letter-spacing:.1em; white-space:nowrap; }
-.gg-price-range-label { font-size:13px; font-weight:700; color:var(--gg-muted); margin-bottom:8px; text-transform:uppercase; letter-spacing:.06em; }
-.gg-price-amount { font-family:'Playfair Display',serif; font-size:26px; color:var(--gg-green); font-weight:400; margin-bottom:12px; }
-.gg-price-note { font-size:13px; color:var(--gg-muted); line-height:1.65; margin:0; }
-.gg-price-disclaimer { text-align:center; font-size:13px; color:var(--gg-muted); margin:0; }
+/* PRICING */
+.gg-price-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:18px;margin-bottom:24px}
+.gg-price-card{border-radius:var(--gg-r);padding:28px 24px;border:1px solid var(--gg-border);background:#fff;box-shadow:0 2px 10px rgba(0,0,0,.04);transition:all .35s;position:relative}
+.gg-price-card:hover{transform:translateY(-5px);box-shadow:0 20px 48px rgba(0,0,0,.1);border-color:rgba(232,168,80,.35)}
+.gg-price-hot{border-color:rgba(232,168,80,.32)!important;background:rgba(232,168,80,.04)!important;box-shadow:0 4px 22px rgba(232,168,80,.1)!important}
+.gg-hot-tag{position:absolute;top:-1px;left:50%;transform:translateX(-50%);background:var(--gg-gold);color:#1c1208;font-size:9px;font-weight:800;padding:4px 14px;border-radius:0 0 10px 10px;text-transform:uppercase;letter-spacing:.1em;white-space:nowrap}
+.gg-price-range{font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:var(--gg-muted);margin-bottom:8px}
+.gg-price-amt{font-family:'Playfair Display',serif;font-size:26px;color:var(--gg-green);font-weight:400;margin-bottom:12px}
+.gg-price-note{font-size:13px;color:var(--gg-muted);line-height:1.68;margin:0}
+.gg-archive-note{text-align:center;font-size:14px;color:var(--gg-muted);margin:0}
 
 /* LOGISTICS */
-.gg-logistics-grid { display:flex; flex-direction:column; gap:0; }
-.gg-logistics-item { display:grid; grid-template-columns:56px 1fr; gap:20px; padding:22px 0; border-bottom:1px solid rgba(245,240,232,.07); align-items:start; }
-.gg-logistics-num { font-family:'Playfair Display',serif; font-size:32px; color:rgba(232,168,80,.25); font-weight:400; line-height:1; }
-.gg-logistics-title { font-size:15px; font-weight:700; color:#f0ece3; margin-bottom:6px; }
-.gg-logistics-body { font-size:13px; color:rgba(245,240,232,.45); line-height:1.7; }
-
-/* BLOGS */
-.gg-blogs-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); gap:16px; }
-.gg-blog-card { display:flex; align-items:flex-start; gap:12px; padding:22px 24px; background:#fff; border:1px solid var(--gg-border); border-radius:var(--gg-radius); text-decoration:none; transition:all .3s; }
-.gg-blog-card:hover { border-color:rgba(232,168,80,.4); background:rgba(232,168,80,.03); transform:translateY(-3px); box-shadow:0 12px 32px rgba(0,0,0,.07); }
-.gg-blog-arrow { font-size:18px; color:var(--gg-gold); flex-shrink:0; margin-top:1px; }
-.gg-blog-title { font-size:14px; font-weight:600; color:var(--gg-text); line-height:1.45; }
+.gg-logistics{display:flex;flex-direction:column}
+.gg-log{display:grid;grid-template-columns:60px 1fr;gap:20px;padding:22px 0;border-bottom:1px solid rgba(245,240,232,.07);align-items:start}
+.gg-log-n{font-family:'Playfair Display',serif;font-size:36px;color:rgba(232,168,80,.2);font-weight:400;line-height:1}
+.gg-log-title{font-size:15px;font-weight:700;color:#f5f0e8;margin-bottom:5px}
+.gg-log-body{font-size:13px;color:rgba(245,240,232,.45);line-height:1.7}
 
 /* FAQ */
-.gg-faq-item { border-bottom:1px solid var(--gg-border); }
-.gg-faq-item[open] { background:rgba(232,168,80,.03); border-radius:12px; border-color:rgba(232,168,80,.2); }
-.gg-faq-q { font-size:15px; font-weight:600; color:var(--gg-text); padding:20px 0; cursor:pointer; list-style:none; display:flex; justify-content:space-between; align-items:center; gap:16px; }
-.gg-faq-q::-webkit-details-marker { display:none; }
-.gg-faq-item[open] .gg-faq-q { color:var(--gg-green); }
-.gg-faq-icon { font-size:22px; color:var(--gg-gold); flex-shrink:0; transition:transform .3s; }
-.gg-faq-item[open] .gg-faq-icon { transform:rotate(45deg); }
-.gg-faq-a { font-size:14px; color:var(--gg-muted); line-height:1.8; padding:0 0 20px; margin:0; }
+.gg-faq{border-bottom:1px solid var(--gg-border)}
+.gg-faq[open]{background:rgba(232,168,80,.03);border-radius:12px;border-color:rgba(232,168,80,.22)}
+.gg-faq-q{font-size:15px;font-weight:600;color:var(--gg-text);padding:20px 0;cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:16px}
+.gg-faq-q::-webkit-details-marker{display:none}
+.gg-faq[open] .gg-faq-q{color:var(--gg-green)}
+.gg-faq-icon{font-size:24px;color:var(--gg-gold);flex-shrink:0;transition:transform .3s}
+.gg-faq[open] .gg-faq-icon{transform:rotate(45deg)}
+.gg-faq-a{font-size:14px;color:var(--gg-muted);line-height:1.82;padding:0 0 20px;margin:0}
 
 /* CTA */
-.gg-cta-section { padding:clamp(72px,10vw,128px) 0; position:relative; overflow:hidden; }
-.gg-cta-section::before { content:''; position:absolute; width:800px; height:800px; border-radius:50%; background:radial-gradient(circle,rgba(26,122,64,.15) 0%,transparent 70%); top:50%; left:50%; transform:translate(-50%,-50%); pointer-events:none; }
-.gg-cta-h2 { font-family:'Playfair Display',serif; font-size:clamp(28px,5vw,52px); color:#f0ece3; font-weight:500; line-height:1.2; margin:0 0 18px; position:relative; }
-.gg-cta-h2 em { color:var(--gg-gold); font-style:italic; }
-.gg-cta-sub { font-size:16px; color:rgba(245,240,232,.5); line-height:1.7; margin:0 0 36px; position:relative; }
+.gg-cta{padding:clamp(80px,10vw,132px) 0;position:relative;overflow:hidden}
+.gg-cta-glow{position:absolute;width:720px;height:720px;border-radius:50%;background:radial-gradient(circle,rgba(26,122,64,.18) 0%,transparent 70%);top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none}
+.gg-cta-h2{font-family:'Playfair Display',serif;font-size:clamp(30px,5.5vw,56px);color:#f5f0e8;font-weight:500;line-height:1.15;margin:0 0 18px}
+.gg-cta-h2 em{color:var(--gg-gold);font-style:italic}
+.gg-cta-sub{font-size:16px;color:rgba(245,240,232,.52);line-height:1.75;margin:0 0 36px}
 
-@media(max-width:860px) {
-  .gg-hero { min-height:100svh; }
-  .gg-why-inner { grid-template-columns:1fr; }
-  .gg-why-image { display:none; }
-  .gg-price-grid { grid-template-columns:1fr 1fr; }
-  .gg-types-grid { grid-template-columns:1fr; }
+@media(max-width:900px){
+  .gg-hero{min-height:100svh}
+  .gg-why-inner{grid-template-columns:1fr}
+  .gg-why-img{display:none}
+  .gg-price-grid{grid-template-columns:1fr 1fr}
+  .gg-types{grid-template-columns:1fr}
 }
-@media(max-width:540px) {
-  .gg-price-grid { grid-template-columns:1fr; }
-}
+@media(max-width:540px){.gg-price-grid{grid-template-columns:1fr}}
 </style>
