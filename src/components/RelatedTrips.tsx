@@ -387,42 +387,34 @@ export default function RelatedTrips({ slug, type, showAll = false, max = 6 }: {
       </div>
 
       {/* Grid (≤3) or Carousel (>3) */}
-      {isCarousel ? (
-        <div style={{
-          display: "flex",
-          gap: 20,
-          overflowX: "auto",
-          scrollSnapType: "x mandatory",
-          WebkitOverflowScrolling: "touch",
-          paddingLeft: "clamp(20px,5%,60px)",
-          paddingRight: "clamp(20px,5%,60px)",
-          paddingBottom: 12,
-          scrollbarWidth: "none",
-          msOverflowStyle: "none",
-          scrollPaddingLeft: "clamp(20px,5%,60px)",
-        }}
-          className="rt-carousel"
-        >
-          {trips.map((trip, i) => (
-            <div key={trip.id || i} style={{
-              flex: "0 0 85vw",
-              maxWidth: "340px",
-              minWidth: "260px",
-              scrollSnapAlign: "start",
-            }}>
-              <TripCard trip={trip} />
-            </div>
-          ))}
-        </div>
-      ) : (
-        <div style={{ maxWidth: 1200, margin: "0 auto", padding: "0 clamp(20px,5%,60px)" }}>
+      <div style={{ maxWidth: 1200, margin: "0 auto", padding: "0 clamp(20px,5%,60px)" }}>
+        {isCarousel ? (
+          <div className="rt-carousel" style={{
+            display: "flex",
+            gap: 16,
+            overflowX: "auto",
+            WebkitOverflowScrolling: "touch",
+            scrollSnapType: "x mandatory",
+            paddingBottom: 16,
+            scrollbarWidth: "none",
+          }}>
+            {trips.map((trip, i) => (
+              <div key={trip.id || i} style={{
+                flex: "0 0 300px",
+                scrollSnapAlign: "start",
+              }}>
+                <TripCard trip={trip} />
+              </div>
+            ))}
+          </div>
+        ) : (
           <div className="rt-grid" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 20 }}>
             {trips.map((trip, i) => (
               <TripCard key={trip.id || i} trip={trip} />
             ))}
           </div>
-        </div>
-      )}
+        )}
+      </div>
 
       {/* Footer CTA */}
       <div style={{ maxWidth: 1200, margin: "0 auto", padding: "0 clamp(20px,5%,60px)" }}>
