@@ -1057,15 +1057,20 @@ const lodgingMeta = {'townhomes-at-plumas-pines':{badge:'Great for Large Groups'
   #hp-trips-grid { grid-template-columns: repeat(3,1fr); }
   @media (max-width: 860px) { #hp-trips-grid { grid-template-columns: 1fr !important; } }
 
-  /* ── Mobile section reorder: Real Trips moves before Courses ── */
+  /* ── Mobile section reorder: Real Trips moves first for social proof ── */
   @media (max-width: 860px) {
     #hp-body { display: flex; flex-direction: column; }
-    #hp-trips  { order: 2; }
-    #hp-courses { order: 3; }
+    #hp-trips   { order: 1; }
+    #hp-courses { order: 2; }
+    #hp-why     { order: 3; }
     #hp-lodging { order: 4; }
-    #hp-why    { order: 5; }
-    #hp-dining { order: 6; }
-    #hp-blog   { order: 7; }
-    #hp-cta    { order: 8; }
+    #hp-dining  { order: 5; }
+    #hp-blog    { order: 6; }
+    #hp-cta     { order: 7; }
+  }
+
+  /* ── Hero: ONE CTA on mobile — hide the ghost secondary button ── */
+  @media (max-width: 860px) {
+    .btn-ghost-hero { display: none; }
   }
 </style>
