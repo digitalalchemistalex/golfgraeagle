@@ -759,8 +759,10 @@ section.hero-section,
 .bl-price-row span:last-child { font-weight:700; color:var(--green-light); }
 .bl-price-header span:last-child { color:#e8f8e8; }
 @media (max-width: 640px) {
-  .bl-price-row { grid-template-columns:1fr 1fr; gap:4px; }
-  .bl-price-row span:first-child { grid-column:1/-1; font-weight:600; color:var(--green-dark); }
+  .bl-price-row { grid-template-columns:1fr 1fr; gap:6px 12px; padding:14px 16px; }
+  .bl-price-row span:first-child { grid-column:1/-1; font-weight:600; color:var(--green-dark); margin-bottom:2px; }
+  .bl-price-row span[data-label] { display:flex; flex-direction:column; gap:1px; }
+  .bl-price-row span[data-label]::before { content:attr(data-label); font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:0.07em; color:var(--text-muted); }
   .bl-price-header { display:none; }
 }
 
