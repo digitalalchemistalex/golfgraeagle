@@ -10,7 +10,7 @@ export interface MailOptions {
   html: string;
 }
 
-const FROM_NAME  = 'GolfGraeagle.com';
+const FROM_NAME  = 'Graeagle Golf Packages';
 const FROM_EMAIL = 'info@golfgraeagle.com';
 
 export async function sendMail(opts: MailOptions): Promise<void> {
