@@ -380,7 +380,7 @@ const quoteSchema = [
                 {[
                   {v:'none',l:'Just golf'},{v:'birthday',l:'Birthday'},{v:'bachelor',l:'Bachelor party'},
                   {v:'corporate',l:'Corporate outing'},{v:'anniversary',l:'Anniversary'},{v:'other',l:'Other event'},
-                ].map(e=>(<label class="q-radio"><input type="radio" name="eventType" value={e.v}/> {e.l}</label>))}
+                ].map(e=>(<label class="q-radio"><input type="radio" name="specialFBEvent" value={e.v}/> {e.l}</label>))}
               </div>
             </div>
 
@@ -804,7 +804,7 @@ document.querySelectorAll('[name="totalRounds"]').forEach(r => {
 });
 
 // event type conditional
-document.querySelectorAll('[name="eventType"]').forEach(r => {
+document.querySelectorAll('[name="specialFBEvent"]').forEach(r => {
   r.addEventListener('change', () => {
     $id('event-detail-wrap').style.display =
       ['birthday','bachelor','corporate','anniversary','other'].includes(r.value) ? 'flex' : 'none';
