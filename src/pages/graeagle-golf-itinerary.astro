@@ -135,9 +135,9 @@ const whyPoints = [
     </div>
     <!-- Floating stat cards — desktop right -->
     <div class="gi-floats reveal-fade delay-5">
-      <div class="gi-float"><div class="gi-float-val" data-count="76">0</div><div class="gi-float-lbl">Real Packages</div></div>
+      <div class="gi-float"><div class="gi-float-val">2–5</div><div class="gi-float-lbl">Day trips</div></div>
       <div class="gi-float"><div class="gi-float-val">4.8★</div><div class="gi-float-lbl">Avg Rating</div></div>
-      <div class="gi-float"><div class="gi-float-val" data-count="5">0</div><div class="gi-float-lbl">Courses</div></div>
+      <div class="gi-float"><div class="gi-float-val" data-count="24">0</div><div class="gi-float-lbl">Hr turnaround</div></div>
     </div>
   </section>
 
@@ -225,7 +225,7 @@ const whyPoints = [
     <div class="gi-container gi-why-inner">
       <div class="gi-why-text">
         <span class="sec-label">Why Graeagle beats Tahoe for golf itineraries</span>
-        <h2 class="gi-h2 reveal-up" style="color:#f5f0e8;margin-top:10px">Why groups<br/><em>choose Graeagle</em></h2>
+        <h2 class="gi-h2 reveal-up" style="color:#f5f0e8;margin-top:10px">Why Graeagle over<br/><em>Lake Tahoe</em></h2>
         <div class="gi-points">
           {whyPoints.map(([icon, title, body], i) => (
             <div class={`gi-point reveal-${i%2===0?'left':'right'} delay-${(i%3)+1}`}>
@@ -257,10 +257,10 @@ const whyPoints = [
       </div>
       <div class="gi-steps">
         {[
-          ['01','📋','Tell us your trip length','Dates, group size, how many rounds, budget range. Takes 2 minutes via the quote form or call (888) 586-1157.'],
-          ['02','⚡','Get your day-by-day itinerary in 24h','Courses sequenced by difficulty, tee times locked, lodging matched, dining suggested. All-in price included.'],
-          ['03','✅','Confirm and we book everything','Approve the itinerary. We lock tee times, reserve lodging, and make any dining reservations. One invoice.'],
-          ['04','⛳','Show up and play','You arrive. Everything is pre-arranged. We handle every detail of your Graeagle golf vacation.'],
+          ['01','🗓','Choose your trip length','2 nights = 2–3 courses. 3 nights = 3–4 courses. 4–5 nights = all 5. We sequence them easiest to hardest so your group peaks on day 3, not burns out.'],
+          ['02','📋','Get your day-by-day plan in 24h','Each course in the right order. Tee times staggered for pace. Lodging matched to your route. Dining reservations flagged for the nights that need booking ahead.'],
+          ['03','✅','Approve and we lock everything','You review the itinerary. One change round if needed. We then book every tee time, confirm lodging, and handle any restaurant reservations.'],
+          ['04','⛳','Arrive and follow the plan','Your itinerary is in your inbox before you leave home. We handle changes if weather or timing shifts. You just play.'],
         ].map(([n, icon, t, b], i) => (
           <div class={`gi-step glow-card reveal-${i<2?'left':'right'} delay-${(i%3)+1}`}>
             <div class="gi-step-n">{n}</div>
@@ -277,11 +277,11 @@ const whyPoints = [
   <section class="gi-trust gi-dark">
     <div class="gi-container gi-trust-row">
       {[
-        ['76','Real itineraries archived'],
-        ['5','Championship courses'],
-        ['4.8','672 verified reviews'],
-        ['24','Hour quote turnaround'],
-        ['2004','Year we started'],
+        ['4',    'Trip lengths: 2–5 days'],
+        ['5',    'Courses difficulty-sequenced'],
+        ['4.8',  '672 verified reviews'],
+        ['24',   'Hour itinerary turnaround'],
+        ['2004', 'Year we started'],
       ].map(([val, label], i) => (
         <div class={`gi-stat reveal-scale delay-${i+1}`}>
           <div class="gi-stat-val">
@@ -315,11 +315,11 @@ const whyPoints = [
   <section class="gi-cta-section gi-dark">
     <div class="gi-cta-glow"></div>
     <div class="gi-container" style="text-align:center;max-width:660px;position:relative;z-index:1">
-      <h2 class="gi-cta-h2 reveal-up">Your custom Graeagle<br/><em>golf itinerary in 24 hours.</em></h2>
-      <p class="gi-cta-sub reveal-up delay-1">Tell us your dates, group size, and which courses you want. We build the full day-by-day schedule — tee times, lodging, dining — and send it back within 24 hours.</p>
+      <h2 class="gi-cta-h2 reveal-up">Course 1 easiest.<br/><em>Course 5 the bucket list.</em></h2>
+      <p class="gi-cta-sub reveal-up delay-1">Tell us your trip length and skill level. We sequence the 5 courses in the right difficulty order, lock tee times, confirm lodging, and send your full day-by-day itinerary within 24 hours.</p>
       <div class="reveal-scale delay-2">
-        <a href="/request-a-quote/" class="btn-green-glow gi-cta-main">Request a Free Quote →</a>
-        <p class="gi-cta-trust">No obligation · 72-hr cancellation · 4.8★ · 672 reviews</p>
+        <a href="/request-a-quote/" class="btn-green-glow gi-cta-main">Get My Custom Itinerary →</a>
+        <p class="gi-cta-trust">2, 3, 4 or 5-day plans · 72-hr cancellation · 4.8★ · 672 reviews</p>
       </div>
     </div>
   </section>

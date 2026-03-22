@@ -87,6 +87,12 @@ const logistics = [
         <a href="/trips/" class="gg-ghost underline-draw">See real group pricing ↗</a>
       </div>
     </div>
+    <!-- Floating stat cards — desktop right -->
+    <div class="gg-floats reveal-fade delay-5">
+      <div class="gg-float"><div class="gg-float-val">200+</div><div class="gg-float-lbl">Max group size</div></div>
+      <div class="gg-float"><div class="gg-float-val">4.8★</div><div class="gg-float-lbl">Avg Rating</div></div>
+      <div class="gg-float"><div class="gg-float-val" data-count="5">0</div><div class="gg-float-lbl">Courses</div></div>
+    </div>
   </section>
 
   <!-- ═══ GROUP TYPES ═══ -->
@@ -115,7 +121,7 @@ const logistics = [
     <div class="gg-container gg-why-inner">
       <div class="gg-why-text">
         <span class="sec-label">The group golf case — northern california golf trip planning</span>
-        <h2 class="gg-h2 reveal-up" style="color:#f5f0e8;margin-top:10px">Why groups<br/><em>choose Graeagle</em></h2>
+        <h2 class="gg-h2 reveal-up" style="color:#f5f0e8;margin-top:10px">Why Graeagle is built<br/><em>for group golf</em></h2>
         <div class="gg-points">
           {[
             ['⛳','5 courses, 25 min apart','Play a different course every day without logistics headaches. No long drives.'],
@@ -201,15 +207,37 @@ const logistics = [
     </div>
   </section>
 
+  <!-- ═══ TRUST STATS — dark ═══ -->
+  <section class="gg-trust gg-dark">
+    <div class="gg-container gg-trust-row">
+      {[
+        ['200', 'Max golfers per outing'],
+        ['5',   'Courses available'],
+        ['4.8', '672 verified reviews'],
+        ['76',  'Real group trips archived'],
+        ['2004','Year we started'],
+      ].map(([val, label], i) => (
+        <div class={`gg-stat reveal-scale delay-${i+1}`}>
+          <div class="gg-stat-val">
+            {val === '4.8' ? <><span data-count="4.8">0</span>★</> :
+             val === '200' ? <><span data-count="200">0</span>+</> :
+             <span data-count={val}>0</span>}
+          </div>
+          <div class="gg-stat-label">{label}</div>
+        </div>
+      ))}
+    </div>
+  </section>
+
   <!-- ═══ CTA — dark ═══ -->
   <section class="gg-cta gg-dark">
     <div class="gg-cta-glow"></div>
     <div class="gg-container" style="text-align:center;max-width:640px;position:relative;z-index:1">
-      <h2 class="gg-cta-h2 reveal-up">Ready to plan your<br/><em>group trip?</em></h2>
-      <p class="gg-cta-sub reveal-up delay-1">Group size, dates, courses you want. Quote back within 24 hours.</p>
+      <h2 class="gg-cta-h2 reveal-up">4 golfers or 200.<br/><em>We handle the whole group.</em></h2>
+      <p class="gg-cta-sub reveal-up delay-1">Send us your headcount, dates, and which courses you want. We build consecutive tee time blocks, match your lodging, and send a full group proposal within 24 hours.</p>
       <div class="reveal-scale delay-2">
         <a href="/request-a-quote/" class="btn-green-glow gg-btn">Plan My Group Trip →</a>
-        <p style="font-size:12px;color:rgba(245,240,232,.28);margin-top:14px;">No obligation · Groups of 4 to 200+ · 4.8★ rated</p>
+        <p style="font-size:12px;color:rgba(245,240,232,.28);margin-top:14px;">Groups 4–200+ · Shotgun starts available · 72-hr cancellation · 4.8★</p>
       </div>
     </div>
   </section>
@@ -294,6 +322,18 @@ const logistics = [
 .gg-faq[open] .gg-faq-icon{transform:rotate(45deg)}
 .gg-faq-a{font-size:14px;color:var(--gg-muted);line-height:1.82;padding:0 0 20px;margin:0}
 
+/* TRUST STATS */
+.gg-trust{padding:clamp(48px,6vw,80px) 0}
+.gg-trust-row{display:grid;grid-template-columns:repeat(5,1fr);gap:32px;text-align:center}
+.gg-stat-val{font-family:'Playfair Display',serif;font-size:clamp(30px,4vw,48px);color:var(--gg-gold);font-weight:400;line-height:1;margin-bottom:8px}
+.gg-stat-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.14em;color:rgba(245,240,232,.62)}
+
+/* FLOAT CARDS */
+.gg-floats{position:absolute;right:clamp(24px,5%,72px);bottom:clamp(56px,8vw,90px);display:flex;flex-direction:column;gap:10px;z-index:3}
+.gg-float{background:rgba(255,255,255,.1);backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,.2);border-radius:16px;padding:14px 22px;text-align:center;min-width:116px}
+.gg-float-val{font-family:'Playfair Display',serif;font-size:26px;color:var(--gg-gold);font-weight:400;line-height:1}
+.gg-float-lbl{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.14em;color:rgba(245,240,232,.45);margin-top:5px}
+
 /* CTA */
 .gg-cta{padding:clamp(80px,10vw,132px) 0;position:relative;overflow:hidden}
 .gg-cta-glow{position:absolute;width:720px;height:720px;border-radius:50%;background:radial-gradient(circle,rgba(26,122,64,.18) 0%,transparent 70%);top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none}
@@ -303,10 +343,12 @@ const logistics = [
 
 @media(max-width:900px){
   .gg-hero{min-height:100svh}
+  .gg-floats{display:none}
   .gg-why-inner{grid-template-columns:1fr}
   .gg-why-img{display:none}
   .gg-price-grid{grid-template-columns:1fr 1fr}
   .gg-types{grid-template-columns:1fr}
+  .gg-trust-row{grid-template-columns:repeat(3,1fr);gap:20px}
 }
-@media(max-width:540px){.gg-price-grid{grid-template-columns:1fr}}
+@media(max-width:540px){.gg-price-grid{grid-template-columns:1fr}.gg-trust-row{grid-template-columns:1fr 1fr}}
 </style>

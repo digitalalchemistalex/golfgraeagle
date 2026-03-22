@@ -98,9 +98,9 @@ const includes = [
     </div>
     <!-- Floating stat cards — right side desktop -->
     <div class="sap-floats reveal-fade delay-5">
-      <div class="sap-float"><div class="sap-float-val" data-count="76">0</div><div class="sap-float-lbl">Real Packages</div></div>
+      <div class="sap-float"><div class="sap-float-val" data-count="4">0</div><div class="sap-float-lbl">Properties</div></div>
       <div class="sap-float"><div class="sap-float-val">4.8★</div><div class="sap-float-lbl">Avg Rating</div></div>
-      <div class="sap-float"><div class="sap-float-val" data-count="2004">0</div><div class="sap-float-lbl">Est.</div></div>
+      <div class="sap-float"><div class="sap-float-val" data-count="5">0</div><div class="sap-float-lbl">Courses</div></div>
     </div>
   </section>
 
@@ -192,15 +192,35 @@ const includes = [
     </div>
   </section>
 
+  <!-- ═══ TRUST STATS — dark ═══ -->
+  <section class="sap-trust sap-dark">
+    <div class="sap-container sap-trust-row">
+      {[
+        ['4',    '4 lodging properties'],
+        ['5',    'Championship courses'],
+        ['4.8',  '672 verified reviews'],
+        ['76',   'Real packages archived'],
+        ['2004', 'Year we started'],
+      ].map(([val, label], i) => (
+        <div class={`sap-stat reveal-scale delay-${i+1}`}>
+          <div class="sap-stat-val">
+            {val === '4.8' ? <><span data-count="4.8">0</span>★</> : <span data-count={val}>0</span>}
+          </div>
+          <div class="sap-stat-label">{label}</div>
+        </div>
+      ))}
+    </div>
+  </section>
+
   <!-- ═══ CTA — dark ═══ -->
   <section class="sap-cta sap-dark">
     <div class="sap-cta-glow"></div>
     <div class="sap-container" style="text-align:center;max-width:640px;position:relative;z-index:1">
-      <h2 class="sap-cta-h2 reveal-up">Build your Graeagle<br/><em>stay and play package</em></h2>
-      <p class="sap-cta-sub reveal-up delay-1">Dates, group size, courses you want. Quote back in 24 hours, no obligation.</p>
+      <h2 class="sap-cta-h2 reveal-up">Lodge on the course.<br/><em>Tee off in the morning.</em></h2>
+      <p class="sap-cta-sub reveal-up delay-1">Tell us your lodging preference and courses. We build the full stay-and-play bundle — rooms confirmed, tee times locked — and send you an all-in price within 24 hours.</p>
       <div class="reveal-scale delay-2">
-        <a href="/request-a-quote/" class="btn-green-glow sap-btn">Request a Free Quote →</a>
-        <p style="font-size:12px;color:rgba(245,240,232,0.28);margin-top:14px;">No obligation · 72-hr cancellation · 4.8★ rated</p>
+        <a href="/request-a-quote/" class="btn-green-glow sap-btn">Build My Stay & Play →</a>
+        <p style="font-size:12px;color:rgba(245,240,232,0.28);margin-top:14px;">4 properties · All 5 courses · 72-hr cancellation · 4.8★</p>
       </div>
     </div>
   </section>
@@ -290,7 +310,11 @@ const includes = [
 .sap-faq-a{font-size:14px;color:var(--sap-muted);line-height:1.82;padding:0 0 20px;margin:0}
 
 /* CTA */
-.sap-cta{padding:clamp(80px,10vw,132px) 0;position:relative;overflow:hidden}
+.sap-trust{padding:clamp(48px,6vw,80px) 0}
+.sap-trust-row{display:grid;grid-template-columns:repeat(5,1fr);gap:32px;text-align:center}
+.sap-stat-val{font-family:'Playfair Display',serif;font-size:clamp(30px,4vw,48px);color:var(--sap-gold);font-weight:400;line-height:1;margin-bottom:8px}
+.sap-stat-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.14em;color:rgba(245,240,232,.62)}
+
 .sap-cta-glow{position:absolute;width:700px;height:700px;border-radius:50%;background:radial-gradient(circle,rgba(26,122,64,.18) 0%,transparent 70%);top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none}
 .sap-cta-h2{font-family:'Playfair Display',serif;font-size:clamp(30px,5.5vw,56px);color:#f5f0e8;font-weight:500;line-height:1.15;margin:0 0 18px}
 .sap-cta-h2 em{color:var(--sap-gold);font-style:italic}
@@ -301,6 +325,7 @@ const includes = [
   .sap-floats{display:none}
   .sap-pkgs{grid-template-columns:1fr 1fr}
   .sap-lodging{grid-template-columns:1fr}
+  .sap-trust-row{grid-template-columns:repeat(3,1fr);gap:20px}
 }
-@media(max-width:540px){.sap-pkgs{grid-template-columns:1fr}}
+@media(max-width:540px){.sap-pkgs{grid-template-columns:1fr}.sap-trust-row{grid-template-columns:1fr 1fr}}
 </style>
