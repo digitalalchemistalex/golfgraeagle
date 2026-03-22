@@ -11,11 +11,11 @@ const description = "Real Graeagle golf itineraries for every trip length. 2-day
 const faqSchema = {
   "@context": "https://schema.org", "@type": "FAQPage",
   "mainEntity": [
-    { "@type": "Question", "name": "What is the best 3-day Graeagle golf itinerary?", "acceptedAnswer": { "@type": "Answer", "text": "Day 1: Graeagle Meadows (slope 120 — warm up, mixed-handicap friendly). Day 2: Whitehawk Ranch (slope 132 — meadow and forest layout). Day 3: Grizzly Ranch (Golf Digest Top 100, slope 140 — the challenge round). Lodging at River Pines Resort. Dinner at Sardine Lake Resort on night 2 — book 4 weeks ahead." } },
-    { "@type": "Question", "name": "How many courses can you play in a Graeagle golf itinerary?", "acceptedAnswer": { "@type": "Answer", "text": "A 2-day itinerary covers 2 courses. A 3-day covers 3–4 courses. A 4–5-day itinerary can include all 5 Graeagle courses. All five are within 25 minutes of each other, so no day is wasted on driving." } },
-    { "@type": "Question", "name": "What order should you play the Graeagle golf courses?", "acceptedAnswer": { "@type": "Answer", "text": "Most groups start with Graeagle Meadows (slope 120) or Plumas Pines (slope 132) to warm up, then build toward Grizzly Ranch (slope 140) and Nakoma Dragon (slope 147) for the challenge rounds. Save Nakoma for a rest day before or after — the FLW clubhouse and Inn at Nakoma are the trip highlight." } },
-    { "@type": "Question", "name": "Can GolfGraeagle build a custom golf itinerary for my group?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Every GolfGraeagle package includes a full day-by-day itinerary — tee times in sequence, lodging matched to your group, dining recommendations, and driving directions between courses. Request a free quote and receive your custom Graeagle golf itinerary within 24 hours." } },
-    { "@type": "Question", "name": "What is the best time of year for a Graeagle golf trip?", "acceptedAnswer": { "@type": "Answer", "text": "September and October are the best months — courses are in peak condition, crowds thin out after Labor Day, and fall foliage adds to the scenery. June through August is peak season: book tee times 4–6 weeks ahead. May is ideal for smaller groups who want uncrowded courses." } }
+    { "@type": "Question", "name": "What is the best 3-day Graeagle golf itinerary?", "acceptedAnswer": { "@type": "Answer", "text": "Day 1: Graeagle Meadows (slope 120 — warm up). Day 2: Whitehawk Ranch (slope 132 — meadow and forest). Day 3: Grizzly Ranch (Golf Digest Top 100, slope 140 — the challenge round). Lodging at River Pines Resort. Dinner at Sardine Lake Resort on night 2 — book 4 weeks ahead." } },
+    { "@type": "Question", "name": "How many courses can you play in a Graeagle golf itinerary?", "acceptedAnswer": { "@type": "Answer", "text": "A 2-day itinerary covers 2 courses. A 3-day covers 3-4 courses. A 4-5-day itinerary can include all 5 Graeagle courses. All five are within 25 minutes of each other." } },
+    { "@type": "Question", "name": "What order should you play the Graeagle golf courses?", "acceptedAnswer": { "@type": "Answer", "text": "Start with Graeagle Meadows (slope 120) or Plumas Pines (slope 132) to warm up, then build toward Grizzly Ranch (slope 140) and Nakoma Dragon (slope 147) for the challenge rounds." } },
+    { "@type": "Question", "name": "Can GolfGraeagle build a custom golf itinerary for my group?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Every GolfGraeagle package includes a full day-by-day itinerary — tee times in sequence, lodging matched to your group, dining recommendations. Request a free quote and receive your custom Graeagle golf itinerary within 24 hours." } },
+    { "@type": "Question", "name": "What is the best time of year for a Graeagle golf trip?", "acceptedAnswer": { "@type": "Answer", "text": "September and October are the best months — peak condition, fewer crowds after Labor Day, fall foliage. June through August is peak season: book 4-6 weeks ahead. May is ideal for smaller groups who want uncrowded courses." } }
   ]
 };
 const breadcrumbSchema = {
@@ -38,10 +38,10 @@ const howToSchema = {
   "name": "How to Build a Graeagle Golf Itinerary",
   "description": "Step-by-step guide to building a Graeagle golf trip itinerary — course order, lodging, and dining.",
   "step": [
-    { "@type": "HowToStep", "position": 1, "name": "Choose your trip length", "text": "2 nights = 2–3 courses. 3 nights = 3–4 courses. 4–5 nights = all 5 courses. Most groups choose 3 nights." },
-    { "@type": "HowToStep", "position": 2, "name": "Sequence courses by difficulty", "text": "Start with Graeagle Meadows or Plumas Pines (slope 120–132). Build to Whitehawk Ranch and Grizzly Ranch. Save Nakoma Dragon (slope 147) for the signature round." },
-    { "@type": "HowToStep", "position": 3, "name": "Match lodging to your itinerary", "text": "River Pines Resort suits most groups. Inn at Nakoma puts you on-course at The Dragon. Townhomes at Plumas Pines work for groups of 8–24 needing multi-bedroom units." },
-    { "@type": "HowToStep", "position": 4, "name": "Book dining in advance", "text": "Sardine Lake Resort requires 4-week advance reservation. Grizzly Grill and Iron Door are popular for group dinners — ask GolfGraeagle to include reservations in your itinerary." }
+    { "@type": "HowToStep", "position": 1, "name": "Choose your trip length", "text": "2 nights = 2-3 courses. 3 nights = 3-4 courses. 4-5 nights = all 5 courses." },
+    { "@type": "HowToStep", "position": 2, "name": "Sequence courses by difficulty", "text": "Start with Graeagle Meadows or Plumas Pines. Build to Whitehawk Ranch and Grizzly Ranch. Save Nakoma Dragon for the signature round." },
+    { "@type": "HowToStep", "position": 3, "name": "Match lodging to your itinerary", "text": "River Pines Resort suits most groups. Inn at Nakoma for The Dragon. Townhomes at Plumas Pines for groups of 8-24." },
+    { "@type": "HowToStep", "position": 4, "name": "Book dining in advance", "text": "Sardine Lake Resort requires 4-week advance reservation. Grizzly Grill and Iron Door are popular for group dinners." }
   ]
 };
 const serviceSchema = {
@@ -54,69 +54,62 @@ const serviceSchema = {
   "offers": { "@type": "AggregateOffer", "lowPrice": "620", "highPrice": "1705", "priceCurrency": "USD" }
 };
 
-// Itinerary data — verified facts only
 const itineraries = [
-  {
-    label: '2-Day Itinerary',
-    nights: 2, rounds: 2, priceRange: '$620–$645/pp',
-    badge: 'Weekend Trip',
+  { label: '2-Day', nights: 2, rounds: 2, priceRange: '$620–$645/pp', badge: 'Weekend', hot: false,
     days: [
-      { day: 'Day 1', course: 'Graeagle Meadows', note: 'Par 72, slope 120. Arrive, settle in, afternoon round. Dinner at Grizzly Grill or Mohawk Tavern.' },
-      { day: 'Day 2', course: 'Whitehawk Ranch', note: 'Par 71, slope 132. Top 20 California. Morning round, depart after lunch.' },
+      { day: 'Day 1', course: 'Graeagle Meadows', note: 'Par 72 · Slope 120 · Arrive, warm up round. Dinner at Grizzly Grill.' },
+      { day: 'Day 2', course: 'Whitehawk Ranch', note: 'Par 71 · Slope 132 · Top 20 CA. Morning round, depart after lunch.' },
     ],
-    lodging: 'River Pines Resort',
-  },
-  {
-    label: '3-Day Itinerary',
-    nights: 3, rounds: 3, priceRange: '$645–$875/pp',
-    badge: 'Most Popular',
-    hot: true,
+    includes: ['Tee times at 2 courses', '2 nights at River Pines', 'Day-by-day itinerary', 'Groups of 4-24'],
+    lodging: 'River Pines Resort' },
+  { label: '3-Day', nights: 3, rounds: 3, priceRange: '$645–$875/pp', badge: 'Most Popular', hot: true,
     days: [
-      { day: 'Day 1', course: 'Graeagle Meadows', note: 'Par 72, slope 120. Warm-up round. Easy fairways, Mohawk Valley views.' },
-      { day: 'Day 2', course: 'Whitehawk Ranch', note: 'Par 71, slope 132. Meadow and forest mix. Sulphur Creek in play.' },
-      { day: 'Day 3', course: 'Grizzly Ranch', note: 'Golf Digest Top 100. Par 72, slope 140, 7,411 yds. The challenge round.' },
+      { day: 'Day 1', course: 'Graeagle Meadows', note: 'Par 72 · Slope 120 · Warm-up round. Easy fairways.' },
+      { day: 'Day 2', course: 'Whitehawk Ranch', note: 'Par 71 · Slope 132 · Meadow and forest. Sulphur Creek in play.' },
+      { day: 'Day 3', course: 'Grizzly Ranch', note: 'Golf Digest Top 100 · Par 72 · Slope 140 · The challenge round.' },
     ],
-    lodging: 'River Pines Resort or Chalet View Lodge',
-  },
-  {
-    label: '4-Day Itinerary',
-    nights: 4, rounds: 4, priceRange: '$876–$1,120/pp',
-    badge: 'Dragon Run',
+    includes: ['Tee times at 3 courses', '3 nights lodging', 'Full itinerary + dining tips', 'Groups of 4-24'],
+    lodging: 'River Pines or Chalet View' },
+  { label: '4-Day', nights: 4, rounds: 4, priceRange: '$876–$1,120/pp', badge: 'Dragon Run', hot: false,
     days: [
-      { day: 'Day 1', course: 'Graeagle Meadows', note: 'Par 72, slope 120. Settle in, afternoon round.' },
-      { day: 'Day 2', course: 'Plumas Pines', note: 'Par 72, slope 132. Top 5 Best Value Sierra Nevada. On-course condos option.' },
-      { day: 'Day 3', course: 'Grizzly Ranch', note: 'Golf Digest Top 100. Par 72, slope 140. Elevation 4,800–5,400 ft.' },
-      { day: 'Day 4', course: 'Nakoma — The Dragon', note: 'Par 72, slope 147. Golf World Top 75. Only FLW golf clubhouse in the world.' },
+      { day: 'Day 1', course: 'Graeagle Meadows', note: 'Par 72 · Slope 120 · Settle in, afternoon round.' },
+      { day: 'Day 2', course: 'Plumas Pines', note: 'Par 72 · Slope 132 · Top 5 Best Value Sierra Nevada.' },
+      { day: 'Day 3', course: 'Grizzly Ranch', note: 'Golf Digest Top 100 · 7,411 yds at 4,800 ft.' },
+      { day: 'Day 4', course: 'Nakoma — The Dragon', note: 'Par 72 · Slope 147 · Golf World Top 75 · FLW clubhouse.' },
     ],
-    lodging: 'Inn at Nakoma (nights 3–4) + River Pines (nights 1–2)',
-  },
-  {
-    label: '5-Day Grand Tour',
-    nights: 5, rounds: 5, priceRange: '$1,120–$1,705/pp',
-    badge: 'All 5 Courses',
+    includes: ['Tee times at 4 courses inc. Nakoma', '4 nights (Nakoma Inn + River Pines)', 'Fifty44 dining res.', 'All logistics handled'],
+    lodging: 'Inn at Nakoma + River Pines' },
+  { label: '5-Day', nights: 5, rounds: 5, priceRange: '$1,120–$1,705/pp', badge: 'Grand Tour', hot: false,
     days: [
-      { day: 'Day 1', course: 'Graeagle Meadows', note: 'Par 72, slope 120.' },
-      { day: 'Day 2', course: 'Plumas Pines', note: 'Par 72, slope 132.' },
-      { day: 'Day 3', course: 'Whitehawk Ranch', note: 'Par 71, slope 132. Top 20 California.' },
-      { day: 'Day 4', course: 'Grizzly Ranch', note: 'Golf Digest Top 100. Par 72, slope 140.' },
-      { day: 'Day 5', course: 'Nakoma — The Dragon', note: 'Par 72, slope 147. FLW clubhouse. Fifty44 dinner on-site.' },
+      { day: 'Day 1', course: 'Graeagle Meadows', note: 'Par 72 · Slope 120' },
+      { day: 'Day 2', course: 'Plumas Pines', note: 'Par 72 · Slope 132' },
+      { day: 'Day 3', course: 'Whitehawk Ranch', note: 'Par 71 · Slope 132 · Top 20 California' },
+      { day: 'Day 4', course: 'Grizzly Ranch', note: 'Golf Digest Top 100 · Slope 140' },
+      { day: 'Day 5', course: 'Nakoma — The Dragon', note: 'Par 72 · Slope 147 · FLW clubhouse · Fifty44 dinner' },
     ],
-    lodging: 'Inn at Nakoma (full stay)',
-  },
+    includes: ['Tee times at all 5 courses', '5 nights at Inn at Nakoma', 'All dining reservations', 'Single invoice'],
+    lodging: 'Inn at Nakoma' },
 ];
 
 const courses = [
-  { name: 'Graeagle Meadows', slug: 'graeagle-meadows-golf-packages', par: 72, yards: '6,759', slope: 120, difficulty: 'Easiest', badge: 'Start here', badgeColor: '#2563eb' },
-  { name: 'Plumas Pines',     slug: 'plumas-pines-golf-packages',     par: 72, yards: '6,504', slope: 132, difficulty: 'Moderate', badge: 'Best Value', badgeColor: '#b45309' },
-  { name: 'Whitehawk Ranch',  slug: 'whitehawk-ranch-golf-packages',  par: 71, yards: '6,983', slope: 132, difficulty: 'Moderate', badge: 'Top 20 CA', badgeColor: '#1a7a40' },
-  { name: 'Grizzly Ranch',    slug: 'grizzly-ranch-golf-packages',    par: 72, yards: '7,411', slope: 140, difficulty: 'Hard', badge: 'Top 100', badgeColor: '#7c3aed' },
-  { name: 'Nakoma — Dragon',  slug: 'nakoma-dragon-golf-packages',    par: 72, yards: '7,015', slope: 147, difficulty: 'Hardest', badge: 'FLW Club', badgeColor: '#be123c' },
+  { name: 'Graeagle Meadows', slug: 'graeagle-meadows-golf-packages', par: 72, yards: '6,759', slope: 120, difficulty: 'Easiest', badge: 'Start here', badgeColor: '#2563eb', note: 'Most accessible. Best opening round.' },
+  { name: 'Plumas Pines',     slug: 'plumas-pines-golf-packages',     par: 72, yards: '6,504', slope: 132, difficulty: 'Moderate', badge: 'Best Value', badgeColor: '#b45309', note: 'Top 5 Sierra Nevada value. Precision course.' },
+  { name: 'Whitehawk Ranch',  slug: 'whitehawk-ranch-golf-packages',  par: 71, yards: '6,983', slope: 132, difficulty: 'Moderate', badge: 'Top 20 CA', badgeColor: '#1a7a40', note: 'Meadow and forest. Sulphur Creek in play.' },
+  { name: 'Grizzly Ranch',    slug: 'grizzly-ranch-golf-packages',    par: 72, yards: '7,411', slope: 140, difficulty: 'Hard', badge: 'Top 100', badgeColor: '#7c3aed', note: 'Golf Digest Top 100. 7,411 yds at 4,800 ft.' },
+  { name: 'Nakoma — Dragon',  slug: 'nakoma-dragon-golf-packages',    par: 72, yards: '7,015', slope: 147, difficulty: 'Hardest', badge: 'FLW Club', badgeColor: '#be123c', note: 'Golf World Top 75. Save this for last.' },
+];
+
+const whyPoints = [
+  ['⛳','Play 2-5 courses in one trip','All 5 courses within 25 minutes. No travel days wasted. Most groups play 3-4 courses on a weekend.'],
+  ['📋','Custom itinerary in 24 hours','Tell us your dates and group size. We send a full day-by-day schedule — tee times, lodging, dining — within 24 hours.'],
+  ['🏆','Access to Top 100 + Golf World Top 75','Grizzly Ranch (Golf Digest Top 100) and Nakoma Dragon (Golf World Top 75) on the same itinerary. We secure the access.'],
+  ['💰','40% cheaper than Lake Tahoe','Same championship golf. Comparable lodging. Graeagle packages run $620-$875/pp vs $1,200-$1,800/pp at Tahoe.'],
 ];
 ---
 <Base title={title} description={description} ogType="website"
   schema={[orgSchema, faqSchema, breadcrumbSchema, howToSchema, serviceSchema]}
   canonical="https://golfgraeagle.com/graeagle-golf-itinerary/"
-  ogImage="https://golfgraeagle.com/wp-images/grizzly-ranch-hero.webp"
+  ogImage="https://golfgraeagle.com/wp-images/graeagle-meadows-aerial.jpg"
   bodyClass="light-page"
 >
   <Nav />
@@ -126,9 +119,9 @@ const courses = [
     <div class="gi-hero-img" style="background-image:url(/wp-images/graeagle-meadows-aerial.jpg)"></div>
     <div class="gi-hero-overlay"></div>
     <div class="gi-hero-inner">
-      <p class="gi-eyebrow reveal-up">Graeagle Golf Itinerary Planning · Sierra Nevada · Since 2004</p>
+      <p class="gi-eyebrow reveal-up">Graeagle Golf Itinerary Planning · 5 Courses · Sierra Nevada · Since 2004</p>
       <h1 class="gi-h1 reveal-up delay-1">Graeagle Golf<br/><em>Itineraries</em></h1>
-      <p class="gi-subhead speakable reveal-up delay-2">Sample Graeagle golf itineraries for 2, 3, 4, and 5-day trips — course order, lodging, and dining built around your group. Custom day-by-day plans from $620/golfer, delivered in 24 hours.</p>
+      <p class="gi-subhead speakable reveal-up delay-2">2, 3, 4, and 5-day Graeagle golf itineraries — course order, lodging, and dining built around your group. Custom day-by-day plans from $620/golfer, back in 24 hours.</p>
       <div class="gi-pills reveal-up delay-3">
         <span class="gi-pill">2 to 5 days</span>
         <span class="gi-pill">All 5 courses</span>
@@ -137,8 +130,14 @@ const courses = [
       </div>
       <div class="gi-hero-ctas reveal-up delay-4">
         <a href="/request-a-quote/" class="btn-green-glow gi-cta-main">Get My Custom Itinerary →</a>
-        <a href="/trips/" class="gi-cta-text underline-draw">Browse 76 real trips ↗</a>
+        <a href="/trips/" class="gi-cta-ghost underline-draw">Browse 76 real trips ↗</a>
       </div>
+    </div>
+    <!-- Floating stat cards — desktop right -->
+    <div class="gi-floats reveal-fade delay-5">
+      <div class="gi-float"><div class="gi-float-val" data-count="76">0</div><div class="gi-float-lbl">Real Packages</div></div>
+      <div class="gi-float"><div class="gi-float-val">4.8★</div><div class="gi-float-lbl">Avg Rating</div></div>
+      <div class="gi-float"><div class="gi-float-val" data-count="5">0</div><div class="gi-float-lbl">Courses</div></div>
     </div>
   </section>
 
@@ -146,12 +145,12 @@ const courses = [
   <section class="gi-section">
     <div class="gi-container">
       <div class="gi-header reveal-up">
-        <span class="sec-label">Build difficulty into your schedule</span>
-        <h2 class="gi-h2">Recommended course<br/><em>order for any itinerary</em></h2>
+        <span class="sec-label">Build difficulty into every itinerary</span>
+        <h2 class="gi-h2">Recommended course<br/><em>order for any trip length</em></h2>
       </div>
       <div class="gi-ramp">
         {courses.map((c, i) => (
-          <a href={`/portfolio/${c.slug}/`} class={`gi-ramp-card reveal-up delay-${i+1}`}>
+          <a href={`/portfolio/${c.slug}/`} class={`gi-ramp-card glow-card reveal-up delay-${i+1}`}>
             <div class="gi-ramp-num">{i + 1}</div>
             <span class="gi-ramp-badge" style={`background:${c.badgeColor}`}>{c.badge}</span>
             <h3 class="gi-ramp-name">{c.name}</h3>
@@ -160,11 +159,13 @@ const courses = [
               <span>{c.yards} yds</span><span class="gi-dot">·</span>
               <span>Slope {c.slope}</span>
             </div>
+            <p class="gi-ramp-note">{c.note}</p>
             <div class="gi-ramp-diff" style={`color:${c.badgeColor}`}>{c.difficulty}</div>
+            <span class="gi-ramp-link underline-draw">View course →</span>
           </a>
         ))}
       </div>
-      <p class="gi-ramp-note reveal-up">Courses sequenced from easiest to hardest. Most golfers play 2–3 courses per trip. GolfGraeagle routes your itinerary to match your group's skill level.</p>
+      <p class="gi-ramp-footer reveal-up">Courses sequenced easiest to hardest. GolfGraeagle routes your itinerary by skill level — your group plays best on day 1, not burned out.</p>
     </div>
   </section>
 
@@ -172,20 +173,20 @@ const courses = [
   <section class="gi-section gi-dark">
     <div class="gi-container">
       <div class="gi-header reveal-up">
-        <span class="sec-label">Based on real completed trips</span>
+        <span class="sec-label" style="color:#e8a850">Based on real completed trips</span>
         <h2 class="gi-h2 gi-h2-light">Sample itineraries<br/><em>by trip length</em></h2>
+        <p class="gi-section-sub">Real pricing. Real courses. Real day-by-day schedules — not estimates.</p>
       </div>
       <div class="gi-itin-grid">
         {itineraries.map((it, idx) => (
-          <div class={`gi-itin-card reveal-scale delay-${idx+1}${it.hot ? ' gi-itin-hot' : ''}`}>
+          <div class={`gi-itin-card glow-card reveal-scale delay-${idx+1}${it.hot ? ' gi-itin-hot' : ''}`}>
             {it.hot && <div class="gi-hot-pill">Most Popular</div>}
-            <div class="gi-itin-header">
-              <span class="gi-itin-label">{it.label}</span>
-              <span class="gi-itin-price">{it.priceRange}</span>
+            <div class="gi-itin-top">
+              <span class="gi-itin-badge">{it.badge}</span>
+              <div class="gi-itin-price">{it.priceRange}</div>
             </div>
             <div class="gi-itin-meta">
-              <span>🌙 {it.nights}n</span>
-              <span>⛳ {it.rounds} rounds</span>
+              <span>🌙 {it.nights} nights</span><span>⛳ {it.rounds} rounds</span>
             </div>
             <div class="gi-itin-days">
               {it.days.map((d) => (
@@ -198,40 +199,97 @@ const courses = [
                 </div>
               ))}
             </div>
-            <div class="gi-itin-lodging">🏨 {it.lodging}</div>
+            <ul class="gi-itin-includes">
+              {it.includes.map((item: string) => <li>✓ {item}</li>)}
+            </ul>
+            <p class="gi-itin-lodging">🏨 {it.lodging}</p>
             <a href="/request-a-quote/" class="gi-itin-cta underline-draw">Build this itinerary →</a>
           </div>
         ))}
+      </div>
+      <p class="gi-archive-link reveal-up">
+        <a href="/trips/" class="underline-draw" style="color:#e8a850;font-weight:700;">Browse all 76 real packages with pricing →</a>
+      </p>
+    </div>
+  </section>
+
+  <!-- ═══ WHY GRAEAGLE — dark split ═══ -->
+  <section class="gi-section gi-dark gi-why">
+    <div class="gi-container gi-why-inner">
+      <div class="gi-why-text">
+        <span class="sec-label">Why Graeagle beats Tahoe for golf itineraries</span>
+        <h2 class="gi-h2 reveal-up" style="color:#f5f0e8;margin-top:10px">Why groups<br/><em>choose Graeagle</em></h2>
+        <div class="gi-points">
+          {whyPoints.map(([icon, title, body], i) => (
+            <div class={`gi-point reveal-${i%2===0?'left':'right'} delay-${(i%3)+1}`}>
+              <span class="gi-pt-icon">{icon}</span>
+              <div>
+                <div class="gi-pt-title">{title}</div>
+                <div class="gi-pt-body">{body}</div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+      <div class="gi-why-img reveal-scale delay-2">
+        <img src="/wp-images/grizzly-ranch-hero.webp" alt="Grizzly Ranch Golf Club — Golf Digest Top 100 — Graeagle California" loading="lazy"/>
+        <div class="gi-why-badge">
+          <div style="font-family:'Playfair Display',serif;font-size:26px;color:#e8a850;font-weight:400;line-height:1">Golf Digest</div>
+          <div style="font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.14em;color:rgba(245,240,232,.55);margin-top:5px">Top 100 Course</div>
+        </div>
       </div>
     </div>
   </section>
 
   <!-- ═══ HOW IT WORKS ═══ -->
   <section class="gi-section">
-    <div class="gi-container" style="max-width:860px">
+    <div class="gi-container">
       <div class="gi-header reveal-up">
         <span class="sec-label">The process</span>
         <h2 class="gi-h2">How to build your<br/><em>Graeagle golf itinerary</em></h2>
       </div>
       <div class="gi-steps">
         {[
-          ['01','Choose your trip length','2 nights = 2-3 courses. 3 nights = 3-4 courses. 4-5 nights = all 5. Most groups choose 3 nights — the sweet spot.'],
-          ['02','Sequence by difficulty','Start accessible (Graeagle Meadows, slope 120). Build up. Save Grizzly Ranch and Nakoma Dragon for the challenge rounds. Your group will not burn out on day 1.'],
-          ['03','Match lodging to your route','River Pines Resort for most groups. Inn at Nakoma if playing The Dragon — the on-site stay is worth it. Townhomes at Plumas Pines for groups of 8–24.'],
-          ['04','Lock dining before you arrive','Sardine Lake Resort books 4 weeks out. Iron Door and Grizzly Grill for group dinners. GolfGraeagle includes reservations in every itinerary on request.'],
-        ].map(([n, title, body], i) => (
-          <div class={`gi-step glow-card reveal-${i % 2 === 0 ? 'left' : 'right'} delay-${(i % 3) + 1}`}>
+          ['01','📋','Tell us your trip length','Dates, group size, how many rounds, budget range. Takes 2 minutes via the quote form or call (888) 586-1157.'],
+          ['02','⚡','Get your day-by-day itinerary in 24h','Courses sequenced by difficulty, tee times locked, lodging matched, dining suggested. All-in price included.'],
+          ['03','✅','Confirm and we book everything','Approve the itinerary. We lock tee times, reserve lodging, and make any dining reservations. One invoice.'],
+          ['04','⛳','Show up and play','You arrive. Everything is pre-arranged. We handle every detail of your Graeagle golf vacation.'],
+        ].map(([n, icon, t, b], i) => (
+          <div class={`gi-step glow-card reveal-${i<2?'left':'right'} delay-${(i%3)+1}`}>
             <div class="gi-step-n">{n}</div>
-            <h3 class="gi-step-title">{title}</h3>
-            <p class="gi-step-body">{body}</p>
+            <div class="gi-step-icon">{icon}</div>
+            <h3 class="gi-step-title">{t}</h3>
+            <p class="gi-step-body">{b}</p>
           </div>
         ))}
       </div>
     </div>
   </section>
 
+  <!-- ═══ TRUST STATS — dark ═══ -->
+  <section class="gi-trust gi-dark">
+    <div class="gi-container gi-trust-row">
+      {[
+        ['76','Real itineraries archived'],
+        ['5','Championship courses'],
+        ['4.8','672 verified reviews'],
+        ['24','Hour quote turnaround'],
+        ['2004','Year we started'],
+      ].map(([val, label], i) => (
+        <div class={`gi-stat reveal-scale delay-${i+1}`}>
+          <div class="gi-stat-val">
+            {val === '4.8' ? <><span data-count="4.8">0</span>★</> :
+             val === '24'  ? <><span data-count="24">0</span>h</>  :
+             <span data-count={val}>0</span>}
+          </div>
+          <div class="gi-stat-label">{label}</div>
+        </div>
+      ))}
+    </div>
+  </section>
+
   <!-- ═══ FAQ ═══ -->
-  <section class="gi-section gi-faq-section">
+  <section class="gi-section">
     <div class="gi-container" style="max-width:780px">
       <div class="gi-header reveal-up">
         <span class="sec-label">Common questions</span>
@@ -246,11 +304,11 @@ const courses = [
     </div>
   </section>
 
-  <!-- ═══ CTA — dark ═══ -->
+  <!-- ═══ FINAL CTA — dark ═══ -->
   <section class="gi-cta-section gi-dark">
-    <div class="gi-cta-ring"></div>
+    <div class="gi-cta-glow"></div>
     <div class="gi-container" style="text-align:center;max-width:660px;position:relative;z-index:1">
-      <h2 class="gi-cta-h2 reveal-up">Get your custom Graeagle<br/><em>golf itinerary in 24 hours.</em></h2>
+      <h2 class="gi-cta-h2 reveal-up">Your custom Graeagle<br/><em>golf itinerary in 24 hours.</em></h2>
       <p class="gi-cta-sub reveal-up delay-1">Tell us your dates, group size, and which courses you want. We build the full day-by-day schedule — tee times, lodging, dining — and send it back within 24 hours.</p>
       <div class="reveal-scale delay-2">
         <a href="/request-a-quote/" class="btn-green-glow gi-cta-main">Request a Free Quote →</a>
@@ -269,10 +327,11 @@ const courses = [
 .gi-section{padding:clamp(72px,9vw,120px) 0;background:var(--page-bg,#f8f5f0)}
 .gi-dark{background:var(--gi-dark)!important}
 .gi-header{text-align:center;margin-bottom:clamp(40px,5vw,68px)}
-.gi-h2{font-family:'Playfair Display',serif;font-size:clamp(28px,4vw,50px);font-weight:500;color:var(--gi-text);line-height:1.1;margin:8px 0 0}
+.gi-h2{font-family:'Playfair Display',serif;font-size:clamp(30px,4vw,52px);font-weight:500;color:var(--gi-text);line-height:1.1;margin:8px 0 0}
 .gi-h2 em{font-style:italic;color:var(--gi-green)}
 .gi-h2-light{color:#f0ece3!important}
 .gi-h2-light em{color:var(--gi-gold)!important}
+.gi-section-sub{font-size:15px;color:rgba(245,240,232,.72);max-width:480px;margin:16px auto 0;line-height:1.7}
 
 /* HERO */
 .gi-hero{position:relative;min-height:90vh;display:flex;align-items:flex-end;overflow:hidden}
@@ -288,46 +347,75 @@ const courses = [
 .gi-pill{font-size:12px;font-weight:600;color:rgba(245,240,232,.85);padding:7px 16px;background:rgba(255,255,255,.1);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.18);border-radius:100px}
 .gi-hero-ctas{display:flex;gap:20px;align-items:center;flex-wrap:wrap}
 .gi-cta-main{display:inline-block;padding:15px 36px;border-radius:100px;font-size:15px;font-weight:700;text-decoration:none}
-.gi-cta-text{font-size:14px;font-weight:600;color:rgba(232,168,80,.9);text-decoration:none}
+.gi-cta-ghost{font-size:14px;font-weight:600;color:rgba(232,168,80,.9);text-decoration:none}
+/* Floating stat cards */
+.gi-floats{position:absolute;right:clamp(24px,5%,72px);bottom:clamp(56px,8vw,90px);display:flex;flex-direction:column;gap:10px;z-index:3}
+.gi-float{background:rgba(255,255,255,.1);backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,.2);border-radius:16px;padding:14px 22px;text-align:center;min-width:116px}
+.gi-float-val{font-family:'Playfair Display',serif;font-size:26px;color:var(--gi-gold);font-weight:400;line-height:1}
+.gi-float-lbl{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.14em;color:rgba(245,240,232,.45);margin-top:5px}
 
 /* COURSE RAMP */
 .gi-ramp{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-bottom:24px}
-.gi-ramp-card{border-radius:var(--gi-r);padding:24px 18px;border:1px solid var(--gi-border);background:#fff;text-decoration:none;transition:all .35s;position:relative;overflow:hidden;display:flex;flex-direction:column;gap:8px}
-.gi-ramp-card:hover{transform:translateY(-5px);box-shadow:0 20px 48px rgba(0,0,0,.1);border-color:rgba(232,168,80,.4)}
-.gi-ramp-num{font-family:'Playfair Display',serif;font-size:48px;color:rgba(232,168,80,.12);font-weight:400;line-height:1;margin:-4px 0 -8px -2px}
+.gi-ramp-card{border-radius:var(--gi-r);padding:24px 18px;border:1px solid var(--gi-border);background:#fff;text-decoration:none;transition:all .35s;position:relative;overflow:hidden;display:flex;flex-direction:column;gap:7px}
+.gi-ramp-card:hover{transform:translateY(-6px);box-shadow:0 20px 48px rgba(0,0,0,.1);border-color:rgba(232,168,80,.4)}
+.gi-ramp-num{font-family:'Playfair Display',serif;font-size:52px;color:rgba(232,168,80,.1);font-weight:400;line-height:1;margin:-4px 0 -10px -2px}
 .gi-ramp-badge{font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:.1em;color:#fff;padding:3px 9px;border-radius:100px;align-self:flex-start}
 .gi-ramp-name{font-size:14px;font-weight:700;color:var(--gi-text);line-height:1.3;margin:0}
 .gi-ramp-specs{display:flex;flex-wrap:wrap;gap:4px;font-size:11px;color:var(--gi-muted)}
 .gi-dot{color:rgba(28,18,8,.2)}
-.gi-ramp-diff{font-size:11px;font-weight:700;margin-top:2px}
-.gi-ramp-note{text-align:center;font-size:14px;color:var(--gi-muted);max-width:660px;margin:0 auto;line-height:1.7}
+.gi-ramp-note{font-size:11px;color:var(--gi-muted);line-height:1.5;margin:0;flex:1}
+.gi-ramp-diff{font-size:11px;font-weight:700}
+.gi-ramp-link{font-size:11px;font-weight:700;color:var(--gi-green);margin-top:4px}
+.gi-ramp-card:hover .gi-ramp-link{color:var(--gi-gold)}
+.gi-ramp-footer{text-align:center;font-size:14px;color:var(--gi-muted);max-width:660px;margin:0 auto;line-height:1.7}
 
 /* ITINERARIES */
-.gi-itin-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:20px}
-.gi-itin-card{border:1px solid rgba(245,240,232,.18);border-radius:var(--gi-r);padding:28px 24px;background:rgba(255,255,255,.09);transition:all .35s;position:relative}
-.gi-itin-card:hover{transform:translateY(-5px);border-color:rgba(232,168,80,.3);box-shadow:0 22px 52px rgba(0,0,0,.25)}
+.gi-itin-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:18px;margin-bottom:28px}
+.gi-itin-card{border:1px solid rgba(245,240,232,.18);border-radius:var(--gi-r);padding:28px 24px;background:rgba(255,255,255,.09);transition:all .35s;position:relative;overflow:hidden;display:flex;flex-direction:column}
+.gi-itin-card:hover{transform:translateY(-6px);border-color:rgba(232,168,80,.3);box-shadow:0 24px 56px rgba(0,0,0,.28)}
 .gi-itin-hot{border-color:rgba(232,168,80,.3)!important;background:rgba(232,168,80,.05)!important}
 .gi-hot-pill{position:absolute;top:-1px;left:50%;transform:translateX(-50%);background:var(--gi-gold);color:#1c1208;font-size:9px;font-weight:800;padding:4px 14px;border-radius:0 0 10px 10px;text-transform:uppercase;letter-spacing:.1em;white-space:nowrap}
-.gi-itin-header{display:flex;justify-content:space-between;align-items:baseline;gap:8px;margin-bottom:10px}
-.gi-itin-label{font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.1em;color:rgba(245,240,232,.7)}
-.gi-itin-price{font-family:'Playfair Display',serif;font-size:16px;color:var(--gi-gold);font-weight:400}
-.gi-itin-meta{display:flex;gap:12px;margin-bottom:16px}
+.gi-itin-top{display:flex;justify-content:space-between;align-items:baseline;gap:8px;margin-bottom:10px}
+.gi-itin-badge{font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.1em;color:var(--gi-gold)}
+.gi-itin-price{font-family:'Playfair Display',serif;font-size:15px;color:rgba(245,240,232,.9)}
+.gi-itin-meta{display:flex;gap:12px;margin-bottom:14px}
 .gi-itin-meta span{font-size:11px;color:rgba(245,240,232,.78)}
-.gi-itin-days{display:flex;flex-direction:column;gap:10px;margin-bottom:14px}
-.gi-itin-day{display:grid;grid-template-columns:46px 1fr;gap:8px;align-items:start}
+.gi-itin-days{display:flex;flex-direction:column;gap:9px;margin-bottom:14px}
+.gi-itin-day{display:grid;grid-template-columns:44px 1fr;gap:8px;align-items:start}
 .gi-day-label{font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:var(--gi-gold);padding-top:2px}
 .gi-day-course{font-size:13px;font-weight:700;color:#f5f0e8;margin-bottom:2px}
-.gi-day-note{font-size:11px;color:rgba(245,240,232,.55);line-height:1.5}
-.gi-itin-lodging{font-size:11px;color:rgba(245,240,232,.6);margin-bottom:14px;border-top:1px solid rgba(245,240,232,.08);padding-top:12px}
-.gi-itin-cta{font-size:12px;font-weight:700;color:var(--gi-gold);text-decoration:none}
+.gi-day-note{font-size:10px;color:rgba(245,240,232,.48);line-height:1.5}
+.gi-itin-includes{list-style:none;margin:0 0 10px;padding:0;display:flex;flex-direction:column;gap:5px;border-top:1px solid rgba(245,240,232,.08);padding-top:12px}
+.gi-itin-includes li{font-size:11px;color:rgba(245,240,232,.85);line-height:1.4}
+.gi-itin-lodging{font-size:11px;color:rgba(245,240,232,.55);margin-bottom:14px}
+.gi-itin-cta{font-size:12px;font-weight:700;color:var(--gi-gold);text-decoration:none;margin-top:auto}
+.gi-archive-link{text-align:center;font-size:14px;color:rgba(245,240,232,.65);margin:0}
+
+/* WHY SECTION */
+.gi-why-inner{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center}
+.gi-points{display:flex;flex-direction:column;gap:22px;margin-top:32px}
+.gi-point{display:flex;gap:16px;align-items:flex-start}
+.gi-pt-icon{font-size:24px;flex-shrink:0;margin-top:2px}
+.gi-pt-title{font-size:15px;font-weight:700;color:#f5f0e8;margin-bottom:4px}
+.gi-pt-body{font-size:13px;color:rgba(245,240,232,.75);line-height:1.65}
+.gi-why-img{position:relative;border-radius:22px;overflow:hidden;box-shadow:0 32px 80px rgba(0,0,0,.42)}
+.gi-why-img img{width:100%;height:420px;object-fit:cover;display:block}
+.gi-why-badge{position:absolute;bottom:20px;left:20px;background:rgba(13,26,14,.88);backdrop-filter:blur(14px);border:1px solid rgba(232,168,80,.22);border-radius:16px;padding:14px 20px}
 
 /* HOW IT WORKS */
-.gi-steps{display:grid;grid-template-columns:1fr 1fr;gap:2px}
-.gi-step{padding:36px 32px;border:1px solid var(--gi-border);background:#fff;transition:all .35s}
+.gi-steps{display:grid;grid-template-columns:repeat(2,1fr);gap:2px}
+.gi-step{padding:40px 34px;border:1px solid var(--gi-border);background:#fff;transition:all .35s;overflow:hidden}
 .gi-step:hover{transform:translateY(-5px);box-shadow:0 20px 48px rgba(0,0,0,.09);border-color:rgba(232,168,80,.35)}
-.gi-step-n{font-family:'Playfair Display',serif;font-size:72px;font-weight:400;color:rgba(232,168,80,.1);line-height:1;margin:-4px 0 -12px -2px}
-.gi-step-title{font-size:16px;font-weight:700;color:var(--gi-text);margin:16px 0 10px}
+.gi-step-n{font-family:'Playfair Display',serif;font-size:80px;font-weight:400;color:rgba(232,168,80,.1);line-height:1;margin:-8px 0 -16px -4px}
+.gi-step-icon{font-size:34px;margin-bottom:16px}
+.gi-step-title{font-size:17px;font-weight:700;color:var(--gi-text);margin:0 0 10px}
 .gi-step-body{font-size:14px;color:var(--gi-muted);line-height:1.75;margin:0}
+
+/* TRUST STATS */
+.gi-trust{padding:clamp(48px,6vw,80px) 0}
+.gi-trust-row{display:grid;grid-template-columns:repeat(5,1fr);gap:32px;text-align:center}
+.gi-stat-val{font-family:'Playfair Display',serif;font-size:clamp(30px,4vw,48px);color:var(--gi-gold);font-weight:400;line-height:1;margin-bottom:8px}
+.gi-stat-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.14em;color:rgba(245,240,232,.62)}
 
 /* FAQ */
 .gi-faq{border-bottom:1px solid var(--gi-border)}
@@ -338,12 +426,11 @@ const courses = [
 .gi-faq-icon{font-size:24px;color:var(--gi-gold);flex-shrink:0;transition:transform .3s}
 .gi-faq[open] .gi-faq-icon{transform:rotate(45deg)}
 .gi-faq-a{font-size:14px;color:var(--gi-muted);line-height:1.82;padding:0 0 20px;margin:0}
-.gi-faq-section{background:var(--page-bg,#f8f5f0)!important}
 
 /* CTA */
 .gi-cta-section{padding:clamp(80px,10vw,132px) 0;position:relative;overflow:hidden}
-.gi-cta-ring{position:absolute;width:720px;height:720px;border-radius:50%;border:1px solid rgba(232,168,80,.07);top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none}
-.gi-cta-ring::before{content:'';position:absolute;inset:80px;border-radius:50%;border:1px solid rgba(232,168,80,.04)}
+.gi-cta-glow{position:absolute;width:720px;height:720px;border-radius:50%;background:radial-gradient(circle,rgba(26,122,64,.18) 0%,transparent 70%);top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none}
+.gi-cta-glow::before{content:'';position:absolute;inset:80px;border-radius:50%;border:1px solid rgba(232,168,80,.04)}
 .gi-cta-h2{font-family:'Playfair Display',serif;font-size:clamp(28px,5vw,54px);color:#f5f0e8;font-weight:500;line-height:1.15;margin:0 0 20px}
 .gi-cta-h2 em{color:var(--gi-gold);font-style:italic}
 .gi-cta-sub{font-size:16px;color:rgba(245,240,232,.75);line-height:1.75;margin:0 0 36px}
@@ -352,11 +439,17 @@ const courses = [
 /* Mobile */
 @media(max-width:900px){
   .gi-hero{min-height:100svh}
-  .gi-ramp{grid-template-columns:1fr 1fr;gap:10px}
-  .gi-itin-grid{grid-template-columns:1fr}
+  .gi-floats{display:none}
+  .gi-ramp{grid-template-columns:1fr 1fr}
+  .gi-itin-grid{grid-template-columns:1fr 1fr}
   .gi-steps{grid-template-columns:1fr}
+  .gi-trust-row{grid-template-columns:repeat(3,1fr);gap:20px}
+  .gi-why-inner{grid-template-columns:1fr}
+  .gi-why-img{display:none}
 }
 @media(max-width:540px){
   .gi-ramp{grid-template-columns:1fr}
+  .gi-itin-grid{grid-template-columns:1fr}
+  .gi-trust-row{grid-template-columns:1fr 1fr}
 }
 </style>

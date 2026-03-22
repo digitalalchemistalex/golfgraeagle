@@ -3,18 +3,19 @@ export const prerender = true;
 import Base from '../layouts/Base.astro';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
+import RelatedTrips from '../components/RelatedTrips.tsx';
 
 const title = "Book Tee Times in Graeagle, CA — All 5 Courses | GolfGraeagle.com";
-const description = "Book tee times at all 5 Graeagle golf courses — Grizzly Ranch, Nakoma Dragon, Whitehawk Ranch, Plumas Pines, and Graeagle Meadows. Guaranteed tee times with lodging in one package.";
+const description = "Book tee times at all 5 Graeagle golf courses — Grizzly Ranch, Nakoma Dragon, Whitehawk Ranch, Plumas Pines, and Graeagle Meadows. Guaranteed tee times with lodging from $620/golfer.";
 
 const faqSchema = {
   "@context": "https://schema.org", "@type": "FAQPage",
   "mainEntity": [
-    { "@type": "Question", "name": "How do I book tee times in Graeagle, California?", "acceptedAnswer": { "@type": "Answer", "text": "Request a quote at GolfGraeagle.com — provide your dates, group size, and which courses you want. GolfGraeagle books guaranteed tee times at all 5 Graeagle courses and returns a full package within 24 hours." } },
+    { "@type": "Question", "name": "How do I book tee times in Graeagle, California?", "acceptedAnswer": { "@type": "Answer", "text": "Request a quote at GolfGraeagle.com with your dates, group size, and courses. GolfGraeagle books guaranteed tee times at all 5 Graeagle courses and returns a full package within 24 hours." } },
     { "@type": "Question", "name": "Can I book tee times at Grizzly Ranch Golf Club?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Grizzly Ranch is semi-private but accessible through GolfGraeagle packages. Grizzly Ranch is Golf Digest Top 100 Greatest Public Courses in the US (2021). GolfGraeagle secures guaranteed tee times as part of every stay-and-play package." } },
-    { "@type": "Question", "name": "How far in advance do I need to book Graeagle tee times?", "acceptedAnswer": { "@type": "Answer", "text": "For summer weekends (June–August), book 4–6 weeks ahead. Spring and fall can typically be arranged 2–3 weeks out. Large groups (12+) requiring consecutive tee time blocks need the most lead time — 6–8 weeks for peak summer." } },
+    { "@type": "Question", "name": "How far in advance do I need to book Graeagle tee times?", "acceptedAnswer": { "@type": "Answer", "text": "For summer weekends (June-August), book 4-6 weeks ahead. Spring and fall can typically be arranged 2-3 weeks out. Large groups (12+) requiring consecutive tee time blocks need 6-8 weeks for peak summer." } },
     { "@type": "Question", "name": "Can GolfGraeagle book tee times for large groups?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. GolfGraeagle books consecutive tee time blocks for groups of 4 to 200+ golfers. We coordinate directly with the pro shop at all 5 courses. Shotgun starts and tournament formats can be arranged for groups of 20+." } },
-    { "@type": "Question", "name": "Are Graeagle golf courses open to the public?", "acceptedAnswer": { "@type": "Answer", "text": "All five Graeagle courses accept public play. Grizzly Ranch is semi-private — access is available through GolfGraeagle packages. Nakoma Dragon is semi-private, also accessible through packages. The other three courses are fully public." } }
+    { "@type": "Question", "name": "Are Graeagle golf courses open to the public?", "acceptedAnswer": { "@type": "Answer", "text": "All five Graeagle courses accept public play. Grizzly Ranch and Nakoma Dragon are semi-private — accessible through GolfGraeagle packages. The other three are fully public." } }
   ]
 };
 const breadcrumbSchema = {
@@ -35,7 +36,7 @@ const orgSchema = {
 const serviceSchema = {
   "@context": "https://schema.org", "@type": "Service",
   "name": "Graeagle Tee Time Booking",
-  "description": "Guaranteed tee times at all 5 Graeagle golf courses — Grizzly Ranch, Nakoma Dragon, Whitehawk Ranch, Plumas Pines, and Graeagle Meadows. Bundled with lodging in one package.",
+  "description": "Guaranteed tee times at all 5 Graeagle golf courses bundled with lodging in one package.",
   "provider": { "@type": "TravelAgency", "@id": "https://golfgraeagle.com/#organization" },
   "areaServed": { "@type": "Place", "name": "Graeagle, California" },
   "serviceType": "Golf Tee Time Booking",
@@ -43,11 +44,24 @@ const serviceSchema = {
 };
 
 const courses = [
-  { name: 'Graeagle Meadows', slug: 'graeagle-meadows-golf-packages', par: 72, yards: '6,759', slope: 120, access: 'Public', designer: 'Ellis Van Gorder', year: 1968, badge: 'Since 1968', badgeColor: '#2563eb', note: 'Most accessible. Mixed-handicap groups.' },
-  { name: 'Whitehawk Ranch',  slug: 'whitehawk-ranch-golf-packages',  par: 71, yards: '6,983', slope: 132, access: 'Public', designer: 'Dick Bailey', year: 1996, badge: 'Top 20 CA', badgeColor: '#1a7a40', note: 'Meadow and forest. Top 20 California (1998).' },
-  { name: 'Plumas Pines',     slug: 'plumas-pines-golf-packages',     par: 72, yards: '6,504', slope: 132, access: 'Public', designer: 'Homer Flint', year: 1980, badge: 'Best Value', badgeColor: '#b45309', note: 'Top 5 Best Value Sierra Nevada.' },
-  { name: 'Grizzly Ranch',    slug: 'grizzly-ranch-golf-packages',    par: 72, yards: '7,411', slope: 140, access: 'Semi-private', designer: 'Bob Cupp', year: 2005, badge: 'Top 100', badgeColor: '#7c3aed', note: 'Golf Digest Top 100. Access via GolfGraeagle.' },
-  { name: 'Nakoma — The Dragon', slug: 'nakoma-dragon-golf-packages', par: 72, yards: '7,015', slope: 147, access: 'Semi-private', designer: 'Robin Nelson', year: 1998, badge: 'FLW Club', badgeColor: '#be123c', note: 'Only FLW golf clubhouse. Golf World Top 75.' },
+  { name: 'Graeagle Meadows', slug: 'graeagle-meadows-golf-packages', par: 72, yards: '6,759', slope: 120, rating: '70.7', access: 'Public', designer: 'Ellis Van Gorder', year: 1968, badge: 'Since 1968', badgeColor: '#2563eb', hero: '/wp-images/graeagle-meadows-hero.webp', note: 'Most accessible. Best opening round for mixed groups.' },
+  { name: 'Whitehawk Ranch',  slug: 'whitehawk-ranch-golf-packages',  par: 71, yards: '6,983', slope: 132, rating: '72.3', access: 'Public', designer: 'Dick Bailey', year: 1996, badge: 'Top 20 CA', badgeColor: '#1a7a40', hero: '/wp-images/whitehawk-hero.webp', note: 'Top 20 California. Meadow and forest mix.' },
+  { name: 'Plumas Pines',     slug: 'plumas-pines-golf-packages',     par: 72, yards: '6,504', slope: 132, rating: '71.3', access: 'Public', designer: 'Homer Flint', year: 1980, badge: 'Best Value', badgeColor: '#b45309', hero: '/wp-images/plumas-pines-hero.webp', note: 'Top 5 Best Value Sierra Nevada. Feather River layout.' },
+  { name: 'Grizzly Ranch',    slug: 'grizzly-ranch-golf-packages',    par: 72, yards: '7,411', slope: 140, rating: '74.9', access: 'Semi-private', designer: 'Bob Cupp', year: 2005, badge: 'Top 100', badgeColor: '#7c3aed', hero: '/wp-images/grizzly-ranch-hero.webp', note: 'Golf Digest Top 100. 7,411 yds at 4,800 ft. Access via package.' },
+  { name: 'Nakoma — The Dragon', slug: 'nakoma-dragon-golf-packages', par: 72, yards: '7,015', slope: 147, rating: '73.4', access: 'Semi-private', designer: 'Robin Nelson', year: 1998, badge: 'FLW Club', badgeColor: '#be123c', hero: '/wp-images/nakoma-dragon-feather-river.webp', note: 'Only FLW golf clubhouse in the world. Golf World Top 75.' },
+];
+
+const windows = [
+  { month: 'May–June', lead: '4–6 weeks ahead', note: 'Season opening. Good conditions. Smaller crowds than peak summer. Best value window for groups.', hot: false },
+  { month: 'July–August', lead: '6–8 weeks ahead', note: 'Peak season. Grizzly Ranch and Nakoma Dragon fill fastest. Book as early as possible for weekends.', hot: true },
+  { month: 'September–October', lead: '2–4 weeks ahead', note: 'Best conditions of the year. Firm fairways, fall color, fewer crowds. The locals choose this window.', hot: false },
+];
+
+const whyPoints = [
+  ['🔒','Guaranteed access — including semi-private courses','Grizzly Ranch (Top 100) and Nakoma Dragon are semi-private. GolfGraeagle secures tee times at both. You get on the courses others cannot book directly.'],
+  ['👥','Groups of 4 to 200+ golfers','Consecutive tee time blocks across one or multiple courses. Shotgun starts for outings of 20+. We coordinate directly with every pro shop.'],
+  ['📋','Tee times + lodging in one package','We bundle your tee times with lodging so nothing conflicts. One invoice, one contact, every detail handled.'],
+  ['⚡','Confirmation in 24 hours','Every quote request receives a full tee time and lodging proposal within 24 hours. Urgent bookings? Call (888) 586-1157.'],
 ];
 ---
 <Base title={title} description={description} ogType="website"
@@ -65,7 +79,7 @@ const courses = [
     <div class="tt-hero-inner">
       <p class="tt-eyebrow reveal-up">Book Tee Times · Graeagle, California · All 5 Courses</p>
       <h1 class="tt-h1 reveal-up delay-1">Graeagle<br/><em>Tee Times</em></h1>
-      <p class="tt-subhead speakable reveal-up delay-2">Book tee times at all 5 Graeagle golf courses — including Grizzly Ranch (Golf Digest Top 100) and Nakoma Dragon (Golf World Top 75). Guaranteed tee times bundled with lodging from $620/golfer.</p>
+      <p class="tt-subhead speakable reveal-up delay-2">Book tee times at all 5 Graeagle golf courses — including Grizzly Ranch (Golf Digest Top 100) and Nakoma Dragon (Golf World Top 75). Guaranteed access bundled with lodging from $620/golfer.</p>
       <div class="tt-pills reveal-up delay-3">
         <span class="tt-pill">All 5 courses</span>
         <span class="tt-pill">Groups 4–200+</span>
@@ -74,23 +88,33 @@ const courses = [
       </div>
       <div class="tt-hero-ctas reveal-up delay-4">
         <a href="/request-a-quote/" class="btn-green-glow tt-cta-main">Book Tee Times →</a>
-        <a href="/all-golf-courses/" class="tt-cta-text underline-draw">Compare all 5 courses ↗</a>
+        <a href="/all-golf-courses/" class="tt-cta-ghost underline-draw">Compare all 5 courses ↗</a>
       </div>
+    </div>
+    <!-- Floating stat cards — desktop right -->
+    <div class="tt-floats reveal-fade delay-5">
+      <div class="tt-float"><div class="tt-float-val" data-count="5">0</div><div class="tt-float-lbl">Courses</div></div>
+      <div class="tt-float"><div class="tt-float-val">4.8★</div><div class="tt-float-lbl">Avg Rating</div></div>
+      <div class="tt-float"><div class="tt-float-val" data-count="24">0</div><div class="tt-float-lbl">Hr Confirm</div></div>
     </div>
   </section>
 
-  <!-- ═══ COURSES TABLE ═══ -->
+  <!-- ═══ COURSE CARDS ═══ -->
   <section class="tt-section">
     <div class="tt-container">
       <div class="tt-header reveal-up">
-        <span class="sec-label">All 5 Graeagle courses — GolfGraeagle books tee times at every one</span>
+        <span class="sec-label">Book tee times at all 5 Graeagle courses — GolfGraeagle guarantees access</span>
         <h2 class="tt-h2">Graeagle golf courses<br/><em>open for booking</em></h2>
       </div>
-      <div class="tt-courses">
+      <div class="tt-courses-grid">
         {courses.map((c, i) => (
-          <a href={`/portfolio/${c.slug}/`} class={`tt-course reveal-up delay-${i+1}`}>
-            <div class="tt-course-left">
+          <a href={`/portfolio/${c.slug}/`} class={`tt-course-card glow-card reveal-${i%2===0?'left':'right'} delay-${(i%3)+1}`}>
+            <div class="tt-course-img" style={`background-image:url(${c.hero})`}>
+              <div class="tt-course-fade"></div>
               <span class="tt-course-badge" style={`background:${c.badgeColor}`}>{c.badge}</span>
+              <span class={`tt-access-tag ${c.access==='Public'?'public':'semi'}`}>{c.access}</span>
+            </div>
+            <div class="tt-course-body">
               <h3 class="tt-course-name">{c.name}</h3>
               <div class="tt-course-specs">
                 <span>Par {c.par}</span><span class="tt-dot">·</span>
@@ -99,44 +123,88 @@ const courses = [
                 <span>{c.designer}, {c.year}</span>
               </div>
               <p class="tt-course-note">{c.note}</p>
-            </div>
-            <div class="tt-course-right">
-              <span class={`tt-access ${c.access === 'Public' ? 'public' : 'semi'}`}>{c.access}</span>
-              <span class="tt-course-link underline-draw">View course →</span>
+              <span class="tt-course-link underline-draw">View packages →</span>
             </div>
           </a>
         ))}
       </div>
-      <p class="tt-access-note reveal-up">Semi-private courses (Grizzly Ranch, Nakoma Dragon) are accessible through GolfGraeagle packages. <a href="/request-a-quote/" style="color:var(--tt-green);font-weight:700;">Request guaranteed access →</a></p>
+      <p class="tt-access-note reveal-up">Grizzly Ranch and Nakoma Dragon are semi-private. <a href="/request-a-quote/" style="color:var(--tt-green);font-weight:700;">GolfGraeagle guarantees access via packages →</a></p>
     </div>
   </section>
 
-  <!-- ═══ BOOKING WINDOWS — dark ═══ -->
-  <section class="tt-section tt-dark">
-    <div class="tt-container" style="max-width:860px">
+  <!-- ═══ WHY GOLFGRAEAGLE — dark split ═══ -->
+  <section class="tt-section tt-dark tt-why">
+    <div class="tt-container tt-why-inner">
+      <div class="tt-why-text">
+        <span class="sec-label">Why book through GolfGraeagle</span>
+        <h2 class="tt-h2 reveal-up" style="color:#f5f0e8;margin-top:10px">Tee times + lodging<br/><em>guaranteed together</em></h2>
+        <div class="tt-points">
+          {whyPoints.map(([icon, title, body], i) => (
+            <div class={`tt-point reveal-${i%2===0?'left':'right'} delay-${(i%3)+1}`}>
+              <span class="tt-pt-icon">{icon}</span>
+              <div>
+                <div class="tt-pt-title">{title}</div>
+                <div class="tt-pt-body">{body}</div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+      <div class="tt-why-img reveal-scale delay-2">
+        <img src="/wp-images/nakoma-dragon-feather-river.webp" alt="Nakoma Dragon golf course — Frank Lloyd Wright clubhouse — Graeagle CA" loading="lazy"/>
+        <div class="tt-why-badge">
+          <div style="font-family:'Playfair Display',serif;font-size:22px;color:#e8a850;font-weight:400;line-height:1">Golf World</div>
+          <div style="font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.14em;color:rgba(245,240,232,.55);margin-top:5px">Top 75 Course</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ BOOKING WINDOWS ═══ -->
+  <section class="tt-section">
+    <div class="tt-container">
       <div class="tt-header reveal-up">
-        <span class="sec-label" style="color:#e8a850">Plan ahead — especially for summer</span>
-        <h2 class="tt-h2 tt-h2-light">When to book<br/><em>Graeagle tee times</em></h2>
+        <span class="sec-label">Plan ahead — especially for summer</span>
+        <h2 class="tt-h2">When to book<br/><em>Graeagle tee times</em></h2>
       </div>
       <div class="tt-windows">
-        {[
-          ['May · June', '4–6 weeks ahead', 'Season opening. Courses in good shape. Smaller crowds than July–August. Best value window.', false],
-          ['July · August', '6–8 weeks ahead', 'Peak season. Grizzly Ranch and Nakoma are hardest to get. Book as early as possible for weekends.', true],
-          ['September · October', '2–4 weeks ahead', 'Best conditions of the year. Firm fairways, fall color, fewer crowds. The locals\' favorite window.', false],
-        ].map(([month, lead, note, hot], i) => (
-          <div class={`tt-window reveal-up delay-${i+1}${hot ? ' tt-window-hot' : ''}`}>
-            {hot && <div class="tt-window-tag">Peak Season</div>}
-            <div class="tt-window-month">{month}</div>
-            <div class="tt-window-lead">{lead}</div>
-            <p class="tt-window-note">{note}</p>
+        {windows.map((w, i) => (
+          <div class={`tt-window glow-card reveal-scale delay-${i+1}${w.hot?' tt-window-hot':''}`}>
+            {w.hot && <div class="tt-window-tag">Peak Season</div>}
+            <div class="tt-window-month">{w.month}</div>
+            <div class="tt-window-lead">{w.lead}</div>
+            <p class="tt-window-note">{w.note}</p>
+            <a href="/request-a-quote/" class="tt-window-cta underline-draw">Book this window →</a>
           </div>
         ))}
       </div>
     </div>
   </section>
 
+  <!-- ═══ TRUST STATS — dark ═══ -->
+  <section class="tt-trust tt-dark">
+    <div class="tt-container tt-trust-row">
+      {[
+        ['5','Championship courses'],
+        ['76','Real packages archived'],
+        ['4.8','672 verified reviews'],
+        ['24','Hour turnaround'],
+        ['2004','Year we started'],
+      ].map(([val, label], i) => (
+        <div class={`tt-stat reveal-scale delay-${i+1}`}>
+          <div class="tt-stat-val">
+            {val === '4.8' ? <><span data-count="4.8">0</span>★</> :
+             val === '24'  ? <><span data-count="24">0</span>h</>  :
+             <span data-count={val}>0</span>}
+          </div>
+          <div class="tt-stat-label">{label}</div>
+        </div>
+      ))}
+    </div>
+  </section>
+
   <!-- ═══ FAQ ═══ -->
-  <section class="tt-section tt-faq-bg">
+  <section class="tt-section">
     <div class="tt-container" style="max-width:780px">
       <div class="tt-header reveal-up">
         <span class="sec-label">Common questions</span>
@@ -153,31 +221,29 @@ const courses = [
 
   <!-- ═══ CTA — dark ═══ -->
   <section class="tt-cta-section tt-dark">
-    <div class="tt-cta-ring"></div>
+    <div class="tt-cta-glow"></div>
     <div class="tt-container" style="text-align:center;max-width:640px;position:relative;z-index:1">
       <h2 class="tt-cta-h2 reveal-up">Ready to book tee times<br/><em>in Graeagle?</em></h2>
       <p class="tt-cta-sub reveal-up delay-1">Tell us your group size, dates, and courses. We confirm guaranteed tee times and return a full package within 24 hours.</p>
       <div class="reveal-scale delay-2">
         <a href="/request-a-quote/" class="btn-green-glow tt-cta-main">Book Tee Times — Free Quote →</a>
-        <p class="tt-cta-trust">No obligation · 72-hr cancellation · 4.8★ · Groups of 4 to 200+</p>
+        <p class="tt-cta-trust">No obligation · 72-hr cancellation · 4.8★ · Groups 4 to 200+</p>
       </div>
     </div>
   </section>
 
+  <RelatedTrips client:load slug="tee-times-graeagle" type="course" showAll={true} max={3} />
   <Footer />
 </Base>
 
 <style>
-:root{--tt-gold:#e8a850;--tt-green:#1a7a40;--tt-dark:#0d1a0e;--tt-text:#1c1208;--tt-muted:rgba(28,18,8,0.52);--tt-border:rgba(28,18,8,0.08);--tt-r:16px}
+:root{--tt-gold:#e8a850;--tt-green:#1a7a40;--tt-dark:#0d1a0e;--tt-text:#1c1208;--tt-muted:rgba(28,18,8,0.52);--tt-border:rgba(28,18,8,0.08);--tt-r:20px}
 .tt-container{max-width:1140px;margin:0 auto;padding:0 clamp(20px,6%,80px)}
 .tt-section{padding:clamp(72px,9vw,120px) 0;background:var(--page-bg,#f8f5f0)}
-.tt-faq-bg{background:var(--page-bg,#f8f5f0)!important}
 .tt-dark{background:var(--tt-dark)!important}
 .tt-header{text-align:center;margin-bottom:clamp(40px,5vw,68px)}
-.tt-h2{font-family:'Playfair Display',serif;font-size:clamp(28px,4vw,48px);font-weight:500;color:var(--tt-text);line-height:1.1;margin:8px 0 0}
+.tt-h2{font-family:'Playfair Display',serif;font-size:clamp(30px,4vw,52px);font-weight:500;color:var(--tt-text);line-height:1.1;margin:8px 0 0}
 .tt-h2 em{font-style:italic;color:var(--tt-green)}
-.tt-h2-light{color:#f0ece3!important}
-.tt-h2-light em{color:var(--tt-gold)!important}
 
 /* HERO */
 .tt-hero{position:relative;min-height:90vh;display:flex;align-items:flex-end;overflow:hidden}
@@ -193,37 +259,61 @@ const courses = [
 .tt-pill{font-size:12px;font-weight:600;color:rgba(245,240,232,.85);padding:7px 16px;background:rgba(255,255,255,.1);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.18);border-radius:100px}
 .tt-hero-ctas{display:flex;gap:20px;align-items:center;flex-wrap:wrap}
 .tt-cta-main{display:inline-block;padding:15px 36px;border-radius:100px;font-size:15px;font-weight:700;text-decoration:none}
-.tt-cta-text{font-size:14px;font-weight:600;color:rgba(232,168,80,.9);text-decoration:none}
+.tt-cta-ghost{font-size:14px;font-weight:600;color:rgba(232,168,80,.9);text-decoration:none}
+.tt-floats{position:absolute;right:clamp(24px,5%,72px);bottom:clamp(56px,8vw,90px);display:flex;flex-direction:column;gap:10px;z-index:3}
+.tt-float{background:rgba(255,255,255,.1);backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,.2);border-radius:16px;padding:14px 22px;text-align:center;min-width:116px}
+.tt-float-val{font-family:'Playfair Display',serif;font-size:26px;color:var(--tt-gold);font-weight:400;line-height:1}
+.tt-float-lbl{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.14em;color:rgba(245,240,232,.45);margin-top:5px}
 
-/* COURSES */
-.tt-courses{display:flex;flex-direction:column;gap:2px;margin-bottom:24px}
-.tt-course{display:flex;justify-content:space-between;align-items:center;gap:24px;padding:24px 28px;border:1px solid var(--tt-border);background:#fff;text-decoration:none;transition:all .3s;flex-wrap:wrap}
-.tt-course:first-child{border-radius:var(--tt-r) var(--tt-r) 0 0}
-.tt-course:last-child{border-radius:0 0 var(--tt-r) var(--tt-r)}
-.tt-course:hover{background:#fffdf9;border-color:rgba(232,168,80,.4);transform:translateX(4px)}
-.tt-course-left{display:flex;flex-direction:column;gap:6px;flex:1}
-.tt-course-badge{font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:.1em;color:#fff;padding:3px 9px;border-radius:100px;align-self:flex-start}
-.tt-course-name{font-size:18px;font-weight:700;color:var(--tt-text);margin:0}
-.tt-course-specs{display:flex;flex-wrap:wrap;gap:6px;font-size:12px;color:var(--tt-muted)}
+/* COURSE CARDS */
+.tt-courses-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:22px;margin-bottom:24px}
+.tt-course-card{border-radius:var(--tt-r);overflow:hidden;text-decoration:none;background:#fff;border:1px solid var(--tt-border);box-shadow:0 2px 14px rgba(0,0,0,.05);transition:all .38s;display:flex;flex-direction:column}
+.tt-course-card:hover{transform:translateY(-7px);box-shadow:0 28px 64px rgba(0,0,0,.13);border-color:rgba(232,168,80,.45)}
+.tt-course-img{height:200px;background-size:cover;background-position:center;position:relative;flex-shrink:0;overflow:hidden}
+.tt-course-img::after{content:'';position:absolute;inset:0;background:rgba(13,26,14,0);transition:background .38s}
+.tt-course-card:hover .tt-course-img::after{background:rgba(13,26,14,.12)}
+.tt-course-fade{position:absolute;inset:0;background:linear-gradient(to top,rgba(9,15,9,.78) 0%,transparent 52%)}
+.tt-course-badge{position:absolute;top:12px;left:12px;font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:.1em;color:#fff;padding:4px 10px;border-radius:100px}
+.tt-access-tag{position:absolute;top:12px;right:12px;font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:.08em;padding:4px 10px;border-radius:100px}
+.tt-access-tag.public{background:rgba(26,122,64,.85);color:#fff}
+.tt-access-tag.semi{background:rgba(232,168,80,.85);color:#1c1208}
+.tt-course-body{padding:20px 22px 22px;flex:1;display:flex;flex-direction:column}
+.tt-course-name{font-size:17px;font-weight:700;color:var(--tt-text);margin:0 0 8px}
+.tt-course-specs{display:flex;flex-wrap:wrap;gap:6px;font-size:12px;color:var(--tt-muted);margin-bottom:8px}
 .tt-dot{color:rgba(28,18,8,.2)}
-.tt-course-note{font-size:13px;color:var(--tt-muted);margin:0;line-height:1.5}
-.tt-course-right{display:flex;flex-direction:column;align-items:flex-end;gap:10px;flex-shrink:0}
-.tt-access{font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.1em;padding:4px 12px;border-radius:100px}
-.tt-access.public{background:rgba(26,122,64,.1);color:var(--tt-green)}
-.tt-access.semi{background:rgba(232,168,80,.12);color:#8a5810}
+.tt-course-note{font-size:13px;color:var(--tt-muted);line-height:1.55;flex:1;margin:0 0 14px}
 .tt-course-link{font-size:12px;font-weight:700;color:var(--tt-green)}
-.tt-course:hover .tt-course-link{color:var(--tt-gold)}
+.tt-course-card:hover .tt-course-link{color:var(--tt-gold)}
 .tt-access-note{text-align:center;font-size:14px;color:var(--tt-muted);margin:0;line-height:1.7}
 
+/* WHY SECTION */
+.tt-why-inner{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center}
+.tt-points{display:flex;flex-direction:column;gap:22px;margin-top:32px}
+.tt-point{display:flex;gap:16px;align-items:flex-start}
+.tt-pt-icon{font-size:24px;flex-shrink:0;margin-top:2px}
+.tt-pt-title{font-size:15px;font-weight:700;color:#f5f0e8;margin-bottom:4px}
+.tt-pt-body{font-size:13px;color:rgba(245,240,232,.75);line-height:1.65}
+.tt-why-img{position:relative;border-radius:22px;overflow:hidden;box-shadow:0 32px 80px rgba(0,0,0,.42)}
+.tt-why-img img{width:100%;height:420px;object-fit:cover;display:block}
+.tt-why-badge{position:absolute;bottom:20px;left:20px;background:rgba(13,26,14,.88);backdrop-filter:blur(14px);border:1px solid rgba(232,168,80,.22);border-radius:16px;padding:14px 20px}
+
 /* BOOKING WINDOWS */
-.tt-windows{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-.tt-window{border:1px solid rgba(245,240,232,.18);border-radius:var(--tt-r);padding:28px 24px;background:rgba(255,255,255,.08);transition:all .35s;position:relative}
-.tt-window:hover{transform:translateY(-4px);border-color:rgba(232,168,80,.28)}
-.tt-window-hot{border-color:rgba(232,168,80,.3)!important;background:rgba(232,168,80,.06)!important}
+.tt-windows{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.tt-window{border-radius:var(--tt-r);padding:30px 26px;border:1px solid var(--tt-border);background:#fff;box-shadow:0 2px 10px rgba(0,0,0,.04);transition:all .35s;position:relative;overflow:hidden;display:flex;flex-direction:column;gap:8px}
+.tt-window:hover{transform:translateY(-6px);box-shadow:0 24px 56px rgba(0,0,0,.1);border-color:rgba(232,168,80,.35)}
+.tt-window-hot{border-color:rgba(232,168,80,.32)!important;background:rgba(232,168,80,.04)!important}
 .tt-window-tag{position:absolute;top:-1px;left:50%;transform:translateX(-50%);background:var(--tt-gold);color:#1c1208;font-size:9px;font-weight:800;padding:4px 14px;border-radius:0 0 10px 10px;text-transform:uppercase;letter-spacing:.1em;white-space:nowrap}
-.tt-window-month{font-family:'Playfair Display',serif;font-size:22px;color:var(--tt-gold);margin-bottom:6px}
-.tt-window-lead{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.1em;color:rgba(245,240,232,.5);margin-bottom:12px}
-.tt-window-note{font-size:13px;color:rgba(245,240,232,.72);line-height:1.68;margin:0}
+.tt-window-month{font-family:'Playfair Display',serif;font-size:22px;color:var(--tt-green);font-weight:500}
+.tt-window-lead{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.1em;color:var(--tt-muted)}
+.tt-window-note{font-size:13px;color:var(--tt-muted);line-height:1.68;margin:0;flex:1}
+.tt-window-cta{font-size:12px;font-weight:700;color:var(--tt-green);text-decoration:none}
+.tt-window:hover .tt-window-cta{color:var(--tt-gold)}
+
+/* TRUST STATS */
+.tt-trust{padding:clamp(48px,6vw,80px) 0}
+.tt-trust-row{display:grid;grid-template-columns:repeat(5,1fr);gap:32px;text-align:center}
+.tt-stat-val{font-family:'Playfair Display',serif;font-size:clamp(30px,4vw,48px);color:var(--tt-gold);font-weight:400;line-height:1;margin-bottom:8px}
+.tt-stat-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.14em;color:rgba(245,240,232,.62)}
 
 /* FAQ */
 .tt-faq{border-bottom:1px solid var(--tt-border)}
@@ -237,8 +327,8 @@ const courses = [
 
 /* CTA */
 .tt-cta-section{padding:clamp(80px,10vw,132px) 0;position:relative;overflow:hidden}
-.tt-cta-ring{position:absolute;width:720px;height:720px;border-radius:50%;border:1px solid rgba(232,168,80,.07);top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none}
-.tt-cta-ring::before{content:'';position:absolute;inset:80px;border-radius:50%;border:1px solid rgba(232,168,80,.04)}
+.tt-cta-glow{position:absolute;width:720px;height:720px;border-radius:50%;background:radial-gradient(circle,rgba(26,122,64,.18) 0%,transparent 70%);top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none}
+.tt-cta-glow::before{content:'';position:absolute;inset:80px;border-radius:50%;border:1px solid rgba(232,168,80,.04)}
 .tt-cta-h2{font-family:'Playfair Display',serif;font-size:clamp(28px,5vw,52px);color:#f5f0e8;font-weight:500;line-height:1.15;margin:0 0 20px}
 .tt-cta-h2 em{color:var(--tt-gold);font-style:italic}
 .tt-cta-sub{font-size:16px;color:rgba(245,240,232,.75);line-height:1.75;margin:0 0 36px}
@@ -247,7 +337,14 @@ const courses = [
 /* Mobile */
 @media(max-width:900px){
   .tt-hero{min-height:100svh}
+  .tt-floats{display:none}
+  .tt-courses-grid{grid-template-columns:1fr}
   .tt-windows{grid-template-columns:1fr}
-  .tt-course-right{display:none}
+  .tt-trust-row{grid-template-columns:repeat(3,1fr);gap:20px}
+  .tt-why-inner{grid-template-columns:1fr}
+  .tt-why-img{display:none}
+}
+@media(max-width:540px){
+  .tt-trust-row{grid-template-columns:1fr 1fr}
 }
 </style>
