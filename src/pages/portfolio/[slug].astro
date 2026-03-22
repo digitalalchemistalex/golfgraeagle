@@ -149,6 +149,9 @@ export function getStaticPaths() {
   'graeagle-meadows-golf-course-restaurant':1,'cuccias':1,'sierra-smokeshow':1,'gumbas-ii-go':1,
   'eureka-peak-brewing-co':1,'the-brewing-lair':1,'mohawk-tavern':1,'the-knotty-pine-tavern':1,
   'little-bite-deli':1,'graeagle-mountain-frostee':1,'graeagle-restaurant':1,
+  // Short-slug aliases — must be built as static pages or they 404
+  'gumbas':1,'iron-door':1,'sardine-lake':1,'roadhouse':1,'brewing-lair':1,
+  'knotty-pine':1,'mountain-frostee':1,'longboards':1,'eureka-peak-brewing':1,
   }).map(slug => ({ params: { slug } }));
 }
 
