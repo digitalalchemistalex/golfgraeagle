@@ -92,11 +92,11 @@ const itineraries = [
 ];
 
 const courses = [
-  { name: 'Graeagle Meadows', slug: 'graeagle-meadows-golf-packages', par: 72, yards: '6,759', slope: 120, difficulty: 'Easiest', badge: 'Start here', badgeColor: '#2563eb', note: 'Most accessible. Best opening round.' },
-  { name: 'Plumas Pines',     slug: 'plumas-pines-golf-packages',     par: 72, yards: '6,504', slope: 132, difficulty: 'Moderate', badge: 'Best Value', badgeColor: '#b45309', note: 'Top 5 Sierra Nevada value. Precision course.' },
-  { name: 'Whitehawk Ranch',  slug: 'whitehawk-ranch-golf-packages',  par: 71, yards: '6,983', slope: 132, difficulty: 'Moderate', badge: 'Top 20 CA', badgeColor: '#1a7a40', note: 'Meadow and forest. Sulphur Creek in play.' },
-  { name: 'Grizzly Ranch',    slug: 'grizzly-ranch-golf-packages',    par: 72, yards: '7,411', slope: 140, difficulty: 'Hard', badge: 'Top 100', badgeColor: '#7c3aed', note: 'Golf Digest Top 100. 7,411 yds at 4,800 ft.' },
-  { name: 'Nakoma — Dragon',  slug: 'nakoma-dragon-golf-packages',    par: 72, yards: '7,015', slope: 147, difficulty: 'Hardest', badge: 'FLW Club', badgeColor: '#be123c', note: 'Golf World Top 75. Save this for last.' },
+  { name: 'Graeagle Meadows', slug: 'graeagle-meadows-golf-packages', par: 72, yards: '6,759', slope: 120, difficulty: 'Easiest',  badge: 'Start here', badgeColor: '#2563eb', hero: '/wp-images/graeagle-meadows-hero.webp',           note: 'Most accessible. Best opening round for any group.' },
+  { name: 'Plumas Pines',     slug: 'plumas-pines-golf-packages',     par: 72, yards: '6,504', slope: 132, difficulty: 'Moderate', badge: 'Best Value', badgeColor: '#b45309', hero: '/wp-images/plumas-pines-hero.webp',               note: 'Top 5 Best Value Sierra Nevada. Precision layout.' },
+  { name: 'Whitehawk Ranch',  slug: 'whitehawk-ranch-golf-packages',  par: 71, yards: '6,983', slope: 132, difficulty: 'Moderate', badge: 'Top 20 CA',  badgeColor: '#1a7a40', hero: '/wp-images/whitehawk-hero.webp',                  note: 'Meadow and forest. Sulphur Creek in play.' },
+  { name: 'Grizzly Ranch',    slug: 'grizzly-ranch-golf-packages',    par: 72, yards: '7,411', slope: 140, difficulty: 'Hard',     badge: 'Top 100',    badgeColor: '#7c3aed', hero: '/wp-images/grizzly-ranch-hero.webp',             note: 'Golf Digest Top 100. 7,411 yds at 4,800 ft.' },
+  { name: 'Nakoma — Dragon',  slug: 'nakoma-dragon-golf-packages',    par: 72, yards: '7,015', slope: 147, difficulty: 'Hardest',  badge: 'FLW Club',   badgeColor: '#be123c', hero: '/wp-images/nakoma-dragon-feather-river.webp',    note: 'Golf World Top 75. Save this for last.' },
 ];
 
 const whyPoints = [
@@ -150,18 +150,25 @@ const whyPoints = [
       </div>
       <div class="gi-ramp">
         {courses.map((c, i) => (
-          <a href={`/portfolio/${c.slug}/`} class={`gi-ramp-card glow-card reveal-up delay-${i+1}`}>
-            <div class="gi-ramp-num">{i + 1}</div>
-            <span class="gi-ramp-badge" style={`background:${c.badgeColor}`}>{c.badge}</span>
-            <h3 class="gi-ramp-name">{c.name}</h3>
-            <div class="gi-ramp-specs">
-              <span>Par {c.par}</span><span class="gi-dot">·</span>
-              <span>{c.yards} yds</span><span class="gi-dot">·</span>
-              <span>Slope {c.slope}</span>
+          <a href={`/portfolio/${c.slug}/`} class={`gi-ramp-card glow-card reveal-${i % 2 === 0 ? 'left' : 'right'} delay-${(i % 3) + 1}`}>
+            <div class="gi-ramp-img" style={`background-image:url(${c.hero})`}>
+              <div class="gi-ramp-fade"></div>
+              <span class="gi-ramp-badge" style={`background:${c.badgeColor}`}>{c.badge}</span>
+              <div class="gi-ramp-num-overlay">{i + 1}</div>
+              <div class="gi-ramp-slope">Slope {c.slope}</div>
             </div>
-            <p class="gi-ramp-note">{c.note}</p>
-            <div class="gi-ramp-diff" style={`color:${c.badgeColor}`}>{c.difficulty}</div>
-            <span class="gi-ramp-link underline-draw">View course →</span>
+            <div class="gi-ramp-body">
+              <h3 class="gi-ramp-name">{c.name}</h3>
+              <div class="gi-ramp-specs">
+                <span>Par {c.par}</span><span class="gi-dot">·</span>
+                <span>{c.yards} yds</span>
+              </div>
+              <p class="gi-ramp-note">{c.note}</p>
+              <div class="gi-ramp-footer-row">
+                <span class="gi-ramp-diff" style={`color:${c.badgeColor}`}>{c.difficulty}</span>
+                <span class="gi-ramp-link underline-draw">View →</span>
+              </div>
+            </div>
           </a>
         ))}
       </div>
@@ -355,17 +362,24 @@ const whyPoints = [
 .gi-float-lbl{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.14em;color:rgba(245,240,232,.45);margin-top:5px}
 
 /* COURSE RAMP */
-.gi-ramp{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-bottom:24px}
-.gi-ramp-card{border-radius:var(--gi-r);padding:24px 18px;border:1px solid var(--gi-border);background:#fff;text-decoration:none;transition:all .35s;position:relative;overflow:hidden;display:flex;flex-direction:column;gap:7px}
-.gi-ramp-card:hover{transform:translateY(-6px);box-shadow:0 20px 48px rgba(0,0,0,.1);border-color:rgba(232,168,80,.4)}
-.gi-ramp-num{font-family:'Playfair Display',serif;font-size:52px;color:rgba(232,168,80,.1);font-weight:400;line-height:1;margin:-4px 0 -10px -2px}
-.gi-ramp-badge{font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:.1em;color:#fff;padding:3px 9px;border-radius:100px;align-self:flex-start}
-.gi-ramp-name{font-size:14px;font-weight:700;color:var(--gi-text);line-height:1.3;margin:0}
+.gi-ramp{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:16px;margin-bottom:24px}
+.gi-ramp-card{border-radius:var(--gi-r);overflow:hidden;text-decoration:none;background:#fff;border:1px solid var(--gi-border);box-shadow:0 2px 14px rgba(0,0,0,.05);transition:all .38s;display:flex;flex-direction:column}
+.gi-ramp-card:hover{transform:translateY(-7px);box-shadow:0 28px 64px rgba(0,0,0,.13);border-color:rgba(232,168,80,.45)}
+.gi-ramp-img{height:170px;background-size:cover;background-position:center;position:relative;flex-shrink:0;overflow:hidden}
+.gi-ramp-img::after{content:'';position:absolute;inset:0;background:rgba(13,26,14,0);transition:background .38s}
+.gi-ramp-card:hover .gi-ramp-img::after{background:rgba(13,26,14,.12)}
+.gi-ramp-fade{position:absolute;inset:0;background:linear-gradient(to top,rgba(9,15,9,.82) 0%,rgba(9,15,9,.2) 55%,transparent 100%)}
+.gi-ramp-badge{position:absolute;top:10px;left:10px;font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:.1em;color:#fff;padding:3px 9px;border-radius:100px}
+.gi-ramp-num-overlay{position:absolute;top:8px;right:12px;font-family:'Playfair Display',serif;font-size:42px;font-weight:400;color:rgba(255,255,255,.22);line-height:1}
+.gi-ramp-slope{position:absolute;bottom:10px;right:12px;font-size:11px;font-weight:700;color:rgba(255,255,255,.75)}
+.gi-ramp-body{padding:16px 16px 18px;flex:1;display:flex;flex-direction:column;gap:5px}
+.gi-ramp-name{font-size:15px;font-weight:700;color:var(--gi-text);margin:0}
 .gi-ramp-specs{display:flex;flex-wrap:wrap;gap:4px;font-size:11px;color:var(--gi-muted)}
 .gi-dot{color:rgba(28,18,8,.2)}
 .gi-ramp-note{font-size:11px;color:var(--gi-muted);line-height:1.5;margin:0;flex:1}
-.gi-ramp-diff{font-size:11px;font-weight:700}
-.gi-ramp-link{font-size:11px;font-weight:700;color:var(--gi-green);margin-top:4px}
+.gi-ramp-footer-row{display:flex;justify-content:space-between;align-items:center;margin-top:6px}
+.gi-ramp-diff{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.06em}
+.gi-ramp-link{font-size:11px;font-weight:700;color:var(--gi-green)}
 .gi-ramp-card:hover .gi-ramp-link{color:var(--gi-gold)}
 .gi-ramp-footer{text-align:center;font-size:14px;color:var(--gi-muted);max-width:660px;margin:0 auto;line-height:1.7}
 
@@ -440,7 +454,6 @@ const whyPoints = [
 @media(max-width:900px){
   .gi-hero{min-height:100svh}
   .gi-floats{display:none}
-  .gi-ramp{grid-template-columns:1fr 1fr}
   .gi-itin-grid{grid-template-columns:1fr 1fr}
   .gi-steps{grid-template-columns:1fr}
   .gi-trust-row{grid-template-columns:repeat(3,1fr);gap:20px}
@@ -448,7 +461,7 @@ const whyPoints = [
   .gi-why-img{display:none}
 }
 @media(max-width:540px){
-  .gi-ramp{grid-template-columns:1fr}
+  .gi-ramp{grid-template-columns:1fr 1fr}
   .gi-itin-grid{grid-template-columns:1fr}
   .gi-trust-row{grid-template-columns:1fr 1fr}
 }
