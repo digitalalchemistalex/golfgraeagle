@@ -20,6 +20,13 @@ const cuisineMap = {
 };
 const priceMap = { 'fine-dining': '$$$', 'casual': '$$', 'brewery': '$$', 'bar': '$', 'quick': '$' };
 
+const aggregateRatingSchema = {
+  "@context": "https://schema.org", "@type": "TravelAgency",
+  "@id": "https://golfgraeagle.com/#organization",
+  "name": "GolfGraeagle.com",
+  "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.8", "reviewCount": "672", "bestRating": "5" }
+};
+
 const restaurantSchemas = dining.map(d => ({
   "@type": "Restaurant",
   "@id": `${siteConfig.url}/dining#${d.slug}`,
@@ -70,7 +77,7 @@ const diningFaq = {
 <Base
   title="Dining in Graeagle CA | Best Restaurants Near Golf Courses"
   description="The best restaurants near Graeagle's golf courses. Fine dining at Sardine Lake Resort, craft beer at Eureka Peak Brewing, the Grizzly Grill after your round at Grizzly Ranch."
-  schema={[...restaurantSchemas, diningBreadcrumb, diningFaq]}
+  schema={[...restaurantSchemas, diningBreadcrumb, diningFaq, aggregateRatingSchema]}
 
   bodyClass="light-page"
 >

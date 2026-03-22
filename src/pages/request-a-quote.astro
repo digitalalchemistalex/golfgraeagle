@@ -21,6 +21,13 @@ const lodgingCards = [
   { ...lodging[2], best:'Most Unique',       icon:'🏛', desc:'Frank Lloyd Wright building · Steps from The Dragon · Spa & pool' },
   { ...lodging[3], best:'Large Groups',      icon:'🏘', desc:'2–4 bedroom units · Full kitchens · On the Plumas Pines course' },
 ];
+const aggregateRatingSchema = {
+  "@context": "https://schema.org", "@type": "TravelAgency",
+  "@id": "https://golfgraeagle.com/#organization",
+  "name": "GolfGraeagle.com",
+  "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.8", "reviewCount": "672", "bestRating": "5" }
+};
+
 const quoteSchema = [
   {
     '@type': 'ContactPage',
@@ -44,7 +51,7 @@ const quoteSchema = [
   title="Request a Quote | Graeagle Golf Packages | Stay &amp; Play from $299 per golfer"
   description="Plan your Graeagle golf trip. Tell us your dates, group size, courses, and lodging — we'll build a custom stay-and-play package. Free quote, 24-hour response."
   canonical="https://golfgraeagle.com/request-a-quote"
-  schema={quoteSchema}
+  schema={[...quoteSchema, aggregateRatingSchema]}
 
   bodyClass="light-page"
 >

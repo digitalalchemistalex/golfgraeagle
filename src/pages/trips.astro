@@ -92,7 +92,14 @@ const faqSchema = {
   ]
 };
 
-const schema = [tripListSchema, breadcrumbSchema, faqSchema];
+const aggregateRatingSchema = {
+  "@context": "https://schema.org", "@type": "TravelAgency",
+  "@id": "https://golfgraeagle.com/#organization",
+  "name": "GolfGraeagle.com",
+  "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.8", "reviewCount": "672", "bestRating": "5" }
+};
+
+const schema = [tripListSchema, breadcrumbSchema, faqSchema, aggregateRatingSchema];
 ---
 
 <Base

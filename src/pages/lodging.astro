@@ -53,9 +53,14 @@ const townhomeData = {
   portfolioSlug: 'the-townhomes-at-plumas-pines',
 };
 
+const aggregateRatingSchema = {
+  "@context": "https://schema.org", "@type": "TravelAgency",
+  "@id": "https://golfgraeagle.com/#organization",
+  "name": "GolfGraeagle.com",
+  "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.8", "reviewCount": "672", "bestRating": "5" }
+};
+
 const lodgingFaq = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
   "mainEntity": [
     { "@type": "Question", "name": "Where should a golf group stay in Graeagle?", "acceptedAnswer": { "@type": "Answer", "text": "River Pines Resort works well for most golf groups — multiple room types, on-site dining, pool. For large groups (8+), the Townhomes at Plumas Pines offer multi-bedroom units with full kitchens at a lower per-person cost. For the bucket-list stay, the Inn at Nakoma puts you steps from The Dragon." } },
     { "@type": "Question", "name": "Is there lodging on the golf courses in Graeagle?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. The Inn at Nakoma is on the Nakoma Dragon course property. The Townhomes at Plumas Pines are adjacent to Plumas Pines Golf Resort. River Pines Resort is walking distance from Graeagle Meadows." } },
@@ -67,7 +72,8 @@ const lodgingFaq = {
 <Base
   title="Graeagle Lodging for Golf Groups | Trusted Stay and Play Packages from GolfGraeagle"
   description="Stay at Nakoma, Chalet View Lodge, or River Pines with GolfGraeagle stay-and-play packages from $299. Townhomes, boutique hotels, and private homes for groups of 8 to 200. Free quote."
-  schema={[lodgingFaq]}
+  schema={[lodgingFaq, aggregateRatingSchema]}
+  canonical="https://golfgraeagle.com/lodging/"
 
   bodyClass="light-page"
 >
@@ -92,12 +98,12 @@ const lodgingFaq = {
 <!-- QUICK DECISION GUIDE -->
 <section class="ldg-decision">
   <div class="ldg-container">
-    <h2 class="ldg-section-title">Which Graeagle golf lodging fits your trip?</h2>
+    <h2 class="ldg-section-title">Where to stay for golf in Graeagle</h2>
     <div class="ldg-decision-grid">
       <div class="ldg-decision-card">
         <div class="ldg-decision-icon">🏨</div>
         <h3 class="ldg-decision-type">Hotels & Resorts</h3>
-        <p class="ldg-decision-desc">Traditional hotel service — daily housekeeping, on-site dining, amenities. Three properties from $$ to $$$$.</p>
+        <p class="ldg-decision-desc">Cabins, suites, and rooms for Graeagle golf trips — daily housekeeping, on-site dining, amenities. Three properties from $$ to $$$$.</p>
         <ul class="ldg-decision-list">
           <li>✓ Groups of 2–60 in any room configuration</li>
           <li>✓ On-site restaurants — no coordinating meals</li>
