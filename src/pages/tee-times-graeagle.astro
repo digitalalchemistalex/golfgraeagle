@@ -33,6 +33,19 @@ const orgSchema = {
     { "@type": "WebPage", "url": "https://golfgraeagle.com/tee-times-graeagle/", "name": title }
   ]
 };
+const howToSchema = {
+  "@context": "https://schema.org", "@type": "HowTo",
+  "name": "How to Book Tee Times at Graeagle Golf Courses",
+  "description": "Book guaranteed tee times at all 5 Graeagle courses — including semi-private Grizzly Ranch and Nakoma Dragon — through GolfGraeagle.",
+  "totalTime": "PT24H",
+  "step": [
+    { "@type": "HowToStep", "position": 1, "name": "Request tee times with your dates and courses", "text": "Submit your dates, group size, and which courses via golfgraeagle.com/request-a-quote. Peak season (July–August): submit 6–8 weeks ahead. Spring and fall: 2–4 weeks." },
+    { "@type": "HowToStep", "position": 2, "name": "GolfGraeagle books directly with each pro shop", "text": "GolfGraeagle contacts each course pro shop directly. Semi-private courses (Grizzly Ranch, Nakoma Dragon) require an operator relationship — which GolfGraeagle has. Confirmation returned within 24 hours." },
+    { "@type": "HowToStep", "position": 3, "name": "Receive your confirmed tee sheet", "text": "Tee times confirmed with exact times per course per day. For groups of 9+, consecutive tee time blocks are arranged. All tee times are paired with lodging options in one bundled proposal." },
+    { "@type": "HowToStep", "position": 4, "name": "Show up and check in", "text": "Your tee sheet is confirmed and in your inbox before you leave home. Check in at each pro shop with your name. GolfGraeagle handles any day-of changes." }
+  ]
+};
+
 const serviceSchema = {
   "@context": "https://schema.org", "@type": "Service",
   "name": "Graeagle Tee Time Booking",
@@ -65,7 +78,7 @@ const whyPoints = [
 ];
 ---
 <Base title={title} description={description} ogType="website"
-  schema={[orgSchema, faqSchema, breadcrumbSchema, serviceSchema]}
+  schema={[orgSchema, faqSchema, breadcrumbSchema, serviceSchema, howToSchema]}
   canonical="https://golfgraeagle.com/tee-times-graeagle/"
   ogImage="https://golfgraeagle.com/wp-images/grizzly-ranch--1024x682.webp"
   bodyClass="light-page"
