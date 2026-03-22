@@ -1303,7 +1303,7 @@ const diningSlugMap: Record<string, string> = {
     <div class="lod-body-grid">
       <div>
         <!-- Description with reveal -->
-        <p class="reveal" style="font-size:18px;color:rgba(28,18,8,0.65);line-height:1.9;margin:0 0 64px;max-width:780px;">{item.description}</p>
+        <p class="speakable reveal" style="font-size:18px;color:rgba(28,18,8,0.65);line-height:1.9;margin:0 0 64px;max-width:780px;">{item.description}</p>
 
         <!-- Feature rows: alternating image + text — desktop editorial layout -->
         {item.images && item.images.length >= 2 && item.highlights && item.highlights.length >= 2 && (() => {
@@ -1569,7 +1569,7 @@ const diningSlugMap: Record<string, string> = {
     <div class="din-body-grid">
 
         <!-- Description -->
-        <p style="font-size:17px;color:rgba(28,18,8,0.65);line-height:1.85;margin:0 0 36px;">{item.description}</p>
+        <p class="speakable" style="font-size:17px;color:rgba(28,18,8,0.65);line-height:1.85;margin:0 0 36px;">{item.description}</p>
 
         <!-- Photo carousel — shown when multiple images exist -->
         {item.images && item.images.length > 1 && (
