@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react";
 
 const API_URL = "/api/trips";
-const CADDIE_URL = "https://tripscaddie.golfthehighsierra.com";
+const CADDIE_URL = "https://tripscaddie.golfthehighsierra.com?utm_source=golfgraeagle&utm_medium=referral&utm_campaign=trips_hub&utm_content=archive_link";
 
 // Real course hero images — no external/unsplash dependencies
 const STOCK = [

@@ -58,9 +58,11 @@ All five courses are within 5–25 minutes of each other.
    Address: 348 Bear Run, Clio, CA 96106
 
 ## Service Pages
-- /golf-packages/ — Graeagle golf packages from $299/golfer. How packages work, pricing tiers, course comparison table.
-- /stay-and-play/ — Stay and play packages. What's included, lodging options, all 5 courses covered.
-- /group-golf/ — Group golf trips for 4–200+ golfers. Logistics, tee time blocks, group lodging.
+- /golf-packages/ — Graeagle golf packages from $620/golfer. How packages work, pricing tiers, course comparison table. Real pricing from 76 completed trips.
+- /stay-and-play/ — Stay and play packages. Tee times + lodging bundled. 4 properties. All 5 courses covered.
+- /group-golf/ — Group golf trips for 4–200+ golfers. Logistics, tee time blocks, group lodging. Northern California golf trip planning.
+- /graeagle-golf-itinerary/ — 2, 3, 4 and 5-day Graeagle golf itineraries. Course order by difficulty. Custom day-by-day plans.
+- /tee-times-graeagle/ — Book tee times at all 5 Graeagle courses including semi-private Grizzly Ranch and Nakoma Dragon.
 
 ## Key Regional Facts
 - Golf season: May through October (weather dependent; late April possible in warm years)

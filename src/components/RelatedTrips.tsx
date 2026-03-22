@@ -33,7 +33,7 @@ const LODGING_PORTFOLIO: Record<string, string> = {
 };
 
 const API_URL  = "/api/trips";
-const CADDIE_URL = "https://tripscaddie.golfthehighsierra.com";
+const CADDIE_URL = "https://tripscaddie.golfthehighsierra.com?utm_source=golfgraeagle&utm_medium=referral&utm_campaign=related_trips&utm_content=widget_footer";
 
 /* Build reverse lookup: name → portfolio URL */
 function buildLookup(namesMap: Record<string, string[]>, urlMap: Record<string, string>) {
