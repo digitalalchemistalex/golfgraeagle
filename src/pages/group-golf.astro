@@ -27,6 +27,19 @@ const orgSchema = {"@context":"https://schema.org","@graph":[
     "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.8", "reviewCount": "672", "bestRating": "5" }},
   {"@type":"WebPage","url":"https://golfgraeagle.com/group-golf/","name":title}
 ]};
+const howToSchema = {
+  "@context": "https://schema.org", "@type": "HowTo",
+  "name": "How to Plan a Group Golf Trip to Graeagle",
+  "description": "Step-by-step guide to planning a group golf trip to Graeagle for 4 to 200+ golfers — tee time blocks, lodging, and logistics.",
+  "totalTime": "PT24H",
+  "step": [
+    { "@type": "HowToStep", "position": 1, "name": "Submit your headcount and dates", "text": "Tell GolfGraeagle your group size, dates, and which courses you want. Groups of 4–8 use single tee times. Groups of 9+ need consecutive tee time blocks — the earlier you submit, the better the morning slots." },
+    { "@type": "HowToStep", "position": 2, "name": "Receive your group proposal in 24 hours", "text": "GolfGraeagle returns a full group proposal — consecutive tee time blocks across your courses, lodging matched to your group size, per-person pricing, and a day-by-day schedule." },
+    { "@type": "HowToStep", "position": 3, "name": "Confirm and we coordinate everything", "text": "One decision, one invoice. GolfGraeagle locks all tee time blocks directly with each pro shop, confirms your lodging, and arranges group dining reservations. Shotgun starts available for groups of 20+." },
+    { "@type": "HowToStep", "position": 4, "name": "Your group shows up and plays", "text": "All logistics are pre-arranged. Tee sheets confirmed, rooms ready, dinner reservations made. GolfGraeagle handles any day-of coordination if weather or timing shifts." }
+  ]
+};
+
 const serviceSchema = {
   "@context": "https://schema.org", "@type": "Service",
   "name": "Group Golf Trips in Graeagle California",
@@ -61,7 +74,7 @@ const logistics = [
 ];
 ---
 <Base title={title} description={description} ogType="website"
-  schema={[orgSchema, faqSchema, breadcrumbSchema, serviceSchema]}
+  schema={[orgSchema, faqSchema, breadcrumbSchema, serviceSchema, howToSchema]}
   canonical="https://golfgraeagle.com/group-golf/"
   ogImage="https://golfgraeagle.com/wp-images/2024-08-17-1.webp"
   bodyClass="light-page"

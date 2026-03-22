@@ -30,6 +30,19 @@ const orgSchema = { "@context":"https://schema.org","@graph":[
     "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.8", "reviewCount": "672", "bestRating": "5" } },
   { "@type":"WebPage","url":"https://golfgraeagle.com/stay-and-play/","name":title }
 ]};
+const howToSchema = {
+  "@context": "https://schema.org", "@type": "HowTo",
+  "name": "How to Book a Graeagle Stay and Play Golf Package",
+  "description": "Book tee times and lodging together in one Graeagle stay-and-play package — courses, property, and itinerary confirmed within 24 hours.",
+  "totalTime": "PT24H",
+  "step": [
+    { "@type": "HowToStep", "position": 1, "name": "Choose your lodging type", "text": "Hotels and resorts (River Pines, Chalet View, Inn at Nakoma) for traditional service. Townhomes at Plumas Pines for groups of 8+ who want full kitchens and on-course access. Tell us your preference when you request a quote." },
+    { "@type": "HowToStep", "position": 2, "name": "Pick your courses", "text": "Any combination of the 5 Graeagle courses. Most 2-night packages cover 2–3 courses. 3-night packages cover 3–4. GolfGraeagle sequences courses by difficulty so your group peaks on the right day." },
+    { "@type": "HowToStep", "position": 3, "name": "Receive your bundled package in 24 hours", "text": "Tee times and lodging confirmed together in one proposal — all-in price, day-by-day itinerary, dining suggestions included. No separate booking of rooms and tee times." },
+    { "@type": "HowToStep", "position": 4, "name": "Approve and we lock everything", "text": "One invoice. GolfGraeagle books every tee time, confirms your rooms, and handles any dining reservations. You check in to your lodging and walk to the first tee." }
+  ]
+};
+
 const serviceSchema = {
   "@context": "https://schema.org", "@type": "Service",
   "name": "Graeagle Stay and Play Golf Packages",
@@ -70,7 +83,7 @@ const includes = [
 ];
 ---
 <Base title={title} description={description} ogType="website"
-  schema={[orgSchema, faqSchema, breadcrumbSchema, serviceSchema]}
+  schema={[orgSchema, faqSchema, breadcrumbSchema, serviceSchema, howToSchema]}
   canonical="https://golfgraeagle.com/stay-and-play/"
   ogImage="https://golfgraeagle.com/wp-images/nakoma-inn-lobby-fireplace.jpg"
   bodyClass="light-page"

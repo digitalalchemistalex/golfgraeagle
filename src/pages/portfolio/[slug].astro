@@ -359,11 +359,13 @@ const buildSchema = () => {
         description: item.description,
         url: pageUrl,
         image: item.hero,
-        address: { '@type': 'PostalAddress', addressRegion: 'CA', addressCountry: 'US', addressLocality: 'Graeagle' },
+        address: { '@type': 'PostalAddress', streetAddress: item.address, addressRegion: 'CA', addressCountry: 'US', addressLocality: 'Graeagle' },
         geo: item.coordinates ? { '@type': 'GeoCoordinates', latitude: item.coordinates.lat, longitude: item.coordinates.lng } : undefined,
-        amenityFeature: item.highlights?.map((h: string) => ({ '@type': 'LocationFeatureSpecification', name: h, value: true })),
-        priceRange: 'Contact for pricing',
         telephone: item.phone,
+        checkinTime: item.checkinTime || 'T15:00',
+        checkoutTime: item.checkoutTime || 'T11:00',
+        amenityFeature: item.highlights?.map((h: string) => ({ '@type': 'LocationFeatureSpecification', name: h, value: true })),
+        priceRange: item.priceRange || '$$–$$$$',
         potentialAction: { '@type': 'ReserveAction', target: { '@type': 'EntryPoint', urlTemplate: `${siteConfig.url}/request-a-quote` } },
         ...(reviews.length > 0 && {
           aggregateRating: {
@@ -405,10 +407,12 @@ const buildSchema = () => {
         url: pageUrl,
         image: item.hero,
         servesCuisine: item.cuisine,
+        openingHours: item.hours || undefined,
         address: { '@type': 'PostalAddress', streetAddress: item.location, addressRegion: 'CA', addressCountry: 'US', addressLocality: 'Graeagle' },
         geo: item.coordinates ? { '@type': 'GeoCoordinates', latitude: item.coordinates.lat, longitude: item.coordinates.lng } : undefined,
         telephone: item.phone,
-        priceRange: item.category === 'fine-dining' ? '$$$' : '$$',
+        priceRange: item.category === 'fine-dining' ? '$$$' : item.category === 'quick-bites' ? '$' : '$$',
+        ...(item.fomoLine && { slogan: item.fomoLine }),
       },
       breadcrumb,
       {
@@ -416,6 +420,7 @@ const buildSchema = () => {
         mainEntity: [
           { '@type': 'Question', name: `Is ${item.name} good for golf groups?`, acceptedAnswer: { '@type': 'Answer', text: `Yes. ${item.name} is popular with Graeagle golf groups. ${item.description?.split('.')[0]}.` } },
           { '@type': 'Question', name: `Where is ${item.name} located?`, acceptedAnswer: { '@type': 'Answer', text: `${item.name} is located at ${item.location || 'near Graeagle, California'}, approximately 5 minutes from the main Graeagle golf courses.` } },
+          { '@type': 'Question', name: `What hours is ${item.name} open?`, acceptedAnswer: { '@type': 'Answer', text: item.hours ? `${item.name} is open: ${item.hours}. Hours may vary seasonally — call ahead to confirm.` : `${item.name} operates seasonally in Graeagle. Call ahead or check their website for current hours.` } },
         ],
       },
     ];
