@@ -16,7 +16,12 @@ let tripCount = 0;
 try {
   const res = await fetch('https://golfthehighsierra.com/trips-caddie/api/api-recaps.php');
   const all: any[] = await res.json();
-  graeagleTrips = all.filter((t: any) => (t.region || '').toLowerCase() === 'graeagle');
+  const GRAEAGLE_COURSES = ["grizzly", "nakoma", "whitehawk", "plumas pines", "graeagle meadows", "graeagle"];
+  graeagleTrips = all.filter((t: any) => {
+    if ((t.region || '').toLowerCase().includes('graeagle')) return true;
+    const courses = (t.courses || []).join(' ').toLowerCase();
+    return GRAEAGLE_COURSES.some(k => courses.includes(k));
+  });
   const prices = graeagleTrips
     .map((t: any) => t.pricePerPerson || t.pricePerPersonEstimate || 0)
     .filter(Boolean);
@@ -25,7 +30,7 @@ try {
   tripCount = graeagleTrips.length;
 } catch (e) {
   // fallback to known minimums
-  minPrice = 620; tripCount = 15; totalGolfers = 358;
+  minPrice = 620; tripCount = 22; totalGolfers = 358;
 }
 
 // Best 6 trips for static cards — premium first, then by group size
@@ -219,7 +224,7 @@ const schema = [tripListSchema, breadcrumbSchema, faqSchema, aggregateRatingSche
 
       <div style="text-align:center;padding:0 0 16px;">
         <p style="font-size:13px;color:rgba(28,18,8,0.45);margin:0;">
-          Showing {staticTrips.length} of {tripCount} Graeagle packages — filter and browse all below.
+          Preview of featured packages — browse and filter all Graeagle trips below.
         </p>
       </div>
     </div>
