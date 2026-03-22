@@ -23,9 +23,19 @@ const breadcrumbSchema = {"@context":"https://schema.org","@type":"BreadcrumbLis
   {"@type":"ListItem","position":2,"name":"Group Golf","item":"https://golfgraeagle.com/group-golf/"}
 ]};
 const orgSchema = {"@context":"https://schema.org","@graph":[
-  {"@type":["TravelAgency","Organization"],"@id":"https://golfgraeagle.com/#organization","name":"GolfGraeagle.com","url":"https://golfgraeagle.com"},
+  {"@type":["TravelAgency","Organization"],"@id":"https://golfgraeagle.com/#organization","name":"GolfGraeagle.com","url":"https://golfgraeagle.com",
+    "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.8", "reviewCount": "672", "bestRating": "5" }},
   {"@type":"WebPage","url":"https://golfgraeagle.com/group-golf/","name":title}
 ]};
+const serviceSchema = {
+  "@context": "https://schema.org", "@type": "Service",
+  "name": "Group Golf Trips in Graeagle California",
+  "description": "Group golf trip planning for 4 to 200+ golfers in Graeagle, CA. Tee time blocks, stay and play golf packages, lodging coordination, and itineraries.",
+  "provider": { "@type": "TravelAgency", "@id": "https://golfgraeagle.com/#organization" },
+  "areaServed": { "@type": "Place", "name": "Graeagle, California" },
+  "serviceType": "Group Golf Trip Planning",
+  "offers": { "@type": "AggregateOffer", "lowPrice": "620", "highPrice": "1705", "priceCurrency": "USD" }
+};
 
 const groupTypes = [
   { icon:'🍺', title:'Golf Buddies Trip',     size:'4–16',    color:'#1a7a40', desc:'Annual guys trip, bachelor parties, friend group weekends. 3 nights, 3–4 courses, one legendary dinner.' },
@@ -51,7 +61,7 @@ const logistics = [
 ];
 ---
 <Base title={title} description={description} ogType="website"
-  schema={[orgSchema, faqSchema, breadcrumbSchema]}
+  schema={[orgSchema, faqSchema, breadcrumbSchema, serviceSchema]}
   canonical="https://golfgraeagle.com/group-golf/"
   ogImage="https://golfgraeagle.com/wp-images/graeagle-meadows-aerial.jpg"
   bodyClass="light-page"
@@ -63,9 +73,9 @@ const logistics = [
     <div class="gg-bg" style="background-image:url(/wp-images/graeagle-meadows-aerial.jpg)"></div>
     <div class="gg-overlay"></div>
     <div class="gg-hero-inner">
-      <p class="gg-eyebrow reveal-up">4 to 200+ Golfers · Graeagle, California</p>
+      <p class="gg-eyebrow reveal-up">Group Golf Trip Planning · 4 to 200+ Golfers · Graeagle, California</p>
       <h1 class="gg-h1 reveal-up delay-1">Group Golf<br/><em>Made Easy.</em></h1>
-      <p class="gg-sub reveal-up delay-2">Five courses within 25 minutes of each other.<br/>One planner handles all of it.</p>
+      <p class="gg-sub speakable reveal-up delay-2">Graeagle group golf trip planning — stay and play golf packages with tee times, lodging, and itinerary for groups of 4 to 200+. Five courses within 25 minutes. One planner handles all of it.</p>
       <div class="gg-pills reveal-up delay-3">
         <span>From <strong>$620</strong>/golfer</span>
         <span>4–200+ golfers</span>
@@ -83,7 +93,7 @@ const logistics = [
   <section class="gg-section">
     <div class="gg-container">
       <div class="gg-header reveal-up">
-        <span class="sec-label">All group types welcome</span>
+        <span class="sec-label">Graeagle golf trip planning — all group types welcome</span>
         <h2 class="gg-h2">Every kind of<br/><em>group we handle.</em></h2>
       </div>
       <div class="gg-types">
@@ -158,7 +168,7 @@ const logistics = [
   <section class="gg-section gg-dark">
     <div class="gg-container" style="max-width:840px">
       <div class="gg-header reveal-up">
-        <span class="sec-label" style="color:#e8a850">How we do it</span>
+        <span class="sec-label" style="color:#e8a850">Golf and lodging packages — how we do it</span>
         <h2 class="gg-h2" style="color:#f5f0e8">Group logistics,<br/><em>handled.</em></h2>
       </div>
       <div class="gg-logistics">

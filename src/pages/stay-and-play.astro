@@ -26,9 +26,19 @@ const breadcrumbSchema = {
   ]
 };
 const orgSchema = { "@context":"https://schema.org","@graph":[
-  { "@type":["TravelAgency","Organization"],"@id":"https://golfgraeagle.com/#organization","name":"GolfGraeagle.com","url":"https://golfgraeagle.com" },
+  { "@type":["TravelAgency","Organization"],"@id":"https://golfgraeagle.com/#organization","name":"GolfGraeagle.com","url":"https://golfgraeagle.com",
+    "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.8", "reviewCount": "672", "bestRating": "5" } },
   { "@type":"WebPage","url":"https://golfgraeagle.com/stay-and-play/","name":title }
 ]};
+const serviceSchema = {
+  "@context": "https://schema.org", "@type": "Service",
+  "name": "Graeagle Stay and Play Golf Packages",
+  "description": "Stay and play golf packages at 5 championship courses in Graeagle, California. Tee times and lodging bundled in one package from $620 per golfer.",
+  "provider": { "@type": "TravelAgency", "@id": "https://golfgraeagle.com/#organization" },
+  "areaServed": { "@type": "Place", "name": "Graeagle, California" },
+  "serviceType": "Stay and Play Golf Package",
+  "offers": { "@type": "AggregateOffer", "lowPrice": "620", "highPrice": "1705", "priceCurrency": "USD" }
+};
 
 const packages = [
   { name:'Weekend Starter',    priceRange:'$620–$645/pp', nights:'2', rounds:'2–3', pax:'8–24', hot:false,
@@ -60,7 +70,7 @@ const includes = [
 ];
 ---
 <Base title={title} description={description} ogType="website"
-  schema={[orgSchema, faqSchema, breadcrumbSchema]}
+  schema={[orgSchema, faqSchema, breadcrumbSchema, serviceSchema]}
   canonical="https://golfgraeagle.com/stay-and-play/"
   ogImage="https://golfgraeagle.com/wp-images/grizzly-ranch-hero.webp"
   bodyClass="light-page"
@@ -72,9 +82,9 @@ const includes = [
     <div class="sap-bg" style="background-image:url(/wp-images/grizzly-ranch-hero.webp)"></div>
     <div class="sap-overlay"></div>
     <div class="sap-hero-inner">
-      <p class="sap-eyebrow reveal-up">Graeagle, California · Sierra Nevada</p>
+      <p class="sap-eyebrow reveal-up">Graeagle Golf Vacation — California · Sierra Nevada</p>
       <h1 class="sap-h1 reveal-up delay-1">Stay and Play<br/><em>Golf Packages</em></h1>
-      <p class="sap-sub reveal-up delay-2">Five championship courses. One valley.<br/>Everything handled.</p>
+      <p class="sap-sub speakable reveal-up delay-2">Graeagle stay and play golf packages — five championship courses, golf and lodging in one package, from $620/golfer. Everything handled.</p>
       <div class="sap-pills reveal-up delay-3">
         <span>From <strong>$620</strong>/golfer</span>
         <span>5 courses · 25 min apart</span>
@@ -98,7 +108,7 @@ const includes = [
   <section class="sap-section">
     <div class="sap-container">
       <div class="sap-header reveal-up">
-        <span class="sec-label">Everything in one package</span>
+        <span class="sec-label">What's included in a Graeagle stay and play package</span>
         <h2 class="sap-h2">You play.<br/><em>We handle everything else.</em></h2>
       </div>
       <div class="sap-includes">
@@ -145,7 +155,7 @@ const includes = [
   <section class="sap-section">
     <div class="sap-container">
       <div class="sap-header reveal-up">
-        <span class="sec-label">All coordinated through GolfGraeagle</span>
+        <span class="sec-label">Golf and lodging packages — all coordinated through GolfGraeagle</span>
         <h2 class="sap-h2">Where you'll stay</h2>
       </div>
       <div class="sap-lodging">

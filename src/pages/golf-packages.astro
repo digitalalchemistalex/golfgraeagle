@@ -28,9 +28,30 @@ const breadcrumbSchema = {
 const orgSchema = {
   "@context": "https://schema.org",
   "@graph": [
-    { "@type": ["TravelAgency","Organization"], "@id": "https://golfgraeagle.com/#organization", "name": "GolfGraeagle.com", "url": "https://golfgraeagle.com" },
+    { "@type": ["TravelAgency","Organization"], "@id": "https://golfgraeagle.com/#organization", "name": "GolfGraeagle.com", "url": "https://golfgraeagle.com",
+      "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.8", "reviewCount": "672", "bestRating": "5" } },
     { "@type": "WebPage", "@id": "https://golfgraeagle.com/golf-packages/#webpage", "url": "https://golfgraeagle.com/golf-packages/", "name": title }
   ]
+};
+const howToSchema = {
+  "@context": "https://schema.org", "@type": "HowTo",
+  "name": "How to Plan a Graeagle Golf Trip",
+  "description": "Book a custom Graeagle golf package with tee times, lodging, and itinerary in three steps.",
+  "totalTime": "PT24H",
+  "step": [
+    { "@type": "HowToStep", "position": 1, "name": "Tell us what you want", "text": "Share your dates, group size, how many rounds, and which courses interest you. Takes 2 minutes." },
+    { "@type": "HowToStep", "position": 2, "name": "Get your Graeagle golf itinerary in 24 hours", "text": "Tee times locked, lodging matched to your group, day-by-day schedule, all-in price." },
+    { "@type": "HowToStep", "position": 3, "name": "Show up and play", "text": "We handle every detail of your Graeagle golf vacation. You handle the birdies." }
+  ]
+};
+const serviceSchema = {
+  "@context": "https://schema.org", "@type": "Service",
+  "name": "Graeagle Golf Packages",
+  "description": "Custom stay and play golf packages at 5 championship courses in Graeagle, California. Tee times, lodging, and itinerary in one package.",
+  "provider": { "@type": "TravelAgency", "@id": "https://golfgraeagle.com/#organization" },
+  "areaServed": { "@type": "Place", "name": "Graeagle, California" },
+  "serviceType": "Golf Trip Planning",
+  "offers": { "@type": "AggregateOffer", "lowPrice": "620", "highPrice": "1705", "priceCurrency": "USD" }
 };
 
 // Real TripsCaddie data — verified from live API
@@ -56,7 +77,7 @@ const courses = [
 ];
 ---
 <Base title={title} description={description} ogType="website"
-  schema={[orgSchema, faqSchema, breadcrumbSchema]}
+  schema={[orgSchema, faqSchema, breadcrumbSchema, howToSchema, serviceSchema]}
   canonical="https://golfgraeagle.com/golf-packages/"
   ogImage="https://golfgraeagle.com/wp-images/whitehawk-hero.webp"
   bodyClass="light-page"
@@ -68,9 +89,9 @@ const courses = [
     <div class="gp-hero-img" style="background-image:url(/wp-images/whitehawk-hero.webp)"></div>
     <div class="gp-hero-overlay"></div>
     <div class="gp-hero-inner">
-      <p class="gp-eyebrow reveal-up">5 Championship Courses · Sierra Nevada · Since 2004</p>
+      <p class="gp-eyebrow reveal-up">Graeagle Golf Trip Planning · 5 Courses · Sierra Nevada · Since 2004</p>
       <h1 class="gp-h1 reveal-up delay-1">Graeagle Golf<br/><em>Packages</em></h1>
-      <p class="gp-subhead reveal-up delay-2">Real pricing. No surprises.<br/>Tee times + lodging in one package.</p>
+      <p class="gp-subhead speakable reveal-up delay-2">Graeagle golf trip packages from $620/golfer — stay and play golf packages with tee times, lodging, and a day-by-day golf itinerary. Real pricing. No surprises.</p>
       <div class="gp-pills reveal-up delay-3">
         <span class="gp-pill">From <strong>$620</strong>/golfer</span>
         <span class="gp-pill">⭐ 4.8 · 672 reviews</span>
@@ -90,7 +111,7 @@ const courses = [
     <div class="gp-container">
       <div class="gp-header reveal-up">
         <span class="sec-label">The process</span>
-        <h2 class="gp-h2">Three steps.<br/>Everything handled.</h2>
+        <h2 class="gp-h2">How to Plan a<br/><em>Graeagle Golf Trip</em></h2>
       </div>
       <div class="gp-steps">
         <div class="gp-step glow-card reveal-left">
@@ -156,7 +177,7 @@ const courses = [
   <section class="gp-section">
     <div class="gp-container">
       <div class="gp-header reveal-up">
-        <span class="sec-label">GolfGraeagle books tee times at all 5 — mix and match any combination</span>
+        <span class="sec-label">Book tee times at all 5 Graeagle courses — mix and match any combination</span>
         <h2 class="gp-h2">The 5 courses</h2>
       </div>
       <div class="gp-courses-grid">

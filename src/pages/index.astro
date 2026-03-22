@@ -32,6 +32,25 @@ const wpSlugMap = {
   'nakoma-dragon':    'nakoma-dragon-golf-packages',
 };
 
+const aggregateRatingSchema = {
+  "@context": "https://schema.org", "@type": "TravelAgency",
+  "@id": "https://golfgraeagle.com/#organization",
+  "name": "GolfGraeagle.com",
+  "url": "https://golfgraeagle.com",
+  "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.8", "reviewCount": "672", "bestRating": "5" }
+};
+const howToSchema = {
+  "@context": "https://schema.org", "@type": "HowTo",
+  "name": "How to Plan a Graeagle Golf Trip",
+  "description": "Book a custom Graeagle golf package — tee times, lodging, and itinerary — in three steps.",
+  "totalTime": "PT24H",
+  "step": [
+    { "@type": "HowToStep", "position": 1, "name": "Request a quote", "text": "Tell us your dates, group size, and which Graeagle courses you want to play. Free, no obligation." },
+    { "@type": "HowToStep", "position": 2, "name": "Receive your Graeagle golf itinerary", "text": "Get a custom day-by-day itinerary with tee times locked, lodging matched, and all-in pricing. Response within 24 hours." },
+    { "@type": "HowToStep", "position": 3, "name": "Confirm and play", "text": "Approve the package. We handle all bookings. You arrive and play." }
+  ]
+};
+
 const courseListSchema = {
   "@type": "ItemList",
   "name": "Golf Courses in Graeagle, California",
@@ -98,7 +117,7 @@ const lodgingMeta = {'townhomes-at-plumas-pines':{badge:'Great for Large Groups'
   title="Graeagle Golf Packages — 5 Courses, Custom Itineraries, Tee Times + Lodging Guaranteed | GolfGraeagle.com"
   description="Plan a Graeagle golf trip in the Sierra Nevada. Compare Nakoma Dragon, Whitehawk Ranch, Plumas Pines, Graeagle Meadows and Grizzly Ranch golf courses with stay and play golf packages."
   preloadImage={courses[0].hero}
-  schema={[courseListSchema, homeFaqSchema]}
+  schema={[courseListSchema, homeFaqSchema, aggregateRatingSchema, howToSchema]}
   bodyClass="light-page"
 >
 <Nav />
