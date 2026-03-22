@@ -1,0 +1,410 @@
+---
+export const prerender = true;
+import Base from '../layouts/Base.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import RelatedTrips from '../components/RelatedTrips.tsx';
+
+const title = "Golf Trip from Sacramento to Graeagle — 2.5 Hours, 5 Courses | GolfGraeagle.com";
+const description = "Graeagle golf trips from Sacramento in 2.5 hours via Highway 70. Bay Area: 3.5 hours. Golf Digest Top 100, Frank Lloyd Wright clubhouse, 40% less than Tahoe. Custom packages from $620/golfer.";
+
+const faqSchema = {
+  "@context": "https://schema.org", "@type": "FAQPage",
+  "mainEntity": [
+    { "@type": "Question", "name": "How far is Graeagle from Sacramento for a golf trip?", "acceptedAnswer": { "@type": "Answer", "text": "Graeagle is approximately 2.5 hours northeast of Sacramento via Highway 70. No major traffic, no mountain passes in summer. The route runs through Marysville and Quincy directly into the Feather River Canyon." } },
+    { "@type": "Question", "name": "How far is Graeagle from the Bay Area?", "acceptedAnswer": { "@type": "Answer", "text": "Graeagle is 3.5–4 hours from San Francisco via I-80 East to Highway 70. Most Bay Area groups drive up Friday evening and play 3–4 courses over a weekend, returning Sunday." } },
+    { "@type": "Question", "name": "Is Graeagle golf better value than Lake Tahoe from Sacramento?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Graeagle packages run 40% below comparable Truckee or North Tahoe golf. Graeagle has a Golf Digest Top 100 course (Grizzly Ranch) and a Golf World Top 75 course (Nakoma Dragon) — comparable accolades to the Tahoe corridor, significantly lower green fees and lodging." } },
+    { "@type": "Question", "name": "What is the best route from Sacramento to Graeagle?", "acceptedAnswer": { "@type": "Answer", "text": "Take Highway 70 Northeast from Sacramento through Marysville and Quincy. Highway 70 runs through the Feather River Canyon — one of the most scenic mountain drives in Northern California. No I-80 traffic. Total drive: approximately 2.5 hours." } },
+    { "@type": "Question", "name": "Can GolfGraeagle plan a golf trip from Sacramento for a group?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. GolfGraeagle builds custom packages for groups of 4 to 200+ from Sacramento and the Bay Area. Request a free quote with your dates and group size — full proposal within 24 hours." } },
+  ]
+};
+const breadcrumbSchema = {
+  "@context": "https://schema.org", "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://golfgraeagle.com" },
+    { "@type": "ListItem", "position": 2, "name": "Golf Packages", "item": "https://golfgraeagle.com/golf-packages/" },
+    { "@type": "ListItem", "position": 3, "name": "Golf Trip from Sacramento", "item": "https://golfgraeagle.com/golf-trip-from-sacramento/" }
+  ]
+};
+const orgSchema = {
+  "@context": "https://schema.org", "@graph": [
+    { "@type": ["TravelAgency","Organization"], "@id": "https://golfgraeagle.com/#organization",
+      "name": "GolfGraeagle.com", "url": "https://golfgraeagle.com",
+      "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.8", "reviewCount": "672", "bestRating": "5" } },
+    { "@type": "WebPage", "url": "https://golfgraeagle.com/golf-trip-from-sacramento/", "name": title }
+  ]
+};
+const serviceSchema = {
+  "@context": "https://schema.org", "@type": "Service",
+  "name": "Graeagle Golf Trips from Sacramento and Bay Area",
+  "description": "Custom golf trip packages from Sacramento and the Bay Area to Graeagle — 5 championship courses, tee times, lodging, and itinerary from $620/golfer.",
+  "provider": { "@type": "TravelAgency", "@id": "https://golfgraeagle.com/#organization" },
+  "areaServed": [
+    { "@type": "Place", "name": "Sacramento, California" },
+    { "@type": "Place", "name": "San Francisco Bay Area, California" },
+    { "@type": "Place", "name": "Graeagle, California" }
+  ],
+  "serviceType": "Golf Trip Planning",
+  "offers": { "@type": "AggregateOffer", "lowPrice": "620", "highPrice": "1705", "priceCurrency": "USD" }
+};
+const howToSchema = {
+  "@context": "https://schema.org", "@type": "HowTo",
+  "name": "How to Plan a Golf Trip from Sacramento to Graeagle",
+  "description": "Drive from Sacramento to Graeagle in 2.5 hours and play 5 championship courses.",
+  "step": [
+    { "@type": "HowToStep", "position": 1, "name": "Drive from Sacramento via Highway 70", "text": "Take Highway 70 Northeast from Sacramento. No I-80 traffic, no resort congestion. Through Marysville and the Feather River Canyon — approximately 2.5 hours." },
+    { "@type": "HowToStep", "position": 2, "name": "Request a GolfGraeagle package", "text": "Submit your dates, group size, and which courses you want. GolfGraeagle responds within 24 hours with tee times, lodging, and a day-by-day itinerary." },
+    { "@type": "HowToStep", "position": 3, "name": "Play 2–5 courses over your weekend", "text": "All 5 courses are within 25 minutes of each other. Most Sacramento groups play 3 courses over a 2-night weekend." },
+  ]
+};
+
+const driveMarkets = [
+  { city: 'Sacramento', time: '2.5 hours', route: 'Highway 70 Northeast via Marysville', note: 'Fastest route. No I-80 traffic. Scenic Feather River Canyon drive.', distance: '~130 miles' },
+  { city: 'San Francisco', time: '3.5–4 hours', route: 'I-80 East to Highway 70 Northeast', note: 'Leave Friday evening, avoid weekend morning traffic out of the city.', distance: '~185 miles' },
+  { city: 'Oakland / East Bay', time: '3.5 hours', route: 'I-80 East to Highway 70', note: 'Same route as SF. Slightly faster departure from the East Bay.', distance: '~175 miles' },
+  { city: 'Reno', time: '1.5 hours', route: 'I-80 West to Highway 70 West', note: 'Closest major city. Easy day trip or overnight.', distance: '~75 miles' },
+];
+
+const whyGraeagle = [
+  ['🏆', 'Golf Digest Top 100 on the same trip', 'Grizzly Ranch is Golf Digest Top 100 Greatest Public Courses. Nakoma Dragon is Golf World Top 75. Both in one valley — without a flight.'],
+  ['💰', '40% cheaper than Tahoe or Monterey', 'Same championship-level golf as the Tahoe corridor. Comparable lodging. Graeagle packages run $620–$875/pp vs $1,200–$1,800/pp at comparable Truckee/North Tahoe resorts.'],
+  ['⛳', '5 courses in 25 minutes of each other', 'Graeagle Meadows, Whitehawk Ranch, Plumas Pines, Grizzly Ranch, Nakoma Dragon — all within one valley. No wasted driving between rounds.'],
+  ['🚗', 'Direct scenic drive, no resort traffic', 'Highway 70 through the Feather River Canyon is one of the best mountain drives in California. No I-80 resort congestion. No Truckee / Kings Beach bottlenecks.'],
+];
+
+const compareData = [
+  { dest: 'Graeagle', drive: '2.5h from Sac', courses: 5, topCourse: 'Golf Digest Top 100', price: '$620–$875/pp', traffic: 'None' },
+  { dest: 'Lake Tahoe / Truckee', drive: '2.5h from Sac', courses: '3–4', topCourse: 'Coyote Moon, Schaffer\'s Mill', price: '$1,200–$1,800/pp', traffic: 'Heavy summer weekends' },
+  { dest: 'Monterey', drive: '3h from Sac', courses: '5+', topCourse: 'Pebble Beach', price: '$2,000+/pp', traffic: 'Moderate' },
+  { dest: 'Palm Springs', drive: '7h from Sac', courses: '100+', topCourse: 'Multiple', price: '$800–$1,500/pp', traffic: 'Minimal but summer heat' },
+];
+
+const courses = [
+  { name: 'Graeagle Meadows', slug: 'graeagle-meadows-golf-packages', badge: 'Start here', badgeColor: '#2563eb', par: 72, slope: 120, hero: '/wp-images/graeagle-meadows-hero.webp', note: 'Best opening round. Accessible for all handicaps.' },
+  { name: 'Whitehawk Ranch', slug: 'whitehawk-ranch-golf-packages', badge: 'Top 20 CA', badgeColor: '#1a7a40', par: 71, slope: 132, hero: '/wp-images/whitehawk-hero.webp', note: 'Top 20 California. Meadow and forest mix.' },
+  { name: 'Plumas Pines', slug: 'plumas-pines-golf-packages', badge: 'Best Value', badgeColor: '#b45309', par: 72, slope: 132, hero: '/wp-images/plumas-pines-hero.webp', note: 'Top 5 Best Value Sierra Nevada.' },
+  { name: 'Grizzly Ranch', slug: 'grizzly-ranch-golf-packages', badge: 'Top 100', badgeColor: '#7c3aed', par: 72, slope: 140, hero: '/wp-images/grizzly-ranch-hero.webp', note: 'Golf Digest Top 100. 7,411 yds at 4,800 ft.' },
+  { name: 'Nakoma — Dragon', slug: 'nakoma-dragon-golf-packages', badge: 'FLW Club', badgeColor: '#be123c', par: 72, slope: 147, hero: '/wp-images/nakoma-dragon-feather-river.webp', note: 'Golf World Top 75. Frank Lloyd Wright clubhouse.' },
+];
+---
+<Base title={title} description={description} ogType="website"
+  schema={[orgSchema, faqSchema, breadcrumbSchema, howToSchema, serviceSchema]}
+  canonical="https://golfgraeagle.com/golf-trip-from-sacramento/"
+  ogImage="https://golfgraeagle.com/wp-images/DJI_0965-Edit.webp"
+  bodyClass="light-page"
+>
+  <Nav />
+
+  <!-- ═══ HERO ═══ -->
+  <section class="sac-hero">
+    <div class="sac-hero-img" style="background-image:url(/wp-images/DJI_0965-Edit.webp)"></div>
+    <div class="sac-hero-overlay"></div>
+    <div class="sac-hero-inner">
+      <p class="sac-eyebrow reveal-up">Golf Trip from Sacramento · Bay Area · Graeagle, CA · 2.5 Hours</p>
+      <h1 class="sac-h1 reveal-up delay-1">Sacramento to Graeagle:<br/><em>2.5 Hours. 5 Courses.</em></h1>
+      <p class="sac-subhead speakable reveal-up delay-2">The closest championship golf destination to Sacramento and the Bay Area. 5 courses — including Golf Digest Top 100 — in one Sierra Nevada valley. Packages from $620/golfer, 40% below Lake Tahoe.</p>
+      <div class="sac-pills reveal-up delay-3">
+        <span class="sac-pill">2.5h from Sacramento</span>
+        <span class="sac-pill">3.5h from Bay Area</span>
+        <span class="sac-pill">⭐ 4.8 · 672 reviews</span>
+        <span class="sac-pill">From $620/golfer</span>
+      </div>
+      <div class="sac-hero-ctas reveal-up delay-4">
+        <a href="/request-a-quote/" class="btn-green-glow sac-cta-main">Plan My Sacramento Golf Trip →</a>
+        <a href="/golf-packages/" class="sac-cta-ghost underline-draw">See all packages ↗</a>
+      </div>
+    </div>
+    <div class="sac-floats reveal-fade delay-5">
+      <div class="sac-float"><div class="sac-float-val">2.5h</div><div class="sac-float-lbl">From Sacramento</div></div>
+      <div class="sac-float"><div class="sac-float-val">4.8★</div><div class="sac-float-lbl">Avg Rating</div></div>
+      <div class="sac-float"><div class="sac-float-val" data-count="5">0</div><div class="sac-float-lbl">Courses</div></div>
+    </div>
+  </section>
+
+  <!-- ═══ DRIVE TIMES — light ═══ -->
+  <section class="sac-section">
+    <div class="sac-container">
+      <div class="sac-header reveal-up">
+        <span class="sec-label">How long is the drive from your city</span>
+        <h2 class="sac-h2">Graeagle from Northern<br/><em>California's major cities</em></h2>
+      </div>
+      <div class="sac-drive-grid">
+        {driveMarkets.map((d, i) => (
+          <div class={`sac-drive-card glow-card reveal-${i%2===0?'left':'right'} delay-${(i%3)+1}`}>
+            <div class="sac-drive-city">{d.city}</div>
+            <div class="sac-drive-time">{d.time}</div>
+            <div class="sac-drive-route">🛣 {d.route}</div>
+            <div class="sac-drive-dist">{d.distance}</div>
+            <p class="sac-drive-note">{d.note}</p>
+          </div>
+        ))}
+      </div>
+      <p class="sac-footer-note reveal-up">Highway 70 through the Feather River Canyon is one of the most scenic mountain drives in California — not a chore. Most groups use the drive as the start of the trip, not the cost of it.</p>
+    </div>
+  </section>
+
+  <!-- ═══ WHY GRAEAGLE OVER TAHOE — dark ═══ -->
+  <section class="sac-section sac-dark">
+    <div class="sac-container sac-why-inner">
+      <div class="sac-why-text">
+        <span class="sec-label" style="color:#e8a850">Same drive as Tahoe. Better golf value.</span>
+        <h2 class="sac-h2 reveal-up" style="color:#f5f0e8;margin-top:10px">Why Sacramento groups<br/><em>choose Graeagle over Tahoe</em></h2>
+        <div class="sac-points">
+          {whyGraeagle.map(([icon, title, body], i) => (
+            <div class={`sac-point reveal-${i%2===0?'left':'right'} delay-${(i%3)+1}`}>
+              <span class="sac-pt-icon">{icon}</span>
+              <div>
+                <div class="sac-pt-title">{title}</div>
+                <div class="sac-pt-body">{body}</div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+      <div class="sac-why-img reveal-scale delay-2">
+        <img src="/wp-images/grizzly-ranch-hero.webp" alt="Grizzly Ranch Golf Club — Golf Digest Top 100 — Graeagle California" loading="lazy"/>
+        <div class="sac-why-badge">
+          <div style="font-family:'Playfair Display',serif;font-size:22px;color:#e8a850;font-weight:400;line-height:1">Golf Digest</div>
+          <div style="font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.14em;color:rgba(245,240,232,.55);margin-top:5px">Top 100 Course</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ COMPARISON TABLE — light ═══ -->
+  <section class="sac-section">
+    <div class="sac-container">
+      <div class="sac-header reveal-up">
+        <span class="sec-label">Graeagle vs other Northern California golf destinations</span>
+        <h2 class="sac-h2">The honest comparison</h2>
+      </div>
+      <div class="sac-table-wrap reveal-up delay-1">
+        <table class="sac-table">
+          <thead>
+            <tr>
+              <th class="sac-th sac-th-left">Destination</th>
+              <th class="sac-th">Drive from Sac</th>
+              <th class="sac-th">Courses in area</th>
+              <th class="sac-th">Top accolade</th>
+              <th class="sac-th">Package price</th>
+              <th class="sac-th">Summer traffic</th>
+            </tr>
+          </thead>
+          <tbody>
+            {compareData.map((r, i) => (
+              <tr class={`sac-tr${i===0?' sac-tr-highlight':''}`}>
+                <td class="sac-td sac-td-label">{r.dest}{i===0&&<span class="sac-best-tag">Best Value</span>}</td>
+                <td class="sac-td">{r.drive}</td>
+                <td class="sac-td">{r.courses}</td>
+                <td class="sac-td">{r.topCourse}</td>
+                <td class="sac-td" style={i===0?'color:var(--sac-green);font-weight:700':''}>{r.price}</td>
+                <td class="sac-td">{r.traffic}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ THE 5 COURSES — dark ═══ -->
+  <section class="sac-section sac-dark">
+    <div class="sac-container">
+      <div class="sac-header reveal-up">
+        <span class="sec-label" style="color:#e8a850">What you'll play — 5 courses, all within 25 min</span>
+        <h2 class="sac-h2" style="color:#f0ece3">5 championship courses<br/><em>one Sacramento road trip</em></h2>
+      </div>
+      <div class="sac-courses-grid">
+        {courses.map((c, i) => (
+          <a href={`/portfolio/${c.slug}/`} class={`sac-course-card glow-card reveal-${i%2===0?'left':'right'} delay-${(i%3)+1}`}>
+            <div class="sac-course-img" style={`background-image:url(${c.hero})`}>
+              <div class="sac-course-fade"></div>
+              <span class="sac-course-badge" style={`background:${c.badgeColor}`}>{c.badge}</span>
+            </div>
+            <div class="sac-course-body">
+              <h3 class="sac-course-name">{c.name}</h3>
+              <div class="sac-course-specs">Par {c.par} · Slope {c.slope}</div>
+              <p class="sac-course-note">{c.note}</p>
+              <span class="sac-course-link underline-draw">View packages →</span>
+            </div>
+          </a>
+        ))}
+      </div>
+      <p class="sac-footer-note reveal-up" style="color:rgba(245,240,232,.65)">
+        Want a suggested order? See our <a href="/graeagle-golf-itinerary/" style="color:#e8a850;font-weight:700">day-by-day Graeagle golf itineraries</a> — 2, 3, 4 and 5-day plans sequenced by difficulty.
+      </p>
+    </div>
+  </section>
+
+  <!-- ═══ TRUST STATS — dark ═══ -->
+  <section class="sac-trust sac-dark">
+    <div class="sac-container sac-trust-row">
+      {[
+        ['2.5','Hours from Sacramento'],
+        ['5','Championship courses'],
+        ['4.8','672 verified reviews'],
+        ['40','% cheaper than Tahoe'],
+        ['2004','Year we started'],
+      ].map(([val, label], i) => (
+        <div class={`sac-stat reveal-scale delay-${i+1}`}>
+          <div class="sac-stat-val">
+            {val === '4.8' ? <><span data-count="4.8">0</span>★</> :
+             val === '40'  ? <><span data-count="40">0</span>%</> :
+             val === '2.5' ? <>2.5h</> :
+             <span data-count={val}>0</span>}
+          </div>
+          <div class="sac-stat-label">{label}</div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- ═══ FAQ ═══ -->
+  <section class="sac-section">
+    <div class="sac-container" style="max-width:780px">
+      <div class="sac-header reveal-up">
+        <span class="sec-label">Common questions from Sacramento and Bay Area golfers</span>
+        <h2 class="sac-h2">Sacramento to Graeagle FAQ</h2>
+      </div>
+      {faqSchema.mainEntity.map((item: any, i: number) => (
+        <details class={`sac-faq reveal-up delay-${(i%4)+1}`}>
+          <summary class="sac-faq-q">{item.name}<span class="sac-faq-icon">+</span></summary>
+          <p class="sac-faq-a">{item.acceptedAnswer.text}</p>
+        </details>
+      ))}
+    </div>
+  </section>
+
+  <!-- ═══ CTA — dark ═══ -->
+  <section class="sac-cta-section sac-dark">
+    <div class="sac-cta-glow"></div>
+    <div class="sac-container" style="text-align:center;max-width:660px;position:relative;z-index:1">
+      <h2 class="sac-cta-h2 reveal-up">2.5 hours from Sacramento.<br/><em>Golf Digest Top 100 waiting.</em></h2>
+      <p class="sac-cta-sub reveal-up delay-1">Tell us your dates, group size, and which courses you want. We send a full package — tee times, lodging, day-by-day itinerary — within 24 hours.</p>
+      <div class="reveal-scale delay-2">
+        <a href="/request-a-quote/" class="btn-green-glow sac-cta-main">Plan My Graeagle Golf Trip →</a>
+        <p class="sac-cta-trust">From $620/golfer · 40% below Tahoe · 4.8★ · 672 reviews · 24h response</p>
+      </div>
+    </div>
+  </section>
+
+  <RelatedTrips client:load slug="golf-trip-from-sacramento" type="course" showAll={true} max={3} />
+  <Footer />
+</Base>
+
+<style>
+:root{--sac-gold:#e8a850;--sac-green:#1a7a40;--sac-dark:#0d1a0e;--sac-text:#1c1208;--sac-muted:rgba(28,18,8,0.52);--sac-border:rgba(28,18,8,0.08);--sac-r:20px}
+.sac-container{max-width:1140px;margin:0 auto;padding:0 clamp(20px,6%,80px)}
+.sac-section{padding:clamp(72px,9vw,120px) 0;background:var(--page-bg,#f8f5f0)}
+.sac-dark{background:var(--sac-dark)!important}
+.sac-header{text-align:center;margin-bottom:clamp(40px,5vw,68px)}
+.sac-h2{font-family:'Playfair Display',serif;font-size:clamp(30px,4vw,52px);font-weight:500;color:var(--sac-text);line-height:1.1;margin:8px 0 0}
+.sac-h2 em{font-style:italic;color:var(--sac-green)}
+.sac-footer-note{text-align:center;font-size:14px;color:var(--sac-muted);max-width:660px;margin:24px auto 0;line-height:1.7}
+
+/* HERO */
+.sac-hero{position:relative;min-height:90vh;display:flex;align-items:flex-end;overflow:hidden}
+.sac-hero-img{position:absolute;inset:0;background-size:cover;background-position:center 40%;transform:scale(1.06);animation:sacZoom 10s ease forwards}
+@keyframes sacZoom{to{transform:scale(1)}}
+.sac-hero-overlay{position:absolute;inset:0;background:linear-gradient(158deg,rgba(13,26,14,.18) 0%,rgba(13,26,14,.62) 50%,rgba(13,26,14,.97) 100%)}
+.sac-hero-inner{position:relative;z-index:2;padding:0 clamp(24px,8%,120px) clamp(60px,8vw,100px);max-width:820px}
+.sac-eyebrow{font-size:11px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:rgba(232,168,80,.85);margin:0 0 18px}
+.sac-h1{font-family:'Playfair Display',serif;font-size:clamp(42px,7vw,88px);font-weight:500;color:#f5f0e8;line-height:.98;margin:0 0 20px}
+.sac-h1 em{font-style:italic;color:var(--sac-gold)}
+.sac-subhead{font-size:clamp(16px,2vw,20px);color:rgba(245,240,232,.65);line-height:1.6;margin:0 0 28px}
+.sac-pills{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:36px}
+.sac-pill{font-size:12px;font-weight:600;color:rgba(245,240,232,.85);padding:7px 16px;background:rgba(255,255,255,.1);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.18);border-radius:100px}
+.sac-hero-ctas{display:flex;gap:20px;align-items:center;flex-wrap:wrap}
+.sac-cta-main{display:inline-block;padding:15px 36px;border-radius:100px;font-size:15px;font-weight:700;text-decoration:none}
+.sac-cta-ghost{font-size:14px;font-weight:600;color:rgba(232,168,80,.9);text-decoration:none}
+.sac-floats{position:absolute;right:clamp(24px,5%,72px);bottom:clamp(56px,8vw,90px);display:flex;flex-direction:column;gap:10px;z-index:3}
+.sac-float{background:rgba(255,255,255,.1);backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,.2);border-radius:16px;padding:14px 22px;text-align:center;min-width:116px}
+.sac-float-val{font-family:'Playfair Display',serif;font-size:26px;color:var(--sac-gold);font-weight:400;line-height:1}
+.sac-float-lbl{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.14em;color:rgba(245,240,232,.45);margin-top:5px}
+
+/* DRIVE CARDS */
+.sac-drive-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px;margin-bottom:24px}
+.sac-drive-card{border-radius:var(--sac-r);padding:24px 22px;border:1px solid var(--sac-border);background:#fff;transition:all .35s;display:flex;flex-direction:column;gap:6px}
+.sac-drive-card:hover{transform:translateY(-5px);box-shadow:0 20px 48px rgba(0,0,0,.1);border-color:rgba(232,168,80,.4)}
+.sac-drive-city{font-family:'Playfair Display',serif;font-size:20px;font-weight:500;color:var(--sac-text)}
+.sac-drive-time{font-size:28px;font-family:'Playfair Display',serif;color:var(--sac-green);font-weight:400;line-height:1}
+.sac-drive-route{font-size:11px;color:var(--sac-muted);font-weight:600}
+.sac-drive-dist{font-size:11px;color:rgba(28,18,8,.35)}
+.sac-drive-note{font-size:12px;color:var(--sac-muted);line-height:1.55;margin:4px 0 0;flex:1}
+
+/* WHY SECTION */
+.sac-why-inner{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center}
+.sac-points{display:flex;flex-direction:column;gap:22px;margin-top:32px}
+.sac-point{display:flex;gap:16px;align-items:flex-start}
+.sac-pt-icon{font-size:24px;flex-shrink:0;margin-top:2px}
+.sac-pt-title{font-size:15px;font-weight:700;color:#f5f0e8;margin-bottom:4px}
+.sac-pt-body{font-size:13px;color:rgba(245,240,232,.75);line-height:1.65}
+.sac-why-img{position:relative;border-radius:22px;overflow:hidden;box-shadow:0 32px 80px rgba(0,0,0,.42)}
+.sac-why-img img{width:100%;height:420px;object-fit:cover;display:block}
+.sac-why-badge{position:absolute;bottom:20px;left:20px;background:rgba(13,26,14,.88);backdrop-filter:blur(14px);border:1px solid rgba(232,168,80,.22);border-radius:16px;padding:14px 20px}
+
+/* COMPARISON TABLE */
+.sac-table-wrap{overflow-x:auto;border-radius:14px;border:1px solid var(--sac-border)}
+.sac-table{width:100%;border-collapse:collapse;font-size:13px;min-width:640px}
+.sac-th{padding:14px 12px;text-align:center;background:rgba(28,18,8,.04);border-bottom:2px solid var(--sac-border);font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--sac-muted)}
+.sac-th-left{text-align:left}
+.sac-tr{border-bottom:1px solid var(--sac-border)}
+.sac-tr:hover{background:rgba(28,18,8,.02)}
+.sac-tr-highlight{background:rgba(26,122,64,.05)!important;border-left:3px solid var(--sac-green)}
+.sac-tr-highlight:hover{background:rgba(26,122,64,.08)!important}
+.sac-td{padding:13px 12px;text-align:center;color:var(--sac-muted);font-size:13px;vertical-align:middle}
+.sac-td-label{text-align:left;font-weight:700;color:var(--sac-text);display:flex;align-items:center;gap:8px}
+.sac-best-tag{font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:.08em;background:rgba(26,122,64,.12);color:var(--sac-green);padding:2px 8px;border-radius:100px;white-space:nowrap}
+
+/* COURSE CARDS */
+.sac-courses-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:16px;margin-bottom:24px}
+.sac-course-card{border-radius:var(--sac-r);overflow:hidden;text-decoration:none;background:rgba(255,255,255,.07);border:1px solid rgba(245,240,232,.12);transition:all .35s;display:flex;flex-direction:column}
+.sac-course-card:hover{transform:translateY(-6px);border-color:rgba(232,168,80,.4);box-shadow:0 24px 56px rgba(0,0,0,.28)}
+.sac-course-img{height:160px;background-size:cover;background-position:center;position:relative;flex-shrink:0}
+.sac-course-fade{position:absolute;inset:0;background:linear-gradient(to top,rgba(9,15,9,.8) 0%,transparent 55%)}
+.sac-course-badge{position:absolute;top:10px;left:10px;font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:.1em;color:#fff;padding:3px 9px;border-radius:100px}
+.sac-course-body{padding:16px;flex:1;display:flex;flex-direction:column;gap:5px}
+.sac-course-name{font-size:14px;font-weight:700;color:#f5f0e8;margin:0}
+.sac-course-specs{font-size:11px;color:rgba(245,240,232,.5)}
+.sac-course-note{font-size:11px;color:rgba(245,240,232,.65);line-height:1.5;flex:1;margin:0}
+.sac-course-link{font-size:11px;font-weight:700;color:var(--sac-gold)}
+
+/* TRUST STATS */
+.sac-trust{padding:clamp(48px,6vw,80px) 0}
+.sac-trust-row{display:grid;grid-template-columns:repeat(5,1fr);gap:32px;text-align:center}
+.sac-stat-val{font-family:'Playfair Display',serif;font-size:clamp(28px,4vw,46px);color:var(--sac-gold);font-weight:400;line-height:1;margin-bottom:8px}
+.sac-stat-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.14em;color:rgba(245,240,232,.62)}
+
+/* FAQ */
+.sac-faq{border-bottom:1px solid var(--sac-border)}
+.sac-faq[open]{background:rgba(232,168,80,.03);border-radius:12px;border-color:rgba(232,168,80,.22)}
+.sac-faq-q{font-size:15px;font-weight:600;color:var(--sac-text);padding:20px 0;cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:16px}
+.sac-faq-q::-webkit-details-marker{display:none}
+.sac-faq[open] .sac-faq-q{color:var(--sac-green)}
+.sac-faq-icon{font-size:24px;color:var(--sac-gold);flex-shrink:0;transition:transform .3s}
+.sac-faq[open] .sac-faq-icon{transform:rotate(45deg)}
+.sac-faq-a{font-size:14px;color:var(--sac-muted);line-height:1.82;padding:0 0 20px;margin:0}
+
+/* CTA */
+.sac-cta-section{padding:clamp(80px,10vw,132px) 0;position:relative;overflow:hidden}
+.sac-cta-glow{position:absolute;width:720px;height:720px;border-radius:50%;background:radial-gradient(circle,rgba(26,122,64,.18) 0%,transparent 70%);top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none}
+.sac-cta-h2{font-family:'Playfair Display',serif;font-size:clamp(28px,5vw,52px);color:#f5f0e8;font-weight:500;line-height:1.15;margin:0 0 20px}
+.sac-cta-h2 em{color:var(--sac-gold);font-style:italic}
+.sac-cta-sub{font-size:16px;color:rgba(245,240,232,.75);line-height:1.75;margin:0 0 36px}
+.sac-cta-trust{font-size:12px;color:rgba(245,240,232,.3);margin-top:14px}
+
+/* Mobile */
+@media(max-width:900px){
+  .sac-hero{min-height:100svh}
+  .sac-floats{display:none}
+  .sac-why-inner{grid-template-columns:1fr}
+  .sac-why-img{display:none}
+  .sac-trust-row{grid-template-columns:repeat(3,1fr);gap:20px}
+  .sac-drive-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:540px){
+  .sac-drive-grid{grid-template-columns:1fr}
+  .sac-courses-grid{grid-template-columns:1fr 1fr}
+  .sac-trust-row{grid-template-columns:1fr 1fr}
+}
+</style>
