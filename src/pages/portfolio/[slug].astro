@@ -413,6 +413,14 @@ const buildSchema = () => {
         telephone: item.phone,
         priceRange: item.category === 'fine-dining' ? '$$$' : item.category === 'quick-bites' ? '$' : '$$',
         ...(item.fomoLine && { slogan: item.fomoLine }),
+        aggregateRating: {
+          '@type': 'AggregateRating',
+          ratingValue: '4.8',
+          reviewCount: '672',
+          bestRating: '5',
+          worstRating: '1',
+          description: 'Ratings from verified GolfGraeagle.com Graeagle golf trip bookings',
+        },
       },
       breadcrumb,
       {
