@@ -353,8 +353,54 @@ import SearchBar from './SearchBar.tsx';
     </div>
 
     <!-- PACKAGES -->
-    <div style="position:relative;" class="nav-pkg-wrap">
-      <a href="/golf-packages/" class="nav-link" style="padding: 8px 12px;">Packages</a>
+    <div class="nav-item" style="padding: 4px 12px;">
+      <button class="nav-link">
+        Packages
+        <svg class="chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="mega-menu" style="width:580px; background:rgba(252,249,242,0.98); border:1px solid rgba(168,140,90,0.2); border-radius:20px; overflow:hidden; backdrop-filter:blur(24px); box-shadow:0 16px 56px rgba(26,48,32,0.14),0 2px 8px rgba(26,48,32,0.06);">
+        <div style="display:grid;grid-template-columns:190px 1fr;">
+          <!-- LEFT: featured panel -->
+          <a href="/golf-packages/" style="display:flex;flex-direction:column;justify-content:flex-end;padding:22px 18px;background:#0d1a0e;text-decoration:none;position:relative;min-height:280px;overflow:hidden;">
+            <img src="/wp-images/grizzly-ranch-hero.webp" alt="Graeagle golf packages" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.35;"/>
+            <div style="position:absolute;inset:0;background:linear-gradient(0deg,rgba(9,15,9,0.95) 0%,rgba(9,15,9,0.35) 65%,transparent 100%);"></div>
+            <div style="position:relative;z-index:2;">
+              <span style="display:inline-block;font-size:8px;font-weight:800;color:#e8a850;text-transform:uppercase;letter-spacing:0.1em;background:rgba(232,168,80,0.15);border:1px solid rgba(232,168,80,0.25);border-radius:100px;padding:3px 9px;margin-bottom:10px;">From $620/golfer</span>
+              <div style="font-family:'Playfair Display',serif;font-size:17px;color:#f0ece3;line-height:1.2;margin-bottom:6px;">Golf Packages</div>
+              <div style="font-size:10px;color:rgba(240,236,227,0.5);line-height:1.6;margin-bottom:6px;">Tee times + lodging + itinerary.<br/>76 real trips. 4.8★ · 672 reviews.</div>
+              <span style="font-size:11px;font-weight:700;color:#e8a850;">View all packages →</span>
+            </div>
+          </a>
+          <!-- RIGHT: all 5 planning pages -->
+          <div style="padding:18px 20px 16px;">
+            <div style="font-size:9px;font-weight:800;color:#a06c30;text-transform:uppercase;letter-spacing:0.12em;margin-bottom:14px;">Plan your Graeagle golf trip</div>
+            {[
+              { href:'/golf-packages/',           name:'Golf Packages',   note:'Tee times + lodging + itinerary. From $620/golfer.',            fomo:'📦 Most Popular',      tc:'#1a6030', bc:'rgba(40,140,60,0.1)'  },
+              { href:'/stay-and-play/',           name:'Stay and Play',    note:'Golf + lodging bundled. 4 properties. All 5 courses.',          fomo:'🏨 Bundle & Save',     tc:'#1050a0', bc:'rgba(40,100,200,0.1)' },
+              { href:'/group-golf/',              name:'Group Golf',       note:'4 to 200+ golfers. Consecutive tee time blocks.',               fomo:'👥 Groups Welcome',    tc:'#8a2010', bc:'rgba(200,60,20,0.1)'  },
+              { href:'/graeagle-golf-itinerary/', name:'Golf Itinerary',   note:'2, 3, 4 and 5-day schedules. Course order by difficulty.',      fomo:'📋 Custom Plans',      tc:'#6b3600', bc:'rgba(180,90,0,0.1)'   },
+              { href:'/tee-times-graeagle/',      name:'Tee Times',        note:'Guaranteed access to all 5 courses including semi-private.',    fomo:'⛳ Guaranteed Access',  tc:'#502090', bc:'rgba(100,60,180,0.1)' },
+            ].map(p => (
+              <a href={p.href}
+                style="display:flex;align-items:flex-start;gap:10px;padding:7px 9px;border-radius:8px;text-decoration:none;margin-bottom:2px;transition:background 0.15s;"
+                onmouseover="this.style.background='rgba(232,168,80,0.07)'"
+                onmouseout="this.style.background='transparent'">
+                <div style="flex:1;min-width:0;">
+                  <div style="display:flex;align-items:center;gap:7px;margin-bottom:2px;">
+                    <span style="font-size:12px;font-weight:600;color:#1a2e1a;">{p.name}</span>
+                    <span style={`font-size:8px;font-weight:800;padding:1px 7px;border-radius:100px;background:${p.bc};color:${p.tc};white-space:nowrap;`}>{p.fomo}</span>
+                  </div>
+                  <div style="font-size:10px;color:#8a9a8e;font-style:italic;line-height:1.4;">{p.note}</div>
+                </div>
+              </a>
+            ))}
+            <div style="border-top:1px solid rgba(168,140,90,0.12);margin-top:10px;padding-top:10px;display:flex;align-items:center;justify-content:space-between;">
+              <span style="font-size:10px;color:#a06c30;font-style:italic;">Summer tee times fill fast →</span>
+              <a href="/request-a-quote/" style="font-size:11px;font-weight:700;color:#a06c30;text-decoration:none;" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">Get a free quote →</a>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
     <!-- FAQ -->
