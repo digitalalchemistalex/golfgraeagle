@@ -9,26 +9,12 @@ import { fetchTripStats } from '../lib/tripStats';
 
 // ── LIVE DATA AT BUILD TIME ────────────────────────────────────────────────
 // Fetched from TripsCaddie API during astro build — never hardcoded
-let graeagleTrips: any[] = [];
+const { minPrice, maxPrice, tripCount, totalGolfers, trips: graeagleTrips } = await fetchTripStats();
 
-const { minPrice, maxPrice, tripCount, totalGolfers } = await fetchTripStats();
-
-try {
-  const res = await fetch('https://golfthehighsierra.com/trips-caddie/api/api-recaps.php');
-  const all: any[] = await res.json();
-  const GRAEAGLE_COURSES = ["grizzly", "nakoma", "whitehawk", "plumas pines", "graeagle meadows", "graeagle"];
-  graeagleTrips = all.filter((t: any) => {
-    if ((t.region || '').toLowerCase().includes('graeagle')) return true;
-    const courses = (t.courses || []).join(' ').toLowerCase();
-    return GRAEAGLE_COURSES.some(k => courses.includes(k));
-  });
-} catch (e) {
-  graeagleTrips = [];
-}
 
 // Best 6 trips for static cards — premium first, then by group size
 const staticTrips = [...graeagleTrips]
-  .filter((t: any) => t.lodging && t.lodging !== 'TBD' && (t.nights || 0) > 0)
+  .filter((t: any) => t.lodging && t.lodging !== 'TBD' && t.nights)
   .sort((a: any, b: any) => {
     const ap = (a.vibe || '').toLowerCase() === 'premium' ? 1 : 0;
     const bp = (b.vibe || '').toLowerCase() === 'premium' ? 1 : 0;
@@ -215,11 +201,13 @@ const schema = [tripListSchema, breadcrumbSchema, faqSchema, aggregateRatingSche
         })}
       </div>
 
-      <div style="text-align:center;padding:0 0 16px;">
-        <p id="trips-static-count" style="font-size:13px;color:rgba(28,18,8,0.45);margin:0;">
-          Showing {staticTrips.length} featured packages — <span id="trips-total-label">{tripCount} total</span> · browse and filter all below.
-        </p>
-      </div>
+      {staticTrips.length > 0 && (
+        <div style="text-align:center;padding:0 0 16px;">
+          <p id="trips-static-count" style="font-size:13px;color:rgba(28,18,8,0.45);margin:0;">
+            Showing {staticTrips.length} featured packages — <span id="trips-total-label">{tripCount} total</span> · browse and filter all below.
+          </p>
+        </div>
+      )}
     </div>
   </section>
 

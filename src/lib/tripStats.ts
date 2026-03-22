@@ -1,7 +1,7 @@
 /**
  * tripStats.ts — shared build-time fetch for TripsCaddie pricing data.
- * Called from landing pages during `astro build` so every deploy
- * auto-updates minPrice, tripCount, and maxPrice from live data.
+ * Single fetch — returns both stats and raw trips array.
+ * Called from trips.astro and all landing pages during `astro build`.
  */
 
 const API = 'https://golfthehighsierra.com/trips-caddie/api/api-recaps.php';
@@ -21,6 +21,7 @@ export interface TripStats {
   maxPrice: number;
   tripCount: number;
   totalGolfers: number;
+  trips: any[];
 }
 
 export async function fetchTripStats(): Promise<TripStats> {
@@ -36,9 +37,10 @@ export async function fetchTripStats(): Promise<TripStats> {
       maxPrice: prices.length ? Math.max(...prices) : 1705,
       tripCount: trips.length,
       totalGolfers: trips.reduce((s: number, t: any) => s + (t.groupSize || 0), 0),
+      trips,
     };
   } catch {
-    // Fallback to last known values — update these after each major trips batch
-    return { minPrice: 379, maxPrice: 1705, tripCount: 22, totalGolfers: 358 };
+    // Fallback to last known values — update after each major trips batch
+    return { minPrice: 379, maxPrice: 1705, tripCount: 22, totalGolfers: 358, trips: [] };
   }
 }
