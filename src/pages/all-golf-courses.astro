@@ -15,6 +15,13 @@ const wpSlugMap: Record<string,string> = {
   'nakoma-dragon':    'nakoma-dragon-golf-packages',
 };
 
+const aggregateRatingSchema = {
+  "@context": "https://schema.org", "@type": "TravelAgency",
+  "@id": "https://golfgraeagle.com/#organization",
+  "name": "GolfGraeagle.com",
+  "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.8", "reviewCount": "672", "bestRating": "5" }
+};
+
 const allCoursesSchema = [
   {
     '@type': 'ItemList',
@@ -104,7 +111,7 @@ const bestForList = [
   canonical="https://golfgraeagle.com/all-golf-courses/"
   title="Best Golf Courses in the Sierra Nevada — Graeagle, Northern California | GolfGraeagle"
   description="5 championship golf courses in Graeagle, California — Golf Digest Top 100, Golf World Top 75, Top 20 California. All within 25 minutes in the Sierra Nevada mountains. Compare courses, slopes, and stay-and-play packages."
-  schema={allCoursesSchema}
+  schema={[...allCoursesSchema, aggregateRatingSchema]}
 
   bodyClass="light-page"
 >
@@ -114,7 +121,7 @@ const bestForList = [
     <!-- Header -->
     <p style="font-size:11px;color:#a06c30;letter-spacing:0.16em;text-transform:uppercase;font-weight:600;margin:0 0 16px;">5 Championship Courses · Graeagle, CA</p>
     <h1 style="font-family:'Playfair Display',serif;font-size:clamp(32px,5vw,54px);font-weight:500;color:#1a2e1a;margin:0 0 20px;line-height:1.1;">Golf Courses in <span style="color:#e8a850;font-style:italic;">Graeagle, California</span></h1>
-    <p style="font-size:17px;color:rgba(28,46,26,0.5);max-width:680px;line-height:1.8;margin:0 0 16px;">There are five championship golf courses in the Graeagle area of Northern California, all within 5–25 minutes of each other. Most groups play two to four courses over a weekend stay.</p>
+    <p style="font-size:17px;color:rgba(28,46,26,0.5);max-width:680px;line-height:1.8;margin:0 0 16px;" class="speakable">There are five championship golf courses in the Graeagle area of Northern California, all within 5–25 minutes of each other. Most groups play two to four courses over a weekend stay.</p>
     <p style="font-size:15px;color:rgba(28,46,26,0.35);max-width:680px;line-height:1.75;margin:0 0 60px;">Graeagle sits at 4,300–5,400 feet in the Sierra Nevada — altitude adds carry distance, speeds up greens, and keeps temperatures cooler than Sacramento or the Bay Area even in summer. The five courses offer genuine variety: classic parkland, links-style ridgelines, tight pine corridors, and a championship layout with an FLW-designed clubhouse.</p>
 
     <!-- Course cards -->
