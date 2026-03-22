@@ -165,6 +165,14 @@ export const imageAlts = {
   '/wp-images/The-Townhomes-at-Plumas-Pines-Golf-Course-–-Graeagle-CA-visual-selection-1.png': 'Townhomes at Plumas Pines — interior living space with full kitchen, Graeagle CA',
   '/wp-images/The-Townhomes-at-Plumas-Pines-Golf-Course-–-Graeagle-CA-visual-selection-2.png': 'Townhomes at Plumas Pines — bedroom with golf course views, Plumas Pines Graeagle',
   '/wp-images/The-Townhomes-at-Plumas-Pines-Golf-Course-–-Graeagle-CA-visual-selection-3.png': 'Townhomes at Plumas Pines — community pool and recreation area, Graeagle CA',
+  // Dining — contextual images
+  'unsplash-bbq-ribs.jpg': 'Sierra SmokeShow — smoked BBQ ribs and brisket, Graeagle area',
+  'unsplash-food-pasta.jpg': "Gumba's II Go — Italian pasta and pizza, Graeagle CA",
+  'unsplash-craft-beer.jpg': 'Craft beer on tap — Graeagle area bar',
+  'unsplash-food-plating.jpg': 'Fresh food plating — Graeagle area dining',
+  'outdoor-seating-1.jpg': 'The Knotty Pine Tavern — outdoor porch seating on Hwy 89, Graeagle CA',
+  'unsplash-dining-restaurant.jpg': 'Little Bite Deli — casual mountain dining, Blairsden-Graeagle CA',
+  'brews-and-bars.jpeg': 'Mohawk Tavern — bar at Graeagle CA local institution since 1860s',
 };
 
 
@@ -914,7 +922,9 @@ export const dining = [
     location: 'CA-89, Blairsden-Graeagle, CA 96103',
     hero: '/wp-images/Sierra-SmokeShow-.webp',
     images: [
+      '/wp-images/Sierra-SmokeShow-.webp',
       '/wp-images/Sierra-SmokeShow-.jpg',
+      '/wp-images/unsplash-bbq-ribs.jpg',
     ],
   },
   {
@@ -937,7 +947,9 @@ export const dining = [
     location: '5 min west of Graeagle via CA-89 S and CA-70 W',
     hero: '/wp-images/Gumbas-II-Go.webp',
     images: [
+      '/wp-images/Gumbas-II-Go.webp',
       '/wp-images/Gumbas-II-Go.jpg',
+      '/wp-images/unsplash-food-pasta.jpg',
     ],
   },
   {
@@ -1049,6 +1061,7 @@ export const dining = [
     hero: '/wp-images/brews-and-bars.jpeg',
     images: [
       '/wp-images/brews-and-bars.jpeg',
+      '/wp-images/unsplash-craft-beer.jpg',
     ],
   },
   {
@@ -1070,9 +1083,11 @@ export const dining = [
     coordinates: { lat: 39.7686, lng: -120.6194 },
     location: '7426 CA-89, Graeagle, CA 96103',
     phone: '(530) 836-2536',
-    hero: '/wp-images/outdoor-seating.webp',
+    hero: '/wp-images/brews-and-bars.jpeg',
     images: [
-      '/wp-images/outdoor-seating.jpg',
+      '/wp-images/brews-and-bars.jpeg',
+      '/wp-images/outdoor-seating-1.jpg',
+      '/wp-images/unsplash-craft-beer.jpg',
     ],
   },
   // ─── Quick Bites ────────────────────────────────────────
@@ -1101,9 +1116,11 @@ export const dining = [
     nearbyLodging: ['townhomes-at-plumas-pines', 'chalet-view-lodge'],
     coordinates: { lat: 39.77255, lng: -120.60798 },
     location: 'Hwy 89, Blairsden-Graeagle, CA 96103',
-    hero: '/wp-images/outdoor-seating.webp',
+    hero: '/wp-images/unsplash-dining-restaurant.jpg',
     images: [
-      '/wp-images/outdoor-seating.webp',
+      '/wp-images/unsplash-dining-restaurant.jpg',
+      '/wp-images/unsplash-food-plating.jpg',
+      '/wp-images/outdoor-seating-1.jpg',
     ],
   },
   {
@@ -1128,6 +1145,7 @@ export const dining = [
     hero: '/wp-images/unnamed-25.webp',
     images: [
       '/wp-images/unnamed-25.webp',
+      '/wp-images/unsplash-food-plating.jpg',
     ],
   },
   {
