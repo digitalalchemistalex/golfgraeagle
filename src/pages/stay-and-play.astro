@@ -4,14 +4,17 @@ import Base from '../layouts/Base.astro';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
 import RelatedTrips from '../components/RelatedTrips.tsx';
+import { fetchTripStats } from '../lib/tripStats';
+const { minPrice, maxPrice, tripCount } = await fetchTripStats();
+
 
 const title = "Graeagle Stay and Play Golf Packages | GolfGraeagle.com";
-const description = "Graeagle stay and play packages from $620/golfer. Tee times at all 5 courses + lodging in one package. 5 championship courses within 25 minutes. Free quote 24h.";
+const description = `Graeagle stay and play packages from $${minPrice}/golfer. Tee times at all 5 courses + lodging in one package. 5 championship courses within 25 minutes. Free quote 24h.`;
 
 const faqSchema = {
   "@context": "https://schema.org", "@type": "FAQPage",
   "mainEntity": [
-    { "@type": "Question", "name": "What is included in a Graeagle stay and play golf package?", "acceptedAnswer": { "@type": "Answer", "text": "A GolfGraeagle stay-and-play package includes guaranteed tee times, lodging coordination, and a full day-by-day itinerary. Dining reservations can be added. Packages from $620 per golfer." } },
+    { "@type": "Question", "name": "What is included in a Graeagle stay and play golf package?", "acceptedAnswer": { "@type": "Answer", "text": "A GolfGraeagle stay-and-play package includes guaranteed tee times, lodging coordination, and a full day-by-day itinerary. Dining reservations can be added. Packages from ${minPrice} per golfer." } },
     { "@type": "Question", "name": "How much does a Graeagle stay and play package cost?", "acceptedAnswer": { "@type": "Answer", "text": "Real completed stay-and-play packages range from $620 to $1,705 per person. A typical 2-night, 3-course package for 12–24 golfers runs $620–$875 per person including lodging and tee times." } },
     { "@type": "Question", "name": "How many courses can I play?", "acceptedAnswer": { "@type": "Answer", "text": "Any combination of the 5 Graeagle courses. Most 2-night packages cover 2–3 courses; 3-night covers 3–4. All 5 courses in one valley means no wasted driving time." } },
     { "@type": "Question", "name": "Which lodging is best for a stay and play golf trip?", "acceptedAnswer": { "@type": "Answer", "text": "River Pines Resort is most popular for golf groups — flexible rooms, pool, The Roadhouse on-site. Townhomes at Plumas Pines offer multi-bedroom units steps from the first tee. Inn at Nakoma puts you inside the Frank Lloyd Wright resort with The Dragon at your door." } },
@@ -46,11 +49,11 @@ const howToSchema = {
 const serviceSchema = {
   "@context": "https://schema.org", "@type": "Service",
   "name": "Graeagle Stay and Play Golf Packages",
-  "description": "Stay and play golf packages at 5 championship courses in Graeagle, California. Tee times and lodging bundled in one package from $620 per golfer.",
+  "description": "Stay and play golf packages at 5 championship courses in Graeagle, California. Tee times and lodging bundled in one package from ${minPrice} per golfer.",
   "provider": { "@type": "TravelAgency", "@id": "https://golfgraeagle.com/#organization" },
   "areaServed": { "@type": "Place", "name": "Graeagle, California" },
   "serviceType": "Stay and Play Golf Package",
-  "offers": { "@type": "AggregateOffer", "lowPrice": "620", "highPrice": "1705", "priceCurrency": "USD" }
+  "offers": { "@type": "AggregateOffer", "lowPrice": `${minPrice}`, "highPrice": `${maxPrice}`, "priceCurrency": "USD" }
 };
 
 const packages = [
@@ -97,9 +100,9 @@ const includes = [
     <div class="sap-hero-inner">
       <p class="sap-eyebrow reveal-up">Graeagle Golf Vacation — California · Sierra Nevada</p>
       <h1 class="sap-h1 reveal-up delay-1">Stay and Play<br/><em>Golf Packages</em></h1>
-      <p class="sap-sub speakable reveal-up delay-2">Graeagle stay and play golf packages — five championship courses, golf and lodging in one package, from $620/golfer. Everything handled.</p>
+      <p class="sap-sub speakable reveal-up delay-2">Graeagle stay and play golf packages — five championship courses, golf and lodging in one package, from $${minPrice}/golfer. Everything handled.</p>
       <div class="sap-pills reveal-up delay-3">
-        <span>From <strong>$620</strong>/golfer</span>
+        <span>From <strong>${minPrice}</strong>/golfer</span>
         <span>5 courses · 25 min apart</span>
         <span>4–200+ golfers</span>
         <span>Free quote · 24h</span>

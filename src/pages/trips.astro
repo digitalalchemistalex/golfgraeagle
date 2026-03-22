@@ -5,13 +5,13 @@ import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
 import TripsHub from '../components/TripsHub.tsx';
 import { siteConfig, courses } from '../data/content.js';
+import { fetchTripStats } from '../lib/tripStats';
 
 // ── LIVE DATA AT BUILD TIME ────────────────────────────────────────────────
 // Fetched from TripsCaddie API during astro build — never hardcoded
 let graeagleTrips: any[] = [];
-let minPrice = 620;
-let totalGolfers = 0;
-let tripCount = 0;
+
+const { minPrice, maxPrice, tripCount, totalGolfers } = await fetchTripStats();
 
 try {
   const res = await fetch('https://golfthehighsierra.com/trips-caddie/api/api-recaps.php');
@@ -22,15 +22,8 @@ try {
     const courses = (t.courses || []).join(' ').toLowerCase();
     return GRAEAGLE_COURSES.some(k => courses.includes(k));
   });
-  const prices = graeagleTrips
-    .map((t: any) => t.pricePerPerson || t.pricePerPersonEstimate || 0)
-    .filter(Boolean);
-  minPrice = prices.length ? Math.min(...prices) : 620;
-  totalGolfers = graeagleTrips.reduce((s: number, t: any) => s + (t.groupSize || 0), 0);
-  tripCount = graeagleTrips.length;
 } catch (e) {
-  // fallback to known minimums
-  minPrice = 620; tripCount = 22; totalGolfers = 358;
+  graeagleTrips = [];
 }
 
 // Best 6 trips for static cards — premium first, then by group size
@@ -56,7 +49,7 @@ function cleanLodging(name: string) {
 
 const pageUrl = `${siteConfig.url}/trips/`;
 const pageTitle = "Graeagle Golf Trip Packages — Real Itineraries & Pricing | GolfGraeagle";
-const pageDesc = `Browse ${tripCount} real Graeagle golf trip packages from $${minPrice}/person. Actual itineraries, actual pricing, actual group sizes. Pick a trip and we'll match it for your group.`;
+const pageDesc = `Browse ${tripCount} real Graeagle golf trip packages from ${minPrice}/person. Actual itineraries, actual pricing, actual group sizes. Pick a trip and we'll match it for your group.`;
 
 // ── SCHEMA ─────────────────────────────────────────────────────────────────
 const tripListSchema = {
@@ -89,7 +82,7 @@ const faqSchema = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
   "mainEntity": [
-    { "@type": "Question", "name": "How much does a Graeagle golf trip package cost?", "acceptedAnswer": { "@type": "Answer", "text": `Graeagle golf trip packages start from $${minPrice} per person based on real booked groups. Value packages (2 nights, 3 rounds) run $620–$875 per person. Premium packages (3 nights, 4 rounds, private townhomes) reach $1,067–$1,150. All prices include lodging, green fees, and taxes.` } },
+    { "@type": "Question", "name": "How much does a Graeagle golf trip package cost?", "acceptedAnswer": { "@type": "Answer", "text": `Graeagle golf trip packages start from ${minPrice} per person based on real booked groups. Value packages (2 nights, 3 rounds) run $620–$875 per person. Premium packages (3 nights, 4 rounds, private townhomes) reach $1,067–$1,150. All prices include lodging, green fees, and taxes.` } },
     { "@type": "Question", "name": "Are these real Graeagle golf packages or estimated prices?", "acceptedAnswer": { "@type": "Answer", "text": `These are ${tripCount} real packages from actual booked groups arranged by GolfGraeagle.com. Every price, itinerary, group size, and course combination is verified — not an estimate or rack rate.` } },
     { "@type": "Question", "name": "Can I request the same trip shown in a package?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Any trip shown can be replicated for your group with the same courses, lodging, and structure — adjusted for your dates and headcount. Request a quote and reference the trip name." } },
     { "@type": "Question", "name": "What golf courses are in Graeagle golf packages?", "acceptedAnswer": { "@type": "Answer", "text": "Graeagle packages feature the 5 championship courses: Graeagle Meadows (par 72, slope 120), Whitehawk Ranch (par 71, slope 132, Top 20 CA 1998), Plumas Pines (par 72, slope 132), Grizzly Ranch (par 72, slope 140, Golf Digest Top 100 US 2021), and Nakoma Dragon (par 72, slope 147, FLW clubhouse). Most 2–3 night packages include 2–3 courses." } },
@@ -147,7 +140,7 @@ const schema = [tripListSchema, breadcrumbSchema, faqSchema, aggregateRatingSche
   <div style="background:#0a130a;border-top:1px solid rgba(232,168,80,0.08);border-bottom:1px solid rgba(232,168,80,0.08);padding:20px clamp(20px,8%,120px);">
     <div style="max-width:900px;margin:0 auto;display:flex;gap:40px;flex-wrap:wrap;justify-content:center;">
       {[
-        [`From $${minPrice}`, "per person, all-in"],
+        [`From ${minPrice}`, "per person, all-in"],
         [`${tripCount} packages`, "in this region"],
         [`${totalGolfers}+`, "golfers booked"],
         ["5 courses", "within 25 min"],
@@ -223,8 +216,8 @@ const schema = [tripListSchema, breadcrumbSchema, faqSchema, aggregateRatingSche
       </div>
 
       <div style="text-align:center;padding:0 0 16px;">
-        <p style="font-size:13px;color:rgba(28,18,8,0.45);margin:0;">
-          Preview of featured packages — browse and filter all Graeagle trips below.
+        <p id="trips-static-count" style="font-size:13px;color:rgba(28,18,8,0.45);margin:0;">
+          Showing {staticTrips.length} featured packages — <span id="trips-total-label">{tripCount} total</span> · browse and filter all below.
         </p>
       </div>
     </div>
@@ -365,7 +358,7 @@ const schema = [tripListSchema, breadcrumbSchema, faqSchema, aggregateRatingSche
       <p style="font-size:14px;color:rgba(28,18,8,0.51);margin:0 0 36px;">Straight answers. No upsell.</p>
       {[
         ["How much does a Graeagle golf trip cost?",
-         `Based on real trips we've run, packages start from $${minPrice} per person for a 2-night, 2-round trip. A 3-night, 3-round package with private townhome lodging typically runs $865–$1,120 per person all-inclusive.`],
+         `Based on real trips we've run, packages start from ${minPrice} per person for a 2-night, 2-round trip. A 3-night, 3-round package with private townhome lodging typically runs $865–$1,120 per person all-inclusive.`],
         ["What's included in a Graeagle stay-and-play package?",
          "Every package includes confirmed tee times at your chosen courses, lodging, and full trip coordination — one quote, one contact, one invoice. Transportation and banquet dinners are available as add-ons."],
         ["How many golfers can join a Graeagle group package?",
@@ -402,4 +395,19 @@ const schema = [tripListSchema, breadcrumbSchema, faqSchema, aggregateRatingSche
   </section>
 
   <Footer />
+
+  <script>
+    // Update the "X total" label live from TripsHub once the widget loads its data
+    const label = document.getElementById('trips-total-label');
+    if (label) {
+      const observer = new MutationObserver(() => {
+        const countEl = document.querySelector('[data-trips-count]');
+        if (countEl && countEl.textContent) {
+          const n = countEl.textContent.trim();
+          if (/^\d+$/.test(n)) { label.textContent = `${n} total`; observer.disconnect(); }
+        }
+      });
+      observer.observe(document.getElementById('trips') || document.body, { childList: true, subtree: true });
+    }
+  </script>
 </Base>

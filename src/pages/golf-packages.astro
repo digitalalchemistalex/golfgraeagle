@@ -4,14 +4,17 @@ import Base from '../layouts/Base.astro';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
 import RelatedTrips from '../components/RelatedTrips.tsx';
+import { fetchTripStats } from '../lib/tripStats';
+const { minPrice, maxPrice, tripCount } = await fetchTripStats();
+
 
 const title = "Graeagle Golf Packages — Tee Times, Lodging & Itineraries | GolfGraeagle.com";
-const description = "Graeagle golf packages from $620/golfer. Real pricing from 76 completed trips. Custom stay-and-play packages at 5 championship courses. Free quote in 24 hours.";
+const description = `Graeagle golf packages from $${minPrice}/golfer. Real pricing from 76 completed trips. Custom stay-and-play packages at 5 championship courses. Free quote in 24 hours.`;
 
 const faqSchema = {
   "@context": "https://schema.org", "@type": "FAQPage",
   "mainEntity": [
-    { "@type": "Question", "name": "What is included in a Graeagle golf package?", "acceptedAnswer": { "@type": "Answer", "text": "A GolfGraeagle package includes guaranteed tee times at your chosen courses, lodging coordination, and a day-by-day itinerary. Dining reservations available on request. Packages from $620 per golfer." } },
+    { "@type": "Question", "name": "What is included in a Graeagle golf package?", "acceptedAnswer": { "@type": "Answer", "text": "A GolfGraeagle package includes guaranteed tee times at your chosen courses, lodging coordination, and a day-by-day itinerary. Dining reservations available on request. Packages from ${minPrice} per golfer." } },
     { "@type": "Question", "name": "How much do Graeagle golf packages cost?", "acceptedAnswer": { "@type": "Answer", "text": "Real completed Graeagle golf packages range from $620 to $1,705 per person. A typical 2-night, 3-course package for a group of 12–24 runs $620–$875 per golfer. All pricing from real booked trips." } },
     { "@type": "Question", "name": "How many courses can I play in a Graeagle golf package?", "acceptedAnswer": { "@type": "Answer", "text": "Any combination of the 5 Graeagle courses. A 2-night package typically covers 2–3 courses. A 3-night covers 3–4. Most groups play 3 courses across 2–3 days." } },
     { "@type": "Question", "name": "Can I see real pricing from past Graeagle golf packages?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Browse 76 real completed packages at golfgraeagle.com/trips/ — course combinations, nights, group sizes, and price per person. Prices range from $620 to $1,705 per person." } },
@@ -51,7 +54,7 @@ const serviceSchema = {
   "provider": { "@type": "TravelAgency", "@id": "https://golfgraeagle.com/#organization" },
   "areaServed": { "@type": "Place", "name": "Graeagle, California" },
   "serviceType": "Golf Trip Planning",
-  "offers": { "@type": "AggregateOffer", "lowPrice": "620", "highPrice": "1705", "priceCurrency": "USD" }
+  "offers": { "@type": "AggregateOffer", "lowPrice": `${minPrice}`, "highPrice": `${maxPrice}`, "priceCurrency": "USD" }
 };
 
 // Real TripsCaddie data — verified from live API
@@ -91,9 +94,9 @@ const courses = [
     <div class="gp-hero-inner">
       <p class="gp-eyebrow reveal-up">Graeagle Golf Trip Planning · 5 Courses · Sierra Nevada · Since 2004</p>
       <h1 class="gp-h1 reveal-up delay-1">Graeagle Golf<br/><em>Packages</em></h1>
-      <p class="gp-subhead speakable reveal-up delay-2">Graeagle golf trip packages from $620/golfer — stay and play golf packages with tee times, lodging, and a day-by-day golf itinerary. Real pricing. No surprises.</p>
+      <p class="gp-subhead speakable reveal-up delay-2">Graeagle golf trip packages from $${minPrice}/golfer — stay and play golf packages with tee times, lodging, and a day-by-day golf itinerary. Real pricing. No surprises.</p>
       <div class="gp-pills reveal-up delay-3">
-        <span class="gp-pill">From <strong>$620</strong>/golfer</span>
+        <span class="gp-pill">From <strong>${minPrice}</strong>/golfer</span>
         <span class="gp-pill">⭐ 4.8 · 672 reviews</span>
         <span class="gp-pill">24hr quote</span>
         <span class="gp-pill">76 real trips</span>
@@ -250,7 +253,7 @@ const courses = [
       <p class="gp-cta-sub reveal-up delay-1">Every quote is built from actual booked packages — real courses, real lodging, real prices. Tell us your dates and group size. All-in number back in 24 hours.</p>
       <div class="reveal-scale delay-2">
         <a href="/request-a-quote/" class="btn-green-glow gp-cta-main">Get My Package Quote →</a>
-        <p class="gp-cta-trust">From $620/golfer · 72-hr cancellation · 4.8★ · 672 verified reviews</p>
+        <p class="gp-cta-trust">From ${minPrice}/golfer · 72-hr cancellation · 4.8★ · 672 verified reviews</p>
       </div>
     </div>
   </section>

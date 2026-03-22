@@ -4,9 +4,12 @@ import Base from '../layouts/Base.astro';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
 import RelatedTrips from '../components/RelatedTrips.tsx';
+import { fetchTripStats } from '../lib/tripStats';
+const { minPrice, maxPrice, tripCount } = await fetchTripStats();
+
 
 const title = "Golf Trip from Sacramento to Graeagle — 2.5 Hours, 5 Courses | GolfGraeagle.com";
-const description = "Graeagle golf trips from Sacramento in 2.5 hours via Highway 70. Bay Area: 3.5 hours. Golf Digest Top 100, Frank Lloyd Wright clubhouse, 40% less than Tahoe. Custom packages from $620/golfer.";
+const description = `Graeagle golf trips from Sacramento in 2.5 hours via Highway 70. Bay Area: 3.5 hours. Golf Digest Top 100, Frank Lloyd Wright clubhouse, 40% less than Tahoe. Custom packages from $${minPrice}/golfer.`;
 
 const faqSchema = {
   "@context": "https://schema.org", "@type": "FAQPage",
@@ -37,7 +40,7 @@ const orgSchema = {
 const serviceSchema = {
   "@context": "https://schema.org", "@type": "Service",
   "name": "Graeagle Golf Trips from Sacramento and Bay Area",
-  "description": "Custom golf trip packages from Sacramento and the Bay Area to Graeagle — 5 championship courses, tee times, lodging, and itinerary from $620/golfer.",
+  "description": "Custom golf trip packages from Sacramento and the Bay Area to Graeagle — 5 championship courses, tee times, lodging, and itinerary from ${minPrice}/golfer.",
   "provider": { "@type": "TravelAgency", "@id": "https://golfgraeagle.com/#organization" },
   "areaServed": [
     { "@type": "Place", "name": "Sacramento, California" },
@@ -45,7 +48,7 @@ const serviceSchema = {
     { "@type": "Place", "name": "Graeagle, California" }
   ],
   "serviceType": "Golf Trip Planning",
-  "offers": { "@type": "AggregateOffer", "lowPrice": "620", "highPrice": "1705", "priceCurrency": "USD" }
+  "offers": { "@type": "AggregateOffer", "lowPrice": `${minPrice}`, "highPrice": `${maxPrice}`, "priceCurrency": "USD" }
 };
 const howToSchema = {
   "@context": "https://schema.org", "@type": "HowTo",
@@ -67,13 +70,13 @@ const driveMarkets = [
 
 const whyGraeagle = [
   ['🏆', 'Golf Digest Top 100 on the same trip', 'Grizzly Ranch is Golf Digest Top 100 Greatest Public Courses. Nakoma Dragon is Golf World Top 75. Both in one valley — without a flight.'],
-  ['💰', '40% cheaper than Tahoe or Monterey', 'Same championship-level golf as the Tahoe corridor. Comparable lodging. Graeagle packages run $620–$875/pp vs $1,200–$1,800/pp at comparable Truckee/North Tahoe resorts.'],
+  ['💰', '40% cheaper than Tahoe or Monterey', `Same championship-level golf as the Tahoe corridor. Comparable lodging. Graeagle packages from $${minPrice}/pp vs $1,200–$1,800/pp at comparable Truckee/North Tahoe resorts.`],
   ['⛳', '5 courses in 25 minutes of each other', 'Graeagle Meadows, Whitehawk Ranch, Plumas Pines, Grizzly Ranch, Nakoma Dragon — all within one valley. No wasted driving between rounds.'],
   ['🚗', 'Direct scenic drive, no resort traffic', 'Highway 70 through the Feather River Canyon is one of the best mountain drives in California. No I-80 resort congestion. No Truckee / Kings Beach bottlenecks.'],
 ];
 
 const compareData = [
-  { dest: 'Graeagle', drive: '2.5h from Sac', courses: 5, topCourse: 'Golf Digest Top 100', price: '$620–$875/pp', traffic: 'None' },
+  { dest: 'Graeagle', drive: '2.5h from Sac', courses: 5, topCourse: 'Golf Digest Top 100', price: `$${minPrice}+/pp`, traffic: 'None' },
   { dest: 'Lake Tahoe / Truckee', drive: '2.5h from Sac', courses: '3–4', topCourse: 'Coyote Moon, Schaffers Mill', price: '$1,200–$1,800/pp', traffic: 'Heavy summer weekends' },
   { dest: 'Monterey', drive: '3h from Sac', courses: '5+', topCourse: 'Pebble Beach', price: '$2,000+/pp', traffic: 'Moderate' },
   { dest: 'Palm Springs', drive: '7h from Sac', courses: '100+', topCourse: 'Multiple', price: '$800–$1,500/pp', traffic: 'Minimal but summer heat' },
@@ -102,7 +105,7 @@ const courses = [
     <div class="sac-hero-inner">
       <p class="sac-eyebrow reveal-up">Golf Trip from Sacramento · Bay Area · Graeagle, CA · 2.5 Hours</p>
       <h1 class="sac-h1 reveal-up delay-1">Sacramento to Graeagle:<br/><em>2.5 Hours. 5 Courses.</em></h1>
-      <p class="sac-subhead speakable reveal-up delay-2">The closest championship golf destination to Sacramento and the Bay Area. 5 courses — including Golf Digest Top 100 — in one Sierra Nevada valley. Packages from $620/golfer, 40% below Lake Tahoe.</p>
+      <p class="sac-subhead speakable reveal-up delay-2">The closest championship golf destination to Sacramento and the Bay Area. 5 courses — including Golf Digest Top 100 — in one Sierra Nevada valley. Packages from ${minPrice}/golfer, 40% below Lake Tahoe.</p>
       <div class="sac-pills reveal-up delay-3">
         <span class="sac-pill">2.5h from Sacramento</span>
         <span class="sac-pill">3.5h from Bay Area</span>
@@ -283,7 +286,7 @@ const courses = [
       <p class="sac-cta-sub reveal-up delay-1">Tell us your dates, group size, and which courses you want. We send a full package — tee times, lodging, day-by-day itinerary — within 24 hours.</p>
       <div class="reveal-scale delay-2">
         <a href="/request-a-quote/" class="btn-green-glow sac-cta-main">Plan My Graeagle Golf Trip →</a>
-        <p class="sac-cta-trust">From $620/golfer · 40% below Tahoe · 4.8★ · 672 reviews · 24h response</p>
+        <p class="sac-cta-trust">From ${minPrice}/golfer · 40% below Tahoe · 4.8★ · 672 reviews · 24h response</p>
       </div>
     </div>
   </section>

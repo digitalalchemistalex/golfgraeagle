@@ -452,7 +452,8 @@ export default function TripsHub() {
 
         {/* Results summary */}
         <div style={{ fontSize: 12, color: "rgba(28,18,8,0.3)", marginBottom: 24, fontWeight: 500 }}>
-          {filtered.length} trip{filtered.length !== 1 ? "s" : ""} found
+          <span data-trips-count>{allTrips.length}</span>{" "}
+          trip{filtered.length !== 1 ? "s" : ""} found
           {filter === "all" && prices.length > 0 && ` · $${minPrice}–$${maxPrice}/person`}
         </div>
 

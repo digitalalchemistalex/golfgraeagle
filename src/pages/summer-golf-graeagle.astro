@@ -4,9 +4,12 @@ import Base from '../layouts/Base.astro';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
 import RelatedTrips from '../components/RelatedTrips.tsx';
+import { fetchTripStats } from '../lib/tripStats';
+const { minPrice, maxPrice, tripCount } = await fetchTripStats();
+
 
 const title = "Summer Golf in Graeagle — June, July & August | GolfGraeagle.com";
-const description = "Summer golf in Graeagle, California — 5 championship courses, June through August. Book 6–8 weeks ahead for peak season. Conditions, booking windows, and packages from $620/golfer.";
+const description = `Summer golf in Graeagle, California — 5 championship courses, June through August. Book 6–8 weeks ahead for peak season. Conditions, booking windows, and packages from $${minPrice}/golfer.`;
 
 const faqSchema = {
   "@context": "https://schema.org", "@type": "FAQPage",
@@ -15,7 +18,7 @@ const faqSchema = {
     { "@type": "Question", "name": "How far in advance do I need to book summer tee times in Graeagle?", "acceptedAnswer": { "@type": "Answer", "text": "July–August weekends: 6–8 weeks ahead. June and September: 4–6 weeks. Groups of 12+ needing consecutive tee time blocks should add 2 extra weeks to those windows. GolfGraeagle books directly with each pro shop — same booking windows, guaranteed access." } },
     { "@type": "Question", "name": "Are Grizzly Ranch and Nakoma Dragon open in summer?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Both courses are open June through October. Grizzly Ranch and Nakoma Dragon are semi-private — most visitors cannot book them directly. GolfGraeagle guarantees tee time access to both as part of any summer package." } },
     { "@type": "Question", "name": "What is the weather like in Graeagle during summer golf?", "acceptedAnswer": { "@type": "Answer", "text": "Graeagle sits at 4,400–4,800 ft elevation. Summer highs reach 85–90°F with cool mornings in the 55–65°F range. No humidity. Afternoon thunderstorms are possible in July and August — most rounds tee off at 7–9am and finish before any weather arrives." } },
-    { "@type": "Question", "name": "How much do summer golf packages in Graeagle cost?", "acceptedAnswer": { "@type": "Answer", "text": "Summer packages run $620–$1,120 per golfer for 2–3 nights and 3–4 rounds. Peak July–August pricing is 10–15% higher than May–June shoulder season. All packages include guaranteed tee times, lodging, and a day-by-day itinerary." } },
+    { "@type": "Question", "name": "How much do summer golf packages in Graeagle cost?", "acceptedAnswer": { "@type": "Answer", "text": `Summer packages start from $${minPrice} per golfer for 2–3 nights and 3–4 rounds. Peak July–August pricing is 10–15% higher than May–June shoulder season. All packages include guaranteed tee times, lodging, and a day-by-day itinerary.` } },
   ]
 };
 const breadcrumbSchema = {
@@ -37,11 +40,11 @@ const orgSchema = {
 const serviceSchema = {
   "@context": "https://schema.org", "@type": "Service",
   "name": "Summer Golf Packages in Graeagle California",
-  "description": "Summer golf trip packages in Graeagle — June, July and August. 5 championship courses, guaranteed tee times at semi-private courses, lodging, and full itinerary from $620/golfer.",
+  "description": "Summer golf trip packages in Graeagle — June, July and August. 5 championship courses, guaranteed tee times at semi-private courses, lodging, and full itinerary from ${minPrice}/golfer.",
   "provider": { "@type": "TravelAgency", "@id": "https://golfgraeagle.com/#organization" },
   "areaServed": { "@type": "Place", "name": "Graeagle, California" },
   "serviceType": "Summer Golf Trip Package",
-  "offers": { "@type": "AggregateOffer", "lowPrice": "620", "highPrice": "1120", "priceCurrency": "USD" }
+  "offers": { "@type": "AggregateOffer", "lowPrice": `${minPrice}`, "highPrice": "1120", "priceCurrency": "USD" }
 };
 const howToSchema = {
   "@context": "https://schema.org", "@type": "HowTo",
@@ -93,7 +96,7 @@ const conditions = [
     <div class="sg-hero-inner">
       <p class="sg-eyebrow reveal-up">Summer Golf · Graeagle, California · June · July · August</p>
       <h1 class="sg-h1 reveal-up delay-1">Summer Golf in Graeagle.<br/><em>Book 6 Weeks Out.</em></h1>
-      <p class="sg-subhead speakable reveal-up delay-2">5 championship courses open June through October. Peak season tee times — including semi-private Grizzly Ranch and Nakoma Dragon — fill 6–8 weeks ahead. Packages from $620/golfer.</p>
+      <p class="sg-subhead speakable reveal-up delay-2">5 championship courses open June through October. Peak season tee times — including semi-private Grizzly Ranch and Nakoma Dragon — fill 6–8 weeks ahead. Packages from ${minPrice}/golfer.</p>
       <div class="sg-pills reveal-up delay-3">
         <span class="sg-pill">Open June–October</span>
         <span class="sg-pill">5 courses</span>
@@ -190,7 +193,7 @@ const conditions = [
         ['6–8 wks','Advance booking peak'],
         ['4,500 ft','Course elevation'],
         ['4.8★','672 reviews'],
-        ['$620','Starting price/golfer'],
+        [`$${minPrice}`,'Starting price/golfer'],
         ['5','Courses in 25 min'],
       ].map(([val, label], i) => (
         <div class={`sg-stat reveal-scale delay-${i+1}`}>
@@ -225,7 +228,7 @@ const conditions = [
       <p class="sg-cta-sub reveal-up delay-1">Tell us your summer dates, group size, and which courses you want. We confirm tee times — including Grizzly Ranch and Nakoma Dragon — within 24 hours.</p>
       <div class="reveal-scale delay-2">
         <a href="/request-a-quote/" class="btn-green-glow sg-cta-main">Reserve Summer Tee Times →</a>
-        <p class="sg-cta-trust">From $620/golfer · Semi-private access included · 4.8★ · 24h confirmation</p>
+        <p class="sg-cta-trust">From ${minPrice}/golfer · Semi-private access included · 4.8★ · 24h confirmation</p>
       </div>
     </div>
   </section>

@@ -4,9 +4,12 @@ import Base from '../layouts/Base.astro';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
 import RelatedTrips from '../components/RelatedTrips.tsx';
+import { fetchTripStats } from '../lib/tripStats';
+const { minPrice, maxPrice, tripCount } = await fetchTripStats();
+
 
 const title = "Graeagle Golf Itinerary — 2, 3, 4 & 5-Day Plans | GolfGraeagle.com";
-const description = "Real Graeagle golf itineraries for every trip length. 2-day, 3-day, and 4-day sample schedules with course order, lodging, and dining. Custom itineraries from $620/golfer.";
+const description = `Real Graeagle golf itineraries for every trip length. 2-day, 3-day, and 4-day sample schedules with course order, lodging, and dining. Custom itineraries from $${minPrice}/golfer.`;
 
 const faqSchema = {
   "@context": "https://schema.org", "@type": "FAQPage",
@@ -51,7 +54,7 @@ const serviceSchema = {
   "provider": { "@type": "TravelAgency", "@id": "https://golfgraeagle.com/#organization" },
   "areaServed": { "@type": "Place", "name": "Graeagle, California" },
   "serviceType": "Golf Itinerary Planning",
-  "offers": { "@type": "AggregateOffer", "lowPrice": "620", "highPrice": "1705", "priceCurrency": "USD" }
+  "offers": { "@type": "AggregateOffer", "lowPrice": `${minPrice}`, "highPrice": `${maxPrice}`, "priceCurrency": "USD" }
 };
 
 const itineraries = [
@@ -121,7 +124,7 @@ const whyPoints = [
     <div class="gi-hero-inner">
       <p class="gi-eyebrow reveal-up">Graeagle Golf Itinerary Planning · 5 Courses · Sierra Nevada · Since 2004</p>
       <h1 class="gi-h1 reveal-up delay-1">Graeagle Golf<br/><em>Itineraries</em></h1>
-      <p class="gi-subhead speakable reveal-up delay-2">2, 3, 4, and 5-day Graeagle golf itineraries — course order, lodging, and dining built around your group. Custom day-by-day plans from $620/golfer, back in 24 hours.</p>
+      <p class="gi-subhead speakable reveal-up delay-2">2, 3, 4, and 5-day Graeagle golf itineraries — course order, lodging, and dining built around your group. Custom day-by-day plans from $${minPrice}/golfer, back in 24 hours.</p>
       <div class="gi-pills reveal-up delay-3">
         <span class="gi-pill">2 to 5 days</span>
         <span class="gi-pill">All 5 courses</span>

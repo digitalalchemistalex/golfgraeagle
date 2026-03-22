@@ -4,9 +4,12 @@ import Base from '../layouts/Base.astro';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
 import RelatedTrips from '../components/RelatedTrips.tsx';
+import { fetchTripStats } from '../lib/tripStats';
+const { minPrice, maxPrice, tripCount } = await fetchTripStats();
 
 const title = "Book Tee Times in Graeagle, CA — All 5 Courses | GolfGraeagle.com";
-const description = "Book tee times at all 5 Graeagle golf courses — Grizzly Ranch, Nakoma Dragon, Whitehawk Ranch, Plumas Pines, and Graeagle Meadows. Guaranteed tee times with lodging from $620/golfer.";
+const description = `Book tee times at all 5 Graeagle golf courses — Grizzly Ranch, Nakoma Dragon, Whitehawk Ranch, Plumas Pines, and Graeagle Meadows. Guaranteed tee times with lodging from $${minPrice}/golfer.`;
+
 
 const faqSchema = {
   "@context": "https://schema.org", "@type": "FAQPage",
@@ -53,7 +56,7 @@ const serviceSchema = {
   "provider": { "@type": "TravelAgency", "@id": "https://golfgraeagle.com/#organization" },
   "areaServed": { "@type": "Place", "name": "Graeagle, California" },
   "serviceType": "Golf Tee Time Booking",
-  "offers": { "@type": "AggregateOffer", "lowPrice": "620", "highPrice": "1705", "priceCurrency": "USD" }
+  "offers": { "@type": "AggregateOffer", "lowPrice": `${minPrice}`, "highPrice": `${maxPrice}`, "priceCurrency": "USD" }
 };
 
 const courses = [
@@ -92,7 +95,7 @@ const whyPoints = [
     <div class="tt-hero-inner">
       <p class="tt-eyebrow reveal-up">Book Tee Times · Graeagle, California · All 5 Courses</p>
       <h1 class="tt-h1 reveal-up delay-1">Graeagle<br/><em>Tee Times</em></h1>
-      <p class="tt-subhead speakable reveal-up delay-2">Book tee times at all 5 Graeagle golf courses — including Grizzly Ranch (Golf Digest Top 100) and Nakoma Dragon (Golf World Top 75). Guaranteed access bundled with lodging from $620/golfer.</p>
+      <p class="tt-subhead speakable reveal-up delay-2">Book tee times at all 5 Graeagle golf courses — including Grizzly Ranch (Golf Digest Top 100) and Nakoma Dragon (Golf World Top 75). Guaranteed access bundled with lodging from ${minPrice}/golfer.</p>
       <div class="tt-pills reveal-up delay-3">
         <span class="tt-pill">All 5 courses</span>
         <span class="tt-pill">Groups 4–200+</span>
