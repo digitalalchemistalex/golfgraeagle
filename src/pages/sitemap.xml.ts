@@ -45,9 +45,8 @@ const diningUrls   = dining.map((d:any) => diningPortfolioSlug[d.slug]).filter(B
 
 // Blog posts — manual until a blog content array exists
 const blogUrls = [
-  '/best-golf-courses-graeagle',
-  '/ultimate-guide-to-golfing-in-graeagle',
-  '/mountain-dining-near-lake-tahoe-graeagles-best-kept-restaurant-secrets',
+  // Legacy WP root slugs — these pages exist but canonical should be /blog/ equivalents
+  // Keeping in sitemap at lower priority until 301s are confirmed in GSC
   '/blog/graeagle-golf-courses-ranked',
   '/blog/graeagle-golf-trip-itinerary-3-days',
   '/blog/how-to-plan-graeagle-golf-trip',
@@ -70,43 +69,46 @@ const blogUrls = [
   '/blog/senior-golf-trips-graeagle',
 ].map(s => url(s,'0.7','monthly'));
 
+// Legacy root-level pages (old WP URLs — kept for GSC continuity, lower priority)
+const legacyUrls = [
+  '/best-golf-courses-graeagle',
+  '/ultimate-guide-to-golfing-in-graeagle',
+  '/mountain-dining-near-lake-tahoe-graeagles-best-kept-restaurant-secrets',
+].map(s => url(s,'0.5','yearly'));
+
 const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
-<!-- Core Pages -->
+<!-- Core pages -->
 ${url('/','1.0','weekly')}
 ${url('/request-a-quote','1.0','monthly')}
+${url('/golf-packages','0.9','monthly')}
 ${url('/stay-and-play','0.9','monthly')}
 ${url('/group-golf','0.9','monthly')}
-${url('/golf-packages','0.9','monthly')}
 ${url('/graeagle-golf-itinerary','0.9','monthly')}
 ${url('/tee-times-graeagle','0.9','monthly')}
 ${url('/all-golf-courses','0.9','monthly')}
+${url('/trips','0.8','weekly')}
 ${url('/lodging','0.8','monthly')}
 ${url('/dining','0.8','monthly')}
+${url('/faq','0.7','monthly')}
 ${url('/about-us','0.7','monthly')}
 ${url('/blog','0.7','weekly')}
-${url('/faq','0.7','monthly')}
-${url('/trips','0.8','weekly')}
-${url('/townhomes','0.6','monthly')}
 
-<!-- Courses (${courseUrls.length} — auto from content.js) -->
+<!-- Courses (${courseUrls.length}) -->
 ${courseUrls.join('\n')}
 
-<!-- Lodging (${lodgingUrls.length} — auto from content.js) -->
+<!-- Lodging (${lodgingUrls.length}) -->
 ${lodgingUrls.join('\n')}
 
-<!-- Dining (${diningUrls.length} — auto from content.js) -->
+<!-- Dining (${diningUrls.length}) -->
 ${diningUrls.join('\n')}
 
 <!-- Blog (${blogUrls.length}) -->
 ${blogUrls.join('\n')}
 
-<!-- Legal -->
-${url('/privacy-policy','0.3','yearly')}
-${url('/terms-and-conditions','0.3','yearly')}
-${url('/cancellation-policy','0.3','yearly')}
-${url('/disclaimer','0.3','yearly')}
+<!-- Legacy WP root URLs (${legacyUrls.length} — kept for GSC continuity, low priority) -->
+${legacyUrls.join('\n')}
 
 </urlset>`;
 
