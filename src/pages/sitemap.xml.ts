@@ -79,6 +79,8 @@ ${url('/request-a-quote','1.0','monthly')}
 ${url('/stay-and-play','0.9','monthly')}
 ${url('/group-golf','0.9','monthly')}
 ${url('/golf-packages','0.9','monthly')}
+${url('/graeagle-golf-itinerary','0.9','monthly')}
+${url('/tee-times-graeagle','0.9','monthly')}
 ${url('/all-golf-courses','0.9','monthly')}
 ${url('/lodging','0.8','monthly')}
 ${url('/dining','0.8','monthly')}
