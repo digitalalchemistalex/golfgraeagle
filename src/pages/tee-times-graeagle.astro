@@ -219,18 +219,105 @@ const whyPoints = [
     </div>
   </section>
 
-  <!-- ═══ CTA — dark ═══ -->
-  <section class="tt-cta-section tt-dark">
+  <!-- ═══ INLINE BOOKING FORM — turns page from description to transaction ═══ -->
+  <section class="tt-book tt-dark">
     <div class="tt-cta-glow"></div>
-    <div class="tt-container" style="text-align:center;max-width:640px;position:relative;z-index:1">
-      <h2 class="tt-cta-h2 reveal-up">Grizzly Ranch. Nakoma Dragon.<br/><em>We get you on both.</em></h2>
-      <p class="tt-cta-sub reveal-up delay-1">Semi-private courses that most visitors can't book directly. GolfGraeagle guarantees tee times at all 5 courses — including the Top 100 and Golf World Top 75 — bundled with lodging in one package.</p>
-      <div class="reveal-scale delay-2">
-        <a href="/request-a-quote/" class="btn-green-glow tt-cta-main">Book Tee Times — Free Quote →</a>
-        <p class="tt-cta-trust">All 5 courses guaranteed · Semi-private access included · 4.8★ · Groups 4 to 200+</p>
+    <div class="tt-container" style="max-width:700px;position:relative;z-index:1">
+      <div class="tt-header reveal-up" style="margin-bottom:36px">
+        <span class="sec-label" style="color:#e8a850">Book your tee times now</span>
+        <h2 class="tt-cta-h2 reveal-up">Grizzly Ranch. Nakoma Dragon.<br/><em>We get you on both.</em></h2>
+        <p class="tt-cta-sub reveal-up delay-1">Tell us your dates, group size, and which courses. We confirm guaranteed tee times — including semi-private access — within 24 hours.</p>
       </div>
+      <form class="tt-mini-form reveal-up delay-2" id="ttBookForm">
+        <div class="tt-form-row">
+          <div class="tt-form-group">
+            <label class="tt-form-label">Your name</label>
+            <input type="text" name="name" class="tt-form-input" placeholder="First name" required/>
+          </div>
+          <div class="tt-form-group">
+            <label class="tt-form-label">Email</label>
+            <input type="email" name="email" class="tt-form-input" placeholder="you@email.com" required/>
+          </div>
+        </div>
+        <div class="tt-form-row">
+          <div class="tt-form-group">
+            <label class="tt-form-label">Preferred dates</label>
+            <input type="text" name="dates" class="tt-form-input" placeholder="e.g. July 18–20, 2026"/>
+          </div>
+          <div class="tt-form-group">
+            <label class="tt-form-label">Group size</label>
+            <select name="group_size" class="tt-form-input">
+              <option value="">Select...</option>
+              <option>Solo / 2</option>
+              <option>3–4 golfers</option>
+              <option>5–8 golfers</option>
+              <option>9–16 golfers</option>
+              <option>17–30 golfers</option>
+              <option>31+ golfers</option>
+            </select>
+          </div>
+        </div>
+        <div class="tt-form-group" style="margin-bottom:20px">
+          <label class="tt-form-label">Courses you want (check all that apply)</label>
+          <div class="tt-course-checks">
+            {courses.map((c) => (
+              <label class="tt-check-label">
+                <input type="checkbox" name="courses" value={c.name}/> {c.name}
+              </label>
+            ))}
+          </div>
+        </div>
+        <button type="submit" class="btn-green-glow tt-form-submit" id="ttSubmitBtn">
+          Book My Tee Times →
+        </button>
+        <p class="tt-cta-trust" style="margin-top:14px">All 5 courses guaranteed · 4.8★ · Groups 4 to 200+ · Response in 24h</p>
+        <div id="ttFormSuccess" style="display:none;margin-top:20px;padding:20px;background:rgba(26,122,64,.15);border:1px solid rgba(26,122,64,.3);border-radius:12px;text-align:center">
+          <p style="color:#a8e6c0;font-size:15px;font-weight:600;margin:0">✅ Request received. We'll confirm your tee times within 24 hours.</p>
+        </div>
+      </form>
     </div>
   </section>
+
+  <script>
+    const form = document.getElementById('ttBookForm') as HTMLFormElement;
+    const btn = document.getElementById('ttSubmitBtn') as HTMLButtonElement;
+    const success = document.getElementById('ttFormSuccess') as HTMLElement;
+    if (form) {
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        btn.disabled = true;
+        btn.textContent = 'Sending...';
+        const fd = new FormData(form);
+        const courses_selected = form.querySelectorAll('input[name="courses"]:checked');
+        const courseList = Array.from(courses_selected).map((c: any) => c.value).join(', ');
+        const payload = {
+          name: fd.get('name'),
+          email: fd.get('email'),
+          message: `TEE TIMES REQUEST\nDates: ${fd.get('dates') || 'TBD'}\nGroup size: ${fd.get('group_size') || 'TBD'}\nCourses: ${courseList || 'TBD'}\nSource: /tee-times-graeagle/`,
+          source: 'tee-times-graeagle',
+          status: 'new',
+        };
+        try {
+          await fetch('https://egplpluvbfsjrqzecnjf.supabase.co/rest/v1/gg_leads', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'apikey': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVncGxwbHV2YmZzanJxemVjbmpmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjkzODQ2ODUsImV4cCI6MjA4NDk2MDY4NX0.siY1RnlsOBa7yiXFx8LmVhA08z33SfuGOx91_DlINBU',
+              'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVncGxwbHV2YmZzanJxemVjbmpmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjkzODQ2ODUsImV4cCI6MjA4NDk2MDY4NX0.siY1RnlsOBa7yiXFx8LmVhA08z33SfuGOx91_DlINBU',
+              'Prefer': 'return=minimal',
+            },
+            body: JSON.stringify(payload),
+          });
+          form.style.display = 'none';
+          success.style.display = 'block';
+        } catch {
+          btn.disabled = false;
+          btn.textContent = 'Book My Tee Times →';
+          alert('Something went wrong — please try again or call (888) 586-1157.');
+        }
+      });
+    }
+  </script>
 
   <RelatedTrips client:load slug="tee-times-graeagle" type="course" showAll={true} max={3} />
   <Footer />
@@ -325,8 +412,21 @@ const whyPoints = [
 .tt-faq[open] .tt-faq-icon{transform:rotate(45deg)}
 .tt-faq-a{font-size:14px;color:var(--tt-muted);line-height:1.82;padding:0 0 20px;margin:0}
 
-/* CTA */
-.tt-cta-section{padding:clamp(80px,10vw,132px) 0;position:relative;overflow:hidden}
+/* INLINE BOOKING FORM */
+.tt-book{padding:clamp(72px,9vw,112px) 0;position:relative;overflow:hidden}
+.tt-mini-form{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:20px;padding:clamp(24px,4vw,40px)}
+.tt-form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px}
+.tt-form-group{display:flex;flex-direction:column;gap:6px}
+.tt-form-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:rgba(245,240,232,.55)}
+.tt-form-input{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);border-radius:10px;padding:12px 16px;font-size:14px;color:#f5f0e8;font-family:'Inter',sans-serif;transition:border-color .2s;outline:none}
+.tt-form-input:focus{border-color:rgba(232,168,80,.5);background:rgba(255,255,255,.12)}
+.tt-form-input option{background:#0d1a0e;color:#f5f0e8}
+.tt-course-checks{display:flex;flex-wrap:wrap;gap:10px;margin-top:6px}
+.tt-check-label{display:flex;align-items:center;gap:7px;font-size:13px;color:rgba(245,240,232,.85);cursor:pointer;padding:8px 14px;border:1px solid rgba(255,255,255,.12);border-radius:100px;transition:all .2s}
+.tt-check-label:hover{border-color:rgba(232,168,80,.4);background:rgba(232,168,80,.05)}
+.tt-check-label input{accent-color:#e8a850}
+.tt-form-submit{width:100%;padding:16px;border-radius:100px;font-size:15px;font-weight:700;border:none;cursor:pointer;font-family:'Inter',sans-serif}
+@media(max-width:600px){.tt-form-row{grid-template-columns:1fr}}
 .tt-cta-glow{position:absolute;width:720px;height:720px;border-radius:50%;background:radial-gradient(circle,rgba(26,122,64,.18) 0%,transparent 70%);top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none}
 .tt-cta-glow::before{content:'';position:absolute;inset:80px;border-radius:50%;border:1px solid rgba(232,168,80,.04)}
 .tt-cta-h2{font-family:'Playfair Display',serif;font-size:clamp(28px,5vw,52px);color:#f5f0e8;font-weight:500;line-height:1.15;margin:0 0 20px}

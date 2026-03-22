@@ -287,6 +287,38 @@ const buildSchema = () => {
       },
       breadcrumb,
       {
+        '@type': 'HowTo',
+        name: `How to Book a Tee Time at ${item.name}`,
+        description: `Step-by-step guide to booking a round at ${item.name} — slope ${item.slope}, par ${item.par}, ${item.yards?.toLocaleString()} yards. Designed by ${item.designer}, ${item.year}.`,
+        totalTime: 'PT24H',
+        step: [
+          {
+            '@type': 'HowToStep',
+            position: 1,
+            name: 'Request a quote',
+            text: `Visit golfgraeagle.com/request-a-quote with your dates, group size, and that you want ${item.name}. Takes 2 minutes.`,
+          },
+          {
+            '@type': 'HowToStep',
+            position: 2,
+            name: 'Receive your tee time confirmation',
+            text: `GolfGraeagle confirms your ${item.name} tee time within 24 hours, bundled with lodging options and a full day-by-day itinerary.`,
+          },
+          {
+            '@type': 'HowToStep',
+            position: 3,
+            name: `Know before you play — slope ${item.slope}`,
+            text: `${item.name} plays ${item.yards?.toLocaleString()} yards at par ${item.par} (slope ${item.slope}, rating ${item.rating}) from the back tees at ${item.altitude || 'elevation'}. ${item.slug === 'grizzly-ranch' ? 'Golf Digest Top 100. Bring your A-game — slope 140 at 4,800 ft adds real distance.' : item.slug === 'nakoma-dragon' ? 'Golf World Top 75. Slope 147. The Frank Lloyd Wright clubhouse is the starting point. Save this for your last round.' : item.slug === 'whitehawk-ranch' ? 'Top 20 California. Sulphur Creek comes into play on multiple holes. Precision over power.' : item.slug === 'plumas-pines' ? 'Top 5 Best Value in the Sierra Nevada. Tight pines and small greens reward placement, not distance.' : 'The most accessible course in Graeagle. Best opening round for mixed groups.'}`,
+          },
+          {
+            '@type': 'HowToStep',
+            position: 4,
+            name: 'Show up and play',
+            text: `GolfGraeagle handles all logistics. Your tee sheet is confirmed, lodging is arranged, and your day-by-day itinerary is in your inbox before you leave home.`,
+          },
+        ],
+      },
+      {
         '@type': 'FAQPage',
         mainEntity: (item.faqs && item.faqs.length > 0)
           ? item.faqs.map((f: any) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } }))
