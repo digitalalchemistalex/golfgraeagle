@@ -231,7 +231,7 @@ const lodgingMeta = {'townhomes-at-plumas-pines':{badge:'Great for Large Groups'
     </div>
 
     <div class="courses-five-grid">
-      {[courses[0], courses[1], courses[2], courses[3], courses[4]].map((c,i)=>(
+      {[courses[3], courses[0], courses[1], courses[2], courses[4]].map((c,i)=>(
           <a href={`/portfolio/${wpSlugMap[c.slug]}/`} class={`reveal delay-${i*75} course-card-equal`} style="text-decoration:none;display:block;">
             <img src={c.hero} alt={getImgAlt(c.hero, `${c.name} Golf Course — Graeagle, California`)} loading="lazy" class="course-card-img"/>
             <div class="card-gradient"></div>
