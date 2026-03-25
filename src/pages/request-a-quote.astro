@@ -8,10 +8,10 @@ import { courses, lodging } from '../data/content.js';
 const preselected = Astro.url.searchParams.get('course') || '';
 
 const courseCards = [
-  { ...courses[0], accolade: 'The Valley Original', mustPlay: false },
-  { ...courses[1], accolade: 'Top 20 CA — 1998',    mustPlay: true  },
-  { ...courses[2], accolade: 'Top 5 Best Value',     mustPlay: false },
-  { ...courses[3], accolade: 'Golf Digest Top 100',  mustPlay: true  },
+  { ...courses[0], accolade: 'Golf Digest Top 100',  mustPlay: true  },
+  { ...courses[1], accolade: 'The Valley Original', mustPlay: false },
+  { ...courses[2], accolade: 'Top 20 CA — 1998',    mustPlay: true  },
+  { ...courses[3], accolade: 'Top 5 Best Value',     mustPlay: false },
   { ...courses[4], accolade: 'Golf World Top 75',    mustPlay: true  },
 ];
 
