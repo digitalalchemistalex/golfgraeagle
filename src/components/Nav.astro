@@ -139,10 +139,10 @@ import SearchBar from './SearchBar.tsx';
             <div style="font-size:9px;font-weight:800;color:#a06c30;text-transform:uppercase;letter-spacing:0.12em;margin-bottom:14px;">5 courses · all within 25 min · most golfers play 3–4 in one trip</div>
 
             {[
+              { slug:'grizzly-ranch',       url:'grizzly-ranch-golf-packages',       name:'Grizzly Ranch',     note:'Golf Digest Top 100 — 7,411 yds at 4,800 ft',               slope:'140', badge:'Top 100 🏆',     bc:'rgba(180,120,20,0.15)', bct:'#8a5810' },
               { slug:'graeagle-meadows',    url:'graeagle-meadows-golf-packages',    name:'Graeagle Meadows',  note:'Slope 120 — open meadows, the valley\'s original course',  slope:'120', badge:'Since 1968',      bc:'rgba(40,120,200,0.12)', bct:'#1050a0' },
               { slug:'whitehawk-ranch',     url:'whitehawk-ranch-golf-packages',     name:'Whitehawk Ranch',   note:'Top 20 CA — meadow & forest mix',                            slope:'132', badge:'Top 20 CA',      bc:'rgba(40,140,60,0.12)',  bct:'#1a6030' },
               { slug:'plumas-pines',        url:'plumas-pines-golf-packages',        name:'Plumas Pines',      note:'Slope 132 at 6,504 yds — precision over power',              slope:'132', badge:'Top 5 Value CA',  bc:'rgba(40,100,180,0.12)', bct:'#1050a0' },
-              { slug:'grizzly-ranch',       url:'grizzly-ranch-golf-packages',       name:'Grizzly Ranch',     note:'Golf Digest Top 100 — 7,411 yds at 4,800 ft',               slope:'140', badge:'Top 100 🏆',     bc:'rgba(180,120,20,0.15)', bct:'#8a5810' },
               { slug:'nakoma-dragon',       url:'nakoma-dragon-golf-packages',       name:'Nakoma — The Dragon', note:'Only FLW golf clubhouse on earth. Slope 147.',             slope:'147', badge:'FLW Clubhouse',  bc:'rgba(100,60,180,0.12)', bct:'#502090' },
             ].map(c => (
               <a href={`/portfolio/${c.url}/`}
@@ -450,10 +450,10 @@ import SearchBar from './SearchBar.tsx';
     <div>
       <p style="font-size:10px;color:#a06c30;text-transform:uppercase;letter-spacing:0.12em;font-weight:700;margin:0 0 12px;">Golf Courses</p>
       {[
+        ['Grizzly Ranch',  '/portfolio/grizzly-ranch-golf-packages/'],
         ['Graeagle Meadows','/portfolio/graeagle-meadows-golf-packages/'],
         ['Whitehawk Ranch', '/portfolio/whitehawk-ranch-golf-packages/'],
         ['Plumas Pines',    '/portfolio/plumas-pines-golf-packages/'],
-        ['Grizzly Ranch',  '/portfolio/grizzly-ranch-golf-packages/'],
         ['Nakoma — Dragon','/portfolio/nakoma-dragon-golf-packages/'],
       ].map(([l,h])=>(
         <a href={h} style="display:block;font-size:14px;color:#3a4a3e;text-decoration:none;padding:7px 0;border-bottom:1px solid rgba(168,140,90,0.1);font-weight:500;">{l}</a>
