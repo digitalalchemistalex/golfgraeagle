@@ -202,9 +202,9 @@ export const courses = [
       'Semi-private — limited public access',
     ],
     // Official photos from grizzlyranchgolfclub.com — verified clean course shots
-    hero: '/wp-images/grizzly-ranch-.jpeg',
+    hero: '/wp-images/grizzly-ranch-.webp',
     images: [
-      '/wp-images/grizzly-ranch-.jpeg',
+      '/wp-images/grizzly-ranch-.webp',
       '/wp-images/grizzly-ranch--1024x682.webp',
       '/wp-images/grizzly-ranch-img0666.jpg',
       '/wp-images/grizzly-ranch-hero.webp',
