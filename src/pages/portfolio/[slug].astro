@@ -516,7 +516,7 @@ const diningSlugMap: Record<string, string> = {
       const isActive = course.slug === item.slug;
       return (
         <a href={`/portfolio/${course.slug === 'nakoma-dragon' ? 'nakoma-dragon-golf-packages' : course.slug + '-golf-packages'}/`} class={`ch-strip-item${isActive ? ' is-active' : ''}`} aria-label={`View ${course.name}`}>
-          <img src={course.hero} alt={course.name} class="ch-strip-thumb" loading={isActive ? 'eager' : 'lazy'} />
+          <img src={course.hero} alt={course.name} class="ch-strip-thumb" width="1920" height="1080" loading={isActive ? 'eager' : 'lazy'} />
           <div class="ch-strip-dim"></div>
           <span class="ch-strip-label">{course.name.replace(' — The Dragon','').replace('Graeagle ','')}</span>
         </a>
@@ -1044,7 +1044,7 @@ const diningSlugMap: Record<string, string> = {
             {pairs.map(({ highlight, img, reverse }: any, i: number) => (
               <div class={`lod-feature-row reveal${reverse ? ' reverse' : ''}`} style={`transition-delay:${i * 0.08}s`}>
                 <div class="lod-feature-img">
-                  <img src={img} alt={`${item.name} — ${highlight.split('—')[0].trim()}`} loading="lazy"/>
+                  <img src={img} alt={`${item.name} — ${highlight.split('—')[0].trim()}`} loading="lazy" width="1920" height="1080"/>
                 </div>
                 <div class="lod-feature-text">
                   <div style="font-size:10px;color:var(--gold);letter-spacing:0.14em;text-transform:uppercase;font-weight:700;margin-bottom:14px;">Course Feature</div>
@@ -1088,6 +1088,7 @@ const diningSlugMap: Record<string, string> = {
                 <button class="gallery-btn" data-src={img} data-idx={i} data-total={Math.min(item.images.length,9)}
                   style="border:none;padding:0;background:none;cursor:zoom-in;position:relative;overflow:hidden;border-radius:8px;flex:0 0 calc(33.333% - 3px);aspect-ratio:4/3;display:block;">
                   <img src={img} alt={getImgAlt(img, `${item.name} — golf course photo ${i+1}, Graeagle CA`)} loading={i === 0 ? 'eager' : 'lazy'} fetchpriority={i === 0 ? 'low' : undefined}
+                    width="1920" height="1080"
                     style="width:100%;height:100%;object-fit:cover;transition:transform 0.4s ease;display:block;"/>
                   <span style="position:absolute;inset:0;background:rgba(0,0,0,0);transition:background 0.3s;display:flex;align-items:center;justify-content:center;" class="gal-ov">
                     <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" style="opacity:0;transition:opacity 0.3s;filter:drop-shadow(0 2px 4px rgba(0,0,0,0.5));"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/><path d="M11 8v6M8 11h6"/></svg>
@@ -1157,7 +1158,7 @@ const diningSlugMap: Record<string, string> = {
                 return (
                   <a href={`/portfolio/${lodgingSlugMap[lSlug] || lSlug}/`} style="display:flex;align-items:center;gap:16px;padding:18px 0;border-bottom:1px solid rgba(28,18,8,0.05);text-decoration:none;transition:opacity 0.2s;" onmouseover="this.style.opacity='0.75'" onmouseout="this.style.opacity='1'">
                     <div style="width:56px;height:44px;border-radius:8px;overflow:hidden;flex-shrink:0;">
-                      <img src={prop.hero} alt={prop.name} style="width:100%;height:100%;object-fit:cover;" loading="lazy"/>
+                      <img src={prop.hero} alt={prop.name} style="width:100%;height:100%;object-fit:cover;" width="1920" height="1080" loading="lazy"/>
                     </div>
                     <div style="flex:1;min-width:0;">
                       <div style="font-size:14px;font-weight:600;color:var(--text-primary);margin-bottom:2px;">{prop.name}</div>
@@ -1188,7 +1189,7 @@ const diningSlugMap: Record<string, string> = {
                 <a href={`/portfolio/${diningSlugMap[d.slug] || d.slug}/`}
                    style="display:flex;gap:16px;align-items:center;padding:16px;background:rgba(28,18,8,0.04);border:1px solid rgba(28,18,8,0.06);border-radius:12px;text-decoration:none;transition:all 0.2s;"
                    onmouseover="this.style.borderColor='rgba(232,168,80,0.3)'" onmouseout="this.style.borderColor='rgba(28,18,8,0.06)'">
-                  <img src={d.hero} alt={d.name} style="width:60px;height:60px;object-fit:cover;border-radius:8px;flex-shrink:0;" loading="lazy"/>
+                  <img src={d.hero} alt={d.name} style="width:60px;height:60px;object-fit:cover;border-radius:8px;flex-shrink:0;" width="60" height="60" loading="lazy"/>
                   <div style="flex:1;min-width:0;">
                     <div style="font-size:14px;font-weight:700;color:var(--text-primary);margin-bottom:3px;">{d.name}</div>
                     <div style="font-size:12px;color:rgba(28,18,8,0.35);">{d.cuisine}</div>
@@ -1258,7 +1259,7 @@ const diningSlugMap: Record<string, string> = {
                  onmouseover="this.style.borderColor='rgba(232,168,80,0.3)';this.style.background='rgba(232,168,80,0.04)'"
                  onmouseout="this.style.borderColor='rgba(28,18,8,0.07)';this.style.background='rgba(28,18,8,0.03)'">
                 <div style="width:48px;height:48px;border-radius:8px;overflow:hidden;flex-shrink:0;">
-                  <img src={x.hero} alt={x.name} style="width:100%;height:100%;object-fit:cover;" loading="lazy"/>
+                  <img src={x.hero} alt={x.name} style="width:100%;height:100%;object-fit:cover;" width="1920" height="1080" loading="lazy"/>
                 </div>
                 <div style="flex:1;min-width:0;">
                   <div style="font-size:14px;font-weight:700;color:var(--text-primary);margin-bottom:2px;">{x.name}</div>
@@ -1289,7 +1290,7 @@ const diningSlugMap: Record<string, string> = {
     <>
     <!-- HERO -->
     <section style="position:relative;height:75vh;min-height:500px;overflow:hidden;display:flex;align-items:flex-end;">
-      <img src={item.hero} alt={getImgAlt(item.hero, `${item.name} — ${item.type === "course" ? "golf course" : item.type === "lodge" ? "lodging" : "restaurant"}, Graeagle CA`)} style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" loading="eager" fetchpriority="high"/>
+      <img src={item.hero} alt={getImgAlt(item.hero, `${item.name} — ${item.type === "course" ? "golf course" : item.type === "lodge" ? "lodging" : "restaurant"}, Graeagle CA`)} style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" width="1920" height="1080" loading="eager" fetchpriority="high"/>
       <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(5,3,1,0.96) 0%,rgba(5,3,1,0.75) 35%,rgba(5,3,1,0.25) 65%,transparent 100%);"></div>
       <div style="position:relative;z-index:2;padding:0 clamp(20px,8%,120px) clamp(40px,6vw,64px);max-width:1400px;width:100%;">
         <a href="/lodging/" style="display:inline-flex;align-items:center;gap:6px;font-size:12px;color:rgba(240,236,227,0.5);text-decoration:none;margin-bottom:20px;transition:color 0.2s;" onmouseover="this.style.color='rgba(240,236,227,0.85)'" onmouseout="this.style.color='rgba(240,236,227,0.5)'">← All Lodging</a>
@@ -1318,7 +1319,7 @@ const diningSlugMap: Record<string, string> = {
             {item.images.slice(0, 10).map((img: string, i: number) => (
               <button class="gallery-btn" data-src={img} data-idx={i} data-total={Math.min(item.images.length,10)}
                 style="border:none;padding:0;background:none;cursor:zoom-in;position:relative;overflow:hidden;border-radius:8px;flex:0 0 calc(33.333% - 3px);aspect-ratio:4/3;display:block;">
-                <img src={img} alt={getImgAlt(img, `${item.name} — Graeagle CA`)} style="width:100%;height:100%;object-fit:cover;transition:transform 0.4s;" loading={i === 0 ? 'eager' : 'lazy'} fetchpriority={i === 0 ? 'low' : undefined}/>
+                <img src={img} alt={getImgAlt(img, `${item.name} — Graeagle CA`)} style="width:100%;height:100%;object-fit:cover;transition:transform 0.4s;" width="1920" height="1080" loading={i === 0 ? 'eager' : 'lazy'} fetchpriority={i === 0 ? 'low' : undefined}/>
                 <span style="position:absolute;inset:0;background:rgba(0,0,0,0);transition:background 0.3s;display:flex;align-items:center;justify-content:center;" class="gal-ov">
                   <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" style="opacity:0;transition:opacity 0.3s;filter:drop-shadow(0 2px 4px rgba(0,0,0,0.5));"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/><path d="M11 8v6M8 11h6"/></svg>
                 </span>
@@ -1378,7 +1379,7 @@ const diningSlugMap: Record<string, string> = {
               {featurePairs.map(({ highlight, img, reverse }: any, i: number) => (
                 <div class={`lod-feature-row reveal${reverse ? ' reverse' : ''}`} style={`transition-delay:${i * 0.1}s`}>
                   <div class="lod-feature-img">
-                    <img src={img} alt={`${item.name} — ${highlight.split('—')[0].trim()}`} loading="lazy"/>
+                    <img src={img} alt={`${item.name} — ${highlight.split('—')[0].trim()}`} loading="lazy" width="1920" height="1080"/>
                   </div>
                   <div class="lod-feature-text">
                     <div style="font-size:10px;color:var(--gold);letter-spacing:0.14em;text-transform:uppercase;font-weight:700;margin-bottom:16px;">What's Included</div>
@@ -1462,7 +1463,7 @@ const diningSlugMap: Record<string, string> = {
                   <a href={`/portfolio/${diningSlugMap[d.slug] || d.slug}/`}
                      style="display:flex;gap:16px;align-items:center;padding:16px;background:rgba(28,18,8,0.04);border:1px solid rgba(28,18,8,0.06);border-radius:12px;text-decoration:none;transition:all 0.2s;"
                      onmouseover="this.style.borderColor='rgba(232,168,80,0.3)'" onmouseout="this.style.borderColor='rgba(28,18,8,0.06)'">
-                    <img src={d.hero} alt={d.name} style="width:60px;height:60px;object-fit:cover;border-radius:8px;flex-shrink:0;"/>
+                    <img src={d.hero} alt={d.name} style="width:60px;height:60px;object-fit:cover;border-radius:8px;flex-shrink:0;" width="60" height="60"/>
                     <div>
                       <div style="font-size:14px;font-weight:700;color:var(--text-primary);margin-bottom:3px;">{d.name}</div>
                       <div style="font-size:12px;color:rgba(28,18,8,0.35);">{d.cuisine}</div>
@@ -1575,7 +1576,7 @@ const diningSlugMap: Record<string, string> = {
     <>
     <!-- HERO -->
     <section style="position:relative;height:65vh;min-height:420px;overflow:hidden;display:flex;align-items:flex-end;">
-      <img src={item.hero} alt={getImgAlt(item.hero, `${item.name} — ${item.type === "course" ? "golf course" : item.type === "lodge" ? "lodging" : "restaurant"}, Graeagle CA`)} style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" loading="eager" fetchpriority="high"/>
+      <img src={item.hero} alt={getImgAlt(item.hero, `${item.name} — ${item.type === "course" ? "golf course" : item.type === "lodge" ? "lodging" : "restaurant"}, Graeagle CA`)} style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" width="1920" height="1080" loading="eager" fetchpriority="high"/>
       <div style="position:absolute;inset:0;background:linear-gradient(to top,var(--page-bg) 0%,rgba(237,230,218,0.5) 50%,transparent 85%);"></div>
       <div style="position:relative;z-index:2;padding:0 10% 56px;max-width:1400px;width:100%;">
         <a href="/dining/" style="display:inline-flex;align-items:center;gap:6px;font-size:12px;color:rgba(28,18,8,0.35);text-decoration:none;margin-bottom:20px;transition:color 0.2s;" onmouseover="this.style.color='rgba(28,18,8,0.65)'" onmouseout="this.style.color='rgba(28,18,8,0.35)'">← All Dining</a>
@@ -1647,6 +1648,7 @@ const diningSlugMap: Record<string, string> = {
                     style="border:none;padding:0;background:none;cursor:zoom-in;position:relative;overflow:hidden;border-radius:8px;flex:0 0 calc(33.333% - 3px);aspect-ratio:4/3;display:block;">
                     <img src={img} alt={getImgAlt(img, `${item.name} — ${i+1}, Graeagle CA`)}
                       loading={i === 0 ? 'eager' : 'lazy'}
+                      width="1920" height="1080"
                       style="width:100%;height:100%;object-fit:cover;transition:transform 0.4s ease;display:block;"/>
                   </button>
                 ))}
@@ -1802,7 +1804,7 @@ const diningSlugMap: Record<string, string> = {
               <a href={`/portfolio/${diningSlugMap[d.slug] || d.slug}/`}
                  style="display:flex;align-items:center;gap:14px;padding:14px;background:rgba(28,18,8,0.03);border:1px solid rgba(28,18,8,0.06);border-radius:10px;text-decoration:none;transition:all 0.2s;"
                  onmouseover="this.style.borderColor='rgba(28,18,8,0.12)'" onmouseout="this.style.borderColor='rgba(28,18,8,0.06)'">
-                <img src={d.hero} alt={d.name} style="width:52px;height:52px;object-fit:cover;border-radius:8px;flex-shrink:0;" loading="lazy"/>
+                <img src={d.hero} alt={d.name} style="width:52px;height:52px;object-fit:cover;border-radius:8px;flex-shrink:0;" width="52" height="52" loading="lazy"/>
                 <div style="flex:1;min-width:0;">
                   <div style="font-size:13px;font-weight:700;color:var(--text-primary);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">{d.name}</div>
                   <div style="font-size:11px;color:rgba(28,18,8,0.3);margin-top:2px;">{d.cuisine}</div>

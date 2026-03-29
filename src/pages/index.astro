@@ -233,7 +233,7 @@ const lodgingMeta = {'townhomes-at-plumas-pines':{badge:'Great for Large Groups'
     <div class="courses-five-grid">
       {[courses[0], courses[1], courses[2], courses[3], courses[4]].map((c,i)=>(
           <a href={`/portfolio/${wpSlugMap[c.slug]}/`} class={`reveal delay-${i*75} course-card-equal`} style="text-decoration:none;display:block;">
-            <img src={c.hero} alt={getImgAlt(c.hero, `${c.name} Golf Course — Graeagle, California`)} loading="lazy" class="course-card-img"/>
+            <img src={c.hero} alt={getImgAlt(c.hero, `${c.name} Golf Course — Graeagle, California`)} loading="lazy" class="course-card-img" width="1920" height="1080"/>
             <div class="card-gradient"></div>
             <div class="course-card-body">
               <div style="display:flex;flex-wrap:wrap;gap:5px;margin-bottom:10px;align-items:center;">
@@ -289,7 +289,7 @@ const lodgingMeta = {'townhomes-at-plumas-pines':{badge:'Great for Large Groups'
         <div style="border-radius:24px;overflow:hidden;aspect-ratio:4/5;">
           <img src="https://golf-pass.brightspotcdn.com/fb/c0/25fb1031420d23ab00595c5024f0/84464.jpg"
             alt="Whitehawk Ranch Golf Course — Mohawk Valley"
-            loading="lazy" style="width:100%;height:100%;object-fit:cover;"/>
+            loading="lazy" width="800" height="1000" style="width:100%;height:100%;object-fit:cover;"/>
         </div>
         <div class="float-badge float-bottom-left">
           <div style="font-size:11px;color:rgba(255,255,255,0.45);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:4px;">Valley Altitude</div>
@@ -318,7 +318,7 @@ const lodgingMeta = {'townhomes-at-plumas-pines':{badge:'Great for Large Groups'
         const meta = lodgingMeta[l.slug] || { badge: l.subtitle, detail: '' };
         return (
           <a href={`/portfolio/${l.slug}/`} class={`reveal delay-${i*75} lodging-equal-card`} style="text-decoration:none;display:block;">
-            <img src={l.hero} alt={getImgAlt(l.hero, `${l.name} — Graeagle CA lodging for golf groups`)} loading="lazy" class="course-card-img"/>
+            <img src={l.hero} alt={getImgAlt(l.hero, `${l.name} — Graeagle CA lodging for golf groups`)} loading="lazy" class="course-card-img" width="1920" height="1080"/>
             <div class="card-gradient"></div>
             <div class="course-card-body">
               <span style="font-size:8px;font-weight:800;text-transform:uppercase;letter-spacing:0.08em;background:#e8a850;color:#0d1a0e;padding:2px 8px;border-radius:100px;display:inline-block;margin-bottom:8px;">{meta.badge}</span>
@@ -366,16 +366,19 @@ const lodgingMeta = {'townhomes-at-plumas-pines':{badge:'Great for Large Groups'
         <div style="border-radius:16px;overflow:hidden;aspect-ratio:3/4;grid-row:1/3;">
           <img src="/wp-images/nakoma-fifty44-dining.jpg"
             alt="Fifty44 Restaurant at Nakoma — fine dining" loading="lazy"
+            width="1631" height="1080"
             style="width:100%;height:100%;object-fit:cover;"/>
         </div>
         <div style="border-radius:16px;overflow:hidden;aspect-ratio:3/2;">
           <img src="/wp-images/nakoma-flw-outdoor-dining.jpg"
             alt="Outdoor dining at Nakoma Frank Lloyd Wright lodge" loading="lazy"
+            width="1920" height="1280"
             style="width:100%;height:100%;object-fit:cover;"/>
         </div>
         <div style="border-radius:16px;overflow:hidden;aspect-ratio:3/2;">
           <img src="/wp-images/nakoma-dining-patio.jpg"
             alt="Nakoma dining patio" loading="lazy"
+            width="1620" height="1080"
             style="width:100%;height:100%;object-fit:cover;"/>
         </div>
       </div>
@@ -457,6 +460,7 @@ const lodgingMeta = {'townhomes-at-plumas-pines':{badge:'Great for Large Groups'
           onmouseout="this.style.transform='translateY(0)';this.style.boxShadow='0 2px 12px rgba(0,0,0,0.04)'">
           <div style="height:180px;overflow:hidden;">
             <img src={post.img} alt={post.title} loading="lazy"
+              width="1200" height="630"
               style="width:100%;height:100%;object-fit:cover;transition:transform 0.4s;"
               onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'"/>
           </div>
@@ -484,6 +488,7 @@ const lodgingMeta = {'townhomes-at-plumas-pines':{badge:'Great for Large Groups'
   <div style="position:absolute;inset:0;">
     <img src="/wp-images/nakoma-flw-lodge-exterior.jpg"
       alt="Frank Lloyd Wright Nakoma Clubhouse" loading="lazy"
+      width="1620" height="1080"
       style="width:100%;height:100%;object-fit:cover;"/>
     <div style="position:absolute;inset:0;background:rgba(13,26,14,0.88);"></div>
   </div>
