@@ -1124,10 +1124,24 @@ const diningSlugMap: Record<string, string> = {
       )}
 
       <!-- Best for -->
-      <div class="reveal" style="background:rgba(232,168,80,0.05);border:1px solid rgba(232,168,80,0.1);border-radius:16px;padding:28px 32px;margin-bottom:56px;">
+      <div class="reveal" style="background:rgba(232,168,80,0.05);border:1px solid rgba(232,168,80,0.1);border-radius:16px;padding:28px 32px;margin-bottom:20px;">
         <div style="font-size:11px;color:rgba(232,168,80,0.6);text-transform:uppercase;letter-spacing:0.12em;margin-bottom:10px;">Best For</div>
         <p style="font-size:16px;color:rgba(28,18,8,0.75);margin:0;">{item.bestFor}</p>
       </div>
+
+      {(item as any).notFor && (
+        <div class="reveal" style="background:rgba(28,18,8,0.03);border:1px solid rgba(28,18,8,0.07);border-radius:16px;padding:24px 32px;margin-bottom:20px;">
+          <div style="font-size:11px;color:rgba(28,18,8,0.35);text-transform:uppercase;letter-spacing:0.12em;margin-bottom:10px;">Know Before You Book</div>
+          <p style="font-size:14px;color:rgba(28,18,8,0.5);margin:0;line-height:1.7;">{(item as any).notFor}</p>
+        </div>
+      )}
+
+      {(item as any).tripRole && (
+        <div class="reveal" style="background:rgba(45,122,58,0.04);border:1px solid rgba(45,122,58,0.12);border-radius:16px;padding:24px 32px;margin-bottom:56px;">
+          <div style="font-size:11px;color:rgba(45,122,58,0.6);text-transform:uppercase;letter-spacing:0.12em;margin-bottom:10px;">How It Fits Your Trip</div>
+          <p style="font-size:14px;color:rgba(28,18,8,0.6);margin:0;line-height:1.7;">{(item as any).tripRole}</p>
+        </div>
+      )}
 
       <!-- Facilities -->
       {item.facilities?.length > 0 && (
