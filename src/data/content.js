@@ -487,6 +487,13 @@ export const lodging = [
       '/wp-images/2024-08-17-1.webp',
     ],
     onSiteDining: ['longboards'],
+    faqs: [
+      { q: 'What unit sizes are available at the Townhomes at Plumas Pines?', a: 'The Townhomes at Plumas Pines offer 2–4 bedroom vacation rentals with full kitchens, in-unit laundry, private outdoor space, and golf course deck views. Ideal for golf groups of 8–24.' },
+      { q: 'How close are the Townhomes at Plumas Pines to the golf courses?', a: 'The townhomes are steps from the first tee at Plumas Pines Golf Resort. Graeagle Meadows is 10 minutes via CA-89, Whitehawk Ranch is 12 minutes, Nakoma Dragon is 18 minutes, and Grizzly Ranch is 22 minutes.' },
+      { q: 'What amenities are available at the Townhomes at Plumas Pines?', a: 'Community amenities include a pool and tennis courts. Units include full kitchens, in-unit laundry, private decks with golf course views, and shared outdoor spaces. Longboards Bar and Grill at Plumas Pines is on-site.' },
+      { q: 'Can GolfGraeagle book the Townhomes at Plumas Pines as part of a package?', a: 'Yes. GolfGraeagle coordinates Townhomes bookings as part of stay-and-play packages, paired with tee times at all 5 Graeagle courses. Request a free quote at golfgraeagle.com/request-a-quote.' },
+      { q: 'When is peak season at the Townhomes at Plumas Pines?', a: 'Peak season runs May through October. Summer weekends book out early — GolfGraeagle recommends securing your package well in advance for July and August dates.' },
+    ],
     description: 'The Townhomes at Plumas Pines offer 2–4 bedroom vacation rentals immediately adjacent to Plumas Pines Golf Resort. Units come with full kitchens, in-unit laundry, private outdoor space, and golf course views. Community amenities include pools and tennis courts. The location puts groups steps from the first tee at Plumas Pines and within 10–15 minutes of Graeagle Meadows, Whitehawk Ranch, and Grizzly Ranch. Ideal for groups of 8–24 who want the comfort of a home rental, shared common spaces, and the flexibility to cook between rounds. Booking is arranged through GolfGraeagle as part of a stay-and-play package.',
   },
   {
@@ -527,6 +534,13 @@ export const lodging = [
       '/wp-images/DJI_0965-Edit.webp',
     ],
     onSiteDining: ['roadhouse'],
+    faqs: [
+      { q: 'What types of accommodation does River Pines Resort offer?', a: 'River Pines Resort offers cozy cabins, spacious suites, and well-appointed rooms — flexible for golf groups of any size. The resort has been family-owned for over 40 years.' },
+      { q: 'How far is River Pines Resort from the Graeagle golf courses?', a: 'River Pines Resort is walking distance (~5 minutes on foot) to Graeagle Meadows Golf Course. Plumas Pines is a 5-minute drive, Whitehawk Ranch is 10 minutes, Nakoma Dragon is 18 minutes, and Grizzly Ranch is 20 minutes.' },
+      { q: 'What dining and amenities are available at River Pines Resort?', a: 'River Pines Resort has an outdoor pool, hot tub, and game lounge. The Roadhouse at River Pines serves steaks, ribs, and whisky flights on-site for group dinners. A casino with slot machines, table games, and a sports bar is also on property.' },
+      { q: 'Is River Pines Resort good for large golf groups?', a: 'Yes. River Pines Resort accommodates golf groups of all sizes with flexible room types, on-site dining at the Roadhouse, and direct access to Plumas Pines Golf Course. GolfGraeagle coordinates group blocks and tee times as part of stay-and-play packages.' },
+      { q: 'How do I book River Pines Resort for a golf trip?', a: 'GolfGraeagle books River Pines Resort as part of stay-and-play packages, bundled with tee times at all 5 Graeagle courses. Request a free quote at golfgraeagle.com/request-a-quote.' },
+    ],
     description: 'River Pines Resort has been family-owned for over 40 years and sits along the Feather River, 5 minutes from Graeagle village. Accommodation options include cozy cabins, spacious suites, and well-appointed rooms — flexible for groups of any size. The Roadhouse at River Pines handles group dinners with a menu of steaks, ribs, and whisky flights. An outdoor pool, hot tub, and game lounge round out the amenities.',
   },
   {
@@ -564,6 +578,13 @@ export const lodging = [
     ],
     
     onSiteDining: ['eureka-peak-brewing'],
+    faqs: [
+      { q: 'What makes Chalet View Lodge different from other Graeagle lodging?', a: 'Chalet View Lodge sits on 10 forested acres with a 9-hole executive course on property, Eureka Peak Brewing Co. on-site, a full spa, seasonal outdoor pool, volleyball courts, and a fishing pond — the most amenity-rich property in the Graeagle valley.' },
+      { q: 'How far is Chalet View Lodge from the Graeagle golf courses?', a: 'Chalet View Lodge is 5 minutes from Graeagle Meadows, 8 minutes from Whitehawk Ranch, 10 minutes from Plumas Pines, 15 minutes from Nakoma Dragon, and 22 minutes from Grizzly Ranch.' },
+      { q: 'What room types does Chalet View Lodge offer?', a: 'Chalet View Lodge offers lodge rooms, terrace suites, and private cabins on 10 forested acres — suitable for couples, small groups, and larger golf parties.' },
+      { q: 'Is there on-site dining at Chalet View Lodge?', a: 'Yes. Eureka Peak Brewing Co. is located on the Chalet View Lodge property, serving handcrafted IPAs, stouts, and saisons alongside locally sourced seasonal dishes in a timber-framed setting.' },
+      { q: 'Can GolfGraeagle book Chalet View Lodge as part of a golf package?', a: 'Yes. GolfGraeagle pairs Chalet View Lodge with tee times at all 5 Graeagle courses as part of stay-and-play packages. Request a free quote at golfgraeagle.com/request-a-quote.' },
+    ],
     description: 'Chalet View Lodge sits on 10 forested acres, 10 minutes from Graeagle via Highway 89. Room types include lodge rooms, terrace suites, and private cabins — making it one of the most versatile properties in the valley for groups. The 9-hole executive course lets guests warm up without leaving the property. Eureka Peak Brewing Co. is located on-site, serving handcrafted IPAs, stouts, and saisons alongside locally sourced seasonal dishes. Full spa services, a seasonal outdoor pool, volleyball courts, and a fishing pond complete the offering.',
   },
   {
@@ -605,6 +626,13 @@ export const lodging = [
     ],
     description: 'The Inn at Nakoma is the only place in the world where you can sleep under a roof designed by Frank Lloyd Wright and walk directly to your tee time on The Dragon. The 42-room resort features Frette Italian linens, a lobby fireplace, heated outdoor pool, two hot tubs, and a full spa. Dining options include the Fifty44 Restaurant & Bar inside the historic FLW Lodge serving wood-fired dishes, and the casual Middle Fork Bistro & Bar. The resort is pet-friendly (2 dogs, 75 lbs each) and has an arcade, children\'s club, and on-site driving range.',
     onSiteDining: [],
+    faqs: [
+      { q: 'What makes The Inn at Nakoma unique?', a: 'The Inn at Nakoma is the only place in the world where guests sleep under a roof designed by Frank Lloyd Wright and walk directly to their tee time on The Dragon — Golf World Top 75, slope 147, designed by Robin Nelson.' },
+      { q: 'How many rooms does The Inn at Nakoma have?', a: 'The Inn at Nakoma has 42 rooms and suites with mountain or golf course views, Frette Italian linens, and pillow-top beds.' },
+      { q: 'What amenities does The Inn at Nakoma offer?', a: 'The Inn at Nakoma features a heated outdoor pool, two hot tubs, full spa, gym, climbing wall, arcade, and children\'s club. Dining includes Fifty44 Restaurant & Bar inside the Frank Lloyd Wright lodge and the casual Middle Fork Bistro & Bar. The resort is dog-friendly (2 dogs, up to 75 lbs each).' },
+      { q: 'How far is The Inn at Nakoma from the other Graeagle golf courses?', a: 'The Dragon course is on property — walk to the first tee. Grizzly Ranch is 20 minutes, Whitehawk Ranch is 20 minutes, Plumas Pines is 22 minutes, and Graeagle Meadows is 25 minutes.' },
+      { q: 'Can GolfGraeagle book The Inn at Nakoma as part of a golf package?', a: 'Yes. GolfGraeagle offers stay-and-play packages at The Inn at Nakoma paired with tee times at The Dragon and all 5 Graeagle courses. Request a free quote at golfgraeagle.com/request-a-quote.' },
+    ],
   },
 ];
 
