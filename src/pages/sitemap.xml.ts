@@ -96,6 +96,7 @@ ${url('/lodging','0.8','monthly')}
 ${url('/dining','0.8','monthly')}
 ${url('/faq','0.7','monthly')}
 ${url('/about-us','0.7','monthly')}
+${url('/about/mike-eskuchen','0.6','monthly')}
 ${url('/blog','0.7','weekly')}
 
 <!-- Courses (${courseUrls.length}) -->

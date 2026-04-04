@@ -1,0 +1,157 @@
+---
+export const prerender = true;
+import Base from '../../layouts/Base.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+
+const title = "Mike Eskuchen — Graeagle Golf Trip Specialist";
+const description = "Mike Eskuchen has 20+ years in the golf industry — PGA Golf Professional, Director of Sales at Duncan Golf Management, GM at Hidden Valley CC. He personally builds every GolfGraeagle.com package.";
+const slug = "mike-eskuchen";
+
+const schema = [
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "@id": "https://golfgraeagle.com/about/mike-eskuchen/#mike",
+    "name": "Michael R. Eskuchen",
+    "givenName": "Mike",
+    "familyName": "Eskuchen",
+    "jobTitle": "Account Manager, Golf the High Sierra",
+    "description": "20+ year golf industry professional. Former PGA Golf Professional (Palm Springs), Director of Sales (Red Hawk, Duncan Golf Management), GM/COO (Hidden Valley CC). Personally builds every GolfGraeagle.com stay-and-play package.",
+    "image": "https://nv-for-hd-v1757363743.websitepro-cdn.com/wp-content/uploads/2026/01/skoogen-head-shot-1.png",
+    "url": "https://golfgraeagle.com/about/mike-eskuchen/",
+    "sameAs": ["https://golfthehighsierra.com/"],
+    "worksFor": { "@type": "Organization", "name": "Golf the High Sierra", "url": "https://golfthehighsierra.com" },
+    "alumniOf": { "@type": "CollegeOrUniversity", "name": "Western Illinois University" },
+    "knowsAbout": ["Golf trip planning", "Graeagle golf", "Sierra Nevada golf", "Golf course management", "Group golf outings", "Stay-and-play packages"],
+    "hasCredential": [
+      { "@type": "EducationalOccupationalCredential", "name": "PGA Golf Professional" }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://golfgraeagle.com/" },
+      { "@type": "ListItem", "position": 2, "name": "About", "item": "https://golfgraeagle.com/about-us/" },
+      { "@type": "ListItem", "position": 3, "name": "Mike Eskuchen", "item": "https://golfgraeagle.com/about/mike-eskuchen/" }
+    ]
+  }
+];
+---
+<Base
+  title={title}
+  description={description}
+  canonical="https://golfgraeagle.com/about/mike-eskuchen/"
+  schema={schema}
+  ogImage="https://nv-for-hd-v1757363743.websitepro-cdn.com/wp-content/uploads/2026/01/skoogen-head-shot-1.png"
+  bodyClass="light-page"
+>
+  <Nav />
+
+  <!-- HERO -->
+  <section style="background:#1a2e1a;padding:100px clamp(20px,8%,10%) 60px;">
+    <div style="max-width:1100px;margin:0 auto;">
+      <nav style="margin-bottom:24px;">
+        <a href="/about-us/" style="font-size:11px;color:rgba(245,240,232,0.45);text-decoration:none;letter-spacing:0.06em;">← About GolfGraeagle</a>
+      </nav>
+      <div style="display:grid;grid-template-columns:200px 1fr;gap:48px;align-items:start;">
+        <div>
+          <div style="border-radius:16px;overflow:hidden;aspect-ratio:3/4;background:rgba(255,255,255,0.05);">
+            <img
+              src="https://nv-for-hd-v1757363743.websitepro-cdn.com/wp-content/uploads/2026/01/skoogen-head-shot-1.png"
+              alt="Mike Eskuchen — Graeagle Golf Trip Specialist"
+              style="width:100%;height:100%;object-fit:cover;object-position:top;"
+              loading="eager"
+            />
+          </div>
+        </div>
+        <div>
+          <p style="font-size:11px;color:#e8a850;letter-spacing:.16em;text-transform:uppercase;font-weight:700;margin:0 0 12px;">Golf Trip Specialist</p>
+          <h1 style="font-family:'Playfair Display',serif;font-size:clamp(32px,5vw,56px);font-weight:400;color:#f5f0e8;margin:0 0 16px;line-height:1.1;">Mike Eskuchen</h1>
+          <p style="font-size:16px;color:rgba(245,240,232,0.65);max-width:560px;line-height:1.8;margin:0 0 28px;">Account Manager at Golf the High Sierra. 20+ years building expertise across every level of the golf industry — teaching pro, sales director, club GM. Every GolfGraeagle.com package is built by Mike personally.</p>
+          <div style="display:flex;gap:12px;flex-wrap:wrap;">
+            <a href="/request-a-quote/" class="btn-green-glow" style="display:inline-block;font-weight:700;font-size:14px;padding:13px 28px;">Get a quote from Mike →</a>
+            <a href="mailto:mike.eskuchen@golfthehighsierra.com" style="display:inline-flex;align-items:center;gap:8px;font-size:14px;color:rgba(245,240,232,0.7);text-decoration:none;border:1px solid rgba(245,240,232,0.2);padding:12px 20px;border-radius:100px;">✉ Email Mike</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CAREER TIMELINE -->
+  <section style="background:var(--page-bg);padding:80px clamp(20px,8%,10%);">
+    <div style="max-width:860px;margin:0 auto;">
+      <p style="font-size:11px;color:#e8a850;letter-spacing:.16em;text-transform:uppercase;font-weight:700;margin:0 0 12px;">Career</p>
+      <h2 style="font-family:'Playfair Display',serif;font-size:clamp(24px,3vw,36px);font-weight:400;color:#1a2e1a;margin:0 0 40px;">20+ years inside the golf industry.</h2>
+      <div style="display:flex;flex-direction:column;">
+        {[
+          { years: '8 years', location: 'Palm Springs, CA', role: 'PGA Golf Professional', detail: 'Teaching professional and competitive golfer at private and semi-private clubs in the California desert. Built foundational knowledge of how tee sheets work, how groups play, and what golfers actually want from a round.' },
+          { years: '10+ years', location: 'Sparks, NV', role: 'Sales — Red Hawk Golf Club & Wingfield Springs', detail: 'Ran golf sales at two of Northern Nevada top-rated courses. Built a regional reputation across the Sierra Nevada corridor. Group bookings, corporate outings, tournament operations.' },
+          { years: '4 years', location: 'Multi-site, NV/CA', role: 'Director of Sales — Duncan Golf Management', detail: 'Helped grow Duncan Golf Management from 2 courses to 9 across Northern Nevada and California — building the group sales infrastructure that underpins every GolfGraeagle package today.' },
+          { years: '2 years', location: 'Reno, NV', role: 'GM & COO — Hidden Valley Country Club', detail: 'Full club operations. Grew membership to 90% capacity. Managed everything from the tee sheet to the clubhouse — a perspective no booking agent without course operations experience can match.' },
+          { years: '2024 – present', location: 'Graeagle, CA', role: 'Account Manager — Golf the High Sierra / GolfGraeagle.com', detail: 'Personally building every GolfGraeagle.com package. Every quote that comes in, Mike reviews it and builds the itinerary — not a template, not a chatbot. 672 verified reviews across the platform.' },
+        ].map((item, i) => (
+          <div style={`display:grid;grid-template-columns:160px 1fr;gap:28px;padding:24px 0;border-bottom:1px solid rgba(28,46,26,0.08);align-items:start;${i === 0 ? 'border-top:1px solid rgba(28,46,26,0.08);' : ''}`}>
+            <div>
+              <div style="font-size:12px;color:#e8a850;font-weight:700;margin-bottom:3px;">{item.location}</div>
+              <div style="font-size:11px;color:rgba(28,46,26,0.4);font-weight:600;">{item.years}</div>
+            </div>
+            <div>
+              <div style="font-size:15px;font-weight:700;color:#1a2e1a;margin-bottom:8px;">{item.role}</div>
+              <p style="font-size:14px;color:#4a5a4a;line-height:1.75;margin:0;">{item.detail}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- QUOTE -->
+  <section style="background:var(--surface-2);padding:60px clamp(20px,8%,10%);">
+    <div style="max-width:720px;margin:0 auto;text-align:center;">
+      <blockquote style="border:none;padding:0;margin:0;">
+        <p style="font-family:'Playfair Display',serif;font-size:clamp(18px,2.5vw,26px);color:#1a2e1a;font-style:italic;line-height:1.65;margin:0 0 20px;">"I've spent 20 years in this industry — as a teaching pro, a sales director, and a GM running a club. When someone asks me what courses to play or where to stay in Graeagle, I'm not guessing. I've been there."</p>
+        <cite style="font-size:12px;color:#a06c30;font-weight:700;font-style:normal;letter-spacing:0.05em;">— MIKE ESKUCHEN, GOLFGRAEAGLE.COM</cite>
+      </blockquote>
+    </div>
+  </section>
+
+  <!-- WHAT MIKE DOES -->
+  <section style="background:var(--page-bg);padding:80px clamp(20px,8%,10%);">
+    <div style="max-width:860px;margin:0 auto;">
+      <p style="font-size:11px;color:#e8a850;letter-spacing:.16em;text-transform:uppercase;font-weight:700;margin:0 0 12px;">What Mike does for your trip</p>
+      <h2 style="font-family:'Playfair Display',serif;font-size:clamp(22px,3vw,32px);font-weight:400;color:#1a2e1a;margin:0 0 32px;">Not a template. Not a chatbot.</h2>
+      <div style="display:flex;flex-direction:column;gap:16px;margin-bottom:40px;">
+        {[
+          { n: '1', t: 'Reviews your quote request', d: 'Every submission comes directly to Mike. He reads your dates, group size, handicap range, and course preferences before building anything.' },
+          { n: '2', t: 'Builds a real day-by-day itinerary', d: 'Course order by difficulty, lodging matched to group size and budget, dining reservations, tee time blocks. Response within 24 hours.' },
+          { n: '3', t: 'Secures guaranteed tee times', d: 'Mike has direct relationships with all 5 Graeagle courses. Semi-private access at Grizzly Ranch and Nakoma is available through packages.' },
+          { n: '4', t: 'Stays available through your trip', d: 'Questions before you arrive, adjustments on the fly, issues on the course — Mike handles it.' },
+        ].map(s => (
+          <div style="display:flex;align-items:flex-start;gap:16px;">
+            <div style="width:32px;height:32px;border-radius:50%;background:#1a2e1a;color:#e8a850;font-family:'Playfair Display',serif;font-size:14px;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;">{s.n}</div>
+            <div>
+              <div style="font-size:15px;font-weight:700;color:#1a2e1a;margin-bottom:4px;">{s.t}</div>
+              <div style="font-size:14px;color:#4a5a4a;line-height:1.65;">{s.d}</div>
+            </div>
+          </div>
+        ))}
+      </div>
+      <div style="display:flex;gap:12px;flex-wrap:wrap;">
+        <a href="/request-a-quote/" class="btn-green-glow" style="display:inline-block;font-weight:700;font-size:15px;padding:16px 40px;">Request a free quote →</a>
+        <a href="/about-us/" style="display:inline-flex;align-items:center;font-size:14px;color:#1a2e1a;text-decoration:none;padding:15px 24px;border:1px solid rgba(28,46,26,0.2);border-radius:100px;">About GolfGraeagle →</a>
+      </div>
+      <p style="font-size:11px;color:#8a9a8a;margin:12px 0 0;">No obligation · 72-hr cancellation · Response within 24 hours</p>
+    </div>
+  </section>
+
+  <Footer />
+</Base>
+
+<style>
+  @media (max-width: 640px) {
+    section > div > div[style*="grid-template-columns:200px"] { grid-template-columns: 1fr !important; gap: 28px !important; }
+    section > div > div[style*="grid-template-columns:160px"] { grid-template-columns: 1fr !important; gap: 8px !important; }
+  }
+</style>
