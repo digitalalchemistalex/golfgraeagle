@@ -506,6 +506,30 @@ const lodgingMeta = {'townhomes-at-plumas-pines':{badge:'Great for Large Groups'
   </div>
 </section>
 
+<!-- ══════ FAQ SECTION ══════ -->
+<section id="hp-faq" style="padding:clamp(64px,10vw,100px) clamp(24px,6vw,48px);background:#0d1a0e;">
+  <div style="max-width:800px;margin:0 auto;">
+    <p style="font-size:11px;color:#e8a850;letter-spacing:0.16em;text-transform:uppercase;font-weight:600;margin:0 0 16px;">Common Questions</p>
+    <h2 style="font-family:'Playfair Display',serif;font-size:clamp(26px,4vw,42px);color:#f0f8f2;margin:0 0 48px;line-height:1.2;">Graeagle Golf — Frequently Asked Questions</h2>
+    <div style="display:flex;flex-direction:column;gap:0;">
+      {[
+        { q: 'How many golf courses are in Graeagle, California?', a: 'Graeagle has 5 championship golf courses within 25 minutes of each other: Graeagle Meadows Golf Course, Whitehawk Ranch Golf Course, Plumas Pines Golf Resort, Grizzly Ranch Golf Club, and Nakoma (The Dragon) Golf Course.' },
+        { q: 'What is the best golf course in Graeagle?', a: 'The best course depends on skill level. Nakoma Dragon (slope 147) is the most challenging and the only golf clubhouse designed by Frank Lloyd Wright. Grizzly Ranch (Golf Digest Top 100) is the longest at 7,411 yards. Graeagle Meadows is the most accessible for mixed-handicap groups.' },
+        { q: 'What is the hardest golf course in Graeagle?', a: 'Nakoma Dragon is the hardest golf course in Graeagle with a slope of 147 and course rating of 73.4. It plays 7,015 yards through canyon terrain designed by Robin Nelson.' },
+        { q: 'Is Graeagle near Lake Tahoe?', a: 'Graeagle is approximately 1.5 hours north of North Lake Tahoe via Highway 89, in Plumas County in the Sierra Nevada mountains of Northern California.' },
+        { q: 'When does golf season start in Graeagle?', a: 'Golf season in Graeagle typically runs May through October or November depending on weather and elevation. Most courses open in late April or early May after snowmelt.' },
+        { q: 'How far is Graeagle from Sacramento?', a: 'Graeagle is approximately 2.5 hours northeast of Sacramento via Highway 70 or Highway 89 through the Sierra Nevada mountains.' },
+        { q: 'What is included in a Graeagle golf package?', a: 'A GolfGraeagle stay-and-play package includes guaranteed tee times at any of the 5 Graeagle courses, lodging coordination, and a full day-by-day itinerary. Dining reservations available on request.' },
+      ].map((item, i) => (
+        <div style={`border-top:1px solid rgba(240,248,242,0.1);padding:24px 0;${i === 6 ? 'border-bottom:1px solid rgba(240,248,242,0.1);' : ''}`}>
+          <h3 style="font-size:16px;font-weight:600;color:rgba(240,248,242,0.9);margin:0 0 10px;line-height:1.4;">{item.q}</h3>
+          <p class="aeo-answer" style="font-size:15px;color:rgba(240,248,242,0.55);margin:0;line-height:1.7;">{item.a}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
 </div><!-- end #hp-body -->
 
 <Footer />
