@@ -220,39 +220,6 @@ const lodgingMeta = {'townhomes-at-plumas-pines':{badge:'Great for Large Groups'
 <div id="hp-body">
 
 <!-- ══════ COURSES GRID ══════ -->
-<section id="hp-courses" style="background:var(--page-bg);padding:clamp(60px,10vw,100px) 0;">
-  <div class="container">
-    <div class="reveal section-header">
-      <div>
-        <p style="font-size:11px;color:var(--gold);letter-spacing:0.16em;text-transform:uppercase;margin:0 0 12px;">The Courses</p>
-        <h2 style="font-family:'Playfair Display',serif;font-size:clamp(32px,4.5vw,56px);font-weight:500;color:var(--text-primary);margin:0;line-height:1.1;">Five courses.<br/>Zero compromises.</h2>
-      </div>
-      <a href="/all-golf-courses/" class="link-gold-sm" style="white-space:nowrap;">Compare all →</a>
-    </div>
-
-    <div class="courses-five-grid">
-      {[courses[0], courses[1], courses[2], courses[3], courses[4]].map((c,i)=>(
-          <a href={`/portfolio/${wpSlugMap[c.slug]}/`} class={`reveal delay-${i*75} course-card-equal`} style="text-decoration:none;display:block;">
-            <img src={c.hero} alt={getImgAlt(c.hero, `${c.name} Golf Course — Graeagle, California`)} loading="lazy" class="course-card-img" width="1920" height="1080"/>
-            <div class="card-gradient"></div>
-            <div class="course-card-body">
-              <div style="display:flex;flex-wrap:wrap;gap:5px;margin-bottom:10px;align-items:center;">
-                <span style="font-size:8px;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:rgba(255,255,255,0.6);border:1px solid rgba(255,255,255,0.2);padding:2px 7px;border-radius:100px;">{accolades[c.slug]}</span>
-              </div>
-              <h3 style="font-family:'Playfair Display',serif;font-size:clamp(16px,1.4vw,20px);color:#ffffff;text-shadow:0 1px 8px rgba(0,0,0,0.5);margin:0 0 8px;line-height:1.2;">{c.name}</h3>
-              <div style="display:flex;flex-wrap:wrap;gap:5px;margin-bottom:10px;">
-                <span class="card-pill">Par {c.par}</span>
-                <span class="card-pill">{c.yards.toLocaleString()} yds</span>
-                <span class="card-pill">Slope {c.slope}</span>
-              </div>
-              <span class="link-gold-sm">View course →</span>
-            </div>
-          </a>
-      ))}
-    </div>
-  </div>
-</section>
-
 <!-- ══════ WHY GRAEAGLE ══════ -->
 <section id="hp-why" class="dark-section" style="background:#1e1a12;padding:clamp(60px,10vw,100px) 0;overflow:hidden;">
   <div class="container">
@@ -301,6 +268,40 @@ const lodgingMeta = {'townhomes-at-plumas-pines':{badge:'Great for Large Groups'
           <div style="font-size:13px;color:#f0f8f2;font-weight:500;">Golf Digest Top 20 CA</div>
         </div>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════ COURSES GRID ══════ -->
+<section id="hp-courses" style="background:var(--page-bg);padding:clamp(60px,10vw,100px) 0;">
+  <div class="container">
+    <div class="reveal section-header">
+      <div>
+        <p style="font-size:11px;color:var(--gold);letter-spacing:0.16em;text-transform:uppercase;margin:0 0 12px;">The Courses</p>
+        <h2 style="font-family:'Playfair Display',serif;font-size:clamp(32px,4.5vw,56px);font-weight:500;color:var(--text-primary);margin:0;line-height:1.1;">Five courses.<br/>Zero compromises.</h2>
+      </div>
+      <a href="/all-golf-courses/" class="link-gold-sm" style="white-space:nowrap;">Compare all →</a>
+    </div>
+
+    <div class="courses-five-grid">
+      {[courses[0], courses[1], courses[2], courses[3], courses[4]].map((c,i)=>(
+          <a href={`/portfolio/${wpSlugMap[c.slug]}/`} class={`reveal delay-${i*75} course-card-equal`} style="text-decoration:none;display:block;">
+            <img src={c.hero} alt={getImgAlt(c.hero, `${c.name} Golf Course — Graeagle, California`)} loading="lazy" class="course-card-img" width="1920" height="1080"/>
+            <div class="card-gradient"></div>
+            <div class="course-card-body">
+              <div style="display:flex;flex-wrap:wrap;gap:5px;margin-bottom:10px;align-items:center;">
+                <span style="font-size:8px;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:rgba(255,255,255,0.6);border:1px solid rgba(255,255,255,0.2);padding:2px 7px;border-radius:100px;">{accolades[c.slug]}</span>
+              </div>
+              <h3 style="font-family:'Playfair Display',serif;font-size:clamp(16px,1.4vw,20px);color:#ffffff;text-shadow:0 1px 8px rgba(0,0,0,0.5);margin:0 0 8px;line-height:1.2;">{c.name}</h3>
+              <div style="display:flex;flex-wrap:wrap;gap:5px;margin-bottom:10px;">
+                <span class="card-pill">Par {c.par}</span>
+                <span class="card-pill">{c.yards.toLocaleString()} yds</span>
+                <span class="card-pill">Slope {c.slope}</span>
+              </div>
+              <span class="link-gold-sm">View course →</span>
+            </div>
+          </a>
+      ))}
     </div>
   </div>
 </section>
