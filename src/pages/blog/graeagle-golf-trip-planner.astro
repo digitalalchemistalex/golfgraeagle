@@ -223,10 +223,10 @@ const groupGuides = [
       <h2>Frequently Asked Questions</h2>
 
       {faqSchema.mainEntity.map((item: any) => (
-        <details class="bl-faq-item">
-          <summary class="bl-faq-q">{item.name}<span class="bl-faq-icon">+</span></summary>
+        <div class="bl-faq-item">
+          <h3 class="bl-faq-q">{item.name}</h3>
           <p class="bl-faq-a aeo-answer">{item.acceptedAnswer.text}</p>
-        </details>
+        </div>
       ))}
 
       <div class="bl-cta-block">
