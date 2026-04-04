@@ -404,11 +404,13 @@ const buildSchema = () => {
       breadcrumb,
       {
         '@type': 'FAQPage',
-        mainEntity: [
-          { '@type': 'Question', name: `Is ${item.name} good for golf groups?`, acceptedAnswer: { '@type': 'Answer', text: `Yes. ${item.name} is ${item.distanceFromGraeagle} and is paired with tee times at all 5 Graeagle championship courses by GolfGraeagle.com. Contact GolfGraeagle.com for current package pricing.` } },
-          { '@type': 'Question', name: `How far is ${item.name} from the golf courses?`, acceptedAnswer: { '@type': 'Answer', text: `${item.name} is ${item.distanceFromGraeagle}. All 5 Graeagle courses — Graeagle Meadows, Whitehawk Ranch, Plumas Pines, Grizzly Ranch, and Nakoma (The Dragon) — are within 25 minutes.` } },
-          { '@type': 'Question', name: `Does ${item.name} offer stay and play golf packages?`, acceptedAnswer: { '@type': 'Answer', text: `GolfGraeagle.com offers stay-and-play packages at ${item.name} available for groups of all sizes. Packages include lodging, tee times, and full trip coordination. Request a free quote at golfgraeagle.com/request-a-quote.` } },
-        ],
+        mainEntity: (item.faqs && item.faqs.length > 0)
+          ? item.faqs.map((f: any) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } }))
+          : [
+            { '@type': 'Question', name: `Is ${item.name} good for golf groups?`, acceptedAnswer: { '@type': 'Answer', text: `Yes. ${item.name} is ${item.distanceFromGraeagle} and is paired with tee times at all 5 Graeagle championship courses by GolfGraeagle.com. Contact GolfGraeagle.com for current package pricing.` } },
+            { '@type': 'Question', name: `How far is ${item.name} from the golf courses?`, acceptedAnswer: { '@type': 'Answer', text: `${item.name} is ${item.distanceFromGraeagle}. All 5 Graeagle courses — Graeagle Meadows, Whitehawk Ranch, Plumas Pines, Grizzly Ranch, and Nakoma (The Dragon) — are within 25 minutes.` } },
+            { '@type': 'Question', name: `Does ${item.name} offer stay and play golf packages?`, acceptedAnswer: { '@type': 'Answer', text: `GolfGraeagle.com offers stay-and-play packages at ${item.name} available for groups of all sizes. Packages include lodging, tee times, and full trip coordination. Request a free quote at golfgraeagle.com/request-a-quote.` } },
+          ],
       },
     ];
   }
