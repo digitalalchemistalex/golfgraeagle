@@ -30,6 +30,13 @@ const aggregateRatingSchema = {
 
 const quoteSchema = [
   {
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://golfgraeagle.com/' },
+      { '@type': 'ListItem', position: 2, name: 'Request a Quote', item: 'https://golfgraeagle.com/request-a-quote/' },
+    ],
+  },
+  {
     '@type': 'ContactPage',
     '@id': 'https://golfgraeagle.com/request-a-quote#contactpage',
     name: 'Request a Graeagle Golf Package Quote',
