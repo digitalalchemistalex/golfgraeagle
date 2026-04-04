@@ -60,7 +60,16 @@ const aggregateRatingSchema = {
   "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.8", "reviewCount": "672", "bestRating": "5" }
 };
 
+const lodgingBreadcrumb = {
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://golfgraeagle.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Lodging", "item": "https://golfgraeagle.com/lodging/" },
+  ],
+};
+
 const lodgingFaq = {
+  "@type": "FAQPage",
   "mainEntity": [
     { "@type": "Question", "name": "Where should a golf group stay in Graeagle?", "acceptedAnswer": { "@type": "Answer", "text": "River Pines Resort works well for most golf groups — multiple room types, on-site dining, pool. For large groups (8+), the Townhomes at Plumas Pines offer multi-bedroom units with full kitchens at a lower per-person cost. For the bucket-list stay, the Inn at Nakoma puts you steps from The Dragon." } },
     { "@type": "Question", "name": "Is there lodging on the golf courses in Graeagle?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. The Inn at Nakoma is on the Nakoma Dragon course property. The Townhomes at Plumas Pines are adjacent to Plumas Pines Golf Resort. River Pines Resort is walking distance from Graeagle Meadows." } },
@@ -72,7 +81,7 @@ const lodgingFaq = {
 <Base
   title="Graeagle Golf Lodging | Stay & Play at 4 Properties"
   description="4 Graeagle golf lodging properties — River Pines Resort, Inn at Nakoma (Frank Lloyd Wright), Chalet View Lodge, Townhomes at Plumas Pines. Expert stay-and-play packages with tee times bundled. Free quote."
-  schema={[lodgingFaq, aggregateRatingSchema]}
+  schema={[lodgingBreadcrumb, lodgingFaq, aggregateRatingSchema]}
   canonical="https://golfgraeagle.com/lodging/"
 
   bodyClass="light-page"

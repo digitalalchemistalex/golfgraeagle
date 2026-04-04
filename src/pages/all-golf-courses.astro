@@ -24,6 +24,13 @@ const aggregateRatingSchema = {
 
 const allCoursesSchema = [
   {
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://golfgraeagle.com/' },
+      { '@type': 'ListItem', position: 2, name: 'Golf Courses', item: 'https://golfgraeagle.com/all-golf-courses/' },
+    ],
+  },
+  {
     '@type': 'ItemList',
     '@id': 'https://golfgraeagle.com/all-golf-courses#courselist',
     name: 'Golf Courses in Graeagle, California',
