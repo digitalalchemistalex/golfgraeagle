@@ -1221,13 +1221,10 @@ const diningSlugMap: Record<string, string> = {
               [`How do I book a tee time at ${item.name}?`, `GolfGraeagle can book tee times at ${item.name} as part of a custom stay-and-play package. Request a free quote and receive a response within 24 hours.`],
             ]
           ).map(([q, a]: [string, string]) => (
-            <details style="border-bottom:1px solid rgba(28,18,8,0.06);padding:0;">
-              <summary style="font-size:15px;color:var(--text-primary);font-weight:500;padding:18px 0;cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;">
-                {q}
-                <span style="color:var(--gold);font-size:18px;flex-shrink:0;margin-left:16px;">+</span>
-              </summary>
-              <p style="font-size:14px;color:rgba(28,18,8,0.5);line-height:1.75;padding:0 0 18px;margin:0;">{a}</p>
-            </details>
+            <div style="border-bottom:1px solid rgba(28,18,8,0.06);padding:18px 0;">
+              <h3 style="font-size:15px;color:var(--text-primary);font-weight:500;margin:0 0 10px;line-height:1.4;">{q}</h3>
+              <p class="aeo-answer" style="font-size:14px;color:rgba(28,18,8,0.5);line-height:1.75;margin:0;">{a}</p>
+            </div>
           ))}
         </div>
       </div>
@@ -1488,13 +1485,10 @@ const diningSlugMap: Record<string, string> = {
               [`Does ${item.name} offer stay and play golf packages?`, `GolfGraeagle.com offers stay-and-play packages at ${item.name} with guaranteed tee times at all 5 Graeagle courses. Request a free quote at golfgraeagle.com/request-a-quote. All packages include lodging coordination, tee time booking, and a day-by-day itinerary. Response within 24 hours.`],
               [`What type of accommodation is ${item.name}?`, `${item.description?.split('.')[0] || item.tagline}. ${item.highlights?.[0] || ''}. GolfGraeagle matches lodging to group size and budget as part of every stay-and-play package.`],
             ].map(([q, a]) => (
-              <details style="border-bottom:1px solid rgba(28,18,8,0.06);padding:0;">
-                <summary style="font-size:15px;color:var(--text-primary);font-weight:500;padding:16px 0;cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;">
-                  {q}
-                  <span style="color:var(--gold);font-size:18px;flex-shrink:0;margin-left:16px;">+</span>
-                </summary>
-                <p style="font-size:14px;color:rgba(28,18,8,0.5);line-height:1.75;padding:0 0 16px;margin:0;">{a}</p>
-              </details>
+              <div style="border-bottom:1px solid rgba(28,18,8,0.06);padding:16px 0;">
+                <h3 style="font-size:15px;color:var(--text-primary);font-weight:500;margin:0 0 10px;line-height:1.4;">{q}</h3>
+                <p class="aeo-answer" style="font-size:14px;color:rgba(28,18,8,0.5);line-height:1.75;margin:0;">{a}</p>
+              </div>
             ))}
           </div>
         </div>
@@ -1787,13 +1781,10 @@ const diningSlugMap: Record<string, string> = {
               [`What type of food does ${item.name} serve?`, `${item.name} serves ${item.cuisine || 'American cuisine'}. ${item.highlights?.[0] || item.tagline || ''}.`],
               [`Can GolfGraeagle book ${item.name} for my group?`, `Yes. GolfGraeagle includes dining coordination as part of stay-and-play packages. Request a free quote at golfgraeagle.com/request-a-quote and we can reserve group dining at ${item.name} alongside your tee times and lodging.`],
             ].map(([q, a]) => (
-              <details style="border-bottom:1px solid rgba(28,18,8,0.06);padding:0;">
-                <summary style="font-size:15px;color:var(--text-primary);font-weight:500;padding:16px 0;cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;">
-                  {q}
-                  <span style="color:var(--gold);font-size:18px;flex-shrink:0;margin-left:16px;">+</span>
-                </summary>
-                <p style="font-size:14px;color:rgba(28,18,8,0.5);line-height:1.75;padding:0 0 16px;margin:0;">{a}</p>
-              </details>
+              <div style="border-bottom:1px solid rgba(28,18,8,0.06);padding:16px 0;">
+                <h3 style="font-size:15px;color:var(--text-primary);font-weight:500;margin:0 0 10px;line-height:1.4;">{q}</h3>
+                <p class="aeo-answer" style="font-size:14px;color:rgba(28,18,8,0.5);line-height:1.75;margin:0;">{a}</p>
+              </div>
             ))}
           </div>
         </div>
