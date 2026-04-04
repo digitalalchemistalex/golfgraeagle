@@ -149,6 +149,34 @@ const aboutSchema = [
     </div>
   </section>
 
+  <!-- 3b. CREDENTIAL TIMELINE — structured EEAT signal -->
+  <section style="background:var(--surface-2);padding:80px clamp(20px,8%,10%);">
+    <div style="max-width:1100px;margin:0 auto;">
+      <p style="font-size:11px;color:#e8a850;letter-spacing:.16em;text-transform:uppercase;font-weight:700;margin:0 0 14px;">Mike's career in golf</p>
+      <h2 style="font-family:'Playfair Display',serif;font-size:clamp(22px,3vw,32px);font-weight:400;color:#1a2e1a;margin:0 0 40px;line-height:1.2;">20+ years building the expertise that now plans your trip.</h2>
+      <div style="display:flex;flex-direction:column;gap:0;position:relative;">
+        {[
+          { era: 'Palm Springs, CA', role: 'PGA Golf Professional', years: '8 years', detail: 'Teaching professional and competitive golfer at private and semi-private clubs in the California desert. Built deep knowledge of how groups play, what they want, and how tee sheets work from the inside.' },
+          { era: 'Sparks, NV', role: 'Sales — Red Hawk Golf Club & Wingfield Springs', years: '10+ years', detail: 'Ran golf sales at two of Northern Nevada\'s premier courses. Built a regional reputation across the Sierra Nevada corridor for delivering corporate outings, group packages, and tournament operations.' },
+          { era: 'Multi-site, NV/CA', role: 'Director of Sales — Duncan Golf Management', years: '4 years', detail: 'Helped grow Duncan Golf Management from 2 courses to 9 across Northern Nevada and California. Built the group sales infrastructure and course relationships that now underpin every GolfGraeagle package.' },
+          { era: 'Reno, NV', role: 'GM & COO — Hidden Valley Country Club', years: '2 years', detail: 'Full club operations. Grew membership to 90% capacity. Ran everything from the tee sheet to the clubhouse — the perspective that makes every GolfGraeagle itinerary feel like it was built by someone who has been on every side of the golf business.' },
+          { era: 'Graeagle, CA', role: 'Account Manager — Golf the High Sierra / GolfGraeagle.com', years: '2024 – present', detail: 'Personally building every GolfGraeagle.com package. Every quote that comes in, Mike reviews it and builds the itinerary — not a template, not a chatbot. 672 verified reviews across the platform.' },
+        ].map((item, i) => (
+          <div class="timeline-row" style={`display:grid;grid-template-columns:200px 1fr;gap:32px;padding:28px 0;border-bottom:1px solid #d0dcd0;align-items:start;${i === 0 ? 'border-top:1px solid #d0dcd0;' : ''}`}>
+            <div>
+              <div style="font-size:11px;color:#e8a850;font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-bottom:4px;">{item.era}</div>
+              <div style="font-size:11px;color:rgba(28,46,26,0.4);font-weight:600;">{item.years}</div>
+            </div>
+            <div>
+              <div style="font-size:15px;font-weight:700;color:#1a2e1a;margin-bottom:8px;">{item.role}</div>
+              <p style="font-size:14px;color:#4a5a4a;line-height:1.75;margin:0;">{item.detail}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
   <!-- 4. WHAT WE DO + 5 COURSES -->
   <section style="background:var(--surface-2);padding:80px clamp(20px,8%,10%);">
     <div style="max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:start;">
@@ -294,13 +322,10 @@ const aboutSchema = [
           ['Do you only book Graeagle?', 'GolfGraeagle.com specializes in the Graeagle region. Zoomaway Technologies Inc. also operates GolfTheHighSierra.com (Reno, Tahoe, High Sierra), GroupGolfTours.com (large groups), and MesquiteStGeorgeGolfTours.com (Southern Nevada and Utah).'],
           ['What is the cancellation policy?', 'Standard bookings carry a 72-hour cancellation policy. Large group outings are governed by individual contracts. Full details are in our Cancellation Policy.'],
         ].map(([q, a]) => (
-          <details style="border-bottom:1px solid #d0dcd0;">
-            <summary style="font-size:15px;color:#1a2e1a;font-weight:500;padding:18px 0;cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;">
-              {q}
-              <span style="color:#e8a850;font-size:20px;flex-shrink:0;margin-left:16px;">+</span>
-            </summary>
-            <p style="font-size:14px;color:#4a5a4a;line-height:1.8;padding:0 0 18px;margin:0;">{a}</p>
-          </details>
+          <div style="border-bottom:1px solid #d0dcd0;padding:18px 0;">
+            <h3 style="font-size:15px;color:#1a2e1a;font-weight:500;margin:0 0 10px;line-height:1.4;">{q}</h3>
+            <p class="aeo-answer" style="font-size:14px;color:#4a5a4a;line-height:1.8;margin:0;">{a}</p>
+          </div>
         ))}
       </div>
     </div>
@@ -330,6 +355,12 @@ const aboutSchema = [
 
   <Footer />
 </Base>
+
+<style>
+  @media (max-width: 640px) {
+    .timeline-row { grid-template-columns: 1fr !important; gap: 8px !important; }
+  }
+</style>
 
 <script>
 (function(){

@@ -359,6 +359,38 @@ const lodgingMeta = {'townhomes-at-plumas-pines':{badge:'Great for Large Groups'
   </div>
 </section>
 
+
+<!-- ══════ TESTIMONIALS ══════ -->
+<section id="hp-reviews" style="background:var(--page-bg);padding:clamp(60px,10vw,100px) clamp(24px,6vw,48px);">
+  <div style="max-width:1200px;margin:0 auto;">
+    <div class="reveal" style="margin-bottom:48px;text-align:center;">
+      <p style="font-size:11px;color:var(--gold);letter-spacing:0.16em;text-transform:uppercase;margin:0 0 12px;">Verified Reviews</p>
+      <h2 style="font-family:'Playfair Display',serif;font-size:clamp(26px,4vw,48px);font-weight:500;color:var(--text-primary);margin:0 0 12px;line-height:1.1;">What golf groups say.</h2>
+      <p style="font-size:14px;color:rgba(28,18,8,0.4);margin:0;">&#9733;&#9733;&#9733;&#9733;&#9733; &nbsp;4.8 / 5 &middot; 672 verified reviews</p>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;" class="reviews-grid">
+      {[
+        { body: 'Whitehawk Ranch was the highlight of a 4-course trip. The meadow-to-forest layout is unlike anything else in the valley. We played it twice.', author: 'Graeagle-Buckets Golf Trip', detail: '24 golfers · July 2025', stars: 5 },
+        { body: 'Staying at the Inn at Nakoma and playing The Dragon is the definitive Graeagle bucket list experience. The FLW lodge, Fifty44 restaurant, heated pool — premium in every way.', author: 'Graeagle Golf Trip', detail: '24 golfers · July 2025', stars: 5 },
+        { body: 'River Pines Resort was the perfect base for our group of 24. One check-in, on-site dining at the Roadhouse, easy access to all 5 courses. Exactly what a golf group needs.', author: 'Graeagle River Pines Golf Group', detail: '24 golfers · September 2025', stars: 4 },
+        { body: 'Golf Digest Top 100 is no exaggeration. Grizzly Ranch is the most demanding and most rewarding round in Graeagle. The ridgeline holes are unforgettable.', author: 'Graeagle-Buckets Golf Trip', detail: '24 golfers · July 2025', stars: 5 },
+        { body: 'We ran a 52-person golf event through River Pines. The staff handled the group block without a single hiccup. Banquet dinner was excellent. We\'ll be back next year.', author: 'River Pines Golf Package', detail: '52 golfers \u00b7 June 2025', stars: 5 },
+        { body: 'The Dragon was the bucket list round. The Frank Lloyd Wright clubhouse alone is worth the trip — then you play a slope 147 course with that as your starting point.', author: 'Graeagle-Buckets Golf Trip', detail: '24 golfers · July 2025', stars: 5 },
+      ].map(r => (
+        <div class="reveal" style="background:var(--surface);border:1px solid rgba(28,18,8,0.07);border-radius:18px;padding:28px;">
+          <div style="display:flex;gap:2px;margin-bottom:14px;">
+            {Array.from({length: r.stars}).map(() => <span style="color:#e8a850;font-size:14px;">&#9733;</span>)}
+            {Array.from({length: 5 - r.stars}).map(() => <span style="color:rgba(28,18,8,0.15);font-size:14px;">&#9733;</span>)}
+          </div>
+          <p style="font-size:14px;color:rgba(28,18,8,0.65);line-height:1.75;margin:0 0 18px;font-style:italic;">"{r.body}"</p>
+          <div style="font-size:12px;font-weight:700;color:var(--text-primary);">{r.author}</div>
+          <div style="font-size:11px;color:rgba(28,18,8,0.35);margin-top:2px;">{r.detail}</div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
 <!-- ══════ DINING SNAPSHOT ══════ -->
 <section id="hp-dining" class="dark-section" style="background:#1e1a12;padding:clamp(60px,10vw,100px) 0;">
   <div class="container">
@@ -1004,10 +1036,10 @@ const lodgingMeta = {'townhomes-at-plumas-pines':{badge:'Great for Large Groups'
   }
 
   @media (max-width: 540px) {
-    .courses-five-grid { grid-template-columns: 1fr; }
-    .course-card-equal { height: 240px; }
-    .lodging-four-grid { grid-template-columns: 1fr; }
-    .lodging-equal-card { height: 240px; }
+    .courses-five-grid { grid-template-columns: 1fr 1fr; }
+    .course-card-equal { height: 180px; }
+    .lodging-four-grid { grid-template-columns: 1fr 1fr; }
+    .lodging-equal-card { height: 180px; }
     .hero-ctas { flex-direction: column; align-items: flex-start; }
     .btn-gold { width: 100%; text-align: center; }
     .hero-stats { gap: 16px; }
@@ -1112,6 +1144,7 @@ const lodgingMeta = {'townhomes-at-plumas-pines':{badge:'Great for Large Groups'
 <style>
   .blog-four-grid { grid-template-columns: repeat(4,1fr) !important; }
   @media (max-width: 900px) { .blog-four-grid { grid-template-columns: repeat(2,1fr) !important; } }
+  @media (max-width: 860px) { .reviews-grid { grid-template-columns: 1fr !important; } }
   @media (max-width: 640px) {
     .blog-four-grid {
       display: flex !important;
@@ -1141,10 +1174,11 @@ const lodgingMeta = {'townhomes-at-plumas-pines':{badge:'Great for Large Groups'
     #hp-courses { order: 2; }
     #hp-why     { order: 3; }
     #hp-lodging { order: 4; }
-    #hp-dining  { order: 5; }
-    #hp-blog    { order: 6; }
-    #hp-cta     { order: 7; }
-    #hp-faq     { order: 8; }
+    #hp-reviews { order: 5; }
+    #hp-dining  { order: 6; }
+    #hp-blog    { order: 7; }
+    #hp-cta     { order: 8; }
+    #hp-faq     { order: 9; }
   }
 
   /* ── Hero: ONE CTA on mobile — hide the ghost secondary button ── */
