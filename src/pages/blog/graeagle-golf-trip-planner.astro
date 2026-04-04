@@ -69,9 +69,11 @@ const groupGuides = [
   { size: 'Senior groups', icon: '🎖️', href: '/blog/senior-golf-trips-graeagle/',     label: 'Senior golf guide' },
   { size: 'Tournament',    icon: '🏆', href: '/blog/golf-tournament-graeagle/',        label: 'Tournament guide' },
 ];
+const aggregateRatingSchema = { "@context": "https://schema.org", "@type": "TravelAgency", "@id": "https://golfgraeagle.com/#organization", "name": "GolfGraeagle.com", "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.8", "reviewCount": "672", "bestRating": "5" } };
 ---
+
 <Base title={title} description={description} ogType="article"
-  schema={[schema, faqSchema, breadcrumbSchema]}
+  schema={[schema, faqSchema, breadcrumbSchema, aggregateRatingSchema]}
   canonical={`https://golfgraeagle.com/blog/${slug}/`}
   ogImage="https://golfgraeagle.com/wp-images/graeagle-meadows-aerial.jpg"
   bodyClass="light-page"
@@ -83,7 +85,7 @@ const groupGuides = [
     <div class="bl-hero-content">
       <div class="bl-breadcrumb"><a href="/blog/">Blog</a> <span>→</span> Trip Planner</div>
       <h1 class="bl-h1">Graeagle Golf Trip Planner:<br/>Real Pricing for Every Group</h1>
-      <p class="bl-meta">By Mike Eskuchen, Golf Trip Specialist · March 2026 · 8 min read · Based on 76 real packages</p>
+      <p class="bl-meta">By <a href="/about/mike-eskuchen/" style="color:inherit;text-decoration:underline;text-underline-offset:3px;">Mike Eskuchen</a>, Golf Trip Specialist · March 2026 · 8 min read · Based on 76 real packages</p>
     </div>
   </div>
 

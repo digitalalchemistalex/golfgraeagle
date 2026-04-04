@@ -44,9 +44,10 @@ const breadcrumbSchema = {
     { "@type": "ListItem", "position": 3, "name": "Corporate Golf Outing in Graeagle, CA: Complete Planning Guide", "item": `https://golfgraeagle.com/blog/${slug}/` }
   ]
 };
-
+const aggregateRatingSchema = { "@context": "https://schema.org", "@type": "TravelAgency", "@id": "https://golfgraeagle.com/#organization", "name": "GolfGraeagle.com", "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.8", "reviewCount": "672", "bestRating": "5" } };
 ---
-<Base title={title} description={description} ogType="article" schema={[schema, faqSchema, breadcrumbSchema]}
+
+<Base title={title} description={description} ogType="article" schema={[schema, faqSchema, breadcrumbSchema, aggregateRatingSchema]}
   canonical={`https://golfgraeagle.com/blog/${slug}/`}
   ogImage="https://golfgraeagle.com/wp-images/DJI_0965-Edit.webp"
   bodyClass="light-page"
@@ -58,7 +59,7 @@ const breadcrumbSchema = {
     <div class="bl-hero-content">
       <div class="bl-breadcrumb"><a href="/blog/">Blog</a> <span>→</span> Corporate Golf Graeagle</div>
       <h1 class="bl-h1">Corporate Golf Outing in Graeagle:<br/>Complete Planning Guide</h1>
-      <p class="bl-meta">By Mike Eskuchen, Golf Trip Specialist · March 2026 · 9 min read</p>
+      <p class="bl-meta">By <a href="/about/mike-eskuchen/" style="color:inherit;text-decoration:underline;text-underline-offset:3px;">Mike Eskuchen</a>, Golf Trip Specialist · March 2026 · 9 min read</p>
     </div>
   </div>
 

@@ -52,8 +52,10 @@ const months = [
   { name: 'October', status: '🏆 Excellent', conditions: 'Fall foliage at peak — aspens gold, mornings crisp, afternoons comfortable. Least crowded. Some courses may reduce hours mid-month. Verify hours with individual courses. Potentially the most beautiful month on the course.', book: true },
   { name: 'November', status: '⚠️ Closing', conditions: 'Most courses close by early November. Graeagle Meadows may stay open a few extra weeks in mild years. First snow typically arrives in November. Do not plan a full-valley trip in November without confirming all courses are open.', book: false },
 ];
+const aggregateRatingSchema = { "@context": "https://schema.org", "@type": "TravelAgency", "@id": "https://golfgraeagle.com/#organization", "name": "GolfGraeagle.com", "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.8", "reviewCount": "672", "bestRating": "5" } };
 ---
-<Base title={title} description={description} ogType="article" schema={[schema, faqSchema, breadcrumbSchema]}
+
+<Base title={title} description={description} ogType="article" schema={[schema, faqSchema, breadcrumbSchema, aggregateRatingSchema]}
   canonical={`https://golfgraeagle.com/blog/${slug}/`}
   ogImage="https://golfgraeagle.com/wp-images/graeagle-meadows-dji0536.jpg"
   bodyClass="light-page"
@@ -65,7 +67,7 @@ const months = [
     <div class="bl-hero-content">
       <div class="bl-breadcrumb"><a href="/blog/">Blog</a> <span>→</span> Graeagle Golf Season</div>
       <h1 class="bl-h1">When Does Golf Season Start in Graeagle?</h1>
-      <p class="bl-meta">By Mike Eskuchen, Golf Trip Specialist · March 2026 · 7 min read · Sierra Nevada mountain golf</p>
+      <p class="bl-meta">By <a href="/about/mike-eskuchen/" style="color:inherit;text-decoration:underline;text-underline-offset:3px;">Mike Eskuchen</a>, Golf Trip Specialist · March 2026 · 7 min read · Sierra Nevada mountain golf</p>
     </div>
   </div>
 
