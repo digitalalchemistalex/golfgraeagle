@@ -195,9 +195,9 @@ function adminEmailHtml(b: any, leadId: string): string {
        style="display:inline-block;background:#3a8a48;color:#ffffff;font-size:14px;font-weight:600;padding:12px 28px;border-radius:100px;text-decoration:none;margin-right:12px;">
       Reply to ${b.firstName} →
     </a>
-    <a href="tel:${b.phone.replace(/\D/g,'')}"
+    <a href="tel:${(b.phone||'').replace(/\D/g,'')}"
        style="display:inline-block;background:#e8a850;color:#122014;font-size:14px;font-weight:600;padding:12px 28px;border-radius:100px;text-decoration:none;">
-      Call ${b.phone}
+      Call ${b.phone || 'N/A'}
     </a>
   </td></tr>
 
@@ -289,7 +289,7 @@ export const POST: APIRoute = async ({ request }) => {
     const body = await request.json();
 
     // Required field validation
-    const required = ['firstName','lastName','email','phone','partySize','arrivalDate','departureDate','totalRounds'];
+    const required = ['firstName','lastName','email','partySize','arrivalDate','departureDate','totalRounds'];
     for (const field of required) {
       if (!body[field]) {
         return new Response(JSON.stringify({ error: `Missing required field: ${field}` }), {

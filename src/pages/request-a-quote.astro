@@ -901,7 +901,7 @@ form.addEventListener('submit', async e => {
   e.preventDefault();
   if (!validate()) {
     const err = $id('q-error');
-    err.textContent = 'Please fill in all required fields (First Name, Last Name, Email, Phone, Arrival Date, Departure Date, Group Size).';
+    err.textContent = 'Please fill in all required fields (First Name, Last Name, Email, Arrival Date, Departure Date, Group Size).';
     err.style.display = 'block';
     // scroll to first invalid
     const first = form.querySelector('.invalid');
