@@ -1,7 +1,60 @@
 {
   "redirects": [
-    {"source":"/portfolio/sardine-lake/","destination":"/portfolio/sardine-lake-resort/","permanent":true},
-    {"source":"/portfolio/sardine-lake","destination":"/portfolio/sardine-lake-resort/","permanent":true},
+    {
+      "source": "/portfolio/grizzly-ranch-golf-packages",
+      "destination": "/portfolio/grizzly-ranch-golf-packages/",
+      "permanent": true
+    },
+    {
+      "source": "/portfolio/nakoma-dragon-golf-packages",
+      "destination": "/portfolio/nakoma-dragon-golf-packages/",
+      "permanent": true
+    },
+    {
+      "source": "/portfolio/graeagle-meadows-golf-packages",
+      "destination": "/portfolio/graeagle-meadows-golf-packages/",
+      "permanent": true
+    },
+    {
+      "source": "/portfolio/whitehawk-ranch-golf-packages",
+      "destination": "/portfolio/whitehawk-ranch-golf-packages/",
+      "permanent": true
+    },
+    {
+      "source": "/portfolio/plumas-pines-golf-packages",
+      "destination": "/portfolio/plumas-pines-golf-packages/",
+      "permanent": true
+    },
+    {
+      "source": "/portfolio/river-pines-resort-graeagle-ca",
+      "destination": "/portfolio/river-pines-resort-graeagle-ca/",
+      "permanent": true
+    },
+    {
+      "source": "/portfolio/chalet-view-lodge-graeagle-ca",
+      "destination": "/portfolio/chalet-view-lodge-graeagle-ca/",
+      "permanent": true
+    },
+    {
+      "source": "/portfolio/the-inn-at-nakoma-clio-ca",
+      "destination": "/portfolio/the-inn-at-nakoma-clio-ca/",
+      "permanent": true
+    },
+    {
+      "source": "/portfolio/the-townhomes-at-plumas-pines",
+      "destination": "/portfolio/the-townhomes-at-plumas-pines/",
+      "permanent": true
+    },
+    {
+      "source": "/portfolio/sardine-lake/",
+      "destination": "/portfolio/sardine-lake-resort/",
+      "permanent": true
+    },
+    {
+      "source": "/portfolio/sardine-lake",
+      "destination": "/portfolio/sardine-lake-resort/",
+      "permanent": true
+    },
     {
       "source": "/quote/",
       "destination": "/request-a-quote/",
