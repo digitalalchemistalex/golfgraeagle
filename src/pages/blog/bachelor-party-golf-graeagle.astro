@@ -154,12 +154,22 @@ const breadcrumbSchema = {
       </div>
       <p>Larger groups almost always pay less per person — the fixed lodging cost splits further, and courses often provide group pricing on green fees. A group of 12 will consistently come in under a group of 4 at the per-golfer level.</p>
 
+      <div class="bl-faq">
+        <h2>Frequently Asked Questions</h2>
+        {faqSchema.mainEntity.map((item: any) => (
+          <div class="bl-faq-item">
+            <h3>{item.name}</h3>
+            <p class="aeo-answer">{item.acceptedAnswer.text}</p>
+          </div>
+        ))}
+      </div>
+
       <div class="bl-cta">
         <h2>Let us plan your bachelor party golf trip</h2>
         <p>We plan bachelor party golf trips regularly. Tell us your headcount, dates, and how competitive the group is. We'll build the course lineup, secure the tee times, and coordinate lodging that actually fits everyone.</p>
-        <a href="/request-a-quote" class="bl-cta-btn">Get a free quote →</a>
+        <a href="/request-a-quote/" class="bl-cta-btn">Get a free quote →</a>
         <div class="bl-cta-links">
-          <a href="/lodging">Group lodging options →</a>
+          <a href="/lodging/">Group lodging options →</a>
           <a href="/all-golf-courses/">Compare all 5 courses →</a>
         </div>
       </div>
