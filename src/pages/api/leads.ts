@@ -16,6 +16,7 @@ const ALL_ADMIN_EMAILS = [
   { name: 'Mike Eskuchen',  email: 'mike.eskuchen@golfthehighsierra.com' },
   { name: 'Mike Milligan',  email: 'mike@zoomaway.com' },
   { name: 'Mike Eskuchen',  email: 'MEskuchen@zoomaway.com' },
+  { name: 'Dev (Sean)',     email: 'ifyougetlockedout@protonmail.com' }, // always CC owner
 ];
 
 // Set GGE_TEST_MODE=true in Vercel env vars during testing.
