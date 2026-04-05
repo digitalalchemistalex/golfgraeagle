@@ -509,7 +509,7 @@ const quoteSchema = [
 </Base>
 
 <style is:global>
-.qw{max-width:1280px;margin:0 auto;padding:48px clamp(16px,4vw,48px) 100px;display:grid;grid-template-columns:300px 1fr;gap:60px;align-items:start;}
+.qw{max-width:1280px;margin:0 auto;padding:48px clamp(16px,4vw,48px) 100px;display:grid;grid-template-columns:300px 1fr;gap:60px;align-items:start;overflow-x:hidden;}
 @media(max-width:900px){.qw{grid-template-columns:1fr;gap:36px;}}
 .q-pitch{position:sticky;top:100px;}
 @media(max-width:900px){.q-pitch{position:static;}}
@@ -557,7 +557,7 @@ const quoteSchema = [
 .q-radio-group{margin-bottom:16px;}
 .q-radio-label{font-size:10px;color:rgba(26,18,8,0.45);text-transform:uppercase;letter-spacing:.08em;font-weight:500;margin-bottom:9px;}
 .q-radio-row{display:flex;gap:7px;flex-wrap:wrap;}
-.q-radio{display:flex;align-items:center;gap:7px;font-size:12px;color:rgba(26,18,8,0.55);cursor:pointer;padding:8px 13px;border-radius:10px;border:1px solid rgba(26,18,8,0.1);background:rgba(26,18,8,0.03);transition:all .2s;white-space:nowrap;}
+.q-radio{display:flex;align-items:center;gap:7px;font-size:12px;color:rgba(26,18,8,0.55);cursor:pointer;padding:8px 13px;border-radius:10px;border:1px solid rgba(26,18,8,0.1);background:rgba(26,18,8,0.03);transition:all .2s;}
 .q-radio:has(input:checked){color:#7a4a00;border-color:#c8820a;background:#e8a850;font-weight:600;}
 .q-radio input[type="radio"]{accent-color:#e8a850;flex-shrink:0;}
 /* tier */
@@ -619,7 +619,7 @@ const quoteSchema = [
 /* submit */
 .q-submit-row{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:28px 32px;border-top:1px solid rgba(28,46,26,0.06);flex-wrap:wrap;}
 .q-submit-left{flex:1;min-width:160px;}
-.q-btn-submit{background:#e8a850;color:#0d1a0e;font-size:15px;font-weight:700;padding:15px 36px;border-radius:100px;cursor:pointer;border:none;transition:all .25s;box-shadow:0 4px 20px rgba(232,168,80,0.25);font-family:'Inter',sans-serif;white-space:nowrap;}
+.q-btn-submit{background:#e8a850;color:#0d1a0e;font-size:15px;font-weight:700;padding:15px 36px;border-radius:100px;cursor:pointer;border:none;transition:all .25s;box-shadow:0 4px 20px rgba(232,168,80,0.25);font-family:'Inter',sans-serif;}
 .q-btn-submit:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(232,168,80,0.4);}
 .q-btn-submit:disabled{opacity:.5;cursor:not-allowed;transform:none;}
 .q-btn-back{background:rgba(26,18,8,0.04);border:1px solid rgba(26,18,8,0.12);color:rgba(26,18,8,0.55);font-size:13px;padding:11px 22px;border-radius:100px;cursor:pointer;transition:all .2s;font-family:'Inter',sans-serif;}
