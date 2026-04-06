@@ -48,8 +48,8 @@ const courses = [
 ];
 
 const lodging = [
-  { name:'Townhomes at Plumas Pines', slug:'the-townhomes-at-plumas-pines', img:'/wp-images/townhomes-plumas-pines.webp', alt:'Townhomes at Plumas Pines — bachelor party golf lodging Graeagle', tag:'Most Popular for Bachelor Groups', desc:'2–4 bedroom units. Full kitchens. Fairway views. Your own space — no hotel hallways.' },
-  { name:'River Pines Resort', slug:'river-pines-resort-graeagle-ca', img:'/wp-images/River-Pines-Pool.webp', alt:'River Pines Resort Graeagle — bachelor party golf lodging', tag:'On-Site Bar & Dining', desc:'The Roadhouse on-site. Pool, hot tub, rooms for groups of 8–60. Walk in after 18 holes.' },
+  { name:'Townhomes at Plumas Pines', slug:'the-townhomes-at-plumas-pines', img:'/wp-images/plumas-pines-hero.webp', alt:'Townhomes at Plumas Pines — bachelor party golf lodging Graeagle', tag:'Most Popular for Bachelor Groups', desc:'2–4 bedroom units. Full kitchens. Fairway views. Your own space — no hotel hallways.' },
+  { name:'River Pines Resort', slug:'river-pines-resort-graeagle-ca', img:'/wp-images/DJI_0949-Edit.webp', alt:'River Pines Resort Graeagle — bachelor party golf lodging', tag:'On-Site Bar & Dining', desc:'The Roadhouse on-site. Pool, hot tub, rooms for groups of 8–60. Walk in after 18 holes.' },
 ];
 
 const included = [
@@ -104,12 +104,12 @@ const QUOTE_URL = '/request-a-quote/?groupType=bachelor-party&ref=bachelor-party
   <section class="bp-section">
     <div class="bp-container">
       <div class="bp-header reveal-up">
-        <span class="bp-label">One quote, everything handled</span>
+        <span class="sec-label">One quote, everything handled</span>
         <h2 class="bp-h2">Everything in your<br/><em>bachelor golf package</em></h2>
       </div>
       <div class="bp-included">
         {included.map((item, i) => (
-          <div class={`bp-inc-card reveal-scale delay-${i+1}`}>
+          <div class={`bp-inc-card glow-card reveal-scale delay-${i+1}`}>
             <div class="bp-inc-icon">{item.icon}</div>
             <div class="bp-inc-title">{item.title}</div>
             <p class="bp-inc-body">{item.body}</p>
@@ -158,12 +158,12 @@ const QUOTE_URL = '/request-a-quote/?groupType=bachelor-party&ref=bachelor-party
   <section class="bp-section">
     <div class="bp-container">
       <div class="bp-header reveal-up">
-        <span class="bp-label">Graeagle golf lodging for groups</span>
+        <span class="sec-label">Graeagle golf lodging for groups</span>
         <h2 class="bp-h2">Where the group<br/><em>stays</em></h2>
       </div>
       <div class="bp-lodging">
         {lodging.map((l, i) => (
-          <div class={`bp-lodge-card reveal-${i===0?'left':'right'} delay-${i+1}`}>
+          <div class={`bp-lodge-card glow-card reveal-${i===0?'left':'right'} delay-${i+1}`}>
             <div class="bp-lodge-img-wrap">
               <img src={l.img} alt={l.alt} loading="lazy" class="bp-lodge-img"/>
               <div class="bp-lodge-fade"></div>
@@ -191,7 +191,7 @@ const QUOTE_URL = '/request-a-quote/?groupType=bachelor-party&ref=bachelor-party
         <p style="font-size:12px;color:rgba(245,240,232,.3);margin-top:12px;">Free · No commitment · 24hr response</p>
       </div>
       <div class="bp-mike-img reveal-right delay-2">
-        <img src="/wp-images/mike-eskuchen.webp" alt="Mike Eskuchen — Graeagle Golf Trip Specialist, bachelor party golf planner" loading="lazy"/>
+        <img src="https://nv-for-hd-v1757363743.websitepro-cdn.com/wp-content/uploads/2026/01/skoogen-head-shot-1.png" alt="Mike Eskuchen — Graeagle Golf Trip Specialist, bachelor party golf planner" loading="lazy"/>
         <div class="bp-mike-badge">
           <div class="bp-mike-name">Mike Eskuchen</div>
           <div class="bp-mike-title">Golf Trip Specialist · 20+ years</div>
@@ -204,7 +204,7 @@ const QUOTE_URL = '/request-a-quote/?groupType=bachelor-party&ref=bachelor-party
   <section class="bp-section">
     <div class="bp-container" style="max-width:760px">
       <div class="bp-header reveal-up">
-        <span class="bp-label">Bachelor party golf — common questions</span>
+        <span class="sec-label">Bachelor party golf — common questions</span>
         <h2 class="bp-h2">Planning questions,<br/><em>answered</em></h2>
       </div>
       <div class="bp-faqs">
@@ -244,7 +244,6 @@ const QUOTE_URL = '/request-a-quote/?groupType=bachelor-party&ref=bachelor-party
 .bp-section{padding:clamp(72px,9vw,120px) 0;background:var(--page-bg,#f8f5f0)}
 .bp-dark{background:var(--bp-dark)!important}
 .bp-header{text-align:center;margin-bottom:clamp(40px,5vw,68px)}
-.bp-label{font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--bp-green)}
 .bp-h2{font-family:'Playfair Display',serif;font-size:clamp(28px,4vw,50px);font-weight:500;color:var(--bp-text);line-height:1.1;margin:8px 0 0}
 .bp-h2 em{font-style:italic;color:var(--bp-green)}
 
