@@ -165,11 +165,11 @@ const pageUrl = `${siteConfig.url}/portfolio/${slug}`;
 // ── Titles — v3: keyword-first, EEAT accolades, commercial intent ──────────────
 const wpTitles: Record<string, string> = {
   // Courses
-  'graeagle-meadows-golf-packages':            'Graeagle Meadows Golf Course | Tee Times & Packages',
-  'whitehawk-ranch-golf-packages':             'Whitehawk Ranch Golf | Top 20 CA | Tee Times & Packages',
-  'plumas-pines-golf-packages':                'Plumas Pines Golf Resort | Best Value Sierra Nevada',
-  'grizzly-ranch-golf-packages':               'Grizzly Ranch Golf Club | Golf Digest Top 100',
-  'nakoma-dragon-golf-packages':               'Nakoma Golf Course | Golf World Top 75 | Frank Lloyd Wright',
+  'graeagle-meadows-golf-packages':            'Graeagle Meadows Golf Course | Group Packages & Guaranteed Tee Times',
+  'whitehawk-ranch-golf-packages':             'Whitehawk Ranch Golf Course | Group Packages & Guaranteed Tee Times',
+  'plumas-pines-golf-packages':                'Plumas Pines Golf Resort | Group Packages & Guaranteed Tee Times',
+  'grizzly-ranch-golf-packages':               'Grizzly Ranch Golf Club | Group Packages & Guaranteed Tee Times',
+  'nakoma-dragon-golf-packages':               'Nakoma Dragon Golf Course | Group Packages & Guaranteed Tee Times',
   // Lodging
   'river-pines-resort-graeagle-ca':            'River Pines Resort Graeagle | Golf Stay & Play',
   'chalet-view-lodge-graeagle-ca':             'Chalet View Lodge Graeagle | Golf Stay & Play',
@@ -198,11 +198,11 @@ const pageTitle = wpTitles[slug] || (item ? `${item.name} | GolfGraeagle.com` : 
 // ── Meta descriptions — v3: accolade → specifics → commercial intent → action ──
 const wpDescs: Record<string, string> = {
   // Courses
-  'graeagle-meadows-golf-packages':   "Graeagle Meadows — par 72, slope 120, designed by Ellis Van Gorder (1968). Expert stay-and-play packages and guaranteed tee times at the valley's most accessible course. Book via GolfGraeagle.",
-  'whitehawk-ranch-golf-packages':    "Whitehawk Ranch — Top 20 Golf Courses in California. Par 71, slope 132, designed by Dick Bailey (1996). Expert stay-and-play packages and group golf tee times at Graeagle's crowd favourite.",
-  'plumas-pines-golf-packages':       'Plumas Pines — Top 5 Best Values in the Sierra Nevada. Par 72, slope 132, designed by Homer Flint (1980). On-course lodging available. Expert stay-and-play packages and tee times via GolfGraeagle.',
-  'grizzly-ranch-golf-packages':      'Grizzly Ranch Golf Club — Golf Digest Top 100 Greatest Public Courses in the US. Par 72, 7,411 yards, slope 140. Expert group golf packages with guaranteed semi-private tee times via GolfGraeagle.',
-  'nakoma-dragon-golf-packages':      'Nakoma Golf Course — Golf World Top 75. Par 72, slope 147, designed by Robin Nelson. The only Frank Lloyd Wright golf clubhouse in the world. Expert stay-and-play packages and group tee times via GolfGraeagle.',
+  'graeagle-meadows-golf-packages':   'Custom stay-and-play packages + guaranteed tee times from $299. Graeagle Meadows — par 72, slope 120, designed by Ellis Van Gorder (1968). The most accessible course in Graeagle — ideal opening round for mixed groups.',
+  'whitehawk-ranch-golf-packages':    'Custom stay-and-play packages + guaranteed tee times from $299. Whitehawk Ranch — par 71, slope 132, Top 20 Golf Courses in California. Sulphur Creek, meadow fairways, forested hillsides — Graeagle\'s precision test.',
+  'plumas-pines-golf-packages':       'Custom stay-and-play packages + guaranteed tee times from $299. Plumas Pines — par 72, slope 132, Top 5 Best Value in the Sierra Nevada. Tight pines, small greens, on-course lodging steps from the 1st tee.',
+  'grizzly-ranch-golf-packages':      'Custom stay-and-play packages + guaranteed tee times from $299. Grizzly Ranch — par 72, 7,411 yards, slope 140. Golf Digest Top 100 Greatest Public Courses in the US. Semi-private access secured for groups.',
+  'nakoma-dragon-golf-packages':      'Custom stay-and-play packages + guaranteed tee times from $299. Nakoma Dragon — par 72, slope 147, Golf World Top 75. The only Frank Lloyd Wright golf clubhouse in the world. Graeagle\'s bucket-list round.',
   // Lodging
   'river-pines-resort-graeagle-ca':   'River Pines Resort — family-owned 40+ years. Pool, hot tub, casino, The Roadhouse on-site. Expert stay-and-play golf packages for groups of 8–60. Steps from Plumas Pines. Book via GolfGraeagle.',
   'chalet-view-lodge-graeagle-ca':    'Chalet View Lodge — 10 forested acres, spa, Eureka Peak Brewing on-site, 9-hole executive course. Expert stay-and-play packages with tee times at 4 championship courses within 12 minutes.',
