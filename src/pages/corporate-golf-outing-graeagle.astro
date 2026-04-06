@@ -5,7 +5,13 @@ import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
 import RelatedTrips from '../components/RelatedTrips.tsx';
 import { fetchTripStats } from '../lib/tripStats';
-const { minPrice, maxPrice } = await fetchTripStats();
+const { minPrice, maxPrice, trips: allTrips } = await fetchTripStats();
+
+// Social proof: real completed large-group Graeagle trips (24+ pax)
+const proofTrips = allTrips
+  .filter((t: any) => t.groupSize >= 24 && t.nights >= 2 && t.pricePerPerson && t.whyItWorked)
+  .sort((a: any, b: any) => b.groupSize - a.groupSize)
+  .slice(0, 3);
 
 const title = "Corporate Golf Outing in Graeagle, CA | Group Packages & Event Planning";
 const description = "Corporate golf outings in Graeagle — 5 championship courses, groups of 12–200, clean invoicing, and a planner who handles everything. Free proposal in 24 hours.";
@@ -180,6 +186,43 @@ const QUOTE_URL = '/request-a-quote/?groupType=corporate&ref=corporate-landing';
     </div>
   </section>
 
+  <!-- ═══ SOCIAL PROOF: REAL TRIPS ═══ -->
+  {proofTrips.length > 0 && (
+  <section class="co-section">
+    <div class="co-container">
+      <div class="co-header reveal-up">
+        <span class="co-label">Real completed group trips</span>
+        <h2 class="co-h2">Large groups.<br/><em>Executed flawlessly.</em></h2>
+        <p class="co-subhead">These are actual packages Mike built for groups just like yours — real prices, real courses, real results.</p>
+      </div>
+      <div class="co-proof-grid">
+        {proofTrips.map((t: any, i: number) => {
+          const courseNames = (t.courses || []).map((c: string) => c.replace(/ Golf (Club|Course|Resort)$/i,'').replace(/ Club$| Course$/,''));
+          return (
+            <div class={`co-proof-card reveal-up delay-${i+1}`}>
+              <div class="co-proof-top">
+                <span class="co-proof-pax">{t.groupSize} golfers</span>
+                <span class="co-proof-nights">{t.nights}N / {t.rounds}R</span>
+                <span class="co-proof-price">${t.pricePerPerson}/pp</span>
+              </div>
+              <div class="co-proof-courses">
+                {courseNames.slice(0,3).map((c: string, j: number) => (
+                  <span class="co-proof-course">{c}{j < Math.min(courseNames.length,3)-1 ? ' · ' : ''}</span>
+                ))}
+              </div>
+              <p class="co-proof-why">"{t.whyItWorked}"</p>
+              <div class="co-proof-mike">— Mike Eskuchen, Golf Trip Specialist</div>
+            </div>
+          );
+        })}
+      </div>
+      <div style="text-align:center;margin-top:40px">
+        <a href={QUOTE_URL} class="btn-green-glow co-btn reveal-scale">Build a Trip Like This →</a>
+      </div>
+    </div>
+  </section>
+  )}
+
   <!-- ═══ MIKE CTA ═══ -->
   <section class="co-cta-inline co-mobile-only">
     <div class="co-container" style="text-align:center;max-width:600px">
@@ -310,6 +353,17 @@ const QUOTE_URL = '/request-a-quote/?groupType=corporate&ref=corporate-landing';
 .co-lodge-body{padding:20px 22px 24px}
 .co-lodge-name{font-family:'Playfair Display',serif;font-size:17px;color:var(--co-text);margin-bottom:8px}
 .co-lodge-desc{font-size:13px;color:var(--co-muted);line-height:1.7;margin:0 0 14px}
+/* SOCIAL PROOF */
+.co-proof-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:48px}
+.co-proof-card{background:rgba(255,255,255,.62);border:1px solid rgba(28,18,8,.08);border-radius:18px;padding:28px 24px;display:flex;flex-direction:column;gap:14px;box-shadow:0 4px 24px rgba(28,18,8,.06)}
+.co-proof-top{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.co-proof-pax{background:rgba(26,122,64,.1);color:#1a7a40;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;padding:4px 10px;border-radius:20px}
+.co-proof-nights{font-size:13px;color:rgba(28,18,8,.5);font-weight:600}
+.co-proof-price{margin-left:auto;font-family:'Playfair Display',serif;font-size:20px;color:#1c1208;font-weight:400}
+.co-proof-courses{font-size:13px;color:rgba(28,18,8,.6);line-height:1.5}
+.co-proof-why{font-size:14px;color:rgba(28,18,8,.75);line-height:1.65;font-style:italic;flex:1}
+.co-proof-mike{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:rgba(26,122,64,.7)}
+
 /* MIKE */
 .co-mike-wrap{display:grid;grid-template-columns:1fr 420px;gap:72px;align-items:center}
 .co-mike-body{font-size:15px;color:rgba(245,240,232,.72);line-height:1.8;margin:16px 0 0}
@@ -341,6 +395,7 @@ const QUOTE_URL = '/request-a-quote/?groupType=corporate&ref=corporate-landing';
   .co-floats{display:none}
   .co-courses{grid-template-columns:1fr}
   .co-lodging{grid-template-columns:1fr}
+  .co-proof-grid{grid-template-columns:1fr}
   .co-mike-wrap{grid-template-columns:1fr}
   .co-mike-img{display:none}
   .co-hero-inner{display:flex;flex-direction:column}

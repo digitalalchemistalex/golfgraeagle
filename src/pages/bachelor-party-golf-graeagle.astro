@@ -5,7 +5,13 @@ import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
 import RelatedTrips from '../components/RelatedTrips.tsx';
 import { fetchTripStats } from '../lib/tripStats';
-const { minPrice } = await fetchTripStats();
+const { minPrice, trips: allTrips } = await fetchTripStats();
+
+// Social proof: real completed bachelor-size Graeagle trips (8-24 pax, 2+ nights, has whyItWorked)
+const proofTrips = allTrips
+  .filter((t: any) => t.groupSize >= 8 && t.groupSize <= 24 && t.nights >= 2 && t.pricePerPerson && t.whyItWorked)
+  .sort((a: any, b: any) => a.pricePerPerson - b.pricePerPerson)
+  .slice(0, 3);
 
 const title = "Bachelor Party Golf in Graeagle, CA | Group Packages & Tee Times";
 const description = "Bachelor party golf in Graeagle — 5 championship courses, group tee times, lodging for 8–20, and a planner who handles all of it. Free quote in 24 hours. From $379/golfer.";
@@ -180,6 +186,43 @@ const QUOTE_URL = '/request-a-quote/?groupType=bachelor-party&ref=bachelor-party
     </div>
   </section>
 
+  <!-- ═══ SOCIAL PROOF: REAL TRIPS ═══ -->
+  {proofTrips.length > 0 && (
+  <section class="bp-section">
+    <div class="bp-container">
+      <div class="bp-header reveal-up">
+        <span class="bp-label">Real completed trips</span>
+        <h2 class="bp-h2">Groups like yours.<br/><em>Booked. Played. Loved it.</em></h2>
+        <p class="bp-subhead">These aren't estimates — they're actual packages Mike built for real groups.</p>
+      </div>
+      <div class="bp-proof-grid">
+        {proofTrips.map((t: any, i: number) => {
+          const courseNames = (t.courses || []).map((c: string) => c.replace(/ Golf (Club|Course|Resort)$/i,'').replace(/ Club$| Course$/,''));
+          return (
+            <div class={`bp-proof-card reveal-up delay-${i+1}`}>
+              <div class="bp-proof-top">
+                <span class="bp-proof-pax">{t.groupSize} golfers</span>
+                <span class="bp-proof-nights">{t.nights}N / {t.rounds}R</span>
+                <span class="bp-proof-price">${t.pricePerPerson}/pp</span>
+              </div>
+              <div class="bp-proof-courses">
+                {courseNames.slice(0,3).map((c: string, j: number) => (
+                  <span class="bp-proof-course">{c}{j < Math.min(courseNames.length,3)-1 ? ' · ' : ''}</span>
+                ))}
+              </div>
+              <p class="bp-proof-why">"{t.whyItWorked}"</p>
+              <div class="bp-proof-mike">— Mike Eskuchen, Golf Trip Specialist</div>
+            </div>
+          );
+        })}
+      </div>
+      <div style="text-align:center;margin-top:40px">
+        <a href={QUOTE_URL} class="btn-green-glow bp-btn reveal-scale">Build a Trip Like This →</a>
+      </div>
+    </div>
+  </section>
+  )}
+
   <!-- ═══ MIKE CTA ═══ -->
   <!-- Mobile-only CTA between lodging and Mike -->
   <section class="bp-cta-inline bp-mobile-only">
@@ -318,6 +361,17 @@ const QUOTE_URL = '/request-a-quote/?groupType=bachelor-party&ref=bachelor-party
 .bp-lodge-name{font-family:'Playfair Display',serif;font-size:17px;color:var(--bp-text);margin-bottom:8px}
 .bp-lodge-desc{font-size:13px;color:var(--bp-muted);line-height:1.7;margin:0 0 14px}
 
+/* SOCIAL PROOF */
+.bp-proof-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:48px}
+.bp-proof-card{background:rgba(255,255,255,.04);border:1px solid rgba(232,168,80,.15);border-radius:18px;padding:28px 24px;display:flex;flex-direction:column;gap:14px}
+.bp-proof-top{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.bp-proof-pax{background:rgba(232,168,80,.15);color:#e8a850;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;padding:4px 10px;border-radius:20px}
+.bp-proof-nights{font-size:13px;color:rgba(245,240,232,.5);font-weight:600}
+.bp-proof-price{margin-left:auto;font-family:'Playfair Display',serif;font-size:20px;color:#f5f0e8;font-weight:400}
+.bp-proof-courses{font-size:13px;color:rgba(245,240,232,.65);line-height:1.5}
+.bp-proof-why{font-size:14px;color:rgba(245,240,232,.8);line-height:1.65;font-style:italic;flex:1}
+.bp-proof-mike{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:rgba(232,168,80,.6)}
+
 /* MIKE */
 .bp-mike-wrap{display:grid;grid-template-columns:1fr 420px;gap:72px;align-items:center}
 .bp-mike-body{font-size:15px;color:rgba(245,240,232,.72);line-height:1.8;margin:16px 0 0}
@@ -351,6 +405,7 @@ const QUOTE_URL = '/request-a-quote/?groupType=bachelor-party&ref=bachelor-party
   .bp-floats{display:none}
   .bp-courses{grid-template-columns:1fr}
   .bp-lodging{grid-template-columns:1fr}
+  .bp-proof-grid{grid-template-columns:1fr}
   .bp-mike-wrap{grid-template-columns:1fr}
   .bp-mike-img{display:none}
   /* Mobile hero: H1 then CTA immediately — sub and pills move below */

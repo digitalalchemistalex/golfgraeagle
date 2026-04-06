@@ -5,7 +5,13 @@ import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
 import RelatedTrips from '../components/RelatedTrips.tsx';
 import { fetchTripStats } from '../lib/tripStats';
-const { minPrice } = await fetchTripStats();
+const { minPrice, trips: allTrips } = await fetchTripStats();
+
+// Social proof: real completed 2-3 night Graeagle weekend trips with commentary
+const proofTrips = allTrips
+  .filter((t: any) => t.nights >= 2 && t.nights <= 3 && t.pricePerPerson && t.whyItWorked)
+  .sort((a: any, b: any) => a.pricePerPerson - b.pricePerPerson)
+  .slice(0, 3);
 
 const title = "Graeagle Golf Weekend Packages | 2 & 3-Night Stay & Play";
 const description = "Graeagle golf weekend packages — 2 or 3 nights, 2–5 championship courses, lodging and tee times bundled. From $379/golfer. Free custom itinerary in 24 hours.";
@@ -218,6 +224,43 @@ const QUOTE_URL = '/request-a-quote/?groupType=weekend&ref=weekend-landing';
     </div>
   </section>
 
+  <!-- ═══ SOCIAL PROOF: REAL TRIPS ═══ -->
+  {proofTrips.length > 0 && (
+  <section class="wk-section">
+    <div class="wk-container">
+      <div class="wk-header reveal-up">
+        <span class="wk-label">Real completed weekend trips</span>
+        <h2 class="wk-h2">These trips happened.<br/><em>Yours can too.</em></h2>
+        <p class="wk-subhead">Actual packages Mike built for groups that came, played, and came back the next year.</p>
+      </div>
+      <div class="wk-proof-grid">
+        {proofTrips.map((t: any, i: number) => {
+          const courseNames = (t.courses || []).map((c: string) => c.replace(/ Golf (Club|Course|Resort)$/i,'').replace(/ Club$| Course$/,''));
+          return (
+            <div class={`wk-proof-card reveal-up delay-${i+1}`}>
+              <div class="wk-proof-top">
+                <span class="wk-proof-pax">{t.groupSize} golfers</span>
+                <span class="wk-proof-nights">{t.nights}N / {t.rounds}R</span>
+                <span class="wk-proof-price">${t.pricePerPerson}/pp</span>
+              </div>
+              <div class="wk-proof-courses">
+                {courseNames.slice(0,3).map((c: string, j: number) => (
+                  <span class="wk-proof-course">{c}{j < Math.min(courseNames.length,3)-1 ? ' · ' : ''}</span>
+                ))}
+              </div>
+              <p class="wk-proof-why">"{t.whyItWorked}"</p>
+              <div class="wk-proof-mike">— Mike Eskuchen, Golf Trip Specialist</div>
+            </div>
+          );
+        })}
+      </div>
+      <div style="text-align:center;margin-top:40px">
+        <a href={QUOTE_URL} class="btn-green-glow wk-btn reveal-scale">Plan a Weekend Like This →</a>
+      </div>
+    </div>
+  </section>
+  )}
+
   <!-- ═══ MIKE CTA ═══ -->
   <section class="wk-section wk-dark">
     <div class="wk-container wk-mike-wrap">
@@ -352,6 +395,17 @@ const QUOTE_URL = '/request-a-quote/?groupType=weekend&ref=weekend-landing';
 .wk-lodge-body{padding:20px 22px 24px}
 .wk-lodge-name{font-family:'Playfair Display',serif;font-size:17px;color:var(--wk-text);margin-bottom:8px}
 .wk-lodge-desc{font-size:13px;color:var(--wk-muted);line-height:1.7;margin:0 0 14px}
+/* SOCIAL PROOF */
+.wk-proof-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:48px}
+.wk-proof-card{background:rgba(255,255,255,.62);border:1px solid rgba(28,18,8,.08);border-radius:18px;padding:28px 24px;display:flex;flex-direction:column;gap:14px;box-shadow:0 4px 24px rgba(28,18,8,.06)}
+.wk-proof-top{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.wk-proof-pax{background:rgba(26,122,64,.1);color:#1a7a40;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;padding:4px 10px;border-radius:20px}
+.wk-proof-nights{font-size:13px;color:rgba(28,18,8,.5);font-weight:600}
+.wk-proof-price{margin-left:auto;font-family:'Playfair Display',serif;font-size:20px;color:#1c1208;font-weight:400}
+.wk-proof-courses{font-size:13px;color:rgba(28,18,8,.6);line-height:1.5}
+.wk-proof-why{font-size:14px;color:rgba(28,18,8,.75);line-height:1.65;font-style:italic;flex:1}
+.wk-proof-mike{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:rgba(26,122,64,.7)}
+
 /* MIKE */
 .wk-mike-wrap{display:grid;grid-template-columns:1fr 420px;gap:72px;align-items:center}
 .wk-mike-body{font-size:15px;color:rgba(245,240,232,.72);line-height:1.8;margin:16px 0 0}
@@ -383,6 +437,7 @@ const QUOTE_URL = '/request-a-quote/?groupType=weekend&ref=weekend-landing';
   .wk-floats{display:none}
   .wk-courses{grid-template-columns:1fr 1fr}
   .wk-lodging{grid-template-columns:1fr}
+  .wk-proof-grid{grid-template-columns:1fr}
   .wk-mike-wrap{grid-template-columns:1fr}
   .wk-mike-img{display:none}
   .wk-hero-inner{display:flex;flex-direction:column}
