@@ -641,12 +641,22 @@ const $id  = id => document.getElementById(id);
   const nights = p.get('nights') || '';
   const rounds = p.get('rounds') || '';
   const lodgingRaw = p.get('lodging') || '';
-  const coursesRaw = p.get('courses') || '';
+  const coursesRaw = p.get('courses') || ''
   const vibe = p.get('vibe') || '';
   const budget = p.get('budget') || '';
+  const groupType = p.get('groupType') || '';
+
+  // Store groupType in hidden input so it's picked up on submit
+  if (groupType) {
+    const hidden = document.createElement('input');
+    hidden.type = 'hidden';
+    hidden.name = 'groupType';
+    hidden.value = groupType;
+    form.appendChild(hidden);
+  }
 
   const isTripRef = ref === 'trips-caddie' || ref === 'trips-page';
-  if (!isTripRef && !tripName && !partySize) return; // nothing to do
+  if (!isTripRef && !tripName && !partySize && !groupType) return; // nothing to do
 
   // Group size
   if (partySize) {
@@ -920,6 +930,7 @@ form.addEventListener('submit', async e => {
   data.destination  = 'graeagle';
   data.source       = 'golfgraeagle.com';
   data.submittedAt  = new Date().toISOString();
+  data.groupType    = new URLSearchParams(window.location.search).get('groupType') || null;
   if (data.totalRounds === 'other' && data.totalRoundsCustom) data.totalRounds = data.totalRoundsCustom;
 
   try {

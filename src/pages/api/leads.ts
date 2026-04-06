@@ -116,6 +116,7 @@ function adminEmailHtml(b: any, leadId: string): string {
     ['Name',            `${b.firstName} ${b.lastName}`],
     ['Email',           b.email],
     ['Phone',           b.phone],
+    ['Group Type',      b.groupType || '—'],
     ['Address',         [b.streetAddress, b.city, b.postalCode, b.country].filter(Boolean).join(', ') || '—'],
     ['Party Size',      `${b.partySize} golfers`],
     ['Arrival',         b.arrivalDate],
@@ -330,6 +331,7 @@ export const POST: APIRoute = async ({ request }) => {
       fb_event_when:          body.fbEventWhen          || null,
       special_requests:       body.specialRequests      || null,
       source:                 body.source               || 'golfgraeagle.com',
+      group_type:             body.groupType            || null,
       status:                 'new',
       submitted_at:           body.submittedAt          || new Date().toISOString(),
     };
