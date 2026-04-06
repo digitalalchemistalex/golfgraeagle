@@ -17,7 +17,7 @@ const faqSchema = {
     { "@type": "Question", "name": "What is included in a Graeagle golf package?", "acceptedAnswer": { "@type": "Answer", "text": "A GolfGraeagle package includes guaranteed tee times at your chosen courses, lodging coordination, and a day-by-day itinerary. Dining reservations available on request. Packages from ${minPrice} per golfer." } },
     { "@type": "Question", "name": "How much do Graeagle golf packages cost?", "acceptedAnswer": { "@type": "Answer", "text": "Real completed Graeagle golf packages range from $620 to $1,705 per person. A typical 2-night, 3-course package for a group of 12–24 runs $620–$875 per golfer. All pricing from real booked trips." } },
     { "@type": "Question", "name": "How many courses can I play in a Graeagle golf package?", "acceptedAnswer": { "@type": "Answer", "text": "Any combination of the 5 Graeagle courses. A 2-night package typically covers 2–3 courses. A 3-night covers 3–4. Most groups play 3 courses across 2–3 days." } },
-    { "@type": "Question", "name": "Can I see real pricing from past Graeagle golf packages?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Browse 76 real completed packages at golfgraeagle.com/trips/ — course combinations, nights, group sizes, and price per person. Prices range from $620 to $1,705 per person." } },
+    { "@type": "Question", "name": "Can I see real pricing from past Graeagle golf packages?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Browse ${tripCount} real completed packages at golfgraeagle.com/trips/ — course combinations, nights, group sizes, and price per person. Prices range from $620 to $1,705 per person." } },
     { "@type": "Question", "name": "How do I book a Graeagle golf package?", "acceptedAnswer": { "@type": "Answer", "text": "Submit a quote request with your dates, group size, and courses you want to play. GolfGraeagle responds within 24 hours with a custom proposal." } }
   ]
 };
@@ -99,7 +99,7 @@ const courses = [
         <span class="gp-pill">From <strong>${minPrice}</strong>/golfer</span>
         <span class="gp-pill">⭐ 4.8 · 672 reviews</span>
         <span class="gp-pill">24hr quote</span>
-        <span class="gp-pill">76 real trips</span>
+        <span class="gp-pill">${tripCount} real trips</span>
       </div>
       <div class="gp-hero-ctas reveal-up delay-4">
         <a href="/request-a-quote/" class="btn-green-glow gp-cta-main">Get a Free Quote →</a>
@@ -171,7 +171,7 @@ const courses = [
         ))}
       </div>
       <p class="gp-archive-link reveal-up">
-        <a href="/trips/" class="underline-draw" style="color:#e8a850;font-weight:700;">Browse all 76 real packages →</a>
+        <a href="/trips/" class="underline-draw" style="color:#e8a850;font-weight:700;">Browse all ${tripCount} real packages →</a>
       </p>
     </div>
   </section>
@@ -211,7 +211,7 @@ const courses = [
   <section class="gp-trust gp-dark">
     <div class="gp-container gp-trust-row">
       {[
-        ['76', 'Real packages in archive'],
+        [`${tripCount}`, 'Real packages in archive'],
         ['620', 'Lowest price per person'],
         ['4.8', '672 verified reviews'],
         ['24', 'Hour quote turnaround'],
@@ -249,7 +249,7 @@ const courses = [
   <section class="gp-cta-section gp-dark">
     <div class="gp-cta-ring"></div>
     <div class="gp-container" style="text-align:center;max-width:660px;position:relative;z-index:1">
-      <h2 class="gp-cta-h2 reveal-up">76 real trips. One<br/><em>free quote for yours.</em></h2>
+      <h2 class="gp-cta-h2 reveal-up">${tripCount} real trips. One<br/><em>free quote for yours.</em></h2>
       <p class="gp-cta-sub reveal-up delay-1">Every quote is built from actual booked packages — real courses, real lodging, real prices. Tell us your dates and group size. All-in number back in 24 hours.</p>
       <div class="reveal-scale delay-2">
         <a href="/request-a-quote/" class="btn-green-glow gp-cta-main">Get My Package Quote →</a>

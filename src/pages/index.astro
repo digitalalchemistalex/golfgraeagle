@@ -4,6 +4,8 @@ import Base from '../layouts/Base.astro';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
 import { courses, lodging, siteConfig, imageAlts } from '../data/content.js';
+import { fetchTripStats } from '../lib/tripStats';
+const { minPrice, tripCount } = await fetchTripStats();
 const getImgAlt = (src, fallback) => { const f = (src || '').split('/').pop().split('?')[0]; return (imageAlts || {})[f] || fallback; };
 
 
@@ -362,7 +364,7 @@ const lodgingMeta = {'townhomes-at-plumas-pines':{badge:'Great for Large Groups'
       <a href="/trips/" style="display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:600;color:var(--gold);text-decoration:none;border:1px solid rgba(232,168,80,0.25);padding:12px 28px;border-radius:100px;transition:all 0.2s;"
         onmouseover="this.style.background='rgba(232,168,80,0.08)';this.style.borderColor='rgba(232,168,80,0.5)'"
         onmouseout="this.style.background='transparent';this.style.borderColor='rgba(232,168,80,0.25)'">
-        Browse all 76 real trips →
+        Browse all ${tripCount} real trips →
       </a>
     </div>
   </div>

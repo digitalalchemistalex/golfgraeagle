@@ -4,6 +4,8 @@ import Base from '../layouts/Base.astro';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
 import { courses } from '../data/content.js';
+import { fetchTripStats } from '../lib/tripStats';
+const { tripCount } = await fetchTripStats();
 
 const aggregateRatingSchema = {
   "@context": "https://schema.org", "@type": "TravelAgency",
@@ -32,7 +34,7 @@ const aboutSchema = [
     mainEntity: [
       { '@type': 'Question', name: 'How long has GolfGraeagle.com been operating?', acceptedAnswer: { '@type': 'Answer', text: 'GolfGraeagle.com has been booking Graeagle golf trips since 2004 — over 20 years of local expertise.' } },
       { '@type': 'Question', name: 'Who builds my itinerary?', acceptedAnswer: { '@type': 'Answer', text: 'Mike Eskuchen — a 20+ year golf industry professional who worked as a Golf Professional in Palm Springs, Director of Sales at Red Hawk Golf Club, helped grow Duncan Golf Management from 2 to 9 courses, and served as GM at Hidden Valley CC in Reno.' } },
-      { '@type': 'Question', name: 'What is TripsCaddie?', acceptedAnswer: { '@type': 'Answer', text: 'TripsCaddie is a live archive of real golf packages booked through Golf the High Sierra and partner platforms. Every entry is a real group, real itinerary, real price — covering California, Nevada, and select international destinations. Prices range from $379 to $1,705 per person across 76 trips.' } },
+      { '@type': 'Question', name: 'What is TripsCaddie?', acceptedAnswer: { '@type': 'Answer', text: 'TripsCaddie is a live archive of real golf packages booked through Golf the High Sierra and partner platforms. Every entry is a real group, real itinerary, real price — covering California, Nevada, and select international destinations. Prices range from $379 to $1,705 per person across ${tripCount} trips.' } },
       { '@type': 'Question', name: 'What golf courses does GolfGraeagle work with?', acceptedAnswer: { '@type': 'Answer', text: 'All 5 championship courses: Graeagle Meadows, Whitehawk Ranch, Plumas Pines, Grizzly Ranch (Golf Digest Top 100), and Nakoma The Dragon (only Frank Lloyd Wright-designed golf clubhouse).' } },
       { '@type': 'Question', name: 'What does a Graeagle golf package cost?', acceptedAnswer: { '@type': 'Answer', text: 'Packages start from $299 per golfer. The TripsCaddie archive shows real packages from $379 to $1,705 per person — range depends on courses selected, lodging, nights, and group size. Request a free quote for exact pricing.' } },
       { '@type': 'Question', name: 'Can you plan a trip for a large group?', acceptedAnswer: { '@type': 'Answer', text: 'Yes. We book for groups from 4 to 200+ players. Large groups need 6–8 weeks lead time for summer weekends. Mike coordinates tee time blocks directly with each course.' } },
@@ -248,7 +250,7 @@ const aboutSchema = [
       <!-- Stats -->
       <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(255,255,255,0.05);border-radius:14px;overflow:hidden;margin-bottom:44px;">
         {[
-          { n:'76',          l:'Trips in archive' },
+          { n:`${tripCount}`,  l:'Trips in archive' },
           { n:'$379',        l:'Lowest per person' },
           { n:'$1,705',      l:'Highest per person' },
           { n:'CA · NV · Intl', l:'Destinations' },
@@ -267,7 +269,7 @@ const aboutSchema = [
 
       <div style="text-align:center;">
         <a href="/trips/" style="display:inline-block;font-weight:700;font-size:14px;padding:14px 36px;margin-bottom:12px;border:1.5px solid rgba(232,168,80,0.4);color:#e8a850;border-radius:100px;text-decoration:none;">Browse the full pricing archive →</a>
-        <p style="font-size:11px;color:rgba(245,240,232,0.35);margin:0;">76 real packages · updated continuously · no signup required</p>
+        <p style="font-size:11px;color:rgba(245,240,232,0.35);margin:0;">${tripCount} real packages · updated continuously · no signup required</p>
       </div>
 
     </div>
@@ -285,7 +287,7 @@ const aboutSchema = [
           { label:'Parent Company', name:'Zoomaway Technologies Inc.', desc:'GolfGraeagle.com is a product of Zoomaway Technologies Inc. — a travel technology company specializing in golf trip planning across the High Sierra region. Founded in 2004.', href:'https://zoomaway.com/?utm_source=golfgraeagle&utm_medium=referral&utm_campaign=parent_company&utm_content=about_page', badge:'🏢 Parent company', tc:'#1a3a1a' },
           { label:'Sibling Platform', name:'Golf the High Sierra', desc:"Reno, Lake Tahoe, and the broader High Sierra region. Mike's home platform — and where TripsCaddie lives.", href:'https://golfthehighsierra.com/?utm_source=golfgraeagle&utm_medium=referral&utm_campaign=sibling_site&utm_content=about_page', badge:"🏔 Mike's platform", tc:'#204090' },
           { label:'Sibling Platform', name:'Group Golf Tours', desc:'Specializes in large-group golf outings across multiple destinations. Corporate events, charity tournaments, and group travel.', href:'http://groupgolftours.com/?utm_source=golfgraeagle&utm_medium=referral&utm_campaign=sibling_site&utm_content=about_page', badge:'👥 Groups 20–200+', tc:'#8a3010' },
-          { label:'Pricing Archive', name:'TripsCaddie', desc:'Live archive of real golf packages from across the network. 76 trips, real pricing, real groups — 79 to $1,705 per person. Used by GolfGraeagle.com to show customers exactly what trips cost.', href:'https://tripscaddie.golfthehighsierra.com/?utm_source=golfgraeagle&utm_medium=referral&utm_campaign=sibling_site&utm_content=about_page', badge:'📊 Live pricing data', tc:'#1a5a3a' },
+          { label:'Pricing Archive', name:'TripsCaddie', desc:'Live archive of real golf packages from across the network. ${tripCount} trips, real pricing, real groups — 79 to $1,705 per person. Used by GolfGraeagle.com to show customers exactly what trips cost.', href:'https://tripscaddie.golfthehighsierra.com/?utm_source=golfgraeagle&utm_medium=referral&utm_campaign=sibling_site&utm_content=about_page', badge:'📊 Live pricing data', tc:'#1a5a3a' },
         ].map(p => (
           <div style={`padding:22px;background:var(--surface);border:1px solid #e0ece0;border-radius:14px;`}>
             <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:7px;">
@@ -316,7 +318,7 @@ const aboutSchema = [
         {[
           ['What does GolfGraeagle.com actually do?', 'GolfGraeagle.com is a golf trip planning and package booking platform — not a golf course. We coordinate tee times at all 5 Graeagle championship courses, match lodging to your group size and budget, arrange transportation, coordinate dining, and hand you a complete day-by-day itinerary. Operating since 2004.'],
           ['Who builds my itinerary?', 'Mike Eskuchen — a 20+ year golf industry professional. He started as a PGA Golf Professional in Palm Springs, ran sales at Red Hawk Golf Club for 10+ years, grew Duncan Golf Management from 2 to 9 courses as Director of Sales, and served as GM & COO at Hidden Valley Country Club in Reno. When you submit a quote, Mike builds it personally within 24 hours.'],
-          ['What is TripsCaddie and why should I trust it?', 'TripsCaddie is a live archive of real packages booked through Golf the High Sierra and partner platforms including GolfGraeagle.com. Every price is from an actual confirmed booking — real group, real courses, real lodging. It covers California, Nevada, and international destinations. 76 trips in the archive, ranging from $379 to $1,705 per person. No other booking agent publishes real pricing this transparently.'],
+          ['What is TripsCaddie and why should I trust it?', 'TripsCaddie is a live archive of real packages booked through Golf the High Sierra and partner platforms including GolfGraeagle.com. Every price is from an actual confirmed booking — real group, real courses, real lodging. It covers California, Nevada, and international destinations. ${tripCount} trips in the archive, ranging from $379 to $1,705 per person. No other booking agent publishes real pricing this transparently.'],
           ['What does a package cost?', 'Packages start from $299 per golfer. The TripsCaddie archive shows real packages from $379 to $1,705 per person — the range depends on courses, lodging type, nights, and group size. Request a free quote for exact pricing on your trip.'],
           ['Can you plan a trip for a large group?', 'Yes. We book for groups from 4 to 200+ players. Large groups need 6–8 weeks lead time for summer weekends. Mike coordinates tee time blocks directly with each course — this is the kind of multi-course, multi-night coordination he spent 20 years building relationships for.'],
           ['Do you only book Graeagle?', 'GolfGraeagle.com specializes in the Graeagle region. Zoomaway Technologies Inc. also operates GolfTheHighSierra.com (Reno, Tahoe, High Sierra), GroupGolfTours.com (large groups), and MesquiteStGeorgeGolfTours.com (Southern Nevada and Utah).'],

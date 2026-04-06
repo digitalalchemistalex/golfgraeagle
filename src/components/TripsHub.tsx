@@ -481,7 +481,7 @@ export default function TripsHub() {
             onMouseOver={e => { e.currentTarget.style.background = "#2d7a3a"; e.currentTarget.style.color = "#fff"; }}
             onMouseOut={e => { e.currentTarget.style.background = "#1c1208"; e.currentTarget.style.color = "#e8a850"; }}
           >🏌️ Browse Full Trip Archive in TripsCaddie →</a>
-          <p style={{ fontSize: 11, color: "rgba(28,18,8,0.3)", marginTop: 10 }}>All 76 trips across Reno · Tahoe · Graeagle · Monterey · International</p>
+          <p style={{ fontSize: 11, color: "rgba(28,18,8,0.3)", marginTop: 10 }}>Real trips across Reno · Tahoe · Graeagle · Monterey · International</p>
         </div>
       </div>
     </div>

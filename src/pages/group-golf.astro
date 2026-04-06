@@ -182,7 +182,7 @@ const logistics = [
           </div>
         ))}
       </div>
-      <p class="gg-archive-note reveal-up">Based on real completed trips · <a href="/trips/" class="underline-draw" style="color:var(--gg-gold);font-weight:700;">Browse 76 real packages →</a></p>
+      <p class="gg-archive-note reveal-up">Based on real completed trips · <a href="/trips/" class="underline-draw" style="color:var(--gg-gold);font-weight:700;">Browse ${tripCount} real packages →</a></p>
     </div>
   </section>
 
@@ -233,7 +233,7 @@ const logistics = [
         ['200', 'Max golfers per outing'],
         ['5',   'Courses available'],
         ['4.8', '672 verified reviews'],
-        ['76',  'Real group trips archived'],
+        [`${tripCount}`,  'Real group trips archived'],
         ['2004','Year we started'],
       ].map(([val, label], i) => (
         <div class={`gg-stat reveal-scale delay-${i+1}`}>

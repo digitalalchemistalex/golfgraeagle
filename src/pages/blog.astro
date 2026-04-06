@@ -3,6 +3,8 @@ export const prerender = true;
 import Base from '../layouts/Base.astro';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
+import { fetchTripStats } from '../lib/tripStats';
+const { tripCount } = await fetchTripStats();
 
 const posts = [
   {
@@ -78,7 +80,7 @@ const posts = [
   {
     title: 'Graeagle Golf Trip Planner — Real Pricing for Every Group Size',
     slug: 'graeagle-golf-trip-planner',
-    excerpt: 'Full pricing matrix across every group size (2 to 200+) and trip tier. Real numbers from 76 completed packages — weekend to premium. The only guide you need before calling.',
+    excerpt: 'Full pricing matrix across every group size (2 to 200+) and trip tier. Real numbers from ${tripCount} completed packages — weekend to premium. The only guide you need before calling.',
     tag: 'Pricing',
     tagColor: '#1a7a40',
     hero: '/wp-images/graeagle-meadows-aerial.jpg',
