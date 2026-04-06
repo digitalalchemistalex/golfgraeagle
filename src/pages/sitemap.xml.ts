@@ -91,6 +91,7 @@ ${url('/all-golf-courses','0.9','monthly')}
 ${url('/golf-trip-from-sacramento','0.9','monthly')}
 ${url('/summer-golf-graeagle','0.9','monthly')}
 ${url('/graeagle-golf-resort','0.9','monthly')}
+${url('/bachelor-party-golf-graeagle','0.9','monthly')}
 ${url('/trips','0.8','weekly')}
 ${url('/lodging','0.8','monthly')}
 ${url('/dining','0.8','monthly')}
