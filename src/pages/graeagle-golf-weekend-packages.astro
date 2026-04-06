@@ -1,0 +1,404 @@
+---
+export const prerender = true;
+import Base from '../layouts/Base.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import RelatedTrips from '../components/RelatedTrips.tsx';
+import { fetchTripStats } from '../lib/tripStats';
+const { minPrice } = await fetchTripStats();
+
+const title = "Graeagle Golf Weekend Packages | 2 & 3-Night Stay & Play";
+const description = "Graeagle golf weekend packages — 2 or 3 nights, 2–5 championship courses, lodging and tee times bundled. From $379/golfer. Free custom itinerary in 24 hours.";
+
+const faqSchema = {
+  "@context":"https://schema.org","@type":"FAQPage",
+  "mainEntity":[
+    {"@type":"Question","name":"How many courses can you play on a Graeagle golf weekend?","acceptedAnswer":{"@type":"Answer","text":"On a 2-night weekend you can comfortably play 3 courses — one round Friday afternoon, one Saturday, one Sunday morning before heading home. A 3-night stay allows 4 courses. All 5 Graeagle courses are within 25 minutes of each other, so logistics are simple."}},
+    {"@type":"Question","name":"How much does a Graeagle golf weekend cost per person?","acceptedAnswer":{"@type":"Answer","text":"Real completed weekend packages range from $620 to $875 per person for a 2-night, 3-course stay-and-play with lodging. Smaller groups of 2–4 golfers pay slightly more per person. Groups of 8+ typically get better per-person rates."}},
+    {"@type":"Question","name":"When is the best weekend to golf in Graeagle?","acceptedAnswer":{"@type":"Answer","text":"June, September, and early October are the best weekends. June has long days and fresh course conditions. September and October bring fewer crowds, fall colors, and cooler mornings. Summer weekends (July–August) need 6–8 weeks advance booking."}},
+    {"@type":"Question","name":"Which courses should I play on a Graeagle golf weekend?","acceptedAnswer":{"@type":"Answer","text":"Most first-timers start at Graeagle Meadows or Plumas Pines as the opener, play Whitehawk Ranch or Grizzly Ranch as the main round, and save Nakoma Dragon for the final morning. GolfGraeagle sequences courses by difficulty and drive time so your weekend flows naturally."}},
+    {"@type":"Question","name":"Can I book a Graeagle golf weekend for just 2 golfers?","acceptedAnswer":{"@type":"Answer","text":"Yes. GolfGraeagle builds packages for groups from 2 to 200+ golfers. Smaller groups of 2–4 golfers can get single tee times at all 5 courses. Lodging options include the Inn at Nakoma and River Pines Resort, both suited to small groups."}},
+  ]
+};
+
+const breadcrumbSchema = {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
+  {"@type":"ListItem","position":1,"name":"Home","item":"https://golfgraeagle.com/"},
+  {"@type":"ListItem","position":2,"name":"Graeagle Golf Weekend Packages","item":"https://golfgraeagle.com/graeagle-golf-weekend-packages/"}
+]};
+
+const orgSchema = {"@context":"https://schema.org","@graph":[
+  {"@type":["TravelAgency","Organization"],"@id":"https://golfgraeagle.com/#organization","name":"GolfGraeagle.com","url":"https://golfgraeagle.com",
+    "aggregateRating":{"@type":"AggregateRating","ratingValue":"4.8","reviewCount":"672","bestRating":"5"}},
+  {"@type":"WebPage","url":"https://golfgraeagle.com/graeagle-golf-weekend-packages/","name":title}
+]};
+
+const serviceSchema = {
+  "@context":"https://schema.org","@type":"Service",
+  "name":"Graeagle Golf Weekend Packages",
+  "description":"Stay-and-play golf weekend packages in Graeagle, CA — 2 or 3 nights, tee times at all 5 championship courses, lodging bundled. From $379/golfer.",
+  "provider":{"@type":"TravelAgency","@id":"https://golfgraeagle.com/#organization"},
+  "areaServed":{"@type":"Place","name":"Graeagle, California"},
+  "serviceType":"Golf Weekend Package"
+};
+
+const courses = [
+  { name:'Grizzly Ranch', slug:'grizzly-ranch-golf-packages', accolade:'Golf Digest Top 100', img:'/wp-images/grizzly-ranch-hero.webp', alt:'Grizzly Ranch Golf Club — Golf Digest Top 100, Graeagle golf weekend', line:'The anchor round. Book this first — it sets the standard for the whole weekend.' },
+  { name:'Whitehawk Ranch', slug:'whitehawk-ranch-golf-packages', accolade:'Top 20 California', img:'/wp-images/whitehawk-hero.webp', alt:'Whitehawk Ranch Golf Course — Graeagle golf weekend package', line:'Top 20 California. Meadow fairways, mountain backdrops. Day one opener.' },
+  { name:'Nakoma Dragon', slug:'nakoma-dragon-golf-packages', accolade:'Golf World Top 75', img:'/wp-images/nakoma-dragon-feather-river.webp', alt:'Nakoma Dragon Golf Course — Frank Lloyd Wright, Graeagle golf weekend', line:'The Frank Lloyd Wright clubhouse. Save it for the last morning — the best send-off.' },
+  { name:'Graeagle Meadows', slug:'graeagle-meadows-golf-packages', accolade:'Sierra Nevada Classic', img:'/wp-images/graeagle-meadows-aerial.jpg', alt:'Graeagle Meadows Golf Course — Graeagle golf weekend', line:'The most accessible course in the valley. Perfect for mixed groups.' },
+  { name:'Plumas Pines', slug:'plumas-pines-golf-packages', accolade:'Top 5 Best Value Sierra Nevada', img:'/wp-images/plumas-pines-hero.webp', alt:'Plumas Pines Golf Resort — Graeagle golf weekend lodging on course', line:'On-course lodging available. Tight pines, small greens — tests placement.' },
+];
+
+const itineraries = [
+  { label:'2 nights', nights:'Fri–Sun', rounds:'3 courses', tag:'Most Popular', desc:'Friday: Check in, Graeagle Meadows afternoon round, dinner at Grizzly Grill. Saturday: Grizzly Ranch (the big one). Sunday: Whitehawk Ranch, drive home.' },
+  { label:'3 nights', nights:'Thu–Sun', rounds:'4 courses', tag:'Best Value', desc:'Add Nakoma Dragon on Saturday morning. 4 championship courses, 3 nights, one legendary weekend.' },
+];
+
+const lodging = [
+  { name:'Townhomes at Plumas Pines', slug:'the-townhomes-at-plumas-pines', img:'/wp-images/plumas-pines-hero.webp', alt:'Townhomes at Plumas Pines — Graeagle golf weekend lodging', tag:'Steps from the 1st Tee', desc:'2–4 bedroom units on the Plumas Pines course. Full kitchens. Best for groups of 4–16.' },
+  { name:'Inn at Nakoma', slug:'the-inn-at-nakoma-clio-ca', img:'/wp-images/nakoma-flw-lodge-exterior.webp', alt:'Inn at Nakoma — Frank Lloyd Wright golf weekend lodging Graeagle', tag:'Most Unique Stay', desc:'42 rooms inside the Frank Lloyd Wright clubhouse. The Dragon course outside your window.' },
+];
+
+const included = [
+  { icon:'⛳', title:'Tee times at all 5 courses', body:'Single tee times or group blocks — we deal directly with every pro shop. No calling around.' },
+  { icon:'🏘', title:'Lodging matched to your group', body:'2 golfers or 20, hotel rooms or townhomes — matched to your size and budget.' },
+  { icon:'📋', title:'Day-by-day itinerary', body:'Courses in the right order, drive times between venues, dining recommendations built in.' },
+  { icon:'⚡', title:'Free quote in 24 hours', body:'Tell us your dates, group size, and which courses you want. Mike sends a full proposal back fast.' },
+];
+
+const QUOTE_URL = '/request-a-quote/?groupType=weekend&ref=weekend-landing';
+---
+
+<Base
+  title={title}
+  description={description}
+  ogType="website"
+  schema={[orgSchema, faqSchema, breadcrumbSchema, serviceSchema]}
+  canonical="https://golfgraeagle.com/graeagle-golf-weekend-packages/"
+  ogImage="https://golfgraeagle.com/wp-images/graeagle-meadows-aerial.jpg"
+  bodyClass="light-page"
+>
+  <Nav />
+
+  <!-- ═══ HERO ═══ -->
+  <section class="wk-hero">
+    <div class="wk-bg" style="background-image:url(/wp-images/graeagle-meadows-aerial.jpg)"></div>
+    <div class="wk-overlay"></div>
+    <div class="wk-hero-inner">
+      <p class="wk-eyebrow reveal-up">Graeagle Golf Weekend · Sierra Nevada, California · 5 Courses</p>
+      <h1 class="wk-h1 reveal-up delay-1">2 nights.<br/><em>3 courses. Sorted.</em></h1>
+      <p class="wk-sub speakable reveal-up delay-2">Five championship courses within 25 minutes of each other. Golf Digest Top 100, Frank Lloyd Wright clubhouse, tee times and lodging bundled. GolfGraeagle builds the itinerary — you show up and play.</p>
+      <div class="wk-pills reveal-up delay-3">
+        <span>From <strong>${minPrice}</strong>/golfer</span>
+        <span>2–20+ golfers</span>
+        <span>2 or 3 nights</span>
+        <span>24hr quote</span>
+      </div>
+      <div class="wk-ctas reveal-up delay-4">
+        <a href={QUOTE_URL} class="btn-green-glow wk-btn">Plan My Golf Weekend →</a>
+        <a href="/trips/" class="wk-ghost underline-draw">See real weekend pricing ↗</a>
+      </div>
+      <p class="wk-trust reveal-up delay-5">Free · No commitment · Response within 24 hours</p>
+    </div>
+    <div class="wk-floats reveal-fade delay-5">
+      <div class="wk-float"><div class="wk-float-val">5</div><div class="wk-float-lbl">Courses</div></div>
+      <div class="wk-float"><div class="wk-float-val">25 min</div><div class="wk-float-lbl">Between courses</div></div>
+      <div class="wk-float"><div class="wk-float-val">4.8★</div><div class="wk-float-lbl">Avg Rating</div></div>
+    </div>
+  </section>
+
+  <!-- ═══ ITINERARY OPTIONS ═══ -->
+  <section class="wk-section">
+    <div class="wk-container">
+      <div class="wk-header reveal-up">
+        <span class="sec-label">Real Graeagle golf weekend itineraries</span>
+        <h2 class="wk-h2">Pick your weekend<br/><em>format</em></h2>
+      </div>
+      <div class="wk-itins">
+        {itineraries.map((itin, i) => (
+          <div class={`wk-itin glow-card reveal-scale delay-${i+1}${itin.tag==='Most Popular'?' wk-itin-hot':''}`}>
+            {itin.tag==='Most Popular' && <div class="wk-hot-tag">Most Popular</div>}
+            <div class="wk-itin-label">{itin.label}</div>
+            <div class="wk-itin-nights">{itin.nights}</div>
+            <div class="wk-itin-rounds">{itin.rounds}</div>
+            <p class="wk-itin-desc">{itin.desc}</p>
+            <a href={QUOTE_URL} class="wk-itin-link underline-draw">Get this package →</a>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ WHAT'S INCLUDED ═══ -->
+  <section class="wk-section wk-dark">
+    <div class="wk-container">
+      <div class="wk-header reveal-up">
+        <span class="sec-label" style="color:#e8a850">One quote, everything handled</span>
+        <h2 class="wk-h2" style="color:#f5f0e8">What's in every<br/><em>weekend package</em></h2>
+      </div>
+      <div class="wk-included">
+        {included.map((item, i) => (
+          <div class={`wk-inc-card reveal-scale delay-${i+1}`}>
+            <div class="wk-inc-icon">{item.icon}</div>
+            <div class="wk-inc-title">{item.title}</div>
+            <p class="wk-inc-body">{item.body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ COURSES ═══ -->
+  <section class="wk-section">
+    <div class="wk-container">
+      <div class="wk-header reveal-up">
+        <span class="sec-label">All 5 Graeagle courses available</span>
+        <h2 class="wk-h2">Play any combination.<br/><em>We sequence them right.</em></h2>
+      </div>
+      <div class="wk-courses">
+        {courses.map((c, i) => (
+          <div class={`wk-course-card reveal-scale delay-${i+1}`}>
+            <div class="wk-course-img-wrap">
+              <img src={c.img} alt={c.alt} loading="lazy" class="wk-course-img"/>
+              <div class="wk-course-fade"></div>
+              <span class="wk-course-badge">{c.accolade}</span>
+            </div>
+            <div class="wk-course-body">
+              <div class="wk-course-name">{c.name}</div>
+              <p class="wk-course-line">{c.line}</p>
+              <a href={`/portfolio/${c.slug}/`} class="wk-course-link underline-draw">Course details ↗</a>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ INLINE CTA ═══ -->
+  <section class="wk-cta-inline">
+    <div class="wk-container" style="text-align:center;max-width:600px">
+      <p class="wk-cta-inline-line reveal-up">Know which courses you want? Let's build the weekend.</p>
+      <a href={QUOTE_URL} class="btn-green-glow wk-btn reveal-scale delay-1">Plan My Golf Weekend →</a>
+      <p class="wk-cta-inline-trust reveal-up delay-2">Free · No commitment · 24hr response</p>
+    </div>
+  </section>
+
+  <!-- ═══ LODGING ═══ -->
+  <section class="wk-section">
+    <div class="wk-container">
+      <div class="wk-header reveal-up">
+        <span class="sec-label">Golf weekend lodging — Graeagle</span>
+        <h2 class="wk-h2">Where the weekend<br/><em>stays</em></h2>
+      </div>
+      <div class="wk-lodging">
+        {lodging.map((l, i) => (
+          <div class={`wk-lodge-card glow-card reveal-${i===0?'left':'right'} delay-${i+1}`}>
+            <div class="wk-lodge-img-wrap">
+              <img src={l.img} alt={l.alt} loading="lazy" class="wk-lodge-img"/>
+              <div class="wk-lodge-fade"></div>
+              <span class="wk-lodge-tag">{l.tag}</span>
+            </div>
+            <div class="wk-lodge-body">
+              <div class="wk-lodge-name">{l.name}</div>
+              <p class="wk-lodge-desc">{l.desc}</p>
+              <a href={`/portfolio/${l.slug}/`} class="wk-course-link underline-draw">View property ↗</a>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Mobile-only CTA -->
+  <section class="wk-cta-inline wk-mobile-only">
+    <div class="wk-container" style="text-align:center;max-width:600px">
+      <p class="wk-cta-inline-line reveal-up">Ready to lock in the weekend?</p>
+      <a href={QUOTE_URL} class="btn-green-glow wk-btn reveal-scale delay-1">Plan My Golf Weekend →</a>
+      <p class="wk-cta-inline-trust reveal-up delay-2">Free · No commitment · 24hr response</p>
+    </div>
+  </section>
+
+  <!-- ═══ MIKE CTA ═══ -->
+  <section class="wk-section wk-dark">
+    <div class="wk-container wk-mike-wrap">
+      <div class="wk-mike-text reveal-left">
+        <span class="sec-label" style="color:#e8a850">Your Graeagle golf specialist</span>
+        <h2 class="wk-h2" style="color:#f5f0e8;margin-top:10px">Tell Mike your dates<br/><em>and he builds it.</em></h2>
+        <p class="wk-mike-body">20+ years building Graeagle golf weekends — from first-timers playing Graeagle Meadows to regulars who've done all 5 courses and want a new combination. Tell him your dates, group size, and budget. He sends a full itinerary back within 24 hours.</p>
+        <a href={QUOTE_URL} class="btn-green-glow wk-btn" style="margin-top:28px;display:inline-block">Plan My Golf Weekend →</a>
+        <p style="font-size:12px;color:rgba(245,240,232,.3);margin-top:12px;">Free · No commitment · 24hr response</p>
+      </div>
+      <div class="wk-mike-img reveal-right delay-2">
+        <img src="https://nv-for-hd-v1757363743.websitepro-cdn.com/wp-content/uploads/2026/01/skoogen-head-shot-1.png" alt="Mike Eskuchen — Graeagle Golf Weekend Specialist" loading="lazy"/>
+        <div class="wk-mike-badge">
+          <div class="wk-mike-name">Mike Eskuchen</div>
+          <div class="wk-mike-title">Golf Trip Specialist · 20+ years</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ FAQ ═══ -->
+  <section class="wk-section">
+    <div class="wk-container" style="max-width:760px">
+      <div class="wk-header reveal-up">
+        <span class="sec-label">Graeagle golf weekends — common questions</span>
+        <h2 class="wk-h2">Planning questions,<br/><em>answered</em></h2>
+      </div>
+      <div class="wk-faqs">
+        {faqSchema.mainEntity.map((q: any, i: number) => (
+          <details class={`wk-faq reveal-up delay-${i+1}`}>
+            <summary class="wk-faq-q">
+              {q.name}
+              <span class="wk-faq-icon">+</span>
+            </summary>
+            <p class="wk-faq-a">{q.acceptedAnswer.text}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ FINAL CTA ═══ -->
+  <section class="wk-cta-final wk-dark">
+    <div class="wk-cta-glow"></div>
+    <div class="wk-container" style="text-align:center;max-width:620px;position:relative;z-index:1">
+      <h2 class="wk-cta-h2 reveal-up">Tell us your dates.<br/><em>We'll build the weekend.</em></h2>
+      <p class="wk-cta-sub reveal-up delay-1">Group size, dates, which courses you want. Mike builds a full stay-and-play weekend package — tee times, lodging, itinerary — and sends it back within 24 hours. Free, no commitment.</p>
+      <div class="reveal-scale delay-2">
+        <a href={QUOTE_URL} class="btn-green-glow wk-btn">Plan My Golf Weekend →</a>
+        <p style="font-size:12px;color:rgba(245,240,232,.28);margin-top:14px;">2–20+ golfers · All 5 courses · 24hr quote · 4.8★</p>
+      </div>
+    </div>
+  </section>
+
+  <RelatedTrips client:load slug="weekend" type="course" showAll={true} max={3} />
+  <Footer />
+</Base>
+
+<style>
+:root{--wk-gold:#e8a850;--wk-green:#1a7a40;--wk-dark:#0d1a0e;--wk-text:#1c1208;--wk-muted:rgba(28,18,8,0.52);--wk-border:rgba(28,18,8,0.08);--wk-r:20px}
+.wk-container{max-width:1140px;margin:0 auto;padding:0 clamp(20px,6%,80px)}
+.wk-section{padding:clamp(72px,9vw,120px) 0;background:var(--page-bg,#f8f5f0)}
+.wk-dark{background:var(--wk-dark)!important}
+.wk-header{text-align:center;margin-bottom:clamp(40px,5vw,68px)}
+.wk-h2{font-family:'Playfair Display',serif;font-size:clamp(28px,4vw,50px);font-weight:500;color:var(--wk-text);line-height:1.1;margin:8px 0 0}
+.wk-h2 em{font-style:italic;color:var(--wk-green)}
+/* HERO */
+.wk-hero{position:relative;min-height:92vh;display:flex;align-items:flex-end;overflow:hidden}
+.wk-bg{position:absolute;inset:0;background-size:cover;background-position:center 40%;transform:scale(1.07);animation:wkZoom 10s ease forwards}
+@keyframes wkZoom{to{transform:scale(1)}}
+.wk-overlay{position:absolute;inset:0;background:linear-gradient(160deg,rgba(13,26,14,.05) 0%,rgba(13,26,14,.45) 40%,rgba(13,26,14,.96) 100%)}
+.wk-hero-inner{position:relative;z-index:2;padding:0 clamp(24px,8%,120px) clamp(60px,8vw,100px);max-width:820px}
+.wk-eyebrow{font-size:11px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:rgba(232,168,80,.82);margin:0 0 18px}
+.wk-h1{font-family:'Playfair Display',serif;font-size:clamp(46px,7.5vw,92px);font-weight:500;color:#f5f0e8;line-height:.98;margin:0 0 18px}
+.wk-h1 em{font-style:italic;color:var(--wk-gold)}
+.wk-sub{font-size:clamp(16px,2vw,21px);color:rgba(245,240,232,.62);line-height:1.55;margin:0 0 26px}
+.wk-pills{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:28px}
+.wk-pills span{font-size:12px;font-weight:600;color:rgba(245,240,232,.8);padding:6px 15px;background:rgba(255,255,255,.1);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.18);border-radius:100px}
+.wk-pills strong{color:var(--wk-gold)}
+.wk-ctas{display:flex;gap:20px;align-items:center;flex-wrap:wrap;margin-bottom:16px}
+.wk-btn{display:inline-block;padding:15px 36px;border-radius:100px;font-size:15px;font-weight:700;text-decoration:none}
+.wk-ghost{font-size:14px;font-weight:600;color:rgba(232,168,80,.9);text-decoration:none}
+.wk-trust{font-size:12px;color:rgba(245,240,232,.35);margin:0}
+.wk-floats{position:absolute;right:clamp(24px,5%,72px);bottom:clamp(56px,8vw,90px);display:flex;flex-direction:column;gap:10px;z-index:3}
+.wk-float{background:rgba(255,255,255,.1);backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,.2);border-radius:16px;padding:14px 22px;text-align:center;min-width:116px}
+.wk-float-val{font-family:'Playfair Display',serif;font-size:22px;color:var(--wk-gold);font-weight:400;line-height:1}
+.wk-float-lbl{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.14em;color:rgba(245,240,232,.45);margin-top:5px}
+/* ITINERARIES */
+.wk-itins{display:grid;grid-template-columns:1fr 1fr;gap:24px;max-width:780px;margin:0 auto}
+.wk-itin{border-radius:var(--wk-r);padding:32px 28px;border:1px solid var(--wk-border);background:#fff;box-shadow:0 2px 12px rgba(0,0,0,.04);position:relative;transition:all .35s}
+.wk-itin:hover{transform:translateY(-5px);box-shadow:0 20px 48px rgba(0,0,0,.1);border-color:rgba(232,168,80,.3)}
+.wk-itin-hot{border-color:rgba(232,168,80,.32)!important;background:rgba(232,168,80,.04)!important}
+.wk-hot-tag{position:absolute;top:-1px;left:50%;transform:translateX(-50%);background:var(--wk-gold);color:#1c1208;font-size:9px;font-weight:800;padding:4px 14px;border-radius:0 0 10px 10px;text-transform:uppercase;letter-spacing:.1em;white-space:nowrap}
+.wk-itin-label{font-family:'Playfair Display',serif;font-size:28px;color:var(--wk-green);font-weight:400;margin-bottom:4px}
+.wk-itin-nights{font-size:12px;font-weight:700;color:var(--wk-muted);text-transform:uppercase;letter-spacing:.08em;margin-bottom:4px}
+.wk-itin-rounds{font-size:13px;font-weight:600;color:var(--wk-text);margin-bottom:16px}
+.wk-itin-desc{font-size:13px;color:var(--wk-muted);line-height:1.75;margin:0 0 20px}
+.wk-itin-link{font-size:13px;font-weight:600;color:var(--wk-green);text-decoration:none}
+/* INCLUDED */
+.wk-included{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(240px,45vw),1fr));gap:20px}
+.wk-inc-card{border-radius:var(--wk-r);padding:28px 24px;border:1px solid rgba(245,240,232,.08);background:rgba(255,255,255,.06);transition:all .35s}
+.wk-inc-card:hover{transform:translateY(-4px);border-color:rgba(232,168,80,.2)}
+.wk-inc-icon{font-size:32px;margin-bottom:12px}
+.wk-inc-title{font-size:15px;font-weight:700;color:#f5f0e8;margin-bottom:8px}
+.wk-inc-body{font-size:13px;color:rgba(245,240,232,.65);line-height:1.75;margin:0}
+/* COURSES */
+.wk-courses{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(200px,45vw),1fr));gap:16px}
+.wk-course-card{border-radius:var(--wk-r);overflow:hidden;background:#fff;border:1px solid var(--wk-border);box-shadow:0 2px 10px rgba(0,0,0,.04);transition:all .35s}
+.wk-course-card:hover{transform:translateY(-5px);box-shadow:0 20px 48px rgba(0,0,0,.1);border-color:rgba(232,168,80,.3)}
+.wk-course-img-wrap{position:relative;height:160px;overflow:hidden}
+.wk-course-img{width:100%;height:100%;object-fit:cover;transition:transform 6s ease}
+.wk-course-card:hover .wk-course-img{transform:scale(1.06)}
+.wk-course-fade{position:absolute;inset:0;background:linear-gradient(to top,rgba(13,26,14,.75) 0%,transparent 55%)}
+.wk-course-badge{position:absolute;top:10px;left:10px;font-size:8px;font-weight:800;text-transform:uppercase;letter-spacing:.1em;background:rgba(232,168,80,.92);color:#0d1a0e;padding:3px 8px;border-radius:100px}
+.wk-course-body{padding:14px 16px 18px}
+.wk-course-name{font-family:'Playfair Display',serif;font-size:15px;color:var(--wk-text);margin-bottom:5px}
+.wk-course-line{font-size:12px;color:var(--wk-muted);line-height:1.6;margin:0 0 10px}
+.wk-course-link{font-size:11px;font-weight:600;color:var(--wk-green);text-decoration:none}
+/* INLINE CTA */
+.wk-cta-inline{padding:clamp(48px,6vw,72px) 0;background:rgba(26,122,64,.06);border-top:1px solid rgba(26,122,64,.1);border-bottom:1px solid rgba(26,122,64,.1)}
+.wk-cta-inline-line{font-size:18px;font-weight:600;color:var(--wk-text);margin:0 0 20px}
+.wk-cta-inline-trust{font-size:12px;color:var(--wk-muted);margin:14px 0 0}
+/* LODGING */
+.wk-lodging{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.wk-lodge-card{border-radius:var(--wk-r);overflow:hidden;border:1px solid var(--wk-border);background:#fff;box-shadow:0 2px 12px rgba(0,0,0,.04);transition:all .35s}
+.wk-lodge-card:hover{transform:translateY(-5px);box-shadow:0 20px 48px rgba(0,0,0,.1);border-color:rgba(232,168,80,.3)}
+.wk-lodge-img-wrap{position:relative;height:220px;overflow:hidden}
+.wk-lodge-img{width:100%;height:100%;object-fit:cover;transition:transform 6s ease}
+.wk-lodge-card:hover .wk-lodge-img{transform:scale(1.05)}
+.wk-lodge-fade{position:absolute;inset:0;background:linear-gradient(to top,rgba(13,26,14,.7) 0%,transparent 55%)}
+.wk-lodge-tag{position:absolute;top:12px;left:12px;font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:.1em;background:rgba(26,122,64,.9);color:#fff;padding:4px 10px;border-radius:100px}
+.wk-lodge-body{padding:20px 22px 24px}
+.wk-lodge-name{font-family:'Playfair Display',serif;font-size:17px;color:var(--wk-text);margin-bottom:8px}
+.wk-lodge-desc{font-size:13px;color:var(--wk-muted);line-height:1.7;margin:0 0 14px}
+/* MIKE */
+.wk-mike-wrap{display:grid;grid-template-columns:1fr 420px;gap:72px;align-items:center}
+.wk-mike-body{font-size:15px;color:rgba(245,240,232,.72);line-height:1.8;margin:16px 0 0}
+.wk-mike-img{position:relative;border-radius:22px;overflow:hidden;box-shadow:0 32px 80px rgba(0,0,0,.45)}
+.wk-mike-img img{width:100%;height:480px;object-fit:cover;object-position:top;display:block}
+.wk-mike-badge{position:absolute;bottom:20px;left:20px;right:20px;background:rgba(13,26,14,.88);backdrop-filter:blur(14px);border:1px solid rgba(232,168,80,.22);border-radius:14px;padding:14px 18px}
+.wk-mike-name{font-family:'Playfair Display',serif;font-size:18px;color:#f5f0e8;font-weight:400;margin-bottom:4px}
+.wk-mike-title{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:rgba(232,168,80,.8)}
+/* FAQ */
+.wk-faqs{display:flex;flex-direction:column}
+.wk-faq{border-bottom:1px solid var(--wk-border)}
+.wk-faq[open]{background:rgba(232,168,80,.03);border-radius:12px;border-color:rgba(232,168,80,.22)}
+.wk-faq-q{font-size:15px;font-weight:600;color:var(--wk-text);padding:20px 0;cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:16px}
+.wk-faq-q::-webkit-details-marker{display:none}
+.wk-faq[open] .wk-faq-q{color:var(--wk-green)}
+.wk-faq-icon{font-size:24px;color:var(--wk-gold);flex-shrink:0;transition:transform .3s}
+.wk-faq[open] .wk-faq-icon{transform:rotate(45deg)}
+.wk-faq-a{font-size:14px;color:var(--wk-muted);line-height:1.82;padding:0 0 20px;margin:0}
+/* FINAL CTA */
+.wk-cta-final{padding:clamp(80px,10vw,132px) 0;position:relative;overflow:hidden}
+.wk-cta-glow{position:absolute;width:720px;height:720px;border-radius:50%;background:radial-gradient(circle,rgba(26,122,64,.18) 0%,transparent 70%);top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none}
+.wk-cta-h2{font-family:'Playfair Display',serif;font-size:clamp(30px,5.5vw,56px);color:#f5f0e8;font-weight:500;line-height:1.15;margin:0 0 18px}
+.wk-cta-h2 em{color:var(--wk-gold);font-style:italic}
+.wk-cta-sub{font-size:16px;color:rgba(245,240,232,.76);line-height:1.75;margin:0 0 36px}
+/* MOBILE */
+.wk-mobile-only{display:none}
+@media(max-width:900px){
+  .wk-hero{min-height:100svh}
+  .wk-floats{display:none}
+  .wk-courses{grid-template-columns:1fr 1fr}
+  .wk-lodging{grid-template-columns:1fr}
+  .wk-mike-wrap{grid-template-columns:1fr}
+  .wk-mike-img{display:none}
+  .wk-hero-inner{display:flex;flex-direction:column}
+  .wk-eyebrow{order:1}
+  .wk-h1{order:2}
+  .wk-ctas{order:3;margin-bottom:12px}
+  .wk-trust{order:4;margin-bottom:16px}
+  .wk-sub{order:5;font-size:15px;margin-bottom:16px}
+  .wk-pills{order:6;margin-bottom:0}
+  .wk-section{padding:clamp(48px,8vw,72px) 0}
+  .wk-cta-inline{padding:clamp(36px,5vw,56px) 0}
+  .wk-mobile-only{display:block}
+  .wk-itins{grid-template-columns:1fr}
+}
+@media(max-width:540px){
+  .wk-courses{grid-template-columns:1fr}
+  .wk-included{grid-template-columns:1fr 1fr}
+}
+</style>

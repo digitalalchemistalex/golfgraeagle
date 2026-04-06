@@ -1,0 +1,358 @@
+---
+export const prerender = true;
+import Base from '../layouts/Base.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import RelatedTrips from '../components/RelatedTrips.tsx';
+import { fetchTripStats } from '../lib/tripStats';
+const { minPrice, maxPrice } = await fetchTripStats();
+
+const title = "Corporate Golf Outing in Graeagle, CA | Group Packages & Event Planning";
+const description = "Corporate golf outings in Graeagle — 5 championship courses, groups of 12–200, clean invoicing, and a planner who handles everything. Free proposal in 24 hours.";
+
+const faqSchema = {
+  "@context":"https://schema.org","@type":"FAQPage",
+  "mainEntity":[
+    {"@type":"Question","name":"How many people can GolfGraeagle handle for a corporate golf outing?","acceptedAnswer":{"@type":"Answer","text":"GolfGraeagle handles corporate groups from 12 to 200+ golfers. Smaller groups (12–40) typically play one or two courses. Larger events (50–200+) use consecutive tee time blocks across multiple courses, shotgun starts, and tournament scoring."}},
+    {"@type":"Question","name":"Can GolfGraeagle provide a single invoice for a corporate golf event?","acceptedAnswer":{"@type":"Answer","text":"Yes. Every corporate package includes a single clean invoice covering tee times, lodging, and any coordinated dining. GolfGraeagle works directly with all vendors so the organizer deals with one contact and one invoice."}},
+    {"@type":"Question","name":"Which Graeagle courses work best for corporate golf events?","acceptedAnswer":{"@type":"Answer","text":"Grizzly Ranch (Golf Digest Top 100) and Nakoma Dragon (Golf World Top 75) are the prestige anchor rounds for corporate groups. Graeagle Meadows and Plumas Pines work well for mixed-handicap groups or as a second-day option. GolfGraeagle sequences courses based on your group's skill mix."}},
+    {"@type":"Question","name":"Can GolfGraeagle arrange tournament scoring and banquet dinners for corporate events?","acceptedAnswer":{"@type":"Answer","text":"Yes. Tournament formats including scrambles, net/gross stroke play, and skins games can be arranged. Banquet dinners and private group dining at venues like the Grizzly Grill or Sardine Lake Resort can be coordinated as part of the package."}},
+    {"@type":"Question","name":"How much does a corporate golf outing in Graeagle cost?","acceptedAnswer":{"@type":"Answer","text":"Real completed corporate packages range from $865 to $1,150 per person for a 2-night, multi-course event with lodging. Final pricing depends on group size, courses selected, lodging choice, and whether tournament scoring and banquet dining are included. Request a proposal for exact pricing."}},
+  ]
+};
+
+const breadcrumbSchema = {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
+  {"@type":"ListItem","position":1,"name":"Home","item":"https://golfgraeagle.com/"},
+  {"@type":"ListItem","position":2,"name":"Corporate Golf Outing Graeagle","item":"https://golfgraeagle.com/corporate-golf-outing-graeagle/"}
+]};
+
+const orgSchema = {"@context":"https://schema.org","@graph":[
+  {"@type":["TravelAgency","Organization"],"@id":"https://golfgraeagle.com/#organization","name":"GolfGraeagle.com","url":"https://golfgraeagle.com",
+    "aggregateRating":{"@type":"AggregateRating","ratingValue":"4.8","reviewCount":"672","bestRating":"5"}},
+  {"@type":"WebPage","url":"https://golfgraeagle.com/corporate-golf-outing-graeagle/","name":title}
+]};
+
+const serviceSchema = {
+  "@context":"https://schema.org","@type":"Service",
+  "name":"Corporate Golf Outings in Graeagle, California",
+  "description":"Corporate golf event planning in Graeagle, CA — championship courses, tournament coordination, group lodging, and single-invoice billing for groups of 12–200+.",
+  "provider":{"@type":"TravelAgency","@id":"https://golfgraeagle.com/#organization"},
+  "areaServed":{"@type":"Place","name":"Graeagle, California"},
+  "serviceType":"Corporate Golf Event Planning"
+};
+
+const courses = [
+  { name:'Grizzly Ranch', slug:'grizzly-ranch-golf-packages', accolade:'Golf Digest Top 100', img:'/wp-images/grizzly-ranch-hero.webp', alt:'Grizzly Ranch Golf Club — Golf Digest Top 100, corporate golf outing Graeagle', line:'The prestige round. Golf Digest Top 100. Clients remember this one.' },
+  { name:'Nakoma Dragon', slug:'nakoma-dragon-golf-packages', accolade:'Golf World Top 75', img:'/wp-images/nakoma-dragon-feather-river.webp', alt:'Nakoma Dragon Golf Course — Frank Lloyd Wright clubhouse, corporate golf Graeagle', line:'Frank Lloyd Wright clubhouse. The conversation piece before the first tee.' },
+  { name:'Plumas Pines', slug:'plumas-pines-golf-packages', accolade:'Top 5 Best Value Sierra Nevada', img:'/wp-images/plumas-pines-hero.webp', alt:'Plumas Pines Golf Resort — corporate golf outing Graeagle CA', line:'Mixed-handicap friendly. On-course lodging. Perfect second-day opener.' },
+];
+
+const lodging = [
+  { name:'River Pines Resort', slug:'river-pines-resort-graeagle-ca', img:'/wp-images/DJI_0949-Edit.webp', alt:'River Pines Resort — corporate golf lodging Graeagle CA', tag:'Best for Large Corporate Groups', desc:'Rooms for groups of 12–60. The Roadhouse on-site. Casino. No one needs to leave the property.' },
+  { name:'Chalet View Lodge', slug:'chalet-view-lodge-graeagle-ca', img:'/wp-images/ChaletView-02.webp', alt:'Chalet View Lodge — corporate golf retreat Graeagle CA', tag:'Private Retreat Feel', desc:'10 forested acres, spa, Eureka Peak Brewing on-site. The right setting for client entertainment.' },
+];
+
+const included = [
+  { icon:'📋', title:'Tournament coordination', body:'Scrambles, net/gross, skins — formats arranged with scoring. Shotgun starts for groups of 20+.' },
+  { icon:'🧾', title:'Single invoice', body:'One contact, one invoice covering tee times, lodging, and coordinated dining. Zero vendor management.' },
+  { icon:'⛳', title:'Consecutive tee time blocks', body:'Your entire group plays together. We secure blocks directly with every pro shop.' },
+  { icon:'🍽', title:'Group dining arranged', body:'Private dinners at Grizzly Grill, Sardine Lake, or Iron Door — coordinated as part of your package.' },
+];
+
+const QUOTE_URL = '/request-a-quote/?groupType=corporate&ref=corporate-landing';
+---
+
+<Base
+  title={title}
+  description={description}
+  ogType="website"
+  schema={[orgSchema, faqSchema, breadcrumbSchema, serviceSchema]}
+  canonical="https://golfgraeagle.com/corporate-golf-outing-graeagle/"
+  ogImage="https://golfgraeagle.com/wp-images/2024-07-20-1.webp"
+  bodyClass="light-page"
+>
+  <Nav />
+
+  <!-- ═══ HERO ═══ -->
+  <section class="co-hero">
+    <div class="co-bg" style="background-image:url(/wp-images/2024-07-20-1.webp)"></div>
+    <div class="co-overlay"></div>
+    <div class="co-hero-inner">
+      <p class="co-eyebrow reveal-up">Corporate Golf Outing · Graeagle, California · 12 to 200+ Golfers</p>
+      <h1 class="co-h1 reveal-up delay-1">One invoice.<br/><em>Zero logistics headaches.</em></h1>
+      <p class="co-sub speakable reveal-up delay-2">Championship golf in the Sierra Nevada — Golf Digest Top 100, Frank Lloyd Wright clubhouse, consecutive tee time blocks. GolfGraeagle handles every detail so you focus on your clients and team.</p>
+      <div class="co-pills reveal-up delay-3">
+        <span>12–200+ golfers</span>
+        <span>Tournament scoring</span>
+        <span>Single invoice</span>
+        <span>24hr proposal</span>
+      </div>
+      <div class="co-ctas reveal-up delay-4">
+        <a href={QUOTE_URL} class="btn-green-glow co-btn">Request a Group Proposal →</a>
+        <a href="/trips/" class="co-ghost underline-draw">See real event pricing ↗</a>
+      </div>
+      <p class="co-trust reveal-up delay-5">Free · No commitment · Proposal within 24 hours</p>
+    </div>
+    <div class="co-floats reveal-fade delay-5">
+      <div class="co-float"><div class="co-float-val">200+</div><div class="co-float-lbl">Max group</div></div>
+      <div class="co-float"><div class="co-float-val">4.8★</div><div class="co-float-lbl">Avg Rating</div></div>
+      <div class="co-float"><div class="co-float-val">1</div><div class="co-float-lbl">Invoice</div></div>
+    </div>
+  </section>
+
+  <!-- ═══ WHAT'S INCLUDED ═══ -->
+  <section class="co-section">
+    <div class="co-container">
+      <div class="co-header reveal-up">
+        <span class="sec-label">Corporate golf event planning — what we handle</span>
+        <h2 class="co-h2">Everything in your<br/><em>corporate golf package</em></h2>
+      </div>
+      <div class="co-included">
+        {included.map((item, i) => (
+          <div class={`co-inc-card glow-card reveal-scale delay-${i+1}`}>
+            <div class="co-inc-icon">{item.icon}</div>
+            <div class="co-inc-title">{item.title}</div>
+            <p class="co-inc-body">{item.body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ COURSES ═══ -->
+  <section class="co-section co-dark">
+    <div class="co-container">
+      <div class="co-header reveal-up">
+        <span class="sec-label" style="color:#e8a850">Championship golf for corporate groups</span>
+        <h2 class="co-h2" style="color:#f5f0e8">The courses your clients<br/><em>will talk about</em></h2>
+      </div>
+      <div class="co-courses">
+        {courses.map((c, i) => (
+          <div class={`co-course-card reveal-${i%2===0?'left':'right'} delay-${i+1}`}>
+            <div class="co-course-img-wrap">
+              <img src={c.img} alt={c.alt} loading="lazy" class="co-course-img"/>
+              <div class="co-course-fade"></div>
+              <span class="co-course-badge">{c.accolade}</span>
+            </div>
+            <div class="co-course-body">
+              <div class="co-course-name">{c.name}</div>
+              <p class="co-course-line">{c.line}</p>
+              <a href={`/portfolio/${c.slug}/`} class="co-course-link underline-draw">Course details ↗</a>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ INLINE CTA ═══ -->
+  <section class="co-cta-inline">
+    <div class="co-container" style="text-align:center;max-width:600px">
+      <p class="co-cta-inline-line reveal-up">Ready to lock in tee times and lodging for your group?</p>
+      <a href={QUOTE_URL} class="btn-green-glow co-btn reveal-scale delay-1">Request a Group Proposal →</a>
+      <p class="co-cta-inline-trust reveal-up delay-2">Free · Single invoice · 24hr response</p>
+    </div>
+  </section>
+
+  <!-- ═══ LODGING ═══ -->
+  <section class="co-section">
+    <div class="co-container">
+      <div class="co-header reveal-up">
+        <span class="sec-label">Corporate golf lodging — Graeagle</span>
+        <h2 class="co-h2">Where the group<br/><em>stays</em></h2>
+      </div>
+      <div class="co-lodging">
+        {lodging.map((l, i) => (
+          <div class={`co-lodge-card glow-card reveal-${i===0?'left':'right'} delay-${i+1}`}>
+            <div class="co-lodge-img-wrap">
+              <img src={l.img} alt={l.alt} loading="lazy" class="co-lodge-img"/>
+              <div class="co-lodge-fade"></div>
+              <span class="co-lodge-tag">{l.tag}</span>
+            </div>
+            <div class="co-lodge-body">
+              <div class="co-lodge-name">{l.name}</div>
+              <p class="co-lodge-desc">{l.desc}</p>
+              <a href={`/portfolio/${l.slug}/`} class="co-course-link underline-draw">View property ↗</a>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ MIKE CTA ═══ -->
+  <section class="co-cta-inline co-mobile-only">
+    <div class="co-container" style="text-align:center;max-width:600px">
+      <p class="co-cta-inline-line reveal-up">Courses and lodging sorted. Ready for the proposal?</p>
+      <a href={QUOTE_URL} class="btn-green-glow co-btn reveal-scale delay-1">Request a Group Proposal →</a>
+      <p class="co-cta-inline-trust reveal-up delay-2">Free · No commitment · 24hr response</p>
+    </div>
+  </section>
+
+  <section class="co-section co-dark">
+    <div class="co-container co-mike-wrap">
+      <div class="co-mike-text reveal-left">
+        <span class="sec-label" style="color:#e8a850">Your Graeagle golf specialist</span>
+        <h2 class="co-h2" style="color:#f5f0e8;margin-top:10px">Tell Mike about<br/><em>your event.</em></h2>
+        <p class="co-mike-body">20+ years coordinating golf events in Graeagle — from 12-person client days to 200-person company outings. He knows which courses to sequence, how to structure consecutive tee time blocks, and which banquet options work for different group sizes. One submission, full proposal back in 24 hours.</p>
+        <a href={QUOTE_URL} class="btn-green-glow co-btn" style="margin-top:28px;display:inline-block">Request a Group Proposal →</a>
+        <p style="font-size:12px;color:rgba(245,240,232,.3);margin-top:12px;">Free · Single invoice · 24hr response</p>
+      </div>
+      <div class="co-mike-img reveal-right delay-2">
+        <img src="https://nv-for-hd-v1757363743.websitepro-cdn.com/wp-content/uploads/2026/01/skoogen-head-shot-1.png" alt="Mike Eskuchen — Corporate Golf Event Specialist, Graeagle" loading="lazy"/>
+        <div class="co-mike-badge">
+          <div class="co-mike-name">Mike Eskuchen</div>
+          <div class="co-mike-title">Golf Event Specialist · 20+ years</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ FAQ ═══ -->
+  <section class="co-section">
+    <div class="co-container" style="max-width:760px">
+      <div class="co-header reveal-up">
+        <span class="sec-label">Corporate golf outings — common questions</span>
+        <h2 class="co-h2">Planning questions,<br/><em>answered</em></h2>
+      </div>
+      <div class="co-faqs">
+        {faqSchema.mainEntity.map((q: any, i: number) => (
+          <details class={`co-faq reveal-up delay-${i+1}`}>
+            <summary class="co-faq-q">
+              {q.name}
+              <span class="co-faq-icon">+</span>
+            </summary>
+            <p class="co-faq-a">{q.acceptedAnswer.text}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ FINAL CTA ═══ -->
+  <section class="co-cta-final co-dark">
+    <div class="co-cta-glow"></div>
+    <div class="co-container" style="text-align:center;max-width:640px;position:relative;z-index:1">
+      <h2 class="co-cta-h2 reveal-up">12 golfers or 200.<br/><em>One proposal. One invoice.</em></h2>
+      <p class="co-cta-sub reveal-up delay-1">Tell us your headcount, dates, and event goals. Mike builds a full corporate golf proposal — courses, lodging, tournament format, group dining — and sends it back within 24 hours.</p>
+      <div class="reveal-scale delay-2">
+        <a href={QUOTE_URL} class="btn-green-glow co-btn">Request a Group Proposal →</a>
+        <p style="font-size:12px;color:rgba(245,240,232,.28);margin-top:14px;">Groups 12–200+ · Tournament scoring · Single invoice · 4.8★</p>
+      </div>
+    </div>
+  </section>
+
+  <RelatedTrips client:load slug="corporate" type="course" showAll={true} max={3} />
+  <Footer />
+</Base>
+
+<style>
+:root{--co-gold:#e8a850;--co-green:#1a7a40;--co-dark:#0d1a0e;--co-text:#1c1208;--co-muted:rgba(28,18,8,0.52);--co-border:rgba(28,18,8,0.08);--co-r:20px}
+.co-container{max-width:1140px;margin:0 auto;padding:0 clamp(20px,6%,80px)}
+.co-section{padding:clamp(72px,9vw,120px) 0;background:var(--page-bg,#f8f5f0)}
+.co-dark{background:var(--co-dark)!important}
+.co-header{text-align:center;margin-bottom:clamp(40px,5vw,68px)}
+.co-h2{font-family:'Playfair Display',serif;font-size:clamp(28px,4vw,50px);font-weight:500;color:var(--co-text);line-height:1.1;margin:8px 0 0}
+.co-h2 em{font-style:italic;color:var(--co-green)}
+/* HERO */
+.co-hero{position:relative;min-height:92vh;display:flex;align-items:flex-end;overflow:hidden}
+.co-bg{position:absolute;inset:0;background-size:cover;background-position:center 30%;transform:scale(1.07);animation:coZoom 10s ease forwards}
+@keyframes coZoom{to{transform:scale(1)}}
+.co-overlay{position:absolute;inset:0;background:linear-gradient(160deg,rgba(13,26,14,.05) 0%,rgba(13,26,14,.5) 45%,rgba(13,26,14,.97) 100%)}
+.co-hero-inner{position:relative;z-index:2;padding:0 clamp(24px,8%,120px) clamp(60px,8vw,100px);max-width:820px}
+.co-eyebrow{font-size:11px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:rgba(232,168,80,.82);margin:0 0 18px}
+.co-h1{font-family:'Playfair Display',serif;font-size:clamp(46px,7.5vw,92px);font-weight:500;color:#f5f0e8;line-height:.98;margin:0 0 18px}
+.co-h1 em{font-style:italic;color:var(--co-gold)}
+.co-sub{font-size:clamp(16px,2vw,21px);color:rgba(245,240,232,.62);line-height:1.55;margin:0 0 26px}
+.co-pills{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:28px}
+.co-pills span{font-size:12px;font-weight:600;color:rgba(245,240,232,.8);padding:6px 15px;background:rgba(255,255,255,.1);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.18);border-radius:100px}
+.co-ctas{display:flex;gap:20px;align-items:center;flex-wrap:wrap;margin-bottom:16px}
+.co-btn{display:inline-block;padding:15px 36px;border-radius:100px;font-size:15px;font-weight:700;text-decoration:none}
+.co-ghost{font-size:14px;font-weight:600;color:rgba(232,168,80,.9);text-decoration:none}
+.co-trust{font-size:12px;color:rgba(245,240,232,.35);margin:0}
+.co-floats{position:absolute;right:clamp(24px,5%,72px);bottom:clamp(56px,8vw,90px);display:flex;flex-direction:column;gap:10px;z-index:3}
+.co-float{background:rgba(255,255,255,.1);backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,.2);border-radius:16px;padding:14px 22px;text-align:center;min-width:116px}
+.co-float-val{font-family:'Playfair Display',serif;font-size:26px;color:var(--co-gold);font-weight:400;line-height:1}
+.co-float-lbl{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.14em;color:rgba(245,240,232,.45);margin-top:5px}
+/* INCLUDED */
+.co-included{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(240px,45vw),1fr));gap:20px}
+.co-inc-card{border-radius:var(--co-r);padding:28px 24px;border:1px solid var(--co-border);background:#fff;box-shadow:0 2px 12px rgba(0,0,0,.04);transition:all .35s}
+.co-inc-card:hover{transform:translateY(-5px);box-shadow:0 20px 48px rgba(0,0,0,.09);border-color:rgba(232,168,80,.3)}
+.co-inc-icon{font-size:32px;margin-bottom:12px}
+.co-inc-title{font-size:15px;font-weight:700;color:var(--co-text);margin-bottom:8px}
+.co-inc-body{font-size:13px;color:var(--co-muted);line-height:1.75;margin:0}
+/* COURSES */
+.co-courses{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.co-course-card{border-radius:var(--co-r);overflow:hidden;background:rgba(255,255,255,.06);border:1px solid rgba(245,240,232,.08);transition:all .35s}
+.co-course-card:hover{transform:translateY(-5px);box-shadow:0 24px 56px rgba(0,0,0,.4)}
+.co-course-img-wrap{position:relative;height:200px;overflow:hidden}
+.co-course-img{width:100%;height:100%;object-fit:cover;transition:transform 6s ease}
+.co-course-card:hover .co-course-img{transform:scale(1.06)}
+.co-course-fade{position:absolute;inset:0;background:linear-gradient(to top,rgba(13,26,14,.9) 0%,transparent 55%)}
+.co-course-badge{position:absolute;top:12px;left:12px;font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:.1em;background:rgba(232,168,80,.92);color:#0d1a0e;padding:4px 10px;border-radius:100px}
+.co-course-body{padding:18px 20px 22px}
+.co-course-name{font-family:'Playfair Display',serif;font-size:17px;color:#f5f0e8;margin-bottom:6px}
+.co-course-line{font-size:13px;color:rgba(245,240,232,.6);line-height:1.65;margin:0 0 14px}
+.co-course-link{font-size:12px;font-weight:600;color:var(--co-gold);text-decoration:none}
+/* INLINE CTA */
+.co-cta-inline{padding:clamp(48px,6vw,72px) 0;background:rgba(26,122,64,.06);border-top:1px solid rgba(26,122,64,.1);border-bottom:1px solid rgba(26,122,64,.1)}
+.co-cta-inline-line{font-size:18px;font-weight:600;color:var(--co-text);margin:0 0 20px}
+.co-cta-inline-trust{font-size:12px;color:var(--co-muted);margin:14px 0 0}
+/* LODGING */
+.co-lodging{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.co-lodge-card{border-radius:var(--co-r);overflow:hidden;border:1px solid var(--co-border);background:#fff;box-shadow:0 2px 12px rgba(0,0,0,.04);transition:all .35s}
+.co-lodge-card:hover{transform:translateY(-5px);box-shadow:0 20px 48px rgba(0,0,0,.1);border-color:rgba(232,168,80,.3)}
+.co-lodge-img-wrap{position:relative;height:220px;overflow:hidden}
+.co-lodge-img{width:100%;height:100%;object-fit:cover;transition:transform 6s ease}
+.co-lodge-card:hover .co-lodge-img{transform:scale(1.05)}
+.co-lodge-fade{position:absolute;inset:0;background:linear-gradient(to top,rgba(13,26,14,.7) 0%,transparent 55%)}
+.co-lodge-tag{position:absolute;top:12px;left:12px;font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:.1em;background:rgba(26,122,64,.9);color:#fff;padding:4px 10px;border-radius:100px}
+.co-lodge-body{padding:20px 22px 24px}
+.co-lodge-name{font-family:'Playfair Display',serif;font-size:17px;color:var(--co-text);margin-bottom:8px}
+.co-lodge-desc{font-size:13px;color:var(--co-muted);line-height:1.7;margin:0 0 14px}
+/* MIKE */
+.co-mike-wrap{display:grid;grid-template-columns:1fr 420px;gap:72px;align-items:center}
+.co-mike-body{font-size:15px;color:rgba(245,240,232,.72);line-height:1.8;margin:16px 0 0}
+.co-mike-img{position:relative;border-radius:22px;overflow:hidden;box-shadow:0 32px 80px rgba(0,0,0,.45)}
+.co-mike-img img{width:100%;height:480px;object-fit:cover;object-position:top;display:block}
+.co-mike-badge{position:absolute;bottom:20px;left:20px;right:20px;background:rgba(13,26,14,.88);backdrop-filter:blur(14px);border:1px solid rgba(232,168,80,.22);border-radius:14px;padding:14px 18px}
+.co-mike-name{font-family:'Playfair Display',serif;font-size:18px;color:#f5f0e8;font-weight:400;margin-bottom:4px}
+.co-mike-title{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:rgba(232,168,80,.8)}
+/* FAQ */
+.co-faqs{display:flex;flex-direction:column}
+.co-faq{border-bottom:1px solid var(--co-border)}
+.co-faq[open]{background:rgba(232,168,80,.03);border-radius:12px;border-color:rgba(232,168,80,.22)}
+.co-faq-q{font-size:15px;font-weight:600;color:var(--co-text);padding:20px 0;cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:16px}
+.co-faq-q::-webkit-details-marker{display:none}
+.co-faq[open] .co-faq-q{color:var(--co-green)}
+.co-faq-icon{font-size:24px;color:var(--co-gold);flex-shrink:0;transition:transform .3s}
+.co-faq[open] .co-faq-icon{transform:rotate(45deg)}
+.co-faq-a{font-size:14px;color:var(--co-muted);line-height:1.82;padding:0 0 20px;margin:0}
+/* FINAL CTA */
+.co-cta-final{padding:clamp(80px,10vw,132px) 0;position:relative;overflow:hidden}
+.co-cta-glow{position:absolute;width:720px;height:720px;border-radius:50%;background:radial-gradient(circle,rgba(26,122,64,.18) 0%,transparent 70%);top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none}
+.co-cta-h2{font-family:'Playfair Display',serif;font-size:clamp(30px,5.5vw,56px);color:#f5f0e8;font-weight:500;line-height:1.15;margin:0 0 18px}
+.co-cta-h2 em{color:var(--co-gold);font-style:italic}
+.co-cta-sub{font-size:16px;color:rgba(245,240,232,.76);line-height:1.75;margin:0 0 36px}
+/* MOBILE */
+.co-mobile-only{display:none}
+@media(max-width:900px){
+  .co-hero{min-height:100svh}
+  .co-floats{display:none}
+  .co-courses{grid-template-columns:1fr}
+  .co-lodging{grid-template-columns:1fr}
+  .co-mike-wrap{grid-template-columns:1fr}
+  .co-mike-img{display:none}
+  .co-hero-inner{display:flex;flex-direction:column}
+  .co-eyebrow{order:1}
+  .co-h1{order:2}
+  .co-ctas{order:3;margin-bottom:12px}
+  .co-trust{order:4;margin-bottom:16px}
+  .co-sub{order:5;font-size:15px;margin-bottom:16px}
+  .co-pills{order:6;margin-bottom:0}
+  .co-section{padding:clamp(48px,8vw,72px) 0}
+  .co-cta-inline{padding:clamp(36px,5vw,56px) 0}
+  .co-mobile-only{display:block}
+}
+@media(max-width:540px){.co-included{grid-template-columns:1fr 1fr}}
+</style>
