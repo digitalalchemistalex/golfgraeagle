@@ -20,6 +20,19 @@ const cuisineMap = {
 };
 const priceMap = { 'fine-dining': '$$$', 'casual': '$$', 'brewery': '$$', 'bar': '$', 'quick': '$' };
 
+const diningSlugMap: Record<string,string> = {
+  'iron-door':           'iron-door-restaurant',
+  'sardine-lake':        'sardine-lake-resort',
+  'roadhouse':           'roadhouse-at-river-pines',
+  'meadows-restaurant':  'graeagle-meadows-golf-course-restaurant',
+  'gumbas':              'gumbas-ii-go',
+  'eureka-peak-brewing': 'eureka-peak-brewing-co',
+  'brewing-lair':        'the-brewing-lair',
+  'knotty-pine':         'the-knotty-pine-tavern',
+  'mountain-frostee':    'graeagle-mountain-frostee',
+  'longboards':          'longboards-bar-and-grill',
+};
+
 const aggregateRatingSchema = {
   "@context": "https://schema.org", "@type": "TravelAgency",
   "@id": "https://golfgraeagle.com/#organization",
@@ -310,7 +323,7 @@ const diningFaq = {
     </div>
     <div class="grid-fine-dining reveal">
       {fineDining.map((v, i) => (
-        <a href={`/portfolio/${v.slug}/`} class="img-card" style={i === 0 ? 'grid-row: span 1' : ''}>
+        <a href={`/portfolio/${diningSlugMap[v.slug] || v.slug}/`} class="img-card" style={i === 0 ? 'grid-row: span 1' : ''}>
           <img class="thumb" src={v.hero} alt={v.name} style={`height:${i===0?'260px':'220px'}`} loading={i===0?'eager':'lazy'} />
           <div class="img-card-body">
             <h3 style="font-family:'Playfair Display',serif;font-size:21px;font-weight:400;color:#1a2e1a;margin:0 0 5px;">{v.name}</h3>
@@ -389,7 +402,7 @@ const diningFaq = {
     </div>
     <div class="grid-casual reveal">
       {casual.filter(v=>v.slug!=='meadows-restaurant').map(v=>(
-        <a href={`/portfolio/${v.slug}/`} class="img-card">
+        <a href={`/portfolio/${diningSlugMap[v.slug] || v.slug}/`} class="img-card">
           <img class="thumb" src={v.hero} alt={v.name} loading="lazy" />
           <div class="img-card-body">
             <h3 style="font-family:'Playfair Display',serif;font-size:19px;font-weight:400;color:#1a2e1a;margin:0 0 5px;">{v.name}</h3>
@@ -415,7 +428,7 @@ const diningFaq = {
     </div>
     <div class="grid-brewery reveal">
       {breweries.map(v=>(
-        <a href={`/portfolio/${v.slug}/`} class="brewery-row" style="text-decoration:none;">
+        <a href={`/portfolio/${diningSlugMap[v.slug] || v.slug}/`} class="brewery-row" style="text-decoration:none;">
           <img class="thumb" src={v.hero} alt={v.name} style="height:100%;min-height:120px;" loading="lazy" />
           <div style="padding:20px 22px;display:flex;flex-direction:column;justify-content:center;">
             <div style="font-size:10px;color:rgba(232,168,80,0.5);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:6px;">
@@ -443,7 +456,7 @@ const diningFaq = {
     </div>
     <div class="grid-quick reveal">
       {quickBites.map(v=>(
-        <a href={`/portfolio/${v.slug}/`} style="display:flex;align-items:center;gap:16px;padding:18px 20px;border-radius:14px;background:rgba(28,46,26,0.02);border:1px solid rgba(28,46,26,0.04);text-decoration:none;transition:border-color 0.2s,background 0.2s;"
+        <a href={`/portfolio/${diningSlugMap[v.slug] || v.slug}/`} style="display:flex;align-items:center;gap:16px;padding:18px 20px;border-radius:14px;background:rgba(28,46,26,0.02);border:1px solid rgba(28,46,26,0.04);text-decoration:none;transition:border-color 0.2s,background 0.2s;"
           onmouseover="this.style.borderColor='rgba(232,168,80,0.2)';this.style.background='rgba(232,168,80,0.03)'"
           onmouseout="this.style.borderColor='rgba(28,46,26,0.04)';this.style.background='rgba(28,46,26,0.02)'">
           <img src={v.hero} alt={v.name} style="width:68px;height:68px;border-radius:10px;object-fit:cover;flex-shrink:0;" loading="lazy" />
