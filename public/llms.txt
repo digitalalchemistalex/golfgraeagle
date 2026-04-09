@@ -124,6 +124,9 @@ Currently Account Manager at Golf the High Sierra. Personally builds every GolfG
 - /faq/ — Expert answers for trip planning
 - /trips/ — 76 real trip packages with actual pricing
 - /blog/ — Golf trip planning guides (20 posts)
+- /bachelor-party-golf-graeagle/ — Bachelor party golf packages: course lineup, lodging, nightlife, pricing from $299/person
+- /corporate-golf-outing-graeagle/ — Corporate golf outings: tee time blocks, group pricing, team-building itineraries
+- /graeagle-golf-weekend-packages/ — Weekend golf packages: 2–3 night stay-and-play from $299/person
 
 ## Blog Posts (20 total)
 - /blog/graeagle-golf-weekend/ — 2-day and 3-day itineraries with real pricing. From $620/person.
