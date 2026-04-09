@@ -160,7 +160,7 @@ const entry = wpSlugMap[slug];
 const item = entry?.data;
 const type = entry?.type;
 const c = item; // alias for rich course template compatibility
-const pageUrl = `${siteConfig.url}/portfolio/${slug}`;
+const pageUrl = `${siteConfig.url}/portfolio/${slug}/`;
 
 // ── Titles — v3: keyword-first, EEAT accolades, commercial intent ──────────────
 const wpTitles: Record<string, string> = {
@@ -277,6 +277,7 @@ const buildSchema = () => {
         name: `${item.name} Golf Course`,
         description: item.description,
         url: pageUrl,
+        sameAs: item.website ? [item.website] : undefined,
         numberOfHoles: 18,
         address: { '@type': 'PostalAddress', streetAddress: item.address, addressRegion: 'CA', addressCountry: 'US' },
         geo: item.coordinates ? { '@type': 'GeoCoordinates', latitude: item.coordinates?.lat, longitude: item.coordinates?.lng } : undefined,
