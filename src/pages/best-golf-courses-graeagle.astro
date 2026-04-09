@@ -130,7 +130,7 @@ ogType="article"
         <tbody>
           {courses.map(c => (
             <tr>
-              <td><a href={`/portfolio/${c.slug === "nakoma-dragon" ? "nakoma-dragon-golf-packages" : c.slug + "-golf-packages"}`} class="name" style="color:#1a2e1a;text-decoration:none;font-weight:500;">{c.name}</a><div style="font-size:11px;color:rgba(28,46,26,0.28);margin-top:2px;">{c.designer}, {c.opened}</div></td>
+              <td><a href={`/portfolio/${c.slug === "nakoma-dragon" ? "nakoma-dragon-golf-packages" : c.slug + "-golf-packages"}/`} class="name" style="color:#1a2e1a;text-decoration:none;font-weight:500;">{c.name}</a><div style="font-size:11px;color:rgba(28,46,26,0.28);margin-top:2px;">{c.designer}, {c.opened}</div></td>
               <td>{c.par}</td>
               <td>{c.yards.toLocaleString()}</td>
               <td style="color:#e8a850;font-weight:500;">{c.slope}</td>

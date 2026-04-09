@@ -119,6 +119,7 @@ const homeFaqSchema = {
 const courseAccolades = {'graeagle-meadows':'The Valley Classic','whitehawk-ranch':'Top 20 California','plumas-pines':'Top 5 Best Value','grizzly-ranch':'Golf Digest Top 100','nakoma-dragon':'Golf World Top 75'};
 const courseMustPlay = {'whitehawk-ranch':true,'grizzly-ranch':true,'nakoma-dragon':true};
 const lodgingMeta = {'townhomes-at-plumas-pines':{badge:'Great for Large Groups',detail:'Full kitchens · On the course · 2–4 BR units'},'river-pines-resort':{badge:'Great for Groups',detail:'On-site dining · Pool & hot tub · 40+ years family-owned'},'chalet-view-lodge':{badge:'Great Amenities',detail:'Spa · Brewery on-site · 9-hole exec course'},'inn-at-nakoma':{badge:'Most Unique',detail:'Frank Lloyd Wright lodge · Walk to The Dragon'}};
+const lodgingSlugMap: Record<string,string> = {'river-pines-resort':'river-pines-resort-graeagle-ca','chalet-view-lodge':'chalet-view-lodge-graeagle-ca','inn-at-nakoma':'the-inn-at-nakoma-clio-ca','townhomes-at-plumas-pines':'the-townhomes-at-plumas-pines'};
 ---
 <Base
   title="Graeagle Golf Packages & Tee Times | GolfGraeagle.com"
@@ -329,7 +330,7 @@ const lodgingMeta = {'townhomes-at-plumas-pines':{badge:'Great for Large Groups'
       {lodging.map((l, i) => {
         const meta = lodgingMeta[l.slug] || { badge: l.subtitle, detail: '' };
         return (
-          <a href={`/portfolio/${l.slug}/`} class={`reveal delay-${i*75} lodging-equal-card`} style="text-decoration:none;display:block;">
+          <a href={`/portfolio/${lodgingSlugMap[l.slug] || l.slug}/`} class={`reveal delay-${i*75} lodging-equal-card`} style="text-decoration:none;display:block;">
             <img src={l.hero} alt={getImgAlt(l.hero, `${l.name} — Graeagle CA lodging for golf groups`)} loading="lazy" class="course-card-img" width="1920" height="1080"/>
             <div class="card-gradient"></div>
             <div class="course-card-body">

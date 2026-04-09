@@ -169,7 +169,7 @@ const faqSchema = {
       {nearbyCourses.map(c => (
         <div class="course-row">
           <div>
-            <a href={`/portfolio/${c.slug === "nakoma-dragon" ? "nakoma-dragon-golf-packages" : c.slug + "-golf-packages"}`} style="font-size:16px;color:#1a2e1a;text-decoration:none;font-weight:500;">{c.name}</a>
+            <a href={`/portfolio/${c.slug === "nakoma-dragon" ? "nakoma-dragon-golf-packages" : c.slug + "-golf-packages"}/`} style="font-size:16px;color:#1a2e1a;text-decoration:none;font-weight:500;">{c.name}</a>
             <div style="font-size:12px;color:rgba(28,46,26,0.28);margin-top:2px;">{c.note}</div>
           </div>
           <span style="font-size:14px;color:#e8a850;font-weight:500;white-space:nowrap;">{c.dist}</span>
