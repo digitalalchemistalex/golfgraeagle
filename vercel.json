@@ -1,6 +1,301 @@
 {
   "redirects": [
     {
+      "source": "/about-us",
+      "destination": "/about-us/",
+      "permanent": true
+    },
+    {
+      "source": "/about/mike-eskuchen",
+      "destination": "/about/mike-eskuchen/",
+      "permanent": true
+    },
+    {
+      "source": "/all-golf-courses",
+      "destination": "/all-golf-courses/",
+      "permanent": true
+    },
+    {
+      "source": "/bachelor-party-golf-graeagle",
+      "destination": "/bachelor-party-golf-graeagle/",
+      "permanent": true
+    },
+    {
+      "source": "/best-golf-courses-graeagle",
+      "destination": "/best-golf-courses-graeagle/",
+      "permanent": true
+    },
+    {
+      "source": "/blog",
+      "destination": "/blog/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/bachelor-party-golf-graeagle",
+      "destination": "/blog/bachelor-party-golf-graeagle/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/best-golf-courses-northern-california-mountains",
+      "destination": "/blog/best-golf-courses-northern-california-mountains/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/best-time-to-golf-graeagle",
+      "destination": "/blog/best-time-to-golf-graeagle/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/corporate-golf-outing-graeagle",
+      "destination": "/blog/corporate-golf-outing-graeagle/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/frank-lloyd-wright-golf-clubhouse",
+      "destination": "/blog/frank-lloyd-wright-golf-clubhouse/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/golf-courses-near-reno-nevada",
+      "destination": "/blog/golf-courses-near-reno-nevada/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/golf-near-lake-tahoe",
+      "destination": "/blog/golf-near-lake-tahoe/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/golf-tournament-graeagle",
+      "destination": "/blog/golf-tournament-graeagle/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/graeagle-golf-bucket-list",
+      "destination": "/blog/graeagle-golf-bucket-list/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/graeagle-golf-courses-ranked",
+      "destination": "/blog/graeagle-golf-courses-ranked/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/graeagle-golf-packages-4-golfers",
+      "destination": "/blog/graeagle-golf-packages-4-golfers/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/graeagle-golf-trip-cost",
+      "destination": "/blog/graeagle-golf-trip-cost/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/graeagle-golf-trip-itinerary-3-days",
+      "destination": "/blog/graeagle-golf-trip-itinerary-3-days/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/graeagle-golf-trip-planner",
+      "destination": "/blog/graeagle-golf-trip-planner/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/graeagle-golf-weekend",
+      "destination": "/blog/graeagle-golf-weekend/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/graeagle-vs-lake-tahoe-golf",
+      "destination": "/blog/graeagle-vs-lake-tahoe-golf/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/how-to-plan-graeagle-golf-trip",
+      "destination": "/blog/how-to-plan-graeagle-golf-trip/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/large-group-golf-graeagle",
+      "destination": "/blog/large-group-golf-graeagle/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/senior-golf-trips-graeagle",
+      "destination": "/blog/senior-golf-trips-graeagle/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/when-does-golf-season-start-graeagle",
+      "destination": "/blog/when-does-golf-season-start-graeagle/",
+      "permanent": true
+    },
+    {
+      "source": "/corporate-golf-outing-graeagle",
+      "destination": "/corporate-golf-outing-graeagle/",
+      "permanent": true
+    },
+    {
+      "source": "/dining",
+      "destination": "/dining/",
+      "permanent": true
+    },
+    {
+      "source": "/faq",
+      "destination": "/faq/",
+      "permanent": true
+    },
+    {
+      "source": "/golf-packages",
+      "destination": "/golf-packages/",
+      "permanent": true
+    },
+    {
+      "source": "/golf-trip-from-sacramento",
+      "destination": "/golf-trip-from-sacramento/",
+      "permanent": true
+    },
+    {
+      "source": "/graeagle-golf-itinerary",
+      "destination": "/graeagle-golf-itinerary/",
+      "permanent": true
+    },
+    {
+      "source": "/graeagle-golf-resort",
+      "destination": "/graeagle-golf-resort/",
+      "permanent": true
+    },
+    {
+      "source": "/graeagle-golf-weekend-packages",
+      "destination": "/graeagle-golf-weekend-packages/",
+      "permanent": true
+    },
+    {
+      "source": "/group-golf",
+      "destination": "/group-golf/",
+      "permanent": true
+    },
+    {
+      "source": "/lodging",
+      "destination": "/lodging/",
+      "permanent": true
+    },
+    {
+      "source": "/mountain-dining-near-lake-tahoe-graeagles-best-kept-restaurant-secrets",
+      "destination": "/mountain-dining-near-lake-tahoe-graeagles-best-kept-restaurant-secrets/",
+      "permanent": true
+    },
+    {
+      "source": "/portfolio/cuccias",
+      "destination": "/portfolio/cuccias/",
+      "permanent": true
+    },
+    {
+      "source": "/portfolio/eureka-peak-brewing-co",
+      "destination": "/portfolio/eureka-peak-brewing-co/",
+      "permanent": true
+    },
+    {
+      "source": "/portfolio/graeagle-meadows-golf-course-restaurant",
+      "destination": "/portfolio/graeagle-meadows-golf-course-restaurant/",
+      "permanent": true
+    },
+    {
+      "source": "/portfolio/graeagle-mountain-frostee",
+      "destination": "/portfolio/graeagle-mountain-frostee/",
+      "permanent": true
+    },
+    {
+      "source": "/portfolio/graeagle-restaurant",
+      "destination": "/portfolio/graeagle-restaurant/",
+      "permanent": true
+    },
+    {
+      "source": "/portfolio/grizzly-grill",
+      "destination": "/portfolio/grizzly-grill/",
+      "permanent": true
+    },
+    {
+      "source": "/portfolio/gumbas-ii-go",
+      "destination": "/portfolio/gumbas-ii-go/",
+      "permanent": true
+    },
+    {
+      "source": "/portfolio/iron-door-restaurant",
+      "destination": "/portfolio/iron-door-restaurant/",
+      "permanent": true
+    },
+    {
+      "source": "/portfolio/little-bite-deli",
+      "destination": "/portfolio/little-bite-deli/",
+      "permanent": true
+    },
+    {
+      "source": "/portfolio/longboards-bar-and-grill",
+      "destination": "/portfolio/longboards-bar-and-grill/",
+      "permanent": true
+    },
+    {
+      "source": "/portfolio/mohawk-tavern",
+      "destination": "/portfolio/mohawk-tavern/",
+      "permanent": true
+    },
+    {
+      "source": "/portfolio/roadhouse-at-river-pines",
+      "destination": "/portfolio/roadhouse-at-river-pines/",
+      "permanent": true
+    },
+    {
+      "source": "/portfolio/sardine-lake-resort",
+      "destination": "/portfolio/sardine-lake-resort/",
+      "permanent": true
+    },
+    {
+      "source": "/portfolio/sierra-smokeshow",
+      "destination": "/portfolio/sierra-smokeshow/",
+      "permanent": true
+    },
+    {
+      "source": "/portfolio/the-brewing-lair",
+      "destination": "/portfolio/the-brewing-lair/",
+      "permanent": true
+    },
+    {
+      "source": "/portfolio/the-knotty-pine-tavern",
+      "destination": "/portfolio/the-knotty-pine-tavern/",
+      "permanent": true
+    },
+    {
+      "source": "/request-a-quote",
+      "destination": "/request-a-quote/",
+      "permanent": true
+    },
+    {
+      "source": "/stay-and-play",
+      "destination": "/stay-and-play/",
+      "permanent": true
+    },
+    {
+      "source": "/summer-golf-graeagle",
+      "destination": "/summer-golf-graeagle/",
+      "permanent": true
+    },
+    {
+      "source": "/tee-times-graeagle",
+      "destination": "/tee-times-graeagle/",
+      "permanent": true
+    },
+    {
+      "source": "/trips",
+      "destination": "/trips/",
+      "permanent": true
+    },
+    {
+      "source": "/ultimate-guide-to-golfing-in-graeagle",
+      "destination": "/ultimate-guide-to-golfing-in-graeagle/",
+      "permanent": true
+    },
+    {
       "source": "/portfolio/grizzly-ranch-golf-packages",
       "destination": "/portfolio/grizzly-ranch-golf-packages/",
       "permanent": true
@@ -427,7 +722,7 @@
     },
     {
       "source": "/longboards-bar-and-grill",
-      "destination": "/portfolio/longboards-bar-and-grill",
+      "destination": "/portfolio/longboards-bar-and-grill/",
       "permanent": true
     },
     {
@@ -437,7 +732,7 @@
     },
     {
       "source": "/sardine-lake-resort",
-      "destination": "/portfolio/sardine-lake-resort",
+      "destination": "/portfolio/sardine-lake-resort/",
       "permanent": true
     },
     {
@@ -447,7 +742,7 @@
     },
     {
       "source": "/roadhouse-at-river-pines",
-      "destination": "/portfolio/roadhouse-at-river-pines",
+      "destination": "/portfolio/roadhouse-at-river-pines/",
       "permanent": true
     },
     {
@@ -457,7 +752,7 @@
     },
     {
       "source": "/cuccias",
-      "destination": "/portfolio/cuccias",
+      "destination": "/portfolio/cuccias/",
       "permanent": true
     },
     {
@@ -467,7 +762,7 @@
     },
     {
       "source": "/eureka-peak-brewing-co",
-      "destination": "/portfolio/eureka-peak-brewing-co",
+      "destination": "/portfolio/eureka-peak-brewing-co/",
       "permanent": true
     },
     {
@@ -477,7 +772,7 @@
     },
     {
       "source": "/the-brewing-lair",
-      "destination": "/portfolio/the-brewing-lair",
+      "destination": "/portfolio/the-brewing-lair/",
       "permanent": true
     },
     {
@@ -487,7 +782,7 @@
     },
     {
       "source": "/mohawk-tavern",
-      "destination": "/portfolio/mohawk-tavern",
+      "destination": "/portfolio/mohawk-tavern/",
       "permanent": true
     },
     {
@@ -497,7 +792,7 @@
     },
     {
       "source": "/the-knotty-pine-tavern",
-      "destination": "/portfolio/the-knotty-pine-tavern",
+      "destination": "/portfolio/the-knotty-pine-tavern/",
       "permanent": true
     },
     {
@@ -507,7 +802,7 @@
     },
     {
       "source": "/little-bite-deli",
-      "destination": "/portfolio/little-bite-deli",
+      "destination": "/portfolio/little-bite-deli/",
       "permanent": true
     },
     {
@@ -517,7 +812,7 @@
     },
     {
       "source": "/graeagle-mountain-frostee",
-      "destination": "/portfolio/graeagle-mountain-frostee",
+      "destination": "/portfolio/graeagle-mountain-frostee/",
       "permanent": true
     },
     {
@@ -527,7 +822,7 @@
     },
     {
       "source": "/sierra-smokeshow",
-      "destination": "/portfolio/sierra-smokeshow",
+      "destination": "/portfolio/sierra-smokeshow/",
       "permanent": true
     },
     {
@@ -537,7 +832,7 @@
     },
     {
       "source": "/gumbas-ii-go",
-      "destination": "/portfolio/gumbas-ii-go",
+      "destination": "/portfolio/gumbas-ii-go/",
       "permanent": true
     },
     {
@@ -547,7 +842,7 @@
     },
     {
       "source": "/graeagle-restaurant",
-      "destination": "/portfolio/graeagle-restaurant",
+      "destination": "/portfolio/graeagle-restaurant/",
       "permanent": true
     },
     {
@@ -557,7 +852,7 @@
     },
     {
       "source": "/graeagle-meadows-golf-course-restaurant",
-      "destination": "/portfolio/graeagle-meadows-golf-course-restaurant",
+      "destination": "/portfolio/graeagle-meadows-golf-course-restaurant/",
       "permanent": true
     },
     {
