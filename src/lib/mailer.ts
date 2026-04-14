@@ -14,38 +14,39 @@ const FROM_NAME  = 'Graeagle Golf Packages';
 const FROM_EMAIL = 'info@golfgraeagle.com';
 
 export async function sendMail(opts: MailOptions): Promise<void> {
-  const host = process.env.GGE_SMTP_HOST;
-  const port = parseInt(process.env.GGE_SMTP_PORT || '465');
-  const user = process.env.GGE_SMTP_USER;
-  const pass = process.env.GGE_SMTP_PASS;
+  const apiKey = process.env.GGE_RESEND_API_KEY;
 
-  if (!host || !user || !pass) {
-    console.warn(`[mailer] SMTP not configured — skipping`);
+  if (!apiKey) {
+    console.warn(`[mailer] Resend API key not configured — skipping`);
     return;
   }
 
-  // Build To string
-  let toStr: string;
+  // Build To array for Resend
+  let toArr: string[];
   if (Array.isArray(opts.to)) {
-    toStr = opts.to.map(r => `"${r.name}" <${r.email}>`).join(', ');
+    toArr = opts.to.map(r => `"${r.name}" <${r.email}>`);
   } else {
-    toStr = opts.toName ? `"${opts.toName}" <${opts.to}>` : opts.to;
+    toArr = [opts.toName ? `"${opts.toName}" <${opts.to}>` : opts.to];
   }
 
-  const nodemailer = await import('nodemailer');
-  const transporter = nodemailer.createTransport({
-    host, port, secure: port === 465,
-    auth: { user, pass },
-    connectionTimeout: 10000,
-    greetingTimeout: 10000,
+  const res = await fetch('https://api.resend.com/emails', {
+    method: 'POST',
+    headers: {
+      'Authorization': `Bearer ${apiKey}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      from:    `${FROM_NAME} <${FROM_EMAIL}>`,
+      to:      toArr,
+      subject: opts.subject,
+      html:    opts.html,
+    }),
   });
 
-  await transporter.sendMail({
-    from:    `"${FROM_NAME}" <${FROM_EMAIL}>`,
-    to:      toStr,
-    subject: opts.subject,
-    html:    opts.html,
-  });
+  if (!res.ok) {
+    const err = await res.text();
+    throw new Error(`[mailer] Resend error ${res.status}: ${err}`);
+  }
 
-  console.log(`[mailer] ✅ Sent: ${opts.subject} → ${toStr}`);
+  console.log(`[mailer] ✅ Sent via Resend: ${opts.subject} → ${toArr.join(', ')}`);
 }
