@@ -160,7 +160,7 @@ function adminEmailHtml(b: any, leadId: string): string {
       </td>
       <td style="vertical-align:middle;text-align:right;">
         <div style="color:#78c488;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;">New Lead</div>
-        <div style="color:#ffffff;font-size:20px;font-weight:700;margin:4px 0;">🏌️ ${b.firstName} ${b.lastName}</div>
+        <div style="color:#ffffff;font-size:20px;font-weight:700;margin:4px 0;">${b.firstName} ${b.lastName}</div>
         <div style="color:#a8dbb5;font-size:13px;">Party of ${b.partySize} · ${b.arrivalDate} → ${b.departureDate}</div>
       </td>
     </tr></table>
@@ -372,7 +372,7 @@ export const POST: APIRoute = async ({ request }) => {
     } catch(e: any) { console.error('[email] Customer error:', e.message); }
 
     // 4. Send admin notifications (awaited)
-    const adminSubject = `${TEST_MODE ? '[TEST] ' : ''}🏌️ New GGE Lead: ${body.firstName} ${body.lastName} — ${body.partySize} golfers, ${body.arrivalDate}`;
+    const adminSubject = `${TEST_MODE ? '[TEST] ' : ''}New GGE Lead: ${body.firstName} ${body.lastName} -- ${body.partySize} golfers, ${body.arrivalDate}`;
     const adminHtml = adminEmailHtml(body, leadId);
     try {
       await sendEmail(adminSubject, adminHtml, ADMIN_EMAILS);
