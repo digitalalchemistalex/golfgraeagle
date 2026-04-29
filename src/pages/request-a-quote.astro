@@ -346,32 +346,36 @@ const quoteSchema = [
             </div>
 
             <!-- ── BEDROOM CONFIG: shown only for townhomes / villa lodging ── -->
-            <div id="bedroom-config-wrap" style="display:none;margin-top:18px;padding:20px;background:rgba(184,116,10,0.06);border:1.5px solid rgba(184,116,10,0.2);border-radius:14px;">
-              <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;">
+            <div id="bedroom-config-wrap" style="display:none;margin-top:22px;background:#fff;border:2px solid #e8a850;border-radius:16px;overflow:hidden;box-shadow:0 4px 20px rgba(232,168,80,0.18);">
+              <div style="background:#e8a850;padding:10px 20px;display:flex;align-items:center;gap:8px;">
                 <span style="font-size:15px;">🛏</span>
-                <div style="font-size:13px;font-weight:600;color:#7a4a00;letter-spacing:0.01em;">Sleeping Arrangement</div>
-                <span style="font-size:10px;color:rgba(184,116,10,0.7);background:rgba(184,116,10,0.1);padding:2px 8px;border-radius:20px;margin-left:4px;">Affects unit size &amp; pricing</span>
+                <div style="font-size:12px;font-weight:700;color:#0d1a0e;letter-spacing:0.06em;text-transform:uppercase;">Sleeping Arrangement</div>
+                <span style="font-size:10px;font-weight:700;color:#0d1a0e;background:rgba(0,0,0,0.12);padding:2px 10px;border-radius:20px;margin-left:auto;">Required for homes &amp; villas</span>
               </div>
-              <p style="font-size:11px;color:rgba(26,18,8,0.45);margin:0 0 14px;line-height:1.5;">For homes and villas — do you need a bed per person, or is one bedroom shared between two guests?</p>
-              <div class="q-radio-row">
-                <label class="q-radio"><input type="radio" name="bedroomConfig" value="bed-per-person"/> 1 bed per person (own bed)</label>
-                <label class="q-radio"><input type="radio" name="bedroomConfig" value="bedroom-per-person"/> 1 bedroom per person</label>
-                <label class="q-radio"><input type="radio" name="bedroomConfig" value="shared-bedrooms"/> 2 guests per bedroom</label>
-                <label class="q-radio"><input type="radio" name="bedroomConfig" value="mix"/> Mix — some single, some shared</label>
+              <div style="padding:20px;">
+                <p style="font-size:13px;color:rgba(26,18,8,0.65);margin:0 0 16px;line-height:1.6;">For townhomes and villas — do you need a <strong>bed per person</strong>, or is one <strong>bedroom shared</strong> between two guests? This determines the unit size we book.</p>
+                <div class="q-radio-row">
+                  <label class="q-radio"><input type="radio" name="bedroomConfig" value="bed-per-person"/> 1 bed per person (own bed)</label>
+                  <label class="q-radio"><input type="radio" name="bedroomConfig" value="bedroom-per-person"/> 1 bedroom per person</label>
+                  <label class="q-radio"><input type="radio" name="bedroomConfig" value="shared-bedrooms"/> 2 guests per bedroom</label>
+                  <label class="q-radio"><input type="radio" name="bedroomConfig" value="mix"/> Mix — some single, some shared</label>
+                </div>
               </div>
             </div>
 
-            <div id="room-config-wrap" class="q-radio-group" style="margin-top:28px;padding:20px;background:rgba(184,116,10,0.06);border:1.5px solid rgba(184,116,10,0.2);border-radius:14px;">
-              <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;">
+            <div id="room-config-wrap" style="margin-top:22px;background:#fff;border:2px solid rgba(184,116,10,0.35);border-radius:16px;overflow:hidden;box-shadow:0 2px 12px rgba(26,18,8,0.07);">
+              <div style="background:rgba(184,116,10,0.12);padding:10px 20px;display:flex;align-items:center;gap:8px;border-bottom:1px solid rgba(184,116,10,0.2);">
                 <span style="font-size:15px;">🛏</span>
-                <div style="font-size:13px;font-weight:600;color:#7a4a00;letter-spacing:0.01em;">Room Configuration</div>
-                <span style="font-size:10px;color:rgba(184,116,10,0.7);background:rgba(184,116,10,0.1);padding:2px 8px;border-radius:20px;margin-left:4px;">Affects pricing</span>
+                <div style="font-size:12px;font-weight:700;color:#7a4a00;letter-spacing:0.06em;text-transform:uppercase;">Room Configuration</div>
+                <span style="font-size:10px;font-weight:600;color:#7a4a00;background:rgba(184,116,10,0.15);padding:2px 10px;border-radius:20px;margin-left:auto;">Affects pricing</span>
               </div>
-              <p style="font-size:11px;color:rgba(26,18,8,0.45);margin:0 0 14px;line-height:1.5;">Single occupancy (own room) costs more but many groups prefer it.</p>
-              <div class="q-radio-row">
-                <label class="q-radio"><input type="radio" name="roomConfig" value="double"/> Double occupancy (shared rooms)</label>
-                <label class="q-radio"><input type="radio" name="roomConfig" value="single"/> Single occupancy (own room)</label>
-                <label class="q-radio"><input type="radio" name="roomConfig" value="mix"/> Mix of both</label>
+              <div style="padding:20px;">
+                <p style="font-size:13px;color:rgba(26,18,8,0.65);margin:0 0 16px;line-height:1.6;">Single occupancy (own room) costs more but many groups prefer the privacy.</p>
+                <div class="q-radio-row">
+                  <label class="q-radio"><input type="radio" name="roomConfig" value="double"/> Double occupancy (shared rooms)</label>
+                  <label class="q-radio"><input type="radio" name="roomConfig" value="single"/> Single occupancy (own room)</label>
+                  <label class="q-radio"><input type="radio" name="roomConfig" value="mix"/> Mix of both</label>
+                </div>
               </div>
             </div>
           </div>
