@@ -345,7 +345,23 @@ const quoteSchema = [
               ))}
             </div>
 
-            <div class="q-radio-group" style="margin-top:28px;padding:20px;background:rgba(184,116,10,0.06);border:1.5px solid rgba(184,116,10,0.2);border-radius:14px;">
+            <!-- ── BEDROOM CONFIG: shown only for townhomes / villa lodging ── -->
+            <div id="bedroom-config-wrap" style="display:none;margin-top:18px;padding:20px;background:rgba(184,116,10,0.06);border:1.5px solid rgba(184,116,10,0.2);border-radius:14px;">
+              <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;">
+                <span style="font-size:15px;">🛏</span>
+                <div style="font-size:13px;font-weight:600;color:#7a4a00;letter-spacing:0.01em;">Sleeping Arrangement</div>
+                <span style="font-size:10px;color:rgba(184,116,10,0.7);background:rgba(184,116,10,0.1);padding:2px 8px;border-radius:20px;margin-left:4px;">Affects unit size &amp; pricing</span>
+              </div>
+              <p style="font-size:11px;color:rgba(26,18,8,0.45);margin:0 0 14px;line-height:1.5;">For homes and villas — do you need a bed per person, or is one bedroom shared between two guests?</p>
+              <div class="q-radio-row">
+                <label class="q-radio"><input type="radio" name="bedroomConfig" value="bed-per-person"/> 1 bed per person (own bed)</label>
+                <label class="q-radio"><input type="radio" name="bedroomConfig" value="bedroom-per-person"/> 1 bedroom per person</label>
+                <label class="q-radio"><input type="radio" name="bedroomConfig" value="shared-bedrooms"/> 2 guests per bedroom</label>
+                <label class="q-radio"><input type="radio" name="bedroomConfig" value="mix"/> Mix — some single, some shared</label>
+              </div>
+            </div>
+
+            <div id="room-config-wrap" class="q-radio-group" style="margin-top:28px;padding:20px;background:rgba(184,116,10,0.06);border:1.5px solid rgba(184,116,10,0.2);border-radius:14px;">
               <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;">
                 <span style="font-size:15px;">🛏</span>
                 <div style="font-size:13px;font-weight:600;color:#7a4a00;letter-spacing:0.01em;">Room Configuration</div>
@@ -842,6 +858,26 @@ $id('lodge-any')?.addEventListener('change', function() {
   grid.style.pointerEvents = this.checked ? 'none' : 'auto';
   updateSummary();
 });
+
+// bedroom-config: show for townhomes + inn-at-nakoma (villa/home); hide room-config for those
+const HOME_LODGING = ['townhomes-at-plumas-pines', 'inn-at-nakoma'];
+function updateLodgingConfigVisibility() {
+  const checked = [...form.querySelectorAll('[name="lodgingInterested"]:checked')].map(c => c.value);
+  const hasHome = checked.some(v => HOME_LODGING.includes(v));
+  const onlyHotels = checked.length > 0 && !hasHome;
+  const hasHotels = checked.some(v => !HOME_LODGING.includes(v));
+
+  const bedroomWrap = $id('bedroom-config-wrap');
+  const roomWrap    = $id('room-config-wrap');
+
+  if (bedroomWrap) bedroomWrap.style.display = hasHome ? 'block' : 'none';
+  // show room-config unless ALL selected are home/villa type
+  if (roomWrap) roomWrap.style.display = (checked.length === 0 || hasHotels) ? 'block' : 'none';
+}
+form.querySelectorAll('[name="lodgingInterested"]').forEach(cb => {
+  cb.addEventListener('change', updateLodgingConfigVisibility);
+});
+$id('lodge-any')?.addEventListener('change', updateLodgingConfigVisibility);
 
 // live summary
 function fv(name) {
