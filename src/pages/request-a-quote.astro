@@ -364,7 +364,7 @@ const quoteSchema = [
             </div>
 
             <!-- ── ROOM CONFIG: hotels only, hidden when townhomes selected ── -->
-            <div id="room-config-wrap" style="margin-top:22px;background:#fff;border:2px solid rgba(184,116,10,0.35);border-radius:16px;overflow:hidden;box-shadow:0 2px 12px rgba(26,18,8,0.07);">
+            <div id="room-config-wrap" style="display:none;margin-top:22px;background:#fff;border:2px solid rgba(184,116,10,0.35);border-radius:16px;overflow:hidden;box-shadow:0 2px 12px rgba(26,18,8,0.07);">
               <div style="background:rgba(184,116,10,0.12);padding:10px 20px;display:flex;align-items:center;gap:8px;border-bottom:1px solid rgba(184,116,10,0.2);">
                 <span style="font-size:15px;">🛏</span>
                 <div style="font-size:12px;font-weight:700;color:#7a4a00;letter-spacing:0.06em;text-transform:uppercase;">Room Configuration</div>
@@ -866,7 +866,8 @@ $id('lodge-any')?.addEventListener('change', function() {
 
 // sleeping-config: townhomes only; room-config: shown unless townhomes selected
 function updateSleepingConfig() {
-  const townhomesChecked = !!form.querySelector('[name="lodgingInterested"][value="townhomes-at-plumas-pines"]:checked');
+  const cb = form.querySelector('[name="lodgingInterested"][value="townhomes-at-plumas-pines"]');
+  const townhomesChecked = cb ? cb.checked : false;
   const sleepWrap = $id('sleeping-config-wrap');
   const roomWrap  = $id('room-config-wrap');
   if (sleepWrap) sleepWrap.style.display = townhomesChecked ? 'block' : 'none';
@@ -1080,5 +1081,7 @@ if (preselected) {
 }
 
 updateSummary();
+// init sleeping/room config visibility
+document.addEventListener('DOMContentLoaded', updateSleepingConfig);
 updateSleepingConfig();
 </script>
