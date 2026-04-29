@@ -345,36 +345,20 @@ const quoteSchema = [
               ))}
             </div>
 
-            <!-- ── BEDROOM CONFIG: shown only for townhomes / villa lodging ── -->
-            <div id="bedroom-config-wrap" style="display:none;margin-top:22px;background:#fff;border:2px solid #e8a850;border-radius:16px;overflow:hidden;box-shadow:0 4px 20px rgba(232,168,80,0.18);">
+            <!-- ── SLEEPING CONFIG: shown only when townhomes or inn-at-nakoma selected ── -->
+            <div id="sleeping-config-wrap" style="display:none;margin-top:22px;background:#fff;border:2px solid #e8a850;border-radius:16px;overflow:hidden;box-shadow:0 4px 20px rgba(232,168,80,0.18);">
               <div style="background:#e8a850;padding:10px 20px;display:flex;align-items:center;gap:8px;">
                 <span style="font-size:15px;">🛏</span>
                 <div style="font-size:12px;font-weight:700;color:#0d1a0e;letter-spacing:0.06em;text-transform:uppercase;">Sleeping Arrangement</div>
-                <span style="font-size:10px;font-weight:700;color:#0d1a0e;background:rgba(0,0,0,0.12);padding:2px 10px;border-radius:20px;margin-left:auto;">Required for homes &amp; villas</span>
+                <span style="font-size:10px;font-weight:700;color:#0d1a0e;background:rgba(0,0,0,0.15);padding:2px 10px;border-radius:20px;margin-left:auto;">Required — affects unit size &amp; pricing</span>
               </div>
               <div style="padding:20px;">
-                <p style="font-size:13px;color:rgba(26,18,8,0.65);margin:0 0 16px;line-height:1.6;">For townhomes and villas — do you need a <strong>bed per person</strong>, or is one <strong>bedroom shared</strong> between two guests? This determines the unit size we book.</p>
+                <p style="font-size:13px;color:rgba(26,18,8,0.7);margin:0 0 16px;line-height:1.6;">For this property — do you need <strong>1 bed per person</strong> (everyone gets their own bed), or <strong>1 bedroom per person</strong> (own private room), or are you OK sharing?</p>
                 <div class="q-radio-row">
-                  <label class="q-radio"><input type="radio" name="bedroomConfig" value="bed-per-person"/> 1 bed per person (own bed)</label>
-                  <label class="q-radio"><input type="radio" name="bedroomConfig" value="bedroom-per-person"/> 1 bedroom per person</label>
-                  <label class="q-radio"><input type="radio" name="bedroomConfig" value="shared-bedrooms"/> 2 guests per bedroom</label>
-                  <label class="q-radio"><input type="radio" name="bedroomConfig" value="mix"/> Mix — some single, some shared</label>
-                </div>
-              </div>
-            </div>
-
-            <div id="room-config-wrap" style="margin-top:22px;background:#fff;border:2px solid rgba(184,116,10,0.35);border-radius:16px;overflow:hidden;box-shadow:0 2px 12px rgba(26,18,8,0.07);">
-              <div style="background:rgba(184,116,10,0.12);padding:10px 20px;display:flex;align-items:center;gap:8px;border-bottom:1px solid rgba(184,116,10,0.2);">
-                <span style="font-size:15px;">🛏</span>
-                <div style="font-size:12px;font-weight:700;color:#7a4a00;letter-spacing:0.06em;text-transform:uppercase;">Room Configuration</div>
-                <span style="font-size:10px;font-weight:600;color:#7a4a00;background:rgba(184,116,10,0.15);padding:2px 10px;border-radius:20px;margin-left:auto;">Affects pricing</span>
-              </div>
-              <div style="padding:20px;">
-                <p style="font-size:13px;color:rgba(26,18,8,0.65);margin:0 0 16px;line-height:1.6;">Single occupancy (own room) costs more but many groups prefer the privacy.</p>
-                <div class="q-radio-row">
-                  <label class="q-radio"><input type="radio" name="roomConfig" value="double"/> Double occupancy (shared rooms)</label>
-                  <label class="q-radio"><input type="radio" name="roomConfig" value="single"/> Single occupancy (own room)</label>
-                  <label class="q-radio"><input type="radio" name="roomConfig" value="mix"/> Mix of both</label>
+                  <label class="q-radio"><input type="radio" name="sleepingConfig" value="bed-per-person"/> 1 bed per person</label>
+                  <label class="q-radio"><input type="radio" name="sleepingConfig" value="bedroom-per-person"/> 1 bedroom per person</label>
+                  <label class="q-radio"><input type="radio" name="sleepingConfig" value="shared-bedrooms"/> 2 guests per bedroom</label>
+                  <label class="q-radio"><input type="radio" name="sleepingConfig" value="mix"/> Mix — some single, some shared</label>
                 </div>
               </div>
             </div>
@@ -863,25 +847,18 @@ $id('lodge-any')?.addEventListener('change', function() {
   updateSummary();
 });
 
-// bedroom-config: show for townhomes + inn-at-nakoma (villa/home); hide room-config for those
+// sleeping-config: show only when townhomes or inn-at-nakoma is selected
 const HOME_LODGING = ['townhomes-at-plumas-pines', 'inn-at-nakoma'];
-function updateLodgingConfigVisibility() {
+function updateSleepingConfig() {
   const checked = [...form.querySelectorAll('[name="lodgingInterested"]:checked')].map(c => c.value);
   const hasHome = checked.some(v => HOME_LODGING.includes(v));
-  const onlyHotels = checked.length > 0 && !hasHome;
-  const hasHotels = checked.some(v => !HOME_LODGING.includes(v));
-
-  const bedroomWrap = $id('bedroom-config-wrap');
-  const roomWrap    = $id('room-config-wrap');
-
-  if (bedroomWrap) bedroomWrap.style.display = hasHome ? 'block' : 'none';
-  // show room-config unless ALL selected are home/villa type
-  if (roomWrap) roomWrap.style.display = (checked.length === 0 || hasHotels) ? 'block' : 'none';
+  const wrap = $id('sleeping-config-wrap');
+  if (wrap) wrap.style.display = hasHome ? 'block' : 'none';
 }
 form.querySelectorAll('[name="lodgingInterested"]').forEach(cb => {
-  cb.addEventListener('change', updateLodgingConfigVisibility);
+  cb.addEventListener('change', updateSleepingConfig);
 });
-$id('lodge-any')?.addEventListener('change', updateLodgingConfigVisibility);
+$id('lodge-any')?.addEventListener('change', updateSleepingConfig);
 
 // live summary
 function fv(name) {
