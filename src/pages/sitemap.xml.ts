@@ -116,6 +116,12 @@ ${blogUrls.join('\n')}
 
 <!-- Insider content + tools -->
   <url>
+    <loc>https://golfgraeagle.com/embed-graeagle-golf-trips/</loc>
+    <lastmod>2026-05-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://golfgraeagle.com/graeagle-course-guide/</loc>
     <lastmod>2026-05-04</lastmod>
     <changefreq>monthly</changefreq>

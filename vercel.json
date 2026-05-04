@@ -1024,6 +1024,11 @@
       "source": "/trips-widget",
       "destination": "/trips-widget/",
       "permanent": true
+    },
+    {
+      "source": "/embed-graeagle-golf-trips",
+      "destination": "/embed-graeagle-golf-trips/",
+      "permanent": true
     }
   ],
   "crons": [
