@@ -894,6 +894,126 @@
       "source": "/the-townhomes-at-plumas-pines",
       "destination": "/portfolio/the-townhomes-at-plumas-pines/",
       "permanent": true
+    },
+    {
+      "source": "/portfolio/grizzly-ranch-golf-club",
+      "destination": "/portfolio/grizzly-ranch-golf-packages/",
+      "permanent": true
+    },
+    {
+      "source": "/portfolio/grizzly-ranch-golf-club/",
+      "destination": "/portfolio/grizzly-ranch-golf-packages/",
+      "permanent": true
+    },
+    {
+      "source": "/portfolio/plumas-pines-golf-resort",
+      "destination": "/portfolio/plumas-pines-golf-packages/",
+      "permanent": true
+    },
+    {
+      "source": "/portfolio/plumas-pines-golf-resort/",
+      "destination": "/portfolio/plumas-pines-golf-packages/",
+      "permanent": true
+    },
+    {
+      "source": "/portfolio/graeagle-meadows-golf-course",
+      "destination": "/portfolio/graeagle-meadows-golf-packages/",
+      "permanent": true
+    },
+    {
+      "source": "/portfolio/graeagle-meadows-golf-course/",
+      "destination": "/portfolio/graeagle-meadows-golf-packages/",
+      "permanent": true
+    },
+    {
+      "source": "/portfolio/whitehawk-ranch-golf-course",
+      "destination": "/portfolio/whitehawk-ranch-golf-packages/",
+      "permanent": true
+    },
+    {
+      "source": "/portfolio/whitehawk-ranch-golf-course/",
+      "destination": "/portfolio/whitehawk-ranch-golf-packages/",
+      "permanent": true
+    },
+    {
+      "source": "/portfolio/longboards",
+      "destination": "/portfolio/longboards-bar-and-grill/",
+      "permanent": true
+    },
+    {
+      "source": "/portfolio/longboards/",
+      "destination": "/portfolio/longboards-bar-and-grill/",
+      "permanent": true
+    },
+    {
+      "source": "/portfolio/iron-door",
+      "destination": "/portfolio/iron-door-restaurant/",
+      "permanent": true
+    },
+    {
+      "source": "/portfolio/iron-door/",
+      "destination": "/portfolio/iron-door-restaurant/",
+      "permanent": true
+    },
+    {
+      "source": "/portfolio/roadhouse",
+      "destination": "/portfolio/roadhouse-at-river-pines/",
+      "permanent": true
+    },
+    {
+      "source": "/portfolio/roadhouse/",
+      "destination": "/portfolio/roadhouse-at-river-pines/",
+      "permanent": true
+    },
+    {
+      "source": "/portfolio/brewing-lair",
+      "destination": "/portfolio/the-brewing-lair/",
+      "permanent": true
+    },
+    {
+      "source": "/portfolio/brewing-lair/",
+      "destination": "/portfolio/the-brewing-lair/",
+      "permanent": true
+    },
+    {
+      "source": "/portfolio/knotty-pine",
+      "destination": "/portfolio/the-knotty-pine-tavern/",
+      "permanent": true
+    },
+    {
+      "source": "/portfolio/knotty-pine/",
+      "destination": "/portfolio/the-knotty-pine-tavern/",
+      "permanent": true
+    },
+    {
+      "source": "/portfolio/mountain-frostee",
+      "destination": "/portfolio/graeagle-mountain-frostee/",
+      "permanent": true
+    },
+    {
+      "source": "/portfolio/mountain-frostee/",
+      "destination": "/portfolio/graeagle-mountain-frostee/",
+      "permanent": true
+    },
+    {
+      "source": "/portfolio/gumbas",
+      "destination": "/portfolio/gumbas-ii-go/",
+      "permanent": true
+    },
+    {
+      "source": "/portfolio/gumbas/",
+      "destination": "/portfolio/gumbas-ii-go/",
+      "permanent": true
+    },
+    {
+      "source": "/portfolio/eureka-peak-brewing",
+      "destination": "/portfolio/eureka-peak-brewing-co/",
+      "permanent": true
+    },
+    {
+      "source": "/portfolio/eureka-peak-brewing/",
+      "destination": "/portfolio/eureka-peak-brewing-co/",
+      "permanent": true
     }
   ],
   "crons": [

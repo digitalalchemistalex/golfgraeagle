@@ -99,11 +99,7 @@ const wpSlugMap = {
   'plumas-pines-golf-packages':     { type: 'course', data: courses.find(c => c.slug === 'plumas-pines') },
   'grizzly-ranch-golf-packages':    { type: 'course', data: courses.find(c => c.slug === 'grizzly-ranch') },
   'nakoma-dragon-golf-packages':    { type: 'course', data: courses.find(c => c.slug === 'nakoma-dragon') },
-  // Also handle the /portfolio/plumas-pines-golf-resort/ style from search results
-  'plumas-pines-golf-resort':       { type: 'course', data: courses.find(c => c.slug === 'plumas-pines') },
-  'graeagle-meadows-golf-course':   { type: 'course', data: courses.find(c => c.slug === 'graeagle-meadows') },
-  'whitehawk-ranch-golf-course':    { type: 'course', data: courses.find(c => c.slug === 'whitehawk-ranch') },
-  'grizzly-ranch-golf-club':        { type: 'course', data: courses.find(c => c.slug === 'grizzly-ranch') },
+
   // Lodging
   'river-pines-resort-graeagle-ca': { type: 'lodging', data: lodging.find(l => l.slug === 'river-pines-resort') },
   'chalet-view-lodge-graeagle-ca':  { type: 'lodging', data: lodging.find(l => l.slug === 'chalet-view-lodge') },
@@ -111,47 +107,36 @@ const wpSlugMap = {
   'the-townhomes-at-plumas-pines':  { type: 'lodging', data: lodging.find(l => l.slug === 'townhomes-at-plumas-pines') },
   // Dining
   'longboards-bar-and-grill':       { type: 'dining', data: dining.find(d => d.slug === 'longboards') },
-  'longboards':                     { type: 'dining', data: dining.find(d => d.slug === 'longboards') },
   'sardine-lake-resort':            { type: 'dining', data: dining.find(d => d.slug === 'sardine-lake') },
-  'sardine-lake':                   { type: 'dining', data: dining.find(d => d.slug === 'sardine-lake') },
   'iron-door-restaurant':           { type: 'dining', data: dining.find(d => d.slug === 'iron-door') },
-  'iron-door':                      { type: 'dining', data: dining.find(d => d.slug === 'iron-door') },
   'grizzly-grill':                  { type: 'dining', data: dining.find(d => d.slug === 'grizzly-grill') },
   'roadhouse-at-river-pines':       { type: 'dining', data: dining.find(d => d.slug === 'roadhouse') },
-  'roadhouse':                      { type: 'dining', data: dining.find(d => d.slug === 'roadhouse') },
   'graeagle-meadows-golf-course-restaurant': { type: 'dining', data: dining.find(d => d.slug === 'meadows-restaurant') },
   'meadows-restaurant':             { type: 'dining', data: dining.find(d => d.slug === 'meadows-restaurant') },
   'cuccias':                        { type: 'dining', data: dining.find(d => d.slug === 'cuccias') },
   'sierra-smokeshow':               { type: 'dining', data: dining.find(d => d.slug === 'sierra-smokeshow') },
   'gumbas-ii-go':                   { type: 'dining', data: dining.find(d => d.slug === 'gumbas') },
-  'gumbas':                         { type: 'dining', data: dining.find(d => d.slug === 'gumbas') },
   'eureka-peak-brewing-co':         { type: 'dining', data: dining.find(d => d.slug === 'eureka-peak-brewing') },
-  'eureka-peak-brewing':            { type: 'dining', data: dining.find(d => d.slug === 'eureka-peak-brewing') },
   'the-brewing-lair':               { type: 'dining', data: dining.find(d => d.slug === 'brewing-lair') },
-  'brewing-lair':                   { type: 'dining', data: dining.find(d => d.slug === 'brewing-lair') },
   'mohawk-tavern':                  { type: 'dining', data: dining.find(d => d.slug === 'mohawk-tavern') },
   'the-knotty-pine-tavern':         { type: 'dining', data: dining.find(d => d.slug === 'knotty-pine') },
-  'knotty-pine':                    { type: 'dining', data: dining.find(d => d.slug === 'knotty-pine') },
   'little-bite-deli':               { type: 'dining', data: dining.find(d => d.slug === 'little-bite-deli') },
   'graeagle-mountain-frostee':      { type: 'dining', data: dining.find(d => d.slug === 'mountain-frostee') },
-  'mountain-frostee':               { type: 'dining', data: dining.find(d => d.slug === 'mountain-frostee') },
   'graeagle-restaurant':            { type: 'dining', data: dining.find(d => d.slug === 'graeagle-restaurant') },
 };
 
 export function getStaticPaths() {
   return Object.keys({
   'graeagle-meadows-golf-packages': 1,'whitehawk-ranch-golf-packages':1,'plumas-pines-golf-packages':1,
-  'grizzly-ranch-golf-packages':1,'nakoma-dragon-golf-packages':1,'plumas-pines-golf-resort':1,
-  'graeagle-meadows-golf-course':1,'whitehawk-ranch-golf-course':1,'grizzly-ranch-golf-club':1,
+  'grizzly-ranch-golf-packages':1,'nakoma-dragon-golf-packages':1,
+  'graeagle-meadows-golf-packages':1,'whitehawk-ranch-golf-packages':1,'plumas-pines-golf-packages':1,
   'river-pines-resort-graeagle-ca':1,'chalet-view-lodge-graeagle-ca':1,'the-inn-at-nakoma-clio-ca':1,
   'the-townhomes-at-plumas-pines':1,'longboards-bar-and-grill':1,'sardine-lake-resort':1,
   'iron-door-restaurant':1,'grizzly-grill':1,'roadhouse-at-river-pines':1,
   'graeagle-meadows-golf-course-restaurant':1,'cuccias':1,'sierra-smokeshow':1,'gumbas-ii-go':1,
   'eureka-peak-brewing-co':1,'the-brewing-lair':1,'mohawk-tavern':1,'the-knotty-pine-tavern':1,
   'little-bite-deli':1,'graeagle-mountain-frostee':1,'graeagle-restaurant':1,
-  // Short-slug aliases — must be built as static pages or they 404
-  'gumbas':1,'iron-door':1,'sardine-lake':1,'roadhouse':1,'brewing-lair':1,
-  'knotty-pine':1,'mountain-frostee':1,'longboards':1,'eureka-peak-brewing':1,
+  // Short-slug aliases removed — now handled by vercel.json 301 redirects
   }).map(slug => ({ params: { slug } }));
 }
 
