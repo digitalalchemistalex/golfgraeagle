@@ -112,6 +112,17 @@ const baseSchema = {
   <title>{title}</title>
   <meta name="google-site-verification" content="kYP3hr-R8FsC5gwWVdlk6qEjQnzwxZBczJQJoI0XHQs" />
   <meta name="description" content={description} />
+  <!-- Author & publisher signals — used by Bing, Yandex, Apple, DuckDuckGo -->
+  <meta name="author" content="Mike Eskuchen — GolfGraeagle.com" />
+  <meta name="publisher" content="Zoomaway Technologies Inc." />
+  <meta name="copyright" content="GolfGraeagle.com — Zoomaway Technologies Inc." />
+  <!-- Geo signals — Bing local, Yandex, DuckDuckGo -->
+  <meta name="geo.region" content="US-CA" />
+  <meta name="geo.placename" content="Graeagle, California" />
+  <meta name="geo.position" content="39.761;-120.635" />
+  <meta name="ICBM" content="39.761, -120.635" />
+  <!-- Revisit — tells crawlers to come back -->
+  <meta name="revisit-after" content="7 days" />
   <link rel="canonical" href={canonicalUrl} />
   {noindex && <meta name="robots" content="noindex, nofollow" />}
   {!noindex && <meta name="robots" content="index, follow" />}
@@ -126,12 +137,16 @@ const baseSchema = {
   <meta property="og:image:alt" content={title} />
   <meta property="og:site_name" content="GolfGraeagle.com" />
   <meta property="og:locale" content="en_US" />
-  <!-- Twitter Card -->
+  <!-- Twitter / X Card -->
   <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@GolfGraeagle" />
   <meta name="twitter:title" content={title} />
   <meta name="twitter:description" content={description} />
   <meta name="twitter:image" content={ogImageAbsolute} />
   <meta name="twitter:image:alt" content={title} />
+  <!-- Bing / Microsoft -->
+  <meta name="msapplication-TileColor" content="#1a2e1a" />
+  <meta name="theme-color" content="#1a2e1a" />
   <!-- Fonts — non-blocking: loads async, swaps in when ready -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
