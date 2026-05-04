@@ -193,6 +193,7 @@ export const courses = [
     address: 'Portola, CA 96122',
     coordinates: { lat: 39.8167, lng: -120.4583 },
     altitude: '4600 ft',
+    phone: '(530) 832-4200',
     website: 'https://grizzlyranchgolfclub.com',
     highlights: [
       '7,411 yards — longest in the Graeagle region',
@@ -370,6 +371,7 @@ export const courses = [
     address: 'Graeagle, CA 96103',
     coordinates: { lat: 39.7612, lng: -120.5432 },
     altitude: '4400 ft',
+    phone: '(530) 836-1420',
     website: 'https://www.plumaspinesgolf.com',
     highlights: [
       'Dense ponderosa pines demand shot shaping',
