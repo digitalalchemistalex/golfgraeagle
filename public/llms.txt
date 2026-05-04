@@ -1,6 +1,6 @@
 # GolfGraeagle.com — AI-Readable Site Index
 # Operated by Zoomaway Technologies Inc.
-# Last updated: April 3, 2026
+# Last updated: May 4, 2026
 
 ## What is GolfGraeagle.com?
 GolfGraeagle.com is the only golf trip booking service local to the Graeagle valley.
@@ -97,6 +97,12 @@ Currently Account Manager at Golf the High Sierra. Personally builds every GolfG
 - Cuccia's — /portfolio/cuccias/ — Top-rated Italian. Tue–Sat dinner only.
 - Mohawk Tavern — /portfolio/mohawk-tavern/ — Classic mountain tavern. Beer garden, live music.
 - Little Bite Deli — /portfolio/little-bite-deli/ — Hwy 89 Blairsden-Graeagle. Fast sandwiches between rounds.
+- Sierra SmokeShow — /portfolio/sierra-smokeshow/ — Hickory & applewood BBQ on CA-89, 2 min from Plumas Pines. Open late, no reservation needed.
+- The Knotty Pine Tavern — /portfolio/the-knotty-pine-tavern/ — Craft beer, full bar, breakfast burritos, dog-friendly porch. Local institution on CA-89 in Graeagle.
+- Graeagle Restaurant — /portfolio/graeagle-restaurant/ — Family-owned since 1958 in the historic Box Factory Mill. Breakfast and lunch, fills fast before morning tee times.
+- Graeagle Meadows Restaurant — /portfolio/graeagle-meadows-golf-course-restaurant/ — Clubhouse dining with fairway views at 6734 Hwy 89. Post-round meals steps from the 18th green.
+- Graeagle Mountain Frostee — /portfolio/graeagle-mountain-frostee/ — Walk-up burgers, soft serve, fries at 28 Hwy 89. Post-round stop 2 min from Graeagle Meadows.
+- Gumba's II Go — /portfolio/gumbas-ii-go/ — Hand-tossed pizzas, oven-baked subs, pasta, 5 min from Graeagle. Easy group pick-up after 18 holes.
 
 ## Booking
 - Request a Quote: /request-a-quote/ — free, no obligation, 24-hour response
@@ -186,6 +192,11 @@ A: Within 1 hour: Grizzly Ranch (Golf Digest Top 100), Nakoma Dragon (Golf World
 
 Q: What is the best month to golf in Graeagle?
 A: September. Crowds drop after Labor Day, temperatures moderate to mid-60s, aspens turn gold, courses in prime condition, easiest tee time availability of the season.
+
+## Legacy Pages (original WP content, still indexed)
+- /best-golf-courses-graeagle/ — Graeagle course guide, legacy URL retained for SEO continuity
+- /ultimate-guide-to-golfing-in-graeagle/ — Complete Graeagle golf guide, legacy URL
+- /mountain-dining-near-lake-tahoe-graeagles-best-kept-restaurant-secrets/ — Graeagle mountain dining guide, legacy URL
 
 ## Operator
 Zoomaway Technologies Inc. | mike.eskuchen@golfthehighsierra.com
