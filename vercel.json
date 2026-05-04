@@ -1014,6 +1014,16 @@
       "source": "/portfolio/eureka-peak-brewing/",
       "destination": "/portfolio/eureka-peak-brewing-co/",
       "permanent": true
+    },
+    {
+      "source": "/graeagle-course-guide",
+      "destination": "/graeagle-course-guide/",
+      "permanent": true
+    },
+    {
+      "source": "/trips-widget",
+      "destination": "/trips-widget/",
+      "permanent": true
     }
   ],
   "crons": [

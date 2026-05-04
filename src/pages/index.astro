@@ -34,6 +34,62 @@ const wpSlugMap = {
   'nakoma-dragon':    'nakoma-dragon-golf-packages',
 };
 
+// 2026 golf season dates — verified from course sites
+const currentYear = new Date().getFullYear();
+const serviceSchema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "Graeagle Golf Trip Planning",
+  "serviceType": "Golf Trip Planning and Package Booking",
+  "provider": { "@id": "https://golfgraeagle.com/#organization" },
+  "areaServed": [
+    { "@type": "City", "name": "Sacramento", "containedInPlace": { "@type": "State", "name": "California" } },
+    { "@type": "City", "name": "San Francisco", "containedInPlace": { "@type": "State", "name": "California" } },
+    { "@type": "City", "name": "Reno", "containedInPlace": { "@type": "State", "name": "Nevada" } },
+    { "@type": "City", "name": "San Jose", "containedInPlace": { "@type": "State", "name": "California" } },
+    { "@type": "Place", "name": "Bay Area, California" },
+    { "@type": "Place", "name": "Northern California" },
+  ],
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Graeagle Golf Packages",
+    "itemListElement": [
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "2-Night Graeagle Golf Package" }, "price": "299", "priceCurrency": "USD", "priceSpecification": { "@type": "UnitPriceSpecification", "price": "299", "priceCurrency": "USD", "unitText": "per golfer" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "3-Night Graeagle Golf Package" }, "price": "620", "priceCurrency": "USD", "priceSpecification": { "@type": "UnitPriceSpecification", "price": "620", "priceCurrency": "USD", "unitText": "per golfer" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "4-Night Graeagle Golf Package" }, "price": "899", "priceCurrency": "USD", "priceSpecification": { "@type": "UnitPriceSpecification", "price": "899", "priceCurrency": "USD", "unitText": "per golfer" } },
+    ]
+  },
+  "description": "Custom stay-and-play golf packages for the Graeagle, California region. Tee times at all 5 championship courses, lodging coordination, and day-by-day itineraries. Groups of 4–200. Free quote in 24 hours. Operating since 2004.",
+  "url": "https://golfgraeagle.com/golf-packages/",
+  "potentialAction": { "@type": "ReserveAction", "target": { "@type": "EntryPoint", "urlTemplate": "https://golfgraeagle.com/request-a-quote/" }, "name": "Request a Free Quote" }
+};
+
+const golfSeasonEventSchema = {
+  "@context": "https://schema.org",
+  "@type": "Event",
+  "name": `Graeagle Golf Season ${currentYear}`,
+  "description": `The ${currentYear} golf season in Graeagle, California runs May through October. All 5 championship courses open: Graeagle Meadows (opens mid-April), Whitehawk Ranch (opens May), Plumas Pines (opens May), Grizzly Ranch (opens mid-May), Nakoma Dragon (opens mid-May). Best conditions: September–October. Peak season: July–August.`,
+  "startDate": `${currentYear}-05-01`,
+  "endDate": `${currentYear}-10-31`,
+  "eventStatus": "https://schema.org/EventScheduled",
+  "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+  "location": {
+    "@type": "Place",
+    "name": "Graeagle, California Golf Region",
+    "address": { "@type": "PostalAddress", "addressLocality": "Graeagle", "addressRegion": "CA", "postalCode": "96103", "addressCountry": "US" }
+  },
+  "organizer": { "@id": "https://golfgraeagle.com/#organization" },
+  "offers": {
+    "@type": "Offer",
+    "name": "Graeagle Golf Package",
+    "price": "299",
+    "priceCurrency": "USD",
+    "url": "https://golfgraeagle.com/request-a-quote/",
+    "availability": "https://schema.org/InStock",
+    "validFrom": `${currentYear}-01-01`
+  }
+};
+
 const aggregateRatingSchema = {
   "@context": "https://schema.org", "@type": "TravelAgency",
   "@id": "https://golfgraeagle.com/#organization",
@@ -125,7 +181,7 @@ const lodgingSlugMap: Record<string,string> = {'river-pines-resort':'river-pines
   title="Graeagle Golf Packages & Tee Times | GolfGraeagle.com"
   description="Expert Graeagle golf packages since 2004. Golf Digest Top 100, Frank Lloyd Wright clubhouse, 5 championship courses. Custom stay-and-play with guaranteed tee times for groups of 4–200. Call 888-586-1157."
   preloadImage={courses[0].hero}
-  schema={[courseListSchema, homeFaqSchema, aggregateRatingSchema, howToSchema, breadcrumbSchema]}
+  schema={[serviceSchema, golfSeasonEventSchema, courseListSchema, homeFaqSchema, aggregateRatingSchema, howToSchema, breadcrumbSchema]}
   bodyClass="light-page"
 >
 <Nav />

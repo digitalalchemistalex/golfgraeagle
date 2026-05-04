@@ -114,6 +114,14 @@ ${diningUrls.join('\n')}
 <!-- Blog (${blogUrls.length}) -->
 ${blogUrls.join('\n')}
 
+<!-- Insider content + tools -->
+  <url>
+    <loc>https://golfgraeagle.com/graeagle-course-guide/</loc>
+    <lastmod>2026-05-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
 <!-- Legacy WP root URLs (${legacyUrls.length} — kept for GSC continuity, low priority) -->
 ${legacyUrls.join('\n')}
 

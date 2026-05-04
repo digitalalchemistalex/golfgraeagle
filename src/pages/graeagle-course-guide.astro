@@ -1,0 +1,291 @@
+---
+export const prerender = true;
+import Base from '../layouts/Base.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import { siteConfig } from '../data/content.js';
+
+const title = "Graeagle Golf Course Guide — Tee Times, Cart Rules, Opening Dates & Local Intel";
+const description = "The insider planning guide for Graeagle golf. Verified tee time windows, cart policies, opening dates by course, elevation data, and conditions by month. Details no other site publishes.";
+const canonicalUrl = `${siteConfig.url}/graeagle-course-guide/`;
+const ogImage = `${siteConfig.url}/wp-images/grizzly-ranch-hero.webp`;
+
+const currentYear = new Date().getFullYear();
+
+const schema = [
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": title,
+    "description": description,
+    "author": { "@type": "Person", "name": "Mike Eskuchen", "jobTitle": "Golf Trip Specialist", "url": `${siteConfig.url}/about/mike-eskuchen/` },
+    "publisher": { "@type": "Organization", "name": "GolfGraeagle.com", "url": siteConfig.url },
+    "datePublished": "2026-05-04",
+    "dateModified": "2026-05-04",
+    "url": canonicalUrl,
+    "mainEntityOfPage": { "@type": "WebPage", "@id": canonicalUrl },
+    "image": { "@type": "ImageObject", "url": ogImage }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      { "@type": "Question", "name": "When does Graeagle Meadows Golf Course open?", "acceptedAnswer": { "@type": "Answer", "text": "Graeagle Meadows typically opens in mid-April, making it the earliest course in the Graeagle region to open each season. First tee times are available from 7:00 AM daily. The course is walkable — carts available but not required. Phone: (530) 836-2323." } },
+      { "@type": "Question", "name": "When does Grizzly Ranch Golf Club open for the season?", "acceptedAnswer": { "@type": "Answer", "text": "Grizzly Ranch Golf Club opens mid-May each year (high season: end of May through mid-October). The course is at 4,800–5,400 feet elevation — higher elevation means later snowmelt. Cart required — not a walkable course due to distance between greens and tees. Tee times bookable 10 days in advance by phone or online. Phone: (530) 832-4200." } },
+      { "@type": "Question", "name": "Can you walk Grizzly Ranch Golf Club?", "acceptedAnswer": { "@type": "Answer", "text": "Grizzly Ranch is not considered walkable due to the distance between greens and tees. All golfers must sign for a cart in the cart barn before play. Carts are included in the green fee. Cart path only is enforced on all par 3s and during wet conditions." } },
+      { "@type": "Question", "name": "Can you walk Graeagle Meadows Golf Course?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Graeagle Meadows is walkable and carts are optional, not required. It is the flattest and most accessible of the five Graeagle courses — ideal for groups with mixed preferences on walking vs. riding." } },
+      { "@type": "Question", "name": "What elevation is each Graeagle golf course?", "acceptedAnswer": { "@type": "Answer", "text": "Graeagle Meadows: approximately 3,500 feet. Whitehawk Ranch: approximately 4,400 feet. Plumas Pines: approximately 4,000 feet. Grizzly Ranch: 4,800–5,400 feet across the course. Nakoma Dragon: approximately 4,500 feet. At these elevations, the golf ball carries 6–8% farther than at sea level." } },
+      { "@type": "Question", "name": "How far in advance can you book tee times at Grizzly Ranch?", "acceptedAnswer": { "@type": "Answer", "text": "Public tee time reservations at Grizzly Ranch may be made up to 10 days in advance by phone, online, or in the Pro Shop. For groups, GolfGraeagle.com can secure guaranteed tee time blocks beyond the standard window." } },
+      { "@type": "Question", "name": "What are the earliest tee times in Graeagle?", "acceptedAnswer": { "@type": "Answer", "text": "Graeagle Meadows: first tee times from 7:00 AM. Whitehawk Ranch, Plumas Pines, and Grizzly Ranch: first tee times typically 7:30–8:00 AM in peak season. Nakoma Dragon: first tee times at 8:00 AM. Exact times vary by season — GolfGraeagle.com coordinates all tee sheets as part of every package." } },
+      { "@type": "Question", "name": "What month has the best conditions for golf in Graeagle?", "acceptedAnswer": { "@type": "Answer", "text": "September is consistently the best month for golf in Graeagle. Crowds drop after Labor Day, temperatures are in the low-to-mid 60s, fairways are firm, aspens turn gold, and tee time availability is highest. October is a close second and often underrated — some of the most beautiful conditions of the year before courses close." } },
+      { "@type": "Question", "name": "Does elevation affect golf ball distance in Graeagle?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. At 4,000–5,400 feet elevation, the golf ball carries approximately 6–8% farther than at sea level. On a course like Grizzly Ranch at 5,200 feet, a 150-yard shot at sea level may fly 160–162 yards. Most groups club down by one on approach shots." } },
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": siteConfig.url },
+      { "@type": "ListItem", "position": 2, "name": "Course Guide", "item": canonicalUrl }
+    ]
+  }
+];
+---
+<Base title={title} description={description} schema={schema} canonical={canonicalUrl} ogImage={ogImage} bodyClass="light-page">
+  <Nav />
+
+  <main style="max-width:860px;margin:0 auto;padding:60px 24px 80px;">
+
+    <header style="margin-bottom:48px;">
+      <p style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.12em;color:#a06c30;margin-bottom:12px;">Insider Planning Guide · Updated {currentYear}</p>
+      <h1 class="speakable" style="font-family:'Playfair Display',serif;font-size:clamp(28px,4vw,42px);line-height:1.2;color:#1a2e1a;margin:0 0 20px;">Graeagle Golf Course Guide</h1>
+      <p class="speakable aeo-answer" style="font-size:18px;line-height:1.6;color:#3d5240;max-width:680px;">Tee time windows, cart rules, opening dates, elevation data, and month-by-month conditions — the details Mike Eskuchen shares with every group before they arrive. No other site publishes this.</p>
+      <p style="font-size:13px;color:#8a9a8e;margin-top:12px;">By <a href="/about/mike-eskuchen/" style="color:#3a8a48;text-decoration:none;font-weight:600;">Mike Eskuchen</a>, Golf Trip Specialist · GolfGraeagle.com · Operating since 2004</p>
+    </header>
+
+    <!-- Opening Dates Table -->
+    <section style="margin-bottom:56px;">
+      <h2 style="font-family:'Playfair Display',serif;font-size:24px;color:#1a2e1a;margin:0 0 20px;" data-speakable>Opening Dates by Course — {currentYear} Season</h2>
+      <p style="color:#3d5240;margin-bottom:20px;">Dates are approximate — actual opening depends on snowpack and conditions each year. Graeagle Meadows consistently opens earliest; Grizzly Ranch and Nakoma open latest due to higher elevation.</p>
+      <div style="overflow-x:auto;">
+        <table style="width:100%;border-collapse:collapse;font-size:14px;">
+          <thead>
+            <tr style="background:#1a2e1a;color:#f0ece3;">
+              <th style="padding:12px 16px;text-align:left;font-weight:600;">Course</th>
+              <th style="padding:12px 16px;text-align:left;font-weight:600;">Typical Opening</th>
+              <th style="padding:12px 16px;text-align:left;font-weight:600;">Elevation</th>
+              <th style="padding:12px 16px;text-align:left;font-weight:600;">Closes</th>
+              <th style="padding:12px 16px;text-align:left;font-weight:600;">Phone</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="border-bottom:1px solid #e8f0e8;">
+              <td style="padding:12px 16px;font-weight:600;color:#1a2e1a;"><a href="/portfolio/graeagle-meadows-golf-packages/" style="color:#1a2e1a;text-decoration:none;">Graeagle Meadows</a></td>
+              <td style="padding:12px 16px;color:#3a8a48;font-weight:600;">Mid-April</td>
+              <td style="padding:12px 16px;color:#5a7060;">~3,500 ft</td>
+              <td style="padding:12px 16px;color:#5a7060;">November</td>
+              <td style="padding:12px 16px;color:#5a7060;">(530) 836-2323</td>
+            </tr>
+            <tr style="border-bottom:1px solid #e8f0e8;background:#fafcfa;">
+              <td style="padding:12px 16px;font-weight:600;color:#1a2e1a;"><a href="/portfolio/plumas-pines-golf-packages/" style="color:#1a2e1a;text-decoration:none;">Plumas Pines</a></td>
+              <td style="padding:12px 16px;color:#3a8a48;font-weight:600;">Early May</td>
+              <td style="padding:12px 16px;color:#5a7060;">~4,000 ft</td>
+              <td style="padding:12px 16px;color:#5a7060;">October</td>
+              <td style="padding:12px 16px;color:#5a7060;">(530) 836-1420</td>
+            </tr>
+            <tr style="border-bottom:1px solid #e8f0e8;">
+              <td style="padding:12px 16px;font-weight:600;color:#1a2e1a;"><a href="/portfolio/whitehawk-ranch-golf-packages/" style="color:#1a2e1a;text-decoration:none;">Whitehawk Ranch</a></td>
+              <td style="padding:12px 16px;color:#3a8a48;font-weight:600;">Early May</td>
+              <td style="padding:12px 16px;color:#5a7060;">~4,400 ft</td>
+              <td style="padding:12px 16px;color:#5a7060;">October</td>
+              <td style="padding:12px 16px;color:#5a7060;">(530) 836-0394</td>
+            </tr>
+            <tr style="border-bottom:1px solid #e8f0e8;background:#fafcfa;">
+              <td style="padding:12px 16px;font-weight:600;color:#1a2e1a;"><a href="/portfolio/nakoma-dragon-golf-packages/" style="color:#1a2e1a;text-decoration:none;">Nakoma (The Dragon)</a></td>
+              <td style="padding:12px 16px;color:#e8a850;font-weight:600;">Mid-May</td>
+              <td style="padding:12px 16px;color:#5a7060;">~4,500 ft</td>
+              <td style="padding:12px 16px;color:#5a7060;">October</td>
+              <td style="padding:12px 16px;color:#5a7060;">(530) 993-4197</td>
+            </tr>
+            <tr style="background:#fff8ee;">
+              <td style="padding:12px 16px;font-weight:600;color:#1a2e1a;"><a href="/portfolio/grizzly-ranch-golf-packages/" style="color:#1a2e1a;text-decoration:none;">Grizzly Ranch ★ Top 100</a></td>
+              <td style="padding:12px 16px;color:#e8a850;font-weight:600;">Mid-May</td>
+              <td style="padding:12px 16px;color:#5a7060;">4,800–5,400 ft</td>
+              <td style="padding:12px 16px;color:#5a7060;">Mid-October</td>
+              <td style="padding:12px 16px;color:#5a7060;">(530) 832-4200</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Cart Policy -->
+    <section style="margin-bottom:56px;">
+      <h2 style="font-family:'Playfair Display',serif;font-size:24px;color:#1a2e1a;margin:0 0 20px;" data-speakable>Cart Rules — Walking vs. Riding by Course</h2>
+      <p style="color:#3d5240;margin-bottom:24px;">Cart policies matter when planning a multi-course trip — especially for groups with mixed preferences. Here's what to expect at each course.</p>
+      <div style="display:grid;gap:16px;">
+        {[
+          { name: 'Graeagle Meadows', slug: 'graeagle-meadows-golf-packages', policy: 'Walkable', detail: 'Carts available but not required. Flattest course in the valley — the best option for groups who want to walk.', color: '#3a8a48', badge: '✓ Walking OK' },
+          { name: 'Plumas Pines', slug: 'plumas-pines-golf-packages', policy: 'Cart Recommended', detail: 'Walking is permitted but the tight pine layout and some elevation changes make carts preferred for most groups.', color: '#3a8a48', badge: '✓ Walking Permitted' },
+          { name: 'Whitehawk Ranch', slug: 'whitehawk-ranch-golf-packages', policy: 'Cart Recommended', detail: 'Mix of meadow and forested hillside holes. Some distance between holes. Carts are the standard. Contact course for current walking policy.', color: '#e8a850', badge: '~ Contact Course' },
+          { name: 'Nakoma (The Dragon)', slug: 'nakoma-dragon-golf-packages', policy: 'Cart Required', detail: 'Mountain terrain with significant elevation changes between holes. Carts are standard. Canyon-to-ridge routing makes walking impractical.', color: '#c05030', badge: '✗ Cart Required' },
+          { name: 'Grizzly Ranch', slug: 'grizzly-ranch-golf-packages', policy: 'Cart Required', detail: 'Cart required — all golfers must sign for a cart in the cart barn before play. Distance between greens and tees makes walking impractical. Cart included in green fee.', color: '#c05030', badge: '✗ Cart Required' },
+        ].map(c => (
+          <div style="border:1px solid #e0ece0;border-radius:12px;padding:20px 24px;display:flex;align-items:flex-start;gap:16px;">
+            <div style="flex:1;">
+              <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px;">
+                <a href={`/portfolio/${c.slug}/`} style={`font-size:16px;font-weight:700;color:#1a2e1a;text-decoration:none;`}>{c.name}</a>
+                <span style={`font-size:11px;font-weight:700;padding:3px 10px;border-radius:100px;background:${c.color}22;color:${c.color};`}>{c.badge}</span>
+              </div>
+              <p style="font-size:14px;color:#5a7060;margin:0;line-height:1.5;">{c.detail}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Tee Time Windows -->
+    <section style="margin-bottom:56px;">
+      <h2 style="font-family:'Playfair Display',serif;font-size:24px;color:#1a2e1a;margin:0 0 20px;" data-speakable>Tee Time Windows & Advance Booking</h2>
+      <div style="overflow-x:auto;">
+        <table style="width:100%;border-collapse:collapse;font-size:14px;">
+          <thead>
+            <tr style="background:#1a2e1a;color:#f0ece3;">
+              <th style="padding:12px 16px;text-align:left;">Course</th>
+              <th style="padding:12px 16px;text-align:left;">First Tee Time</th>
+              <th style="padding:12px 16px;text-align:left;">Book How Far Out</th>
+              <th style="padding:12px 16px;text-align:left;">Group Access</th>
+            </tr>
+          </thead>
+          <tbody>
+            {[
+              { name: 'Graeagle Meadows', first: '7:00 AM', advance: 'Standard public booking', group: 'GolfGraeagle coordinates blocks' },
+              { name: 'Plumas Pines', first: '7:30 AM', advance: 'Standard public booking', group: 'GolfGraeagle coordinates blocks' },
+              { name: 'Whitehawk Ranch', first: '7:30 AM', advance: 'Standard public booking', group: 'GolfGraeagle coordinates blocks' },
+              { name: 'Nakoma (The Dragon)', first: '8:00 AM', advance: 'Standard public booking', group: 'GolfGraeagle coordinates blocks' },
+              { name: 'Grizzly Ranch', first: '8:00 AM (est.)', advance: '10 days in advance max', group: 'GolfGraeagle secures guaranteed access' },
+            ].map((r, i) => (
+              <tr style={`border-bottom:1px solid #e8f0e8;${i%2===1?'background:#fafcfa;':''}`}>
+                <td style="padding:12px 16px;font-weight:600;color:#1a2e1a;">{r.name}</td>
+                <td style="padding:12px 16px;color:#3a8a48;font-weight:600;">{r.first}</td>
+                <td style="padding:12px 16px;color:#5a7060;">{r.advance}</td>
+                <td style="padding:12px 16px;color:#5a7060;">{r.group}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <p style="font-size:13px;color:#8a9a8e;margin-top:12px;">Grizzly Ranch is semi-private. GolfGraeagle.com has established relationships to secure tee times beyond the public window for groups.</p>
+    </section>
+
+    <!-- Elevation & Distance Bonus -->
+    <section style="margin-bottom:56px;">
+      <h2 style="font-family:'Playfair Display',serif;font-size:24px;color:#1a2e1a;margin:0 0 16px;" data-speakable>Elevation & Ball Distance — What to Expect</h2>
+      <div class="aeo-answer" style="background:#f0f8f0;border-left:4px solid #3a8a48;padding:20px 24px;border-radius:0 12px 12px 0;margin-bottom:20px;">
+        <p style="font-size:16px;color:#1a2e1a;margin:0;line-height:1.6;"><strong>At 4,000–5,400 feet, the golf ball carries 6–8% farther than at sea level.</strong> On a 150-yard approach at sea level, plan to hit 158–162 yards in Graeagle. Most groups club down by one full club on approach shots once they notice the carry. On a course like Grizzly Ranch at 5,200 feet, this effect is most pronounced.</p>
+      </div>
+      <div style="overflow-x:auto;">
+        <table style="width:100%;border-collapse:collapse;font-size:14px;">
+          <thead>
+            <tr style="background:#1a2e1a;color:#f0ece3;">
+              <th style="padding:12px 16px;text-align:left;">Course</th>
+              <th style="padding:12px 16px;text-align:right;">Elevation</th>
+              <th style="padding:12px 16px;text-align:right;">Distance Bonus (est.)</th>
+              <th style="padding:12px 16px;text-align:left;">Practical Impact</th>
+            </tr>
+          </thead>
+          <tbody>
+            {[
+              { name: 'Graeagle Meadows', elev: '~3,500 ft', bonus: '+4–5%', impact: 'Minimal — one club difference on long irons only' },
+              { name: 'Plumas Pines', elev: '~4,000 ft', bonus: '+5–6%', impact: 'Noticeable on 150+ yard shots — club down one' },
+              { name: 'Whitehawk Ranch', elev: '~4,400 ft', bonus: '+6%', impact: 'Club down one across the bag for approaches' },
+              { name: 'Nakoma (The Dragon)', elev: '~4,500 ft', bonus: '+6–7%', impact: 'Club down one — canyon wind can negate the bonus' },
+              { name: 'Grizzly Ranch', elev: '4,800–5,400 ft', bonus: '+7–8%', impact: 'Most significant — club down one to two on approaches' },
+            ].map((r, i) => (
+              <tr style={`border-bottom:1px solid #e8f0e8;${i%2===1?'background:#fafcfa;':''}`}>
+                <td style="padding:12px 16px;font-weight:600;color:#1a2e1a;">{r.name}</td>
+                <td style="padding:12px 16px;text-align:right;color:#5a7060;">{r.elev}</td>
+                <td style="padding:12px 16px;text-align:right;color:#3a8a48;font-weight:700;">{r.bonus}</td>
+                <td style="padding:12px 16px;color:#5a7060;font-size:13px;">{r.impact}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Month by Month -->
+    <section style="margin-bottom:56px;">
+      <h2 style="font-family:'Playfair Display',serif;font-size:24px;color:#1a2e1a;margin:0 0 20px;" data-speakable>Month-by-Month Conditions — {currentYear}</h2>
+      <div style="display:grid;gap:12px;">
+        {[
+          { month: 'April', rating: '★★★☆☆', courses: 'Graeagle Meadows only (mid-April)', conditions: 'Cool, sometimes wet. Great value — lowest prices of season. Only one course open.', tip: 'Best for: budget-focused 1-course trips, Sacramento-area day trips.' },
+          { month: 'May', rating: '★★★★☆', courses: 'All 5 open by late May', conditions: 'Crisp mornings, warm afternoons. Courses in early-season shape. Uncrowded.', tip: 'Best for: groups who want all 5 courses with no crowds. Book early.' },
+          { month: 'June', rating: '★★★★★', courses: 'All 5 open, peak conditions', conditions: 'Excellent. Long daylight hours (8 PM+). Fairways firm. Ideal weather 65–80°F.', tip: 'Best for: first-timers, large groups. Busiest booking window.' },
+          { month: 'July', rating: '★★★★★', courses: 'All 5, peak demand', conditions: 'Peak season. Book 4–6 weeks ahead. Hot afternoons but cool at elevation.', tip: 'Best for: bachelor parties, corporate outings. Most competitive tee sheet.' },
+          { month: 'August', rating: '★★★★☆', courses: 'All 5, late peak season', conditions: 'Still busy but easing slightly after mid-August. Courses in best shape of year.', tip: 'Best for: groups with flexible dates — mid-Aug starts to open up.' },
+          { month: 'September', rating: '★★★★★', courses: 'All 5 through mid-September', conditions: 'The best month. Crowds drop after Labor Day. Aspens turn gold. Temps 60–70°F. Firm fairways.', tip: 'Best overall month. Easiest tee time availability, lowest prices of peak season.' },
+          { month: 'October', rating: '★★★★☆', courses: 'Most open through mid-October', conditions: 'Beautiful fall colors. Morning frost possible. Courses start closing mid-to-late October.', tip: 'Best for: last-chance trips. Confirm course opening dates before booking.' },
+        ].map(m => (
+          <div style="display:grid;grid-template-columns:100px 1fr;gap:16px;padding:16px 20px;border:1px solid #e0ece0;border-radius:10px;align-items:start;">
+            <div>
+              <div style="font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:#1a2e1a;">{m.month}</div>
+              <div style="font-size:13px;color:#e8a850;">{m.rating}</div>
+            </div>
+            <div>
+              <div style="font-size:13px;font-weight:700;color:#3a8a48;margin-bottom:4px;">{m.courses}</div>
+              <div style="font-size:14px;color:#3d5240;margin-bottom:4px;">{m.conditions}</div>
+              <div style="font-size:13px;color:#8a9a8e;font-style:italic;">{m.tip}</div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Drive times -->
+    <section style="margin-bottom:56px;">
+      <h2 style="font-family:'Playfair Display',serif;font-size:24px;color:#1a2e1a;margin:0 0 16px;" data-speakable>Drive Times to Graeagle from Major Cities</h2>
+      <p style="color:#3d5240;margin-bottom:20px;">All routes are via mountain highways — add 15–30 minutes during winter/spring for chain controls or construction delays on Hwy 70/89.</p>
+      <div style="overflow-x:auto;">
+        <table style="width:100%;border-collapse:collapse;font-size:14px;">
+          <thead>
+            <tr style="background:#1a2e1a;color:#f0ece3;">
+              <th style="padding:12px 16px;text-align:left;">From</th>
+              <th style="padding:12px 16px;text-align:left;">Route</th>
+              <th style="padding:12px 16px;text-align:right;">Distance</th>
+              <th style="padding:12px 16px;text-align:right;">Drive Time</th>
+            </tr>
+          </thead>
+          <tbody>
+            {[
+              { from: 'Sacramento, CA', route: 'Hwy 70 NE', dist: '~95 mi', time: '~2.5 hrs' },
+              { from: 'Reno, NV', route: 'Hwy 70 W', dist: '~60 mi', time: '~1 hr' },
+              { from: 'San Francisco / Bay Area', route: 'I-80 E → Hwy 70 N', dist: '~190 mi', time: '~3.5–4 hrs' },
+              { from: 'San Jose, CA', route: 'I-680 N → I-80 E → Hwy 70', dist: '~210 mi', time: '~4 hrs' },
+              { from: 'North Lake Tahoe (Truckee)', route: 'Hwy 89 N', dist: '~55 mi', time: '~1.5 hrs' },
+              { from: 'Los Angeles, CA', route: 'I-5 N → Hwy 99 N → Hwy 70', dist: '~440 mi', time: '~6.5 hrs' },
+            ].map((r, i) => (
+              <tr style={`border-bottom:1px solid #e8f0e8;${i%2===1?'background:#fafcfa;':''}`}>
+                <td style="padding:12px 16px;font-weight:600;color:#1a2e1a;">{r.from}</td>
+                <td style="padding:12px 16px;color:#5a7060;">{r.route}</td>
+                <td style="padding:12px 16px;text-align:right;color:#5a7060;">{r.dist}</td>
+                <td style="padding:12px 16px;text-align:right;font-weight:700;color:#1a2e1a;">{r.time}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section style="background:#1a2e1a;border-radius:20px;padding:40px;text-align:center;">
+      <h2 style="font-family:'Playfair Display',serif;font-size:28px;color:#f0ece3;margin:0 0 12px;">Ready to Plan Your Graeagle Trip?</h2>
+      <p style="color:#a8dbb5;font-size:16px;margin:0 0 28px;">Mike Eskuchen builds every package personally. Free quote, 24-hour response. Groups of 4–200.</p>
+      <a href="/request-a-quote/" class="btn-green-glow" style="display:inline-block;padding:16px 40px;font-size:16px;font-weight:700;border-radius:100px;">Request a Free Quote →</a>
+      <p style="color:#78c488;font-size:13px;margin-top:16px;">Or call <a href="tel:+18885861157" style="color:#e8a850;text-decoration:none;font-weight:600;">(888) 586-1157</a></p>
+    </section>
+
+  </main>
+
+  <Footer />
+</Base>
