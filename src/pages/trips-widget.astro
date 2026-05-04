@@ -5,7 +5,7 @@ const { trips, tripCount, minPrice, maxPrice } = await fetchTripStats();
 
 // Only use real trips with pricing data
 const realTrips = (trips || [])
-  .filter((t: any) => t.price_per_person && t.courses?.length > 0)
+  .filter((t: any) => t.pricePerPerson && t.courses?.length > 0)
   .slice(0, 12);
 ---
 <!DOCTYPE html>
@@ -153,12 +153,12 @@ const realTrips = (trips || [])
         </div>
         <div class="trip-meta-row">
           {trip.nights && <span class="trip-badge">{trip.nights} nights</span>}
-          {trip.group_size && <span class="trip-badge">{trip.group_size} golfers</span>}
+          {trip.groupSize && <span class="trip-badge">{trip.groupSize} golfers</span>}
           {trip.rounds && <span class="trip-badge">{trip.rounds} rounds</span>}
         </div>
         <div class="trip-footer">
           <div>
-            <div class="trip-price">${trip.price_per_person}<span class="trip-price-label">/person</span></div>
+            <div class="trip-price">${trip.pricePerPerson}<span class="trip-price-label">/person</span></div>
           </div>
           <a href="https://golfgraeagle.com/request-a-quote/" target="_blank" rel="noopener" class="trip-cta">Plan Similar →</a>
         </div>
