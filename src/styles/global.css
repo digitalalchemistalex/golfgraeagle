@@ -271,13 +271,16 @@ section.hero-section,
   display: inline-block;
   background: rgba(20,40,20,0.85);
   color: #a8ffb8;
+  font-size: 15px;
   font-weight: 700;
   text-decoration: none;
   border-radius: 100px;
   border: 1.5px solid rgba(100,255,140,0.55);
   box-shadow: 0 0 12px 2px rgba(80,255,120,0.3), 0 0 28px 6px rgba(60,220,100,0.15);
   transition: box-shadow 0.3s ease, transform 0.25s ease, background 0.25s;
-  backdrop-filter: blur(8px);
+  padding: 13px 28px;
+  text-align: center;
+  cursor: pointer;
 }
 .btn-green-glow:hover {
   background: rgba(25,55,25,0.95);
