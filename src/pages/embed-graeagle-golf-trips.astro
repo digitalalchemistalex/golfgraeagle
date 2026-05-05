@@ -6,25 +6,109 @@ import Footer from '../components/Footer.astro';
 import { siteConfig } from '../data/content.js';
 
 const title = "Free Graeagle Golf Trip Widget — Embed Real Package Pricing on Your Site";
-const description = "Add a live Graeagle golf trip pricing widget to any website in 30 seconds. Shows real completed packages with verified pricing. Free to embed. No signup required.";
+const description = "Add a live Graeagle golf trip pricing widget to any website in 30 seconds. Shows real completed packages with verified pricing, photos, lodging, and course details. Free to embed. No signup required.";
 const canonicalUrl = `${siteConfig.url}/embed-graeagle-golf-trips/`;
-const ogImage = `${siteConfig.url}/wp-images/grizzly-ranch-hero.webp`;
+const ogImage = `${siteConfig.url}/wp-images/grizzly-ranch-.webp`;
 
-const previewTrips = [
-  { price: 620,  nights: 2, golfers: 24, rounds: 3, courses: ['Whitehawk Ranch', 'Graeagle Meadows'] },
-  { price: 645,  nights: 2, golfers: 12, rounds: 2, courses: ['Grizzly Ranch', 'Whitehawk Ranch'] },
-  { price: 675,  nights: 2, golfers: 8,  rounds: 3, courses: ['Whitehawk Ranch', 'Graeagle Meadows'] },
-  { price: 849,  nights: 3, golfers: 16, rounds: 3, courses: ['Nakoma Dragon', 'Grizzly Ranch'] },
-  { price: 1067, nights: 3, golfers: 30, rounds: 4, courses: ['Plumas Pines', 'Whitehawk Ranch'] },
-  { price: 1150, nights: 3, golfers: 36, rounds: 4, courses: ['Grizzly Ranch', 'Whitehawk Ranch'] },
+// Real trips with verified images from TripsCaddie API — filtered to Graeagle only
+const featuredTrips = [
+  {
+    price: 675,
+    nights: 2,
+    golfers: 8,
+    rounds: 3,
+    vibe: 'Value',
+    month: 'June',
+    courses: ['Whitehawk Ranch', 'Graeagle Meadows', 'Grizzly Ranch'],
+    lodging: 'River Pines Resort',
+    synopsis: '2-night, 3-round package. Comfortable resort rooms, three of Graeagle\'s best courses, walking distance to dining.',
+    highlights: ['3 rounds with cart', '2 nights River Pines Resort', 'All tee times secured'],
+    image: 'https://golfthehighsierra.com/trips-caddie/uploads/trip_1766434476_24eb2409db35c4c8.webp',
+    slug: 'grizzly-ranch-golf-packages',
+  },
+  {
+    price: 849,
+    nights: 3,
+    golfers: 16,
+    rounds: 3,
+    vibe: 'Value',
+    month: 'September',
+    courses: ['The Dragon at Nakoma', 'Grizzly Ranch', 'Whitehawk Ranch'],
+    lodging: '4-Bedroom Townhome at Plumas Pines',
+    synopsis: '3-night townhome stay. September conditions — no crowds, aspens turning, firm fairways. The Dragon + two Top 100s.',
+    highlights: ['3 nights townhome — own bedrooms', 'Nakoma Dragon (FLW clubhouse)', 'Best month for conditions'],
+    image: 'https://golfthehighsierra.com/trips-caddie/uploads/trip_1774118142_fe9758d0bb513d2f.jpg',
+    slug: 'nakoma-dragon-golf-packages',
+  },
+  {
+    price: 1009,
+    nights: 3,
+    golfers: 8,
+    rounds: 4,
+    vibe: 'Value',
+    month: 'August',
+    courses: ['Plumas Pines', 'Graeagle Meadows', 'Grizzly Ranch', 'Whitehawk Ranch'],
+    lodging: 'Plumas Pines Townhomes',
+    synopsis: 'All 4 public courses in 3 nights. Private townhomes, everyone gets their own bedroom, 4 rounds with cart included.',
+    highlights: ['All 4 public courses', '3 nights private townhomes', '4 rounds with cart'],
+    image: 'https://golfthehighsierra.com/trips-caddie/uploads/trip_1774117619_6322b7649999cfe6.jpg',
+    slug: 'plumas-pines-golf-packages',
+  },
+  {
+    price: 1067,
+    nights: 3,
+    golfers: 30,
+    rounds: 3,
+    vibe: 'Premium',
+    month: 'June',
+    courses: ['Plumas Pines', 'Whitehawk Ranch', 'Grizzly Ranch'],
+    lodging: 'Plumas Pines Private Townhomes',
+    synopsis: 'Large group done right. 30 golfers, private 3-bedroom townhomes (own bedrooms), three premier courses, banquet dinner.',
+    highlights: ['30 golfers — own bedrooms guaranteed', 'Private townhome block', 'Banquet dinner arranged'],
+    image: 'https://golfthehighsierra.com/trips-caddie/uploads/trip_1769105871_ebf5c47de7d6a4e9.jpg',
+    slug: 'whitehawk-ranch-golf-packages',
+  },
+  {
+    price: 1105,
+    nights: 3,
+    golfers: 8,
+    rounds: 4,
+    vibe: 'Value',
+    month: 'July',
+    courses: ['Plumas Pines', 'Graeagle Meadows', 'Grizzly Ranch', 'Whitehawk Ranch'],
+    lodging: '4-Bedroom Townhomes at Plumas Pines',
+    synopsis: 'Peak summer, 4 rounds, every course. Private 4-bedroom townhomes with full kitchen. The classic Graeagle bucket list trip.',
+    highlights: ['4 rounds — every Graeagle course', 'Private 4-bedroom townhomes', 'Peak season availability secured'],
+    image: 'https://golfthehighsierra.com/trips-caddie/uploads/trip_1774117532_bc48cf8894ea6ef5.webp',
+    slug: 'graeagle-meadows-golf-packages',
+  },
+  {
+    price: 1150,
+    nights: 3,
+    golfers: 36,
+    rounds: 3,
+    vibe: 'Premium',
+    month: 'July',
+    courses: ['Grizzly Ranch', 'Whitehawk Ranch', 'Plumas Pines'],
+    lodging: 'Townhomes at Plumas Pines Resort',
+    synopsis: '36 golfers, 3 courses, 3 nights. Multiple tee sheet blocks coordinated. 36 holes at Whitehawk in one day. Clean invoicing.',
+    highlights: ['36 golfers — all logistics handled', '36-hole day at Whitehawk', 'Clean group invoicing'],
+    image: 'https://golfthehighsierra.com/trips-caddie/uploads/trip_1766435975_d3d06c7c651da8da.webp',
+    slug: 'grizzly-ranch-golf-packages',
+  },
 ];
 
+const vibeColors = {
+  'Value': { bg: '#e8f8e8', text: '#1a6030', border: '#b4e0b4' },
+  'Premium': { bg: '#fff8e8', text: '#7a4d10', border: '#e8d490' },
+};
+
 const platforms = [
-  { name: 'WordPress', how: 'Post editor → click + → search "Custom HTML" → paste code inside that block.' },
-  { name: 'Squarespace', how: 'Edit page → Add block → Embed → paste the code.' },
-  { name: 'Wix', how: 'Add Elements → Embed Code → HTML iframe → paste the code.' },
-  { name: 'Plain HTML', how: 'Paste directly into your .html file where you want the widget.' },
-  { name: 'Webflow', how: 'Add an Embed element to your page → paste the code inside it.' },
+  { name: 'WordPress', how: 'Post editor → click + → search "Custom HTML" → paste.' },
+  { name: 'Squarespace', how: 'Edit page → Add block → Embed → paste.' },
+  { name: 'Wix', how: 'Add Elements → Embed Code → HTML iframe → paste.' },
+  { name: 'Plain HTML', how: 'Paste directly into your .html file.' },
+  { name: 'Webflow', how: 'Add Embed element → paste the code inside.' },
 ];
 
 const schema = [
@@ -47,19 +131,18 @@ const schema = [
     "description": "Add a live Graeagle golf trip pricing widget to any website in three steps.",
     "totalTime": "PT2M",
     "step": [
-      { "@type": "HowToStep", "position": 1, "name": "Copy the embed code", "text": "Copy the single iframe code snippet from this page." },
-      { "@type": "HowToStep", "position": 2, "name": "Paste into your page", "text": "Paste the code into your blog post, travel guide, or website wherever you want the widget to appear." },
-      { "@type": "HowToStep", "position": 3, "name": "Publish", "text": "Save and publish. The widget loads automatically showing real Graeagle golf trip packages with verified pricing." }
+      { "@type": "HowToStep", "position": 1, "name": "Copy the embed code", "text": "Copy the iframe code snippet from this page." },
+      { "@type": "HowToStep", "position": 2, "name": "Paste into your page", "text": "Paste the code into your blog post or website." },
+      { "@type": "HowToStep", "position": 3, "name": "Publish", "text": "Save and publish. The widget loads automatically with real Graeagle golf trip packages." }
     ]
   },
   {
     "@context": "https://schema.org",
     "@type": "FAQPage",
     "mainEntity": [
-      { "@type": "Question", "name": "Is the Graeagle golf trip widget free to embed?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. The widget is completely free to embed on any website. No account, no signup, no API key required. Copy the iframe code and paste it into your page." } },
-      { "@type": "Question", "name": "What does the widget show?", "acceptedAnswer": { "@type": "Answer", "text": "The widget displays real completed Graeagle golf trip packages with verified pricing, courses played, group size, number of nights, and rounds. Data is pulled live from GolfGraeagle.com's trip archive of 22+ actual packages." } },
-      { "@type": "Question", "name": "Does the widget update automatically?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. The widget pulls live data from GolfGraeagle.com's trip archive every time it loads. When new trips are added, they appear automatically." } },
-      { "@type": "Question", "name": "What websites can use this widget?", "acceptedAnswer": { "@type": "Answer", "text": "Any website can embed this widget — WordPress, Squarespace, Wix, Webflow, plain HTML, or any blog platform that allows iframe embeds." } },
+      { "@type": "Question", "name": "Is the Graeagle golf trip widget free to embed?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Completely free. No account, no signup, no API key. Copy the iframe and paste it." } },
+      { "@type": "Question", "name": "What does the widget show?", "acceptedAnswer": { "@type": "Answer", "text": "Real completed Graeagle golf trip packages with photos, verified pricing, courses played, lodging used, group size, and highlights. Data from GolfGraeagle.com's archive of 22+ actual packages." } },
+      { "@type": "Question", "name": "Does the widget update automatically?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. The widget pulls live data every time it loads. New trips appear automatically — zero maintenance required." } },
     ]
   },
   {
@@ -69,7 +152,7 @@ const schema = [
     "applicationCategory": "TravelApplication",
     "operatingSystem": "Web",
     "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
-    "description": "A free embeddable widget showing real Graeagle golf trip packages with verified pricing.",
+    "description": "A free embeddable widget showing real Graeagle golf trip packages with photos, verified pricing, lodging, and course details.",
     "url": "https://golfgraeagle.com/trips-widget/",
     "provider": { "@id": "https://golfgraeagle.com/#organization" }
   },
@@ -85,178 +168,171 @@ const schema = [
 ---
 <Base title={title} description={description} schema={schema} canonical={canonicalUrl} ogImage={ogImage} bodyClass="light-page">
   <Nav />
+  <main class="ew">
 
-  <main class="ew-main">
-
-    <!-- HERO — mobile-first, full-width -->
+    <!-- HERO -->
     <section class="ew-hero">
       <div class="ew-hero-inner">
         <p class="ew-eyebrow">Free Tool for Golf & Travel Websites</p>
-        <h1 class="speakable ew-hero-h1">Embed Real Graeagle Golf<br class="ew-br"/> Trip Pricing on Your Site</h1>
-        <p class="aeo-answer ew-hero-sub">One line of code. Live data. 22 real packages with verified pricing — auto-updated. Free forever.</p>
-        <!-- Mobile: separate CTAs. Writers = embed. Golfers = quote. -->
+        <h1 class="speakable ew-h1">Embed Real Graeagle Golf<br class="ew-br-mob"/> Trip Pricing on Your Site</h1>
+        <p class="aeo-answer ew-hero-sub">One iframe. Live photos and pricing from real completed trips. Auto-updates. Free forever.</p>
         <div class="ew-hero-btns">
-          <a href="#get-the-code" class="ew-btn-primary">Get the embed code ↓</a>
+          <a href="#get-the-code" class="ew-btn-gold">Get the embed code ↓</a>
           <a href="https://golfgraeagle.com/trips-widget/" target="_blank" rel="noopener" class="ew-btn-ghost">Preview live widget ↗</a>
         </div>
-        <!-- Mobile only: if you're a golfer not a blogger -->
-        <p class="ew-hero-golfer-nudge">Planning a Graeagle golf trip yourself? <a href="/request-a-quote/" class="ew-hero-golfer-link">Get a free quote →</a></p>
+        <p class="ew-golfer-nudge">Planning your own trip? <a href="/request-a-quote/" class="ew-golfer-link">Get a free quote →</a></p>
       </div>
     </section>
 
-    <!-- STATS STRIP — mobile scannable -->
-    <section class="ew-stats-strip">
+    <!-- STATS STRIP -->
+    <div class="ew-stats">
       {[
-        { num: '22+', label: 'Real trips' },
-        { num: '$379', label: 'From' },
-        { num: '$1,705', label: 'Up to' },
-        { num: '5', label: 'Courses' },
-        { num: 'Free', label: 'Cost' },
+        { n: '22+', l: 'Real trips' },
+        { n: '$379', l: 'From' },
+        { n: '$1,705', l: 'Up to' },
+        { n: '5', l: 'Courses' },
+        { n: 'Free', l: 'To embed' },
       ].map(s => (
         <div class="ew-stat">
-          <div class="ew-stat-num">{s.num}</div>
-          <div class="ew-stat-label">{s.label}</div>
+          <strong class="ew-stat-n">{s.n}</strong>
+          <span class="ew-stat-l">{s.l}</span>
         </div>
       ))}
-    </section>
+    </div>
 
-    <!-- WHAT IS IT — stacked on mobile -->
-    <section class="ew-section">
-      <div class="ew-container">
-        <p class="ew-label">What it is</p>
-        <h2 class="ew-h2" data-speakable>A live pricing widget your readers will actually use</h2>
-        <p class="ew-body">Your readers ask "how much does a Graeagle golf trip cost?" You now have a real answer — not a range, not "contact us", but actual completed packages with real dollar amounts.</p>
-        <p class="ew-body">The widget pulls live from GolfGraeagle.com's trip archive. Every card shows courses played, group size, nights, and verified per-person cost. When new trips are added, they appear automatically — zero action needed from your site.</p>
-        <ul class="ew-checklist">
-          <li>No account or signup required</li>
-          <li>Updates automatically — zero maintenance</li>
-          <li>Works on WordPress, Squarespace, Wix, plain HTML</li>
-          <li>Mobile responsive — stacks to single column</li>
-          <li>Free. No ads. No tracking of your visitors.</li>
-        </ul>
-      </div>
-    </section>
-
-    <!-- LIVE PREVIEW — the widget mock inside a browser chrome -->
-    <section class="ew-section ew-preview-section">
-      <div class="ew-container">
-        <p class="ew-label">Live preview</p>
-        <h2 class="ew-h2">This is exactly what your readers see</h2>
-        <p class="ew-body-center">Real data. Not a mockup. This renders from GolfGraeagle.com's live trip archive.</p>
+    <!-- TRIP CARDS — the actual preview, visually stunning -->
+    <section class="ew-cards-section">
+      <div class="ew-wrap">
+        <p class="ew-label">Live preview — real data</p>
+        <h2 class="ew-h2" data-speakable>This is what your readers will see</h2>
+        <p class="ew-sub">Every card below is a real completed Graeagle golf trip with a real photo, real price, and real courses. This is the actual widget data.</p>
       </div>
 
-      <!-- Browser chrome — constrained but scrollable on small screens -->
-      <div class="ew-browser-wrap">
-        <div class="ew-browser">
-          <!-- Browser bar -->
-          <div class="ew-browser-bar">
-            <div class="ew-dots">
-              <span class="ew-dot ew-dot-red"></span>
-              <span class="ew-dot ew-dot-yellow"></span>
-              <span class="ew-dot ew-dot-green"></span>
-            </div>
-            <div class="ew-url-bar">yourgolfblog.com/graeagle-guide</div>
-          </div>
-          <!-- Blog context text -->
-          <div class="ew-blog-ctx">
-            <p class="ew-blog-cont">...continued from article...</p>
-            <p class="ew-blog-para">When planning a Graeagle golf trip, the most common question is: <em>what will this actually cost?</em> Rather than a vague estimate, here are real packages from GolfGraeagle.com's trip archive:</p>
-          </div>
-          <!-- Widget replica -->
-          <div class="ew-widget-mock">
-            <div class="ew-wm-header">
-              <div>
-                <div class="ew-wm-title">Real Graeagle Golf Trips</div>
-                <div class="ew-wm-sub">Actual packages with verified pricing</div>
-              </div>
-              <span class="ew-wm-badge">22 trips · from $379/person</span>
-            </div>
-            <div class="ew-cards-grid">
-              {previewTrips.map(trip => (
-                <div class="ew-card">
-                  <div class="ew-card-label">Courses Played</div>
-                  <div class="ew-card-courses">{trip.courses.join(' · ')}</div>
-                  <div class="ew-card-tags">
-                    <span class="ew-tag">{trip.nights}n</span>
-                    <span class="ew-tag">{trip.golfers} golfers</span>
-                    <span class="ew-tag">{trip.rounds} rounds</span>
-                  </div>
-                  <div class="ew-card-footer">
-                    <div class="ew-card-price">${trip.price}<span class="ew-card-per">/person</span></div>
-                    <span class="ew-card-cta">Plan Similar →</span>
-                  </div>
+      <div class="ew-cards-grid">
+        {featuredTrips.map((trip, i) => {
+          const vc = vibeColors[trip.vibe] || vibeColors['Value'];
+          return (
+            <article class="ew-card" style={i >= 3 ? 'display:none;' : ''} data-extra={i >= 3 ? 'true' : 'false'}>
+              <!-- Photo -->
+              <div class="ew-card-img-wrap">
+                <img
+                  src={trip.image}
+                  alt={`Graeagle golf trip — ${trip.courses[0]}`}
+                  class="ew-card-img"
+                  loading={i === 0 ? 'eager' : 'lazy'}
+                  width="420"
+                  height="240"
+                />
+                <div class="ew-card-img-overlay">
+                  <span class="ew-vibe-badge" style={`background:${vc.bg};color:${vc.text};border:1px solid ${vc.border};`}>{trip.vibe}</span>
+                  <div class="ew-card-price-hero">${trip.price}<span class="ew-per">/person</span></div>
                 </div>
-              ))}
-            </div>
-            <div class="ew-wm-powered">Powered by <strong>GolfGraeagle.com</strong> — Graeagle golf specialists since 2004</div>
-          </div>
-          <!-- Blog continues -->
-          <div class="ew-blog-ctx">
-            <p class="ew-blog-para">These are actual completed packages, not estimates. Click "Plan Similar" to request a custom quote...</p>
-          </div>
-        </div>
+              </div>
+
+              <!-- Content -->
+              <div class="ew-card-body">
+                <!-- Meta row -->
+                <div class="ew-card-meta">
+                  <span class="ew-meta-chip">🌙 {trip.nights} nights</span>
+                  <span class="ew-meta-chip">👥 {trip.golfers} golfers</span>
+                  <span class="ew-meta-chip">⛳ {trip.rounds} rounds</span>
+                  <span class="ew-meta-chip">📅 {trip.month}</span>
+                </div>
+
+                <!-- Courses -->
+                <div class="ew-card-courses-label">Courses played</div>
+                <div class="ew-card-courses">
+                  {trip.courses.map((c, ci) => (
+                    <span class="ew-course-tag">{c}{ci < trip.courses.length - 1 ? '' : ''}</span>
+                  ))}
+                </div>
+
+                <!-- Lodging -->
+                <div class="ew-card-lodging">
+                  <span class="ew-lodging-icon">🏠</span>
+                  <span class="ew-lodging-text">{trip.lodging}</span>
+                </div>
+
+                <!-- Synopsis -->
+                <p class="ew-card-synopsis">{trip.synopsis}</p>
+
+                <!-- Highlights -->
+                <ul class="ew-card-highlights">
+                  {trip.highlights.map(h => <li>{h}</li>)}
+                </ul>
+
+                <!-- Footer CTA -->
+                <div class="ew-card-footer">
+                  <a href={`/portfolio/${trip.slug}/`} class="ew-card-learn">View {trip.courses[0].split(' ')[0]} packages</a>
+                  <a href="/request-a-quote/" class="ew-card-cta">Plan Similar →</a>
+                </div>
+              </div>
+            </article>
+          );
+        })}
+      </div>
+
+      <!-- Show more -->
+      <div class="ew-show-more-wrap" id="show-more-wrap">
+        <button class="ew-show-more" id="show-more-btn" onclick="document.querySelectorAll('[data-extra=true]').forEach(function(el){el.style.display='';});document.getElementById('show-more-wrap').style.display='none';">
+          Show {featuredTrips.length - 3} more real trips ↓
+        </button>
+      </div>
+
+      <div class="ew-wrap ew-cards-footer">
+        <p class="ew-cards-note">These are 6 of 22+ real completed Graeagle golf trips in our archive. The live widget loads all of them automatically.</p>
+        <a href="/request-a-quote/" class="btn-green-glow ew-main-cta">Build your own Graeagle trip — free quote →</a>
       </div>
     </section>
 
-    <!-- 3 STEPS -->
-    <section id="get-the-code" class="ew-section">
-      <div class="ew-container">
-        <p class="ew-label">How to add it</p>
-        <h2 class="ew-h2" data-speakable>3 steps. Under 2 minutes.</h2>
-        <p class="ew-body-center">Works on WordPress, Squarespace, Wix, Webflow, or any site that allows HTML.</p>
+    <!-- HOW TO EMBED -->
+    <section id="get-the-code" class="ew-steps-section">
+      <div class="ew-wrap">
+        <p class="ew-label">For golf bloggers & travel writers</p>
+        <h2 class="ew-h2" data-speakable>Embed all of this on your site in 3 steps</h2>
+        <p class="ew-sub">Works on WordPress, Squarespace, Wix, Webflow, plain HTML. Under 2 minutes.</p>
 
         <div class="ew-steps">
 
-          <!-- Step 1 -->
           <div class="ew-step">
-            <div class="ew-step-num">1</div>
+            <div class="ew-step-n">1</div>
             <div class="ew-step-body">
               <h3 class="ew-step-h3">Copy this code</h3>
-              <p class="ew-step-p">Select all and copy — or tap the button.</p>
               <div class="ew-code-wrap">
                 <pre id="embed-code" class="ew-code">{`<iframe
   src="https://golfgraeagle.com/trips-widget/"
   width="100%"
-  height="520"
+  height="560"
   frameborder="0"
   style="border-radius:12px;"
   title="Real Graeagle Golf Trip Packages"
 ></iframe>`}</pre>
-                <button
-                  class="ew-copy-btn"
-                  onclick="var t=document.getElementById('embed-code').textContent;navigator.clipboard.writeText(t).then(function(){var b=document.querySelector('.ew-copy-btn');b.textContent='✓ Copied!';b.style.background='#3a8a48';b.style.color='#fff';setTimeout(function(){b.textContent='Copy';b.style.background='#e8a850';b.style.color='#1a2e1a'},2000)})">
-                  Copy
-                </button>
+                <button class="ew-copy" onclick="var t=document.getElementById('embed-code').textContent;navigator.clipboard.writeText(t).then(function(){var b=document.querySelector('.ew-copy');b.textContent='✓ Copied!';b.style.background='#3a8a48';b.style.color='#fff';setTimeout(function(){b.textContent='Copy';b.style.background='#e8a850';b.style.color='#1a2e1a'},2000)})">Copy</button>
               </div>
             </div>
           </div>
 
-          <!-- Step 2 -->
           <div class="ew-step">
-            <div class="ew-step-num">2</div>
+            <div class="ew-step-n">2</div>
             <div class="ew-step-body">
               <h3 class="ew-step-h3">Paste into your page</h3>
-              <p class="ew-step-p">Where to paste it depends on your platform:</p>
               <div class="ew-platforms">
                 {platforms.map(p => (
                   <div class="ew-platform">
-                    <div class="ew-platform-name">{p.name}</div>
-                    <div class="ew-platform-how">{p.how}</div>
+                    <div class="ew-p-name">{p.name}</div>
+                    <div class="ew-p-how">{p.how}</div>
                   </div>
                 ))}
               </div>
             </div>
           </div>
 
-          <!-- Step 3 -->
           <div class="ew-step">
-            <div class="ew-step-num">3</div>
+            <div class="ew-step-n">3</div>
             <div class="ew-step-body">
-              <h3 class="ew-step-h3">Publish — you're done</h3>
-              <p class="ew-step-p">Save and publish your page. The widget loads automatically. No settings, no API key, no account. When new Graeagle trips are added to our archive, they appear in your widget automatically — you never have to update anything.</p>
-              <div class="ew-tip">
-                <strong>Tip:</strong> Place the widget right after a paragraph that mentions Graeagle golf trip costs. It answers the question your reader just asked — before they leave your page to search elsewhere.
-              </div>
+              <h3 class="ew-step-h3">Publish</h3>
+              <p class="ew-step-p">Done. The widget loads all 22+ trips automatically. When new packages are added to our archive, they appear in your widget — you never touch it again.</p>
+              <div class="ew-tip">💡 <strong>Best placement:</strong> Right after a paragraph about Graeagle golf trip costs. It answers the question your reader just asked — before they leave to search elsewhere.</div>
             </div>
           </div>
 
@@ -264,15 +340,16 @@ const schema = [
       </div>
     </section>
 
-    <!-- WHY BLOGGERS USE IT -->
-    <section class="ew-section ew-why-section">
-      <div class="ew-container">
-        <h2 class="ew-h2" data-speakable>Why travel writers and golf bloggers add it</h2>
+    <!-- WHY -->
+    <section class="ew-why-section">
+      <div class="ew-wrap">
+        <h2 class="ew-h2" data-speakable>Why travel writers embed it</h2>
         <div class="ew-why-grid">
           {[
-            { icon: '📊', title: 'Real data your readers trust', body: 'Pricing articles without real numbers get ignored. This widget shows verified costs from actual completed packages — the specificity readers search for and stay for.' },
-            { icon: '⏱️', title: 'Zero maintenance forever', body: 'Paste once. The widget updates itself. No broken links, no outdated numbers, no annual "refresh this post" task.' },
-            { icon: '🔗', title: 'Your readers get the answer', body: 'Every "Plan Similar →" card links to GolfGraeagle.com\'s quote form. Your reader gets to a real booking conversation without leaving to Google something.' },
+            { icon: '📸', title: 'Real photos, real data', body: 'Not stock photos. Every card shows an actual photo from that specific trip, with real pricing, real courses, and real lodging. Your readers trust specifics.' },
+            { icon: '⏱️', title: 'Zero maintenance', body: 'Paste once. Auto-updates forever. No broken links, no outdated numbers, no annual "refresh this post" on your calendar.' },
+            { icon: '⛳', title: 'Useful for real golfers', body: 'Lodging names, course lists, group sizes, highlights — everything a golfer comparing trips actually needs. Not just a price.' },
+            { icon: '🔗', title: 'Your readers get answers', body: 'Every card links directly to GolfGraeagle.com\'s quote form. They go from your article to a real booking conversation without Googling anything.' },
           ].map(w => (
             <div class="ew-why-card">
               <div class="ew-why-icon">{w.icon}</div>
@@ -285,47 +362,40 @@ const schema = [
     </section>
 
     <!-- FAQ -->
-    <section class="ew-section">
-      <div class="ew-container ew-faq-container">
-        <h2 class="ew-h2">Common questions</h2>
-        <div class="ew-faqs">
-          {[
-            { q: 'Is it really free?', a: 'Yes. No cost, no account, no strings. We built it because real pricing data benefits everyone planning a Graeagle golf trip — and the bloggers who cover it.' },
-            { q: 'Will it slow down my site?', a: 'No. The widget loads inside an iframe — completely isolated from your page. It cannot affect your site speed, SEO, or Core Web Vitals.' },
-            { q: 'Can I change the height?', a: 'Yes. Adjust height="520" in the code. Set it to 400 for compact or 700+ to show more cards without scrolling.' },
-            { q: 'Does it work on mobile?', a: 'Yes. The widget is fully responsive. On screens under 600px it stacks to a single column automatically.' },
-            { q: 'Does GolfGraeagle track my visitors?', a: 'No. The widget does not set cookies or track your visitors. It only loads trip data from our archive.' },
-            { q: 'Want a custom integration?', a: 'Email mike.eskuchen@golfthehighsierra.com. We can discuss custom implementations for larger golf and travel platforms.' },
-          ].map((f, i) => (
-            <details class="ew-faq">
-              <summary class="ew-faq-q">
-                {f.q}
-                <span class="ew-faq-icon">+</span>
-              </summary>
-              <p class="ew-faq-a">{f.a}</p>
-            </details>
-          ))}
-        </div>
+    <section class="ew-faq-section">
+      <div class="ew-wrap ew-faq-wrap">
+        <h2 class="ew-h2">Questions</h2>
+        {[
+          { q: 'Is it free?', a: 'Yes. No cost, no account, no strings. The widget is free to embed on any site.' },
+          { q: 'Will it slow my site?', a: 'No. Loads inside an iframe — completely isolated from your page. No effect on your speed scores or Core Web Vitals.' },
+          { q: 'Can I change the height?', a: 'Yes. Change height="560" to whatever fits your layout. 400 for compact, 700+ to show more cards without scrolling inside the iframe.' },
+          { q: 'Does it work on mobile?', a: 'Yes. The widget is fully responsive — cards stack to single column on small screens automatically.' },
+          { q: 'Does GolfGraeagle track my visitors?', a: 'No. The widget does not set cookies or track your visitors. It only loads trip data from our archive.' },
+          { q: 'Can I get a custom version?', a: 'Email mike.eskuchen@golfthehighsierra.com — we\'re happy to discuss custom implementations for larger platforms.' },
+        ].map(f => (
+          <details class="ew-faq">
+            <summary class="ew-faq-q">{f.q}<span class="ew-faq-plus">+</span></summary>
+            <p class="ew-faq-a">{f.a}</p>
+          </details>
+        ))}
       </div>
     </section>
 
-    <!-- DUAL CTA — different for mobile users (likely golfers) vs desktop (likely bloggers) -->
+    <!-- DUAL CTA -->
     <section class="ew-cta-section">
-      <div class="ew-container">
-        <!-- For bloggers / writers -->
-        <div class="ew-cta-card ew-cta-blogger">
+      <div class="ew-wrap ew-cta-grid">
+        <div class="ew-cta-writer">
           <div class="ew-cta-icon">✍️</div>
-          <h3 class="ew-cta-h3">Writing about Graeagle golf?</h3>
-          <p class="ew-cta-p">Add real verified pricing to your article in 30 seconds. Free, zero maintenance.</p>
-          <a href="#get-the-code" class="ew-cta-btn-dark">Get the embed code ↑</a>
+          <h3 class="ew-cta-h3">You're a golf writer or blogger</h3>
+          <p class="ew-cta-p">Add real Graeagle trip pricing to your content in 30 seconds. Free, one line of code.</p>
+          <a href="#get-the-code" class="ew-cta-btn-outline">Get the embed code ↑</a>
         </div>
-        <!-- For golfers planning a trip — mobile-first -->
-        <div class="ew-cta-card ew-cta-golfer">
+        <div class="ew-cta-golfer">
           <div class="ew-cta-icon">⛳</div>
-          <h3 class="ew-cta-h3">Planning a Graeagle trip yourself?</h3>
-          <p class="ew-cta-p">Mike Eskuchen builds every package personally. Free quote, 24-hour response. 4.8/5 from 672 trips.</p>
-          <a href="/request-a-quote/" class="btn-green-glow ew-cta-btn-green">Get a free quote →</a>
-          <p class="ew-cta-tel">or call <a href="tel:+18885861157">(888) 586-1157</a></p>
+          <h3 class="ew-cta-h3" style="color:#f0ece3;">You're planning a Graeagle trip</h3>
+          <p class="ew-cta-p" style="color:rgba(240,236,227,0.65);">Mike Eskuchen builds every package personally. Free quote, 24-hour response. 4.8/5 from 672 verified trips.</p>
+          <a href="/request-a-quote/" class="btn-green-glow">Get a free quote →</a>
+          <p class="ew-cta-tel"><a href="tel:+18885861157">(888) 586-1157</a></p>
         </div>
       </div>
     </section>
@@ -333,145 +403,137 @@ const schema = [
   </main>
 
   <style>
-    /* ── Base ── */
-    .ew-main { background: #fff; }
+    .ew { background: #fff; }
 
-    /* ── Hero ── */
-    .ew-hero { background: linear-gradient(160deg, #0d1a0e 0%, #1a3020 65%, #0d2010 100%); padding: clamp(48px,8vw,96px) 20px clamp(40px,7vw,80px); text-align: center; }
-    .ew-hero-inner { max-width: 680px; margin: 0 auto; }
+    /* Hero */
+    .ew-hero { background: linear-gradient(160deg,#0d1a0e 0%,#1a3020 65%,#0d2010 100%); padding: clamp(52px,9vw,100px) 20px clamp(44px,7vw,80px); text-align: center; }
+    .ew-hero-inner { max-width: 660px; margin: 0 auto; }
     .ew-eyebrow { font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.14em; color: #e8a850; margin: 0 0 14px; }
-    .ew-hero-h1 { font-family: 'Playfair Display', serif; font-size: clamp(26px, 6vw, 48px); line-height: 1.15; color: #f0ece3; margin: 0 0 16px; }
-    .ew-br { display: none; }
-    .ew-hero-sub { font-size: clamp(15px, 2.5vw, 19px); color: rgba(240,236,227,0.72); line-height: 1.6; margin: 0 0 28px; }
-    .ew-hero-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-bottom: 20px; }
-    .ew-btn-primary { display: inline-block; background: #3a8a48; color: #fff; font-size: 15px; font-weight: 700; padding: 13px 28px; border-radius: 100px; text-decoration: none; }
+    .ew-h1 { font-family:'Playfair Display',serif; font-size: clamp(26px,6vw,50px); line-height: 1.12; color: #f0ece3; margin: 0 0 16px; }
+    .ew-br-mob { display: none; }
+    .ew-hero-sub { font-size: clamp(15px,2.5vw,18px); color: rgba(240,236,227,0.72); line-height: 1.6; margin: 0 0 28px; }
+    .ew-hero-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-bottom: 18px; }
+    .ew-btn-gold { display: inline-block; background: #e8a850; color: #1a2e1a; font-size: 15px; font-weight: 700; padding: 13px 28px; border-radius: 100px; text-decoration: none; }
     .ew-btn-ghost { display: inline-block; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.2); color: #f0ece3; font-size: 15px; font-weight: 600; padding: 13px 28px; border-radius: 100px; text-decoration: none; }
-    .ew-hero-golfer-nudge { font-size: 13px; color: rgba(240,236,227,0.45); margin: 0; }
-    .ew-hero-golfer-link { color: #e8a850; text-decoration: none; font-weight: 600; }
+    .ew-golfer-nudge { font-size: 13px; color: rgba(240,236,227,0.4); margin: 0; }
+    .ew-golfer-link { color: #e8a850; text-decoration: none; font-weight: 600; }
 
-    /* ── Stats strip ── */
-    .ew-stats-strip { display: flex; justify-content: center; flex-wrap: wrap; gap: 0; background: #f0f8f0; border-bottom: 1px solid #d4edd4; }
-    .ew-stat { padding: 16px 20px; text-align: center; border-right: 1px solid #d4edd4; flex: 1; min-width: 80px; }
+    /* Stats strip */
+    .ew-stats { display: flex; background: #f0f8f0; border-bottom: 1px solid #d4edd4; }
+    .ew-stat { flex: 1; padding: 14px 8px; text-align: center; border-right: 1px solid #d4edd4; display: flex; flex-direction: column; gap: 2px; }
     .ew-stat:last-child { border-right: none; }
-    .ew-stat-num { font-size: clamp(18px, 3vw, 24px); font-weight: 800; color: #1a2e1a; }
-    .ew-stat-label { font-size: 11px; color: #5a7060; text-transform: uppercase; letter-spacing: 0.08em; }
+    .ew-stat-n { font-size: clamp(16px,3vw,22px); font-weight: 800; color: #1a2e1a; display: block; }
+    .ew-stat-l { font-size: 10px; color: #5a7060; text-transform: uppercase; letter-spacing: 0.07em; display: block; }
 
-    /* ── Sections ── */
-    .ew-section { padding: clamp(40px,6vw,72px) 0; }
-    .ew-preview-section { background: #f9fcf9; }
-    .ew-why-section { background: #f4f9f4; }
-    .ew-container { max-width: 760px; margin: 0 auto; padding: 0 20px; }
+    /* Layout */
+    .ew-wrap { max-width: 900px; margin: 0 auto; padding: 0 20px; }
     .ew-label { font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.12em; color: #a06c30; margin: 0 0 10px; }
-    .ew-h2 { font-family: 'Playfair Display', serif; font-size: clamp(22px, 4vw, 32px); color: #1a2e1a; margin: 0 0 16px; }
-    .ew-body { font-size: 15px; color: #3d5240; line-height: 1.7; margin: 0 0 14px; }
-    .ew-body-center { font-size: 15px; color: #5a7060; line-height: 1.7; margin: 0 0 28px; }
-    .ew-checklist { list-style: none; padding: 0; margin: 16px 0 0; display: flex; flex-direction: column; gap: 8px; }
-    .ew-checklist li { font-size: 14px; color: #1a6030; font-weight: 500; padding-left: 20px; position: relative; }
-    .ew-checklist li::before { content: '✓'; position: absolute; left: 0; color: #3a8a48; }
+    .ew-h2 { font-family:'Playfair Display',serif; font-size: clamp(22px,4vw,34px); color: #1a2e1a; margin: 0 0 12px; }
+    .ew-sub { font-size: 15px; color: #5a7060; line-height: 1.65; margin: 0 0 32px; }
 
-    /* ── Browser mockup ── */
-    .ew-browser-wrap { max-width: 860px; margin: 0 auto; padding: 0 20px; overflow-x: auto; }
-    .ew-browser { border-radius: 12px; overflow: hidden; box-shadow: 0 8px 40px rgba(26,46,26,0.14); border: 1px solid #d0e0d0; min-width: 320px; }
-    .ew-browser-bar { background: #f2f2f2; padding: 10px 14px; display: flex; align-items: center; gap: 10px; border-bottom: 1px solid #e0e0e0; }
-    .ew-dots { display: flex; gap: 5px; }
-    .ew-dot { width: 11px; height: 11px; border-radius: 50%; flex-shrink: 0; }
-    .ew-dot-red { background: #ff5f57; }
-    .ew-dot-yellow { background: #febc2e; }
-    .ew-dot-green { background: #28c840; }
-    .ew-url-bar { flex: 1; background: #fff; border-radius: 5px; padding: 5px 10px; font-size: 12px; color: #888; border: 1px solid #e0e0e0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-    .ew-blog-ctx { background: #fff; padding: 20px; }
-    .ew-blog-cont { font-size: 12px; color: #aaa; margin: 0 0 6px; }
-    .ew-blog-para { font-size: 14px; color: #333; line-height: 1.65; margin: 0; }
+    /* Cards section */
+    .ew-cards-section { padding: clamp(48px,7vw,80px) 0 0; }
+    .ew-cards-grid { max-width: 1100px; margin: 0 auto; padding: 0 20px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-bottom: 24px; }
 
-    /* ── Widget mock ── */
-    .ew-widget-mock { background: #fff; padding: 16px; border-top: 1px solid #eee; border-bottom: 1px solid #eee; }
-    .ew-wm-header { display: flex; align-items: center; justify-content: space-between; padding-bottom: 14px; border-bottom: 2px solid #e0ece0; margin-bottom: 16px; flex-wrap: wrap; gap: 8px; }
-    .ew-wm-title { font-size: 16px; font-weight: 700; color: #1a2e1a; }
-    .ew-wm-sub { font-size: 12px; color: #5a7060; }
-    .ew-wm-badge { background: #3a8a4822; color: #1a6030; padding: 3px 10px; border-radius: 100px; font-size: 11px; font-weight: 700; white-space: nowrap; }
-    .ew-cards-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
-    .ew-card { border: 1px solid #ddeedd; border-radius: 10px; padding: 12px; }
-    .ew-card-label { font-size: 9px; font-weight: 700; color: #3a8a48; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 5px; }
-    .ew-card-courses { font-size: 12px; font-weight: 600; color: #1a2e1a; margin-bottom: 8px; line-height: 1.3; }
-    .ew-card-tags { display: flex; gap: 4px; flex-wrap: wrap; margin-bottom: 8px; }
-    .ew-tag { font-size: 10px; padding: 2px 7px; border-radius: 100px; background: #f0f8f0; color: #3a6a40; border: 1px solid #c8e8c8; }
-    .ew-card-footer { display: flex; align-items: center; justify-content: space-between; padding-top: 8px; border-top: 1px solid #e8f0e8; }
-    .ew-card-price { font-size: 17px; font-weight: 800; color: #1a2e1a; }
-    .ew-card-per { font-size: 10px; color: #8a9a8e; font-weight: 400; }
-    .ew-card-cta { font-size: 10px; font-weight: 700; color: #3a8a48; }
-    .ew-wm-powered { text-align: center; padding-top: 12px; font-size: 11px; color: #8a9a8e; }
+    /* Individual card */
+    .ew-card { background: #fff; border: 1px solid #e0ece0; border-radius: 16px; overflow: hidden; display: flex; flex-direction: column; box-shadow: 0 2px 12px rgba(26,46,26,0.06); transition: box-shadow 0.2s, transform 0.2s; }
+    .ew-card:hover { box-shadow: 0 8px 32px rgba(26,46,26,0.14); transform: translateY(-2px); }
 
-    /* ── Steps ── */
-    .ew-steps { display: flex; flex-direction: column; gap: 20px; margin-top: 32px; }
-    .ew-step { display: flex; gap: 20px; align-items: flex-start; background: #f9fcf9; border: 1px solid #e0ece0; border-radius: 14px; padding: 24px 20px; }
-    .ew-step-num { width: 44px; height: 44px; border-radius: 50%; background: #1a2e1a; display: flex; align-items: center; justify-content: center; font-size: 20px; font-weight: 800; color: #e8a850; flex-shrink: 0; }
+    /* Card photo */
+    .ew-card-img-wrap { position: relative; aspect-ratio: 16/9; overflow: hidden; }
+    .ew-card-img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .ew-card-img-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(10,20,10,0.75) 0%, rgba(10,20,10,0.1) 50%, transparent 100%); display: flex; align-items: flex-end; justify-content: space-between; padding: 12px 14px; }
+    .ew-vibe-badge { font-size: 10px; font-weight: 700; padding: 3px 10px; border-radius: 100px; }
+    .ew-card-price-hero { font-size: 24px; font-weight: 800; color: #fff; text-shadow: 0 1px 4px rgba(0,0,0,0.4); }
+    .ew-per { font-size: 12px; font-weight: 400; opacity: 0.85; }
+
+    /* Card body */
+    .ew-card-body { padding: 16px; flex: 1; display: flex; flex-direction: column; gap: 10px; }
+    .ew-card-meta { display: flex; gap: 5px; flex-wrap: wrap; }
+    .ew-meta-chip { font-size: 11px; color: #5a7060; background: #f5faf5; border: 1px solid #ddeedd; padding: 3px 8px; border-radius: 100px; }
+    .ew-card-courses-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: #3a8a48; }
+    .ew-card-courses { display: flex; flex-wrap: wrap; gap: 5px; }
+    .ew-course-tag { font-size: 12px; font-weight: 600; color: #1a2e1a; background: #e8f8e8; padding: 3px 10px; border-radius: 100px; border: 1px solid #c8e8c8; }
+    .ew-card-lodging { display: flex; align-items: flex-start; gap: 6px; font-size: 12px; color: #5a7060; line-height: 1.4; }
+    .ew-lodging-icon { flex-shrink: 0; font-size: 13px; }
+    .ew-card-synopsis { font-size: 13px; color: #3d5240; line-height: 1.55; margin: 0; flex: 1; }
+    .ew-card-highlights { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 4px; }
+    .ew-card-highlights li { font-size: 12px; color: #1a6030; padding-left: 16px; position: relative; line-height: 1.4; }
+    .ew-card-highlights li::before { content: '✓'; position: absolute; left: 0; font-weight: 700; }
+    .ew-card-footer { display: flex; align-items: center; justify-content: space-between; padding-top: 12px; border-top: 1px solid #e8f0e8; margin-top: auto; gap: 8px; }
+    .ew-card-learn { font-size: 12px; color: #5a7060; text-decoration: none; }
+    .ew-card-learn:hover { color: #1a2e1a; }
+    .ew-card-cta { font-size: 13px; font-weight: 700; color: #fff; background: #3a8a48; padding: 7px 16px; border-radius: 100px; text-decoration: none; white-space: nowrap; }
+
+    /* Show more */
+    .ew-show-more-wrap { text-align: center; padding: 8px 0 24px; }
+    .ew-show-more { background: none; border: 2px solid #3a8a48; color: #3a8a48; font-size: 14px; font-weight: 700; padding: 10px 24px; border-radius: 100px; cursor: pointer; }
+    .ew-cards-footer { text-align: center; padding: clamp(24px,4vw,40px) 20px clamp(40px,6vw,64px); }
+    .ew-cards-note { font-size: 14px; color: #8a9a8e; margin: 0 0 20px; }
+    .ew-main-cta { display: inline-block; font-size: 16px; font-weight: 700; padding: 15px 36px; }
+
+    /* Steps */
+    .ew-steps-section { background: #f4f9f4; padding: clamp(48px,7vw,80px) 0; }
+    .ew-steps { display: flex; flex-direction: column; gap: 16px; margin-top: 28px; }
+    .ew-step { display: flex; gap: 20px; background: #fff; border: 1px solid #e0ece0; border-radius: 14px; padding: 22px 20px; align-items: flex-start; }
+    .ew-step-n { width: 42px; height: 42px; border-radius: 50%; background: #1a2e1a; display: flex; align-items: center; justify-content: center; font-size: 19px; font-weight: 800; color: #e8a850; flex-shrink: 0; }
     .ew-step-body { flex: 1; min-width: 0; }
-    .ew-step-h3 { font-size: 17px; font-weight: 700; color: #1a2e1a; margin: 0 0 6px; }
-    .ew-step-p { font-size: 14px; color: #5a7060; margin: 0 0 14px; }
+    .ew-step-h3 { font-size: 17px; font-weight: 700; color: #1a2e1a; margin: 0 0 10px; }
+    .ew-step-p { font-size: 14px; color: #5a7060; line-height: 1.65; margin: 0; }
     .ew-code-wrap { position: relative; }
-    .ew-code { background: #1a2e1a; color: #78c488; font-size: 12px; padding: 16px; border-radius: 8px; overflow-x: auto; line-height: 1.6; margin: 0; font-family: 'Courier New', monospace; white-space: pre; }
-    .ew-copy-btn { position: absolute; top: 10px; right: 10px; background: #e8a850; color: #1a2e1a; border: none; padding: 5px 12px; border-radius: 5px; font-size: 11px; font-weight: 700; cursor: pointer; }
-    .ew-platforms { display: flex; flex-direction: column; gap: 8px; margin-top: 4px; }
-    .ew-platform { display: flex; gap: 10px; padding: 10px 12px; background: #fff; border: 1px solid #e8f0e8; border-radius: 8px; align-items: flex-start; flex-wrap: wrap; }
-    .ew-platform-name { font-size: 13px; font-weight: 700; color: #1a2e1a; min-width: 90px; flex-shrink: 0; }
-    .ew-platform-how { font-size: 13px; color: #5a7060; }
-    .ew-tip { margin-top: 14px; padding: 12px 16px; background: #e8f8e8; border-radius: 8px; border-left: 3px solid #3a8a48; font-size: 13px; color: #1a6030; line-height: 1.55; }
+    .ew-code { background: #1a2e1a; color: #78c488; font-size: 12px; padding: 16px 14px; border-radius: 8px; overflow-x: auto; line-height: 1.6; margin: 0; font-family: 'Courier New', monospace; white-space: pre; }
+    .ew-copy { position: absolute; top: 10px; right: 10px; background: #e8a850; color: #1a2e1a; border: none; padding: 5px 12px; border-radius: 5px; font-size: 11px; font-weight: 700; cursor: pointer; }
+    .ew-platforms { display: flex; flex-direction: column; gap: 7px; margin-top: 2px; }
+    .ew-platform { display: flex; gap: 12px; padding: 9px 12px; background: #f9fcf9; border: 1px solid #e0ece0; border-radius: 8px; align-items: flex-start; }
+    .ew-p-name { font-size: 13px; font-weight: 700; color: #1a2e1a; min-width: 90px; flex-shrink: 0; }
+    .ew-p-how { font-size: 13px; color: #5a7060; }
+    .ew-tip { margin-top: 14px; padding: 12px 16px; background: #fff8e8; border-radius: 8px; border-left: 3px solid #e8a850; font-size: 13px; color: #7a4d10; line-height: 1.55; }
 
-    /* ── Why grid ── */
-    .ew-why-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 28px; }
-    .ew-why-card { padding: 22px; background: #fff; border: 1px solid #e0ece0; border-radius: 14px; text-align: center; }
+    /* Why */
+    .ew-why-section { padding: clamp(48px,7vw,80px) 0; }
+    .ew-why-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-top: 28px; }
+    .ew-why-card { padding: 24px; background: #f9fcf9; border: 1px solid #e0ece0; border-radius: 14px; }
     .ew-why-icon { font-size: 28px; margin-bottom: 10px; }
-    .ew-why-h3 { font-size: 15px; font-weight: 700; color: #1a2e1a; margin: 0 0 8px; }
-    .ew-why-body { font-size: 13px; color: #5a7060; line-height: 1.6; margin: 0; }
+    .ew-why-h3 { font-size: 16px; font-weight: 700; color: #1a2e1a; margin: 0 0 8px; }
+    .ew-why-body { font-size: 14px; color: #5a7060; line-height: 1.65; margin: 0; }
 
-    /* ── FAQ ── */
-    .ew-faq-container { max-width: 640px; }
-    .ew-faqs { margin-top: 24px; }
-    .ew-faq { border-bottom: 1px solid #e8f0e8; }
-    .ew-faq:first-child { border-top: 1px solid #e8f0e8; }
-    .ew-faq-q { font-size: 15px; font-weight: 600; color: #1a2e1a; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; padding: 18px 0; gap: 12px; }
+    /* FAQ */
+    .ew-faq-section { padding: clamp(40px,6vw,64px) 0; background: #f9fcf9; }
+    .ew-faq-wrap { max-width: 640px; }
+    .ew-faq { border-bottom: 1px solid #e0ece0; }
+    .ew-faq:first-of-type { border-top: 1px solid #e0ece0; }
+    .ew-faq-q { font-size: 15px; font-weight: 600; color: #1a2e1a; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; padding: 16px 0; gap: 12px; }
     .ew-faq-q::-webkit-details-marker { display: none; }
-    .ew-faq-icon { color: #3a8a48; font-size: 20px; flex-shrink: 0; transition: transform 0.2s; }
-    details[open] .ew-faq-icon { transform: rotate(45deg); }
-    .ew-faq-a { font-size: 14px; color: #5a7060; line-height: 1.7; margin: 0 0 16px; }
+    .ew-faq-plus { color: #3a8a48; font-size: 20px; flex-shrink: 0; transition: transform 0.2s; }
+    details[open] .ew-faq-plus { transform: rotate(45deg); }
+    .ew-faq-a { font-size: 14px; color: #5a7060; line-height: 1.7; margin: 0 0 14px; }
 
-    /* ── Dual CTA ── */
-    .ew-cta-section { padding: clamp(32px,5vw,64px) 0; }
-    .ew-cta-section .ew-container { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-    .ew-cta-card { border-radius: 18px; padding: clamp(24px,4vw,36px); text-align: center; }
-    .ew-cta-blogger { background: #f0f8f0; border: 2px solid #d4edd4; }
-    .ew-cta-golfer { background: #1a2e1a; }
+    /* Dual CTA */
+    .ew-cta-section { padding: clamp(40px,6vw,72px) 0; }
+    .ew-cta-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .ew-cta-writer { background: #f0f8f0; border: 2px solid #d4edd4; border-radius: 18px; padding: clamp(24px,4vw,40px); text-align: center; }
+    .ew-cta-golfer { background: #1a2e1a; border-radius: 18px; padding: clamp(24px,4vw,40px); text-align: center; }
     .ew-cta-icon { font-size: 28px; margin-bottom: 10px; }
-    .ew-cta-h3 { font-family: 'Playfair Display', serif; font-size: clamp(16px,2.5vw,22px); color: #1a2e1a; margin: 0 0 8px; }
-    .ew-cta-golfer .ew-cta-h3 { color: #f0ece3; }
-    .ew-cta-p { font-size: 14px; color: #5a7060; line-height: 1.6; margin: 0 0 20px; }
-    .ew-cta-golfer .ew-cta-p { color: rgba(240,236,227,0.65); }
-    .ew-cta-btn-dark { display: inline-block; background: #1a2e1a; color: #f0ece3; font-size: 14px; font-weight: 700; padding: 12px 24px; border-radius: 100px; text-decoration: none; }
-    .ew-cta-btn-green { display: inline-block; font-size: 14px; font-weight: 700; padding: 12px 24px; border-radius: 100px; }
-    .ew-cta-tel { margin: 12px 0 0; font-size: 13px; color: rgba(240,236,227,0.45); }
+    .ew-cta-h3 { font-family:'Playfair Display',serif; font-size: clamp(16px,2.5vw,22px); color: #1a2e1a; margin: 0 0 8px; }
+    .ew-cta-p { font-size: 14px; line-height: 1.6; margin: 0 0 20px; color: #5a7060; }
+    .ew-cta-btn-outline { display: inline-block; border: 2px solid #1a2e1a; color: #1a2e1a; font-size: 14px; font-weight: 700; padding: 11px 24px; border-radius: 100px; text-decoration: none; }
+    .ew-cta-tel { margin: 12px 0 0; font-size: 13px; color: rgba(240,236,227,0.4); }
     .ew-cta-tel a { color: #e8a850; text-decoration: none; font-weight: 600; }
 
-    /* ── MOBILE ── */
+    /* Mobile */
+    @media (max-width: 860px) {
+      .ew-cards-grid { grid-template-columns: repeat(2, 1fr); }
+    }
     @media (max-width: 640px) {
-      .ew-br { display: inline; }
-      .ew-btn-primary, .ew-btn-ghost { width: 100%; text-align: center; box-sizing: border-box; }
+      .ew-br-mob { display: inline; }
+      .ew-btn-gold, .ew-btn-ghost { width: 100%; text-align: center; box-sizing: border-box; }
       .ew-hero-btns { flex-direction: column; }
-      .ew-stats-strip { gap: 0; }
-      .ew-stat { min-width: 60px; padding: 12px 10px; }
-      .ew-cards-grid { grid-template-columns: 1fr 1fr; }
-      .ew-why-grid { grid-template-columns: 1fr; }
-      .ew-cta-section .ew-container { grid-template-columns: 1fr; }
-      .ew-step { flex-direction: column; gap: 12px; }
-      .ew-step-num { width: 36px; height: 36px; font-size: 17px; }
-      .ew-platform { flex-direction: column; gap: 4px; }
-      .ew-platform-name { min-width: unset; }
-    }
-    @media (max-width: 420px) {
       .ew-cards-grid { grid-template-columns: 1fr; }
-      .ew-stat-label { font-size: 10px; }
-    }
-    @media (min-width: 800px) {
-      .ew-br { display: inline; }
+      .ew-why-grid { grid-template-columns: 1fr; }
+      .ew-cta-grid { grid-template-columns: 1fr; }
+      .ew-step { flex-direction: column; gap: 10px; }
+      .ew-p-name { min-width: unset; }
+      .ew-platform { flex-direction: column; gap: 3px; }
     }
   </style>
 
