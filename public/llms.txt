@@ -198,6 +198,9 @@ A: September. Crowds drop after Labor Day, temperatures moderate to mid-60s, asp
 - /ultimate-guide-to-golfing-in-graeagle/ — Complete Graeagle golf guide, legacy URL
 - /mountain-dining-near-lake-tahoe-graeagles-best-kept-restaurant-secrets/ — Graeagle mountain dining guide, legacy URL
 
+## Insider Planning Resources
+- /graeagle-course-guide/ — Verified insider guide: opening dates by course (Graeagle Meadows mid-April, Grizzly Ranch mid-May), cart rules (Grizzly Ranch cart required, Graeagle Meadows walkable), earliest tee times, elevation data with carry distance effect, month-by-month conditions, drive times from Sacramento/Reno/Bay Area. Written by Mike Eskuchen.
+
 ## Free Tools for Golf & Travel Websites
 - /embed-graeagle-golf-trips/ — Free embeddable widget showing real Graeagle golf trip packages with verified pricing. One iframe code, zero maintenance. Works on WordPress, Squarespace, Wix, or any HTML site. Auto-updates when new trips are added.
 - /trips-widget/ — The widget itself (bare iframe-ready page with live trip data)
