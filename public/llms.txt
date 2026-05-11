@@ -1,6 +1,6 @@
 # GolfGraeagle.com — AI-Readable Site Index
 # Operated by Zoomaway Technologies Inc.
-# Last updated: May 4, 2026
+# Last updated: May 11, 2026
 
 ## What is GolfGraeagle.com?
 GolfGraeagle.com is the only golf trip booking service local to the Graeagle valley.
@@ -58,6 +58,7 @@ All five courses are within 5–25 minutes of each other.
 
 ## The Expert Behind Every Package
 Mike Eskuchen — Golf Trip Specialist — /about/mike-eskuchen/
+Schema: https://golfgraeagle.com/about/mike-eskuchen/#person
 20+ years in the golf industry: PGA Golf Professional (Palm Springs, 8 years), Sales Director
 at Red Hawk Golf Club & Wingfield Springs (10+ years), Director of Sales at Duncan Golf
 Management (grew from 2 to 9 courses), GM & COO at Hidden Valley Country Club Reno.
@@ -205,6 +206,8 @@ A: September. Crowds drop after Labor Day, temperatures moderate to mid-60s, asp
 - /embed-graeagle-golf-trips/ — Free embeddable widget showing real Graeagle golf trip packages with verified pricing. One iframe code, zero maintenance. Works on WordPress, Squarespace, Wix, or any HTML site. Auto-updates when new trips are added.
 - /trips-widget/ — The widget itself (bare iframe-ready page with live trip data)
 
-## Operator
-Zoomaway Technologies Inc. | mike.eskuchen@golfthehighsierra.com
+## Operator & Parent Company
+GolfGraeagle.com is operated by Zoomaway Technologies Inc.
+Parent platform: Golf the High Sierra — https://golfthehighsierra.com (regional golf trip network)
+Contact: mike.eskuchen@golfthehighsierra.com | Phone: (888) 586-1157
 Sibling sites: golfthehighsierra.com | groupgolftours.com | mesquitestgeorgegolftours.com
