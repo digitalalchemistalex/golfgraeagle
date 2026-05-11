@@ -262,7 +262,17 @@ const buildSchema = () => {
         name: `${item.name} Golf Course`,
         description: item.description,
         url: pageUrl,
-        sameAs: item.website ? [item.website] : undefined,
+        sameAs: (() => {
+          const links: string[] = item.website ? [item.website] : [];
+          const extraSameAs: Record<string, string[]> = {
+            'grizzly-ranch':    ['https://www.golflink.com/golf-courses/ca/portola/grizzly-ranch-golf-club'],
+            'nakoma-dragon':    ['https://www.nakomaresort.com/golf'],
+            'whitehawk-ranch':  ['https://www.whitehawkranch.com'],
+            'plumas-pines':     ['https://www.plumaspinesgolf.com'],
+            'graeagle-meadows': ['https://graeaglemeadows.com'],
+          };
+          return [...links, ...(extraSameAs[item.slug] || [])].filter(Boolean);
+        })(),
         numberOfHoles: 18,
         address: { '@type': 'PostalAddress', streetAddress: item.address, addressRegion: 'CA', addressCountry: 'US' },
         geo: item.coordinates ? { '@type': 'GeoCoordinates', latitude: item.coordinates?.lat, longitude: item.coordinates?.lng } : undefined,
@@ -362,6 +372,7 @@ const buildSchema = () => {
         name: item.name,
         description: item.description,
         url: pageUrl,
+        sameAs: item.website && item.website !== siteConfig.url && !item.website.includes('golfgraeagle') ? [item.website] : undefined,
         image: item.hero ? `${siteConfig.url}${item.hero}` : undefined,
         address: { '@type': 'PostalAddress', streetAddress: item.address, addressRegion: 'CA', addressCountry: 'US', addressLocality: 'Graeagle' },
         geo: item.coordinates ? { '@type': 'GeoCoordinates', latitude: item.coordinates.lat, longitude: item.coordinates.lng } : undefined,
