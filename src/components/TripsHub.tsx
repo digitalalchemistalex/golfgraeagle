@@ -62,7 +62,10 @@ interface Trip {
 
 function pickImage(trip: Trip, idx: number): string {
   const url = trip.imageUrl?.trim() || "";
-  if (url && !url.startsWith("data:") && url.startsWith("http")) return url;
+  if (url && !url.startsWith("data:")) {
+    if (url.startsWith("/")) return "https://golfthehighsierra.com" + url;
+    if (url.startsWith("http")) return url;
+  }
   // Pick by first matching course name for relevance
   const courses = trip.courses || [];
   for (const [key, hero] of Object.entries(COURSE_HERO_MAP)) {
