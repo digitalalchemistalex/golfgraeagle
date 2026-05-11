@@ -51,9 +51,11 @@ const baseSchema = {
       "areaServed": { "@type": "Place", "name": "Graeagle, California, Sierra Nevada" },
       "parentOrganization": {
         "@type": "Organization",
-        "name": "Zoomaway Technologies Inc.",
+        "@id": "https://golfthehighsierra.com/#organization",
+        "name": "Golf the High Sierra",
+        "alternateName": "Zoomaway Technologies Inc.",
         "url": "https://golfthehighsierra.com",
-        "sameAs": "https://golfthehighsierra.com"
+        "sameAs": ["https://golfthehighsierra.com", "https://www.golfthehighsierra.com"]
       },
       "employee": {
         "@type": "Person",
@@ -66,11 +68,14 @@ const baseSchema = {
       },
       "sameAs": [
         "https://golfthehighsierra.com",
+        "https://www.golfthehighsierra.com",
         "https://groupgolftours.com",
         "https://mesquitestgeorgegolftours.com",
         "https://twitter.com/GolfGraeagle",
         "https://www.facebook.com/GolfGraeagle",
-        "https://www.instagram.com/golfgraeagle"
+        "https://www.instagram.com/golfgraeagle",
+        "https://www.yelp.com/biz/golf-graeagle",
+        "https://www.tripadvisor.com/Attraction_Review-g32487-d26543600-Reviews-Golf_Graeagle-Graeagle_California.html"
       ],
       "knowsAbout": [
         "Golf trip planning in Graeagle California",
