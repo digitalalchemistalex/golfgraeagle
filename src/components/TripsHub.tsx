@@ -203,12 +203,12 @@ function TripCard({ trip, idx }: { trip: Trip; idx: number }) {
                 const url = findUrl(c);
                 return url ? (
                   <a key={i} href={url}
-                    style={{ background: "rgba(28,18,8,0.03)", border: "1px solid rgba(28,18,8,0.09)", borderRadius: 8, padding: "5px 11px", fontSize: 11, fontWeight: 600, color: "rgba(28,18,8,0.65)", textDecoration: "none", transition: "all 0.15s" }}
+                    style={{ background: "#e8f0e9", border: "1px solid #b8d4bc", borderRadius: 8, padding: "5px 11px", fontSize: 11, fontWeight: 700, color: "#1a4a20", textDecoration: "none", transition: "all 0.15s" }}
                     onMouseOver={e => { e.currentTarget.style.borderColor = "#e8a850"; e.currentTarget.style.color = "#b8780a"; e.currentTarget.style.background = "rgba(232,168,80,0.06)"; }}
                     onMouseOut={e => { e.currentTarget.style.borderColor = "rgba(28,18,8,0.09)"; e.currentTarget.style.color = "rgba(28,18,8,0.65)"; e.currentTarget.style.background = "rgba(28,18,8,0.03)"; }}
                   >{c}</a>
                 ) : (
-                  <span key={i} style={{ background: "rgba(28,18,8,0.02)", border: "1px solid rgba(28,18,8,0.06)", borderRadius: 8, padding: "5px 11px", fontSize: 11, color: "rgba(28,18,8,0.45)" }}>{c}</span>
+                  <span key={i} style={{ background: "#e8f0e9", border: "1px solid #b8d4bc", borderRadius: 8, padding: "5px 11px", fontSize: 11, fontWeight: 700, color: "#1a4a20" }}>{c}</span>
                 );
               })}
             </div>
@@ -222,11 +222,11 @@ function TripCard({ trip, idx }: { trip: Trip; idx: number }) {
             {(() => {
               const url = findUrl(trip.lodging);
               return url ? (
-                <a href={url} style={{ display: "inline-flex", alignItems: "center", gap: 5, background: "rgba(232,168,80,0.07)", border: "1px solid rgba(232,168,80,0.2)", borderRadius: 8, padding: "5px 12px", fontSize: 11, fontWeight: 600, color: "#8a5c00", textDecoration: "none" }}>
+                <a href={url} style={{ display: "inline-flex", alignItems: "center", gap: 5, background: "#fdf3e0", border: "1px solid #e8a850", borderRadius: 8, padding: "5px 12px", fontSize: 11, fontWeight: 700, color: "#7a4a00", textDecoration: "none" }}>
                   {trip.lodging} →
                 </a>
               ) : (
-                <span style={{ background: "rgba(232,168,80,0.05)", border: "1px solid rgba(232,168,80,0.15)", borderRadius: 8, padding: "5px 12px", fontSize: 11, color: "#8a5c00", display: "inline-block" }}>{trip.lodging}</span>
+                <span style={{ background: "#fdf3e0", border: "1px solid #e8a850", borderRadius: 8, padding: "5px 12px", fontSize: 11, fontWeight: 700, color: "#7a4a00", display: "inline-block" }}>{trip.lodging}</span>
               );
             })()}
           </div>
