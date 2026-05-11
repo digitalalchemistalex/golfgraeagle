@@ -305,7 +305,7 @@ Embed script: `https://js.hsforms.net/forms/embed/20743417.js`
 
 ```bash
 cd /home/claude/golfgraeagle
-npx astro build          # verify clean build
+node_modules/.bin/astro build   # NOT npx — always node_modules/.bin/
 git add -A
 git commit -m "type: description"
 git push origin main
@@ -316,12 +316,30 @@ Build verification:
 ```bash
 curl -s https://api.vercel.com/v6/deployments \
   -H "Authorization: Bearer $VERCEL_TOKEN" \
-  -G --data-urlencode "projectId=prj_PH8j2XqMfaWlqstkrlDWJeC2GsLl" \
-  --data-urlencode "teamId=team_DIp7IhTyWkStmeevzS9FPx20" \
+  -G --data-urlencode "projectId=prj_PH8j2XqMfaWlqstkrlDWJeC2GsLl" \   # NO teamId — returns 403 with it
   --data-urlencode "limit=1" | jq '.deployments[0].state'
 ```
 
 ---
+
+---
+
+## AEO / LOCAL SEO STATUS (May 11, 2026)
+
+| Signal | Status | Notes |
+|--------|--------|-------|
+| llms.txt | ✅ Live | `/llms.txt` — 200+ lines, updated May 11, 2026. Full course/lodging/dining/AEO Q&A. |
+| robots.txt | ✅ | All AI crawlers allowed (GPTBot, ClaudeBot, PerplexityBot, Google-Extended, etc.) |
+| Speakable | ✅ | cssSelector: h1, .speakable, .page-intro, .aeo-answer, [data-speakable] — all verified in DOM |
+| FAQPage schema | ✅ | On every page type |
+| BlogPosting author | ✅ | All 20 blogs: Person — Mike Eskuchen + url to /about/mike-eskuchen/ |
+| Organization sameAs | ✅ | GTHS, GroupGolfTours, MSG, Twitter/GolfGraeagle, Facebook/GolfGraeagle, Instagram/golfgraeagle |
+| Organization employee | ✅ | Mike Eskuchen Person node with @id in Base.astro @graph |
+| parentOrganization | ✅ | Zoomaway Technologies Inc., url: https://golfthehighsierra.com |
+| GolfCourse sameAs | ✅ | Official site + GolfLink per course (set in portfolio/[slug].astro extraSameAs map) |
+| LodgingBusiness sameAs | ✅ | Official site per property (from item.website in content.js) |
+| Google Business Profile | ❌ **#1 PRIORITY — not yet created** | Must be done manually via Google. Use golfthehighsierra.com as parent if helpful. |
+
 
 ## HARD RULES
 
@@ -333,3 +351,29 @@ curl -s https://api.vercel.com/v6/deployments \
 6. **DB safety:** Only touch `gg_*` tables in Supabase — never MSG tables
 7. **Tailwind v4:** No tailwind.config.mjs — CSS-first only
 8. **AEO structure:** Direct Q&A format, short declarative sentences, comparison tables
+
+---
+
+## SESSION LOG — May 11, 2026
+
+### Changes deployed:
+- ✅ Logo replaced: new Golf Graeagle badge (transparent bg, 600×600) across logo.png, logo.webp, favicon.ico, favicon.svg, apple-touch-icon.png
+- ✅ Nav height bumped: 52px desktop / 46px mobile
+- ✅ Email alt text fixed: "Golf Graeagle" (was "Graeagle Golf")
+- ✅ Schema logo updated: /logo.png 600×600 (was /wp-images/golfgraeagle-logo.png 200×60)
+- ✅ TripsCaddie images fixed in 3 places: RelatedTrips.tsx, TripsHub.tsx, index.astro inline JS
+- ✅ TripsHub vibe badges: solid opaque colors + white text (was semi-transparent)
+- ✅ TripsHub course pills: #e8f0e9 green bg, #1a4a20 text (was near-invisible)
+- ✅ TripsHub lodging pills: #fdf3e0 gold bg, #7a4a00 text
+- ✅ Base.astro: Organization employee (Mike Eskuchen Person node)
+- ✅ Base.astro: sameAs expanded to 6 links (added Twitter, Facebook, Instagram)
+- ✅ Base.astro: parentOrganization now includes url: golfthehighsierra.com
+- ✅ portfolio/[slug].astro: GolfCourse sameAs expanded per course (official + GolfLink)
+- ✅ portfolio/[slug].astro: LodgingBusiness sameAs added from item.website
+- ✅ llms.txt: updated May 11, added GTHS parent, Mike #person schema ref, operator section
+
+### Still TODO:
+- ❌ Google Business Profile — MASTER to create manually
+- ❌ Delete GGE_RESEND_API_KEY from Vercel env vars
+- ❌ Gmail OAuth re-auth (info@golfthehighsierra.com) — Mike must re-authenticate
+- ❌ GSC manual reindex: /golf-trip-from-sacramento/, /summer-golf-graeagle/, /graeagle-golf-resort/
