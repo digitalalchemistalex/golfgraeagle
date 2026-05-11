@@ -178,7 +178,7 @@ function TripCard({ trip, idx }: { trip: Trip; idx: number }) {
           ["👥 Group", `${trip.groupSize || "—"} pax`],
         ].map(([label, val]) => (
           <div key={label as string} style={{ padding: "12px 8px", textAlign: "center", borderRight: "1px solid rgba(28,18,8,0.05)" }}>
-            <div style={{ fontSize: 10, color: "rgba(28,18,8,0.3)", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.08em", marginBottom: 3 }}>{label}</div>
+            <div style={{ fontSize: 10, color: "rgba(28,18,8,0.5)", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.08em", marginBottom: 3 }}>{label}</div>
             <div style={{ fontSize: 14, fontWeight: 700, color: "#1c1208" }}>{val}</div>
           </div>
         ))}
@@ -197,7 +197,7 @@ function TripCard({ trip, idx }: { trip: Trip; idx: number }) {
         {/* Courses */}
         {trip.courses && trip.courses.length > 0 && (
           <div style={{ marginBottom: 16 }}>
-            <div style={{ fontSize: 9, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.12em", color: "rgba(28,18,8,0.28)", marginBottom: 8 }}>⛳ Courses Played</div>
+            <div style={{ fontSize: 9, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.12em", color: "rgba(28,18,8,0.55)", marginBottom: 8 }}>⛳ Courses Played</div>
             <div style={{ display: "flex", flexWrap: "wrap", gap: 6 }}>
               {trip.courses.map((c, i) => {
                 const url = findUrl(c);
@@ -218,7 +218,7 @@ function TripCard({ trip, idx }: { trip: Trip; idx: number }) {
         {/* Lodging */}
         {trip.lodging && (
           <div style={{ marginBottom: 16 }}>
-            <div style={{ fontSize: 9, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.12em", color: "rgba(28,18,8,0.28)", marginBottom: 8 }}>🏨 Lodging</div>
+            <div style={{ fontSize: 9, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.12em", color: "rgba(28,18,8,0.55)", marginBottom: 8 }}>🏨 Lodging</div>
             {(() => {
               const url = findUrl(trip.lodging);
               return url ? (
@@ -235,7 +235,7 @@ function TripCard({ trip, idx }: { trip: Trip; idx: number }) {
         {/* Highlights */}
         {trip.highlights && trip.highlights.length > 0 && (
           <div style={{ marginBottom: 16 }}>
-            <div style={{ fontSize: 9, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.12em", color: "rgba(28,18,8,0.28)", marginBottom: 8 }}>⭐ What's Included</div>
+            <div style={{ fontSize: 9, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.12em", color: "rgba(28,18,8,0.55)", marginBottom: 8 }}>⭐ What's Included</div>
             <div style={{ display: "flex", flexDirection: "column", gap: 5 }}>
               {trip.highlights.slice(0, 4).map((h, i) => (
                 <div key={i} style={{ display: "flex", gap: 8, alignItems: "flex-start" }}>
