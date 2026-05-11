@@ -86,7 +86,11 @@ const COURSE_HERO_MAP: Record<string, string> = {
 function pickImage(trip: Trip): string {
   const url = trip.imageUrl?.trim() || "";
   // Use API image if it's a real URL (not base64)
-  if (url && !url.startsWith("data:") && url.startsWith("http")) return url;
+  if (url && !url.startsWith("data:")) {
+    // Prefix relative paths from TripsCaddie API with the source domain
+    if (url.startsWith("/")) return "https://golfthehighsierra.com" + url;
+    if (url.startsWith("http")) return url;
+  }
   // Pick by first matching course name
   const courses = trip.courses || [];
   for (const [key, hero] of Object.entries(COURSE_HERO_MAP)) {
