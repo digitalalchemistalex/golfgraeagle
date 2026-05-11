@@ -76,12 +76,12 @@ function pickImage(trip: Trip, idx: number): string {
 }
 
 const VIBE_COLORS: Record<string, { bg: string; color: string }> = {
-  "budget":        { bg: "rgba(59,130,246,0.12)",  color: "#1d4ed8" },
-  "value":         { bg: "rgba(16,185,129,0.12)",  color: "#065f46" },
-  "premium":       { bg: "rgba(232,168,80,0.15)",  color: "#92400e" },
-  "bucket list":   { bg: "rgba(139,92,246,0.12)",  color: "#4c1d95" },
-  "bachelor party":{ bg: "rgba(244,63,94,0.12)",   color: "#9f1239" },
-  "corporate":     { bg: "rgba(71,85,105,0.12)",   color: "#1e293b" },
+  "budget":        { bg: "#1d4ed8", color: "#ffffff" },
+  "value":         { bg: "#1a6b3a", color: "#ffffff" },
+  "premium":       { bg: "#b8780a", color: "#ffffff" },
+  "bucket list":   { bg: "#6d28d9", color: "#ffffff" },
+  "bachelor party":{ bg: "#be123c", color: "#ffffff" },
+  "corporate":     { bg: "#334155", color: "#ffffff" },
 };
 
 type Filter = "all" | "value" | "standard" | "premium";
@@ -92,7 +92,7 @@ function TripCard({ trip, idx }: { trip: Trip; idx: number }) {
   const imgSrc = pickImage(trip, idx);
   const price = trip.pricePerPerson || trip.pricePerPersonEstimate;
   const nights = trip.nights && trip.nights > 0 ? trip.nights : ((trip.dailyItinerary?.length || 1) - 1);
-  const vibeStyle = VIBE_COLORS[(trip.vibe || "").toLowerCase()] || { bg: "rgba(232,168,80,0.1)", color: "#92400e" };
+  const vibeStyle = VIBE_COLORS[(trip.vibe || "").toLowerCase()] || { bg: "#b8780a", color: "#ffffff" };
 
   const quoteParams = new URLSearchParams({
     ref: "trips-page",
@@ -140,7 +140,7 @@ function TripCard({ trip, idx }: { trip: Trip; idx: number }) {
               backdropFilter: "blur(8px)", WebkitBackdropFilter: "blur(8px)",
               fontSize: 9, fontWeight: 700, padding: "5px 11px",
               borderRadius: 100, textTransform: "uppercase", letterSpacing: "0.09em",
-              border: `1px solid ${vibeStyle.color}22`,
+              border: "none",
             }}>{trip.vibe}</span>
           )}
           {price && (
