@@ -265,9 +265,9 @@ const buildSchema = () => {
         sameAs: (() => {
           const links: string[] = item.website ? [item.website] : [];
           const extraSameAs: Record<string, string[]> = {
-            'grizzly-ranch':    ['https://www.golflink.com/golf-courses/ca/portola/grizzly-ranch-golf-club'],
-            'nakoma-dragon':    ['https://www.nakomaresort.com/golf'],
-            'whitehawk-ranch':  ['https://www.whitehawkranch.com'],
+            'grizzly-ranch':    ['https://grizzlyranchgolfclub.com', 'https://www.golflink.com/golf-courses/ca/portola/grizzly-ranch-golf-club'],
+            'nakoma-dragon':    ['https://www.nakomaresort.com', 'https://www.nakomaresort.com/golf'],
+            'whitehawk-ranch':  ['https://www.whitehawkranch.com', 'https://www.golfpass.com/travel-advisor/articles/top-golf-courses-california/'],
             'plumas-pines':     ['https://www.plumaspinesgolf.com'],
             'graeagle-meadows': ['https://graeaglemeadows.com'],
           };
