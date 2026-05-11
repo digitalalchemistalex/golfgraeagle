@@ -301,7 +301,7 @@ Example — Nakoma:
 <meta property="og:description" content={description} />
 <meta property="og:type" content="website" />
 <meta property="og:url" content={Astro.url.href} />
-<meta property="og:image" content="https://images.unsplash.com/photo-1593111774240-d529f12cf4bb?w=1200&q=80&auto=format" />
+<meta property="og:image" content={ogImageAbsolute} />
 <meta property="og:site_name" content="GolfGraeagle.com" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content={title} />
@@ -397,3 +397,52 @@ These are the exact questions to answer with structured, direct responses:
 8. "How far is Graeagle from San Francisco?" → Answer: approximately 3.5–4 hours
 9. "What is the hardest golf course in Graeagle?" → Answer: Nakoma Dragon (slope 147)
 10. "What golf courses are in Plumas County California?" → Answer: list all 5
+
+---
+
+## VERIFIED SCHEMA STATUS (May 11, 2026)
+
+### Base.astro @graph (every page — 10 nodes):
+```
+TravelAgency+Organization:
+  name: GolfGraeagle.com
+  telephone: +18885861157
+  logo: /logo.png (600×600)
+  sameAs: [GTHS, GGT, MSG, Twitter, Facebook, Instagram]
+  employee: { Person — Mike Eskuchen, @id: /about/mike-eskuchen/#person }
+  parentOrganization: { Zoomaway Technologies Inc., url: golfthehighsierra.com }
+  knowsAbout: [9 golf/travel topics]
+
+WebSite + SearchAction
+WebPage + SpeakableSpecification (5 cssSelectors — all verified in DOM)
+Service | Event | ItemList | FAQPage (8Q) | HowTo | BreadcrumbList | AggregateRating
+```
+
+### Course pages — GolfCourse sameAs map:
+```js
+'grizzly-ranch':    ['grizzlyranchgolfclub.com', 'golflink.com/...grizzly-ranch']
+'nakoma-dragon':    ['nakomaresort.com', 'nakomaresort.com/golf']
+'whitehawk-ranch':  ['whitehawkranch.com']
+'plumas-pines':     ['plumaspinesgolf.com']
+'graeagle-meadows': ['graeaglemeadows.com']
+```
+
+### Lodging pages — LodgingBusiness sameAs: item.website from content.js
+
+### Blog posts — author: Person (Mike Eskuchen) on all 20 posts ✅
+
+### llms.txt — updated May 11, 2026
+- 200+ lines
+- AEO Q&A section: 12 verified questions
+- Mike Person entity with schema URL
+- GTHS as parent platform
+- All 20 blog posts, all courses/lodging/dining
+
+### robots.txt — AI crawlers all explicitly allowed ✅
+
+### Speakable CSS selectors verified in DOM:
+- Course pages: .speakable ✅, .page-intro ✅, .aeo-answer ✅, [data-speakable] ✅, h1 ✅
+- Homepage/Blog: .page-intro ✅, .aeo-answer ✅, [data-speakable] ✅, h1 ✅
+
+### REMAINING GAP:
+- ❌ Google Business Profile — #1 local SEO gap. No map pack, no "near me" results without it.
