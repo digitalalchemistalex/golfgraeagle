@@ -268,49 +268,49 @@ const lodgingGoogleRatings: Record<string, { rating: string; count: string; plac
   'townhomes-at-plumas-pines': { rating: '4.7', count: '141', placeId: 'ChIJsY5k2LlpnIARqZZ78dcWaXI' },
 };
 
-// Verified review quotes pulled from Google Places API (May 2026) — real author names
-const courseReviewData: Record<string, { quotes: { text: string; author: string }[]; tripadvisorUrl: string; googlePlaceId: string }> = {
-  'grizzly-ranch': {
-    googlePlaceId: 'ChIJieUsG1AXnIARymVbZ8tOz88',
-    tripadvisorUrl: 'https://www.tripadvisor.com/Attraction_Review-g32918-d3368836-Reviews-Grizzly_Ranch_Golf_Club',
-    quotes: [
-      { text: 'This has got to be one of the greatest hidden gems in the Sierra Nevadas. It is a Top 10 Public golf course that plays through the mountains with incredible views and impeccable conditions.', author: 'Matt Anderson' },
-      { text: 'Incredible course in absolutely impeccable condition. Interesting holes, beautiful scenery, top notch staff. One of the best golf courses I have ever played.', author: 'Anthony Hardy' },
-    ],
-  },
-  'graeagle-meadows': {
-    googlePlaceId: 'ChIJseMy5-5rnIARVg4aaMkNkpA',
-    tripadvisorUrl: 'https://www.tripadvisor.com/Attraction_Review-g32443-d218295',
-    quotes: [
-      { text: 'Fun track to play! Staff were extremely friendly. Course was in solid shape. Beautiful mountain views on every hole.', author: 'Erik Bacher' },
-      { text: 'Fantastic course. Well manicured and the greens run fast. Nice long fairways lined by pines. The occasional water hazard keeps you honest.', author: 'Jason S' },
-    ],
-  },
-  'whitehawk-ranch': {
-    googlePlaceId: 'ChIJoaCVnj5tnIAR13411sdJaf0',
-    tripadvisorUrl: 'https://www.tripadvisor.com/Attraction_Review-g32222-d218848',
-    quotes: [
-      { text: 'Finally played Whitehawk and regret waiting! The venue is top-tier, with staff who are willing and able to make your experience wonderful. The course itself is beautiful and challenging.', author: 'Michael Glazer' },
-      { text: 'One of the most well maintained courses anywhere. You get what you pay for. Make time to use the practice facility — first class.', author: 'Bill Broxham' },
-    ],
-  },
-  'plumas-pines': {
-    googlePlaceId: 'ChIJsY5k2LlpnIARqZZ78dcWaXI',
-    tripadvisorUrl: 'https://www.tripadvisor.com/Attraction_Review-g32443-d215287',
-    quotes: [
-      { text: 'Great well maintained course. Beautiful views. The trees keep it at the perfect temps. Staff was great and helpful.', author: 'Christina Del Villar' },
-      { text: 'Absolutely one of my favorite courses in Northern California. Challenging and scenic in equal measure.', author: 'Daryn Marsh' },
-    ],
-  },
-  'nakoma-dragon': {
-    googlePlaceId: 'ChIJMyegY1ETnIARzjlxmyXISkc',
-    tripadvisorUrl: 'https://www.tripadvisor.com/Attraction_Review-g32222-d283700',
-    quotes: [
-      { text: "It's a hidden gem! Everything about the place was exquisite. The staff are very knowledgeable. The Frank Lloyd Wright clubhouse is stunning.", author: 'Inder Arora' },
-      { text: 'The area, the rooms and Frank Lloyd Wright Restaurant is really cool. The course is in great shape. Challenging and rewarding.', author: 'Jordan LeFord' },
-    ],
-  },
+// ── Google Places reviews — fetched live at build time ──────────────────────
+const PLACES_API_KEY = 'AIzaSyDI1hLFH83qpZDjxj93OYJvGghRAmtHF8U';
+const COURSE_PLACE_IDS: Record<string, { placeId: string; tripadvisorUrl: string }> = {
+  'grizzly-ranch':    { placeId: 'ChIJieUsG1AXnIARymVbZ8tOz88', tripadvisorUrl: 'https://www.tripadvisor.com/Attraction_Review-g32918-d3368836-Reviews-Grizzly_Ranch_Golf_Club' },
+  'graeagle-meadows': { placeId: 'ChIJseMy5-5rnIARVg4aaMkNkpA', tripadvisorUrl: 'https://www.tripadvisor.com/Attraction_Review-g32443-d218295' },
+  'whitehawk-ranch':  { placeId: 'ChIJoaCVnj5tnIAR13411sdJaf0', tripadvisorUrl: 'https://www.tripadvisor.com/Attraction_Review-g32222-d218848' },
+  'plumas-pines':     { placeId: 'ChIJsY5k2LlpnIARqZZ78dcWaXI', tripadvisorUrl: 'https://www.tripadvisor.com/Attraction_Review-g32443-d215287' },
+  'nakoma-dragon':    { placeId: 'ChIJMyegY1ETnIARzjlxmyXISkc', tripadvisorUrl: 'https://www.tripadvisor.com/Attraction_Review-g32222-d283700' },
 };
+
+// Fetch reviews for all 5 courses at build time
+async function fetchCourseReviews(placeId: string): Promise<{ text: string; author: string; rating: number; when: string }[]> {
+  try {
+    const res = await fetch(
+      `https://places.googleapis.com/v1/places/${placeId}?key=${PLACES_API_KEY}`,
+      { headers: { 'X-Goog-FieldMask': 'reviews' } }
+    );
+    const data = await res.json();
+    return (data.reviews || [])
+      .filter((r: any) => r.rating >= 4 && (r.text?.text || '').length >= 40)
+      .slice(0, 5)
+      .map((r: any) => ({
+        text: r.text?.text || '',
+        author: r.authorAttribution?.displayName || 'Google reviewer',
+        rating: r.rating,
+        when: r.relativePublishTimeDescription || '',
+      }));
+  } catch {
+    return [];
+  }
+}
+
+const courseReviewData: Record<string, { quotes: { text: string; author: string; rating: number; when: string }[]; tripadvisorUrl: string; googlePlaceId: string }> = {};
+await Promise.all(
+  Object.entries(COURSE_PLACE_IDS).map(async ([slug, { placeId, tripadvisorUrl }]) => {
+    courseReviewData[slug] = {
+      googlePlaceId: placeId,
+      tripadvisorUrl,
+      quotes: await fetchCourseReviews(placeId),
+    };
+  })
+);
+
 
 // Verified review quotes + source links per lodging property
 const lodgingReviewData: Record<string, { quotes: { text: string; author: string; platform: string }[]; tripadvisorUrl: string }> = {
@@ -797,10 +797,15 @@ const diningSlugMap: Record<string, string> = {
         </div>
       </div>
       <div class="rv-quotes">
-        {courseReviewData[item.slug].quotes.map((q: { text: string; author: string }) => (
+        {courseReviewData[item.slug].quotes.map((q: { text: string; author: string; rating: number; when: string }) => (
           <blockquote class="rv-quote">
+            <div class="rv-quote-stars">{'★'.repeat(q.rating)}{'☆'.repeat(5 - q.rating)}</div>
             <p class="rv-quote-text">"{q.text}"</p>
-            <cite class="rv-quote-author">— {q.author} · <span style="color:#4285F4;font-weight:500;">Google</span></cite>
+            <cite class="rv-quote-author">
+              — {q.author}
+              {q.when && <span class="rv-quote-when"> · {q.when}</span>}
+              <span class="rv-quote-platform"> · <span style="color:#4285F4;font-weight:600;">Google</span></span>
+            </cite>
           </blockquote>
         ))}
       </div>
@@ -1209,10 +1214,15 @@ const diningSlugMap: Record<string, string> = {
     font-size: 14px; line-height: 1.65; color: rgba(28,18,8,0.75);
     font-style: italic; margin: 0 0 10px;
   }
+  .rv-quote-stars {
+    font-size: 13px; color: #e8a850; letter-spacing: 1px; margin-bottom: 8px;
+  }
   .rv-quote-author {
     font-size: 12px; font-weight: 600; color: rgba(28,18,8,0.45);
     font-style: normal;
   }
+  .rv-quote-when { font-weight: 400; color: rgba(28,18,8,0.3); }
+  .rv-quote-platform { font-weight: 400; }
   @media (max-width: 640px) {
     .rv-strip { padding: 24px 16px; }
     .rv-quotes { grid-template-columns: 1fr; }
