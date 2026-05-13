@@ -139,6 +139,17 @@ const quoteSchema = [
                   <option value="other">Other</option>
                 </select>
               </div>
+              <div class="qfld qfull">
+                <label>Type of Trip</label>
+                <select name="groupType" id="group-type-select">
+                  <option value="">Select one…</option>
+                  <option value="bachelor-party">Bachelor Party</option>
+                  <option value="corporate">Corporate Outing</option>
+                  <option value="weekend-buddies">Weekend Buddies Trip</option>
+                  <option value="family">Family Trip</option>
+                  <option value="other">Other</option>
+                </select>
+              </div>
             </div>
           </div>
 
@@ -308,6 +319,18 @@ const quoteSchema = [
               <div>
                 <h2 class="q-section-title">Graeagle Golf Lodging</h2>
                 <p class="q-section-sub">Select your preferred property — or let us recommend.</p>
+              </div>
+            </div>
+
+            <!-- ── LODGING TYPE (required) ── -->
+            <div class="q-radio-group" style="margin-bottom:22px;">
+              <div class="q-radio-label">Lodging needed? <span class="req">*</span></div>
+              <div class="q-radio-row" style="flex-wrap:wrap;">
+                <label class="q-radio"><input type="radio" name="lodgingType" value="hotel" required id="lt-hotel"/> Hotel / Resort room</label>
+                <label class="q-radio"><input type="radio" name="lodgingType" value="townhomes" id="lt-townhomes"/> Townhome / Condo</label>
+                <label class="q-radio"><input type="radio" name="lodgingType" value="on-course" id="lt-oncourse"/> On-course lodging</label>
+                <label class="q-radio"><input type="radio" name="lodgingType" value="no-preference" id="lt-nopref"/> No preference — let Mike recommend</label>
+                <label class="q-radio"><input type="radio" name="lodgingType" value="no-lodging" id="lt-nolodging"/> Tee times only, no lodging</label>
               </div>
             </div>
 
@@ -667,13 +690,10 @@ const $id  = id => document.getElementById(id);
   const budget = p.get('budget') || '';
   const groupType = p.get('groupType') || '';
 
-  // Store groupType in hidden input so it's picked up on submit
+  // Pre-fill groupType select from URL param
   if (groupType) {
-    const hidden = document.createElement('input');
-    hidden.type = 'hidden';
-    hidden.name = 'groupType';
-    hidden.value = groupType;
-    form.appendChild(hidden);
+    const gtSelect = $id('group-type-select');
+    if (gtSelect) gtSelect.value = groupType;
   }
 
   const isTripRef = ref === 'trips-caddie' || ref === 'trips-page';
@@ -855,6 +875,25 @@ document.querySelectorAll('[name="specialFBEvent"]').forEach(r => {
       ['birthday','bachelor','corporate','anniversary','other'].includes(r.value) ? 'flex' : 'none';
   });
 });
+
+// lodgingType → show/hide lodge grid + lodge-any
+function updateLodgingGrid() {
+  const lt = form.querySelector('[name="lodgingType"]:checked');
+  const grid = $id('lodge-grid');
+  const lodeAny = $id('lodge-any')?.closest('label') || $id('lodge-any')?.parentElement;
+  const lodeAnyLabel = form.querySelector('.q-lodge-any');
+  if (!grid) return;
+  if (lt && lt.value === 'no-lodging') {
+    grid.style.display = 'none';
+    if (lodeAnyLabel) lodeAnyLabel.style.display = 'none';
+  } else {
+    grid.style.display = '';
+    if (lodeAnyLabel) lodeAnyLabel.style.display = '';
+  }
+  updateSummary();
+}
+form.querySelectorAll('[name="lodgingType"]').forEach(r => r.addEventListener('change', updateLodgingGrid));
+updateLodgingGrid();
 
 // lodge-any dims grid
 $id('lodge-any')?.addEventListener('change', function() {
