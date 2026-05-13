@@ -5,7 +5,9 @@ import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
 import RelatedTrips from '../../components/RelatedTrips.tsx';
 import Testimonials from '../../components/Testimonials.tsx';
-import { courses, lodging, dining, siteConfig, courseToLodging, lodgingToCourses, imageAlts } from '../../data/content.js';
+import GolfConditions from '../../components/GolfConditions.tsx';
+import GolfConditions from '../../components/GolfConditions.tsx';
+import { courses, lodging, dining, siteConfig, courseToLodging, lodgingToCourses, imageAlts, graeagleDriveTimes, courseElevations, courseStreetView, placeIds } from '../../data/content.js';
 
 // Helper: get descriptive SEO alt text for any image URL
 function getImgAlt(src, fallback) {
@@ -232,46 +234,46 @@ const lodgingGoogleRatings: Record<string, { rating: string; count: string; plac
   'townhomes-at-plumas-pines': { rating: '4.7', count: '141', placeId: 'ChIJsY5k2LlpnIARqZZ78dcWaXI' },
 };
 
-// Verified review quotes + source links per course
+// Verified review quotes pulled from Google Places API (May 2026) — real author names
 const courseReviewData: Record<string, { quotes: { text: string; author: string }[]; tripadvisorUrl: string; googlePlaceId: string }> = {
   'grizzly-ranch': {
     googlePlaceId: 'ChIJieUsG1AXnIARymVbZ8tOz88',
     tripadvisorUrl: 'https://www.tripadvisor.com/Attraction_Review-g32918-d3368836-Reviews-Grizzly_Ranch_Golf_Club',
     quotes: [
-      { text: 'Grizzly Ranch is hands down my favorite course in all of Reno/Tahoe. Less than an hour from Reno — this course should be on your list.', author: 'GolfPass reviewer' },
-      { text: 'Really fun Bob Cupp design in the foothills of the Sierra Nevada. Wonderful views with very good playing conditions. The staff was very welcoming.', author: 'Golf Digest panelist' },
+      { text: 'This has got to be one of the greatest hidden gems in the Sierra Nevadas. It is a Top 10 Public golf course that plays through the mountains with incredible views and impeccable conditions.', author: 'Matt Anderson' },
+      { text: 'Incredible course in absolutely impeccable condition. Interesting holes, beautiful scenery, top notch staff. One of the best golf courses I have ever played.', author: 'Anthony Hardy' },
     ],
   },
   'graeagle-meadows': {
     googlePlaceId: 'ChIJseMy5-5rnIARVg4aaMkNkpA',
     tripadvisorUrl: 'https://www.tripadvisor.com/Attraction_Review-g32443-d218295',
     quotes: [
-      { text: 'Many of the holes looked like a movie set — mountains and stately pines in the background, river running along some holes. The course was in excellent shape.', author: 'TripAdvisor reviewer' },
-      { text: 'If you are looking for an alternative to golfing in Lake Tahoe, choose Graeagle for its beauty and uncrowded course!', author: 'Verified guest' },
+      { text: 'Fun track to play! Staff were extremely friendly. Course was in solid shape. Beautiful mountain views on every hole.', author: 'Erik Bacher' },
+      { text: 'Fantastic course. Well manicured and the greens run fast. Nice long fairways lined by pines. The occasional water hazard keeps you honest.', author: 'Jason S' },
     ],
   },
   'whitehawk-ranch': {
     googlePlaceId: 'ChIJoaCVnj5tnIAR13411sdJaf0',
     tripadvisorUrl: 'https://www.tripadvisor.com/Attraction_Review-g32222-d218848',
     quotes: [
-      { text: 'One of the best golf venues around. No matter your skill level, Whitehawk is fun, scenic, perfectly maintained and always elicits praise from golfers at every level.', author: 'TripAdvisor reviewer' },
-      { text: 'Without question, an undiscovered gem in California. Fantastic setting — starting in meadow, moving into trees, then finishing along creeks, ponds, and rivers.', author: 'Golf Digest panelist' },
+      { text: 'Finally played Whitehawk and regret waiting! The venue is top-tier, with staff who are willing and able to make your experience wonderful. The course itself is beautiful and challenging.', author: 'Michael Glazer' },
+      { text: 'One of the most well maintained courses anywhere. You get what you pay for. Make time to use the practice facility — first class.', author: 'Bill Broxham' },
     ],
   },
   'plumas-pines': {
     googlePlaceId: 'ChIJsY5k2LlpnIARqZZ78dcWaXI',
     tripadvisorUrl: 'https://www.tripadvisor.com/Attraction_Review-g32443-d215287',
     quotes: [
-      { text: 'A spectacular golf course with a beautiful location among the pine trees. Wonderful course in beautiful condition, super friendly staff.', author: 'TripAdvisor reviewer' },
-      { text: 'Challenging due to the up/down terrain, but that made each hole unique. Great views from every hole. Would totally recommend.', author: 'TripAdvisor reviewer' },
+      { text: 'Great well maintained course. Beautiful views. The trees keep it at the perfect temps. Staff was great and helpful.', author: 'Christina Del Villar' },
+      { text: 'Absolutely one of my favorite courses in Northern California. Challenging and scenic in equal measure.', author: 'Daryn Marsh' },
     ],
   },
   'nakoma-dragon': {
     googlePlaceId: 'ChIJMyegY1ETnIARzjlxmyXISkc',
     tripadvisorUrl: 'https://www.tripadvisor.com/Attraction_Review-g32222-d283700',
     quotes: [
-      { text: 'I played Old Greenwood and Plumas Pines — THE DRAGON beats them all. Customer service was outstanding. I will definitely return.', author: 'TripAdvisor reviewer' },
-      { text: 'Just to be on the patio of this Frank Lloyd Wright clubhouse will transport you. Be prepared for a fun challenge — the views from every tee box are stunning.', author: 'TripAdvisor reviewer' },
+      { text: "It's a hidden gem! Everything about the place was exquisite. The staff are very knowledgeable. The Frank Lloyd Wright clubhouse is stunning.", author: 'Inder Arora' },
+      { text: 'The area, the rooms and Frank Lloyd Wright Restaurant is really cool. The course is in great shape. Challenging and rewarding.', author: 'Jordan LeFord' },
     ],
   },
 };
@@ -683,7 +685,7 @@ const diningSlugMap: Record<string, string> = {
   <div class="ch-infobar">
     <div class="ch-infobar-items">
       {[
-        ['Altitude', item.altitude],
+        ['Altitude', courseElevations[item.slug] ? `${courseElevations[item.slug].ft.toLocaleString()} ft` : (item.altitude || 'Sierra Nevada')],
         ['Open', 'May – November'],
         ['Location', item.address?.split(',')[1]?.trim() || 'Graeagle, CA'],
         ['Packages from', '$299/person'],
@@ -698,6 +700,38 @@ const diningSlugMap: Record<string, string> = {
   </div>
 
 </section>
+
+{/* ── Drive Times + Map Strip ── */}
+{type === 'course' && (
+  <section class="dt-strip">
+    <div class="dt-inner">
+      <div class="dt-cities">
+        <div class="dt-label">Drive times to Graeagle</div>
+        <div class="dt-grid">
+          {Object.entries(graeagleDriveTimes).map(([city, data]: [string, any]) => (
+            <div class="dt-city">
+              <span class="dt-city-name">{city}</span>
+              <span class="dt-city-time">{data.display}</span>
+              <span class="dt-city-miles">{data.miles} mi</span>
+            </div>
+          ))}
+        </div>
+      </div>
+      {placeIds[item.slug] && (
+        <div class="dt-map-wrap">
+          <iframe
+            title={`${item.name} location map`}
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            src={`https://www.google.com/maps/embed/v1/place?key=AIzaSyDI1hLFH83qpZDjxj93OYJvGghRAmtHF8U&q=place_id:${placeIds[item.slug]}&zoom=14&maptype=satellite`}
+            class="dt-map"
+            allowfullscreen
+          ></iframe>
+        </div>
+      )}
+    </div>
+  </section>
+)}
 
 {/* ── Verified Reviews Strip ── */}
 {type === 'course' && courseReviewData[item.slug] && (
@@ -721,7 +755,7 @@ const diningSlugMap: Record<string, string> = {
         {courseReviewData[item.slug].quotes.map((q: { text: string; author: string }) => (
           <blockquote class="rv-quote">
             <p class="rv-quote-text">"{q.text}"</p>
-            <cite class="rv-quote-author">— {q.author}</cite>
+            <cite class="rv-quote-author">— {q.author} · <span style="color:#4285F4;font-weight:500;">Google</span></cite>
           </blockquote>
         ))}
       </div>
@@ -1134,6 +1168,25 @@ const diningSlugMap: Record<string, string> = {
     .rv-quotes { grid-template-columns: 1fr; }
   }
 
+  /* ─── DRIVE TIMES + MAP STRIP ─── */
+  .dt-strip { background: #fff; border-bottom: 1px solid rgba(28,18,8,0.07); padding: 24px clamp(20px,8%,80px); }
+  .dt-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 320px; gap: 32px; align-items: center; }
+  .dt-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: rgba(28,18,8,0.4); margin-bottom: 12px; }
+  .dt-grid { display: flex; gap: 8px; flex-wrap: wrap; }
+  .dt-city { display: flex; flex-direction: column; background: #f5f0e8; border-radius: 8px; padding: 10px 14px; min-width: 100px; }
+  .dt-city-name { font-size: 11px; color: rgba(28,18,8,0.5); font-weight: 500; margin-bottom: 2px; }
+  .dt-city-time { font-size: 16px; font-weight: 700; color: #1c1208; line-height: 1.1; }
+  .dt-city-miles { font-size: 11px; color: rgba(28,18,8,0.4); margin-top: 1px; }
+  .dt-map-wrap { border-radius: 10px; overflow: hidden; aspect-ratio: 4/3; }
+  .dt-map { width: 100%; height: 100%; border: none; display: block; }
+  @media (max-width: 860px) {
+    .dt-inner { grid-template-columns: 1fr; }
+    .dt-map-wrap { aspect-ratio: 16/9; }
+  }
+  @media (max-width: 480px) {
+    .dt-city { min-width: calc(50% - 4px); }
+  }
+
   /* ─── BODY LAYOUT ─── */
   .course-body { background:var(--page-bg); padding: clamp(40px, 8vw, 80px) clamp(20px, 10%, 10%); }
   .course-layout { max-width: 1100px; margin: 0 auto; }
@@ -1499,6 +1552,16 @@ const diningSlugMap: Record<string, string> = {
     </div>
   </div>
 </div>
+
+    {/* Golf Conditions Widget */}
+    {type === 'course' && (
+      <section style="padding: 40px clamp(20px,8%,80px); background: var(--page-bg);">
+        <div style="max-width: 1100px; margin: 0 auto;">
+          <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.12em;color:rgba(28,18,8,0.4);margin-bottom:14px;">Playing conditions</div>
+          <GolfConditions client:visible />
+        </div>
+      </section>
+    )}
 
     <RelatedTrips client:load slug={item.slug} type="course" />
 

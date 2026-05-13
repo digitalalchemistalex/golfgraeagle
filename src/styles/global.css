@@ -880,3 +880,35 @@ section.hero-section,
   color: #e8a850; margin-bottom: 14px;
 }
 .sec-label-dark { color: rgba(245,240,232,0.45); }
+
+/* ─── Golf Conditions Widget ─── */
+.gc-widget { background: #f5f0e8; border: 1px solid rgba(28,18,8,0.08); border-radius: 12px; overflow: hidden; }
+.gc-score-bar { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 20px 24px; background: #fff; border-bottom: 1px solid rgba(28,18,8,0.06); }
+.gc-score-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: rgba(28,18,8,0.45); margin-bottom: 4px; }
+.gc-score-val { font-size: 22px; font-weight: 700; color: #2d7a3a; line-height: 1.1; }
+.gc-score-sub { font-size: 12px; color: rgba(28,18,8,0.45); margin-top: 4px; }
+.gc-score-meter { flex: 1; max-width: 140px; }
+.gc-score-track { height: 6px; background: rgba(28,18,8,0.1); border-radius: 3px; overflow: hidden; margin-bottom: 4px; }
+.gc-score-fill { height: 100%; border-radius: 3px; transition: width 0.8s cubic-bezier(0.22,1,0.36,1); }
+.gc-score-num { font-size: 11px; font-weight: 600; color: rgba(28,18,8,0.45); text-align: right; }
+.gc-forecast { display: grid; grid-template-columns: repeat(5, 1fr); padding: 16px 16px 12px; gap: 4px; }
+.gc-day { text-align: center; padding: 10px 6px; border-radius: 8px; }
+.gc-day:first-child { background: rgba(232,168,80,0.1); }
+.gc-day-name { font-size: 11px; font-weight: 600; color: rgba(28,18,8,0.5); margin-bottom: 6px; }
+.gc-day-icon { font-size: 22px; margin-bottom: 6px; line-height: 1; }
+.gc-day-temps { display: flex; gap: 4px; justify-content: center; align-items: baseline; margin-bottom: 4px; }
+.gc-hi { font-size: 14px; font-weight: 700; color: #1c1208; }
+.gc-lo { font-size: 12px; color: rgba(28,18,8,0.45); }
+.gc-day-meta { font-size: 10px; color: rgba(28,18,8,0.4); display: flex; gap: 6px; justify-content: center; flex-wrap: wrap; }
+.gc-conditions-row { display: flex; gap: 8px; padding: 12px 16px; flex-wrap: wrap; }
+.gc-pill { flex: 1; min-width: 90px; background: #fff; border: 1px solid rgba(28,18,8,0.08); border-radius: 8px; padding: 10px 12px; }
+.gc-pill-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: rgba(28,18,8,0.4); margin-bottom: 2px; }
+.gc-pill-val { font-size: 15px; font-weight: 700; }
+.gc-pill-sub { font-size: 11px; color: rgba(28,18,8,0.45); margin-top: 1px; }
+.gc-footer { padding: 8px 16px 12px; font-size: 10px; color: rgba(28,18,8,0.35); text-align: center; }
+@media (max-width: 640px) {
+  .gc-forecast { grid-template-columns: repeat(3, 1fr); }
+  .gc-forecast .gc-day:nth-child(n+4) { display: none; }
+  .gc-score-bar { flex-direction: column; align-items: flex-start; gap: 10px; }
+  .gc-score-meter { max-width: 100%; width: 100%; }
+}
