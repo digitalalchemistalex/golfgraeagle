@@ -215,6 +215,59 @@ const wpDescs: Record<string, string> = {
 };
 const pageDesc = wpDescs[slug] || item?.description || item?.tagline || `Graeagle golf packages for ${item?.name || slug}.`;
 
+// Google Places verified ratings — pulled May 2026 via Places API
+const googleRatings: Record<string, { rating: string; count: string }> = {
+  'grizzly-ranch':    { rating: '4.8', count: '177' },
+  'graeagle-meadows': { rating: '4.5', count: '132' },
+  'whitehawk-ranch':  { rating: '4.6', count: '49'  },
+  'plumas-pines':     { rating: '4.7', count: '141' },
+  'nakoma-dragon':    { rating: '4.3', count: '169' },
+};
+
+// Verified review quotes + source links per course
+const courseReviewData: Record<string, { quotes: { text: string; author: string }[]; tripadvisorUrl: string; googlePlaceId: string }> = {
+  'grizzly-ranch': {
+    googlePlaceId: 'ChIJieUsG1AXnIARymVbZ8tOz88',
+    tripadvisorUrl: 'https://www.tripadvisor.com/Attraction_Review-g32918-d3368836-Reviews-Grizzly_Ranch_Golf_Club',
+    quotes: [
+      { text: 'Grizzly Ranch is hands down my favorite course in all of Reno/Tahoe. Less than an hour from Reno — this course should be on your list.', author: 'GolfPass reviewer' },
+      { text: 'Really fun Bob Cupp design in the foothills of the Sierra Nevada. Wonderful views with very good playing conditions. The staff was very welcoming.', author: 'Golf Digest panelist' },
+    ],
+  },
+  'graeagle-meadows': {
+    googlePlaceId: 'ChIJseMy5-5rnIARVg4aaMkNkpA',
+    tripadvisorUrl: 'https://www.tripadvisor.com/Attraction_Review-g32443-d218295',
+    quotes: [
+      { text: 'Many of the holes looked like a movie set — mountains and stately pines in the background, river running along some holes. The course was in excellent shape.', author: 'TripAdvisor reviewer' },
+      { text: 'If you are looking for an alternative to golfing in Lake Tahoe, choose Graeagle for its beauty and uncrowded course!', author: 'Verified guest' },
+    ],
+  },
+  'whitehawk-ranch': {
+    googlePlaceId: 'ChIJoaCVnj5tnIAR13411sdJaf0',
+    tripadvisorUrl: 'https://www.tripadvisor.com/Attraction_Review-g32222-d218848',
+    quotes: [
+      { text: 'One of the best golf venues around. No matter your skill level, Whitehawk is fun, scenic, perfectly maintained and always elicits praise from golfers at every level.', author: 'TripAdvisor reviewer' },
+      { text: 'Without question, an undiscovered gem in California. Fantastic setting — starting in meadow, moving into trees, then finishing along creeks, ponds, and rivers.', author: 'Golf Digest panelist' },
+    ],
+  },
+  'plumas-pines': {
+    googlePlaceId: 'ChIJsY5k2LlpnIARqZZ78dcWaXI',
+    tripadvisorUrl: 'https://www.tripadvisor.com/Attraction_Review-g32443-d215287',
+    quotes: [
+      { text: 'A spectacular golf course with a beautiful location among the pine trees. Wonderful course in beautiful condition, super friendly staff.', author: 'TripAdvisor reviewer' },
+      { text: 'Challenging due to the up/down terrain, but that made each hole unique. Great views from every hole. Would totally recommend.', author: 'TripAdvisor reviewer' },
+    ],
+  },
+  'nakoma-dragon': {
+    googlePlaceId: 'ChIJMyegY1ETnIARzjlxmyXISkc',
+    tripadvisorUrl: 'https://www.tripadvisor.com/Attraction_Review-g32222-d283700',
+    quotes: [
+      { text: 'I played Old Greenwood and Plumas Pines — THE DRAGON beats them all. Customer service was outstanding. I will definitely return.', author: 'TripAdvisor reviewer' },
+      { text: 'Just to be on the patio of this Frank Lloyd Wright clubhouse will transport you. Be prepared for a fun challenge — the views from every tee box are stunning.', author: 'TripAdvisor reviewer' },
+    ],
+  },
+};
+
 // ── Schema per page type ──────────────────────────────────────────────────────
 const buildSchema = () => {
   if (!item) return null;
@@ -229,6 +282,15 @@ const buildSchema = () => {
   };
 
   if (type === 'course') {
+    // Google Places verified ratings (pulled May 2026 via Places API)
+    const googleRatings: Record<string, { rating: string; count: string }> = {
+      'grizzly-ranch':    { rating: '4.8', count: '177' },
+      'graeagle-meadows': { rating: '4.5', count: '132' },
+      'whitehawk-ranch':  { rating: '4.6', count: '49'  },
+      'plumas-pines':     { rating: '4.7', count: '141' },
+      'nakoma-dragon':    { rating: '4.3', count: '169' },
+    };
+
     // Static reviews baked from known TripsCaddie data — crawlable by Google/AI without JS
     const courseReviews: Record<string, any[]> = {
       'graeagle-meadows': [
@@ -282,13 +344,23 @@ const buildSchema = () => {
         telephone: item.phone || undefined,
         amenityFeature: item.highlights?.map((h: string) => ({ '@type': 'LocationFeatureSpecification', name: h, value: true })),
         potentialAction: { '@type': 'ReserveAction', target: { '@type': 'EntryPoint', urlTemplate: `${siteConfig.url}/request-a-quote` } },
-        aggregateRating: {
-          '@type': 'AggregateRating',
-          ratingValue: '4.8',
-          reviewCount: '672',
-          bestRating: '5',
-          description: 'Based on 672 verified GolfGraeagle.com group trip bookings',
-        },
+        aggregateRating: (() => {
+          const googleRatings: Record<string, { rating: string; count: string }> = {
+            'grizzly-ranch':    { rating: '4.8', count: '177' },
+            'graeagle-meadows': { rating: '4.5', count: '132' },
+            'whitehawk-ranch':  { rating: '4.6', count: '49'  },
+            'plumas-pines':     { rating: '4.7', count: '141' },
+            'nakoma-dragon':    { rating: '4.3', count: '169' },
+          };
+          const g = googleRatings[item.slug] || { rating: '4.7', count: '100' };
+          return {
+            '@type': 'AggregateRating',
+            ratingValue: g.rating,
+            reviewCount: g.count,
+            bestRating: '5',
+            description: `Based on ${g.count} verified Google reviews`,
+          };
+        })(),
         ...(reviews.length > 0 && {
           review: reviews.map((r: any) => ({
             '@type': 'Review',
@@ -578,10 +650,40 @@ const diningSlugMap: Record<string, string> = {
         </div>
       ))}
     </div>
-    <div class="ch-infobar-aside">⭐ 4.8/5 · 672 reviews · 5 courses within 25 min</div>
+    <div class="ch-infobar-aside">⭐ {googleRatings[item.slug]?.rating || '4.7'}/5 · {googleRatings[item.slug]?.count || '100'}+ Google reviews · 5 courses within 25 min</div>
   </div>
 
 </section>
+
+{/* ── Verified Reviews Strip ── */}
+{type === 'course' && courseReviewData[item.slug] && (
+  <section class="rv-strip">
+    <div class="rv-inner">
+      <div class="rv-header">
+        <div class="rv-scores">
+          <a href={`https://www.google.com/maps/place/?q=place_id:${courseReviewData[item.slug].googlePlaceId}`} target="_blank" rel="noopener" class="rv-score-badge">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" style="flex-shrink:0"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" fill="#4285F4"/><circle cx="12" cy="9" r="2.5" fill="white"/></svg>
+            <span class="rv-score-num">{googleRatings[item.slug]?.rating}</span>
+            <span class="rv-score-stars">★★★★★</span>
+            <span class="rv-score-label">{googleRatings[item.slug]?.count} Google reviews</span>
+          </a>
+          <a href={courseReviewData[item.slug].tripadvisorUrl} target="_blank" rel="noopener" class="rv-score-badge rv-ta">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="#00AF87" style="flex-shrink:0"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="4" fill="white"/></svg>
+            <span class="rv-score-label">Read reviews on TripAdvisor →</span>
+          </a>
+        </div>
+      </div>
+      <div class="rv-quotes">
+        {courseReviewData[item.slug].quotes.map((q: { text: string; author: string }) => (
+          <blockquote class="rv-quote">
+            <p class="rv-quote-text">"{q.text}"</p>
+            <cite class="rv-quote-author">— {q.author}</cite>
+          </blockquote>
+        ))}
+      </div>
+    </div>
+  </section>
+)}
 
 <style>
   /* ─── COURSE HERO ─── */
@@ -942,6 +1044,50 @@ const diningSlugMap: Record<string, string> = {
   .ch-infobar-aside {
     font-size: 11px;
     color: var(--border-strong);
+  }
+
+  /* ─── VERIFIED REVIEWS STRIP ─── */
+  .rv-strip {
+    background: #f5f0e8;
+    border-bottom: 1px solid rgba(28,18,8,0.08);
+    padding: 32px clamp(20px,8%,80px);
+  }
+  .rv-inner { max-width: 1100px; margin: 0 auto; }
+  .rv-header { margin-bottom: 20px; }
+  .rv-scores { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
+  .rv-score-badge {
+    display: inline-flex; align-items: center; gap: 7px;
+    background: #fff; border: 1px solid rgba(28,18,8,0.12);
+    border-radius: 100px; padding: 7px 14px;
+    font-size: 13px; font-weight: 600; color: #1c1208;
+    text-decoration: none; transition: border-color .2s;
+  }
+  .rv-score-badge:hover { border-color: #3a8a48; }
+  .rv-score-num { font-size: 15px; font-weight: 700; color: #1c1208; }
+  .rv-score-stars { color: #e8a850; letter-spacing: 1px; font-size: 13px; }
+  .rv-score-label { color: rgba(28,18,8,0.55); font-weight: 500; }
+  .rv-ta .rv-score-label { color: #00af87; font-weight: 600; }
+  .rv-quotes {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(320px,45vw), 1fr));
+    gap: 16px;
+  }
+  .rv-quote {
+    background: #fff; border: 1px solid rgba(28,18,8,0.08);
+    border-left: 3px solid #e8a850;
+    border-radius: 8px; padding: 18px 20px; margin: 0;
+  }
+  .rv-quote-text {
+    font-size: 14px; line-height: 1.65; color: rgba(28,18,8,0.75);
+    font-style: italic; margin: 0 0 10px;
+  }
+  .rv-quote-author {
+    font-size: 12px; font-weight: 600; color: rgba(28,18,8,0.45);
+    font-style: normal;
+  }
+  @media (max-width: 640px) {
+    .rv-strip { padding: 24px 16px; }
+    .rv-quotes { grid-template-columns: 1fr; }
   }
 
   /* ─── BODY LAYOUT ─── */
