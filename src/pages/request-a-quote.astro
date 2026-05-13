@@ -334,22 +334,6 @@ const quoteSchema = [
               </div>
             </div>
 
-            <label class="q-lodge-any">
-              <input type="checkbox" id="lodge-any" name="lodgingAny" value="yes"/>
-              <div class="q-lodge-any-inner">
-                <span style="font-size:22px;">🎯</span>
-                <div style="flex:1;">
-                  <div style="font-size:14px;font-weight:700;color:#1a1208;">Let Mike recommend the best fit</div>
-                  <div style="font-size:12px;color:#6a5a48;margin-top:3px;line-height:1.5;">Not sure where to stay? Tell us your group size, budget, and courses — Mike will personally match you to the right property. Response within 24 hours.</div>
-                  <div style="display:flex;align-items:center;gap:10px;margin-top:8px;">
-                    <div style="width:28px;height:28px;border-radius:50%;background:#1a2e1a;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:#e8a850;flex-shrink:0;">M</div>
-                    <span style="font-size:11px;color:#8a7a68;font-style:italic;">Mike Eskuchen · Graeagle Golf Expert · 20+ years booking these trips</span>
-                  </div>
-                </div>
-                <div class="q-lodge-any-check">✓</div>
-              </div>
-            </label>
-
             <div class="q-lodge-grid" id="lodge-grid">
               {lodgingCards.map(l=>(
                 <label class="q-lodge-card">
@@ -436,8 +420,8 @@ const quoteSchema = [
               <div class="q-radio-label">Is this a special occasion?</div>
               <div class="q-radio-row" style="flex-wrap:wrap;">
                 {[
-                  {v:'none',l:'Just golf'},{v:'birthday',l:'Birthday'},{v:'bachelor',l:'Bachelor party'},
-                  {v:'corporate',l:'Corporate outing'},{v:'anniversary',l:'Anniversary'},{v:'other',l:'Other event'},
+                  {v:'none',l:'Just golf'},{v:'birthday',l:'Birthday'},
+                  {v:'anniversary',l:'Anniversary'},{v:'other',l:'Other event'},
                 ].map(e=>(<label class="q-radio"><input type="radio" name="specialFBEvent" value={e.v}/> {e.l}</label>))}
               </div>
             </div>
@@ -774,9 +758,6 @@ const $id  = id => document.getElementById(id);
       if (lname.includes(key)) {
         const cb = form.querySelector(`[name="lodgingInterested"][value="${slug}"]`);
         if (cb) cb.checked = true;
-        // Uncheck "let us recommend" if a specific property is selected
-        const anyChk = $id('lodge-any');
-        if (anyChk) anyChk.checked = false;
         break;
       }
     }
@@ -876,47 +857,38 @@ document.querySelectorAll('[name="specialFBEvent"]').forEach(r => {
   });
 });
 
-// lodgingType → show/hide lodge grid + lodge-any
-function updateLodgingGrid() {
+// lodgingType + property cards → control grid, sleeping config, room config
+function updateLodgingUI() {
   const lt = form.querySelector('[name="lodgingType"]:checked');
+  const ltVal = lt ? lt.value : '';
   const grid = $id('lodge-grid');
-  const lodeAny = $id('lodge-any')?.closest('label') || $id('lodge-any')?.parentElement;
-  const lodeAnyLabel = form.querySelector('.q-lodge-any');
-  if (!grid) return;
-  if (lt && lt.value === 'no-lodging') {
-    grid.style.display = 'none';
-    if (lodeAnyLabel) lodeAnyLabel.style.display = 'none';
-  } else {
-    grid.style.display = '';
-    if (lodeAnyLabel) lodeAnyLabel.style.display = '';
-  }
-  updateSummary();
-}
-form.querySelectorAll('[name="lodgingType"]').forEach(r => r.addEventListener('change', updateLodgingGrid));
-updateLodgingGrid();
-
-// lodge-any dims grid
-$id('lodge-any')?.addEventListener('change', function() {
-  const grid = $id('lodge-grid');
-  grid.style.opacity = this.checked ? '0.35' : '1';
-  grid.style.pointerEvents = this.checked ? 'none' : 'auto';
-  updateSummary();
-});
-
-// sleeping-config: townhomes only; room-config: shown unless townhomes selected
-function updateSleepingConfig() {
-  const cb = form.querySelector('[name="lodgingInterested"][value="townhomes-at-plumas-pines"]');
-  const townhomesChecked = cb ? cb.checked : false;
   const sleepWrap = $id('sleeping-config-wrap');
   const roomWrap  = $id('room-config-wrap');
-  if (sleepWrap) sleepWrap.style.display = townhomesChecked ? 'block' : 'none';
-  if (roomWrap)  roomWrap.style.display  = townhomesChecked ? 'none'  : 'block';
-}
-form.querySelectorAll('[name="lodgingInterested"]').forEach(cb => {
-  cb.addEventListener('change', updateSleepingConfig);
-});
-$id('lodge-any')?.addEventListener('change', updateSleepingConfig);
 
+  // Hide everything if no lodging
+  if (ltVal === 'no-lodging') {
+    if (grid) grid.style.display = 'none';
+    if (sleepWrap) sleepWrap.style.display = 'none';
+    if (roomWrap)  roomWrap.style.display  = 'none';
+    updateSummary();
+    return;
+  }
+
+  // Show grid for all other lodging types
+  if (grid) grid.style.display = '';
+
+  // Townhomes: either lodgingType=townhomes OR the card is checked
+  const townhomesCard = form.querySelector('[name="lodgingInterested"][value="townhomes-at-plumas-pines"]');
+  const isTownhomes = ltVal === 'townhomes' || (townhomesCard && townhomesCard.checked);
+
+  if (sleepWrap) sleepWrap.style.display = isTownhomes ? 'block' : 'none';
+  if (roomWrap)  roomWrap.style.display  = (!isTownhomes && ltVal !== '') ? 'block' : 'none';
+
+  updateSummary();
+}
+form.querySelectorAll('[name="lodgingType"]').forEach(r => r.addEventListener('change', updateLodgingUI));
+form.querySelectorAll('[name="lodgingInterested"]').forEach(cb => cb.addEventListener('change', updateLodgingUI));
+updateLodgingUI();
 // live summary
 function fv(name) {
   const el = form.querySelector(`[name="${name}"]:checked`);
