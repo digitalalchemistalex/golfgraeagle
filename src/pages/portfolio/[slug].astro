@@ -6,7 +6,6 @@ import Footer from '../../components/Footer.astro';
 import RelatedTrips from '../../components/RelatedTrips.tsx';
 import Testimonials from '../../components/Testimonials.tsx';
 import GolfConditions from '../../components/GolfConditions.tsx';
-import GolfConditions from '../../components/GolfConditions.tsx';
 import { courses, lodging, dining, siteConfig, courseToLodging, lodgingToCourses, imageAlts, graeagleDriveTimes, courseElevations, courseStreetView, placeIds } from '../../data/content.js';
 
 // Helper: get descriptive SEO alt text for any image URL
@@ -1612,7 +1611,7 @@ const diningSlugMap: Record<string, string> = {
       <section style="padding: 40px clamp(20px,8%,80px); background: var(--page-bg);">
         <div style="max-width: 1100px; margin: 0 auto;">
           <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.12em;color:rgba(28,18,8,0.4);margin-bottom:14px;">Playing conditions</div>
-          <GolfConditions client:visible />
+          <GolfConditions client:visible courseName={item.name} />
         </div>
       </section>
     )}
