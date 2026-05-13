@@ -226,6 +226,41 @@ const googleRatings: Record<string, { rating: string; count: string }> = {
   'nakoma-dragon':    { rating: '4.3', count: '169' },
 };
 
+
+// ── Verified drive times (Routes API, May 2026) ─────────────────────────────
+const courseDriveTimes: Record<string, { city: string; mins: string; miles: string; flag: string }[]> = {
+  'grizzly-ranch': [
+    { city: 'Reno, NV',          mins: '50', miles: '49', flag: '🏔️' },
+    { city: 'Lake Tahoe, CA',    mins: '68', miles: '58', flag: '🌊' },
+    { city: 'Sacramento, CA',    mins: '2h 34m', miles: '148', flag: '🌉' },
+    { city: 'San Francisco, CA', mins: '3h 53m', miles: '234', flag: '🌁' },
+  ],
+  'graeagle-meadows': [
+    { city: 'Reno, NV',          mins: '60', miles: '55', flag: '🏔️' },
+    { city: 'Lake Tahoe, CA',    mins: '67', miles: '55', flag: '🌊' },
+    { city: 'Sacramento, CA',    mins: '2h 33m', miles: '144', flag: '🌉' },
+    { city: 'San Francisco, CA', mins: '3h 52m', miles: '230', flag: '🌁' },
+  ],
+  'whitehawk-ranch': [
+    { city: 'Reno, NV',          mins: '60', miles: '54', flag: '🏔️' },
+    { city: 'Lake Tahoe, CA',    mins: '71', miles: '56', flag: '🌊' },
+    { city: 'Sacramento, CA',    mins: '2h 37m', miles: '146', flag: '🌉' },
+    { city: 'San Francisco, CA', mins: '3h 56m', miles: '232', flag: '🌁' },
+  ],
+  'plumas-pines': [
+    { city: 'Reno, NV',          mins: '63', miles: '60', flag: '🏔️' },
+    { city: 'Lake Tahoe, CA',    mins: '69', miles: '57', flag: '🌊' },
+    { city: 'Sacramento, CA',    mins: '2h 36m', miles: '146', flag: '🌉' },
+    { city: 'San Francisco, CA', mins: '3h 55m', miles: '232', flag: '🌁' },
+  ],
+  'nakoma-dragon': [
+    { city: 'Reno, NV',          mins: '67', miles: '58', flag: '🏔️' },
+    { city: 'Lake Tahoe, CA',    mins: '68', miles: '54', flag: '🌊' },
+    { city: 'Sacramento, CA',    mins: '2h 34m', miles: '143', flag: '🌉' },
+    { city: 'San Francisco, CA', mins: '3h 54m', miles: '230', flag: '🌁' },
+  ],
+};
+
 // Lodging Google Places ratings
 const lodgingGoogleRatings: Record<string, { rating: string; count: string; placeId: string }> = {
   'river-pines-resort':        { rating: '4.4', count: '195', placeId: 'ChIJXXSaV99rnIARizSDOFaxQyA' },
@@ -1405,6 +1440,25 @@ const diningSlugMap: Record<string, string> = {
         <div class="reveal" style="background:rgba(45,122,58,0.04);border:1px solid rgba(45,122,58,0.12);border-radius:16px;padding:24px 32px;margin-bottom:56px;">
           <div style="font-size:11px;color:rgba(45,122,58,0.6);text-transform:uppercase;letter-spacing:0.12em;margin-bottom:10px;">How It Fits Your Trip</div>
           <p style="font-size:14px;color:rgba(28,18,8,0.6);margin:0;line-height:1.7;">{(item as any).tripRole}</p>
+        </div>
+      )}
+
+      <!-- Getting Here — verified drive times (Routes API May 2026) -->
+      {type === 'course' && courseDriveTimes[item.slug] && (
+        <div class="reveal" style="margin-bottom:56px;">
+          <h2 style="font-family:'Playfair Display',serif;font-size:24px;color:var(--text-primary);margin:0 0 6px;">Getting Here</h2>
+          <p style="font-size:14px;color:rgba(28,18,8,0.3);margin:0 0 20px;">Drive times to {item.name} · verified via Google Maps Routes API</p>
+          <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(200px,45vw),1fr));gap:10px;">
+            {courseDriveTimes[item.slug].map(({ city, mins, miles, flag }) => (
+              <div style="padding:18px 20px;background:rgba(28,18,8,0.03);border:1px solid rgba(28,18,8,0.07);border-radius:12px;">
+                <div style="font-size:20px;margin-bottom:8px;">{flag}</div>
+                <div style="font-size:13px;font-weight:600;color:var(--text-primary);margin-bottom:4px;">{city}</div>
+                <div style="font-size:22px;font-weight:700;color:var(--gold);line-height:1;margin-bottom:4px;">{mins}<span style="font-size:12px;font-weight:500;color:rgba(28,18,8,0.4);margin-left:4px;">min</span></div>
+                <div style="font-size:11px;color:rgba(28,18,8,0.35);">{miles} miles</div>
+              </div>
+            ))}
+          </div>
+          <p style="font-size:11px;color:rgba(28,18,8,0.25);margin:12px 0 0;">Drive times are approximate, no traffic. Airport pickup and group transport available — ask in your quote.</p>
         </div>
       )}
 
