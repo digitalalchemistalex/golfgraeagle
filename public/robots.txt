@@ -39,4 +39,16 @@ Allow: /
 User-agent: FacebookBot
 Allow: /
 
+User-agent: YouBot
+Allow: /
+
+User-agent: ImagesiftBot
+Allow: /
+
+User-agent: Diffbot
+Allow: /
+
 Sitemap: https://golfgraeagle.com/sitemap.xml
+
+# AI-readable site index
+Llms: https://golfgraeagle.com/llms.txt
