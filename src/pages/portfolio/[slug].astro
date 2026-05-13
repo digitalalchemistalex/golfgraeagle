@@ -224,6 +224,14 @@ const googleRatings: Record<string, { rating: string; count: string }> = {
   'nakoma-dragon':    { rating: '4.3', count: '169' },
 };
 
+// Lodging Google Places ratings
+const lodgingGoogleRatings: Record<string, { rating: string; count: string; placeId: string }> = {
+  'river-pines-resort':        { rating: '4.4', count: '195', placeId: 'ChIJXXSaV99rnIARizSDOFaxQyA' },
+  'chalet-view-lodge':         { rating: '4.3', count: '332', placeId: 'ChIJnYgrujVrnIARh8N_jhQSA9w' },
+  'inn-at-nakoma':             { rating: '4.4', count: '114', placeId: 'ChIJSVqp7VYTnIARTr3SKxEufoQ' },
+  'townhomes-at-plumas-pines': { rating: '4.7', count: '141', placeId: 'ChIJsY5k2LlpnIARqZZ78dcWaXI' },
+};
+
 // Verified review quotes + source links per course
 const courseReviewData: Record<string, { quotes: { text: string; author: string }[]; tripadvisorUrl: string; googlePlaceId: string }> = {
   'grizzly-ranch': {
@@ -264,6 +272,37 @@ const courseReviewData: Record<string, { quotes: { text: string; author: string 
     quotes: [
       { text: 'I played Old Greenwood and Plumas Pines — THE DRAGON beats them all. Customer service was outstanding. I will definitely return.', author: 'TripAdvisor reviewer' },
       { text: 'Just to be on the patio of this Frank Lloyd Wright clubhouse will transport you. Be prepared for a fun challenge — the views from every tee box are stunning.', author: 'TripAdvisor reviewer' },
+    ],
+  },
+};
+
+// Verified review quotes + source links per lodging property
+const lodgingReviewData: Record<string, { quotes: { text: string; author: string; platform: string }[]; tripadvisorUrl: string }> = {
+  'river-pines-resort': {
+    tripadvisorUrl: 'https://www.tripadvisor.com/Hotel_Review-g32443-d215288-Reviews-River_Pines_Resort',
+    quotes: [
+      { text: 'The outdoor pool and hot tub is exceptional. The poolside bar is a bonus. The staff is incredibly nice and helpful. This place is close to everything.', author: 'TripAdvisor reviewer', platform: 'TripAdvisor' },
+      { text: 'If you\'re looking for a place that feels equal parts peaceful retreat and warm hug from people who actually care, River Pines Resort is it.', author: 'TripAdvisor reviewer', platform: 'TripAdvisor' },
+    ],
+  },
+  'chalet-view-lodge': {
+    tripadvisorUrl: 'https://www.tripadvisor.com/Hotel_Review-g32443-d324426-Reviews-Chalet_View_Lodge',
+    quotes: [
+      { text: 'Beautiful room, great breakfast, Starbucks available on site, outdoor pool hot tub, and wonderful staff. Would definitely go back again.', author: 'TripAdvisor reviewer', platform: 'TripAdvisor' },
+      { text: 'The Customer Service here is the epitome of EXCELLENCE. We have been coming here for years.', author: 'TripAdvisor reviewer', platform: 'TripAdvisor' },
+    ],
+  },
+  'inn-at-nakoma': {
+    tripadvisorUrl: 'https://www.tripadvisor.com/Hotel_Review-g32222-d4801205-Reviews-Nakoma_Resort',
+    quotes: [
+      { text: 'Nakoma Resort is a gem of a property in the Lost Sierras. The service was amazing — A+. The Frank Lloyd Wright-designed clubhouse was like walking into history.', author: 'TripAdvisor reviewer', platform: 'TripAdvisor' },
+      { text: 'The villas were cozy, spacious, and incredibly relaxing — the perfect retreat after a long day on the course.', author: 'TripAdvisor reviewer', platform: 'TripAdvisor' },
+    ],
+  },
+  'townhomes-at-plumas-pines': {
+    tripadvisorUrl: 'https://www.tripadvisor.com/Attraction_Review-g32443-d215287',
+    quotes: [
+      { text: 'From the moment you drive up out of the valley, Plumas Pines Resort is easy and pet-friendly — holes vary on rivers, streams and little lakes. A fun course and great place to stay.', author: 'TripAdvisor reviewer', platform: 'TripAdvisor' },
     ],
   },
 };
@@ -455,14 +494,17 @@ const buildSchema = () => {
         priceRange: item.priceRange || '$$–$$$$',
         potentialAction: { '@type': 'ReserveAction', target: { '@type': 'EntryPoint', urlTemplate: `${siteConfig.url}/request-a-quote` } },
         ...(reviews.length > 0 && {
-          aggregateRating: {
-            '@type': 'AggregateRating',
-            ratingValue: (reviews.reduce((s: number, r: any) => s + r.stars, 0) / reviews.length).toFixed(1),
-            reviewCount: reviews.length,
-            bestRating: 5,
-            worstRating: 4,
-            description: 'Group trip ratings from verified GolfGraeagle.com bookings',
-          },
+          aggregateRating: (() => {
+            const g = lodgingGoogleRatings[item.slug];
+            return {
+              '@type': 'AggregateRating',
+              ratingValue: g ? g.rating : (reviews.reduce((s: number, r: any) => s + r.stars, 0) / reviews.length).toFixed(1),
+              reviewCount: g ? g.count : reviews.length,
+              bestRating: 5,
+              worstRating: 1,
+              description: g ? `Based on ${g.count} verified Google reviews` : 'Group trip ratings from verified GolfGraeagle.com bookings',
+            };
+          })(),
           review: reviews.map((r: any) => ({
             '@type': 'Review',
             author: { '@type': 'Organization', name: r.author },
@@ -502,14 +544,16 @@ const buildSchema = () => {
         telephone: item.phone,
         priceRange: item.category === 'fine-dining' ? '$$$' : item.category === 'quick-bites' ? '$' : '$$',
         ...(item.fomoLine && { slogan: item.fomoLine }),
-        aggregateRating: {
-          '@type': 'AggregateRating',
-          ratingValue: '4.8',
-          reviewCount: '672',
-          bestRating: '5',
-          worstRating: '1',
-          description: 'Ratings from verified GolfGraeagle.com Graeagle golf trip bookings',
-        },
+        ...(item.googleRating && {
+          aggregateRating: {
+            '@type': 'AggregateRating',
+            ratingValue: item.googleRating,
+            reviewCount: item.googleReviewCount || '50',
+            bestRating: '5',
+            worstRating: '1',
+            description: `Based on ${item.googleReviewCount || '50'} verified Google reviews`,
+          },
+        }),
       },
       breadcrumb,
       {
@@ -1139,13 +1183,36 @@ const diningSlugMap: Record<string, string> = {
     max-width: 1400px;
     width: 100%;
   }
-  @media (max-width: 860px) {
-    .lod-hero-content {
-      padding: 0 5% 40px;
-    }
-    .din-hero-content {
-      padding: 0 5% 36px;
-    }
+  /* ── Lodging verified review block ── */
+  .lod-rv-wrap { border-top: 1px solid rgba(28,18,8,0.08); padding-top: 32px; }
+  .lod-rv-badges { display:flex; gap:10px; flex-wrap:wrap; margin-bottom:20px; }
+  .lod-rv-badge {
+    display:inline-flex; align-items:center; gap:7px;
+    background:#fff; border:1px solid rgba(28,18,8,0.12);
+    border-radius:100px; padding:7px 14px;
+    font-size:13px; font-weight:600; color:#1c1208;
+    text-decoration:none; transition:border-color .2s;
+  }
+  .lod-rv-badge:hover { border-color: #3a8a48; }
+  .lod-rv-badge strong { font-size:15px; }
+  .lod-rv-stars { color:#e8a850; letter-spacing:1px; }
+  .lod-rv-count { color:rgba(28,18,8,0.5); font-weight:500; }
+  .lod-rv-ta span { color:#00af87; font-weight:600; }
+  .lod-rv-quotes {
+    display:grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(300px,45vw), 1fr));
+    gap:16px;
+  }
+  .lod-rv-quote {
+    background:#f5f0e8; border:1px solid rgba(28,18,8,0.06);
+    border-left:3px solid #e8a850;
+    border-radius:8px; padding:18px 20px; margin:0;
+  }
+  .lod-rv-quote p { font-size:14px;line-height:1.65;color:rgba(28,18,8,0.7);font-style:italic;margin:0 0 10px; }
+  .lod-rv-quote cite { font-size:12px;font-weight:600;color:rgba(28,18,8,0.4);font-style:normal; }
+  @media (max-width:640px) {
+    .lod-rv-quotes { grid-template-columns:1fr; }
+    .lod-rv-quote:nth-child(2) { display:none; }
   }
 </style>
 
@@ -1458,7 +1525,11 @@ const diningSlugMap: Record<string, string> = {
         <div style="display:flex;gap:20px;flex-wrap:wrap;align-items:center;">
           {item.distanceFromGraeagle && <span style="font-size:13px;color:rgba(232,168,80,0.8);">📍 {item.distanceFromGraeagle}</span>}
           <span style="font-size:13px;color:rgba(240,236,227,0.75);">Packages from $299/person</span>
-          <span style="font-size:13px;color:rgba(240,236,227,0.55);">⭐ 4.8/5 · 672 reviews</span>
+          {lodgingGoogleRatings[item.slug] && (
+            <a href={`https://www.google.com/maps/place/?q=place_id:${lodgingGoogleRatings[item.slug].placeId}`} target="_blank" rel="noopener" style="font-size:13px;color:rgba(240,236,227,0.75);text-decoration:none;">
+              ⭐ {lodgingGoogleRatings[item.slug].rating}/5 · {lodgingGoogleRatings[item.slug].count} Google reviews
+            </a>
+          )}
           <span style="font-size:13px;color:rgba(240,236,227,0.55);">⛳ {nearbyCourses.length} courses nearby</span>
         </div>
       </div>
@@ -1493,7 +1564,9 @@ const diningSlugMap: Record<string, string> = {
     <div class="lod-facts-strip">
       {item.distanceFromGraeagle && <span>🚗 {item.distanceFromGraeagle}</span>}
       <span>⛳ {nearbyCourses.length} courses nearby</span>
-      <span>⭐ 4.8/5 · 672 reviews</span>
+      {lodgingGoogleRatings[item.slug] && (
+        <span>⭐ {lodgingGoogleRatings[item.slug].rating}/5 · {lodgingGoogleRatings[item.slug].count} reviews</span>
+      )}
     </div>
 
     <!-- ── MOBILE: Call + Directions action bar ───────────── -->
@@ -1523,7 +1596,37 @@ const diningSlugMap: Record<string, string> = {
     <div class="lod-body-grid">
       <div>
         <!-- Description with reveal -->
-        <p class="speakable reveal" style="font-size:18px;color:rgba(28,18,8,0.65);line-height:1.9;margin:0 0 64px;max-width:780px;">{item.description}</p>
+        <p class="speakable reveal" style="font-size:18px;color:rgba(28,18,8,0.65);line-height:1.9;margin:0 0 40px;max-width:780px;">{item.description}</p>
+
+        <!-- Verified reviews strip — desktop: 2-col quotes grid; mobile: 1-col -->
+        {lodgingReviewData[item.slug] && (() => {
+          const rd = lodgingReviewData[item.slug];
+          const gr = lodgingGoogleRatings[item.slug];
+          return (
+            <div class="lod-rv-wrap reveal" style="margin-bottom:56px;">
+              <div class="lod-rv-badges">
+                {gr && (
+                  <a href={`https://www.google.com/maps/place/?q=place_id:${gr.placeId}`} target="_blank" rel="noopener" class="lod-rv-badge">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="flex-shrink:0"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" fill="#4285F4"/><circle cx="12" cy="9" r="2.5" fill="white"/></svg>
+                    <strong>{gr.rating}</strong> <span class="lod-rv-stars">★★★★★</span> <span class="lod-rv-count">{gr.count} Google reviews</span>
+                  </a>
+                )}
+                <a href={rd.tripadvisorUrl} target="_blank" rel="noopener" class="lod-rv-badge lod-rv-ta">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="#00AF87" style="flex-shrink:0"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="4" fill="white"/></svg>
+                  <span>Read reviews on TripAdvisor →</span>
+                </a>
+              </div>
+              <div class="lod-rv-quotes">
+                {rd.quotes.map((q: { text: string; author: string; platform: string }) => (
+                  <blockquote class="lod-rv-quote">
+                    <p>"{q.text}"</p>
+                    <cite>— {q.author}, {q.platform}</cite>
+                  </blockquote>
+                ))}
+              </div>
+            </div>
+          );
+        })()}
 
         <!-- Feature rows: alternating image + text — desktop editorial layout -->
         {item.images && item.images.length >= 2 && item.highlights && item.highlights.length >= 2 && (() => {
