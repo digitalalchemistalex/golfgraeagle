@@ -231,6 +231,30 @@ export const POST: APIRoute = async ({ request }) => {
   try {
     const body = await request.json();
 
+    // ─── Device / geo intelligence ────────────────────────────
+    const ip  = request.headers.get('x-forwarded-for')?.split(',')[0]?.trim() || null;
+    const ua  = request.headers.get('user-agent') || null;
+    const deviceType = ua
+      ? /Mobile|Android|iPhone|iPad/.test(ua) ? 'mobile'
+        : /Tablet/.test(ua) ? 'tablet'
+        : 'desktop'
+      : null;
+
+    let geoCity: string | null = null;
+    let geoState: string | null = null;
+    if (ip && ip !== '127.0.0.1' && ip !== '::1') {
+      try {
+        const geoRes = await fetch(`http://ip-api.com/json/${ip}?fields=city,regionName,status`, {
+          signal: AbortSignal.timeout(2000),
+        });
+        if (geoRes.ok) {
+          const geo = await geoRes.json();
+          if (geo.status === 'success') { geoCity = geo.city || null; geoState = geo.regionName || null; }
+        }
+      } catch { /* geo lookup non-critical — silent fail */ }
+    }
+    // ──────────────────────────────────────────────────────────
+
     // Required field validation
     const required = ['firstName','lastName','email','phone','partySize','arrivalDate','departureDate','totalRounds'];
     for (const field of required) {
@@ -272,6 +296,15 @@ export const POST: APIRoute = async ({ request }) => {
       cart_pref:              body.cartPref             || null,
       dining_help:            body.diningHelp           || null,
       source:                 body.source               || 'golfgraeagle.com',
+      ip_address:             ip,
+      user_agent:             ua,
+      device_type:            deviceType,
+      geo_city:               geoCity,
+      geo_state:              geoState,
+      utm_source:             body.utmSource             || null,
+      utm_medium:             body.utmMedium             || null,
+      utm_campaign:           body.utmCampaign           || null,
+      form_time_seconds:      body.formTimeSec           ? parseInt(body.formTimeSec) : null,
       group_type:             body.groupType            || null,
       status:                 'new',
       submitted_at:           body.submittedAt          || new Date().toISOString(),
