@@ -1,7 +1,7 @@
 ---
 export const prerender = false;
 import { fetchTripStats } from '../lib/tripStats';
-const { trips, tripCount, minPrice } = await fetchTripStats();
+const { trips, tripCount, minPrice, maxPrice } = await fetchTripStats();
 
 const GTHS = 'https://golfthehighsierra.com';
 
@@ -19,23 +19,23 @@ function getImage(trip: any): string {
   if (raw && !raw.startsWith('data:') && raw.trim() !== '') {
     return raw.startsWith('http') ? raw : `${GTHS}${raw}`;
   }
-  const firstCourse = (trip.courses?.[0] || '').toLowerCase();
+  const fc = (trip.courses?.[0] || '').toLowerCase();
   for (const [key, url] of Object.entries(FALLBACKS)) {
-    if (key !== 'default' && firstCourse.includes(key)) return url;
+    if (key !== 'default' && fc.includes(key)) return url;
   }
   return FALLBACKS['default'];
 }
 
 function shortCourse(name: string): string {
   return name
-    .replace(' Golf Club', '').replace(' Golf Course', '').replace(' Golf Resort', '')
-    .replace('Golf Course', '').trim();
+    .replace('Golf Club','').replace('Golf Course','').replace('Golf Resort','').trim();
 }
 
 const realTrips = (trips || [])
   .filter((t: any) => t.pricePerPerson && t.courses?.length > 0)
-  .slice(0, 12)
   .map((t: any) => ({ ...t, _img: getImage(t) }));
+
+const jsonData = JSON.stringify(realTrips);
 ---
 <!DOCTYPE html>
 <html lang="en">
@@ -47,32 +47,40 @@ const realTrips = (trips || [])
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     body {
       font-family: -apple-system, 'Inter', system-ui, sans-serif;
-      background: transparent;
-      color: #1a2e1a;
+      background: transparent; color: #1a2e1a;
       -webkit-font-smoothing: antialiased;
     }
     .w-wrap { max-width: 100%; padding: 0; }
+
+    /* Header */
     .w-header {
-      display: flex;
-      align-items: flex-end;
-      justify-content: space-between;
-      padding: 0 0 16px;
-      border-bottom: 1px solid #c8dcc8;
-      margin-bottom: 20px;
-      gap: 12px;
-      flex-wrap: wrap;
+      display: flex; align-items: flex-start; justify-content: space-between;
+      padding: 0 0 16px; border-bottom: 1px solid #c8dcc8;
+      margin-bottom: 16px; gap: 12px; flex-wrap: wrap;
     }
     .w-title { font-size: 20px; font-weight: 800; color: #0d1a0e; letter-spacing: -0.02em; line-height: 1.2; }
     .w-title span { color: #3a8a48; }
     .w-sub { font-size: 12px; color: #5a7060; margin-top: 3px; }
-    .w-pill {
-      background: #0d1a0e; color: #c8e8a8;
-      padding: 5px 14px; border-radius: 100px;
-      font-size: 12px; font-weight: 700; white-space: nowrap;
+    .w-header-right { display: flex; flex-direction: column; align-items: flex-end; gap: 6px; }
+    .w-pill { background: #0d1a0e; color: #c8e8a8; padding: 5px 14px; border-radius: 100px; font-size: 12px; font-weight: 700; white-space: nowrap; }
+
+    /* Filters */
+    .w-filters {
+      display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 16px; align-items: center;
     }
+    .w-filter-label { font-size: 11px; font-weight: 700; color: #5a7060; text-transform: uppercase; letter-spacing: 0.06em; margin-right: 2px; }
+    .w-filter-btn {
+      font-size: 11px; font-weight: 700; padding: 5px 12px; border-radius: 100px;
+      border: 1px solid #c8dcc8; background: #fff; color: #3a6a40; cursor: pointer;
+      transition: all 0.15s; white-space: nowrap;
+    }
+    .w-filter-btn:hover, .w-filter-btn.active { background: #0d1a0e; color: #c8e8a8; border-color: #0d1a0e; }
+    .w-filter-btn.vibe-premium.active { background: #6a4a10; color: #fff8e8; border-color: #6a4a10; }
+
+    /* Grid */
     .w-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(min(260px, 45vw), 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(min(280px, 45vw), 1fr));
       gap: 16px;
     }
     .w-card {
@@ -80,20 +88,18 @@ const realTrips = (trips || [])
       background: #fff; border: 1px solid #ddeedd;
       box-shadow: 0 2px 8px rgba(0,0,0,0.06);
       transition: transform 0.18s ease, box-shadow 0.18s ease;
+      display: flex; flex-direction: column;
     }
     .w-card:hover { transform: translateY(-3px); box-shadow: 0 8px 28px rgba(13,26,14,0.14); }
-    .w-photo {
-      position: relative; aspect-ratio: 16/9;
-      overflow: hidden; background: #1a2e1a;
-    }
-    .w-photo img {
-      width: 100%; height: 100%; object-fit: cover; display: block;
-      transition: transform 0.4s ease;
-    }
+    .w-card[data-hidden="true"] { display: none; }
+
+    /* Photo */
+    .w-photo { position: relative; aspect-ratio: 16/9; overflow: hidden; background: #1a2e1a; flex-shrink: 0; }
+    .w-photo img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.4s ease; }
     .w-card:hover .w-photo img { transform: scale(1.04); }
     .w-photo::after {
       content: ''; position: absolute; inset: 0;
-      background: linear-gradient(to top, rgba(10,22,10,0.82) 0%, rgba(10,22,10,0.18) 45%, transparent 75%);
+      background: linear-gradient(to top, rgba(10,22,10,0.85) 0%, rgba(10,22,10,0.15) 50%, transparent 80%);
       pointer-events: none;
     }
     .w-photo-bottom {
@@ -101,64 +107,124 @@ const realTrips = (trips || [])
       padding: 12px 14px 10px; z-index: 2;
       display: flex; align-items: flex-end; justify-content: space-between;
     }
-    .w-price-big { font-size: 26px; font-weight: 900; color: #fff; letter-spacing: -0.03em; line-height: 1; }
-    .w-price-big sup { font-size: 15px; font-weight: 700; vertical-align: super; }
-    .w-price-pp { font-size: 11px; color: rgba(255,255,255,0.7); font-weight: 500; margin-top: 1px; }
+    .w-price-big { font-size: 28px; font-weight: 900; color: #fff; letter-spacing: -0.03em; line-height: 1; }
+    .w-price-big sup { font-size: 15px; vertical-align: super; }
+    .w-price-pp { font-size: 11px; color: rgba(255,255,255,0.65); margin-top: 1px; }
+    .w-top-badges { position: absolute; top: 10px; left: 10px; right: 10px; z-index: 3; display: flex; gap: 6px; flex-wrap: wrap; }
+    .w-vibe-badge {
+      font-size: 9px; font-weight: 800; padding: 3px 8px; border-radius: 100px;
+      text-transform: uppercase; letter-spacing: 0.08em; backdrop-filter: blur(6px);
+    }
+    .w-vibe-badge.value { background: rgba(58,138,72,0.85); color: #fff; }
+    .w-vibe-badge.premium { background: rgba(106,74,16,0.85); color: #fff8e8; }
     .w-month-badge {
       background: rgba(255,255,255,0.15); backdrop-filter: blur(6px);
       border: 1px solid rgba(255,255,255,0.25); color: #fff;
-      font-size: 10px; font-weight: 700; padding: 3px 9px;
-      border-radius: 100px; text-transform: uppercase; letter-spacing: 0.06em;
+      font-size: 9px; font-weight: 700; padding: 3px 9px; border-radius: 100px;
+      text-transform: uppercase; letter-spacing: 0.06em;
     }
-    .w-body { padding: 12px 14px 14px; }
-    .w-courses-label { font-size: 9px; font-weight: 800; color: #3a8a48; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 5px; }
-    .w-courses-list { font-size: 13px; font-weight: 700; color: #0d1a0e; line-height: 1.35; margin-bottom: 10px; }
-    .w-meta-row { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 12px; }
-    .w-badge {
-      font-size: 10px; font-weight: 600; padding: 3px 8px;
-      border-radius: 100px; background: #f0f8f0; color: #2a5a32; border: 1px solid #c0dcc0;
-    }
+
+    /* Body */
+    .w-body { padding: 13px 14px 14px; display: flex; flex-direction: column; flex: 1; }
+    .w-courses-label { font-size: 9px; font-weight: 800; color: #3a8a48; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 4px; }
+    .w-courses-list { font-size: 13px; font-weight: 700; color: #0d1a0e; line-height: 1.35; margin-bottom: 8px; }
+    .w-synopsis { font-size: 12px; color: #3a5040; line-height: 1.5; margin-bottom: 10px; }
+    .w-meta-row { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 10px; }
+    .w-badge { font-size: 10px; font-weight: 600; padding: 3px 8px; border-radius: 100px; background: #f0f8f0; color: #2a5a32; border: 1px solid #c0dcc0; }
     .w-badge.lodging { background: #faf6ee; color: #6a4a10; border-color: #ddd0a0; }
+
+    /* Expand toggle */
+    .w-expand-btn {
+      font-size: 11px; font-weight: 700; color: #3a8a48; background: none; border: none;
+      cursor: pointer; padding: 0; margin-bottom: 10px; display: flex; align-items: center; gap: 4px;
+    }
+    .w-expand-btn:hover { color: #0d4020; }
+    .w-expand-content { display: none; margin-bottom: 10px; }
+    .w-expand-content.open { display: block; }
+    .w-why {
+      font-size: 11px; color: #3a5040; line-height: 1.5;
+      background: #f4faf4; border-left: 3px solid #3a8a48;
+      padding: 8px 10px; border-radius: 0 6px 6px 0; margin-bottom: 8px;
+      font-style: italic;
+    }
+    .w-highlights { list-style: none; display: flex; flex-direction: column; gap: 3px; }
+    .w-highlights li { font-size: 11px; color: #2a4a30; display: flex; gap: 6px; align-items: flex-start; }
+    .w-highlights li::before { content: '✓'; color: #3a8a48; font-weight: 800; flex-shrink: 0; margin-top: 1px; }
+
+    /* CTA */
     .w-cta-row {
       display: flex; align-items: center; justify-content: space-between;
-      padding-top: 10px; border-top: 1px solid #e8f0e8;
+      padding-top: 10px; border-top: 1px solid #e8f0e8; margin-top: auto;
     }
     .w-cta-link {
       display: inline-flex; align-items: center; gap: 5px;
       font-size: 12px; font-weight: 800; color: #fff; background: #1a6030;
-      text-decoration: none; padding: 6px 14px; border-radius: 100px;
-      transition: background 0.15s;
+      text-decoration: none; padding: 6px 14px; border-radius: 100px; transition: background 0.15s;
     }
     .w-cta-link:hover { background: #0d4020; }
     .w-cta-ghost { font-size: 11px; color: #5a7060; text-decoration: none; font-weight: 600; }
     .w-cta-ghost:hover { color: #1a6030; }
+
+    /* No results */
+    .w-none { grid-column: 1/-1; text-align: center; padding: 40px 20px; color: #5a7060; font-size: 13px; display: none; }
+    .w-none.visible { display: block; }
+
+    /* Footer */
     .w-footer { text-align: center; padding: 18px 0 2px; font-size: 11px; color: #8a9a8e; }
     .w-footer a { color: #3a8a48; font-weight: 700; text-decoration: none; }
-    .w-empty { grid-column: 1/-1; text-align: center; padding: 48px 20px; color: #5a7060; font-size: 14px; }
   </style>
 </head>
 <body>
 <div class="w-wrap">
+
   <div class="w-header">
     <div>
       <div class="w-title">Real <span>Graeagle</span> Golf Trips</div>
       <div class="w-sub">Actual packages · verified pricing · real courses</div>
     </div>
-    <span class="w-pill">{tripCount} trips · from ${minPrice}/person</span>
+    <div class="w-header-right">
+      <span class="w-pill" id="w-count-pill">{tripCount} trips · from ${minPrice}/person</span>
+    </div>
   </div>
 
-  <div class="w-grid">
-    {realTrips.length > 0 ? realTrips.map((trip: any) => {
+  <div class="w-filters">
+    <span class="w-filter-label">Filter:</span>
+    <button class="w-filter-btn active" data-filter="all">All trips</button>
+    <button class="w-filter-btn vibe-value" data-filter="value">Value</button>
+    <button class="w-filter-btn vibe-premium" data-filter="premium">Premium</button>
+    <button class="w-filter-btn" data-filter="small">Small group (≤8)</button>
+    <button class="w-filter-btn" data-filter="large">Large group (16+)</button>
+    <button class="w-filter-btn" data-filter="2n">2 nights</button>
+    <button class="w-filter-btn" data-filter="3n+">3+ nights</button>
+  </div>
+
+  <div class="w-grid" id="w-grid">
+    {realTrips.map((trip: any, i: number) => {
       const courses = (trip.courses || []).map(shortCourse);
-      const displayCourses = courses.slice(0, 3).join(' · ') + (courses.length > 3 ? ` +${courses.length - 3}` : '');
+      const display = courses.slice(0, 3).join(' · ') + (courses.length > 3 ? ` +${courses.length - 3}` : '');
       const lodgingShort = (trip.lodging || '').split('(')[0].trim();
+      const vibe = (trip.vibe || 'Value').toLowerCase();
+      const why = (trip.whyItWorked || '').trim();
+      const highlights = (trip.highlights || []).filter((h: string) => h && h.trim());
+      const synopsis = (trip.synopsis || '').trim();
+      const hasExpand = (why.length > 0 || highlights.length > 0);
       return (
-        <div class="w-card">
+        <div
+          class="w-card"
+          data-vibe={vibe}
+          data-nights={trip.nights || 0}
+          data-size={trip.groupSize || 0}
+          data-price={trip.pricePerPerson}
+        >
           <div class="w-photo">
+            <div class="w-top-badges">
+              <span class={`w-vibe-badge ${vibe}`}>{trip.vibe || 'Value'}</span>
+              {trip.month && <span class="w-month-badge">{trip.month}{trip.year ? ` '${String(trip.year).slice(2)}` : ''}</span>}
+            </div>
             <img
               src={trip._img}
               alt={`Graeagle golf trip — ${courses[0] || 'golf course'}`}
-              loading="lazy"
+              loading={i < 4 ? 'eager' : 'lazy'}
               onerror="this.src='https://golfthehighsierra.com/images/trips/river-pines-3-rounds.jpg'"
             />
             <div class="w-photo-bottom">
@@ -166,18 +232,38 @@ const realTrips = (trips || [])
                 <div class="w-price-big"><sup>$</sup>{trip.pricePerPerson}</div>
                 <div class="w-price-pp">per person</div>
               </div>
-              {trip.month && <span class="w-month-badge">{trip.month}</span>}
             </div>
           </div>
+
           <div class="w-body">
             <div class="w-courses-label">Courses Played</div>
-            <div class="w-courses-list">{displayCourses}</div>
+            <div class="w-courses-list">{display}</div>
+
+            {synopsis && <div class="w-synopsis">{synopsis.length > 100 ? synopsis.slice(0,97)+'…' : synopsis}</div>}
+
             <div class="w-meta-row">
-              {trip.nights && <span class="w-badge">🌙 {trip.nights}n</span>}
-              {trip.groupSize && <span class="w-badge">👥 {trip.groupSize}</span>}
+              {trip.nights && <span class="w-badge">🌙 {trip.nights} nights</span>}
+              {trip.groupSize && <span class="w-badge">👥 {trip.groupSize} golfers</span>}
               {trip.rounds && <span class="w-badge">⛳ {trip.rounds} rounds</span>}
-              {lodgingShort && <span class="w-badge lodging">🏨 {lodgingShort.length > 22 ? lodgingShort.slice(0,22)+'…' : lodgingShort}</span>}
+              {lodgingShort && <span class="w-badge lodging">🏨 {lodgingShort.length > 24 ? lodgingShort.slice(0,22)+'…' : lodgingShort}</span>}
             </div>
+
+            {hasExpand && (
+              <button class="w-expand-btn" onclick="toggleExpand(this)">
+                <span class="expand-icon">▸</span> What made this work
+              </button>
+            )}
+            {hasExpand && (
+              <div class="w-expand-content">
+                {why && <div class="w-why">"{why}"</div>}
+                {highlights.length > 0 && (
+                  <ul class="w-highlights">
+                    {highlights.map((h: string) => <li>{h}</li>)}
+                  </ul>
+                )}
+              </div>
+            )}
+
             <div class="w-cta-row">
               <a class="w-cta-ghost" href="https://golfgraeagle.com/portfolio/" target="_blank" rel="noopener">View packages</a>
               <a class="w-cta-link" href="https://golfgraeagle.com/request-a-quote/" target="_blank" rel="noopener">Plan Similar →</a>
@@ -185,9 +271,8 @@ const realTrips = (trips || [])
           </div>
         </div>
       );
-    }) : (
-      <div class="w-empty">Loading Graeagle trip data…</div>
-    )}
+    })}
+    <div class="w-none" id="w-none">No trips match this filter. <a href="https://golfgraeagle.com/request-a-quote/" target="_blank" rel="noopener" style="color:#3a8a48;font-weight:700;">Build a custom trip →</a></div>
   </div>
 
   <div class="w-footer">
@@ -195,5 +280,53 @@ const realTrips = (trips || [])
     &nbsp;·&nbsp; Graeagle golf specialists since 2004
   </div>
 </div>
+
+<script>
+  function toggleExpand(btn) {
+    const card = btn.closest('.w-card');
+    const content = card.querySelector('.w-expand-content');
+    const icon = btn.querySelector('.expand-icon');
+    const isOpen = content.classList.contains('open');
+    content.classList.toggle('open', !isOpen);
+    icon.textContent = isOpen ? '▸' : '▾';
+  }
+
+  const filterBtns = document.querySelectorAll('.w-filter-btn');
+  const cards = document.querySelectorAll('.w-card');
+  const none = document.getElementById('w-none');
+  const pill = document.getElementById('w-count-pill');
+  const totalCount = cards.length;
+  const baseMin = Math.min(...[...cards].map(c => +c.dataset.price).filter(Boolean));
+
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filterBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const f = btn.dataset.filter;
+      let visible = 0;
+      let minP = Infinity;
+      cards.forEach(card => {
+        const vibe = card.dataset.vibe;
+        const nights = +card.dataset.nights;
+        const size = +card.dataset.size;
+        const price = +card.dataset.price;
+        let show = true;
+        if (f === 'value') show = vibe === 'value';
+        else if (f === 'premium') show = vibe === 'premium';
+        else if (f === 'small') show = size <= 8;
+        else if (f === 'large') show = size >= 16;
+        else if (f === '2n') show = nights === 2;
+        else if (f === '3n+') show = nights >= 3;
+        card.dataset.hidden = show ? 'false' : 'true';
+        if (show) { visible++; if (price < minP) minP = price; }
+      });
+      none.classList.toggle('visible', visible === 0);
+      if (pill) {
+        const p = minP === Infinity ? baseMin : minP;
+        pill.textContent = visible + ' trip' + (visible !== 1 ? 's' : '') + ' · from $' + p + '/person';
+      }
+    });
+  });
+</script>
 </body>
 </html>
