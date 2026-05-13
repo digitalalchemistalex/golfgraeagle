@@ -1755,8 +1755,9 @@ const diningSlugMap: Record<string, string> = {
               <div class="lod-rv-quotes">
                 {rd.quotes.map((q: { text: string; author: string; platform: string }) => (
                   <blockquote class="lod-rv-quote">
+                    <div class="rv-quote-stars">{'★'.repeat(q.rating)}{'☆'.repeat(5 - q.rating)}</div>
                     <p>"{q.text}"</p>
-                    <cite>— {q.author}, {q.platform}</cite>
+                    <cite>— {q.author}{q.when && <span class="rv-quote-when"> · {q.when}</span>} · <span style="color:#4285F4;font-weight:600;">Google</span></cite>
                   </blockquote>
                 ))}
               </div>
