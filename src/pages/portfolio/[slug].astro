@@ -710,8 +710,12 @@ const diningSlugMap: Record<string, string> = {
       </div>
     </div>
 
-    <!-- Right: removed (stats shown in body section below) -->
-    <div class="ch-right" style="display:none;"></div>
+    <!-- Right: weather widget — desktop only (hidden ≤860px) -->
+    {type === 'course' && (
+      <div class="ch-right ch-weather-right">
+        <GolfConditions client:visible courseName={item.name} />
+      </div>
+    )}
 
   </div>
 
@@ -734,6 +738,13 @@ const diningSlugMap: Record<string, string> = {
   </div>
 
 </section>
+
+{/* ── Mobile weather — full width, after infobar, ≤860px only ── */}
+{type === 'course' && (
+  <div class="ch-weather-mobile">
+    <GolfConditions client:visible courseName={item.name} />
+  </div>
+)}
 
 {/* ── Drive Times + Map Strip ── */}
 {type === 'course' && (
@@ -957,11 +968,16 @@ const diningSlugMap: Record<string, string> = {
     position: relative;
     z-index: 2;
     display: grid;
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr 340px;
     gap: clamp(20px,3vw,40px);
     align-items: end;
     padding: clamp(24px,5vw,56px) clamp(20px,4vw,52px);
     min-height: clamp(380px,48vh,560px);
+  }
+  /* Weather widget in hero — desktop only */
+  .ch-weather-right {
+    align-self: end;
+    padding-bottom: 4px;
   }
 
   /* Left */
@@ -1235,6 +1251,17 @@ const diningSlugMap: Record<string, string> = {
     .ch-right { display: none; }
     .ch-strip-item { height: 58px; }
   }
+  /* Mobile weather — full width, after infobar, before dt-strip */
+  .ch-weather-mobile {
+    display: none;
+  }
+  @media (max-width: 860px) {
+    .ch-weather-mobile {
+      display: block;
+      padding: 16px clamp(16px,5%,32px) 0;
+      background: var(--page-bg);
+    }
+  }
 
   @media (max-width: 640px) {
     /* Hide the 5-course strip — wastes vertical space on mobile */
@@ -1442,24 +1469,7 @@ const diningSlugMap: Record<string, string> = {
         </div>
       )}
 
-      <!-- Getting Here — verified drive times (Routes API May 2026) -->
-      {type === 'course' && courseDriveTimes[item.slug] && (
-        <div class="reveal" style="margin-bottom:56px;">
-          <h2 style="font-family:'Playfair Display',serif;font-size:24px;color:var(--text-primary);margin:0 0 6px;">Getting Here</h2>
-          <p style="font-size:14px;color:rgba(28,18,8,0.3);margin:0 0 20px;">Drive times to {item.name} · verified via Google Maps Routes API</p>
-          <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(200px,45vw),1fr));gap:10px;">
-            {courseDriveTimes[item.slug].map(({ city, mins, miles, flag }) => (
-              <div style="padding:18px 20px;background:rgba(28,18,8,0.03);border:1px solid rgba(28,18,8,0.07);border-radius:12px;">
-                <div style="font-size:20px;margin-bottom:8px;">{flag}</div>
-                <div style="font-size:13px;font-weight:600;color:var(--text-primary);margin-bottom:4px;">{city}</div>
-                <div style="font-size:22px;font-weight:700;color:var(--gold);line-height:1;margin-bottom:4px;">{mins}<span style="font-size:12px;font-weight:500;color:rgba(28,18,8,0.4);margin-left:4px;">min</span></div>
-                <div style="font-size:11px;color:rgba(28,18,8,0.35);">{miles} miles</div>
-              </div>
-            ))}
-          </div>
-          <p style="font-size:11px;color:rgba(28,18,8,0.25);margin:12px 0 0;">Drive times are approximate, no traffic. Airport pickup and group transport available — ask in your quote.</p>
-        </div>
-      )}
+
 
       <!-- Facilities -->
       {item.facilities?.length > 0 && (
@@ -1606,15 +1616,7 @@ const diningSlugMap: Record<string, string> = {
   </div>
 </div>
 
-    {/* Golf Conditions Widget */}
-    {type === 'course' && (
-      <section style="padding: 40px clamp(20px,8%,80px); background: var(--page-bg);">
-        <div style="max-width: 1100px; margin: 0 auto;">
-          <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.12em;color:rgba(28,18,8,0.4);margin-bottom:14px;">Playing conditions</div>
-          <GolfConditions client:visible courseName={item.name} />
-        </div>
-      </section>
-    )}
+
 
     <RelatedTrips client:load slug={item.slug} type="course" />
 
