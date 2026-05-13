@@ -11,7 +11,7 @@ export interface MailOptions {
 }
 
 const FROM_NAME  = 'Graeagle Golf Packages';
-const FROM_EMAIL = 'info@golfthehighsierra.com';
+const FROM_EMAIL = 'sean@golfthehighsierra.com';
 
 async function getAccessToken(): Promise<string> {
   const clientId     = process.env.GGE_GOOGLE_CLIENT_ID;
