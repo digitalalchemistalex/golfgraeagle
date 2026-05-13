@@ -658,6 +658,8 @@ const quoteSchema = [
 <script define:vars={{ preselected }}>
 const form = document.getElementById('qf');
 const $id  = id => document.getElementById(id);
+let formStartedAt = null;
+form.addEventListener('focusin', () => { if (!formStartedAt) formStartedAt = Date.now(); }, { once: true });
 
 // ── URL PARAM PRE-FILL (TripsCaddie + RelatedTrips) ───────────────────────
 // Runs before anything else so fields are populated when summary fires
@@ -977,6 +979,11 @@ form.addEventListener('submit', async e => {
   data.source       = 'golfgraeagle.com';
   data.submittedAt  = new Date().toISOString();
   data.groupType    = new URLSearchParams(window.location.search).get('groupType') || null;
+  const _usp = new URLSearchParams(window.location.search);
+  data.utmSource   = _usp.get('utm_source')   || null;
+  data.utmMedium   = _usp.get('utm_medium')   || null;
+  data.utmCampaign = _usp.get('utm_campaign') || null;
+  data.formTimeSec = formStartedAt ? Math.round((Date.now() - formStartedAt) / 1000) : null;
   if (data.totalRounds === 'other' && data.totalRoundsCustom) data.totalRounds = data.totalRoundsCustom;
 
   try {
