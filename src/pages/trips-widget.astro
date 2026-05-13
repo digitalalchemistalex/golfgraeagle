@@ -1,177 +1,198 @@
 ---
 export const prerender = false;
 import { fetchTripStats } from '../lib/tripStats';
-const { trips, tripCount, minPrice, maxPrice } = await fetchTripStats();
+const { trips, tripCount, minPrice } = await fetchTripStats();
 
-// Only use real trips with pricing data
+const GTHS = 'https://golfthehighsierra.com';
+
+const FALLBACKS: Record<string, string> = {
+  'grizzly':          `${GTHS}/images/courses/grizzly-ranch-golf-club/Grizzly-Foto-1-scaled.jpg`,
+  'whitehawk':        `${GTHS}/images/courses/whitehawk-ranch-golf-course/Whitehawk-Foto-3.jpeg`,
+  'plumas':           `${GTHS}/images/courses/plumas-pines-golf-resort/PlumasPines-Hole-10.jpg`,
+  'nakoma':           `${GTHS}/images/trips/graeagle-quick-hitter.webp`,
+  'graeagle meadows': `${GTHS}/images/trips/graeagle-in-the-fall.jpg`,
+  'default':          `${GTHS}/images/trips/river-pines-3-rounds.jpg`,
+};
+
+function getImage(trip: any): string {
+  const raw: string = trip.imageUrl || '';
+  if (raw && !raw.startsWith('data:') && raw.trim() !== '') {
+    return raw.startsWith('http') ? raw : `${GTHS}${raw}`;
+  }
+  const firstCourse = (trip.courses?.[0] || '').toLowerCase();
+  for (const [key, url] of Object.entries(FALLBACKS)) {
+    if (key !== 'default' && firstCourse.includes(key)) return url;
+  }
+  return FALLBACKS['default'];
+}
+
+function shortCourse(name: string): string {
+  return name
+    .replace(' Golf Club', '').replace(' Golf Course', '').replace(' Golf Resort', '')
+    .replace('Golf Course', '').trim();
+}
+
 const realTrips = (trips || [])
   .filter((t: any) => t.pricePerPerson && t.courses?.length > 0)
-  .slice(0, 12);
+  .slice(0, 12)
+  .map((t: any) => ({ ...t, _img: getImage(t) }));
 ---
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Graeagle Golf Trips — Real Packages with Pricing</title>
+  <title>Real Graeagle Golf Trips — Verified Packages</title>
   <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     body {
-      font-family: 'Inter', system-ui, sans-serif;
+      font-family: -apple-system, 'Inter', system-ui, sans-serif;
       background: transparent;
       color: #1a2e1a;
+      -webkit-font-smoothing: antialiased;
     }
-    .widget-wrap {
-      max-width: 100%;
-      padding: 0;
-    }
-    .widget-header {
+    .w-wrap { max-width: 100%; padding: 0; }
+    .w-header {
       display: flex;
-      align-items: center;
+      align-items: flex-end;
       justify-content: space-between;
-      padding: 16px 0 20px;
-      border-bottom: 2px solid #e0ece0;
+      padding: 0 0 16px;
+      border-bottom: 1px solid #c8dcc8;
       margin-bottom: 20px;
+      gap: 12px;
       flex-wrap: wrap;
-      gap: 10px;
     }
-    .widget-title {
-      font-size: 18px;
-      font-weight: 700;
-      color: #1a2e1a;
+    .w-title { font-size: 20px; font-weight: 800; color: #0d1a0e; letter-spacing: -0.02em; line-height: 1.2; }
+    .w-title span { color: #3a8a48; }
+    .w-sub { font-size: 12px; color: #5a7060; margin-top: 3px; }
+    .w-pill {
+      background: #0d1a0e; color: #c8e8a8;
+      padding: 5px 14px; border-radius: 100px;
+      font-size: 12px; font-weight: 700; white-space: nowrap;
     }
-    .widget-meta {
-      font-size: 13px;
-      color: #5a7060;
-    }
-    .widget-badge {
-      background: #3a8a4822;
-      color: #1a6030;
-      padding: 4px 12px;
-      border-radius: 100px;
-      font-size: 12px;
-      font-weight: 700;
-    }
-    .trips-grid {
+    .w-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-      gap: 14px;
+      grid-template-columns: repeat(auto-fill, minmax(min(260px, 45vw), 1fr));
+      gap: 16px;
     }
-    .trip-card {
-      border: 1px solid #ddeedd;
-      border-radius: 12px;
-      padding: 16px;
-      background: #fff;
-      transition: box-shadow 0.15s;
+    .w-card {
+      border-radius: 14px; overflow: hidden;
+      background: #fff; border: 1px solid #ddeedd;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+      transition: transform 0.18s ease, box-shadow 0.18s ease;
     }
-    .trip-card:hover {
-      box-shadow: 0 4px 16px rgba(26,46,26,0.1);
+    .w-card:hover { transform: translateY(-3px); box-shadow: 0 8px 28px rgba(13,26,14,0.14); }
+    .w-photo {
+      position: relative; aspect-ratio: 16/9;
+      overflow: hidden; background: #1a2e1a;
     }
-    .trip-courses {
-      font-size: 12px;
-      font-weight: 700;
-      color: #3a8a48;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      margin-bottom: 8px;
+    .w-photo img {
+      width: 100%; height: 100%; object-fit: cover; display: block;
+      transition: transform 0.4s ease;
     }
-    .trip-courses-list {
-      font-size: 14px;
-      font-weight: 600;
-      color: #1a2e1a;
-      margin-bottom: 10px;
-      line-height: 1.4;
+    .w-card:hover .w-photo img { transform: scale(1.04); }
+    .w-photo::after {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(10,22,10,0.82) 0%, rgba(10,22,10,0.18) 45%, transparent 75%);
+      pointer-events: none;
     }
-    .trip-meta-row {
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-      margin-bottom: 10px;
+    .w-photo-bottom {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      padding: 12px 14px 10px; z-index: 2;
+      display: flex; align-items: flex-end; justify-content: space-between;
     }
-    .trip-badge {
-      font-size: 11px;
-      padding: 3px 9px;
-      border-radius: 100px;
-      background: #f0f8f0;
-      color: #3a6a40;
-      border: 1px solid #c8e8c8;
+    .w-price-big { font-size: 26px; font-weight: 900; color: #fff; letter-spacing: -0.03em; line-height: 1; }
+    .w-price-big sup { font-size: 15px; font-weight: 700; vertical-align: super; }
+    .w-price-pp { font-size: 11px; color: rgba(255,255,255,0.7); font-weight: 500; margin-top: 1px; }
+    .w-month-badge {
+      background: rgba(255,255,255,0.15); backdrop-filter: blur(6px);
+      border: 1px solid rgba(255,255,255,0.25); color: #fff;
+      font-size: 10px; font-weight: 700; padding: 3px 9px;
+      border-radius: 100px; text-transform: uppercase; letter-spacing: 0.06em;
     }
-    .trip-price {
-      font-size: 20px;
-      font-weight: 800;
-      color: #1a2e1a;
+    .w-body { padding: 12px 14px 14px; }
+    .w-courses-label { font-size: 9px; font-weight: 800; color: #3a8a48; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 5px; }
+    .w-courses-list { font-size: 13px; font-weight: 700; color: #0d1a0e; line-height: 1.35; margin-bottom: 10px; }
+    .w-meta-row { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 12px; }
+    .w-badge {
+      font-size: 10px; font-weight: 600; padding: 3px 8px;
+      border-radius: 100px; background: #f0f8f0; color: #2a5a32; border: 1px solid #c0dcc0;
     }
-    .trip-price-label {
-      font-size: 11px;
-      color: #8a9a8e;
-      font-weight: 400;
+    .w-badge.lodging { background: #faf6ee; color: #6a4a10; border-color: #ddd0a0; }
+    .w-cta-row {
+      display: flex; align-items: center; justify-content: space-between;
+      padding-top: 10px; border-top: 1px solid #e8f0e8;
     }
-    .trip-footer {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-top: 12px;
-      padding-top: 12px;
-      border-top: 1px solid #e8f0e8;
+    .w-cta-link {
+      display: inline-flex; align-items: center; gap: 5px;
+      font-size: 12px; font-weight: 800; color: #fff; background: #1a6030;
+      text-decoration: none; padding: 6px 14px; border-radius: 100px;
+      transition: background 0.15s;
     }
-    .trip-cta {
-      font-size: 12px;
-      font-weight: 700;
-      color: #3a8a48;
-      text-decoration: none;
-    }
-    .powered-by {
-      text-align: center;
-      padding: 20px 0 4px;
-      font-size: 12px;
-      color: #8a9a8e;
-    }
-    .powered-by a {
-      color: #3a8a48;
-      font-weight: 700;
-      text-decoration: none;
-    }
+    .w-cta-link:hover { background: #0d4020; }
+    .w-cta-ghost { font-size: 11px; color: #5a7060; text-decoration: none; font-weight: 600; }
+    .w-cta-ghost:hover { color: #1a6030; }
+    .w-footer { text-align: center; padding: 18px 0 2px; font-size: 11px; color: #8a9a8e; }
+    .w-footer a { color: #3a8a48; font-weight: 700; text-decoration: none; }
+    .w-empty { grid-column: 1/-1; text-align: center; padding: 48px 20px; color: #5a7060; font-size: 14px; }
   </style>
 </head>
 <body>
-<div class="widget-wrap">
-  <div class="widget-header">
+<div class="w-wrap">
+  <div class="w-header">
     <div>
-      <div class="widget-title">Real Graeagle Golf Trips</div>
-      <div class="widget-meta">Actual packages with verified pricing</div>
+      <div class="w-title">Real <span>Graeagle</span> Golf Trips</div>
+      <div class="w-sub">Actual packages · verified pricing · real courses</div>
     </div>
-    <span class="widget-badge">{tripCount} trips · from ${minPrice}/person</span>
+    <span class="w-pill">{tripCount} trips · from ${minPrice}/person</span>
   </div>
 
-  <div class="trips-grid">
-    {realTrips.length > 0 ? realTrips.map((trip: any) => (
-      <div class="trip-card">
-        <div class="trip-courses">Courses Played</div>
-        <div class="trip-courses-list">
-          {(trip.courses || []).slice(0, 3).join(' · ')}
-          {trip.courses?.length > 3 && ` +${trip.courses.length - 3} more`}
-        </div>
-        <div class="trip-meta-row">
-          {trip.nights && <span class="trip-badge">{trip.nights} nights</span>}
-          {trip.groupSize && <span class="trip-badge">{trip.groupSize} golfers</span>}
-          {trip.rounds && <span class="trip-badge">{trip.rounds} rounds</span>}
-        </div>
-        <div class="trip-footer">
-          <div>
-            <div class="trip-price">${trip.pricePerPerson}<span class="trip-price-label">/person</span></div>
+  <div class="w-grid">
+    {realTrips.length > 0 ? realTrips.map((trip: any) => {
+      const courses = (trip.courses || []).map(shortCourse);
+      const displayCourses = courses.slice(0, 3).join(' · ') + (courses.length > 3 ? ` +${courses.length - 3}` : '');
+      const lodgingShort = (trip.lodging || '').split('(')[0].trim();
+      return (
+        <div class="w-card">
+          <div class="w-photo">
+            <img
+              src={trip._img}
+              alt={`Graeagle golf trip — ${courses[0] || 'golf course'}`}
+              loading="lazy"
+              onerror="this.src='https://golfthehighsierra.com/images/trips/river-pines-3-rounds.jpg'"
+            />
+            <div class="w-photo-bottom">
+              <div>
+                <div class="w-price-big"><sup>$</sup>{trip.pricePerPerson}</div>
+                <div class="w-price-pp">per person</div>
+              </div>
+              {trip.month && <span class="w-month-badge">{trip.month}</span>}
+            </div>
           </div>
-          <a href="https://golfgraeagle.com/request-a-quote/" target="_blank" rel="noopener" class="trip-cta">Plan Similar →</a>
+          <div class="w-body">
+            <div class="w-courses-label">Courses Played</div>
+            <div class="w-courses-list">{displayCourses}</div>
+            <div class="w-meta-row">
+              {trip.nights && <span class="w-badge">🌙 {trip.nights}n</span>}
+              {trip.groupSize && <span class="w-badge">👥 {trip.groupSize}</span>}
+              {trip.rounds && <span class="w-badge">⛳ {trip.rounds} rounds</span>}
+              {lodgingShort && <span class="w-badge lodging">🏨 {lodgingShort.length > 22 ? lodgingShort.slice(0,22)+'…' : lodgingShort}</span>}
+            </div>
+            <div class="w-cta-row">
+              <a class="w-cta-ghost" href="https://golfgraeagle.com/portfolio/" target="_blank" rel="noopener">View packages</a>
+              <a class="w-cta-link" href="https://golfgraeagle.com/request-a-quote/" target="_blank" rel="noopener">Plan Similar →</a>
+            </div>
+          </div>
         </div>
-      </div>
-    )) : (
-      <div style="grid-column:1/-1;text-align:center;padding:40px;color:#5a7060;">
-        Loading trip data...
-      </div>
+      );
+    }) : (
+      <div class="w-empty">Loading Graeagle trip data…</div>
     )}
   </div>
 
-  <div class="powered-by">
-    Powered by <a href="https://golfgraeagle.com" target="_blank" rel="noopener">GolfGraeagle.com</a> — Graeagle golf trip specialists since 2004
+  <div class="w-footer">
+    Powered by <a href="https://golfgraeagle.com" target="_blank" rel="noopener">GolfGraeagle.com</a>
+    &nbsp;·&nbsp; Graeagle golf specialists since 2004
   </div>
 </div>
 </body>
