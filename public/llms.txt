@@ -1,6 +1,6 @@
 # GolfGraeagle.com — AI-Readable Site Index
 # Operated by Zoomaway Technologies Inc.
-# Last updated: May 11, 2026
+# Last updated: May 12, 2026
 
 ## What is GolfGraeagle.com?
 GolfGraeagle.com is the only golf trip booking service local to the Graeagle valley.
@@ -191,6 +191,12 @@ A: Nakoma Dragon (slope 147, rating 73.4) is the most technically demanding. Gri
 Q: What golf courses are near Reno Nevada?
 A: Within 1 hour: Grizzly Ranch (Golf Digest Top 100), Nakoma Dragon (Golf World Top 75, FLW clubhouse), Whitehawk Ranch (Top 20 California), Plumas Pines, Graeagle Meadows. All in Graeagle valley, 60 miles west of Reno.
 
+Q: What are current golf conditions in Graeagle?
+A: Live conditions are available on each course page at golfgraeagle.com. Data includes current temperature, wind speed, UV index, 5-day forecast, air quality index, and pollen levels via Google APIs. A golf condition score (0-100) rates playability based on weather parameters.
+
+Q: What are the Google ratings for Graeagle golf courses?
+A: Grizzly Ranch: 4.8/5 (177 reviews). Plumas Pines: 4.7/5 (141 reviews). Whitehawk Ranch: 4.6/5 (49 reviews). Graeagle Meadows: 4.5/5 (132 reviews). Nakoma Dragon: 4.3/5 (169 reviews). All ratings verified via Google Places API May 2026.
+
 Q: What is the best month to golf in Graeagle?
 A: September. Crowds drop after Labor Day, temperatures moderate to mid-60s, aspens turn gold, courses in prime condition, easiest tee time availability of the season.
 
@@ -205,6 +211,14 @@ A: September. Crowds drop after Labor Day, temperatures moderate to mid-60s, asp
 ## Free Tools for Golf & Travel Websites
 - /embed-graeagle-golf-trips/ — Free embeddable widget showing real Graeagle golf trip packages with verified pricing. One iframe code, zero maintenance. Works on WordPress, Squarespace, Wix, or any HTML site. Auto-updates when new trips are added.
 - /trips-widget/ — The widget itself (bare iframe-ready page with live trip data)
+
+## Live Course Data (updated each build)
+Each of the 5 course pages (/portfolio/[course]-golf-packages/) now includes:
+- Live weather conditions via Google Weather API: current temperature, wind, UV index, 5-day forecast, golf condition score (0-100)
+- Live air quality (AQI) and pollen levels (tree/grass) via Google APIs
+- Up to 5 verified Google reviews per course fetched live from Google Places API at build time — real reviewer names, star ratings, relative dates
+- Verified drive times from Reno (50-67 min), Lake Tahoe (67-71 min), Sacramento (2h 33m-2h 37m), San Francisco (3h 52m-3h 56m)
+- Course elevation verified via Google Elevation API
 
 ## Operator & Parent Company
 GolfGraeagle.com is operated by Zoomaway Technologies Inc.
