@@ -976,6 +976,16 @@ form.addEventListener('submit', async e => {
     form.style.display = 'none';
     $id('q-success').style.display = 'block';
 
+    // GA4 conversion event
+    if (typeof gtag !== 'undefined') {
+      gtag('event', 'quote_request', {
+        event_category: 'lead',
+        party_size:     parseInt(data.partySize) || 0,
+        group_type:     data.groupType || 'unknown',
+        how_heard:      data.howHeard  || 'unknown',
+      });
+    }
+
     // Basic fields
     $id('s-name').textContent  = data.firstName || 'there';
     $id('s-email').textContent = data.email || '';
