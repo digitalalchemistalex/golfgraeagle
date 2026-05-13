@@ -364,6 +364,13 @@ const lodgingReviewData: Record<string, { quotes: { text: string; author: string
 };
 
 // Google
+// Lodging star ratings
+const lodgingStarRatings: Record<string, number> = {
+  'river-pines-resort': 3,
+  'chalet-view-lodge': 3,
+  'inn-at-nakoma': 4,
+  'townhomes-at-plumas-pines': 3,
+};
 // ── Schema per page type ──────────────────────────────────────────────────────
 const buildSchema = () => {
   if (!item) return null;
@@ -420,6 +427,8 @@ const buildSchema = () => {
         image: item.hero ? `${siteConfig.url}${item.hero}` : undefined,
         telephone: item.phone || undefined,
         amenityFeature: item.highlights?.map((h: string) => ({ '@type': 'LocationFeatureSpecification', name: h, value: true })),
+        openingHours: 'May 1 to November 30',
+        priceRange: item.tier || '$$–$$$',
         potentialAction: { '@type': 'ReserveAction', target: { '@type': 'EntryPoint', urlTemplate: `${siteConfig.url}/request-a-quote` } },
         aggregateRating: (() => {
           const googleRatings: Record<string, { rating: string; count: string }> = {
@@ -530,6 +539,7 @@ const buildSchema = () => {
         checkoutTime: item.checkoutTime || 'T11:00',
         amenityFeature: item.highlights?.map((h: string) => ({ '@type': 'LocationFeatureSpecification', name: h, value: true })),
         priceRange: item.priceRange || '$$–$$$$',
+        starRating: lodgingStarRatings[item.slug] ? { '@type': 'Rating', 'ratingValue': lodgingStarRatings[item.slug] } : undefined,
         potentialAction: { '@type': 'ReserveAction', target: { '@type': 'EntryPoint', urlTemplate: `${siteConfig.url}/request-a-quote` } },
         ...(reviews.length > 0 && {
           aggregateRating: (() => {
