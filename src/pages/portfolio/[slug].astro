@@ -332,36 +332,23 @@ const diningGoogleRatings: Record<string, { rating: string; count: string }> = {
   'gumbas':               { rating: '4.3', count: '94'  },
 };
 
-// Verified review quotes + source links per lodging property
-const lodgingReviewData: Record<string, { quotes: { text: string; author: string; platform: string }[]; tripadvisorUrl: string }> = {
-  'river-pines-resort': {
-    tripadvisorUrl: 'https://www.tripadvisor.com/Hotel_Review-g32443-d215288-Reviews-River_Pines_Resort',
-    quotes: [
-      { text: 'The outdoor pool and hot tub is exceptional. The poolside bar is a bonus. The staff is incredibly nice and helpful. This place is close to everything.', author: 'TripAdvisor reviewer', platform: 'TripAdvisor' },
-      { text: 'If you\'re looking for a place that feels equal parts peaceful retreat and warm hug from people who actually care, River Pines Resort is it.', author: 'TripAdvisor reviewer', platform: 'TripAdvisor' },
-    ],
-  },
-  'chalet-view-lodge': {
-    tripadvisorUrl: 'https://www.tripadvisor.com/Hotel_Review-g32443-d324426-Reviews-Chalet_View_Lodge',
-    quotes: [
-      { text: 'Beautiful room, great breakfast, Starbucks available on site, outdoor pool hot tub, and wonderful staff. Would definitely go back again.', author: 'TripAdvisor reviewer', platform: 'TripAdvisor' },
-      { text: 'The Customer Service here is the epitome of EXCELLENCE. We have been coming here for years.', author: 'TripAdvisor reviewer', platform: 'TripAdvisor' },
-    ],
-  },
-  'inn-at-nakoma': {
-    tripadvisorUrl: 'https://www.tripadvisor.com/Hotel_Review-g32222-d4801205-Reviews-Nakoma_Resort',
-    quotes: [
-      { text: 'Nakoma Resort is a gem of a property in the Lost Sierras. The service was amazing — A+. The Frank Lloyd Wright-designed clubhouse was like walking into history.', author: 'TripAdvisor reviewer', platform: 'TripAdvisor' },
-      { text: 'The villas were cozy, spacious, and incredibly relaxing — the perfect retreat after a long day on the course.', author: 'TripAdvisor reviewer', platform: 'TripAdvisor' },
-    ],
-  },
-  'townhomes-at-plumas-pines': {
-    tripadvisorUrl: 'https://www.tripadvisor.com/Attraction_Review-g32443-d215287',
-    quotes: [
-      { text: 'From the moment you drive up out of the valley, Plumas Pines Resort is easy and pet-friendly — holes vary on rivers, streams and little lakes. A fun course and great place to stay.', author: 'TripAdvisor reviewer', platform: 'TripAdvisor' },
-    ],
-  },
+// ── Google Places reviews for lodging — fetched live at build time ──────────
+const LODGING_PLACE_IDS: Record<string, { placeId: string; tripadvisorUrl: string }> = {
+  'river-pines-resort':        { placeId: 'ChIJXXSaV99rnIARizSDOFaxQyA', tripadvisorUrl: 'https://www.tripadvisor.com/Hotel_Review-g32443-d215288-Reviews-River_Pines_Resort' },
+  'chalet-view-lodge':         { placeId: 'ChIJnYgrujVrnIARh8N_jhQSA9w', tripadvisorUrl: 'https://www.tripadvisor.com/Hotel_Review-g32443-d324426-Reviews-Chalet_View_Lodge' },
+  'inn-at-nakoma':             { placeId: 'ChIJSVqp7VYTnIARTr3SKxEufoQ', tripadvisorUrl: 'https://www.tripadvisor.com/Hotel_Review-g32222-d4801205-Reviews-Nakoma_Resort' },
+  'townhomes-at-plumas-pines': { placeId: 'ChIJsY5k2LlpnIARqZZ78dcWaXI', tripadvisorUrl: 'https://www.tripadvisor.com/Attraction_Review-g32443-d215287' },
 };
+
+const lodgingReviewData: Record<string, { quotes: { text: string; author: string; rating: number; when: string }[]; tripadvisorUrl: string }> = {};
+await Promise.all(
+  Object.entries(LODGING_PLACE_IDS).map(async ([slug, { placeId, tripadvisorUrl }]) => {
+    lodgingReviewData[slug] = {
+      tripadvisorUrl,
+      quotes: await fetchCourseReviews(placeId),
+    };
+  })
+);
 
 // Google
 // Lodging star ratings
