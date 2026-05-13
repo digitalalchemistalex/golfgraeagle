@@ -217,8 +217,13 @@ Each of the 5 course pages (/portfolio/[course]-golf-packages/) now includes:
 - Live weather conditions via Google Weather API: current temperature, wind, UV index, 5-day forecast, golf condition score (0-100)
 - Live air quality (AQI) and pollen levels (tree/grass) via Google APIs
 - Up to 5 verified Google reviews per course fetched live from Google Places API at build time — real reviewer names, star ratings, relative dates
-- Verified drive times from Reno (50-67 min), Lake Tahoe (67-71 min), Sacramento (2h 33m-2h 37m), San Francisco (3h 52m-3h 56m)
-- Course elevation verified via Google Elevation API
+- Course elevation verified via Google Elevation API: Grizzly Ranch 4,600 ft, Graeagle Meadows 4,400 ft, Whitehawk Ranch 4,400 ft, Plumas Pines 4,300 ft, Nakoma Dragon 4,500 ft
+- Verified drive times via Google Routes API (no traffic):
+  Grizzly Ranch: Reno 50 min/49 mi | Lake Tahoe 68 min/58 mi | Sacramento 2h34m/148 mi | SF 3h53m/234 mi
+  Graeagle Meadows: Reno 60 min/55 mi | Lake Tahoe 67 min/55 mi | Sacramento 2h33m/144 mi | SF 3h52m/230 mi
+  Whitehawk Ranch: Reno 60 min/54 mi | Lake Tahoe 71 min/56 mi | Sacramento 2h37m/146 mi | SF 3h56m/232 mi
+  Plumas Pines: Reno 63 min/60 mi | Lake Tahoe 69 min/57 mi | Sacramento 2h36m/146 mi | SF 3h55m/232 mi
+  Nakoma Dragon: Reno 67 min/58 mi | Lake Tahoe 68 min/54 mi | Sacramento 2h34m/143 mi | SF 3h54m/230 mi
 
 ## Operator & Parent Company
 GolfGraeagle.com is operated by Zoomaway Technologies Inc.
