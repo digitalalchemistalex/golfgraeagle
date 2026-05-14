@@ -5,11 +5,21 @@ const { trips, tripCount, minPrice, maxPrice } = await fetchTripStats();
 
 const GTHS = 'https://golfthehighsierra.com';
 
+const COURSE_SLUGS: Record<string, string> = {
+  'grizzly':          '/portfolio/grizzly-ranch-golf-packages/',
+  'whitehawk':        '/portfolio/whitehawk-ranch-golf-packages/',
+  'plumas':           '/portfolio/plumas-pines-golf-packages/',
+  'nakoma':           '/portfolio/nakoma-dragon-golf-packages/',
+  'the dragon':       '/portfolio/nakoma-dragon-golf-packages/',
+  'graeagle meadows': '/portfolio/graeagle-meadows-golf-packages/',
+};
+
 const FALLBACKS: Record<string, string> = {
   'grizzly':          `${GTHS}/images/courses/grizzly-ranch-golf-club/Grizzly-Foto-1-scaled.jpg`,
   'whitehawk':        `${GTHS}/images/courses/whitehawk-ranch-golf-course/Whitehawk-Foto-3.jpeg`,
   'plumas':           `${GTHS}/images/courses/plumas-pines-golf-resort/PlumasPines-Hole-10.jpg`,
   'nakoma':           `${GTHS}/images/trips/graeagle-quick-hitter.webp`,
+  'the dragon':       `${GTHS}/images/trips/graeagle-quick-hitter.webp`,
   'graeagle meadows': `${GTHS}/images/trips/graeagle-in-the-fall.jpg`,
   'default':          `${GTHS}/images/trips/river-pines-3-rounds.jpg`,
 };
@@ -28,14 +38,78 @@ function getImage(trip: any): string {
 
 function shortCourse(name: string): string {
   return name
-    .replace('Golf Club','').replace('Golf Course','').replace('Golf Resort','').trim();
+    .replace('Golf Club','').replace('Golf Course','').replace('Golf Resort','')
+    .replace('Ranch Golf','Ranch').trim();
 }
 
+function getCourseLink(name: string): string {
+  const lc = name.toLowerCase();
+  for (const [key, slug] of Object.entries(COURSE_SLUGS)) {
+    if (lc.includes(key)) return 'https://golfgraeagle.com' + slug;
+  }
+  return 'https://golfgraeagle.com/portfolio/';
+}
+
+// Pre-compute everything per trip — template must be pure render, no const/let/logic
 const realTrips = (trips || [])
   .filter((t: any) => t.pricePerPerson && t.courses?.length > 0)
-  .map((t: any) => ({ ...t, _img: getImage(t) }));
+  .map((t: any, i: number) => {
+    // Image
+    const img = getImage(t);
+    // Courses
+    const courses: string[] = (t.courses || []).map(shortCourse);
+    const displayCourses = courses.slice(0, 3).join(' · ') + (courses.length > 3 ? ' +' + (courses.length - 3) : '');
+    const courseLinks: Array<{name: string, href: string}> = (t.courses || []).slice(0, 3).map((c: string) => ({
+      name: shortCourse(c), href: getCourseLink(c)
+    }));
+    const firstCourseLink = getCourseLink(t.courses?.[0] || '');
+    // Lodging
+    const lodgingShort = (t.lodging || '').split('(')[0].trim();
+    const lodgingDisplay = lodgingShort.length > 24 ? lodgingShort.slice(0,22) + '…' : lodgingShort;
+    // Vibe
+    const vibe = (t.vibe || 'Value').toLowerCase();
+    const vibeClass = 'w-vibe ' + vibe;
+    // Month label
+    const monthLabel = t.month ? (t.year ? t.month + " '" + String(t.year).slice(2) : t.month) : '';
+    // Synopsis
+    const synopsis = (t.synopsis || '').trim();
+    const synopsisShort = synopsis.length > 105 ? synopsis.slice(0,102) + '…' : synopsis;
+    // Why it worked
+    const why = (t.whyItWorked || '').trim();
+    const highlights: string[] = (t.highlights || []).filter((h: string) => h?.trim());
+    const hasExpand = why.length > 0 || highlights.length > 0;
+    // Modal
+    const modalId = 'modal-' + i;
+    // Itinerary
+    const dayMap: Record<number, any[]> = {};
+    for (const item of (t.dailyItinerary || [])) {
+      const d = Number(item.day) || 1;
+      if (!dayMap[d]) dayMap[d] = [];
+      dayMap[d].push(item);
+    }
+    const itineraryDays = Object.keys(dayMap)
+      .sort((a, b) => Number(a) - Number(b))
+      .map(k => ({ dayNum: Number(k), items: dayMap[Number(k)] }));
+    const hasItinerary = itineraryDays.length > 0;
+    const heroAlt = 'Graeagle golf trip — ' + (courses[0] || 'golf course');
+    const modalAlt = (t.groupName || displayCourses) + ' itinerary';
+    const loadingAttr = i < 4 ? 'eager' : 'lazy';
+    return {
+      ...t, _img: img, _idx: i,
+      _courses: courses, _displayCourses: displayCourses, _courseLinks: courseLinks,
+      _firstCourseLink: firstCourseLink, _lodgingDisplay: lodgingDisplay,
+      _vibe: vibe, _vibeClass: vibeClass, _monthLabel: monthLabel,
+      _synopsisShort: synopsisShort, _why: why, _highlights: highlights,
+      _hasExpand: hasExpand, _modalId: modalId,
+      _itineraryDays: itineraryDays, _hasItinerary: hasItinerary,
+      _heroAlt: heroAlt, _modalAlt: modalAlt, _loading: loadingAttr,
+      _lodgingShort: lodgingShort,
+    };
+  });
 
-const jsonData = JSON.stringify(realTrips);
+const allPrices = realTrips.map((t: any) => t.pricePerPerson).filter(Boolean);
+const pMin = allPrices.length ? Math.min(...allPrices) : 379;
+const pMax = allPrices.length ? Math.max(...allPrices) : 1705;
 ---
 <!DOCTYPE html>
 <html lang="en">
@@ -45,132 +119,178 @@ const jsonData = JSON.stringify(realTrips);
   <title>Real Graeagle Golf Trips — Verified Packages</title>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      font-family: -apple-system, 'Inter', system-ui, sans-serif;
-      background: transparent; color: #1a2e1a;
-      -webkit-font-smoothing: antialiased;
-    }
+    body { font-family: -apple-system, 'Inter', system-ui, sans-serif; background: transparent; color: #1a2e1a; -webkit-font-smoothing: antialiased; }
     .w-wrap { max-width: 100%; padding: 0; }
 
-    /* Header */
-    .w-header {
-      display: flex; align-items: flex-start; justify-content: space-between;
-      padding: 0 0 16px; border-bottom: 1px solid #c8dcc8;
-      margin-bottom: 16px; gap: 12px; flex-wrap: wrap;
-    }
+    /* -- Header -- */
+    .w-header { display: flex; align-items: flex-start; justify-content: space-between; padding: 0 0 14px; border-bottom: 1px solid #c8dcc8; margin-bottom: 14px; gap: 12px; flex-wrap: wrap; }
     .w-title { font-size: 20px; font-weight: 800; color: #0d1a0e; letter-spacing: -0.02em; line-height: 1.2; }
-    .w-title span { color: #3a8a48; }
+    .w-title em { color: #3a8a48; font-style: normal; }
     .w-sub { font-size: 12px; color: #5a7060; margin-top: 3px; }
-    .w-header-right { display: flex; flex-direction: column; align-items: flex-end; gap: 6px; }
-    .w-pill { background: #0d1a0e; color: #c8e8a8; padding: 5px 14px; border-radius: 100px; font-size: 12px; font-weight: 700; white-space: nowrap; }
+    .w-pill { background: #0d1a0e; color: #c8e8a8; padding: 5px 14px; border-radius: 100px; font-size: 12px; font-weight: 700; white-space: nowrap; align-self: flex-start; }
 
-    /* Filters */
-    .w-filters {
-      display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 16px; align-items: center;
-    }
-    .w-filter-label { font-size: 11px; font-weight: 700; color: #5a7060; text-transform: uppercase; letter-spacing: 0.06em; margin-right: 2px; }
+    /* -- Controls bar -- */
+    .w-controls { display: flex; gap: 10px; flex-wrap: wrap; align-items: flex-end; margin-bottom: 16px; }
+
+    .w-filter-group { display: flex; gap: 6px; flex-wrap: wrap; align-items: center; }
+    .w-filter-label { font-size: 10px; font-weight: 800; color: #8a9a8e; text-transform: uppercase; letter-spacing: 0.08em; padding-right: 2px; }
     .w-filter-btn {
-      font-size: 11px; font-weight: 700; padding: 5px 12px; border-radius: 100px;
-      border: 1px solid #c8dcc8; background: #fff; color: #3a6a40; cursor: pointer;
-      transition: all 0.15s; white-space: nowrap;
+      font-size: 11px; font-weight: 700; padding: 5px 11px; border-radius: 100px;
+      border: 1px solid #c8dcc8; background: #fff; color: #3a6a40; cursor: pointer; transition: all 0.14s; white-space: nowrap;
     }
-    .w-filter-btn:hover, .w-filter-btn.active { background: #0d1a0e; color: #c8e8a8; border-color: #0d1a0e; }
-    .w-filter-btn.vibe-premium.active { background: #6a4a10; color: #fff8e8; border-color: #6a4a10; }
+    .w-filter-btn:hover { background: #f0f8f0; }
+    .w-filter-btn.active { background: #0d1a0e; color: #c8e8a8; border-color: #0d1a0e; }
+    .w-filter-btn.premium.active { background: #5a3a08; color: #fff8e8; border-color: #5a3a08; }
 
-    /* Grid */
-    .w-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(min(280px, 45vw), 1fr));
-      gap: 16px;
+    .w-sort-group { display: flex; gap: 6px; align-items: center; margin-left: auto; }
+    .w-sort-select {
+      font-size: 11px; font-weight: 600; padding: 5px 10px; border-radius: 8px;
+      border: 1px solid #c8dcc8; background: #fff; color: #3a6a40; cursor: pointer; outline: none;
     }
+
+    /* -- Slider -- */
+    .w-slider-wrap { width: 100%; padding: 2px 0 0; }
+    .w-slider-label { font-size: 10px; font-weight: 800; color: #8a9a8e; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 5px; }
+    .w-slider-row { display: flex; align-items: center; gap: 10px; }
+    .w-slider-val { font-size: 11px; font-weight: 700; color: #1a6030; white-space: nowrap; min-width: 70px; }
+    input[type=range].w-range {
+      -webkit-appearance: none; appearance: none; width: 160px; height: 4px;
+      background: #c8dcc8; border-radius: 2px; outline: none; cursor: pointer;
+    }
+    input[type=range].w-range::-webkit-slider-thumb {
+      -webkit-appearance: none; width: 16px; height: 16px; border-radius: 50%;
+      background: #1a6030; cursor: pointer; border: 2px solid #fff; box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+    }
+
+    /* -- Group size input -- */
+    .w-size-wrap { display: flex; flex-direction: column; gap: 5px; }
+    .w-size-row { display: flex; align-items: center; gap: 8px; }
+    .w-size-input {
+      width: 64px; font-size: 12px; font-weight: 700; padding: 5px 8px; border-radius: 8px;
+      border: 1px solid #c8dcc8; color: #1a2e1a; outline: none; text-align: center;
+    }
+    .w-size-input:focus { border-color: #3a8a48; }
+    .w-size-hint { font-size: 10px; color: #8a9a8e; }
+
+    /* -- Grid -- */
+    .w-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(clamp(240px, 40vw, 280px), 1fr)); gap: 16px; }
     .w-card {
-      border-radius: 14px; overflow: hidden;
-      background: #fff; border: 1px solid #ddeedd;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-      transition: transform 0.18s ease, box-shadow 0.18s ease;
+      border-radius: 14px; overflow: hidden; background: #fff; border: 1px solid #ddeedd;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06); transition: transform 0.18s ease, box-shadow 0.18s ease;
       display: flex; flex-direction: column;
     }
     .w-card:hover { transform: translateY(-3px); box-shadow: 0 8px 28px rgba(13,26,14,0.14); }
-    .w-card[data-hidden="true"] { display: none; }
+    .w-card[data-hidden] { display: none; }
 
-    /* Photo */
+    /* -- Photo -- */
     .w-photo { position: relative; aspect-ratio: 16/9; overflow: hidden; background: #1a2e1a; flex-shrink: 0; }
     .w-photo img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.4s ease; }
     .w-card:hover .w-photo img { transform: scale(1.04); }
     .w-photo::after {
       content: ''; position: absolute; inset: 0;
-      background: linear-gradient(to top, rgba(10,22,10,0.85) 0%, rgba(10,22,10,0.15) 50%, transparent 80%);
+      background: linear-gradient(to top, rgba(10,22,10,0.87) 0%, rgba(10,22,10,0.15) 50%, transparent 80%);
       pointer-events: none;
     }
-    .w-photo-bottom {
-      position: absolute; bottom: 0; left: 0; right: 0;
-      padding: 12px 14px 10px; z-index: 2;
-      display: flex; align-items: flex-end; justify-content: space-between;
-    }
+    .w-photo-top { position: absolute; top: 10px; left: 10px; right: 10px; z-index: 3; display: flex; gap: 6px; flex-wrap: wrap; align-items: flex-start; justify-content: space-between; }
+    .w-photo-bottom { position: absolute; bottom: 0; left: 0; right: 0; padding: 12px 14px 11px; z-index: 2; display: flex; align-items: flex-end; justify-content: space-between; }
+    .w-vibe { font-size: 9px; font-weight: 800; padding: 3px 9px; border-radius: 100px; text-transform: uppercase; letter-spacing: 0.08em; backdrop-filter: blur(6px); }
+    .w-vibe.value { background: rgba(58,138,72,0.85); color: #fff; }
+    .w-vibe.premium { background: rgba(90,58,8,0.85); color: #fff8e0; }
+    .w-month { background: rgba(255,255,255,0.14); backdrop-filter: blur(6px); border: 1px solid rgba(255,255,255,0.22); color: #fff; font-size: 9px; font-weight: 700; padding: 3px 9px; border-radius: 100px; text-transform: uppercase; letter-spacing: 0.06em; }
     .w-price-big { font-size: 28px; font-weight: 900; color: #fff; letter-spacing: -0.03em; line-height: 1; }
-    .w-price-big sup { font-size: 15px; vertical-align: super; }
-    .w-price-pp { font-size: 11px; color: rgba(255,255,255,0.65); margin-top: 1px; }
-    .w-top-badges { position: absolute; top: 10px; left: 10px; right: 10px; z-index: 3; display: flex; gap: 6px; flex-wrap: wrap; }
-    .w-vibe-badge {
-      font-size: 9px; font-weight: 800; padding: 3px 8px; border-radius: 100px;
-      text-transform: uppercase; letter-spacing: 0.08em; backdrop-filter: blur(6px);
+    .w-price-big sup { font-size: 14px; vertical-align: super; }
+    .w-price-pp { font-size: 10px; color: rgba(255,255,255,0.62); margin-top: 1px; }
+    .w-itinerary-btn {
+      font-size: 10px; font-weight: 700; padding: 4px 10px; border-radius: 100px;
+      background: rgba(255,255,255,0.16); backdrop-filter: blur(6px); border: 1px solid rgba(255,255,255,0.3);
+      color: #fff; cursor: pointer; transition: background 0.15s; white-space: nowrap;
     }
-    .w-vibe-badge.value { background: rgba(58,138,72,0.85); color: #fff; }
-    .w-vibe-badge.premium { background: rgba(106,74,16,0.85); color: #fff8e8; }
-    .w-month-badge {
-      background: rgba(255,255,255,0.15); backdrop-filter: blur(6px);
-      border: 1px solid rgba(255,255,255,0.25); color: #fff;
-      font-size: 9px; font-weight: 700; padding: 3px 9px; border-radius: 100px;
-      text-transform: uppercase; letter-spacing: 0.06em;
-    }
+    .w-itinerary-btn:hover { background: rgba(255,255,255,0.28); }
 
-    /* Body */
-    .w-body { padding: 13px 14px 14px; display: flex; flex-direction: column; flex: 1; }
+    /* -- Card body -- */
+    .w-body { padding: 12px 14px 14px; display: flex; flex-direction: column; flex: 1; }
     .w-courses-label { font-size: 9px; font-weight: 800; color: #3a8a48; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 4px; }
-    .w-courses-list { font-size: 13px; font-weight: 700; color: #0d1a0e; line-height: 1.35; margin-bottom: 8px; }
-    .w-synopsis { font-size: 12px; color: #3a5040; line-height: 1.5; margin-bottom: 10px; }
+    .w-courses-list { font-size: 13px; font-weight: 700; color: #0d1a0e; line-height: 1.35; margin-bottom: 6px; }
+    .w-course-links { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 8px; }
+    .w-course-link { font-size: 10px; font-weight: 600; color: #3a8a48; text-decoration: none; border: 1px solid #c0dcc0; padding: 2px 8px; border-radius: 100px; background: #f4fbf4; transition: all 0.12s; }
+    .w-course-link:hover { background: #3a8a48; color: #fff; border-color: #3a8a48; }
+    .w-synopsis { font-size: 12px; color: #3a5040; line-height: 1.5; margin-bottom: 9px; }
     .w-meta-row { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 10px; }
     .w-badge { font-size: 10px; font-weight: 600; padding: 3px 8px; border-radius: 100px; background: #f0f8f0; color: #2a5a32; border: 1px solid #c0dcc0; }
     .w-badge.lodging { background: #faf6ee; color: #6a4a10; border-color: #ddd0a0; }
 
-    /* Expand toggle */
-    .w-expand-btn {
-      font-size: 11px; font-weight: 700; color: #3a8a48; background: none; border: none;
-      cursor: pointer; padding: 0; margin-bottom: 10px; display: flex; align-items: center; gap: 4px;
-    }
+    /* -- Why it worked expand -- */
+    .w-expand-btn { font-size: 11px; font-weight: 700; color: #3a8a48; background: none; border: none; cursor: pointer; padding: 0; margin-bottom: 9px; display: flex; align-items: center; gap: 4px; }
     .w-expand-btn:hover { color: #0d4020; }
     .w-expand-content { display: none; margin-bottom: 10px; }
     .w-expand-content.open { display: block; }
-    .w-why {
-      font-size: 11px; color: #3a5040; line-height: 1.5;
-      background: #f4faf4; border-left: 3px solid #3a8a48;
-      padding: 8px 10px; border-radius: 0 6px 6px 0; margin-bottom: 8px;
-      font-style: italic;
-    }
+    .w-why { font-size: 11px; color: #2a4030; line-height: 1.55; background: #f4faf4; border-left: 3px solid #3a8a48; padding: 8px 10px; border-radius: 0 6px 6px 0; margin-bottom: 8px; font-style: italic; }
     .w-highlights { list-style: none; display: flex; flex-direction: column; gap: 3px; }
-    .w-highlights li { font-size: 11px; color: #2a4a30; display: flex; gap: 6px; align-items: flex-start; }
-    .w-highlights li::before { content: '✓'; color: #3a8a48; font-weight: 800; flex-shrink: 0; margin-top: 1px; }
+    .w-highlights li { font-size: 11px; color: #2a4a30; display: flex; gap: 6px; align-items: flex-start; line-height: 1.4; }
+    .w-highlights li::before { content: '✓'; color: #3a8a48; font-weight: 800; flex-shrink: 0; }
 
-    /* CTA */
-    .w-cta-row {
-      display: flex; align-items: center; justify-content: space-between;
-      padding-top: 10px; border-top: 1px solid #e8f0e8; margin-top: auto;
-    }
-    .w-cta-link {
-      display: inline-flex; align-items: center; gap: 5px;
-      font-size: 12px; font-weight: 800; color: #fff; background: #1a6030;
-      text-decoration: none; padding: 6px 14px; border-radius: 100px; transition: background 0.15s;
-    }
+    /* -- CTA row -- */
+    .w-cta-row { display: flex; align-items: center; justify-content: space-between; padding-top: 10px; border-top: 1px solid #e8f0e8; margin-top: auto; }
+    .w-cta-link { display: inline-flex; align-items: center; gap: 5px; font-size: 12px; font-weight: 800; color: #fff; background: #1a6030; text-decoration: none; padding: 6px 14px; border-radius: 100px; transition: background 0.15s; }
     .w-cta-link:hover { background: #0d4020; }
     .w-cta-ghost { font-size: 11px; color: #5a7060; text-decoration: none; font-weight: 600; }
     .w-cta-ghost:hover { color: #1a6030; }
 
-    /* No results */
+    /* -- No results -- */
     .w-none { grid-column: 1/-1; text-align: center; padding: 40px 20px; color: #5a7060; font-size: 13px; display: none; }
     .w-none.visible { display: block; }
+    .w-none a { color: #3a8a48; font-weight: 700; text-decoration: none; }
 
-    /* Footer */
-    .w-footer { text-align: center; padding: 18px 0 2px; font-size: 11px; color: #8a9a8e; }
+    /* -- Modal -- */
+    .w-modal-overlay {
+      display: none; position: fixed; inset: 0; z-index: 9999;
+      background: rgba(0,0,0,0.6); backdrop-filter: blur(3px);
+      align-items: flex-end; justify-content: center;
+    }
+    .w-modal-overlay.open { display: flex; }
+    @media (min-width: 600px) { .w-modal-overlay { align-items: center; } }
+    .w-modal {
+      background: #fff; border-radius: 20px 20px 0 0; width: 100%; max-width: 580px;
+      max-height: 90vh; overflow-y: auto; padding: 0;
+      box-shadow: 0 -8px 40px rgba(0,0,0,0.25);
+    }
+    @media (min-width: 600px) { .w-modal { border-radius: 20px; max-height: 85vh; } }
+    .w-modal-hero { position: relative; aspect-ratio: 16/7; overflow: hidden; border-radius: 20px 20px 0 0; }
+    .w-modal-hero img { width: 100%; height: 100%; object-fit: cover; }
+    .w-modal-hero::after {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(10,22,10,0.9) 0%, transparent 60%);
+    }
+    .w-modal-hero-content { position: absolute; bottom: 0; left: 0; right: 0; padding: 16px 20px; z-index: 2; }
+    .w-modal-title { font-size: 16px; font-weight: 800; color: #fff; line-height: 1.3; margin-bottom: 6px; }
+    .w-modal-meta { display: flex; gap: 8px; flex-wrap: wrap; }
+    .w-modal-badge { font-size: 10px; font-weight: 700; padding: 3px 9px; border-radius: 100px; background: rgba(255,255,255,0.18); backdrop-filter: blur(6px); border: 1px solid rgba(255,255,255,0.25); color: #fff; }
+    .w-modal-close {
+      position: absolute; top: 12px; right: 14px; z-index: 10;
+      width: 32px; height: 32px; border-radius: 50%; background: rgba(0,0,0,0.4); border: none;
+      color: #fff; font-size: 18px; cursor: pointer; display: flex; align-items: center; justify-content: center;
+      backdrop-filter: blur(4px);
+    }
+    .w-modal-close:hover { background: rgba(0,0,0,0.6); }
+    .w-modal-body { padding: 20px; }
+    .w-modal-section-title { font-size: 10px; font-weight: 800; color: #3a8a48; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 10px; }
+    .w-itinerary-day { margin-bottom: 16px; }
+    .w-day-header { font-size: 12px; font-weight: 800; color: #0d1a0e; background: #f0f8f0; border-left: 3px solid #3a8a48; padding: 6px 10px; border-radius: 0 6px 6px 0; margin-bottom: 8px; }
+    .w-day-items { display: flex; flex-direction: column; gap: 6px; padding-left: 4px; }
+    .w-day-item { display: flex; gap: 10px; align-items: flex-start; }
+    .w-item-time { font-size: 10px; font-weight: 700; color: #5a7060; min-width: 70px; padding-top: 2px; }
+    .w-item-content { flex: 1; }
+    .w-item-activity { font-size: 12px; font-weight: 700; color: #1a2e1a; line-height: 1.3; }
+    .w-item-notes { font-size: 11px; color: #5a7060; margin-top: 2px; line-height: 1.4; }
+    .w-modal-why { font-size: 12px; color: #2a4030; line-height: 1.6; background: #f4faf4; border-left: 3px solid #3a8a48; padding: 10px 12px; border-radius: 0 8px 8px 0; margin-bottom: 16px; font-style: italic; }
+    .w-modal-cta { display: flex; gap: 10px; flex-wrap: wrap; padding-top: 16px; border-top: 1px solid #e8f0e8; }
+    .w-modal-cta-primary { flex: 1; text-align: center; font-size: 13px; font-weight: 800; color: #fff; background: #1a6030; text-decoration: none; padding: 10px 16px; border-radius: 100px; transition: background 0.15s; }
+    .w-modal-cta-primary:hover { background: #0d4020; }
+    .w-modal-cta-secondary { flex: 1; text-align: center; font-size: 13px; font-weight: 700; color: #3a8a48; background: #f0f8f0; text-decoration: none; padding: 10px 16px; border-radius: 100px; border: 1px solid #c0dcc0; transition: all 0.15s; }
+    .w-modal-cta-secondary:hover { background: #e0f0e0; }
+
+    /* -- Footer -- */
+    .w-footer { text-align: center; padding: 16px 0 2px; font-size: 11px; color: #8a9a8e; }
     .w-footer a { color: #3a8a48; font-weight: 700; text-decoration: none; }
   </style>
 </head>
@@ -179,153 +299,310 @@ const jsonData = JSON.stringify(realTrips);
 
   <div class="w-header">
     <div>
-      <div class="w-title">Real <span>Graeagle</span> Golf Trips</div>
+      <div class="w-title">Real <em>Graeagle</em> Golf Trips</div>
       <div class="w-sub">Actual packages · verified pricing · real courses</div>
     </div>
-    <div class="w-header-right">
-      <span class="w-pill" id="w-count-pill">{tripCount} trips · from ${minPrice}/person</span>
+    <span class="w-pill" id="w-pill">{tripCount} trips · from ${pMin}/person</span>
+  </div>
+
+  <div class="w-controls">
+    <div class="w-filter-group">
+      <span class="w-filter-label">Vibe</span>
+      <button class="w-filter-btn active" data-vibe="all">All</button>
+      <button class="w-filter-btn" data-vibe="value">Value</button>
+      <button class="w-filter-btn premium" data-vibe="premium">Premium</button>
+    </div>
+
+    <div class="w-filter-group" style="margin-left:8px">
+      <span class="w-filter-label">Nights</span>
+      <button class="w-filter-btn active" data-nights="all">All</button>
+      <button class="w-filter-btn" data-nights="2">2</button>
+      <button class="w-filter-btn" data-nights="3">3</button>
+      <button class="w-filter-btn" data-nights="5">5</button>
+    </div>
+
+    <div class="w-sort-group">
+      <span class="w-filter-label">Sort</span>
+      <select class="w-sort-select" id="w-sort">
+        <option value="default">Default</option>
+        <option value="price-asc">Price ↑</option>
+        <option value="price-desc">Price ↓</option>
+        <option value="size-asc">Group size ↑</option>
+        <option value="size-desc">Group size ↓</option>
+        <option value="newest">Newest</option>
+      </select>
     </div>
   </div>
 
-  <div class="w-filters">
-    <span class="w-filter-label">Filter:</span>
-    <button class="w-filter-btn active" data-filter="all">All trips</button>
-    <button class="w-filter-btn vibe-value" data-filter="value">Value</button>
-    <button class="w-filter-btn vibe-premium" data-filter="premium">Premium</button>
-    <button class="w-filter-btn" data-filter="small">Small group (≤8)</button>
-    <button class="w-filter-btn" data-filter="large">Large group (16+)</button>
-    <button class="w-filter-btn" data-filter="2n">2 nights</button>
-    <button class="w-filter-btn" data-filter="3n+">3+ nights</button>
+  <div class="w-controls" style="margin-top:-8px">
+    <div class="w-size-wrap">
+      <div class="w-filter-label">Group size</div>
+      <div class="w-size-row">
+        <input type="number" class="w-size-input" id="w-size-min" placeholder="Min" min="1" max="100" />
+        <span style="font-size:11px;color:#8a9a8e">–</span>
+        <input type="number" class="w-size-input" id="w-size-max" placeholder="Max" min="1" max="100" />
+        <span class="w-size-hint" id="w-size-hint">any size</span>
+      </div>
+    </div>
+
+    <div class="w-slider-wrap" style="max-width:280px">
+      <div class="w-slider-label">Max price / person</div>
+      <div class="w-slider-row">
+        <input type="range" class="w-range" id="w-price-range" min={pMin} max={pMax} value={pMax} step="50" />
+        <span class="w-slider-val" id="w-price-val">up to ${pMax}</span>
+      </div>
+    </div>
   </div>
 
   <div class="w-grid" id="w-grid">
-    {realTrips.map((trip: any, i: number) => {
-      const courses = (trip.courses || []).map(shortCourse);
-      const display = courses.slice(0, 3).join(' · ') + (courses.length > 3 ? ` +${courses.length - 3}` : '');
-      const lodgingShort = (trip.lodging || '').split('(')[0].trim();
-      const vibe = (trip.vibe || 'Value').toLowerCase();
-      const why = (trip.whyItWorked || '').trim();
-      const highlights = (trip.highlights || []).filter((h: string) => h && h.trim());
-      const synopsis = (trip.synopsis || '').trim();
-      const hasExpand = (why.length > 0 || highlights.length > 0);
-      return (
-        <div
-          class="w-card"
-          data-vibe={vibe}
-          data-nights={trip.nights || 0}
-          data-size={trip.groupSize || 0}
-          data-price={trip.pricePerPerson}
-        >
-          <div class="w-photo">
-            <div class="w-top-badges">
-              <span class={`w-vibe-badge ${vibe}`}>{trip.vibe || 'Value'}</span>
-              {trip.month && <span class="w-month-badge">{trip.month}{trip.year ? ` '${String(trip.year).slice(2)}` : ''}</span>}
-            </div>
-            <img
-              src={trip._img}
-              alt={`Graeagle golf trip — ${courses[0] || 'golf course'}`}
-              loading={i < 4 ? 'eager' : 'lazy'}
-              onerror="this.src='https://golfthehighsierra.com/images/trips/river-pines-3-rounds.jpg'"
-            />
-            <div class="w-photo-bottom">
-              <div>
-                <div class="w-price-big"><sup>$</sup>{trip.pricePerPerson}</div>
-                <div class="w-price-pp">per person</div>
-              </div>
-            </div>
+    {realTrips.map((trip) => (
+      <>
+      <div
+        class="w-card"
+        data-vibe={trip._vibe}
+        data-nights={trip.nights || 0}
+        data-size={trip.groupSize || 0}
+        data-price={trip.pricePerPerson}
+        data-year={trip.year || 2025}
+        data-idx={trip._idx}
+      >
+        <div class="w-photo">
+          <div class="w-photo-top">
+            <span class={trip._vibeClass}>{trip.vibe || 'Value'}</span>
+            {trip._monthLabel && <span class="w-month">{trip._monthLabel}</span>}
           </div>
-
-          <div class="w-body">
-            <div class="w-courses-label">Courses Played</div>
-            <div class="w-courses-list">{display}</div>
-
-            {synopsis && <div class="w-synopsis">{synopsis.length > 100 ? synopsis.slice(0,97)+'…' : synopsis}</div>}
-
-            <div class="w-meta-row">
-              {trip.nights && <span class="w-badge">🌙 {trip.nights} nights</span>}
-              {trip.groupSize && <span class="w-badge">👥 {trip.groupSize} golfers</span>}
-              {trip.rounds && <span class="w-badge">⛳ {trip.rounds} rounds</span>}
-              {lodgingShort && <span class="w-badge lodging">🏨 {lodgingShort.length > 24 ? lodgingShort.slice(0,22)+'…' : lodgingShort}</span>}
+          <img
+            src={trip._img}
+            alt={trip._heroAlt}
+            loading={trip._loading}
+            onerror="this.src='https://golfthehighsierra.com/images/trips/river-pines-3-rounds.jpg'"
+          />
+          <div class="w-photo-bottom">
+            <div>
+              <div class="w-price-big"><sup>$</sup>{trip.pricePerPerson}</div>
+              <div class="w-price-pp">per person</div>
             </div>
-
-            {hasExpand && (
-              <button class="w-expand-btn" onclick="toggleExpand(this)">
-                <span class="expand-icon">▸</span> What made this work
+            {trip._hasItinerary && (
+              <button class="w-itinerary-btn" onclick={"openModal('" + trip._modalId + "')"}>
+                See itinerary ↗
               </button>
             )}
-            {hasExpand && (
-              <div class="w-expand-content">
-                {why && <div class="w-why">"{why}"</div>}
-                {highlights.length > 0 && (
-                  <ul class="w-highlights">
-                    {highlights.map((h: string) => <li>{h}</li>)}
-                  </ul>
-                )}
-              </div>
-            )}
+          </div>
+        </div>
 
-            <div class="w-cta-row">
-              <a class="w-cta-ghost" href="https://golfgraeagle.com/portfolio/" target="_blank" rel="noopener">View packages</a>
-              <a class="w-cta-link" href="https://golfgraeagle.com/request-a-quote/" target="_blank" rel="noopener">Plan Similar →</a>
+        <div class="w-body">
+          <div class="w-courses-label">Courses Played</div>
+          <div class="w-courses-list">{trip._displayCourses}</div>
+          <div class="w-course-links">
+            {trip._courseLinks.map((cl) => (
+              <a class="w-course-link" href={cl.href} target="_blank" rel="noopener">{cl.name}</a>
+            ))}
+          </div>
+
+          {trip._synopsisShort && <div class="w-synopsis">{trip._synopsisShort}</div>}
+
+          <div class="w-meta-row">
+            {trip.nights && <span class="w-badge">🌙 {trip.nights} nights</span>}
+            {trip.groupSize && <span class="w-badge">👥 {trip.groupSize} golfers</span>}
+            {trip.rounds && <span class="w-badge">⛳ {trip.rounds} rounds</span>}
+            {trip._lodgingDisplay && <span class="w-badge lodging">🏨 {trip._lodgingDisplay}</span>}
+          </div>
+
+          {trip._hasExpand && (
+            <button class="w-expand-btn" onclick="toggleExpand(this)">
+              <span class="ei">▸</span> What made this work
+            </button>
+          )}
+          {trip._hasExpand && (
+            <div class="w-expand-content">
+              {trip._why && <div class="w-why">"{trip._why}"</div>}
+              {trip._highlights.length > 0 && (
+                <ul class="w-highlights">
+                  {trip._highlights.map((h) => <li>{h}</li>)}
+                </ul>
+              )}
+            </div>
+          )}
+
+          <div class="w-cta-row">
+            <a class="w-cta-ghost" href={trip._firstCourseLink} target="_blank" rel="noopener">View packages</a>
+            <a class="w-cta-link" href="https://golfgraeagle.com/request-a-quote/" target="_blank" rel="noopener">Plan Similar →</a>
+          </div>
+        </div>
+      </div>
+
+      {trip._hasItinerary && (
+        <div class="w-modal-overlay" id={trip._modalId} onclick="handleOverlayClick(event, this)">
+          <div class="w-modal">
+            <div class="w-modal-hero">
+              <button class="w-modal-close" onclick={"closeModal('" + trip._modalId + "')"}>✕</button>
+              <img
+                src={trip._img}
+                alt={trip._modalAlt}
+                onerror="this.src='https://golfthehighsierra.com/images/trips/river-pines-3-rounds.jpg'"
+              />
+              <div class="w-modal-hero-content">
+                <div class="w-modal-title">{trip.groupName || trip._displayCourses}</div>
+                <div class="w-modal-meta">
+                  {trip.nights && <span class="w-modal-badge">{trip.nights} nights</span>}
+                  {trip.groupSize && <span class="w-modal-badge">{trip.groupSize} golfers</span>}
+                  {trip.rounds && <span class="w-modal-badge">{trip.rounds} rounds</span>}
+                  <span class="w-modal-badge">${trip.pricePerPerson}/person</span>
+                  {trip.month && <span class="w-modal-badge">{trip.month}</span>}
+                </div>
+              </div>
+            </div>
+            <div class="w-modal-body">
+              {trip._why && <div class="w-modal-why">"{trip._why}"</div>}
+              <div class="w-modal-section-title">Day-by-Day Itinerary</div>
+              {trip._itineraryDays.map((dayGroup) => (
+                <div class="w-itinerary-day">
+                  <div class="w-day-header">Day {dayGroup.dayNum}</div>
+                  <div class="w-day-items">
+                    {dayGroup.items.map((item) => (
+                      <div class="w-day-item">
+                        <div class="w-item-time">{item.time && item.time !== 'N/A' && item.time !== '?' ? item.time : '—'}</div>
+                        <div class="w-item-content">
+                          <div class="w-item-activity">{item.activity}</div>
+                          {item.notes && <div class="w-item-notes">{item.notes}</div>}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              ))}
+              <div class="w-modal-cta">
+                <a class="w-modal-cta-primary" href="https://golfgraeagle.com/request-a-quote/" target="_blank" rel="noopener">Plan a Trip Like This →</a>
+                <a class="w-modal-cta-secondary" href={trip._firstCourseLink} target="_blank" rel="noopener">View Course Packages</a>
+              </div>
             </div>
           </div>
         </div>
-      );
-    })}
-    <div class="w-none" id="w-none">No trips match this filter. <a href="https://golfgraeagle.com/request-a-quote/" target="_blank" rel="noopener" style="color:#3a8a48;font-weight:700;">Build a custom trip →</a></div>
+      )}
+      </>
+    ))}
+    <div class="w-none" id="w-none">No trips match — <a href="https://golfgraeagle.com/request-a-quote/" target="_blank" rel="noopener">build a custom trip →</a></div>
   </div>
 
   <div class="w-footer">
-    Powered by <a href="https://golfgraeagle.com" target="_blank" rel="noopener">GolfGraeagle.com</a>
-    &nbsp;·&nbsp; Graeagle golf specialists since 2004
+    Powered by <a href="https://golfgraeagle.com" target="_blank" rel="noopener">GolfGraeagle.com</a> · Graeagle golf specialists since 2004
   </div>
 </div>
 
 <script>
+  // -- Modal --
+  function openModal(id) {
+    document.getElementById(id).classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeModal(id) {
+    document.getElementById(id).classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  function handleOverlayClick(e, el) {
+    if (e.target === el) { el.classList.remove('open'); document.body.style.overflow = ''; }
+  }
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') document.querySelectorAll('.w-modal-overlay.open').forEach(m => { m.classList.remove('open'); document.body.style.overflow=''; });
+  });
+
+  // -- Expand --
   function toggleExpand(btn) {
-    const card = btn.closest('.w-card');
-    const content = card.querySelector('.w-expand-content');
-    const icon = btn.querySelector('.expand-icon');
-    const isOpen = content.classList.contains('open');
-    content.classList.toggle('open', !isOpen);
-    icon.textContent = isOpen ? '▸' : '▾';
+    const content = btn.closest('.w-card').querySelector('.w-expand-content');
+    const icon = btn.querySelector('.ei');
+    const open = content.classList.toggle('open');
+    icon.textContent = open ? '▾' : '▸';
   }
 
-  const filterBtns = document.querySelectorAll('.w-filter-btn');
-  const cards = document.querySelectorAll('.w-card');
-  const none = document.getElementById('w-none');
-  const pill = document.getElementById('w-count-pill');
-  const totalCount = cards.length;
-  const baseMin = Math.min(...[...cards].map(c => +c.dataset.price).filter(Boolean));
+  // -- State --
+  const cards = [...document.querySelectorAll('.w-card')];
+  const pill = document.getElementById('w-pill');
+  const noneEl = document.getElementById('w-none');
+  const gridEl = document.getElementById('w-grid');
 
-  filterBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-      filterBtns.forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      const f = btn.dataset.filter;
-      let visible = 0;
-      let minP = Infinity;
-      cards.forEach(card => {
-        const vibe = card.dataset.vibe;
-        const nights = +card.dataset.nights;
-        const size = +card.dataset.size;
-        const price = +card.dataset.price;
-        let show = true;
-        if (f === 'value') show = vibe === 'value';
-        else if (f === 'premium') show = vibe === 'premium';
-        else if (f === 'small') show = size <= 8;
-        else if (f === 'large') show = size >= 16;
-        else if (f === '2n') show = nights === 2;
-        else if (f === '3n+') show = nights >= 3;
-        card.dataset.hidden = show ? 'false' : 'true';
-        if (show) { visible++; if (price < minP) minP = price; }
-      });
-      none.classList.toggle('visible', visible === 0);
-      if (pill) {
-        const p = minP === Infinity ? baseMin : minP;
-        pill.textContent = visible + ' trip' + (visible !== 1 ? 's' : '') + ' · from $' + p + '/person';
-      }
+  let state = { vibe: 'all', nights: 'all', sizeMin: '', sizeMax: '', maxPrice: Infinity, sort: 'default' };
+
+  function applyFilters() {
+    let visible = [], minP = Infinity;
+    cards.forEach(c => {
+      const vibe = c.dataset.vibe;
+      const nights = +c.dataset.nights;
+      const size = +c.dataset.size;
+      const price = +c.dataset.price;
+      const year = +c.dataset.year || 2025;
+      const sm = state.sizeMin !== '' ? +state.sizeMin : 0;
+      const sx = state.sizeMax !== '' ? +state.sizeMax : 9999;
+      const show =
+        (state.vibe === 'all' || vibe === state.vibe) &&
+        (state.nights === 'all' || nights === +state.nights) &&
+        (sm === 0 || size >= sm) &&
+        (sx === 9999 || size <= sx) &&
+        (price <= state.maxPrice);
+      c.toggleAttribute('data-hidden', !show);
+      if (show) { visible.push(c); if (price < minP) minP = price; }
     });
+
+    // Sort
+    const sorted = [...visible];
+    if (state.sort === 'price-asc') sorted.sort((a,b) => +a.dataset.price - +b.dataset.price);
+    else if (state.sort === 'price-desc') sorted.sort((a,b) => +b.dataset.price - +a.dataset.price);
+    else if (state.sort === 'size-asc') sorted.sort((a,b) => +a.dataset.size - +b.dataset.size);
+    else if (state.sort === 'size-desc') sorted.sort((a,b) => +b.dataset.size - +a.dataset.size);
+    else if (state.sort === 'newest') sorted.sort((a,b) => +b.dataset.year - +a.dataset.year);
+    sorted.forEach((c,i) => { c.style.order = i; });
+
+    noneEl.classList.toggle('visible', visible.length === 0);
+    const p = minP === Infinity ? 0 : minP;
+    if (pill) pill.textContent = visible.length + ' trip' + (visible.length !== 1 ? 's' : '') + (p ? ' · from $' + p + '/person' : '');
+  }
+
+  // Vibe filters
+  document.querySelectorAll('[data-vibe]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('[data-vibe]').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      state.vibe = btn.dataset.vibe;
+      applyFilters();
+    });
+  });
+
+  // Nights filters
+  document.querySelectorAll('[data-nights]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('[data-nights]').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      state.nights = btn.dataset.nights;
+      applyFilters();
+    });
+  });
+
+  // Sort
+  document.getElementById('w-sort').addEventListener('change', e => {
+    state.sort = e.target.value;
+    applyFilters();
+  });
+
+  // Size inputs
+  ['w-size-min','w-size-max'].forEach(id => {
+    document.getElementById(id).addEventListener('input', e => {
+      const isMin = id === 'w-size-min';
+      if (isMin) state.sizeMin = e.target.value;
+      else state.sizeMax = e.target.value;
+      const sm = state.sizeMin, sx = state.sizeMax;
+      document.getElementById('w-size-hint').textContent =
+        sm && sx ? `${sm}–${sx} golfers` : sm ? `${sm}+ golfers` : sx ? `up to ${sx}` : 'any size';
+      applyFilters();
+    });
+  });
+
+  // Price range
+  const rangeEl = document.getElementById('w-price-range');
+  const valEl = document.getElementById('w-price-val');
+  rangeEl.addEventListener('input', e => {
+    const v = +e.target.value;
+    state.maxPrice = v;
+    valEl.textContent = 'up to $' + v;
+    applyFilters();
   });
 </script>
 </body>
