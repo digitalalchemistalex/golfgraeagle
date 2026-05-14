@@ -80,6 +80,9 @@ const ALL_URLS = [
   '/best-golf-courses-graeagle/',
   '/ultimate-guide-to-golfing-in-graeagle/',
   '/graeagle-course-guide/',
+  '/mountain-dining-near-lake-tahoe-graeagles-best-kept-restaurant-secrets/',
+  '/embed-graeagle-golf-trips/',
+  '/trips-widget/',
 ];
 
 // Bing IndexNow endpoint (also notifies Yandex, Seznam, others in the IndexNow network)
