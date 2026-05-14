@@ -115,24 +115,9 @@ ${diningUrls.join('\n')}
 ${blogUrls.join('\n')}
 
 <!-- Insider content + tools -->
-  <url>
-    <loc>https://golfgraeagle.com/embed-graeagle-golf-trips/</loc>
-    <lastmod>2026-05-04</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://golfgraeagle.com/trips-widget/</loc>
-    <lastmod>2026-05-04</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://golfgraeagle.com/graeagle-course-guide/</loc>
-    <lastmod>2026-05-04</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
+${url('/embed-graeagle-golf-trips','0.7','monthly')}
+${url('/trips-widget','0.6','monthly')}
+${url('/graeagle-course-guide','0.8','monthly')}
 
 <!-- Legacy WP root URLs (${legacyUrls.length} — kept for GSC continuity, low priority) -->
 ${legacyUrls.join('\n')}
