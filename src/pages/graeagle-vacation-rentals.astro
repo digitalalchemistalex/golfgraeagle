@@ -1,0 +1,181 @@
+---
+export const prerender = true;
+import Base from '../layouts/Base.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import { siteConfig } from '../data/content.js';
+
+const title = "Graeagle Vacation Rentals & Cabins | Golf Group Lodging";
+const description = "Graeagle vacation rentals for golf groups — Townhomes at Plumas Pines (2–4BR, full kitchens, on-course) and River Pines cabins (Feather River, pool, hot tub). Stay-and-play packages with tee times from $299/golfer.";
+const canonical = `${siteConfig.url}/graeagle-vacation-rentals/`;
+
+const schema = [
+  {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "name": "Graeagle Vacation Rentals and Cabins",
+    "description": "Vacation rental properties for golf groups in Graeagle, California",
+    "numberOfItems": 2,
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Townhomes at Plumas Pines", "url": `${siteConfig.url}/portfolio/the-townhomes-at-plumas-pines/` },
+      { "@type": "ListItem", "position": 2, "name": "River Pines Resort", "url": `${siteConfig.url}/portfolio/river-pines-resort-graeagle-ca/` },
+    ],
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Are there vacation rentals in Graeagle CA?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes. The main vacation rental option for golf groups in Graeagle is the Townhomes at Plumas Pines — 2–4 bedroom units with full kitchens, private decks, and fairway views, steps from the 1st tee at Plumas Pines Golf Resort. River Pines Resort also offers cabins and cottages along the Feather River. GolfGraeagle bundles both properties with tee times as stay-and-play golf packages." }
+      },
+      {
+        "@type": "Question",
+        "name": "What are the best vacation rentals near Graeagle golf courses?",
+        "acceptedAnswer": { "@type": "Answer", "text": "The Townhomes at Plumas Pines are the best on-course vacation rental option — 2–4 bedroom units directly adjacent to Plumas Pines Golf Resort. For cabin-style accommodation near Graeagle Meadows Golf Course, River Pines Resort has cottages and cabins along the Feather River with pool and hot tub access." }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I rent a cabin near Graeagle golf?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes. River Pines Resort has classic rooms, deluxe rooms, cottages, and vacation rentals — walking distance to Graeagle Meadows Golf Course. Chalet View Lodge also offers private cabin accommodation on 10 forested acres, 10 minutes from Graeagle. GolfGraeagle packages all three properties with guaranteed tee times at all 5 courses." }
+      },
+      {
+        "@type": "Question",
+        "name": "Are there vacation rentals with a kitchen near Graeagle?",
+        "acceptedAnswer": { "@type": "Answer", "text": "The Townhomes at Plumas Pines have full kitchens, making them the best self-catering option for golf groups in Graeagle. Units sleep 4–8 golfers per townhome, with pools and tennis courts on-site. Ideal for groups of 8–20 who want their own space and kitchen." }
+      },
+    ],
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": siteConfig.url },
+      { "@type": "ListItem", "position": 2, "name": "Lodging", "item": `${siteConfig.url}/lodging/` },
+      { "@type": "ListItem", "position": 3, "name": "Vacation Rentals & Cabins", "item": canonical },
+    ],
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "TravelAgency",
+    "@id": `${siteConfig.url}/#organization`,
+    "name": "GolfGraeagle.com",
+    "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.8", "reviewCount": "672", "bestRating": "5" },
+  },
+];
+
+const rentals = [
+  {
+    name: "Townhomes at Plumas Pines",
+    slug: "the-townhomes-at-plumas-pines",
+    badge: "Best for Large Groups",
+    type: "2–4 Bedroom Vacation Rentals",
+    hero: "/wp-images/plumas-pines-golf-resort-hole.webp",
+    desc: "The only on-course vacation rental in Graeagle. Multi-bedroom townhome units with full kitchens, private decks, and direct fairway views — steps from the 1st tee at Plumas Pines Golf Resort. Groups of 8–20 can rent adjacent units and walk to breakfast from their own kitchen before teeing off.",
+    facts: ["2–4 BR units with full kitchens", "Steps from Plumas Pines 1st tee", "Pool + tennis courts on-site", "Groups of 8–20"],
+    ideal: "Self-catering golf groups, multi-family trips, groups wanting private space",
+  },
+  {
+    name: "River Pines Resort — Cabins & Cottages",
+    slug: "river-pines-resort-graeagle-ca",
+    badge: "Best Cabin Option",
+    type: "Cabins, Cottages & Rooms",
+    hero: "/wp-images/River-Pines-Resort-Exterior.webp",
+    desc: "Family-owned 40+ years on the Feather River. River Pines has classic rooms, deluxe rooms, cottages, and vacation rental units — flexible for any group size. Large outdoor pool, in-ground hot tub, outdoor bar, and The Roadhouse on-site. Walking distance to Graeagle Meadows Golf Course.",
+    facts: ["Cabins, cottages + rooms", "Pool + hot tub on-site", "The Roadhouse restaurant", "Walk to Graeagle Meadows"],
+    ideal: "Groups wanting resort amenities with cabin-style accommodation",
+  },
+  {
+    name: "Chalet View Lodge — Private Cabins",
+    slug: "chalet-view-lodge-graeagle-ca",
+    badge: "Most Private",
+    type: "Private Cabin Suites",
+    hero: "/wp-images/chalet-view-lodge-exterior.webp",
+    desc: "10 forested acres with lodge rooms, terrace suites, and private cabins tucked into the Sierra Nevada trees. Spa, seasonal pool, 9-hole executive course, and Eureka Peak Brewing Co. on-site. 10 minutes from Graeagle via Hwy 89, 12 minutes to all 5 championship courses.",
+    facts: ["Private cabin suites available", "Eureka Peak Brewing on-site", "Spa + 9-hole exec course", "10 min from Graeagle"],
+    ideal: "Couples, small groups wanting privacy and resort amenities",
+  },
+];
+---
+<Base {title} {description} {schema} canonical={canonical} bodyClass="light-page">
+  <Nav />
+
+  <!-- HERO -->
+  <section style="background:linear-gradient(135deg,#1a2e1a 0%,#0d1a0e 100%);padding:80px 10% 64px;text-align:center;">
+    <div style="font-size:11px;color:rgba(232,168,80,0.7);text-transform:uppercase;letter-spacing:0.14em;font-weight:700;margin-bottom:16px;">Graeagle Vacation Rentals & Cabins</div>
+    <h1 style="font-family:'Playfair Display',serif;font-size:clamp(32px,5vw,54px);color:#f5f0e8;font-weight:400;margin:0 0 20px;line-height:1.15;">Vacation Rentals &amp; Cabins<br/>for Graeagle Golf Groups</h1>
+    <p class="speakable" style="font-size:17px;color:rgba(245,240,232,0.65);max-width:620px;margin:0 auto 16px;line-height:1.75;" data-speakable>Graeagle vacation rentals for golf groups — from on-course townhomes with full kitchens at Plumas Pines to Feather River cabins at River Pines. GolfGraeagle bundles every rental with guaranteed tee times at all 5 championship courses.</p>
+    <p class="speakable" style="font-size:14px;color:rgba(245,240,232,0.4);max-width:560px;margin:0 auto 32px;line-height:1.65;" data-speakable>3 properties. Cabins, cottages, townhomes, and private suites. All within 25 minutes of every Graeagle golf course. Stay-and-play packages from $299/golfer.</p>
+    <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;">
+      <a href="/request-a-quote/?groupType=vacation-rental" class="btn-green-glow" style="font-size:15px;padding:14px 32px;">Get a Free Rental + Golf Quote →</a>
+      <a href="/lodging/" style="font-size:14px;color:rgba(245,240,232,0.6);padding:14px 20px;border:1px solid rgba(245,240,232,0.2);border-radius:10px;text-decoration:none;">All Graeagle golf lodging →</a>
+    </div>
+  </section>
+
+  <!-- STAT BAR -->
+  <div style="background:#f5f0e8;border-bottom:1px solid rgba(28,18,8,0.08);padding:16px 10%;display:flex;gap:32px;flex-wrap:wrap;justify-content:center;">
+    {[['3','Rental Properties'],['2–4 BR','Unit Sizes'],['$299+','Per Golfer'],['24hr','Free Quote']].map(([v,l]) => (
+      <div style="text-align:center;">
+        <div style="font-family:'Playfair Display',serif;font-size:22px;color:#1a2e1a;font-weight:500;">{v}</div>
+        <div style="font-size:11px;color:rgba(28,18,8,0.4);text-transform:uppercase;letter-spacing:0.1em;">{l}</div>
+      </div>
+    ))}
+  </div>
+
+  <!-- PROPERTIES -->
+  <section style="max-width:900px;margin:0 auto;padding:64px 5%;">
+    <div style="display:flex;flex-direction:column;gap:48px;">
+      {rentals.map((p, i) => (
+        <div class="reveal" style="border:1px solid rgba(28,18,8,0.08);border-radius:20px;overflow:hidden;background:#fff;">
+          <div style="position:relative;height:280px;overflow:hidden;">
+            <img src={p.hero} alt={`${p.name} — Graeagle vacation rental`} style="width:100%;height:100%;object-fit:cover;" width="900" height="280" loading={i === 0 ? 'eager' : 'lazy'} onerror="this.src='/wp-images/chalet-view-lodge-exterior.webp'" />
+            <div style="position:absolute;top:16px;left:16px;background:#1a2e1a;color:#e8a850;font-size:11px;font-weight:700;padding:5px 12px;border-radius:100px;text-transform:uppercase;letter-spacing:0.1em;">{p.badge}</div>
+            <div style="position:absolute;top:16px;right:16px;background:rgba(0,0,0,0.55);color:#f5f0e8;font-size:11px;padding:5px 12px;border-radius:100px;">{p.type}</div>
+          </div>
+          <div style="padding:28px 32px;">
+            <h2 style="font-family:'Playfair Display',serif;font-size:26px;color:#1a2e1a;margin:0 0 12px;font-weight:500;">{p.name}</h2>
+            <p style="font-size:15px;color:rgba(28,18,8,0.6);line-height:1.75;margin:0 0 16px;">{p.desc}</p>
+            <p style="font-size:13px;color:rgba(28,18,8,0.4);margin:0 0 20px;"><strong style="color:rgba(28,18,8,0.6);">Ideal for:</strong> {p.ideal}</p>
+            <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:24px;">
+              {p.facts.map(f => (
+                <span style="font-size:12px;color:rgba(28,18,8,0.55);background:rgba(28,18,8,0.05);border:1px solid rgba(28,18,8,0.08);border-radius:100px;padding:4px 12px;">✓ {f}</span>
+              ))}
+            </div>
+            <div style="display:flex;gap:12px;flex-wrap:wrap;">
+              <a href={`/portfolio/${p.slug}/`} style="font-size:14px;font-weight:600;color:#1a2e1a;text-decoration:none;padding:10px 20px;border:1px solid rgba(28,18,8,0.15);border-radius:8px;">View Property →</a>
+              <a href={`/request-a-quote/?lodging=${p.slug}`} class="btn-green-glow" style="font-size:14px;padding:10px 20px;">Book with Tee Times →</a>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section style="max-width:800px;margin:0 auto;padding:0 5% 64px;">
+    <h2 style="font-family:'Playfair Display',serif;font-size:28px;color:#1a2e1a;margin:0 0 32px;text-align:center;">Graeagle Vacation Rentals — FAQ</h2>
+    {[
+      ["Are there vacation rentals in Graeagle CA?", "Yes. The Townhomes at Plumas Pines are the main vacation rental option for golf groups — 2–4 bedroom units with full kitchens, directly adjacent to Plumas Pines Golf Resort. River Pines Resort offers cabins and cottages along the Feather River, and Chalet View Lodge has private cabin suites on 10 forested acres."],
+      ["What are the best vacation rentals near Graeagle golf courses?", "The Townhomes at Plumas Pines are the best on-course option — steps from the 1st tee at Plumas Pines. For cabin-style accommodation near Graeagle Meadows, River Pines Resort has cottages and vacation rentals within walking distance of the course."],
+      ["Are there vacation rentals with full kitchens near Graeagle?", "Yes. The Townhomes at Plumas Pines have full kitchens, private decks, and fairway views. Best for groups of 8–20 who want their own space and the ability to self-cater. GolfGraeagle packages the townhomes with tee times at all 5 Graeagle golf courses."],
+      ["Can GolfGraeagle book vacation rentals and tee times together?", "Yes — that's the core product. One quote covers the rental property, guaranteed tee times at any combination of the 5 courses, and a full day-by-day itinerary. Mike Eskuchen responds within 24 hours with exact pricing."],
+      ["How much do Graeagle vacation rentals cost for a golf group?", "Stay-and-play packages including vacation rental lodging and tee times start from $299 per golfer. Final pricing depends on the property, number of nights, group size, and rounds played. Request a free custom quote for accurate pricing."],
+    ].map(([q, a]) => (
+      <div style="border-bottom:1px solid rgba(28,18,8,0.07);padding:20px 0;">
+        <h3 style="font-size:16px;font-weight:600;color:#1a2e1a;margin:0 0 10px;">{q}</h3>
+        <p class="aeo-answer" style="font-size:14px;color:rgba(28,18,8,0.55);margin:0;line-height:1.75;">{a}</p>
+      </div>
+    ))}
+  </section>
+
+  <!-- FINAL CTA -->
+  <section style="background:#1a2e1a;padding:56px 10%;text-align:center;">
+    <p style="font-family:'Playfair Display',serif;font-size:28px;color:#f5f0e8;margin:0 0 12px;">Vacation rental + golf package in one quote.</p>
+    <p style="font-size:15px;color:rgba(245,240,232,0.6);margin:0 0 28px;">Tell us your group size, dates, and how many rounds. Free quote in 24 hours.</p>
+    <a href="/request-a-quote/" class="btn-green-glow" style="font-size:16px;padding:16px 40px;">Get My Free Quote →</a>
+    <p style="margin-top:16px;"><a href="/graeagle-golf-hotels/" style="font-size:13px;color:rgba(245,240,232,0.35);text-decoration:none;">Looking for hotels instead? →</a></p>
+  </section>
+
+  <Footer />
+</Base>

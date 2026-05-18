@@ -472,12 +472,12 @@
     },
     {
       "source": "/private-homes/",
-      "destination": "/lodging/",
+      "destination": "/graeagle-vacation-rentals/",
       "permanent": true
     },
     {
       "source": "/private-homes",
-      "destination": "/lodging/",
+      "destination": "/graeagle-vacation-rentals/",
       "permanent": true
     },
     {
@@ -1043,6 +1043,31 @@
     {
       "source": "/project-type/breweries-and-bars/",
       "destination": "/dining/",
+      "permanent": true
+    },
+    {
+      "source": "/graeagle-vacation-rentals",
+      "destination": "/graeagle-vacation-rentals/",
+      "permanent": true
+    },
+    {
+      "source": "/vacation-rentals",
+      "destination": "/graeagle-vacation-rentals/",
+      "permanent": true
+    },
+    {
+      "source": "/vacation-rentals/",
+      "destination": "/graeagle-vacation-rentals/",
+      "permanent": true
+    },
+    {
+      "source": "/graeagle-cabin-rentals",
+      "destination": "/graeagle-vacation-rentals/",
+      "permanent": true
+    },
+    {
+      "source": "/graeagle-cabin-rentals/",
+      "destination": "/graeagle-vacation-rentals/",
       "permanent": true
     }
   ],

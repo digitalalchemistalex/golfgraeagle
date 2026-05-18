@@ -95,6 +95,7 @@ ${url('/bachelor-party-golf-graeagle','0.9','monthly')}
 ${url('/corporate-golf-outing-graeagle','0.9','monthly')}
 ${url('/graeagle-golf-weekend-packages','0.9','monthly')}
 ${url('/trips','0.8','weekly')}
+${url('/graeagle-vacation-rentals','0.8','monthly')}
 ${url('/graeagle-golf-hotels','0.8','monthly')}
 ${url('/lodging','0.8','monthly')}
 ${url('/dining','0.8','monthly')}
