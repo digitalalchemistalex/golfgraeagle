@@ -157,6 +157,41 @@ const QUOTE_URL = '/request-a-quote/?groupType=vacation&ref=vacation-landing';
     </div>
   </section>
 
+
+  <!-- ═══ COURSE COMPARISON TABLE ═══ -->
+  <section class="gv-section gv-ALT">
+    <div class="gv-container">
+      <div class="gv-header reveal-up">
+        <span class="sec-label">Compare all 5 Graeagle golf courses</span>
+        <h2 class="gv-h2">Pick your courses.<br/><em>We book the rest.</em></h2>
+      </div>
+      <div class="gv-table-wrap reveal-up delay-1">
+        <table class="gv-table">
+          <thead>
+            <tr>
+              <th>Course</th>
+              <th>Par / Yards</th>
+              <th>Slope</th>
+              <th>Difficulty</th>
+              <th>Best for</th>
+              <th>Price tier</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td><strong><a href="/portfolio/grizzly-ranch-golf-packages/" style="color:#1a7a40;text-decoration:none;">Grizzly Ranch</a></strong><br/><span style="font-size:11px;color:rgba(28,18,8,0.45);">Golf Digest Top 100</span></td><td>72 / 7,411</td><td>140</td><td>Very Hard</td><td>Low handicap</td><td>$$$$</td></tr>
+            <tr><td><strong><a href="/portfolio/nakoma-dragon-golf-packages/" style="color:#1a7a40;text-decoration:none;">Nakoma Dragon</a></strong><br/><span style="font-size:11px;color:rgba(28,18,8,0.45);">Golf World Top 75 · FLW clubhouse</span></td><td>72 / 7,015</td><td>147</td><td>Hardest</td><td>Low handicap</td><td>$$$$</td></tr>
+            <tr><td><strong><a href="/portfolio/whitehawk-ranch-golf-packages/" style="color:#1a7a40;text-decoration:none;">Whitehawk Ranch</a></strong><br/><span style="font-size:11px;color:rgba(28,18,8,0.45);">Top 20 California</span></td><td>71 / 6,983</td><td>132</td><td>Challenging</td><td>Mid–low handicap</td><td>$$$</td></tr>
+            <tr><td><strong><a href="/portfolio/plumas-pines-golf-packages/" style="color:#1a7a40;text-decoration:none;">Plumas Pines</a></strong><br/><span style="font-size:11px;color:rgba(28,18,8,0.45);">Top 5 Best Value Sierra Nevada</span></td><td>72 / 6,504</td><td>132</td><td>Moderate</td><td>All levels</td><td>$$</td></tr>
+            <tr><td><strong><a href="/portfolio/graeagle-meadows-golf-packages/" style="color:#1a7a40;text-decoration:none;">Graeagle Meadows</a></strong><br/><span style="font-size:11px;color:rgba(28,18,8,0.45);">Sierra Nevada Classic since 1968</span></td><td>72 / 6,759</td><td>120</td><td>Moderate</td><td>All levels, seniors</td><td>$$</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div style="text-align:center;margin-top:36px;">
+        <a href="/all-golf-courses/" style="font-size:14px;color:#1a7a40;text-decoration:underline;">Full course guide with photos and details →</a>
+      </div>
+    </div>
+  </section>
+
   <!-- ═══ INLINE CTA ═══ -->
   <section class="gv-cta-inline">
     <div class="gv-container" style="text-align:center;max-width:600px">
@@ -302,6 +337,30 @@ const QUOTE_URL = '/request-a-quote/?groupType=vacation&ref=vacation-landing';
     </div>
   </section>
 
+
+  <!-- ═══ DINING XSELL ═══ -->
+  <section class="gv-section" style="padding-top:0;padding-bottom:clamp(48px,6vw,72px);">
+    <div class="gv-container" style="max-width:860px;">
+      <div style="background:rgba(232,168,80,0.06);border:1px solid rgba(232,168,80,0.18);border-radius:14px;padding:24px 28px;">
+        <p style="font-size:10px;color:#a06c30;text-transform:uppercase;letter-spacing:0.12em;font-weight:700;margin:0 0 10px;">Group Dining — Coordinated by GolfGraeagle</p>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(180px,45vw),1fr));gap:10px;">
+          {[
+            {name:'Grizzly Grill', note:'Group dinner favourite — stone hearth, local game, exposed beams', slug:'grizzly-grill'},
+            {name:'The Roadhouse', note:'On-site at River Pines — steaks, ribs, walk in after 18', slug:'roadhouse-at-river-pines'},
+            {name:"Cuccia's", note:"#1 rated in Graeagle — handmade pizza, pasta, wine bar", slug:'cuccias'},
+            {name:'Iron Door', note:'Historic steakhouse since 1961 — great for the big group dinner', slug:'iron-door'},
+          ].map(d => (
+            <a href={`/portfolio/${d.slug}/`} style="padding:12px 14px;background:#fff;border:1px solid rgba(28,18,8,0.07);border-radius:8px;text-decoration:none;display:block;" onmouseover="this.style.borderColor='rgba(232,168,80,0.35)'" onmouseout="this.style.borderColor='rgba(28,18,8,0.07)'">
+              <div style="font-size:13px;font-weight:600;color:#1a2e1a;margin-bottom:4px;">{d.name}</div>
+              <div style="font-size:11px;color:rgba(28,18,8,0.45);line-height:1.5;">{d.note}</div>
+            </a>
+          ))}
+        </div>
+        <p style="font-size:12px;color:rgba(28,18,8,0.4);margin:14px 0 0;">GolfGraeagle can coordinate group dining reservations alongside your tee times and lodging — <a href="/dining/" style="color:#a06c30;text-decoration:none;">browse all restaurants →</a></p>
+      </div>
+    </div>
+  </section>
+
   <div style="max-width:860px;margin:0 auto;padding:32px clamp(20px,6%,80px) 0;display:flex;flex-wrap:wrap;gap:12px 24px;">
     <a href="/graeagle-golf-weekend-packages/" style="font-size:14px;color:#1a7a40;text-decoration:underline;">Graeagle golf weekend packages →</a>
     <a href="/golf-packages-northern-california/" style="font-size:14px;color:#1a7a40;text-decoration:underline;">Golf packages in Northern California →</a>
@@ -436,4 +495,12 @@ const QUOTE_URL = '/request-a-quote/?groupType=vacation&ref=vacation-landing';
   .gv-included{grid-template-columns:1fr 1fr}
   .gv-why-grid{grid-template-columns:1fr}
 }
+
+/* COURSE COMPARISON TABLE */
+.gv-table-wrap{overflow-x:auto}
+.gv-table{width:100%;border-collapse:collapse;font-size:14px}
+.gv-table th{background:#1a2e1a;color:#f5f0e8;padding:12px 16px;text-align:left;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;white-space:nowrap}
+.gv-table td{padding:13px 16px;border-bottom:1px solid rgba(28,18,8,0.07);color:#1c1208;vertical-align:top}
+.gv-table tr:last-child td{border-bottom:none}
+.gv-table tr:hover td{background:rgba(232,168,80,0.04)}
 </style>
