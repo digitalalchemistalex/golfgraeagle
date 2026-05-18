@@ -113,20 +113,16 @@ ${url('/about/mike-eskuchen','0.6','monthly')}
 ${url('/blog','0.7','weekly')}
 
 <!-- Courses (${courseUrls.length}) -->
-${courseUrls.join('
-')}
+${courseUrls.join(\n')}
 
 <!-- Lodging (${lodgingUrls.length}) -->
-${lodgingUrls.join('
-')}
+${lodgingUrls.join(\n')}
 
 <!-- Dining (${diningUrls.length}) -->
-${diningUrls.join('
-')}
+${diningUrls.join(\n')}
 
 <!-- Blog (${blogUrls.length}) -->
-${blogUrls.join('
-')}
+${blogUrls.join(\n')}
 
 <!-- Insider content + tools -->
 ${url('/embed-graeagle-golf-trips','0.7','monthly')}
@@ -134,8 +130,7 @@ ${url('/trips-widget','0.6','monthly')}
 ${url('/graeagle-course-guide','0.8','monthly')}
 
 <!-- Legacy WP root URLs (${legacyUrls.length} — kept for GSC continuity, low priority) -->
-${legacyUrls.join('
-')}
+${legacyUrls.join(\n')}
 
 </urlset>`;
 
