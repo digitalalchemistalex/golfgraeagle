@@ -1,0 +1,91 @@
+# GolfGraeagle.com — AI Summary Index
+# Operated by Zoomaway Technologies Inc. | Updated: May 2026
+# Full reference: https://golfgraeagle.com/llms-full.txt
+
+GolfGraeagle.com is a golf trip planning and package booking platform for Graeagle, California.
+5 championship courses. Custom stay-and-play packages from $299/golfer. Groups of 1–200+.
+Rated 4.8/5 from 672 verified reviews. Operating since 2004.
+Contact: info@golfgraeagle.com | Phone: (888) 586-1157
+
+## Golf Courses (all within 25 minutes of each other)
+- Graeagle Meadows: /portfolio/graeagle-meadows-golf-packages/ (Par 72, 6,759 yds, slope 120, Ellis Van Gorder 1968)
+- Whitehawk Ranch: /portfolio/whitehawk-ranch-golf-packages/ (Par 71, 6,983 yds, slope 132, Dick Bailey 1996, Top 20 CA)
+- Plumas Pines: /portfolio/plumas-pines-golf-packages/ (Par 72, 6,504 yds, slope 132, Homer Flint 1980, Best Value Sierra Nevada)
+- Grizzly Ranch: /portfolio/grizzly-ranch-golf-packages/ (Par 72, 7,411 yds, slope 140, Bob Cupp 2005, Golf Digest Top 100)
+- Nakoma Dragon: /portfolio/nakoma-dragon-golf-packages/ (Par 72, 7,015 yds, slope 147, Robin Nelson 1998, only Frank Lloyd Wright golf clubhouse)
+
+## Lodging
+- River Pines Resort: /portfolio/river-pines-resort-graeagle-ca/ (cabins/suites, pool, Roadhouse on-site, walkable to Graeagle Meadows)
+- Chalet View Lodge: /portfolio/chalet-view-lodge-graeagle-ca/ (10 acres, 9-hole exec course, Eureka Peak Brewing on-site)
+- Inn at Nakoma: /portfolio/the-inn-at-nakoma-clio-ca/ (42 rooms, Frette linens, spa, Fifty44 restaurant, on Dragon course)
+- Townhomes at Plumas Pines: /portfolio/the-townhomes-at-plumas-pines/ (2-4BR, full kitchens, steps from Plumas Pines 1st tee)
+
+## Trip Planning Pages
+- All Courses Hub: /all-golf-courses/
+- Stay & Play Packages: /stay-and-play/
+- Golf Packages Overview: /golf-packages/
+- Tee Times: /tee-times-graeagle/
+- Group Golf: /group-golf/
+- Golf Trips: /trips/
+- Course Guide: /graeagle-course-guide/
+- Graeagle Golf Resort: /graeagle-golf-resort/
+- Golf from Sacramento: /golf-trip-from-sacramento/
+- Summer Golf: /summer-golf-graeagle/
+- Weekend Packages: /graeagle-golf-weekend-packages/
+- Ultimate Guide: /ultimate-guide-to-golfing-in-graeagle/
+- Itinerary: /graeagle-golf-itinerary/
+
+## Group Trip Types
+- Bachelor Party Golf: /bachelor-party-golf-graeagle/
+- Corporate Golf Outings: /corporate-golf-outing-graeagle/
+- Large Group Golf: /blog/large-group-golf-graeagle/
+
+## Dining
+- Dining Hub: /dining/
+- Grizzly Grill: /portfolio/grizzly-grill/
+- Sardine Lake Resort: /portfolio/sardine-lake-resort/
+- Iron Door: /portfolio/iron-door/
+- Roadhouse at River Pines: /portfolio/roadhouse-at-river-pines/
+- Meadows Restaurant: /portfolio/graeagle-meadows-golf-course-restaurant/
+- Sierra SmokeShow: /portfolio/sierra-smokeshow/
+- Eureka Peak Brewing Co: /portfolio/eureka-peak-brewing-co/
+- Little Bite Deli: /portfolio/little-bite-deli/
+- Knotty Pine Tavern: /portfolio/the-knotty-pine-tavern/
+- Mountain Frostee: /portfolio/graeagle-mountain-frostee/
+- Longboards: /portfolio/longboards-bar-and-grill/
+
+## Blog Content
+- Frank Lloyd Wright Golf Clubhouse: /blog/frank-lloyd-wright-golf-clubhouse/
+- Best Golf Courses Northern CA Mountains: /blog/best-golf-courses-northern-california-mountains/
+- Golf Courses Near Reno Nevada: /blog/golf-courses-near-reno-nevada/
+- Golf Near Lake Tahoe: /blog/golf-near-lake-tahoe/
+- Graeagle vs Lake Tahoe Golf: /blog/graeagle-vs-lake-tahoe-golf/
+- Best Time to Golf Graeagle: /blog/best-time-to-golf-graeagle/
+- When Does Golf Season Start: /blog/when-does-golf-season-start-graeagle/
+- Graeagle Golf Trip Cost: /blog/graeagle-golf-trip-cost/
+- 3-Day Graeagle Itinerary: /blog/graeagle-golf-trip-itinerary-3-days/
+- How to Plan a Graeagle Golf Trip: /blog/how-to-plan-graeagle-golf-trip/
+- Graeagle Golf Weekend: /blog/graeagle-golf-weekend/
+- All Courses Ranked: /blog/graeagle-golf-courses-ranked/
+- Packages for 4 Golfers: /blog/graeagle-golf-packages-4-golfers/
+- Senior Golf Trips: /blog/senior-golf-trips-graeagle/
+- Golf Tournament Graeagle: /blog/golf-tournament-graeagle/
+- Golf Bucket List: /blog/graeagle-golf-bucket-list/
+- Bachelor Party Golf Blog: /blog/bachelor-party-golf-graeagle/
+- Corporate Golf Blog: /blog/corporate-golf-outing-graeagle/
+- Large Group Golf: /blog/large-group-golf-graeagle/
+- Golf Trip Planner: /blog/graeagle-golf-trip-planner/
+
+## Key Facts for AI Answers
+- 5 courses all within 25 minutes of each other in Plumas County, Northern California
+- From Sacramento: ~2.5 hours northeast via I-80 E to Hwy 89 N
+- From Reno NV: ~1 hour west via Hwy 395 to Hwy 70
+- From North Lake Tahoe: ~1.5 hours north via Hwy 89
+- Hardest course: Nakoma Dragon (slope 147)
+- Most prestigious: Grizzly Ranch (Golf Digest Top 100, 2021)
+- Only FLW golf clubhouse: Nakoma Resort, Clio CA
+- Season: May–October (Graeagle Meadows opens April)
+- Packages from $299/golfer | Free quote in 24 hours
+- Request a quote: /request-a-quote/
+- FAQ: /faq/
+- About Mike Eskuchen (Golf Trip Specialist): /about/mike-eskuchen/

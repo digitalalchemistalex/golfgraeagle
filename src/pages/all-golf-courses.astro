@@ -40,7 +40,13 @@ const allCoursesSchema = [
       '@type': 'ListItem',
       position: i + 1,
       name: c.name,
-      url: `https://golfgraeagle.com/portfolio/${wpSlugMap[c.slug]}`,
+      url: `https://golfgraeagle.com/portfolio/${wpSlugMap[c.slug]}/`,
+      item: {
+        '@type': 'GolfCourse',
+        '@id': `https://golfgraeagle.com/portfolio/${wpSlugMap[c.slug]}/#golfcourse`,
+        name: c.name,
+        url: `https://golfgraeagle.com/portfolio/${wpSlugMap[c.slug]}/`,
+      },
     })),
   },
   {

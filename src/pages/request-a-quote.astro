@@ -437,8 +437,20 @@ const quoteSchema = [
             </div>
           </div>
 
-          <!-- ── SUBMIT ── -->
-          <div class="q-submit-row">
+          <!-- ── SOCIAL PROOF + SUBMIT ── -->
+          <div style="padding:20px 32px 0;border-top:1px solid rgba(28,46,26,0.06);">
+            <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:20px;">
+              <div style="display:flex;gap:3px;">
+                {"★★★★★".split("").map(s => <span style="color:#e8a850;font-size:18px;">{s}</span>)}
+              </div>
+              <div>
+                <span style="font-size:14px;font-weight:700;color:#1a2e1a;">4.8 / 5</span>
+                <span style="font-size:13px;color:rgba(26,18,8,0.5);margin-left:6px;">from 672 verified reviews</span>
+              </div>
+              <div style="font-size:12px;color:rgba(26,18,8,0.4);border-left:1px solid rgba(26,18,8,0.1);padding-left:16px;">Free quote · No commitment · Reply in 24 hrs</div>
+            </div>
+          </div>
+          <div class="q-submit-row" style="border-top:none;padding-top:0;">
             <div class="q-submit-left">
               <div style="font-size:13px;font-weight:600;color:rgba(26,18,8,0.75);">Ready? We'll respond within 24 hours.</div>
               <div style="font-size:12px;color:rgba(28,46,26,0.28);margin-top:4px;">No commitment required. Free quote.</div>

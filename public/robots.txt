@@ -52,3 +52,4 @@ Sitemap: https://golfgraeagle.com/sitemap.xml
 
 # AI-readable site index
 Llms: https://golfgraeagle.com/llms.txt
+Llms-full: https://golfgraeagle.com/llms-full.txt
