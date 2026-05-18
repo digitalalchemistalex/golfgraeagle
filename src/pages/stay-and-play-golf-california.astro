@@ -1,0 +1,378 @@
+---
+export const prerender = true;
+import Base from '../layouts/Base.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import RelatedTrips from '../components/RelatedTrips.tsx';
+import { fetchTripStats } from '../lib/tripStats';
+const { minPrice, trips: allTrips } = await fetchTripStats();
+
+const proofTrips = allTrips
+  .filter((t: any) => t.nights >= 2 && t.pricePerPerson && t.whyItWorked)
+  .sort((a: any, b: any) => a.pricePerPerson - b.pricePerPerson)
+  .slice(0, 3);
+
+const title = "Stay and Play Golf California | Sierra Nevada Packages from $299";
+const description = "The best stay-and-play golf packages in California are in Graeagle — 5 championship courses, mountain lodging, guaranteed tee times. From $299/golfer. Free 24-hour quote.";
+const ogImage = "/wp-images/whitehawk-hero.webp";
+
+const destinations = [
+  { name:'Pebble Beach', loc:'Monterey Peninsula', courses:'3–4', crowd:'🔴 Extremely high', cost:'$$$$+', notes:'$600–$800+ green fees. Lodging at Peninsula prices. Iconic but expensive.' },
+  { name:'Torrey Pines', loc:'San Diego', courses:'2', crowd:'🔴 Very high', cost:'$$$$', notes:'Two courses but both heavily booked. San Diego lodging adds cost.' },
+  { name:'Tahoe / Incline Village', loc:'North Lake Tahoe', courses:'3–4', crowd:'🟡 High in summer', cost:'$$$–$$$$', notes:'Courses are good but spread out. Lodging expensive in summer.' },
+  { name:'Palm Desert / Coachella Valley', loc:'Southern California', courses:'10+', crowd:'🟡 High Oct–Apr', cost:'$$$–$$$$', notes:'Summer heat makes golf impractical May–September. Heavy resort fees.' },
+  { name:'Graeagle (Sierra Nevada)', loc:'Plumas County, NorCal', courses:'5', crowd:'🟢 Low to moderate', cost:'$$–$$$$', notes:'Golf Digest Top 100 + Golf World Top 75 access. Stay on-course. 2.5 hrs from Sacramento.' },
+];
+
+const faqSchema = {
+  "@context":"https://schema.org","@type":"FAQPage",
+  "mainEntity":[
+    {"@type":"Question","name":"What is a stay and play golf package in California?","acceptedAnswer":{"@type":"Answer","text":"A stay-and-play golf package in California bundles green fees, lodging, and sometimes dining into a single per-golfer price. The best California stay-and-play destinations offer multiple courses within a short drive so you can play different tracks each day without moving properties. Graeagle in the Sierra Nevada offers 5 championship courses all within 25 minutes, with four lodging properties adjacent to or on the courses."}},
+    {"@type":"Question","name":"Where is the best stay and play golf in California?","acceptedAnswer":{"@type":"Answer","text":"The best stay-and-play golf in California depends on budget and goals. For nationally-ranked courses without Pebble Beach prices, Graeagle in the Sierra Nevada offers the strongest value: Grizzly Ranch (Golf Digest Top 100 Greatest Public Courses), Nakoma Dragon (Golf World Top 75, Frank Lloyd Wright clubhouse), and three other championship courses — all within 25 minutes, with on-course lodging options, from $299/golfer."}},
+    {"@type":"Question","name":"How much does a stay and play golf package in California cost?","acceptedAnswer":{"@type":"Answer","text":"California stay-and-play golf packages range from $299/golfer for budget Sierra Nevada packages to $1,500+/golfer at Pebble Beach resort properties. In Graeagle, full multi-night stay-and-play packages with lodging and tee times at 2–5 courses range from $620 to $1,705 per person, depending on group size, nights, and lodging choice. Larger groups get better per-person rates."}},
+    {"@type":"Question","name":"Can you stay on the golf course in Graeagle?","acceptedAnswer":{"@type":"Answer","text":"Yes. The Inn at Nakoma offers 42 rooms inside the Frank Lloyd Wright-designed Nakoma Dragon clubhouse — the course starts outside your door. The Townhomes at Plumas Pines are adjacent to the Plumas Pines first tee. River Pines Resort is walking distance from Graeagle Meadows Golf Course. GolfGraeagle matches lodging to group size and course preference."}},
+    {"@type":"Question","name":"How far is Graeagle from Sacramento for a golf trip?","acceptedAnswer":{"@type":"Answer","text":"Graeagle is approximately 2.5 hours northeast of Sacramento via Highway 70 through the Feather River Canyon. It is approximately 3.5–4 hours from San Francisco, and about 1 hour west of Reno, Nevada."}},
+  ]
+};
+
+const breadcrumbSchema = {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
+  {"@type":"ListItem","position":1,"name":"Home","item":"https://golfgraeagle.com/"},
+  {"@type":"ListItem","position":2,"name":"Stay and Play Golf California","item":"https://golfgraeagle.com/stay-and-play-golf-california/"}
+]};
+
+const serviceSchema = {
+  "@context":"https://schema.org","@type":"Service",
+  "name":"Stay and Play Golf Packages — California",
+  "description":"Stay-and-play golf packages in California's Sierra Nevada mountains — Graeagle, Plumas County. 5 championship courses, on-course lodging, guaranteed tee times. From $299/golfer.",
+  "provider":{"@type":"TravelAgency","@id":"https://golfgraeagle.com/#organization"},
+  "areaServed":{"@type":"Place","name":"California"},
+  "serviceType":"Stay and Play Golf Package"
+};
+
+const courses = [
+  { name:'Grizzly Ranch', slug:'grizzly-ranch-golf-packages', accolade:'Golf Digest Top 100', img:'/wp-images/grizzly-ranch-hero.webp', alt:'Grizzly Ranch Golf Club — Golf Digest Top 100 stay and play California', par:72, yards:'7,411', slope:140 },
+  { name:'Nakoma Dragon', slug:'nakoma-dragon-golf-packages', accolade:'Golf World Top 75', img:'/wp-images/nakoma-dragon-feather-river.webp', alt:'Nakoma Dragon Golf Course — Frank Lloyd Wright stay and play California', par:72, yards:'7,015', slope:147 },
+  { name:'Whitehawk Ranch', slug:'whitehawk-ranch-golf-packages', accolade:'Top 20 California', img:'/wp-images/whitehawk-hero.webp', alt:'Whitehawk Ranch Golf Course — Top 20 California stay and play', par:71, yards:'6,983', slope:132 },
+  { name:'Plumas Pines', slug:'plumas-pines-golf-packages', accolade:'Top 5 Value Sierra Nevada', img:'/wp-images/plumas-pines-hero.webp', alt:'Plumas Pines Golf Resort — stay and play golf California', par:72, yards:'6,504', slope:132 },
+  { name:'Graeagle Meadows', slug:'graeagle-meadows-golf-packages', accolade:'Sierra Nevada Classic', img:'/wp-images/graeagle-meadows-aerial.jpg', alt:'Graeagle Meadows Golf Course — stay and play California mountain golf', par:72, yards:'6,759', slope:120 },
+];
+
+const QUOTE_URL = '/request-a-quote/?groupType=stay-play&ref=stay-play-ca-landing';
+---
+
+<Base
+  title={title}
+  description={description}
+  ogImage={ogImage}
+  schema={[faqSchema, breadcrumbSchema, serviceSchema]}
+>
+  <Nav />
+
+  <!-- ═══ HERO ═══ -->
+  <section class="sp-hero">
+    <div class="sp-bg" style="background-image:url('/wp-images/whitehawk-hero.webp')"></div>
+    <div class="sp-overlay"></div>
+    <div class="sp-hero-inner">
+      <p class="sp-eyebrow">Sierra Nevada Mountains · Plumas County, California</p>
+      <h1 class="sp-h1">California stay &amp; play golf<br/><em>without</em><br/>the Pebble Beach price tag.</h1>
+      <p class="sp-sub">Graeagle has a Golf Digest Top 100 course, a Golf World Top 75 course, a Frank Lloyd Wright clubhouse, and four lodging properties on or next to the fairways — all within 25 minutes of each other. GolfGraeagle bundles the whole stay-and-play package.</p>
+      <div class="sp-pills">
+        <span><strong>5</strong> championship courses</span>
+        <span>From <strong>$299</strong>/golfer</span>
+        <span><strong>Golf Digest</strong> Top 100</span>
+        <span>On-course lodging</span>
+      </div>
+      <div class="sp-ctas">
+        <a href={QUOTE_URL} class="btn-green-glow sp-btn">Get a Stay & Play Quote →</a>
+        <a href="#compare" class="sp-ghost">Compare CA destinations ↓</a>
+      </div>
+      <p class="sp-trust">Free · No commitment · 24hr response · 4.8★ verified</p>
+    </div>
+    <div class="sp-floats">
+      <div class="sp-float"><div class="sp-float-val">5</div><div class="sp-float-lbl">Courses In 25 Min</div></div>
+      <div class="sp-float"><div class="sp-float-val">4</div><div class="sp-float-lbl">On-Course Lodging</div></div>
+      <div class="sp-float"><div class="sp-float-val">$299+</div><div class="sp-float-lbl">Per Golfer</div></div>
+    </div>
+  </section>
+
+  <!-- ═══ DESTINATION COMPARISON ═══ -->
+  <section class="sp-section" id="compare">
+    <div class="sp-container">
+      <div class="sp-header reveal-up">
+        <span class="sec-label">Stay and play golf in California — destination comparison</span>
+        <h2 class="sp-h2">Where to take your California<br/><em>golf trip</em></h2>
+        <p class="sp-subhead">Before you book, compare what each California stay-and-play destination actually offers for the money.</p>
+      </div>
+      <div class="sp-table-wrap reveal-up delay-1">
+        <table class="sp-table">
+          <thead>
+            <tr>
+              <th>Destination</th>
+              <th>Courses available</th>
+              <th>Crowds</th>
+              <th>Cost tier</th>
+              <th>Notes</th>
+            </tr>
+          </thead>
+          <tbody>
+            {destinations.map((d, i) => (
+              <tr class={i === destinations.length - 1 ? 'sp-row-highlight' : ''}>
+                <td><strong>{d.name}</strong><br/><span class="sp-loc">{d.loc}</span></td>
+                <td>{d.courses}</td>
+                <td>{d.crowd}</td>
+                <td class="sp-cost">{d.cost}</td>
+                <td class="sp-notes">{d.notes}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <p class="sp-table-note reveal-up delay-2">Cost tiers: $$ = under $200/round · $$$ = $200–$400/round · $$$$ = $400+/round. Graeagle packages below $$$$ courses available.</p>
+    </div>
+  </section>
+
+  <!-- ═══ THE GRAEAGLE CASE ═══ -->
+  <section class="sp-section sp-alt">
+    <div class="sp-container">
+      <div class="sp-header reveal-up">
+        <span class="sec-label">Why Graeagle is California's best-value stay and play</span>
+        <h2 class="sp-h2">Five courses. On-course lodging.<br/><em>No driving between destinations.</em></h2>
+      </div>
+      <div class="sp-case-grid">
+        {[
+          { icon:'🏆', h:'Golf Digest Top 100 + Golf World Top 75', p:'Grizzly Ranch (Golf Digest Top 100 Greatest Public Courses in the US) and Nakoma Dragon (Golf World Top 75 at debut) are the anchor rounds. These are nationally-ranked courses you can play back-to-back in the same stay.' },
+          { icon:'🏡', h:'Stay inside the clubhouse. Literally.', p:'The Inn at Nakoma puts you in 42 rooms inside the Frank Lloyd Wright-designed Nakoma Dragon clubhouse. The Townhomes at Plumas Pines place you adjacent to the first tee. No hotel shuttle, no driving to the course.' },
+          { icon:'📍', h:'5 courses in a 25-minute radius', p:'Every California golf destination except Graeagle requires a car between venues. Graeagle\'s five courses — Grizzly Ranch, Nakoma, Whitehawk Ranch, Plumas Pines, and Graeagle Meadows — are all within 5–25 minutes of each other.' },
+          { icon:'👥', h:'Built for groups, not just twosomes', p:'GolfGraeagle builds packages for groups from 2 to 200+ golfers. Group tee sheet blocks, on-course lodging for 4–16, coordinated dining — the logistics of a group trip are handled, not just the green fees.' },
+        ].map((c, i) => (
+          <div class={`sp-case-card reveal-up delay-${i+1}`}>
+            <div class="sp-case-icon">{c.icon}</div>
+            <h3 class="sp-case-h">{c.h}</h3>
+            <p class="sp-case-p">{c.p}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ CTA INLINE ═══ -->
+  <section class="sp-cta-inline">
+    <div class="sp-container" style="text-align:center;max-width:600px">
+      <p class="sp-cta-line reveal-up">Ready to build a California stay-and-play package?</p>
+      <a href={QUOTE_URL} class="btn-green-glow sp-btn reveal-scale delay-1">Get a Free Custom Quote →</a>
+      <p class="sp-cta-trust reveal-up delay-2">Free · No commitment · 24hr response</p>
+    </div>
+  </section>
+
+  <!-- ═══ COURSES ═══ -->
+  <section class="sp-section">
+    <div class="sp-container">
+      <div class="sp-header reveal-up">
+        <span class="sec-label">The Graeagle stay and play lineup</span>
+        <h2 class="sp-h2">5 championship courses —<br/><em>all bundled through GolfGraeagle</em></h2>
+      </div>
+      <div class="sp-courses">
+        {courses.map((c, i) => (
+          <div class={`sp-course-card glow-card reveal-up delay-${i+1}`}>
+            <div class="sp-course-img-wrap">
+              <img src={c.img} alt={c.alt} loading="lazy" class="sp-course-img"/>
+              <div class="sp-course-fade"></div>
+              <span class="sp-course-badge">{c.accolade}</span>
+            </div>
+            <div class="sp-course-body">
+              <div class="sp-course-name">{c.name}</div>
+              <div class="sp-course-specs">Par {c.par} · {c.yards} yds · Slope {c.slope}</div>
+              <a href={`/portfolio/${c.slug}/`} class="sp-course-link underline-draw">View packages ↗</a>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ SOCIAL PROOF ═══ -->
+  {proofTrips.length > 0 && (
+  <section class="sp-section sp-alt">
+    <div class="sp-container">
+      <div class="sp-header reveal-up">
+        <span class="sec-label">Real completed California golf trips</span>
+        <h2 class="sp-h2">Real stay-and-play packages.<br/><em>Real groups. Real prices.</em></h2>
+      </div>
+      <div class="sp-proof-grid">
+        {proofTrips.map((t: any, i: number) => {
+          const courseNames = (t.courses || []).map((c: string) => c.replace(/ Golf (Club|Course|Resort)$/i,'').replace(/ Club$| Course$/,''));
+          return (
+            <div class={`sp-proof-card reveal-up delay-${i+1}`}>
+              <div class="sp-proof-top">
+                <span class="sp-proof-pax">{t.groupSize} golfers</span>
+                <span class="sp-proof-nights">{t.nights}N / {t.rounds}R</span>
+                <span class="sp-proof-price">${t.pricePerPerson}/pp</span>
+              </div>
+              <div class="sp-proof-courses">
+                {courseNames.slice(0,3).map((c: string, j: number) => (
+                  <span>{c}{j < Math.min(courseNames.length,3)-1 ? ' · ' : ''}</span>
+                ))}
+              </div>
+              <p class="sp-proof-why">"{t.whyItWorked}"</p>
+              <div class="sp-proof-mike">— <a href="/about/mike-eskuchen/" style="color:inherit;text-decoration:underline;text-underline-offset:3px;opacity:0.8;">Mike Eskuchen</a>, Golf Trip Specialist</div>
+            </div>
+          );
+        })}
+      </div>
+      <div style="text-align:center;margin-top:40px">
+        <a href={QUOTE_URL} class="btn-green-glow sp-btn reveal-scale">Build a Package Like This →</a>
+      </div>
+    </div>
+  </section>
+  )}
+
+  <!-- ═══ FAQ ═══ -->
+  <section class="sp-section">
+    <div class="sp-container" style="max-width:760px">
+      <div class="sp-header reveal-up">
+        <span class="sec-label">Stay and play golf California — planning questions</span>
+        <h2 class="sp-h2">Common questions,<br/><em>answered</em></h2>
+      </div>
+      <div class="sp-faqs">
+        {faqSchema.mainEntity.map((q: any, i: number) => (
+          <details class={`sp-faq reveal-up delay-${i+1}`}>
+            <summary class="sp-faq-q">
+              {q.name}
+              <span class="sp-faq-icon">+</span>
+            </summary>
+            <p class="sp-faq-a">{q.acceptedAnswer.text}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ FINAL CTA ═══ -->
+  <section class="sp-cta-final sp-dark">
+    <div class="sp-cta-glow"></div>
+    <div class="sp-container" style="text-align:center;max-width:620px;position:relative;z-index:1">
+      <h2 class="sp-cta-h2 reveal-up">California stay &amp; play golf<br/><em>starts here.</em></h2>
+      <p class="sp-cta-sub reveal-up delay-1">Tell us your dates, group size, and which courses you want. Mike builds a complete Graeagle stay-and-play package — tee times, on-course lodging, full itinerary — and sends it back in 24 hours. Free, no commitment.</p>
+      <div class="reveal-scale delay-2">
+        <a href={QUOTE_URL} class="btn-green-glow sp-btn">Get My Stay & Play Quote →</a>
+        <p style="font-size:12px;color:rgba(245,240,232,.28);margin-top:14px;">2–200+ golfers · 5 courses · On-course lodging · 24hr quote</p>
+      </div>
+    </div>
+  </section>
+
+  <div style="max-width:860px;margin:0 auto;padding:32px clamp(20px,6%,80px) 0;display:flex;flex-wrap:wrap;gap:12px 24px;">
+    <a href="/graeagle-golf-vacation/" style="font-size:14px;color:#1a7a40;text-decoration:underline;">Plan a Graeagle golf vacation →</a>
+    <a href="/golf-packages-northern-california/" style="font-size:14px;color:#1a7a40;text-decoration:underline;">Golf packages in Northern California →</a>
+    <a href="/lodging/" style="font-size:14px;color:#1a7a40;text-decoration:underline;">All Graeagle golf lodging →</a>
+    <a href="/all-golf-courses/" style="font-size:14px;color:#1a7a40;text-decoration:underline;">All 5 Graeagle courses →</a>
+  </div>
+  <RelatedTrips client:load slug="stay-play" type="course" showAll={true} max={3} />
+  <Footer />
+</Base>
+
+<style>
+:root{--sp-gold:#e8a850;--sp-green:#1a7a40;--sp-dark:#0d1a0e;--sp-text:#1c1208;--sp-muted:rgba(28,18,8,0.52);--sp-border:rgba(28,18,8,0.08);--sp-r:20px}
+.sp-container{max-width:1140px;margin:0 auto;padding:0 clamp(20px,6%,80px)}
+.sp-section{padding:clamp(72px,9vw,120px) 0;background:var(--page-bg,#f8f5f0)}
+.sp-alt{background:#fff!important}
+.sp-dark{background:var(--sp-dark)!important}
+.sp-header{text-align:center;margin-bottom:clamp(40px,5vw,68px)}
+.sp-h2{font-family:'Playfair Display',serif;font-size:clamp(28px,4vw,50px);font-weight:500;color:var(--sp-text);line-height:1.1;margin:8px 0 0}
+.sp-h2 em{font-style:italic;color:var(--sp-green)}
+.sp-subhead{font-size:16px;color:var(--sp-muted);line-height:1.7;max-width:640px;margin:16px auto 0}
+/* HERO */
+.sp-hero{position:relative;min-height:92vh;display:flex;align-items:flex-end;overflow:hidden}
+.sp-bg{position:absolute;inset:0;background-size:cover;background-position:center 35%;transform:scale(1.07);animation:spZoom 10s ease forwards}
+@keyframes spZoom{to{transform:scale(1)}}
+.sp-overlay{position:absolute;inset:0;background:linear-gradient(160deg,rgba(13,26,14,.05) 0%,rgba(13,26,14,.45) 40%,rgba(13,26,14,.96) 100%)}
+.sp-hero-inner{position:relative;z-index:2;padding:0 clamp(24px,8%,120px) clamp(60px,8vw,100px);max-width:820px}
+.sp-eyebrow{font-size:11px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:rgba(232,168,80,.82);margin:0 0 18px}
+.sp-h1{font-family:'Playfair Display',serif;font-size:clamp(42px,7vw,88px);font-weight:500;color:#f5f0e8;line-height:.98;margin:0 0 18px}
+.sp-h1 em{font-style:italic;color:var(--sp-gold)}
+.sp-sub{font-size:clamp(16px,2vw,21px);color:rgba(245,240,232,.62);line-height:1.55;margin:0 0 26px}
+.sp-pills{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:28px}
+.sp-pills span{font-size:12px;font-weight:600;color:rgba(245,240,232,.8);padding:6px 15px;background:rgba(255,255,255,.1);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.18);border-radius:100px}
+.sp-pills strong{color:var(--sp-gold)}
+.sp-ctas{display:flex;gap:20px;align-items:center;flex-wrap:wrap;margin-bottom:16px}
+.sp-btn{display:inline-block;padding:15px 36px;border-radius:100px;font-size:15px;font-weight:700;text-decoration:none}
+.sp-ghost{font-size:14px;font-weight:600;color:rgba(232,168,80,.9);text-decoration:none}
+.sp-trust{font-size:12px;color:rgba(245,240,232,.35);margin:0}
+.sp-floats{position:absolute;right:clamp(24px,5%,72px);bottom:clamp(56px,8vw,90px);display:flex;flex-direction:column;gap:10px;z-index:3}
+.sp-float{background:rgba(255,255,255,.1);backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,.2);border-radius:16px;padding:14px 22px;text-align:center;min-width:116px}
+.sp-float-val{font-family:'Playfair Display',serif;font-size:22px;color:var(--sp-gold);font-weight:400;line-height:1}
+.sp-float-lbl{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.14em;color:rgba(245,240,232,.45);margin-top:5px}
+/* COMPARISON TABLE */
+.sp-table-wrap{overflow-x:auto}
+.sp-table{width:100%;border-collapse:collapse;font-size:14px}
+.sp-table th{background:#1a2e1a;color:#f5f0e8;padding:12px 16px;text-align:left;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;white-space:nowrap}
+.sp-table td{padding:14px 16px;border-bottom:1px solid var(--sp-border);color:var(--sp-text);vertical-align:top}
+.sp-table tr:last-child td{border-bottom:none}
+.sp-row-highlight td{background:rgba(26,122,64,.07);font-weight:500}
+.sp-row-highlight td:first-child{border-left:3px solid var(--sp-green)}
+.sp-loc{font-size:11px;font-weight:400;color:var(--sp-muted)}
+.sp-cost{font-weight:700;white-space:nowrap}
+.sp-notes{font-size:12px;color:var(--sp-muted);max-width:280px}
+.sp-table-note{font-size:12px;color:var(--sp-muted);text-align:center;margin-top:16px}
+/* CASE GRID */
+.sp-case-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(240px,45vw),1fr));gap:24px}
+.sp-case-card{background:#fff;border:1px solid var(--sp-border);border-radius:var(--sp-r);padding:28px 24px;transition:all .35s}
+.sp-case-card:hover{transform:translateY(-4px);box-shadow:0 20px 48px rgba(0,0,0,.08);border-color:rgba(232,168,80,.3)}
+.sp-case-icon{font-size:32px;margin-bottom:12px}
+.sp-case-h{font-size:15px;font-weight:700;color:var(--sp-text);margin:0 0 10px}
+.sp-case-p{font-size:13px;color:var(--sp-muted);line-height:1.75;margin:0}
+/* INLINE CTA */
+.sp-cta-inline{padding:clamp(48px,6vw,72px) 0;background:rgba(26,122,64,.06);border-top:1px solid rgba(26,122,64,.1);border-bottom:1px solid rgba(26,122,64,.1)}
+.sp-cta-line{font-size:18px;font-weight:600;color:var(--sp-text);margin:0 0 20px}
+.sp-cta-trust{font-size:12px;color:var(--sp-muted);margin:14px 0 0}
+/* COURSES */
+.sp-courses{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(200px,45vw),1fr));gap:16px}
+.sp-course-card{border-radius:var(--sp-r);overflow:hidden;background:#fff;border:1px solid var(--sp-border);box-shadow:0 2px 10px rgba(0,0,0,.04);transition:all .35s}
+.sp-course-card:hover{transform:translateY(-5px);box-shadow:0 20px 48px rgba(0,0,0,.1);border-color:rgba(232,168,80,.3)}
+.sp-course-img-wrap{position:relative;height:160px;overflow:hidden}
+.sp-course-img{width:100%;height:100%;object-fit:cover;transition:transform 6s ease}
+.sp-course-card:hover .sp-course-img{transform:scale(1.06)}
+.sp-course-fade{position:absolute;inset:0;background:linear-gradient(to top,rgba(13,26,14,.75) 0%,transparent 55%)}
+.sp-course-badge{position:absolute;top:10px;left:10px;font-size:8px;font-weight:800;text-transform:uppercase;letter-spacing:.1em;background:rgba(232,168,80,.92);color:#0d1a0e;padding:3px 8px;border-radius:100px}
+.sp-course-body{padding:14px 16px 18px}
+.sp-course-name{font-family:'Playfair Display',serif;font-size:15px;color:var(--sp-text);margin-bottom:4px}
+.sp-course-specs{font-size:11px;font-weight:600;color:rgba(28,18,8,.35);text-transform:uppercase;letter-spacing:.05em;margin-bottom:10px}
+.sp-course-link{font-size:11px;font-weight:600;color:var(--sp-green);text-decoration:none}
+/* PROOF */
+.sp-proof-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:48px}
+.sp-proof-card{background:rgba(255,255,255,.62);border:1px solid rgba(28,18,8,.08);border-radius:18px;padding:28px 24px;display:flex;flex-direction:column;gap:14px;box-shadow:0 4px 24px rgba(28,18,8,.06)}
+.sp-proof-top{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.sp-proof-pax{background:rgba(26,122,64,.1);color:#1a7a40;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;padding:4px 10px;border-radius:20px}
+.sp-proof-nights{font-size:13px;color:rgba(28,18,8,.5);font-weight:600}
+.sp-proof-price{margin-left:auto;font-family:'Playfair Display',serif;font-size:20px;color:#1c1208;font-weight:400}
+.sp-proof-courses{font-size:13px;color:rgba(28,18,8,.6);line-height:1.5}
+.sp-proof-why{font-size:14px;color:rgba(28,18,8,.75);line-height:1.65;font-style:italic;flex:1}
+.sp-proof-mike{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:rgba(26,122,64,.7)}
+/* FAQ */
+.sp-faqs{display:flex;flex-direction:column}
+.sp-faq{border-bottom:1px solid var(--sp-border)}
+.sp-faq[open]{background:rgba(232,168,80,.03);border-radius:12px;border-color:rgba(232,168,80,.22)}
+.sp-faq-q{font-size:15px;font-weight:600;color:var(--sp-text);padding:20px 0;cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:16px}
+.sp-faq-q::-webkit-details-marker{display:none}
+.sp-faq[open] .sp-faq-q{color:var(--sp-green)}
+.sp-faq-icon{font-size:24px;color:var(--sp-gold);flex-shrink:0;transition:transform .3s}
+.sp-faq[open] .sp-faq-icon{transform:rotate(45deg)}
+.sp-faq-a{font-size:14px;color:var(--sp-muted);line-height:1.82;padding:0 0 20px;margin:0}
+/* FINAL CTA */
+.sp-cta-final{padding:clamp(80px,10vw,132px) 0;position:relative;overflow:hidden}
+.sp-cta-glow{position:absolute;width:720px;height:720px;border-radius:50%;background:radial-gradient(circle,rgba(26,122,64,.18) 0%,transparent 70%);top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none}
+.sp-cta-h2{font-family:'Playfair Display',serif;font-size:clamp(30px,5.5vw,56px);color:#f5f0e8;font-weight:500;line-height:1.15;margin:0 0 18px}
+.sp-cta-h2 em{color:var(--sp-gold);font-style:italic}
+.sp-cta-sub{font-size:16px;color:rgba(245,240,232,.76);line-height:1.75;margin:0 0 36px}
+@media(max-width:900px){
+  .sp-hero{min-height:100svh}
+  .sp-floats{display:none}
+  .sp-courses{grid-template-columns:1fr 1fr}
+  .sp-proof-grid{grid-template-columns:1fr}
+  .sp-section{padding:clamp(48px,8vw,72px) 0}
+  .sp-case-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:540px){
+  .sp-courses{grid-template-columns:1fr}
+  .sp-case-grid{grid-template-columns:1fr}
+}
+</style>
