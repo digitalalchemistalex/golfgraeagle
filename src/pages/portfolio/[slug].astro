@@ -1547,7 +1547,7 @@ const diningSlugMap: Record<string, string> = {
               })}
             </div>
             <div style="margin-top:20px;">
-              <a href="/lodging/" style="font-size:13px;color:var(--gold);text-decoration:none;border-bottom:1px solid rgba(232,168,80,0.3);padding-bottom:2px;">View all lodging options →</a>
+              <a href="/lodging/" style="font-size:13px;color:var(--gold);text-decoration:none;border-bottom:1px solid rgba(232,168,80,0.3);padding-bottom:2px;">Graeagle golf lodging →</a>
             </div>
           </div>
         );
@@ -2041,7 +2041,16 @@ const diningSlugMap: Record<string, string> = {
     <div class="din-body-grid">
 
         <!-- Description -->
-        <p class="speakable" style="font-size:17px;color:rgba(28,18,8,0.65);line-height:1.85;margin:0 0 36px;">{item.description}</p>
+        <p class="speakable" style="font-size:17px;color:rgba(28,18,8,0.65);line-height:1.85;margin:0 0 24px;">{item.description}</p>
+
+        <!-- Commercial signal: golf package context -->
+        <div class="reveal" style="background:linear-gradient(135deg,rgba(232,168,80,0.08) 0%,rgba(232,168,80,0.04) 100%);border:1px solid rgba(232,168,80,0.25);border-radius:14px;padding:20px 24px;margin-bottom:36px;display:flex;align-items:center;gap:20px;flex-wrap:wrap;">
+          <div style="flex:1;min-width:200px;">
+            <div style="font-size:11px;color:#a06c30;text-transform:uppercase;letter-spacing:0.12em;font-weight:700;margin-bottom:6px;">Part of Every Graeagle Golf Package</div>
+            <p style="font-size:14px;color:rgba(28,18,8,0.6);margin:0;line-height:1.6;">GolfGraeagle coordinates group dining reservations alongside tee times and lodging — one quote, one plan, everything confirmed.</p>
+          </div>
+          <a href={`/request-a-quote/?utm_content=${item.slug}-dining-inline`} class="btn-green-glow" style="white-space:nowrap;font-size:14px;padding:12px 24px;flex-shrink:0;">Add to My Package →</a>
+        </div>
 
         <!-- Photo carousel — shown when multiple images exist -->
         {item.images && item.images.length > 1 && (

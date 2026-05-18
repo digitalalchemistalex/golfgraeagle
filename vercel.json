@@ -462,12 +462,12 @@
     },
     {
       "source": "/hotels/",
-      "destination": "/lodging/",
+      "destination": "/graeagle-golf-hotels/",
       "permanent": true
     },
     {
       "source": "/hotels",
-      "destination": "/lodging/",
+      "destination": "/graeagle-golf-hotels/",
       "permanent": true
     },
     {
@@ -507,12 +507,12 @@
     },
     {
       "source": "/project-type/hotels/",
-      "destination": "/lodging/",
+      "destination": "/graeagle-golf-hotels/",
       "permanent": true
     },
     {
       "source": "/project-type/hotels",
-      "destination": "/lodging/",
+      "destination": "/graeagle-golf-hotels/",
       "permanent": true
     },
     {
@@ -1028,6 +1028,21 @@
     {
       "source": "/embed-graeagle-golf-trips",
       "destination": "/embed-graeagle-golf-trips/",
+      "permanent": true
+    },
+    {
+      "source": "/graeagle-golf-hotels",
+      "destination": "/graeagle-golf-hotels/",
+      "permanent": true
+    },
+    {
+      "source": "/project-type/breweries-and-bars",
+      "destination": "/dining/",
+      "permanent": true
+    },
+    {
+      "source": "/project-type/breweries-and-bars/",
+      "destination": "/dining/",
       "permanent": true
     }
   ],

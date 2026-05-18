@@ -1,0 +1,164 @@
+---
+export const prerender = true;
+import Base from '../layouts/Base.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import { lodging, siteConfig } from '../data/content.js';
+
+const title = "Graeagle Golf Hotels & Lodging | Stay & Play Packages";
+const description = "The best hotels and lodging for Graeagle golf trips — River Pines Resort, Inn at Nakoma, Chalet View Lodge, and Townhomes at Plumas Pines. Stay-and-play packages with guaranteed tee times from $299/golfer.";
+const canonical = `${siteConfig.url}/graeagle-golf-hotels/`;
+
+const schema = [
+  {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "name": "Graeagle Golf Hotels and Lodging",
+    "description": "Hotels, resorts, and vacation rentals for golf groups visiting Graeagle, California",
+    "numberOfItems": 4,
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "River Pines Resort", "url": `${siteConfig.url}/portfolio/river-pines-resort-graeagle-ca/` },
+      { "@type": "ListItem", "position": 2, "name": "Chalet View Lodge", "url": `${siteConfig.url}/portfolio/chalet-view-lodge-graeagle-ca/` },
+      { "@type": "ListItem", "position": 3, "name": "Inn at Nakoma", "url": `${siteConfig.url}/portfolio/the-inn-at-nakoma-clio-ca/` },
+      { "@type": "ListItem", "position": 4, "name": "Townhomes at Plumas Pines", "url": `${siteConfig.url}/portfolio/the-townhomes-at-plumas-pines/` },
+    ],
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      { "@type": "Question", "name": "What hotels are near Graeagle golf courses?", "acceptedAnswer": { "@type": "Answer", "text": "Graeagle has 4 main lodging options for golfers: River Pines Resort (cabins and suites, walkable to Graeagle Meadows), Chalet View Lodge (10 forested acres, 9-hole exec course, Eureka Peak Brewing on-site), Inn at Nakoma (42 rooms inside the Frank Lloyd Wright clubhouse, on the Dragon course), and Townhomes at Plumas Pines (2–4BR units steps from the 1st tee at Plumas Pines)." } },
+      { "@type": "Question", "name": "Is there a hotel on the Graeagle golf course?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. The Inn at Nakoma sits inside the Frank Lloyd Wright-designed clubhouse at Nakoma (The Dragon) golf course. It has 42 rooms, a spa, heated pool, and the Fifty44 restaurant on-site. Townhomes at Plumas Pines are also steps from the 1st tee at Plumas Pines Golf Resort." } },
+      { "@type": "Question", "name": "How much does Graeagle golf lodging cost?", "acceptedAnswer": { "@type": "Answer", "text": "GolfGraeagle stay-and-play packages start from $299 per golfer, which includes lodging and guaranteed tee times. Pricing varies by property, group size, number of rounds, and travel dates. Request a free custom quote for accurate pricing." } },
+      { "@type": "Question", "name": "Can GolfGraeagle book my hotel and tee times together?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. GolfGraeagle specializes in bundling lodging and tee times into a single stay-and-play package. Request a free quote and Mike Eskuchen will build a full itinerary — courses, property, and schedule — within 24 hours." } },
+    ],
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": siteConfig.url },
+      { "@type": "ListItem", "position": 2, "name": "Lodging", "item": `${siteConfig.url}/lodging/` },
+      { "@type": "ListItem", "position": 3, "name": "Graeagle Golf Hotels", "item": canonical },
+    ],
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "TravelAgency",
+    "@id": `${siteConfig.url}/#organization`,
+    "name": "GolfGraeagle.com",
+    "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.8", "reviewCount": "672", "bestRating": "5" },
+  },
+];
+
+const properties = [
+  {
+    name: "River Pines Resort",
+    slug: "river-pines-resort-graeagle-ca",
+    badge: "Best for Groups",
+    hero: "/wp-images/River-Pines-Resort-Exterior.webp",
+    desc: "Family-owned 40+ years. Cabins, suites, and rooms for groups of 8–60. Pool, hot tub, game lounge. The Roadhouse on-site for group dinners. Walking distance to Graeagle Meadows Golf Course.",
+    facts: ["Pool + hot tub on-site", "The Roadhouse restaurant", "Walkable to Graeagle Meadows", "Groups of 8–60"],
+  },
+  {
+    name: "Chalet View Lodge",
+    slug: "chalet-view-lodge-graeagle-ca",
+    badge: "Best Amenities",
+    hero: "/wp-images/chalet-view-lodge-exterior.webp",
+    desc: "10 forested acres with lodge rooms, terrace suites, and private cabins. Spa, seasonal pool, 9-hole executive golf course, and Eureka Peak Brewing Co. on-site. 12 minutes to all 5 championship courses.",
+    facts: ["Eureka Peak Brewing on-site", "Spa + seasonal pool", "9-hole exec course", "12 min to all 5 courses"],
+  },
+  {
+    name: "Inn at Nakoma",
+    slug: "the-inn-at-nakoma-clio-ca",
+    badge: "Most Unique",
+    hero: "/wp-images/nakoma-inn-exterior.webp",
+    desc: "42 rooms inside the only Frank Lloyd Wright-designed golf clubhouse in the world. Steps from the 1st tee at Nakoma Dragon (slope 147). Frette linens, spa, heated pool, and Fifty44 restaurant on-site.",
+    facts: ["Frank Lloyd Wright clubhouse", "Steps from Nakoma Dragon", "Spa + heated pool", "Fifty44 restaurant on-site"],
+  },
+  {
+    name: "Townhomes at Plumas Pines",
+    slug: "the-townhomes-at-plumas-pines",
+    badge: "Best for Large Groups",
+    hero: "/wp-images/plumas-pines-townhomes.webp",
+    desc: "2–4 bedroom vacation rental units with full kitchens, fairway views, and private decks. Steps from the 1st tee at Plumas Pines Golf Resort. Ideal for groups of 8–20 who want their own space.",
+    facts: ["2–4 BR full kitchen units", "Steps from Plumas Pines 1st tee", "Pools + tennis courts", "Groups of 8–20"],
+  },
+];
+---
+<Base {title} {description} {schema} canonical={canonical} bodyClass="light-page">
+  <Nav />
+
+  <!-- HERO -->
+  <section style="background:linear-gradient(135deg,#1a2e1a 0%,#0d1a0e 100%);padding:80px 10% 64px;text-align:center;">
+    <div style="font-size:11px;color:rgba(232,168,80,0.7);text-transform:uppercase;letter-spacing:0.14em;font-weight:700;margin-bottom:16px;">Graeagle Golf Hotels & Lodging</div>
+    <h1 style="font-family:'Playfair Display',serif;font-size:clamp(32px,5vw,54px);color:#f5f0e8;font-weight:400;margin:0 0 20px;line-height:1.15;">Where Graeagle Golf Groups Stay</h1>
+    <p class="speakable" style="font-size:17px;color:rgba(245,240,232,0.65);max-width:600px;margin:0 auto 32px;line-height:1.7;">4 properties matched to every group type — from on-course resort rooms to multi-bedroom townhomes with full kitchens. GolfGraeagle bundles lodging and tee times into one stay-and-play package.</p>
+    <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;">
+      <a href="/request-a-quote/" class="btn-green-glow" style="font-size:15px;padding:14px 32px;">Get a Free Lodging Quote →</a>
+      <a href="/lodging/" style="font-size:14px;color:rgba(245,240,232,0.6);padding:14px 20px;border:1px solid rgba(245,240,232,0.2);border-radius:10px;text-decoration:none;">Compare all properties →</a>
+    </div>
+  </section>
+
+  <!-- STAT BAR -->
+  <div style="background:#f5f0e8;border-bottom:1px solid rgba(28,18,8,0.08);padding:16px 10%;display:flex;gap:32px;flex-wrap:wrap;justify-content:center;">
+    {[['4','Golf Properties'],['$299+','Per Golfer'],['4.8★','672 Reviews'],['24hr','Free Quote']].map(([v,l]) => (
+      <div style="text-align:center;">
+        <div style="font-family:'Playfair Display',serif;font-size:22px;color:#1a2e1a;font-weight:500;">{v}</div>
+        <div style="font-size:11px;color:rgba(28,18,8,0.4);text-transform:uppercase;letter-spacing:0.1em;">{l}</div>
+      </div>
+    ))}
+  </div>
+
+  <!-- PROPERTIES -->
+  <section style="max-width:900px;margin:0 auto;padding:64px 5%;">
+    <div style="display:flex;flex-direction:column;gap:48px;">
+      {properties.map((p, i) => (
+        <div class="reveal" style="border:1px solid rgba(28,18,8,0.08);border-radius:20px;overflow:hidden;background:#fff;">
+          <div style="position:relative;height:260px;overflow:hidden;">
+            <img src={p.hero} alt={`${p.name} — Graeagle golf lodging`} style="width:100%;height:100%;object-fit:cover;" width="900" height="260" loading={i === 0 ? 'eager' : 'lazy'} onerror="this.src='/wp-images/chalet-view-lodge-exterior.webp'" />
+            <div style="position:absolute;top:16px;left:16px;background:#1a2e1a;color:#e8a850;font-size:11px;font-weight:700;padding:5px 12px;border-radius:100px;text-transform:uppercase;letter-spacing:0.1em;">{p.badge}</div>
+          </div>
+          <div style="padding:28px 32px;">
+            <h2 style="font-family:'Playfair Display',serif;font-size:26px;color:#1a2e1a;margin:0 0 12px;font-weight:500;">{p.name}</h2>
+            <p style="font-size:15px;color:rgba(28,18,8,0.6);line-height:1.75;margin:0 0 20px;">{p.desc}</p>
+            <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:24px;">
+              {p.facts.map(f => (
+                <span style="font-size:12px;color:rgba(28,18,8,0.55);background:rgba(28,18,8,0.05);border:1px solid rgba(28,18,8,0.08);border-radius:100px;padding:4px 12px;">✓ {f}</span>
+              ))}
+            </div>
+            <div style="display:flex;gap:12px;flex-wrap:wrap;">
+              <a href={`/portfolio/${p.slug}/`} style="font-size:14px;font-weight:600;color:#1a2e1a;text-decoration:none;padding:10px 20px;border:1px solid rgba(28,18,8,0.15);border-radius:8px;">View Property →</a>
+              <a href={`/request-a-quote/?lodging=${p.slug}`} class="btn-green-glow" style="font-size:14px;padding:10px 20px;">Book with Tee Times →</a>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section style="max-width:800px;margin:0 auto;padding:0 5% 64px;">
+    <h2 style="font-family:'Playfair Display',serif;font-size:28px;color:#1a2e1a;margin:0 0 32px;text-align:center;">Graeagle Golf Hotels — FAQ</h2>
+    {[
+      ["What hotels are near Graeagle golf courses?", "Graeagle has 4 main lodging options: River Pines Resort (walkable to Graeagle Meadows), Chalet View Lodge (10 acres, on-site brewery), Inn at Nakoma (Frank Lloyd Wright clubhouse, on the Dragon course), and Townhomes at Plumas Pines (2–4BR, steps from the 1st tee at Plumas Pines)."],
+      ["Is there a hotel on the Graeagle golf course?", "Yes. The Inn at Nakoma is inside the Frank Lloyd Wright-designed clubhouse at Nakoma (The Dragon) — 42 rooms, spa, pool, and Fifty44 restaurant on-site. The Townhomes at Plumas Pines are also on-course, steps from the 1st tee at Plumas Pines Golf Resort."],
+      ["How much does Graeagle golf lodging cost?", "Stay-and-play packages start from $299 per golfer, which includes lodging and guaranteed tee times. Final pricing depends on property, group size, number of rounds, and dates. Request a free quote for accurate pricing."],
+      ["Can GolfGraeagle book my hotel and tee times together?", "Yes — that's exactly what we do. One quote covers lodging, tee times at any combination of the 5 courses, and full itinerary coordination. Mike Eskuchen responds within 24 hours."],
+    ].map(([q, a]) => (
+      <div style="border-bottom:1px solid rgba(28,18,8,0.07);padding:20px 0;">
+        <h3 style="font-size:16px;font-weight:600;color:#1a2e1a;margin:0 0 10px;">{q}</h3>
+        <p class="aeo-answer" style="font-size:14px;color:rgba(28,18,8,0.55);margin:0;line-height:1.75;">{a}</p>
+      </div>
+    ))}
+  </section>
+
+  <!-- FINAL CTA -->
+  <section style="background:#1a2e1a;padding:56px 10%;text-align:center;">
+    <p style="font-family:'Playfair Display',serif;font-size:28px;color:#f5f0e8;margin:0 0 12px;">Ready to book your Graeagle golf stay?</p>
+    <p style="font-size:15px;color:rgba(245,240,232,0.6);margin:0 0 28px;">Lodging + tee times + full itinerary — free quote in 24 hours.</p>
+    <a href="/request-a-quote/" class="btn-green-glow" style="font-size:16px;padding:16px 40px;">Get My Free Quote →</a>
+  </section>
+
+  <Footer />
+</Base>
