@@ -1,6 +1,6 @@
 # GolfGraeagle.com — Comprehensive AI Reference
 # Operated by Zoomaway Technologies Inc.
-# Last updated: March 2026
+# Last updated: May 2026
 
 ## Business Overview
 GolfGraeagle.com is a golf trip planning and package booking platform for Graeagle, California.
@@ -19,7 +19,7 @@ Graeagle, California — Sierra Nevada mountains, Plumas County, Northern Califo
 ## The 5 Championship Golf Courses
 
 ### 1. Graeagle Meadows Golf Course
-URL: https://golfgraeagle.com/courses/graeagle-meadows
+URL: https://golfgraeagle.com/portfolio/graeagle-meadows-golf-packages/
 Par: 72 | Yards: 6,759 | Slope: 120 | Course Rating: 70.7
 Designer: Ellis Van Gorder | Year opened: 1968
 Type: Public | Season: April–November
@@ -30,7 +30,7 @@ Best for: First-timers, mixed-handicap groups, value rounds.
 Altitude: ~4,400 ft above sea level.
 
 ### 2. Whitehawk Ranch Golf Course
-URL: https://golfgraeagle.com/courses/whitehawk-ranch
+URL: https://golfgraeagle.com/portfolio/whitehawk-ranch-golf-packages/
 Par: 71 | Yards: 6,983 | Slope: 132 | Course Rating: 72.3
 Designer: Dick Bailey | Year opened: 1996
 Type: Public | Season: May–October
@@ -42,7 +42,7 @@ Best for: Golfers who want scenic mountain beauty + serious challenge.
 Altitude: ~4,400 ft above sea level.
 
 ### 3. Plumas Pines Golf Resort
-URL: https://golfgraeagle.com/courses/plumas-pines
+URL: https://golfgraeagle.com/portfolio/plumas-pines-golf-packages/
 Par: 72 | Yards: 6,504 | Slope: 132 | Course Rating: 71.3
 Designer: Homer Flint | Year opened: 1980
 Type: Public | Season: May–October
@@ -54,7 +54,7 @@ Best for: Players who prefer strategic shot-making over power golf.
 On-site condos and vacation rentals available.
 
 ### 4. Grizzly Ranch Golf Club
-URL: https://golfgraeagle.com/courses/grizzly-ranch
+URL: https://golfgraeagle.com/portfolio/grizzly-ranch-golf-packages/
 Par: 72 | Yards: 7,411 | Slope: 140 | Course Rating: 74.9
 Designer: Bob Cupp | Year opened: 2005
 Type: Semi-private (public tee times available)
@@ -68,7 +68,7 @@ Best for: Serious golfers seeking a bucket-list championship experience.
 Distance from Graeagle: 11 miles east, ~18 min drive.
 
 ### 5. Nakoma — The Dragon Golf Course
-URL: https://golfgraeagle.com/courses/nakoma
+URL: https://golfgraeagle.com/portfolio/nakoma-dragon-golf-packages/
 Par: 72 | Yards: 7,015 | Slope: 147 | Course Rating: 73.4
 Designer: Robin Nelson & Neil Haworth | Year opened: 1998
 Type: Public/Resort | Season: May 1–October 31
