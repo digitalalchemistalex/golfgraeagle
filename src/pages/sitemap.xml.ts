@@ -8,12 +8,7 @@ const TODAY = new Date().toISOString().split('T')[0];
 function url(loc: string, priority: string, changefreq: string) {
   // Always use trailing slash to match WP-indexed canonical URLs in GSC
   const withSlash = loc.endsWith('/') ? loc : loc + '/';
-  return `  <url>
-    <loc>${SITE}${withSlash}</loc>
-    <lastmod>${TODAY}</lastmod>
-    <changefreq>${changefreq}</changefreq>
-    <priority>${priority}</priority>
-  </url>`;
+  return `  <url>\n    <loc>${SITE}${withSlash}</loc>\n    <lastmod>${TODAY}</lastmod>\n    <changefreq>${changefreq}</changefreq>\n    <priority>${priority}</priority>\n  </url>`;
 }
 
 // Slug maps: data slug → portfolio URL slug
@@ -113,16 +108,16 @@ ${url('/about/mike-eskuchen','0.6','monthly')}
 ${url('/blog','0.7','weekly')}
 
 <!-- Courses (${courseUrls.length}) -->
-${courseUrls.join(\n')}
+${courseUrls.join('\n')}
 
 <!-- Lodging (${lodgingUrls.length}) -->
-${lodgingUrls.join(\n')}
+${lodgingUrls.join('\n')}
 
 <!-- Dining (${diningUrls.length}) -->
-${diningUrls.join(\n')}
+${diningUrls.join('\n')}
 
 <!-- Blog (${blogUrls.length}) -->
-${blogUrls.join(\n')}
+${blogUrls.join('\n')}
 
 <!-- Insider content + tools -->
 ${url('/embed-graeagle-golf-trips','0.7','monthly')}
@@ -130,7 +125,7 @@ ${url('/trips-widget','0.6','monthly')}
 ${url('/graeagle-course-guide','0.8','monthly')}
 
 <!-- Legacy WP root URLs (${legacyUrls.length} — kept for GSC continuity, low priority) -->
-${legacyUrls.join(\n')}
+${legacyUrls.join('\n')}
 
 </urlset>`;
 
