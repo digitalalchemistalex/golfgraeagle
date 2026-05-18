@@ -200,6 +200,38 @@ const aggregateRatingSchema = { "@context": "https://schema.org", "@type": "Trav
         ))}
       </div>
 
+      <!-- Lodging pricing section — targets "river pines resort prices", "nakoma resort prices" etc -->
+      <h2>Graeagle Golf Lodging: What Each Property Costs</h2>
+      <p>Lodging is the biggest variable in a Graeagle golf trip budget. Here's what each property typically runs for golf groups, per night:</p>
+      <div class="aeo-answer" style="overflow-x:auto;margin-bottom:24px;">
+        <table style="width:100%;border-collapse:collapse;font-size:14px;">
+          <thead>
+            <tr style="border-bottom:2px solid rgba(28,18,8,0.1);">
+              <th style="text-align:left;padding:10px 12px;font-weight:600;color:#1a2e1a;">Property</th>
+              <th style="text-align:left;padding:10px 12px;font-weight:600;color:#1a2e1a;">Type</th>
+              <th style="text-align:left;padding:10px 12px;font-weight:600;color:#1a2e1a;">Best For</th>
+              <th style="text-align:left;padding:10px 12px;font-weight:600;color:#1a2e1a;">Price Range</th>
+            </tr>
+          </thead>
+          <tbody>
+            {[
+              ['River Pines Resort', 'Cabins/rooms/suites', 'Groups of 8–60', '$$–$$$'],
+              ['Chalet View Lodge', 'Lodge rooms + cabins', 'Groups wanting amenities', '$$$'],
+              ['Inn at Nakoma', '42-room resort', 'Luxury golf lodge experience', '$$$$'],
+              ['Townhomes at Plumas Pines', '2–4 BR vacation rentals', 'Self-catering groups of 8–20', '$$–$$$'],
+            ].map(([prop, type_, best, price]) => (
+              <tr style="border-bottom:1px solid rgba(28,18,8,0.06);">
+                <td style="padding:10px 12px;font-weight:500;color:#1a2e1a;">{prop}</td>
+                <td style="padding:10px 12px;color:rgba(28,18,8,0.55);">{type_}</td>
+                <td style="padding:10px 12px;color:rgba(28,18,8,0.55);">{best}</td>
+                <td style="padding:10px 12px;color:#a06c30;font-weight:600;">{price}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <p>GolfGraeagle bundles lodging with tee times — the combined package price is typically more efficient than booking separately. River Pines Resort and Townhomes at Plumas Pines are the best value options for larger groups. Inn at Nakoma is priced at a premium but is the only on-course resort in the region. <a href="/lodging/" style="color:#a06c30;">See all Graeagle golf lodging →</a></p>
+
       <div class="bl-cta">
         <h2>Get an exact quote for your group</h2>
         <p>Tell us your headcount, dates, and how many rounds you want. We'll send back a real package price within 24 hours — no estimates, no ranges.</p>
