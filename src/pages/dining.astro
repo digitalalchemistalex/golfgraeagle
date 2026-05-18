@@ -270,9 +270,46 @@ const diningFaq = {
     <p class="speakable page-intro" style="font-size:18px;color:rgba(28,46,26,0.5);max-width:540px;line-height:1.75;margin:0 0 16px;">
       Graeagle has no business being this good for food. Remote valley, mountains all around — yet fifteen restaurants and bars, two craft breweries, and one legendary alpine lake restaurant that requires a reservation weeks out.
     </p>
-    <p class="speakable" style="font-size:14px;color:rgba(28,46,26,0.4);max-width:600px;line-height:1.75;margin:0 0 36px;" data-speakable>
+    <p class="speakable" style="font-size:14px;color:rgba(28,46,26,0.4);max-width:600px;line-height:1.75;margin:0 0 24px;" data-speakable>
       Restaurants near Graeagle golf courses include: Grizzly Grill at Grizzly Ranch, Sardine Lake Resort, Iron Door Restaurant (since 1961), Roadhouse at River Pines, Graeagle Meadows Clubhouse Restaurant, Eureka Peak Brewing Co. at Chalet View Lodge, The Brewing Lair, Cuccia's (#1 on Tripadvisor), Little Bite Deli (Blairsden), Sierra SmokeShow BBQ, Graeagle Mountain Frostee, Graeagle Restaurant (since 1958), Longboards Bar and Grill at Plumas Pines, Mohawk Tavern, and The Knotty Pine Tavern. GolfGraeagle coordinates group dining reservations as part of stay-and-play golf packages.
     </p>
+
+    <!-- Dining quick-reference table -->
+    <div class="aeo-answer reveal" style="overflow-x:auto;margin-bottom:36px;">
+      <table style="width:100%;border-collapse:collapse;font-size:13px;min-width:540px;">
+        <thead>
+          <tr style="background:#1a2e1a;">
+            <th style="text-align:left;padding:10px 14px;color:#e8a850;font-weight:600;">Restaurant</th>
+            <th style="text-align:left;padding:10px 14px;color:#f5f0e8;font-weight:600;">Category</th>
+            <th style="text-align:left;padding:10px 14px;color:#f5f0e8;font-weight:600;">Best For</th>
+            <th style="text-align:center;padding:10px 14px;color:#f5f0e8;font-weight:600;">Price</th>
+          </tr>
+        </thead>
+        <tbody>
+          {[
+            ['Grizzly Grill','Fine Dining','Group dinners, special occasion','$$$'],
+            ['Sardine Lake Resort','Fine Dining','Most unique — alpine lake. Reserve far ahead.','$$$$'],
+            ['Iron Door Restaurant','Fine Dining','Historic steakhouse, Johnsville','$$$'],
+            ["Cuccia's Pasta, Pizza & Wine Bar","Casual","#1 on Tripadvisor, families, groups","$$"],
+            ['Roadhouse at River Pines','On-Site','After-round group dinner at River Pines','$$'],
+            ['Graeagle Meadows Restaurant','On-Course','Lunch after your round at Graeagle Meadows','$$'],
+            ['Longboards Bar & Grill','On-Course','On-site at Plumas Pines, post-round casual','$$'],
+            ['Eureka Peak Brewing Co.','Brewery','On-site at Chalet View Lodge','$$'],
+            ['The Brewing Lair','Brewery','First-night tradition for most groups','$$'],
+            ['Sierra SmokeShow','Casual','Best BBQ in the valley','$$'],
+            ['Little Bite Deli','Quick','Pre-round lunch, highway-side','$'],
+            ['Graeagle Restaurant','Quick','Breakfast before tee time, since 1958','$'],
+          ].map(([name, cat, best, price], i) => (
+            <tr style={`border-bottom:1px solid rgba(28,18,8,0.06);${i%2===0?'background:rgba(28,18,8,0.02)':''}`}>
+              <td style="padding:9px 14px;font-weight:500;color:#1a2e1a;">{name}</td>
+              <td style="padding:9px 14px;color:rgba(28,18,8,0.5);">{cat}</td>
+              <td style="padding:9px 14px;color:rgba(28,18,8,0.55);font-size:12px;">{best}</td>
+              <td style="padding:9px 14px;text-align:center;color:#a06c30;font-weight:600;">{price}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
     <!-- Stats row — anchoring -->
     <div style="display:flex;gap:36px;flex-wrap:wrap;">
       {[

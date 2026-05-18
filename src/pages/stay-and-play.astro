@@ -195,6 +195,43 @@ const includes = [
     </div>
   </section>
 
+  <!-- ═══ THE COURSES ═══ -->
+  <section class="sap-section">
+    <div class="sap-container">
+      <div class="sap-header reveal-up">
+        <span class="sec-label">5 championship courses · all within 25 minutes</span>
+        <h2 class="sap-h2">The courses in your<br/><em>stay and play package</em></h2>
+      </div>
+      <!-- Course quick-match -->
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(200px,45vw),1fr));gap:10px;margin-bottom:40px;">
+        {[
+          {icon:'💪',badge:'Golf Digest Top 100',name:'Grizzly Ranch',line:'7,411 yds · Slope 140 · The hardest round in the valley',slug:'grizzly-ranch-golf-packages'},
+          {icon:'🏛️',badge:'Golf World Top 75',name:'Nakoma Dragon',line:'7,015 yds · Slope 147 · Frank Lloyd Wright clubhouse',slug:'nakoma-dragon-golf-packages'},
+          {icon:'🌿',badge:'Top 20 California',name:'Whitehawk Ranch',line:'6,983 yds · Slope 132 · Meadows, streams, pines',slug:'whitehawk-ranch-golf-packages'},
+          {icon:'🌲',badge:'Best Value Sierra Nevada',name:'Plumas Pines',line:'6,504 yds · Slope 132 · Tight fairways, on-course lodging',slug:'plumas-pines-golf-packages'},
+          {icon:'🎯',badge:'Sierra Nevada Classic',name:'Graeagle Meadows',line:'6,759 yds · Slope 120 · Classic mountain parkland',slug:'graeagle-meadows-golf-packages'},
+        ].map(c => (
+          <a href={`/portfolio/${c.slug}/`} style="padding:14px 16px;background:rgba(28,18,8,0.03);border:1px solid rgba(28,18,8,0.07);border-radius:10px;text-decoration:none;display:block;transition:all 0.2s;" onmouseover="this.style.borderColor='rgba(232,168,80,0.35)';this.style.background='rgba(232,168,80,0.04)'" onmouseout="this.style.borderColor='rgba(28,18,8,0.07)';this.style.background='rgba(28,18,8,0.03)'">
+            <div style="display:flex;gap:8px;align-items:center;margin-bottom:6px;">
+              <span style="font-size:18px;">{c.icon}</span>
+              <span style="font-size:10px;color:#a06c30;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;">{c.badge}</span>
+            </div>
+            <div style="font-size:14px;font-weight:600;color:#1a2e1a;margin-bottom:4px;">{c.name}</div>
+            <div style="font-size:12px;color:rgba(28,18,8,0.45);line-height:1.5;">{c.line}</div>
+          </a>
+        ))}
+      </div>
+      <!-- Dining cross-sell -->
+      <div style="background:rgba(232,168,80,0.06);border:1px solid rgba(232,168,80,0.18);border-radius:14px;padding:20px 24px;margin-bottom:0;">
+        <p style="font-size:10px;color:#a06c30;text-transform:uppercase;letter-spacing:0.12em;font-weight:700;margin:0 0 12px;">Dining — Also Coordinated</p>
+        <div style="display:flex;gap:16px;flex-wrap:wrap;align-items:center;justify-content:space-between;">
+          <p style="font-size:14px;color:rgba(28,18,8,0.6);margin:0;line-height:1.6;max-width:480px;">From on-course Longboards after Plumas Pines to group dinners at Grizzly Grill or the historic Iron Door — GolfGraeagle can reserve dining alongside your tee times.</p>
+          <a href="/dining/" style="font-size:13px;font-weight:600;color:#1a2e1a;padding:10px 18px;border:1px solid rgba(28,18,8,0.15);border-radius:8px;text-decoration:none;white-space:nowrap;flex-shrink:0;">Browse dining options →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ═══ FAQ ═══ -->
   <section class="sap-section">
     <div class="sap-container" style="max-width:760px">

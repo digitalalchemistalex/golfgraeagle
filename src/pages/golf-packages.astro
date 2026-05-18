@@ -186,7 +186,7 @@ const courses = [
       <div class="gp-courses-grid">
         {courses.map((c, i) => (
           <a href={`/portfolio/${c.slug}/`} class={`gp-course-card reveal-${i % 2 === 0 ? 'left' : 'right'} delay-${(i % 3) + 1}`}>
-            <div class="gp-course-img" style={`background-image:url(${c.hero})`}>
+            <div class="gp-course-img" style="position:relative;overflow:hidden;"><img src={c.hero} alt={`${c.name} Golf Course Graeagle`} loading={i===0?'eager':'lazy'} width="640" height="360" style="width:100%;height:100%;object-fit:cover;"/>
               <div class="gp-course-fade"></div>
               <span class="gp-course-badge" style={`background:${c.badgeColor}`}>{c.badge}</span>
               <div class="gp-course-from">From <strong>${c.priceFrom}/pp</strong></div>
@@ -242,6 +242,28 @@ const courses = [
           <p class="gp-faq-a">{item.acceptedAnswer.text}</p>
         </details>
       ))}
+    </div>
+  </section>
+
+  <!-- ═══ DINING CROSS-SELL ═══ -->
+  <section style="padding:56px 8%;background:#fff;">
+    <div style="max-width:960px;margin:0 auto;">
+      <p style="font-size:11px;color:#a06c30;text-transform:uppercase;letter-spacing:0.14em;font-weight:700;margin:0 0 14px;">Every Package Can Include Dining</p>
+      <h2 style="font-family:'Playfair Display',serif;font-size:clamp(20px,3vw,28px);color:#1a2e1a;margin:0 0 20px;font-weight:400;">Group dining — coordinated alongside tee times</h2>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(200px,45vw),1fr));gap:10px;margin-bottom:20px;">
+        {[
+          {name:'Grizzly Grill',note:'Group dinners, stone hearth, local game — at Grizzly Ranch',slug:'grizzly-grill'},
+          {name:'The Roadhouse',note:'On-site at River Pines — steaks, ribs, walk in after 18',slug:'roadhouse-at-river-pines'},
+          {name:"Cuccia's",note:"#1 rated Graeagle — handmade pizza, pasta, wine bar",slug:'cuccias'},
+          {name:'Sardine Lake Resort',note:'Alpine lake fine dining — book early, worth it',slug:'sardine-lake-resort'},
+        ].map(d => (
+          <a href={`/portfolio/${d.slug}/`} style="padding:14px;background:rgba(28,18,8,0.03);border:1px solid rgba(28,18,8,0.07);border-radius:10px;text-decoration:none;display:block;transition:border-color 0.2s;" onmouseover="this.style.borderColor='rgba(232,168,80,0.35)'" onmouseout="this.style.borderColor='rgba(28,18,8,0.07)'">
+            <div style="font-size:13px;font-weight:600;color:#1a2e1a;margin-bottom:5px;">{d.name}</div>
+            <div style="font-size:11px;color:rgba(28,18,8,0.45);line-height:1.5;">{d.note}</div>
+          </a>
+        ))}
+      </div>
+      <p style="font-size:13px;color:rgba(28,18,8,0.4);margin:0;"><a href="/dining/" style="color:#a06c30;text-decoration:none;font-weight:600;">See all 15 Graeagle restaurants →</a></p>
     </div>
   </section>
 

@@ -149,6 +149,29 @@ ogType="article"
       </table>
     </div>
 
+    <!-- Course photo grid -->
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(260px,45vw),1fr));gap:10px;margin:40px 0 56px;">
+      {courses.map((c, i) => (
+        <a href={`/portfolio/${c.slug === 'nakoma-dragon' ? 'nakoma-dragon-golf-packages' : c.slug + '-golf-packages'}/`}
+          style="position:relative;aspect-ratio:16/9;overflow:hidden;border-radius:12px;display:block;text-decoration:none;">
+          <img
+            src={c.slug === 'grizzly-ranch' ? '/wp-images/grizzly-ranch-hero.webp' :
+                 c.slug === 'graeagle-meadows' ? '/wp-images/graeagle-meadows-hero.webp' :
+                 c.slug === 'whitehawk-ranch' ? '/wp-images/whitehawk-hero.webp' :
+                 c.slug === 'plumas-pines' ? '/wp-images/plumas-pines-hero.webp' :
+                 '/wp-images/nakoma-dragon-feather-river.webp'}
+            alt={`${c.name} Golf Course — Graeagle CA`}
+            loading={i===0?'eager':'lazy'} width="480" height="270"
+            style="width:100%;height:100%;object-fit:cover;transition:transform 0.4s ease;"/>
+          <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(13,26,14,0.7) 0%,transparent 55%);"></div>
+          <div style="position:absolute;bottom:12px;left:14px;right:14px;">
+            <div style="font-size:13px;font-weight:600;color:#f5f0e8;">{c.name}</div>
+            <div style="font-size:11px;color:rgba(245,240,232,0.65);margin-top:2px;">Par {c.par} · Slope {c.slope} · {c.yards.toLocaleString()} yds</div>
+          </div>
+        </a>
+      ))}
+    </div>
+
     <!-- Course Sections -->
     <h2 style="font-family:'Playfair Display',serif;font-size:clamp(22px,3vw,32px);font-weight:400;color:#1a2e1a;margin:56px 0 24px;">Graeagle Meadows Golf Course</h2>
     <p style="font-size:17px;color:rgba(28,46,26,0.5);line-height:1.85;margin-bottom:16px;">

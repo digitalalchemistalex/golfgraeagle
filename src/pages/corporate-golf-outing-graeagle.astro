@@ -121,7 +121,26 @@ const QUOTE_URL = '/request-a-quote/?groupType=corporate&ref=corporate-landing';
             <p class="co-inc-body">{item.body}</p>
           </div>
         ))}
+      
+      <!-- Dining cross-sell -->
+      <div class="reveal" style="background:rgba(232,168,80,0.06);border:1px solid rgba(232,168,80,0.18);border-radius:14px;padding:24px 28px;margin-top:40px;">
+        <p style="font-size:10px;color:#a06c30;text-transform:uppercase;letter-spacing:0.12em;font-weight:700;margin:0 0 10px;">Group Dining — Coordinated by GolfGraeagle</p>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(180px,45vw),1fr));gap:10px;">
+          {[
+            {name:'Grizzly Grill', note:'Group dinner favourite — stone hearth, local game, exposed beams', slug:'grizzly-grill'},
+            {name:'The Roadhouse', note:'On-site at River Pines — steaks, ribs, walk in after 18', slug:'roadhouse-at-river-pines'},
+            {name:"Cuccia's", note:"#1 rated in Graeagle — handmade pizza, pasta, wine bar", slug:'cuccias'},
+            {name:'Iron Door', note:'Historic steakhouse since 1961 — great for the big group dinner', slug:'iron-door'},
+          ].map(d => (
+            <a href={`/portfolio/${d.slug}/`} style="padding:12px 14px;background:#fff;border:1px solid rgba(28,18,8,0.07);border-radius:8px;text-decoration:none;display:block;" onmouseover="this.style.borderColor='rgba(232,168,80,0.35)'" onmouseout="this.style.borderColor='rgba(28,18,8,0.07)'">
+              <div style="font-size:13px;font-weight:600;color:#1a2e1a;margin-bottom:4px;">{d.name}</div>
+              <div style="font-size:11px;color:rgba(28,18,8,0.45);line-height:1.5;">{d.note}</div>
+            </a>
+          ))}
+        </div>
+        <p style="font-size:12px;color:rgba(28,18,8,0.4);margin:14px 0 0;">GolfGraeagle can coordinate group dining reservations alongside your tee times and lodging — <a href="/dining/" style="color:#a06c30;text-decoration:none;">browse all restaurants →</a></p>
       </div>
+    </div>
     </div>
   </section>
 
