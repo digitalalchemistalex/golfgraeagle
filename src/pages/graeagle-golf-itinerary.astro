@@ -154,7 +154,7 @@ const whyPoints = [
       <div class="gi-ramp">
         {courses.map((c, i) => (
           <a href={`/portfolio/${c.slug}/`} class={`gi-ramp-card glow-card reveal-${i % 2 === 0 ? 'left' : 'right'} delay-${(i % 3) + 1}`}>
-            <div class="gi-ramp-img" style={`background-image:url(${c.hero})`}>
+            <div class="gi-ramp-img" style="position:relative;overflow:hidden;"><img src={c.hero} alt={`${c.name} golf itinerary Graeagle`} loading="lazy" width="320" height="170" style="width:100%;height:100%;object-fit:cover;"/>
               <div class="gi-ramp-fade"></div>
               <span class="gi-ramp-badge" style={`background:${c.badgeColor}`}>{c.badge}</span>
               <div class="gi-ramp-num-overlay">{i + 1}</div>
