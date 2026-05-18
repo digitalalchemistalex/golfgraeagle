@@ -254,26 +254,28 @@ const schema = [tripListSchema, breadcrumbSchema, faqSchema, aggregateRatingSche
           All lodging is inside the golf corridor — 5 minutes from the nearest first tee. We match you to the right property for group size, budget, and courses.
         </p>
       </div>
-      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(240px,100%),1fr));gap:20px;">
-        {[
-          { name:'River Pines Resort', tag:'Great for Groups', sub:'Groups 8–52 · Pool · On-site dining', img:'/wp-images/DJI_0949-Edit.webp', href:'/portfolio/river-pines-resort-graeagle-ca/' },
-          { name:'Townhomes at Plumas Pines', tag:'Steps from the First Tee', sub:'2–4BR units · Full kitchens · Fairway views', img:'/wp-images/2024-07-20.webp', href:'/portfolio/the-townhomes-at-plumas-pines/' },
-          { name:'Inn at Nakoma', tag:'Frank Lloyd Wright', sub:'FLW clubhouse · Fine dining · Secluded', img:'/wp-images/nakoma-flw-lodge-exterior.webp', href:'/portfolio/the-inn-at-nakoma-clio-ca/' },
-          { name:'Chalet View Lodge', tag:'Great Amenities', sub:'Pool · Hot tub · Near all 5 courses', img:'/wp-images/ChaletView-02.webp', href:'/portfolio/chalet-view-lodge-graeagle-ca/' },
-        ].map(l => (
-          <a href={l.href} style="display:flex;flex-direction:column;background:var(--surface);border-radius:16px;overflow:hidden;text-decoration:none;border:1px solid rgba(28,18,8,0.07);box-shadow:0 2px 12px rgba(0,0,0,0.05);transition:box-shadow 0.25s,transform 0.25s;"
-            onmouseover="this.style.boxShadow='0 8px 32px rgba(0,0,0,0.1)';this.style.transform='translateY(-3px)'"
-            onmouseout="this.style.boxShadow='0 2px 12px rgba(0,0,0,0.05)';this.style.transform='translateY(0)'">
-            <div style="height:160px;overflow:hidden;flex-shrink:0;">
-              <img src={l.img} alt={l.name} loading="lazy" style="width:100%;height:100%;object-fit:cover;"/>
-            </div>
-            <div style="padding:16px 18px 20px;">
-              <div style="font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:#e8a850;margin-bottom:6px;">{l.tag}</div>
-              <div style="font-size:15px;font-weight:700;color:#1c1208;margin-bottom:4px;line-height:1.25;">{l.name}</div>
-              <div style="font-size:12px;color:rgba(28,18,8,0.45);line-height:1.5;">{l.sub}</div>
-            </div>
-          </a>
-        ))}
+      <div class="gal-carousel-wrap" data-carousel style="margin-bottom:28px;">
+        <button class="gal-arrow gal-arrow-prev" aria-label="Previous">&#8249;</button>
+        <div class="gal-carousel" id="carousel-trips-lodging">
+          {[
+            { name:'River Pines Resort', tag:'Great for Groups', sub:'Groups 8–52 · Pool · On-site dining', img:'/wp-images/DJI_0949-Edit.webp', href:'/portfolio/river-pines-resort-graeagle-ca/' },
+            { name:'Townhomes at Plumas Pines', tag:'Steps from the First Tee', sub:'2–4BR units · Full kitchens · Fairway views', img:'/wp-images/2024-07-20.webp', href:'/portfolio/the-townhomes-at-plumas-pines/' },
+            { name:'Inn at Nakoma', tag:'Frank Lloyd Wright', sub:'FLW clubhouse · Fine dining · Secluded', img:'/wp-images/nakoma-flw-lodge-exterior.webp', href:'/portfolio/the-inn-at-nakoma-clio-ca/' },
+            { name:'Chalet View Lodge', tag:'Great Amenities', sub:'Pool · Hot tub · Near all 5 courses', img:'/wp-images/ChaletView-02.webp', href:'/portfolio/chalet-view-lodge-graeagle-ca/' },
+          ].map((l, i) => (
+            <a href={l.href} style="flex:0 0 calc(50% - 3px);display:flex;flex-direction:column;background:var(--surface);border-radius:16px;overflow:hidden;text-decoration:none;border:1px solid rgba(28,18,8,0.07);">
+              <div style="height:160px;overflow:hidden;flex-shrink:0;">
+                <img src={l.img} alt={l.name} loading={i===0?"eager":"lazy"} style="width:100%;height:100%;object-fit:cover;"/>
+              </div>
+              <div style="padding:16px 18px 20px;">
+                <div style="font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:#e8a850;margin-bottom:6px;">{l.tag}</div>
+                <div style="font-size:15px;font-weight:700;color:#1c1208;margin-bottom:4px;line-height:1.25;">{l.name}</div>
+                <div style="font-size:12px;color:rgba(28,18,8,0.45);line-height:1.5;">{l.sub}</div>
+              </div>
+            </a>
+          ))}
+        </div>
+        <button class="gal-arrow gal-arrow-next" aria-label="Next">&#8250;</button>
       </div>
       <div style="margin-top:28px;">
         <a href="/lodging/" style="font-size:13px;color:#a06c30;font-weight:600;text-decoration:none;">Graeagle golf lodging →</a>

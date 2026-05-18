@@ -161,21 +161,25 @@ const QUOTE_URL = '/request-a-quote/?groupType=weekend&ref=weekend-landing';
         <span class="sec-label">All 5 Graeagle courses available</span>
         <h2 class="wk-h2">Play any combination.<br/><em>We sequence them right.</em></h2>
       </div>
-      <div class="wk-courses">
-        {courses.map((c, i) => (
-          <div class={`wk-course-card reveal-scale delay-${i+1}`}>
-            <div class="wk-course-img-wrap">
-              <img src={c.img} alt={c.alt} loading="lazy" class="wk-course-img"/>
-              <div class="wk-course-fade"></div>
-              <span class="wk-course-badge">{c.accolade}</span>
+      <div class="gal-carousel-wrap" data-carousel>
+        <button class="gal-arrow gal-arrow-prev" aria-label="Previous">&#8249;</button>
+        <div class="gal-carousel wk-courses" id="carousel-wk-courses">
+          {courses.map((c, i) => (
+            <div class="wk-course-card" style="flex:0 0 calc(50% - 6px);">
+              <div class="wk-course-img-wrap">
+                <img src={c.img} alt={c.alt} loading={i===0?"eager":"lazy"} class="wk-course-img"/>
+                <div class="wk-course-fade"></div>
+                <span class="wk-course-badge">{c.accolade}</span>
+              </div>
+              <div class="wk-course-body">
+                <div class="wk-course-name">{c.name}</div>
+                <p class="wk-course-line">{c.line}</p>
+                <a href={`/portfolio/${c.slug}/`} class="wk-course-link underline-draw">Course details ↗</a>
+              </div>
             </div>
-            <div class="wk-course-body">
-              <div class="wk-course-name">{c.name}</div>
-              <p class="wk-course-line">{c.line}</p>
-              <a href={`/portfolio/${c.slug}/`} class="wk-course-link underline-draw">Course details ↗</a>
-            </div>
-          </div>
-        ))}
+          ))}
+        </div>
+        <button class="gal-arrow gal-arrow-next" aria-label="Next">&#8250;</button>
       </div>
     </div>
   </section>
