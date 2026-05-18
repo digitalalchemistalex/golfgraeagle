@@ -97,15 +97,7 @@ const baseSchema = {
       "url": siteConfig.url,
       "name": "GolfGraeagle.com",
       "description": siteConfig.description,
-      "publisher": { "@id": `${siteConfig.url}/#organization` },
-      "potentialAction": {
-        "@type": "SearchAction",
-        "target": {
-          "@type": "EntryPoint",
-          "urlTemplate": `${siteConfig.url}/courses?q={search_term_string}`
-        },
-        "query-input": "required name=search_term_string"
-      }
+      "publisher": { "@id": `${siteConfig.url}/#organization` }
     },
     {
       "@type": "WebPage",
