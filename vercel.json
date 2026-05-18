@@ -1,6 +1,21 @@
 {
   "redirects": [
     {
+      "source": "/graeagle-golf-vacation",
+      "destination": "/graeagle-golf-vacation/",
+      "permanent": true
+    },
+    {
+      "source": "/stay-and-play-golf-california",
+      "destination": "/stay-and-play-golf-california/",
+      "permanent": true
+    },
+    {
+      "source": "/golf-packages-northern-california",
+      "destination": "/golf-packages-northern-california/",
+      "permanent": true
+    },
+    {
       "source": "/about-us",
       "destination": "/about-us/",
       "permanent": true
