@@ -98,6 +98,19 @@ ${url('/graeagle-golf-vacation','0.9','monthly')}
 ${url('/stay-and-play-golf-california','0.9','monthly')}
 ${url('/golf-packages-northern-california','0.9','monthly')}
 ${url('/trips','0.8','weekly')}
+<!-- Individual trip package pages (12 real packages) -->
+${url('/trips/graeagle-river-pines-golf-group','0.8','monthly')}
+${url('/trips/graeagle-golf-trip','0.8','monthly')}
+${url('/trips/graeagle-quick-hitter','0.8','monthly')}
+${url('/trips/river-pines-3-rounds','0.8','monthly')}
+${url('/trips/graeagle-in-the-fall','0.8','monthly')}
+${url('/trips/river-pines-golf-package','0.8','monthly')}
+${url('/trips/graeagle-golf-trip-3n-3r-premium','0.8','monthly')}
+${url('/trips/far-and-wide','0.8','monthly')}
+${url('/trips/graeagle-golf-trip-3n-3r-value','0.8','monthly')}
+${url('/trips/bob-s-group','0.8','monthly')}
+${url('/trips/graeagle-buckets-golf-trip','0.8','monthly')}
+${url('/trips/plumas-pines-golf-group','0.8','monthly')}
 ${url('/graeagle-vacation-rentals','0.8','monthly')}
 ${url('/graeagle-golf-hotels','0.8','monthly')}
 ${url('/lodging','0.8','monthly')}

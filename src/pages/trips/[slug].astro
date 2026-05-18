@@ -1,0 +1,497 @@
+---
+export const prerender = true;
+import Base from '../../layouts/Base.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+
+// ── Fetch all trips at build time ──────────────────────────────────────────
+let allTrips: any[] = [];
+try {
+  const res = await fetch('https://golfthehighsierra.com/trips-caddie/api/api-recaps.php', {
+    headers: { 'User-Agent': 'Mozilla/5.0' }
+  });
+  allTrips = await res.json();
+} catch(e) { allTrips = []; }
+
+// Non-Graeagle venues — exclude trips that include these
+const NON_GRAEAGLE = ['Red Hawk','Gray\'s Crossing','Coyote Moon','Winchester','Silver Legacy',
+  'Incline','ArrowCreek','Lakeridge','Old Greenwood','Reno','Tahoe','Cottages'];
+
+function isGraeagleTrip(t: any): boolean {
+  const courseStr = (t.courses || []).join(' ');
+  const lodgingStr = t.lodging || '';
+  return !NON_GRAEAGLE.some(ng => courseStr.includes(ng) || lodgingStr.includes(ng));
+}
+
+// Buildable trips: pure Graeagle, has pricing, has itinerary
+const buildableTrips = allTrips.filter((t: any) =>
+  (t.region || '').toLowerCase() === 'graeagle' &&
+  t.pricePerPerson &&
+  t.slug &&
+  isGraeagleTrip(t)
+);
+
+export async function getStaticPaths() {
+  let trips: any[] = [];
+  try {
+    const res = await fetch('https://golfthehighsierra.com/trips-caddie/api/api-recaps.php', {
+      headers: { 'User-Agent': 'Mozilla/5.0' }
+    });
+    trips = await res.json();
+  } catch(e) { trips = []; }
+
+  const NON_GR = ['Red Hawk','Gray\'s Crossing','Coyote Moon','Winchester','Silver Legacy',
+    'Incline','ArrowCreek','Lakeridge','Old Greenwood','Cottages'];
+
+  const buildable = trips.filter((t: any) => {
+    if ((t.region || '').toLowerCase() !== 'graeagle') return false;
+    if (!t.pricePerPerson || !t.slug) return false;
+    const courseStr = (t.courses || []).join(' ');
+    const lodgingStr = t.lodging || '';
+    return !NON_GR.some(ng => courseStr.includes(ng) || lodgingStr.includes(ng));
+  });
+
+  return buildable.map((t: any) => ({
+    params: { slug: t.slug },
+    props: { trip: t, allTrips: buildable }
+  }));
+}
+
+const { trip, allTrips: allBuildable } = Astro.props;
+
+// ── Helpers ────────────────────────────────────────────────────────────────
+
+// Map course name → canonical portfolio slug + hero image
+const COURSE_MAP: Record<string, {slug: string; img: string; short: string}> = {
+  'Grizzly Ranch Golf Club':     { slug: 'grizzly-ranch-golf-packages',    img: '/wp-images/grizzly-ranch-hero.webp',          short: 'Grizzly Ranch' },
+  'Whitehawk Ranch Golf Club':   { slug: 'whitehawk-ranch-golf-packages',  img: '/wp-images/whitehawk-hero.webp',              short: 'Whitehawk Ranch' },
+  'Plumas Pines Golf Resort':    { slug: 'plumas-pines-golf-packages',     img: '/wp-images/plumas-pines-hero.webp',           short: 'Plumas Pines' },
+  'Graeagle Meadows Golf Course':{ slug: 'graeagle-meadows-golf-packages', img: '/wp-images/graeagle-meadows-hero.webp',       short: 'Graeagle Meadows' },
+  'The Dragon':                  { slug: 'nakoma-dragon-golf-packages',    img: '/wp-images/nakoma-dragon-feather-river.webp', short: 'Nakoma Dragon' },
+  'Grizzly Ranch':               { slug: 'grizzly-ranch-golf-packages',    img: '/wp-images/grizzly-ranch-hero.webp',          short: 'Grizzly Ranch' },
+  'Whitehawk Ranch':             { slug: 'whitehawk-ranch-golf-packages',  img: '/wp-images/whitehawk-hero.webp',              short: 'Whitehawk Ranch' },
+  'Plumas Pines':                { slug: 'plumas-pines-golf-packages',     img: '/wp-images/plumas-pines-hero.webp',           short: 'Plumas Pines' },
+  'Graeagle Meadows':            { slug: 'graeagle-meadows-golf-packages', img: '/wp-images/graeagle-meadows-hero.webp',       short: 'Graeagle Meadows' },
+  'Nakoma Dragon Golf Course':   { slug: 'nakoma-dragon-golf-packages',    img: '/wp-images/nakoma-dragon-feather-river.webp', short: 'Nakoma Dragon' },
+};
+
+// Map lodging → canonical portfolio slug
+const LODGING_MAP: Record<string, {slug: string; label: string}> = {
+  'River Pines Resort':    { slug: 'river-pines-resort-graeagle-ca', label: 'River Pines Resort' },
+  'Plumas Pines Golf Resort': { slug: 'the-townhomes-at-plumas-pines', label: 'Townhomes at Plumas Pines' },
+  'Townhomes at Plumas Pines': { slug: 'the-townhomes-at-plumas-pines', label: 'Townhomes at Plumas Pines' },
+  'Plumas Pines Townhome': { slug: 'the-townhomes-at-plumas-pines', label: 'Townhomes at Plumas Pines' },
+  'Chalet View Lodge':     { slug: 'chalet-view-lodge-graeagle-ca', label: 'Chalet View Lodge' },
+  'Inn at Nakoma':         { slug: 'the-inn-at-nakoma-clio-ca', label: 'Inn at Nakoma' },
+};
+
+function resolveCourse(name: string) {
+  return COURSE_MAP[name] || { slug: 'all-golf-courses', img: '/wp-images/graeagle-meadows-hero.webp', short: name.replace(/ Golf (Club|Course|Resort)$/,'') };
+}
+
+function resolveLodging(lodging: string) {
+  for (const [key, val] of Object.entries(LODGING_MAP)) {
+    if (lodging.includes(key)) return val;
+  }
+  return null;
+}
+
+function cleanCourseName(name: string): string {
+  return name.replace(/ Golf (Club|Course|Resort)$/,'');
+}
+
+// Hero image = first course in trip
+const courses: string[] = trip.courses || [];
+const heroImg = resolveCourse(courses[0] || '').img;
+const heroAlt = `${trip.groupName} — Graeagle golf trip ${trip.groupSize} golfers`;
+
+// Course short names for display
+const courseShorts = courses.map(cleanCourseName);
+const lodgingInfo = resolveLodging(trip.lodging || '');
+
+// Similar trips: same vibe or close price, exclude self
+const similarTrips = allBuildable
+  .filter((t: any) => t.slug !== trip.slug && t.pricePerPerson)
+  .sort((a: any, b: any) => Math.abs(a.pricePerPerson - trip.pricePerPerson) - Math.abs(b.pricePerPerson - trip.pricePerPerson))
+  .slice(0, 3);
+
+// SEO
+const coursesForMeta = courseShorts.slice(0,3).join(', ');
+const pageTitle = `${trip.groupName} | ${trip.groupSize} Golfers, ${trip.nights} Nights from $${trip.pricePerPerson}/pp — Graeagle`;
+const pageDesc = `Real ${trip.nights}-night Graeagle golf trip for ${trip.groupSize} golfers — ${coursesForMeta}. ${trip.lodging ? trip.lodging.split('(')[0].trim() + '. ' : ''}$${trip.pricePerPerson}/person all-inclusive. Book a similar package.`;
+const canonical = `https://golfgraeagle.com/trips/${trip.slug}/`;
+
+// Schema: TouristTrip
+const tripSchema = {
+  "@context": "https://schema.org",
+  "@type": "TouristTrip",
+  "name": trip.groupName,
+  "description": trip.synopsis || pageDesc,
+  "url": canonical,
+  "touristType": "Golf Travelers",
+  "itinerary": (trip.dailyItinerary || []).map((d: any) => ({
+    "@type": "TouristAttraction",
+    "name": d.location,
+    "description": d.notes
+  })),
+  "provider": {
+    "@type": "TravelAgency",
+    "@id": "https://golfgraeagle.com/#organization",
+    "name": "GolfGraeagle.com"
+  },
+  "offers": {
+    "@type": "Offer",
+    "price": trip.pricePerPerson,
+    "priceCurrency": "USD",
+    "description": `Per person, ${trip.nights} nights, ${trip.rounds} rounds`
+  }
+};
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://golfgraeagle.com" },
+    { "@type": "ListItem", "position": 2, "name": "Trips", "item": "https://golfgraeagle.com/trips/" },
+    { "@type": "ListItem", "position": 3, "name": trip.groupName, "item": canonical }
+  ]
+};
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": `How much does a ${trip.nights}-night Graeagle golf trip cost for ${trip.groupSize} golfers?`,
+      "acceptedAnswer": { "@type": "Answer", "text": `This ${trip.nights}-night, ${trip.rounds}-round Graeagle golf package for ${trip.groupSize} golfers costs $${trip.pricePerPerson} per person all-inclusive. That covers tee times at ${courseShorts.join(', ')}, lodging at ${trip.lodging?.split('(')[0].trim() || 'Graeagle-area property'}, and full trip coordination.` }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I book a similar Graeagle golf trip for my group?",
+      "acceptedAnswer": { "@type": "Answer", "text": `Yes. GolfGraeagle can replicate this package for your dates and group size. Submit a quote request and reference the ${trip.groupName} itinerary — Mike Eskuchen will build a custom proposal within 24 hours.` }
+    },
+    {
+      "@type": "Question",
+      "name": "What is included in this Graeagle golf package?",
+      "acceptedAnswer": { "@type": "Answer", "text": `This package includes ${trip.rounds} rounds of golf at ${courseShorts.join(', ')}, ${trip.nights} nights lodging, and complete tee time coordination. Pricing is $${trip.pricePerPerson} per person.` }
+    },
+    {
+      "@type": "Question",
+      "name": "When is the best time to play this Graeagle golf trip?",
+      "acceptedAnswer": { "@type": "Answer", "text": `This trip ran in ${trip.month}. Graeagle golf season runs late April through October. June–September are peak months with the best weather and course conditions.` }
+    }
+  ]
+};
+---
+<Base
+  title={pageTitle}
+  description={pageDesc}
+  canonical={canonical}
+  ogImage={`https://golfgraeagle.com${heroImg}`}
+  schema={[tripSchema, breadcrumbSchema, faqSchema]}
+>
+  <Nav />
+
+  <!-- ══ HERO ══════════════════════════════════════════════════════════════ -->
+  <section style="position:relative;min-height:72vh;display:flex;align-items:flex-end;overflow:hidden;">
+    <div style="position:absolute;inset:0;">
+      <img src={heroImg} alt={heroAlt} loading="eager" width="1400" height="800"
+        style="width:100%;height:100%;object-fit:cover;"/>
+      <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(13,26,14,0.92) 0%,rgba(13,26,14,0.5) 50%,rgba(13,26,14,0.15) 100%);"></div>
+    </div>
+    <div style="position:relative;z-index:1;width:100%;padding:clamp(40px,6vw,80px) clamp(20px,8%,120px);max-width:1100px;margin:0 auto;">
+      <!-- Breadcrumb -->
+      <p style="font-size:11px;color:rgba(245,240,232,0.5);margin:0 0 16px;font-weight:600;text-transform:uppercase;letter-spacing:.1em;">
+        <a href="/" style="color:rgba(245,240,232,0.5);text-decoration:none;">Home</a>
+        <span style="margin:0 8px;">›</span>
+        <a href="/trips/" style="color:rgba(245,240,232,0.5);text-decoration:none;">Trips</a>
+        <span style="margin:0 8px;">›</span>
+        {trip.groupName}
+      </p>
+      <!-- Vibe badge -->
+      <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px;">
+        <span style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;background:rgba(232,168,80,0.92);color:#1c1208;padding:4px 12px;border-radius:100px;">{trip.vibe} Package</span>
+        <span style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;background:rgba(245,240,232,0.12);color:rgba(245,240,232,0.8);padding:4px 12px;border-radius:100px;border:1px solid rgba(245,240,232,0.2);">{trip.month} {trip.year}</span>
+      </div>
+      <h1 style="font-family:'Playfair Display',Georgia,serif;font-size:clamp(32px,5vw,58px);color:#f5f0e8;margin:0 0 20px;line-height:1.1;font-weight:400;">
+        {trip.groupName}
+      </h1>
+      <!-- Key stats strip -->
+      <div style="display:flex;flex-wrap:wrap;gap:20px;margin-bottom:32px;">
+        {[
+          { label:'Golfers', value: String(trip.groupSize) },
+          { label:'Nights', value: String(trip.nights) },
+          { label:'Rounds', value: String(trip.rounds) },
+          { label:'Per Person', value: `$${trip.pricePerPerson.toLocaleString()}` },
+        ].map(s => (
+          <div style="text-align:left;">
+            <div style="font-size:11px;color:rgba(245,240,232,0.45);text-transform:uppercase;letter-spacing:.1em;font-weight:700;margin-bottom:2px;">{s.label}</div>
+            <div style="font-size:28px;font-weight:700;color:#e8a850;line-height:1;">{s.value}</div>
+          </div>
+        ))}
+      </div>
+      <div style="display:flex;gap:12px;flex-wrap:wrap;">
+        <a href={`/request-a-quote/?ref=trip-${trip.slug}&nights=${trip.nights}&rounds=${trip.rounds}&partySize=${trip.groupSize}`}
+          class="btn-green-glow" style="font-size:15px;padding:14px 32px;">Book a Trip Like This →</a>
+        <a href="/trips/" style="font-size:14px;color:rgba(245,240,232,0.55);text-decoration:none;padding:14px 0;display:inline-flex;align-items:center;">
+          ← All Packages
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ AEO ANSWER BOX ════════════════════════════════════════════════════ -->
+  <section style="background:#f5f2ec;padding:32px clamp(20px,8%,120px);border-bottom:1px solid rgba(28,18,8,0.08);">
+    <div style="max-width:860px;margin:0 auto;">
+      <p class="speakable" style="font-size:17px;color:#1c1208;line-height:1.7;margin:0;">
+        <strong>This is a {trip.nights}-night, {trip.rounds}-round Graeagle golf trip for {trip.groupSize} golfers at ${trip.pricePerPerson.toLocaleString()} per person.</strong>{' '}
+        Courses played: {courseShorts.join(', ')}.
+        {lodgingInfo ? <span> Lodging: <a href={`/portfolio/${lodgingInfo.slug}/`} style="color:#a06c30;font-weight:600;">{lodgingInfo.label}</a>.</span> : <span> Lodging: {trip.lodging?.split('(')[0].trim()}.</span>}
+        {' '}All tee times confirmed, lodging coordinated, and full itinerary built by Mike Eskuchen.
+      </p>
+    </div>
+  </section>
+
+  <!-- ══ MAIN CONTENT ═══════════════════════════════════════════════════════ -->
+  <section style="background:#fff;padding:clamp(48px,7vw,96px) clamp(20px,8%,120px);">
+    <div style="max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr min(320px,35%);gap:clamp(32px,5vw,64px);align-items:start;" class="trip-main-grid">
+
+      <!-- LEFT: Trip detail -->
+      <div>
+
+        <!-- Synopsis -->
+        {trip.synopsis && (
+          <p style="font-size:16px;color:rgba(28,18,8,0.65);line-height:1.85;margin:0 0 40px;" class="speakable">
+            {trip.synopsis}
+          </p>
+        )}
+
+        <!-- Daily Itinerary -->
+        {trip.dailyItinerary?.length > 0 && (
+          <div style="margin-bottom:48px;">
+            <h2 style="font-family:'Playfair Display',Georgia,serif;font-size:clamp(22px,3vw,30px);color:#1a2e1a;margin:0 0 24px;font-weight:400;">Day-by-Day Itinerary</h2>
+            <div style="display:flex;flex-direction:column;gap:0;">
+              {trip.dailyItinerary.map((day: any, i: number) => (
+                <div style={`display:flex;gap:20px;padding:20px 0;${i < trip.dailyItinerary.length-1 ? 'border-bottom:1px solid rgba(28,18,8,0.06);' : ''}`}>
+                  <div style="flex-shrink:0;width:44px;height:44px;background:#1a2e1a;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#e8a850;font-size:13px;font-weight:700;">D{day.day}</div>
+                  <div style="flex:1;">
+                    <div style="font-weight:700;color:#1c1208;font-size:15px;margin-bottom:4px;">{day.location}</div>
+                    {day.time && <div style="font-size:13px;color:#a06c30;font-weight:600;margin-bottom:4px;">Tee time: {day.time}</div>}
+                    {day.notes && <div style="font-size:13px;color:rgba(28,18,8,0.5);line-height:1.5;">{day.notes}</div>}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        <!-- Courses Played -->
+        <div style="margin-bottom:48px;">
+          <h2 style="font-family:'Playfair Display',Georgia,serif;font-size:clamp(22px,3vw,30px);color:#1a2e1a;margin:0 0 24px;font-weight:400;">Courses Played</h2>
+          <div class="gal-carousel-wrap" data-carousel>
+            <button class="gal-arrow gal-arrow-prev" aria-label="Previous">&#8249;</button>
+            <div class="gal-carousel" id={`carousel-courses-${trip.slug}`}>
+              {courses.map((c: string, i: number) => {
+                const info = resolveCourse(c);
+                return (
+                  <a href={`/portfolio/${info.slug}/`} style="flex:0 0 calc(50% - 3px);position:relative;aspect-ratio:16/9;overflow:hidden;border-radius:10px;display:block;text-decoration:none;">
+                    <img src={info.img} alt={`${info.short} — Graeagle golf course`} loading={i===0?"eager":"lazy"} width="480" height="270" style="width:100%;height:100%;object-fit:cover;transition:transform .4s;"/>
+                    <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(13,26,14,0.8) 0%,transparent 55%);"></div>
+                    <div style="position:absolute;bottom:10px;left:12px;right:12px;">
+                      <div style="color:#f5f0e8;font-size:13px;font-weight:700;line-height:1.2;">{info.short}</div>
+                      <div style="font-size:11px;color:#e8a850;margin-top:3px;font-weight:600;">Day {i+1} →</div>
+                    </div>
+                  </a>
+                );
+              })}
+            </div>
+            <button class="gal-arrow gal-arrow-next" aria-label="Next">&#8250;</button>
+          </div>
+        </div>
+
+        <!-- Why It Worked -->
+        {trip.whyItWorked?.trim() && (
+          <div style="margin-bottom:48px;background:#f5f2ec;border-left:3px solid #e8a850;border-radius:0 12px 12px 0;padding:24px 28px;">
+            <p style="font-size:11px;color:#a06c30;text-transform:uppercase;letter-spacing:.12em;font-weight:700;margin:0 0 12px;">Why This Trip Worked</p>
+            <p style="font-size:16px;color:#1c1208;line-height:1.75;margin:0 0 16px;font-style:italic;">"{trip.whyItWorked}"</p>
+            <div style="display:flex;align-items:center;gap:10px;">
+              <img src="https://nv-for-hd-v1757363743.websitepro-cdn.com/wp-content/uploads/2026/01/skoogen-head-shot-1.png"
+                alt="Mike Eskuchen — Graeagle Golf Trip Specialist" loading="lazy" width="36" height="36"
+                style="width:36px;height:36px;border-radius:50%;object-fit:cover;flex-shrink:0;"/>
+              <div>
+                <div style="font-size:13px;font-weight:700;color:#1c1208;">Mike Eskuchen</div>
+                <div style="font-size:11px;color:rgba(28,18,8,0.45);">Golf Trip Specialist, GolfGraeagle.com</div>
+              </div>
+            </div>
+          </div>
+        )}
+
+        <!-- Highlights -->
+        {trip.highlights?.length > 0 && (
+          <div style="margin-bottom:48px;">
+            <h2 style="font-family:'Playfair Display',Georgia,serif;font-size:clamp(20px,2.5vw,26px);color:#1a2e1a;margin:0 0 20px;font-weight:400;">Trip Highlights</h2>
+            <div style="display:flex;flex-direction:column;gap:10px;">
+              {trip.highlights.map((h: string) => (
+                <div style="display:flex;gap:12px;align-items:flex-start;font-size:15px;color:rgba(28,18,8,0.7);line-height:1.5;">
+                  <span style="color:#e8a850;font-size:12px;margin-top:4px;flex-shrink:0;">✓</span>
+                  {h}
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        <!-- FAQ -->
+        <div style="margin-bottom:48px;">
+          <h2 style="font-family:'Playfair Display',Georgia,serif;font-size:clamp(22px,3vw,30px);color:#1a2e1a;margin:0 0 24px;font-weight:400;">Frequently Asked Questions</h2>
+          {[
+            {
+              q: `How much does a ${trip.nights}-night Graeagle golf trip cost for ${trip.groupSize} golfers?`,
+              a: `This ${trip.nights}-night, ${trip.rounds}-round package for ${trip.groupSize} golfers runs $${trip.pricePerPerson.toLocaleString()} per person all-inclusive. That covers green fees at ${courseShorts.join(', ')}, lodging, and complete tee time coordination.`
+            },
+            {
+              q: 'Can I book this exact trip for my dates?',
+              a: `Yes. Submit a quote request and reference the ${trip.groupName} itinerary. Mike Eskuchen will build a custom proposal for your dates and group size within 24 hours.`
+            },
+            {
+              q: 'What is included in the price?',
+              a: `The $${trip.pricePerPerson.toLocaleString()}/person price covers ${trip.rounds} rounds of golf, ${trip.nights} nights lodging, confirmed tee times, and full trip coordination. Transportation, dining, and additional activities are separate.`
+            },
+            {
+              q: 'Can I swap courses or lodging?',
+              a: `Absolutely. This itinerary is a starting point — any course or lodging combination can be swapped. GolfGraeagle has direct relationships with all 5 Graeagle courses and all 4 lodging properties.`
+            }
+          ].map((item, i) => (
+            <div style={`padding:20px 0;${i < 3 ? 'border-bottom:1px solid rgba(28,18,8,0.07);' : ''}`}>
+              <h3 style="font-size:16px;font-weight:700;color:#1a2e1a;margin:0 0 10px;">{item.q}</h3>
+              <p style="font-size:15px;color:rgba(28,18,8,0.65);line-height:1.7;margin:0;">{item.a}</p>
+            </div>
+          ))}
+        </div>
+
+      </div>
+
+      <!-- RIGHT: Sticky sidebar -->
+      <div class="trip-sidebar">
+        <!-- Package card -->
+        <div style="background:#fff;border:1px solid rgba(28,18,8,0.1);border-radius:16px;padding:24px;margin-bottom:20px;box-shadow:0 4px 24px rgba(0,0,0,0.06);">
+          <p style="font-size:10px;color:#a06c30;text-transform:uppercase;letter-spacing:.12em;font-weight:700;margin:0 0 4px;">Package Price</p>
+          <div style="font-size:42px;font-weight:800;color:#1a2e1a;line-height:1;margin-bottom:4px;">${trip.pricePerPerson.toLocaleString()}</div>
+          <p style="font-size:13px;color:rgba(28,18,8,0.45);margin:0 0 20px;">per person · all-inclusive</p>
+          <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:20px;">
+            {[
+              `${trip.groupSize} golfers`,
+              `${trip.nights} nights lodging`,
+              `${trip.rounds} rounds of golf`,
+              `Confirmed tee times`,
+              `Full coordination`
+            ].map(item => (
+              <div style="display:flex;gap:10px;align-items:center;font-size:13px;color:rgba(28,18,8,0.65);">
+                <span style="color:#1a7a40;font-size:11px;">✓</span>
+                {item}
+              </div>
+            ))}
+          </div>
+          <a href={`/request-a-quote/?ref=trip-${trip.slug}&nights=${trip.nights}&rounds=${trip.rounds}&partySize=${trip.groupSize}`}
+            class="btn-green-glow" style="display:block;text-align:center;font-size:14px;padding:14px;">
+            Book a Trip Like This →
+          </a>
+          <p style="font-size:11px;color:rgba(28,18,8,0.35);text-align:center;margin:12px 0 0;">Free quote · 24hr response</p>
+        </div>
+
+        <!-- Lodging -->
+        {lodgingInfo && (
+          <div style="background:#f5f2ec;border-radius:12px;padding:18px 20px;margin-bottom:20px;">
+            <p style="font-size:10px;color:#a06c30;text-transform:uppercase;letter-spacing:.12em;font-weight:700;margin:0 0 8px;">Lodging</p>
+            <a href={`/portfolio/${lodgingInfo.slug}/`} style="font-size:14px;font-weight:700;color:#1a2e1a;text-decoration:none;display:flex;justify-content:space-between;align-items:center;" onmouseover="this.style.opacity='.7'" onmouseout="this.style.opacity='1'">
+              {lodgingInfo.label}
+              <span style="color:#a06c30;font-size:12px;">View →</span>
+            </a>
+          </div>
+        )}
+
+        <!-- Courses quick list -->
+        <div style="background:#f5f2ec;border-radius:12px;padding:18px 20px;margin-bottom:20px;">
+          <p style="font-size:10px;color:#a06c30;text-transform:uppercase;letter-spacing:.12em;font-weight:700;margin:0 0 12px;">Courses</p>
+          {courses.map((c: string, i: number) => {
+            const info = resolveCourse(c);
+            return (
+              <a href={`/portfolio/${info.slug}/`} style={`display:flex;justify-content:space-between;align-items:center;text-decoration:none;padding:8px 0;${i < courses.length-1?'border-bottom:1px solid rgba(28,18,8,0.06);':''}`} onmouseover="this.style.opacity='.7'" onmouseout="this.style.opacity='1'">
+                <span style="font-size:13px;color:#1a2e1a;font-weight:600;">{info.short}</span>
+                <span style="font-size:11px;color:#a06c30;">Day {i+1}</span>
+              </a>
+            );
+          })}
+        </div>
+
+        <!-- Mike CTA -->
+        <div style="background:#1a2e1a;border-radius:12px;padding:20px;text-align:center;">
+          <img src="https://nv-for-hd-v1757363743.websitepro-cdn.com/wp-content/uploads/2026/01/skoogen-head-shot-1.png"
+            alt="Mike Eskuchen" loading="lazy" width="52" height="52"
+            style="width:52px;height:52px;border-radius:50%;object-fit:cover;margin:0 auto 12px;display:block;border:2px solid rgba(232,168,80,0.4);"/>
+          <p style="font-size:13px;font-weight:700;color:#f5f0e8;margin:0 0 4px;">Mike Eskuchen</p>
+          <p style="font-size:11px;color:rgba(245,240,232,0.5);margin:0 0 14px;">Golf Trip Specialist</p>
+          <p style="font-size:12px;color:rgba(245,240,232,0.65);line-height:1.6;margin:0 0 14px;">20+ years in Graeagle golf. This trip built personally.</p>
+          <a href="/request-a-quote/" style="font-size:12px;color:#e8a850;font-weight:700;text-decoration:none;">Get a custom quote →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ SIMILAR TRIPS ══════════════════════════════════════════════════════ -->
+  {similarTrips.length > 0 && (
+    <section style="background:#f5f2ec;padding:clamp(48px,7vw,80px) clamp(20px,8%,120px);">
+      <div style="max-width:1100px;margin:0 auto;">
+        <p style="font-size:11px;color:#a06c30;text-transform:uppercase;letter-spacing:.14em;font-weight:700;margin:0 0 8px;">More Graeagle Golf Packages</p>
+        <h2 style="font-family:'Playfair Display',Georgia,serif;font-size:clamp(24px,3.5vw,36px);color:#1a2e1a;margin:0 0 32px;font-weight:400;">Similar trips to consider</h2>
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(300px,100%),1fr));gap:20px;">
+          {similarTrips.map((t: any) => {
+            const tc = t.courses || [];
+            const heroI = resolveCourse(tc[0] || '').img;
+            const tShorts = tc.map(cleanCourseName).slice(0,3).join(', ');
+            return (
+              <a href={`/trips/${t.slug}/`} style="display:flex;flex-direction:column;background:#fff;border-radius:14px;overflow:hidden;text-decoration:none;border:1px solid rgba(28,18,8,0.07);box-shadow:0 2px 12px rgba(0,0,0,0.04);transition:box-shadow .25s,transform .25s;" onmouseover="this.style.boxShadow='0 8px 32px rgba(0,0,0,0.1)';this.style.transform='translateY(-3px)'" onmouseout="this.style.boxShadow='0 2px 12px rgba(0,0,0,0.04)';this.style.transform='translateY(0)'">
+                <div style="height:160px;overflow:hidden;position:relative;flex-shrink:0;">
+                  <img src={heroI} alt={t.groupName} loading="lazy" width="400" height="225" style="width:100%;height:100%;object-fit:cover;"/>
+                  <div style="position:absolute;top:10px;left:12px;"><span style="font-size:9px;font-weight:700;text-transform:uppercase;background:rgba(232,168,80,0.92);color:#1c1208;padding:3px 8px;border-radius:100px;">{t.vibe}</span></div>
+                </div>
+                <div style="padding:16px 18px 20px;flex:1;">
+                  <div style="font-size:15px;font-weight:700;color:#1a2e1a;margin-bottom:6px;line-height:1.3;">{t.groupName}</div>
+                  <div style="font-size:12px;color:rgba(28,18,8,0.45);margin-bottom:12px;line-height:1.5;">{t.groupSize} golfers · {t.nights}N/{t.rounds}R · {tShorts}</div>
+                  <div style="font-size:20px;font-weight:800;color:#1a2e1a;">${t.pricePerPerson.toLocaleString()}<span style="font-size:12px;font-weight:400;color:rgba(28,18,8,0.4);"> /pp</span></div>
+                </div>
+              </a>
+            );
+          })}
+        </div>
+        <div style="margin-top:28px;">
+          <a href="/trips/" style="font-size:13px;color:#a06c30;font-weight:700;text-decoration:none;">Browse all Graeagle packages →</a>
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- ══ CTA ═══════════════════════════════════════════════════════════════ -->
+  <section style="background:#1a2e1a;padding:clamp(48px,7vw,80px) clamp(20px,8%,120px);text-align:center;">
+    <div style="max-width:600px;margin:0 auto;">
+      <p style="font-size:11px;color:rgba(232,168,80,0.7);text-transform:uppercase;letter-spacing:.14em;font-weight:700;margin:0 0 12px;">Ready to go?</p>
+      <h2 style="font-family:'Playfair Display',Georgia,serif;font-size:clamp(26px,4vw,42px);color:#f5f0e8;margin:0 0 16px;font-weight:400;line-height:1.2;">Book a trip like this for your group.</h2>
+      <p style="font-size:16px;color:rgba(245,240,232,0.6);max-width:480px;margin:0 auto 32px;line-height:1.7;">Tell us your headcount, dates, and which courses you want. Mike builds a full proposal — tee times, lodging, itinerary — within 24 hours.</p>
+      <a href={`/request-a-quote/?ref=trip-${trip.slug}&nights=${trip.nights}&rounds=${trip.rounds}&partySize=${trip.groupSize}`}
+        class="btn-green-glow" style="font-size:16px;padding:16px 44px;">Get a Free Quote →</a>
+      <p style="font-size:12px;color:rgba(245,240,232,0.3);margin:16px 0 0;">No commitment · Free · Response within 24 hours</p>
+    </div>
+  </section>
+
+  <Footer />
+</Base>
+
+<style>
+.trip-main-grid { align-items: start; }
+.trip-sidebar { position: sticky; top: 90px; }
+@media (max-width: 860px) {
+  .trip-main-grid { grid-template-columns: 1fr !important; }
+  .trip-sidebar { position: static; }
+}
+</style>

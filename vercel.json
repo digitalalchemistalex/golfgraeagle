@@ -1084,6 +1084,66 @@
       "source": "/graeagle-cabin-rentals/",
       "destination": "/graeagle-vacation-rentals/",
       "permanent": true
+    },
+    {
+      "source": "/trips/graeagle-river-pines-golf-group",
+      "destination": "/trips/graeagle-river-pines-golf-group/",
+      "permanent": true
+    },
+    {
+      "source": "/trips/graeagle-golf-trip",
+      "destination": "/trips/graeagle-golf-trip/",
+      "permanent": true
+    },
+    {
+      "source": "/trips/graeagle-quick-hitter",
+      "destination": "/trips/graeagle-quick-hitter/",
+      "permanent": true
+    },
+    {
+      "source": "/trips/river-pines-3-rounds",
+      "destination": "/trips/river-pines-3-rounds/",
+      "permanent": true
+    },
+    {
+      "source": "/trips/graeagle-in-the-fall",
+      "destination": "/trips/graeagle-in-the-fall/",
+      "permanent": true
+    },
+    {
+      "source": "/trips/river-pines-golf-package",
+      "destination": "/trips/river-pines-golf-package/",
+      "permanent": true
+    },
+    {
+      "source": "/trips/graeagle-golf-trip-3n-3r-premium",
+      "destination": "/trips/graeagle-golf-trip-3n-3r-premium/",
+      "permanent": true
+    },
+    {
+      "source": "/trips/far-and-wide",
+      "destination": "/trips/far-and-wide/",
+      "permanent": true
+    },
+    {
+      "source": "/trips/graeagle-golf-trip-3n-3r-value",
+      "destination": "/trips/graeagle-golf-trip-3n-3r-value/",
+      "permanent": true
+    },
+    {
+      "source": "/trips/bob-s-group",
+      "destination": "/trips/bob-s-group/",
+      "permanent": true
+    },
+    {
+      "source": "/trips/graeagle-buckets-golf-trip",
+      "destination": "/trips/graeagle-buckets-golf-trip/",
+      "permanent": true
+    },
+    {
+      "source": "/trips/plumas-pines-golf-group",
+      "destination": "/trips/plumas-pines-golf-group/",
+      "permanent": true
     }
   ],
   "crons": [
