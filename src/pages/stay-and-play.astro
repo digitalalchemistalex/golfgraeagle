@@ -149,6 +149,7 @@ const includes = [
         <span class="sec-label" style="color:#e8a850">Real pricing from the archive</span>
         <h2 class="sap-h2 sap-h2-light">Package options</h2>
       </div>
+      <p class="sap-scroll-hint">Swipe to see all packages →</p>
       <div class="sap-pkgs">
         {packages.map((p, i) => (
           <div class={`sap-pkg reveal-scale delay-${i+1}${p.hot?' sap-pkg-hot':''}`}>
@@ -177,6 +178,7 @@ const includes = [
         <span class="sec-label">Golf and lodging packages — all coordinated through GolfGraeagle</span>
         <h2 class="sap-h2">Where you'll stay</h2>
       </div>
+      <p class="sap-scroll-hint sap-scroll-hint-light">Swipe to compare lodging →</p>
       <div class="sap-lodging">
         {lodging.map((l, i) => (
           <a href={`/portfolio/${l.slug}/`} class={`sap-lodge reveal-${i%2===0?'left':'right'} delay-${(i%3)+1}`}>
@@ -328,7 +330,7 @@ const includes = [
 .sap-inc-body{font-size:14px;color:var(--sap-muted);line-height:1.75;margin:0}
 
 /* PACKAGES */
-.sap-pkgs{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px;margin-bottom:24px}
+.sap-pkgs{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:24px}
 .sap-pkg{border:1px solid rgba(245,240,232,.2);border-radius:var(--sap-r);padding:30px 26px;background:rgba(255,255,255,.1);transition:all .35s;position:relative}
 .sap-pkg:hover{transform:translateY(-5px);border-color:rgba(232,168,80,.32);box-shadow:0 22px 52px rgba(0,0,0,.25)}
 .sap-pkg-hot{border-color:rgba(232,168,80,.3)!important;background:rgba(232,168,80,.05)!important}
@@ -344,7 +346,7 @@ const includes = [
 .sap-note{text-align:center;font-size:14px;color:rgba(245,240,232,.65);margin:0}
 
 /* LODGING */
-.sap-lodging{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:22px}
+.sap-lodging{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
 .sap-lodge{border-radius:var(--sap-r);overflow:hidden;text-decoration:none;background:#fff;border:1px solid var(--sap-border);box-shadow:0 2px 14px rgba(0,0,0,.05);transition:all .38s;display:flex;flex-direction:column}
 .sap-lodge:hover{transform:translateY(-7px);box-shadow:0 28px 64px rgba(0,0,0,.13);border-color:rgba(232,168,80,.45)}
 .sap-lodge-img{height:200px;background-size:cover;background-position:center;position:relative}
@@ -355,6 +357,52 @@ const includes = [
 .sap-lodge-desc{font-size:13px;color:var(--sap-muted);line-height:1.62;flex:1;margin:0 0 14px}
 .sap-lodge-link{font-size:12px;font-weight:700;color:var(--sap-green);text-decoration:none}
 .sap-lodge:hover .sap-lodge-link{color:var(--sap-gold)}
+
+/* Mobile carousel overrides — packages and lodging scroll horizontally */
+.sap-pkgs-wrap, .sap-lodging-wrap { position: relative; }
+@media(max-width:860px){
+  /* Packages → horizontal scroll carousel */
+  .sap-pkgs{
+    display:flex;
+    overflow-x:auto;
+    scroll-snap-type:x mandatory;
+    -webkit-overflow-scrolling:touch;
+    gap:12px;
+    padding-bottom:12px;
+    scrollbar-width:none;
+    grid-template-columns:unset;
+    margin-bottom:8px;
+  }
+  .sap-pkgs::-webkit-scrollbar{display:none}
+  .sap-pkg{
+    flex:0 0 80vw;
+    max-width:320px;
+    scroll-snap-align:start;
+  }
+  /* Lodging → horizontal scroll carousel */
+  .sap-lodging{
+    display:flex;
+    overflow-x:auto;
+    scroll-snap-type:x mandatory;
+    -webkit-overflow-scrolling:touch;
+    gap:12px;
+    padding-bottom:12px;
+    scrollbar-width:none;
+    grid-template-columns:unset;
+  }
+  .sap-lodging::-webkit-scrollbar{display:none}
+  .sap-lodge{
+    flex:0 0 80vw;
+    max-width:320px;
+    scroll-snap-align:start;
+  }
+  .sap-lodge-img{height:180px}
+  /* Show scroll hint on mobile */
+  .sap-scroll-hint{display:flex}
+}
+/* Hide scroll hint on desktop */
+.sap-scroll-hint{display:none;align-items:center;gap:6px;font-size:11px;color:rgba(245,240,232,.45);margin-bottom:10px;font-weight:600;text-transform:uppercase;letter-spacing:.08em}
+.sap-scroll-hint-light{color:rgba(28,18,8,.35)}
 
 /* FAQ */
 .sap-faq{border-bottom:1px solid var(--sap-border)}
@@ -377,12 +425,14 @@ const includes = [
 .sap-cta-h2 em{color:var(--sap-gold);font-style:italic}
 .sap-cta-sub{font-size:16px;color:rgba(245,240,232,.76);line-height:1.75;margin:0 0 36px}
 
+@media(max-width:1100px){
+  .sap-pkgs{grid-template-columns:repeat(2,1fr)}
+  .sap-lodging{grid-template-columns:repeat(2,1fr)}
+}
 @media(max-width:900px){
   .sap-hero{min-height:100svh}
   .sap-floats{display:none}
-  .sap-pkgs{grid-template-columns:1fr 1fr}
-  .sap-lodging{grid-template-columns:1fr}
   .sap-trust-row{grid-template-columns:repeat(3,1fr);gap:20px}
 }
-@media(max-width:540px){.sap-pkgs{grid-template-columns:1fr}.sap-trust-row{grid-template-columns:1fr 1fr}}
+@media(max-width:540px){.sap-trust-row{grid-template-columns:1fr 1fr}}
 </style>
