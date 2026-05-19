@@ -336,8 +336,9 @@ const courses = [
 .gp-step-body { font-size:14px; color:var(--gp-muted); line-height:1.75; margin:0; }
 
 /* ── PRICING CARDS ── */
-.gp-trips-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(200px,1fr)); gap:16px; margin-bottom:28px; }
-.gp-trip-card { background:rgba(255,255,255,0.09); border:1px solid rgba(245,240,232,0.18); border-radius:var(--gp-r); padding:26px 22px; transition:all .35s; position:relative; overflow:hidden; }
+.gp-trips-grid { display:flex; overflow-x:auto; scroll-snap-type:x mandatory; -webkit-overflow-scrolling:touch; gap:16px; margin-bottom:28px; padding-bottom:8px; scrollbar-width:none; }
+.gp-trips-grid::-webkit-scrollbar { display:none; }
+.gp-trip-card { flex:0 0 clamp(220px, 22vw, 280px); scroll-snap-align:start; background:rgba(255,255,255,0.09); border:1px solid rgba(245,240,232,0.18); border-radius:var(--gp-r); padding:26px 22px; transition:all .35s; position:relative; overflow:hidden; }
 .gp-trip-card::after { content:''; position:absolute; inset:0; border-radius:var(--gp-r); background:linear-gradient(135deg,rgba(232,168,80,0.08),transparent); opacity:0; transition:opacity .3s; pointer-events:none; }
 .gp-trip-card:hover { transform:translateY(-6px); border-color:rgba(232,168,80,0.3); box-shadow:0 24px 56px rgba(0,0,0,0.3); }
 .gp-trip-card:hover::after { opacity:1; }
@@ -407,12 +408,11 @@ const courses = [
 @media (max-width:900px) {
   .gp-hero { min-height:100svh; }
   .gp-steps { grid-template-columns:1fr; }
-  .gp-trips-grid { grid-template-columns:1fr 1fr; }
+  .gp-trip-card { flex:0 0 80vw; max-width:320px; }
   .gp-courses-grid { grid-template-columns:1fr; }
   .gp-trust-row { grid-template-columns:repeat(3,1fr); gap:20px; }
 }
 @media (max-width:540px) {
-  .gp-trips-grid { grid-template-columns:1fr; }
   .gp-trust-row { grid-template-columns:1fr 1fr; }
 }
 </style>

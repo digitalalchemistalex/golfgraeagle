@@ -274,8 +274,30 @@ const diningFaq = {
       Restaurants near Graeagle golf courses include: Grizzly Grill at Grizzly Ranch, Sardine Lake Resort, Iron Door Restaurant (since 1961), Roadhouse at River Pines, Graeagle Meadows Clubhouse Restaurant, Eureka Peak Brewing Co. at Chalet View Lodge, The Brewing Lair, Cuccia's (#1 on Tripadvisor), Little Bite Deli (Blairsden), Sierra SmokeShow BBQ, Graeagle Mountain Frostee, Graeagle Restaurant (since 1958), Longboards Bar and Grill at Plumas Pines, Mohawk Tavern, and The Knotty Pine Tavern. GolfGraeagle coordinates group dining reservations as part of stay-and-play golf packages.
     </p>
 
-    <!-- Dining quick-reference table -->
-    <div class="aeo-answer reveal" style="overflow-x:auto;margin-bottom:36px;">
+    <!-- Stats row — anchoring -->
+    <div style="display:flex;gap:36px;flex-wrap:wrap;">
+      {[
+        {n:'15+', l:'Restaurants & Bars'},
+        {n:'3',   l:'Fine Dining'},
+        {n:'2',   l:'Craft Breweries'},
+        {n:'2',   l:'On-Course Dining'},
+      ].map(s=>(
+        <div>
+          <div style="font-family:'Playfair Display',serif;font-size:30px;color:#e8a850;line-height:1;">{s.n}</div>
+          <div style="font-size:11px;color:rgba(240,248,242,0.32);letter-spacing:0.06em;margin-top:4px;">{s.l}</div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     DINING QUICK-REFERENCE TABLE
+══════════════════════════════════════════ -->
+<section style="background:#fff;padding:56px clamp(20px,8%,120px);">
+  <div style="max-width:1100px;margin:0 auto;">
+    <p class="sec-label" style="margin-bottom:8px;">All Graeagle Restaurants at a Glance</p>
+    <div class="aeo-answer" style="overflow-x:auto;">
       <table style="width:100%;border-collapse:collapse;font-size:13px;min-width:540px;">
         <thead>
           <tr style="background:#1a2e1a;">
@@ -309,20 +331,6 @@ const diningFaq = {
           ))}
         </tbody>
       </table>
-    </div>
-    <!-- Stats row — anchoring -->
-    <div style="display:flex;gap:36px;flex-wrap:wrap;">
-      {[
-        {n:'15+', l:'Restaurants & Bars'},
-        {n:'3',   l:'Fine Dining'},
-        {n:'2',   l:'Craft Breweries'},
-        {n:'2',   l:'On-Course Dining'},
-      ].map(s=>(
-        <div>
-          <div style="font-family:'Playfair Display',serif;font-size:30px;color:#e8a850;line-height:1;">{s.n}</div>
-          <div style="font-size:11px;color:rgba(240,248,242,0.32);letter-spacing:0.06em;margin-top:4px;">{s.l}</div>
-        </div>
-      ))}
     </div>
   </div>
 </section>
