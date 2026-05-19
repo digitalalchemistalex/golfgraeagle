@@ -360,7 +360,7 @@ import SearchBar from './SearchBar.tsx';
         Packages
         <svg class="chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
       </button>
-      <div class="mega-menu" style="width:580px; background:rgba(252,249,242,0.98); border:1px solid rgba(168,140,90,0.2); border-radius:20px; overflow:hidden; backdrop-filter:blur(24px); box-shadow:0 16px 56px rgba(26,48,32,0.14),0 2px 8px rgba(26,48,32,0.06);">
+      <div class="mega-menu" style="width:640px; background:rgba(252,249,242,0.98); border:1px solid rgba(168,140,90,0.2); border-radius:20px; overflow:hidden; backdrop-filter:blur(24px); box-shadow:0 16px 56px rgba(26,48,32,0.14),0 2px 8px rgba(26,48,32,0.06);">
         <div style="display:grid;grid-template-columns:190px 1fr;">
           <!-- LEFT: featured panel -->
           <a href="/golf-packages/" style="display:flex;flex-direction:column;justify-content:flex-end;padding:22px 18px;background:#0d1a0e;text-decoration:none;position:relative;min-height:280px;overflow:hidden;">
@@ -373,18 +373,39 @@ import SearchBar from './SearchBar.tsx';
               <span style="font-size:11px;font-weight:700;color:#e8a850;">View all packages →</span>
             </div>
           </a>
-          <!-- RIGHT: all 5 planning pages -->
+          <!-- RIGHT: two sections -->
           <div style="padding:18px 20px 16px;">
-            <div style="font-size:9px;font-weight:800;color:#a06c30;text-transform:uppercase;letter-spacing:0.12em;margin-bottom:14px;">Plan your Graeagle golf trip</div>
+            <!-- Packages section -->
+            <div style="font-size:9px;font-weight:800;color:#a06c30;text-transform:uppercase;letter-spacing:0.12em;margin-bottom:10px;">Stay & Play Packages</div>
             {[
-              { href:'/golf-packages/',           name:'Golf Packages',   note:'Tee times + lodging + itinerary. From $620/golfer.',            fomo:'📦 Most Popular',      tc:'#1a6030', bc:'rgba(40,140,60,0.1)'  },
-              { href:'/stay-and-play/',           name:'Stay and Play',    note:'Golf + lodging bundled. 4 properties. All 5 courses.',          fomo:'🏨 Bundle & Save',     tc:'#1050a0', bc:'rgba(40,100,200,0.1)' },
-              { href:'/group-golf/',              name:'Group Golf',       note:'4 to 200+ golfers. Consecutive tee time blocks.',               fomo:'👥 Groups Welcome',    tc:'#8a2010', bc:'rgba(200,60,20,0.1)'  },
-              { href:'/graeagle-golf-itinerary/', name:'Golf Itinerary',   note:'2, 3, 4 and 5-day schedules. Course order by difficulty.',      fomo:'📋 Custom Plans',      tc:'#6b3600', bc:'rgba(180,90,0,0.1)'   },
-              { href:'/tee-times-graeagle/',      name:'Tee Times',        note:'Guaranteed access to all 5 courses including semi-private.',    fomo:'⛳ Guaranteed Access',  tc:'#502090', bc:'rgba(100,60,180,0.1)' },
+              { href:'/golf-packages/',              name:'Golf Packages',    note:'Tee times + lodging + itinerary. From $620/golfer.',          fomo:'📦 Most Popular',     tc:'#1a6030', bc:'rgba(40,140,60,0.1)'  },
+              { href:'/stay-and-play/',              name:'Stay and Play',    note:'Golf + lodging bundled. 4 properties. All 5 courses.',        fomo:'🏨 Bundle & Save',    tc:'#1050a0', bc:'rgba(40,100,200,0.1)' },
+              { href:'/trips/',                      name:'Real Trips',       note:'Real packages, real pricing. Browse 18 verified itineraries.', fomo:'✓ Verified Pricing',  tc:'#6b3600', bc:'rgba(180,90,0,0.1)'   },
+              { href:'/tee-times-graeagle/',         name:'Tee Times',        note:'Guaranteed access to all 5 courses including semi-private.',  fomo:'⛳ Guaranteed',       tc:'#502090', bc:'rgba(100,60,180,0.1)' },
             ].map(p => (
               <a href={p.href}
-                style="display:flex;align-items:flex-start;gap:10px;padding:7px 9px;border-radius:8px;text-decoration:none;margin-bottom:2px;transition:background 0.15s;"
+                style="display:flex;align-items:flex-start;gap:10px;padding:6px 9px;border-radius:8px;text-decoration:none;margin-bottom:1px;transition:background 0.15s;"
+                onmouseover="this.style.background='rgba(232,168,80,0.07)'"
+                onmouseout="this.style.background='transparent'">
+                <div style="flex:1;min-width:0;">
+                  <div style="display:flex;align-items:center;gap:7px;margin-bottom:2px;">
+                    <span style="font-size:12px;font-weight:600;color:#1a2e1a;">{p.name}</span>
+                    <span style={`font-size:8px;font-weight:800;padding:1px 7px;border-radius:100px;background:${p.bc};color:${p.tc};white-space:nowrap;`}>{p.fomo}</span>
+                  </div>
+                  <div style="font-size:10px;color:#8a9a8e;font-style:italic;line-height:1.4;">{p.note}</div>
+                </div>
+              </a>
+            ))}
+            <!-- Group Trips section -->
+            <div style="font-size:9px;font-weight:800;color:#a06c30;text-transform:uppercase;letter-spacing:0.12em;margin:12px 0 10px;padding-top:12px;border-top:1px solid rgba(168,140,90,0.12);">Group Trips</div>
+            {[
+              { href:'/bachelor-party-golf-graeagle/',   name:'Bachelor Party Golf', note:'Custom itineraries for groups of 8–24. Grizzly + Nakoma.',   fomo:'🍺 Most Requested',   tc:'#8a2010', bc:'rgba(200,60,20,0.1)'  },
+              { href:'/corporate-golf-outing-graeagle/', name:'Corporate Outings',   note:'Client entertainment & team golf. 12–60+ golfers.',           fomo:'💼 Group Rates',      tc:'#1050a0', bc:'rgba(40,100,200,0.1)' },
+              { href:'/graeagle-golf-weekend-packages/', name:'Weekend Packages',    note:'2–3 night golf weekends. $620–$1,150/pp all-inclusive.',      fomo:'📅 Fri–Sun',          tc:'#1a6030', bc:'rgba(40,140,60,0.1)'  },
+              { href:'/group-golf/',                     name:'Group Golf',          note:'4 to 200+ golfers. Consecutive tee time blocks.',             fomo:'👥 All Sizes',        tc:'#502090', bc:'rgba(100,60,180,0.1)' },
+            ].map(p => (
+              <a href={p.href}
+                style="display:flex;align-items:flex-start;gap:10px;padding:6px 9px;border-radius:8px;text-decoration:none;margin-bottom:1px;transition:background 0.15s;"
                 onmouseover="this.style.background='rgba(232,168,80,0.07)'"
                 onmouseout="this.style.background='transparent'">
                 <div style="flex:1;min-width:0;">
@@ -471,11 +492,14 @@ import SearchBar from './SearchBar.tsx';
         ['Golf Packages',   '/golf-packages/'],
         ['Stay and Play',   '/stay-and-play/'],
         ['Group Golf',      '/group-golf/'],
+        ['Bachelor Party Golf', '/bachelor-party-golf-graeagle/'],
+        ['Corporate Outings',   '/corporate-golf-outing-graeagle/'],
+        ['Weekend Packages',    '/graeagle-golf-weekend-packages/'],
         ['Golf Itinerary',  '/graeagle-golf-itinerary/'],
         ['Tee Times',       '/tee-times-graeagle/'],
+        ['Real Trips',      '/trips/'],
         ['Lodging',         '/lodging/'],
         ['Dining',          '/dining/'],
-        ['Real Trips',      '/trips/'],
         ['FAQ',             '/faq/'],
         ['Blog',            '/blog/'],
         ['About',           '/about-us/'],
