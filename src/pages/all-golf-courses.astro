@@ -129,12 +129,27 @@ const bestForList = [
   bodyClass="light-page"
 >
   <Nav />
-  <section class="wrap">
 
-    <!-- Header -->
-    <p style="font-size:11px;color:#a06c30;letter-spacing:0.16em;text-transform:uppercase;font-weight:600;margin:0 0 16px;">5 Championship Courses · Graeagle, CA</p>
-    <h1 style="font-family:'Playfair Display',serif;font-size:clamp(32px,5vw,54px);font-weight:500;color:#1a2e1a;margin:0 0 20px;line-height:1.1;">Golf Courses in <span style="color:#e8a850;font-style:italic;">Graeagle, California</span></h1>
-    <p style="font-size:17px;color:rgba(28,46,26,0.5);max-width:680px;line-height:1.8;margin:0 0 16px;" class="speakable aeo-answer">There are five championship golf courses in the Graeagle area of Northern California, all within 5–25 minutes of each other. Most groups play two to four courses over a weekend stay.</p>
+  <!-- ══ HERO ═══════════════════════════════════════════════════════════ -->
+  <section style="position:relative;min-height:60vh;display:flex;align-items:flex-end;overflow:hidden;">
+    <div style="position:absolute;inset:0;">
+      <img src="/wp-images/grizzly-ranch-hero.webp" alt="Golf courses in Graeagle California — Grizzly Ranch Golf Digest Top 100" loading="eager" width="1400" height="800" style="width:100%;height:100%;object-fit:cover;object-position:center 35%;"/>
+      <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(248,245,240,1) 0%,rgba(248,245,240,0.6) 40%,rgba(13,26,14,0.2) 100%);"></div>
+    </div>
+    <div style="position:relative;z-index:1;width:100%;padding:clamp(32px,5vw,64px) clamp(20px,8%,120px);max-width:1100px;margin:0 auto;">
+      <p style="font-size:11px;color:#a06c30;letter-spacing:0.16em;text-transform:uppercase;font-weight:600;margin:0 0 14px;">5 Championship Courses · Graeagle, CA</p>
+      <h1 style="font-family:'Playfair Display',serif;font-size:clamp(36px,5.5vw,64px);font-weight:500;color:#1a2e1a;margin:0 0 18px;line-height:1.05;">Golf Courses in <span style="color:#e8a850;font-style:italic;">Graeagle, California</span></h1>
+      <p style="font-size:17px;color:rgba(28,46,26,0.6);max-width:620px;line-height:1.8;margin:0 0 24px;" class="speakable aeo-answer">There are five championship golf courses in the Graeagle area of Northern California, all within 5–25 minutes of each other. Most groups play two to four courses over a weekend stay.</p>
+      <div style="display:flex;gap:12px;flex-wrap:wrap;">
+        <a href="/request-a-quote/" class="btn-green-glow" style="font-size:14px;padding:12px 28px;">Get Package Pricing →</a>
+        <a href="#courses" style="font-size:14px;color:#1a2e1a;padding:12px 0;font-weight:600;text-decoration:none;display:inline-flex;align-items:center;gap:6px;">Compare all 5 ↓</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap" id="courses">
+
+    <!-- AEO intro -->
     <p style="font-size:15px;color:rgba(28,46,26,0.35);max-width:680px;line-height:1.75;margin:0 0 60px;">Graeagle sits at 4,300–5,400 feet in the Sierra Nevada — altitude adds carry distance, speeds up greens, and keeps temperatures cooler than Sacramento or the Bay Area even in summer. The five courses offer genuine variety: classic parkland, links-style ridgelines, tight pine corridors, and a championship layout with an FLW-designed clubhouse.</p>
 
     <!-- Course Quick-Match selector -->
@@ -307,6 +322,31 @@ const bestForList = [
           ))}
           <a href="/dining/" style="display:inline-block;margin-top:14px;font-size:13px;color:#b8820a;text-decoration:none;">View all dining options →</a>
         </div>
+      </div>
+    </div>
+
+    <!-- Course photo carousel -->
+    <div style="border-top:1px solid rgba(28,46,26,0.06);padding-top:64px;margin-bottom:64px;">
+      <p style="font-size:11px;color:#a06c30;letter-spacing:0.16em;text-transform:uppercase;font-weight:600;margin:0 0 14px;">All 5 Courses — Photo Gallery</p>
+      <div class="gal-carousel-wrap" data-carousel>
+        <button class="gal-arrow gal-arrow-prev" aria-label="Previous">&#8249;</button>
+        <div class="gal-carousel" id="carousel-all-courses">
+          {[
+            { name:'Grizzly Ranch',    slug:'grizzly-ranch-golf-packages',    img:'/wp-images/grizzly-ranch-hero.webp',          badge:'Golf Digest Top 100' },
+            { name:'Nakoma Dragon',    slug:'nakoma-dragon-golf-packages',    img:'/wp-images/nakoma-dragon-feather-river.webp', badge:'FLW Clubhouse · Top 75' },
+            { name:'Whitehawk Ranch',  slug:'whitehawk-ranch-golf-packages',  img:'/wp-images/whitehawk-hero.webp',              badge:'Top 20 California' },
+            { name:'Plumas Pines',     slug:'plumas-pines-golf-packages',     img:'/wp-images/plumas-pines-hero.webp',           badge:'Top 5 Best Value' },
+            { name:'Graeagle Meadows', slug:'graeagle-meadows-golf-packages', img:'/wp-images/graeagle-meadows-hero.webp',       badge:'Classic · Since 1968' },
+          ].map((c, i) => (
+            <a href={`/portfolio/${c.slug}/`} style="flex:0 0 calc(50% - 3px);position:relative;aspect-ratio:16/9;overflow:hidden;border-radius:10px;display:block;text-decoration:none;">
+              <img src={c.img} alt={`${c.name} golf course — Graeagle CA`} loading={i===0?"eager":"lazy"} width="640" height="360" style="width:100%;height:100%;object-fit:cover;transition:transform .4s;"/>
+              <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(13,26,14,0.8) 0%,transparent 55%);"></div>
+              <div style="position:absolute;top:8px;left:10px;"><span style="font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;background:rgba(232,168,80,0.92);color:#1c1208;padding:3px 8px;border-radius:100px;">{c.badge}</span></div>
+              <div style="position:absolute;bottom:10px;left:12px;right:12px;color:#f5f0e8;font-size:13px;font-weight:700;">{c.name}</div>
+            </a>
+          ))}
+        </div>
+        <button class="gal-arrow gal-arrow-next" aria-label="Next">&#8250;</button>
       </div>
     </div>
 

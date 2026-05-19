@@ -183,26 +183,31 @@ const courses = [
         <span class="sec-label">Book tee times at all 5 Graeagle courses — mix and match any combination</span>
         <h2 class="gp-h2">The 5 courses</h2>
       </div>
-      <div class="gp-courses-grid">
-        {courses.map((c, i) => (
-          <a href={`/portfolio/${c.slug}/`} class={`gp-course-card reveal-${i % 2 === 0 ? 'left' : 'right'} delay-${(i % 3) + 1}`}>
-            <div class="gp-course-img" style="position:relative;overflow:hidden;"><img src={c.hero} alt={`${c.name} Golf Course Graeagle`} loading={i===0?'eager':'lazy'} width="640" height="360" style="width:100%;height:100%;object-fit:cover;"/>
-              <div class="gp-course-fade"></div>
-              <span class="gp-course-badge" style={`background:${c.badgeColor}`}>{c.badge}</span>
-              <div class="gp-course-from">From <strong>${c.priceFrom}/pp</strong></div>
-            </div>
-            <div class="gp-course-body">
-              <h3 class="gp-course-name">{c.name}</h3>
-              <div class="gp-course-specs">
-                <span>Par {c.par}</span><span class="gp-dot">·</span>
-                <span>{c.yards.toLocaleString()} yds</span><span class="gp-dot">·</span>
-                <span>Slope {c.slope}</span>
+      <div class="gal-carousel-wrap" data-carousel>
+        <button class="gal-arrow gal-arrow-prev" aria-label="Previous">&#8249;</button>
+        <div class="gal-carousel" id="carousel-gp-courses">
+          {courses.map((c, i) => (
+            <a href={`/portfolio/${c.slug}/`} style="flex:0 0 calc(50% - 3px);border-radius:var(--gp-r);overflow:hidden;text-decoration:none;background:#fff;border:1px solid var(--gp-border);box-shadow:0 2px 14px rgba(0,0,0,0.05);display:flex;flex-direction:column;flex-shrink:0;">
+              <div class="gp-course-img" style="position:relative;overflow:hidden;">
+                <img src={c.hero} alt={`${c.name} Golf Course Graeagle`} loading={i===0?"eager":"lazy"} width="640" height="360" style="width:100%;height:100%;object-fit:cover;"/>
+                <div class="gp-course-fade"></div>
+                <span class="gp-course-badge" style={`background:${c.badgeColor}`}>{c.badge}</span>
+                <div class="gp-course-from">From <strong>${c.priceFrom}/pp</strong></div>
               </div>
-              <p class="gp-course-best">{c.best}</p>
-              <span class="gp-course-link underline-draw">View course →</span>
-            </div>
-          </a>
-        ))}
+              <div class="gp-course-body">
+                <h3 class="gp-course-name">{c.name}</h3>
+                <div class="gp-course-specs">
+                  <span>Par {c.par}</span><span class="gp-dot">·</span>
+                  <span>{c.yards.toLocaleString()} yds</span><span class="gp-dot">·</span>
+                  <span>Slope {c.slope}</span>
+                </div>
+                <p class="gp-course-best">{c.best}</p>
+                <span class="gp-course-link underline-draw">View course →</span>
+              </div>
+            </a>
+          ))}
+        </div>
+        <button class="gal-arrow gal-arrow-next" aria-label="Next">&#8250;</button>
       </div>
     </div>
   </section>
