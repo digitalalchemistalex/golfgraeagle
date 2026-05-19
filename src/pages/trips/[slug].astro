@@ -472,6 +472,36 @@ const faqSchema = {
     </section>
   )}
 
+  <!-- ══ DINING CROSS-SELL ════════════════════════════════════════════════ -->
+  <section style="background:#fff;padding:clamp(48px,6vw,72px) clamp(20px,8%,120px);">
+    <div style="max-width:1100px;margin:0 auto;">
+      <p style="font-size:11px;color:#a06c30;text-transform:uppercase;letter-spacing:.14em;font-weight:700;margin:0 0 8px;">Where to eat</p>
+      <h2 style="font-family:'Playfair Display',Georgia,serif;font-size:clamp(22px,3vw,32px);color:#1a2e1a;margin:0 0 24px;font-weight:400;">Dining near your courses</h2>
+      <div class="gal-carousel-wrap" data-carousel style="margin-bottom:20px;">
+        <button class="gal-arrow gal-arrow-prev" aria-label="Previous">&#8249;</button>
+        <div class="gal-carousel" id={`carousel-dining-${trip.slug}`}>
+          {[
+            { name:'Grizzly Grill',           slug:'grizzly-grill',                          img:'/wp-images/unnamed-3.webp',          tag:'At Grizzly Ranch · Fine dining' },
+            { name:'Sardine Lake Resort',     slug:'sardine-lake-resort',                    img:'/wp-images/Sardine-Lake-Resort.webp', tag:'Book 4 weeks out · Alpine lake' },
+            { name:'Iron Door Restaurant',    slug:'iron-door-restaurant',                   img:'/wp-images/Bar.jpg',                  tag:'Fine dining · Since 1961' },
+            { name:'Roadhouse at River Pines',slug:'roadhouse-at-river-pines',              img:'/wp-images/DJI_0949-Edit.webp',       tag:'On-site at River Pines' },
+            { name:'Eureka Peak Brewing',     slug:'eureka-peak-brewing-co',                 img:'/wp-images/ChaletView-02.webp',       tag:'At Chalet View Lodge' },
+            { name:'The Brewing Lair',        slug:'the-brewing-lair',                       img:'/wp-images/brews-and-bars.jpeg',      tag:'15 acres · Craft beer' },
+          ].map((d, i) => (
+            <a href={`/portfolio/${d.slug}/`} style="flex:0 0 calc(33% - 6px);position:relative;aspect-ratio:4/3;overflow:hidden;border-radius:10px;display:block;text-decoration:none;">
+              <img src={d.img} alt={`${d.name} — Graeagle dining`} loading="lazy" width="320" height="240" style="width:100%;height:100%;object-fit:cover;transition:transform .4s;"/>
+              <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(13,26,14,0.8) 0%,transparent 55%);"></div>
+              <div style="position:absolute;top:7px;left:9px;"><span style="font-size:8px;font-weight:700;text-transform:uppercase;background:rgba(232,168,80,0.92);color:#1c1208;padding:2px 7px;border-radius:100px;">{d.tag}</span></div>
+              <div style="position:absolute;bottom:9px;left:10px;right:10px;color:#f5f0e8;font-size:12px;font-weight:700;">{d.name}</div>
+            </a>
+          ))}
+        </div>
+        <button class="gal-arrow gal-arrow-next" aria-label="Next">&#8250;</button>
+      </div>
+      <a href="/dining/" style="font-size:13px;color:#a06c30;font-weight:700;text-decoration:none;">All 15 Graeagle restaurants →</a>
+    </div>
+  </section>
+
   <!-- ══ CTA ═══════════════════════════════════════════════════════════════ -->
   <section style="background:#1a2e1a;padding:clamp(48px,7vw,80px) clamp(20px,8%,120px);text-align:center;">
     <div style="max-width:600px;margin:0 auto;">
