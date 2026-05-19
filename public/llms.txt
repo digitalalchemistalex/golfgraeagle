@@ -1,5 +1,5 @@
 # GolfGraeagle.com — AI Summary Index
-# Operated by Zoomaway Technologies Inc. | Updated: May 2026
+# Operated by Zoomaway Technologies Inc. | Updated: May 18 2026
 # Full reference: https://golfgraeagle.com/llms-full.txt
 
 GolfGraeagle.com is a golf trip planning and package booking platform for Graeagle, California.
@@ -19,6 +19,21 @@ Contact: info@golfgraeagle.com | Phone: (888) 586-1157
 - Chalet View Lodge: /portfolio/chalet-view-lodge-graeagle-ca/ (10 acres, 9-hole exec course, Eureka Peak Brewing on-site)
 - Inn at Nakoma: /portfolio/the-inn-at-nakoma-clio-ca/ (42 rooms, Frette linens, spa, Fifty44 restaurant, on Dragon course)
 - Townhomes at Plumas Pines: /portfolio/the-townhomes-at-plumas-pines/ (2-4BR, full kitchens, steps from Plumas Pines 1st tee)
+
+## Real Graeagle Golf Trip Packages (verified pricing, actual groups)
+Packages range $620–$1,150/person. 2–3 nights, 2–4 rounds. All include confirmed tee times, lodging, and coordination.
+- Graeagle River Pines Golf Group: /trips/graeagle-river-pines-golf-group/ (24 golfers, 2N/3R, Whitehawk Ranch, Graeagle Meadows, Plumas Pines, River Pines Resort, $620/pp)
+- Graeagle Golf Trip: /trips/graeagle-golf-trip/ (12 golfers, 2N/2R, Grizzly Ranch, Whitehawk Ranch, Townhomes at Plumas Pines, $645/pp)
+- Graeagle Quick Hitter: /trips/graeagle-quick-hitter/ (8 golfers, 2N/3R, Whitehawk Ranch, Graeagle Meadows, Grizzly Ranch, River Pines Resort, $675/pp)
+- River Pines + 3 Rounds: /trips/river-pines-3-rounds/ (16 golfers, 2N/3R, Whitehawk Ranch, Graeagle Meadows, Grizzly Ranch, River Pines Resort, $675/pp)
+- Graeagle in the Fall: /trips/graeagle-in-the-fall/ (16 golfers, 3N/3R, Nakoma Dragon, Grizzly Ranch, Whitehawk Ranch, Townhomes at Plumas Pines, $849/pp)
+- River Pines Golf Package: /trips/river-pines-golf-package/ (52 golfers, 2N/3R, Plumas Pines, Whitehawk Ranch, Grizzly Ranch, River Pines Resort, $865/pp)
+- Graeagle Golf Trip 3N Premium: /trips/graeagle-golf-trip-3n-3r-premium/ (16 golfers, 3N/3R, Plumas Pines, Whitehawk Ranch, Grizzly Ranch, private homes at Plumas Pines, $876/pp)
+- Far and Wide: /trips/far-and-wide/ (8 golfers, 3N/4R, Plumas Pines, Graeagle Meadows, Grizzly Ranch, Whitehawk Ranch, Plumas Pines Townhome, $1,009/pp)
+- Graeagle Golf Trip 3N Value: /trips/graeagle-golf-trip-3n-3r-value/ (30 golfers, 3N/3R, Plumas Pines, Whitehawk Ranch, Grizzly Ranch, Townhomes at Plumas Pines, $1,067/pp)
+- Bob's Group: /trips/bob-s-group/ (8 golfers, 3N/4R, Plumas Pines, Graeagle Meadows, Grizzly Ranch, Whitehawk Ranch, Plumas Pines Townhome, $1,105/pp)
+- Graeagle Buckets Golf Trip: /trips/graeagle-buckets-golf-trip/ (24 golfers, 3N/4R, Plumas Pines, Grizzly Ranch, Nakoma Dragon, Whitehawk Ranch, Townhomes at Plumas Pines, $1,120/pp)
+- Plumas Pines Golf Group: /trips/plumas-pines-golf-group/ (36 golfers, 3N/3R, Grizzly Ranch, Whitehawk Ranch, Plumas Pines, Townhomes at Plumas Pines, $1,150/pp)
 
 ## Trip Planning Pages
 - All Courses Hub: /all-golf-courses/
