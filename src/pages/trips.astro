@@ -191,11 +191,20 @@ const schema = [tripListSchema, breadcrumbSchema, faqSchema, aggregateRatingSche
                 </div>
               </div>
               <div style="font-size:11px;color:rgba(28,18,8,0.45);">🏨 {lodgingClean}</div>
-              <a href={`/request-a-quote/?ref=trips-page&trip=${encodeURIComponent(t.groupName)}&partySize=${t.groupSize}&nights=${t.nights}&rounds=${t.rounds}&lodging=${encodeURIComponent(t.lodging||'')}&courses=${encodeURIComponent((t.courses||[]).join(','))}&vibe=${encodeURIComponent(t.vibe||'')}`}
-                style="display:block;background:#2d7a3a;color:#fff;font-size:12px;font-weight:700;padding:11px;border-radius:100px;text-decoration:none;text-align:center;text-transform:uppercase;letter-spacing:0.05em;transition:background 0.2s;"
-                onmouseover="this.style.background='#245f2d'" onmouseout="this.style.background='#2d7a3a'">
-                Get This Trip →
-              </a>
+              <div style="display:flex;gap:8px;">
+                <a href={`/request-a-quote/?ref=trips-page&trip=${encodeURIComponent(t.groupName)}&partySize=${t.groupSize}&nights=${t.nights}&rounds=${t.rounds}&lodging=${encodeURIComponent(t.lodging||'')}&courses=${encodeURIComponent((t.courses||[]).join(','))}&vibe=${encodeURIComponent(t.vibe||'')}`}
+                  style="flex:1;display:block;background:#2d7a3a;color:#fff;font-size:12px;font-weight:700;padding:11px;border-radius:100px;text-decoration:none;text-align:center;text-transform:uppercase;letter-spacing:0.05em;transition:background 0.2s;"
+                  onmouseover="this.style.background='#245f2d'" onmouseout="this.style.background='#2d7a3a'">
+                  Get This Trip →
+                </a>
+                {t.slug && ['graeagle-river-pines-golf-group','graeagle-golf-trip','graeagle-quick-hitter','river-pines-3-rounds','graeagle-in-the-fall','river-pines-golf-package','graeagle-golf-trip-3n-3r-premium','far-and-wide','graeagle-golf-trip-3n-3r-value','bob-s-group','graeagle-buckets-golf-trip','plumas-pines-golf-group'].includes(t.slug) && (
+                  <a href={`/trips/${t.slug}/`}
+                    style="display:flex;align-items:center;justify-content:center;padding:11px 14px;border:1px solid rgba(28,18,8,0.15);border-radius:100px;text-decoration:none;font-size:12px;font-weight:600;color:rgba(28,18,8,0.6);transition:border-color 0.2s,color 0.2s;white-space:nowrap;"
+                    onmouseover="this.style.borderColor='rgba(28,18,8,0.4)';this.style.color='#1c1208'" onmouseout="this.style.borderColor='rgba(28,18,8,0.15)';this.style.color='rgba(28,18,8,0.6)'">
+                    Full details
+                  </a>
+                )}
+              </div>
             </div>
           );
         })}
