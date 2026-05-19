@@ -551,6 +551,37 @@ const diningFaq = {
 </section>
 
 <!-- ══════════════════════════════════════════
+     VENUE PHOTO CAROUSEL
+══════════════════════════════════════════ -->
+<section style="padding:72px 0;background:#fff;">
+  <div class="page-wrap">
+    <p class="sec-label" style="margin-bottom:8px;">Graeagle Dining — Photo Gallery</p>
+    <h2 class="sec-h2" style="margin-bottom:24px;">See the venues.</h2>
+    <div class="gal-carousel-wrap" data-carousel>
+      <button class="gal-arrow gal-arrow-prev" aria-label="Previous">&#8249;</button>
+      <div class="gal-carousel" id="carousel-dining-venues">
+        {[
+          { name:'Sardine Lake Resort',    slug:'sardine-lake-resort',                       img:'/wp-images/Sardine-Lake-Resort.webp',         tag:'Book 4 weeks out' },
+          { name:'Grizzly Grill',          slug:'grizzly-grill',                             img:'/wp-images/grizzly-ranch-hero.webp',           tag:'At Grizzly Ranch' },
+          { name:'Iron Door Restaurant',   slug:'iron-door-restaurant',                      img:'/wp-images/Bar.jpg',                          tag:'Fine Dining · Since 1961' },
+          { name:'Roadhouse at River Pines',slug:'roadhouse-at-river-pines',                img:'/wp-images/DJI_0949-Edit.webp',               tag:'On-site at River Pines' },
+          { name:'Eureka Peak Brewing',    slug:'eureka-peak-brewing-co',                    img:'/wp-images/ChaletView-02.webp',               tag:'At Chalet View Lodge' },
+          { name:'The Brewing Lair',       slug:'the-brewing-lair',                          img:'/wp-images/brews-and-bars.jpeg',              tag:'15 acres · Craft beer' },
+        ].map((v, i) => (
+          <a href={`/portfolio/${v.slug}/`} style="flex:0 0 calc(50% - 3px);position:relative;aspect-ratio:4/3;overflow:hidden;border-radius:10px;display:block;text-decoration:none;">
+            <img src={v.img} alt={`${v.name} — Graeagle dining`} loading={i===0?"eager":"lazy"} width="480" height="360" style="width:100%;height:100%;object-fit:cover;transition:transform .4s;"/>
+            <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(13,26,14,0.8) 0%,transparent 55%);"></div>
+            <div style="position:absolute;top:8px;left:10px;"><span style="font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;background:rgba(232,168,80,0.92);color:#1c1208;padding:3px 8px;border-radius:100px;">{v.tag}</span></div>
+            <div style="position:absolute;bottom:10px;left:12px;right:12px;color:#f5f0e8;font-size:13px;font-weight:700;">{v.name}</div>
+          </a>
+        ))}
+      </div>
+      <button class="gal-arrow gal-arrow-next" aria-label="Next">&#8250;</button>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
      CTA
 ══════════════════════════════════════════ -->
 <section class="cta-band reveal">
