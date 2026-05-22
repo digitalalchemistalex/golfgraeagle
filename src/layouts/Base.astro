@@ -16,6 +16,8 @@ const {
   bodyClass = '',
 } = Astro.props;
 
+const nonce = Astro.locals.cspNonce;
+
 // Ensure ogImage is always an absolute URL for social crawlers
 const ogImageAbsolute = ogImage?.startsWith('http') ? ogImage : `${siteConfig.url}${ogImage}`;
 const rawCanonical = canonical || new URL(Astro.url.pathname, siteConfig.url).href;
@@ -171,11 +173,11 @@ const baseSchema = {
   <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
   <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
   <!-- JSON-LD -->
-  <script type="application/ld+json" set:html={JSON.stringify(baseSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(baseSchema)} nonce={nonce} />
 </head>
 <body class={bodyClass} style="font-family:'Inter',system-ui,sans-serif;-webkit-font-smoothing:antialiased;">
   <!-- Google Tag Manager — async, injected after body start -->
-  <script is:inline>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-NTBX7XK5');</script>
+  <script is:inline nonce={nonce}>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-NTBX7XK5');</script>
   <!-- Google Tag Manager (noscript) -->
   <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NTBX7XK5" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <slot />
@@ -250,7 +252,7 @@ const baseSchema = {
   <SpeedInsights />
   <Analytics />
   <!-- Microsoft Clarity — deferred to after page load -->
-  <script is:inline>(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y)})(window,document,"clarity","script","vwyyopty3f");</script>
+  <script is:inline nonce={nonce}>(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y)})(window,document,"clarity","script","vwyyopty3f");</script>
 </body>
 </html>
 
