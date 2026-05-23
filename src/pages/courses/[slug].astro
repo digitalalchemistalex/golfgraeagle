@@ -10,9 +10,7 @@ export function getStaticPaths() {
 const { course: c } = Astro.props;
 const pageUrl = `${siteConfig.url}/courses/${c.slug}`;
 
-//
-export const prerender = true;
---- SCHEMA ARRAY ---
+// ── SCHEMA ARRAY ──
 const golfCourseSchema = {
   "@type": "GolfCourse",
   "@id": `${pageUrl}#golfcourse`,
