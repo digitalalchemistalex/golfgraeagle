@@ -1,3 +1,4 @@
+// CSP middleware v2 — nonce-based, no-store
 import { defineMiddleware } from 'astro:middleware';
 
 export const onRequest = defineMiddleware(async (context, next) => {
