@@ -3,7 +3,6 @@ import Base from '../layouts/Base.astro';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
 import { dining, siteConfig } from '../data/content.js';
-export const prerender = true;
 
 const fineDining  = dining.filter(d => d.category === 'fine-dining');
 const casual      = dining.filter(d => ['casual','variety'].includes(d.category));
