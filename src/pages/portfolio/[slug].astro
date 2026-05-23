@@ -674,6 +674,7 @@ function getCourseTrips(courseSlug: string): any[] {
 function cleanCourseName(name: string): string {
   return name.replace(/ Golf (Club|Course|Resort)$/,'');
 }
+export const prerender = true;
 ---
 <Base title={pageTitle} description={pageDesc} schema={pageSchema} canonical={pageUrl} ogImage={item?.hero || undefined} preloadImage={item?.hero || undefined} bodyClass="light-page">
   <Nav />
