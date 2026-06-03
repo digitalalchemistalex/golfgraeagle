@@ -17,7 +17,7 @@ export const onRequest = defineMiddleware(async (context, next) => {
   if (contentType.includes('text/html')) {
     const csp = [
       "default-src 'self'",
-      `script-src 'self' 'nonce-${nonce}' 'strict-dynamic' https://www.googletagmanager.com https://www.google-analytics.com https://ssl.google-analytics.com https://cdn.jsdelivr.net https://js.hs-scripts.com https://js.hubspot.com https://js.hsforms.net https://www.clarity.ms https://c.bing.com`,
+      `script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com https://ssl.google-analytics.com https://cdn.jsdelivr.net https://js.hs-scripts.com https://js.hubspot.com https://js.hsforms.net https://www.clarity.ms https://c.bing.com`,
       "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
       "font-src 'self' https://fonts.gstatic.com data:",
       "img-src 'self' data: blob: https: http:",
