@@ -88,16 +88,17 @@ async function runCheck(check: typeof CHECKS[0]): Promise<CheckResult> {
   }
 }
 
-export const GET: APIRoute = async ({ request }) => {
+export const GET: APIRoute = async ({ request, url }) => {
   const auth = request.headers.get('authorization');
   if (auth !== `Bearer ${import.meta.env.CRON_SECRET}`) {
     return new Response('Unauthorized', { status: 401 });
   }
 
+  const forceAlert = url.searchParams.get('force') === '1';
   const results: CheckResult[] = await Promise.all(CHECKS.map(runCheck));
   const failures = results.filter(r => !r.ok);
 
-  if (failures.length > 0) {
+  if (failures.length > 0 || forceAlert) {
     const rows = results.map(r =>
       `<tr style="background:${r.ok ? '#f0fdf4' : '#fef2f2'}">
         <td style="padding:8px 12px;border-bottom:1px solid #e5e7eb">${r.name}</td>
