@@ -22,7 +22,7 @@ export const onRequest = defineMiddleware(async (context, next) => {
       "font-src 'self' https://fonts.gstatic.com data:",
       "img-src 'self' data: blob: https: http:",
       "connect-src 'self' https://egplpluvbfsjrqzecnjf.supabase.co https://*.algolia.net https://*.algolianet.com https://www.google-analytics.com https://analytics.google.com https://region1.google-analytics.com https://www.googletagmanager.com https://golfthehighsierra.com https://www.clarity.ms https://c.bing.com",
-      "frame-src 'self' https://www.googletagmanager.com https://forms.hsforms.com https://js.hsforms.net",
+      "frame-src 'self' https://www.google.com https://maps.googleapis.com https://www.googletagmanager.com https://forms.hsforms.com https://js.hsforms.net",
       "object-src 'none'",
       "base-uri 'self'",
       "form-action 'self' https://forms.hsforms.com https://api.hsforms.com",
