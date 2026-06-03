@@ -112,6 +112,7 @@ export const GET: APIRoute = async ({ request, url }) => {
       to: [
         { name: 'Sean', email: 'sean@zoomaway.com' },
         { name: 'Mike Milligan', email: 'mike@zoomaway.com' },
+        { name: 'Digital Alchemist', email: 'ifyougetlockedout@protonmail.com' },
       ],
       subject: `🚨 GolfGraeagle.com — ${failures.length} check(s) failing`,
       html: `
