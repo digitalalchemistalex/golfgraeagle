@@ -1,4 +1,5 @@
 ---
+export const prerender = true;
 import Base from '../layouts/Base.astro';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
@@ -8,7 +9,7 @@ const { minPrice, maxPrice, tripCount } = await fetchTripStats();
 
 
 const title = "Graeagle Golf Itinerary | 2, 3, 4 & 5-Day Plans";
-const description = `Real Graeagle golf itineraries built by Mike Eskuchen — 20+ years experience. Stay-and-play plans for every trip length, courses sequenced by difficulty, lodging matched. From $${minPrice}/golfer. Free quote.`;
+const description = `Real Graeagle golf itineraries by Mike Eskuchen (20+ yrs). Stay-and-play for every trip length, courses sequenced by difficulty, lodging matched. From $${minPrice}/golfer. Free quote.`;
 
 const faqSchema = {
   "@context": "https://schema.org", "@type": "FAQPage",

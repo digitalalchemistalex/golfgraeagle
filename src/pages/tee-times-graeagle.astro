@@ -1,4 +1,5 @@
 ---
+export const prerender = true;
 import Base from '../layouts/Base.astro';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
@@ -7,7 +8,7 @@ import { fetchTripStats } from '../lib/tripStats';
 const { minPrice, maxPrice, tripCount } = await fetchTripStats();
 
 const title = "Book Tee Times in Graeagle, CA | All 5 Courses";
-const description = `Book guaranteed tee times in Graeagle, CA — all 5 courses including semi-private Grizzly Ranch (Golf Digest Top 100) and Nakoma Dragon (FLW clubhouse). Expert group golf booking. Packages from $299/golfer with lodging bundled.`;
+const description = `Guaranteed tee times at all 5 Graeagle courses — including semi-private Grizzly Ranch and Nakoma Dragon. Expert group booking 6–8 weeks ahead. GolfGraeagle secures access others can't.`;
 
 
 const faqSchema = {

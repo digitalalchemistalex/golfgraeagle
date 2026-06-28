@@ -1,11 +1,12 @@
 ---
+export const prerender = true;
 import Base from '../layouts/Base.astro';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
 import { siteConfig, lodging, courses, dining } from '../data/content.js';
 
 const title = "Graeagle Vacation Rentals & Cabins | Golf Group Lodging";
-const description = "Graeagle vacation rentals for golf groups — Townhomes at Plumas Pines (2–4BR, full kitchens, on-course) and River Pines cabins (Feather River, pool, hot tub). Stay-and-play packages with tee times from $299/golfer.";
+const description = "Graeagle vacation rentals for golf groups — Townhomes at Plumas Pines (2–4BR, on-course) and River Pines cabins (pool, hot tub, Feather River). Stay-and-play with tee times from $299/golfer.";
 const canonical = `${siteConfig.url}/graeagle-vacation-rentals/`;
 
 const schema = [

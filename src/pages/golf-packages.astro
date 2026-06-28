@@ -1,4 +1,5 @@
 ---
+export const prerender = true;
 import Base from '../layouts/Base.astro';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
@@ -8,7 +9,7 @@ const { minPrice, maxPrice, tripCount } = await fetchTripStats();
 
 
 const title = "Graeagle Group Golf Packages | Stay & Play from $299/Golfer";
-const description = `Graeagle group golf packages from $299/golfer — real pricing from confirmed group trips. Stay-and-play with guaranteed tee times at all 5 courses. Custom itinerary in 24 hours from expert planner Mike Eskuchen.`;
+const description = `Graeagle group golf packages from $299/golfer — real pricing from ${tripCount} confirmed trips. Stay-and-play, guaranteed tee times at all 5 courses, expert itinerary building. Free quote.`;
 
 const faqSchema = {
   "@context": "https://schema.org", "@type": "FAQPage",

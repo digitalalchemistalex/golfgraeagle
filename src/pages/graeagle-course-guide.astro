@@ -1,11 +1,12 @@
 ---
+export const prerender = true;
 import Base from '../layouts/Base.astro';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
 import { siteConfig } from '../data/content.js';
 
-const title = "Graeagle Golf Course Guide — Tee Times, Cart Rules & Opening Dates";
-const description = `Graeagle golf course guide — verified tee time windows, cart policies, opening dates, elevation data, and month-by-month conditions for all 5 courses. The insider intel every group needs before booking.`;
+const title = "Graeagle Golf Course Guide — Tee Times, Cart Rules & Dates";
+const description = "The insider planning guide for Graeagle golf. Verified tee time windows, cart policies, opening dates by course, elevation data, and conditions by month. Details no other site publishes.";
 const canonicalUrl = `${siteConfig.url}/graeagle-course-guide/`;
 const ogImage = `${siteConfig.url}/wp-images/grizzly-ranch-hero.webp`;
 
