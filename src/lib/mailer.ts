@@ -1,5 +1,3 @@
-import nodemailer from 'nodemailer';
-
 export interface Recipient {
   name: string;
   email: string;
@@ -13,35 +11,39 @@ export interface MailOptions {
 }
 
 const FROM_NAME  = 'Graeagle Golf Packages';
-const FROM_EMAIL = 'sean@golfthehighsierra.com';
-
-function createTransport() {
-  return nodemailer.createTransport({
-    host: 'smtp.gmail.com',
-    port: 587,
-    secure: false,
-    auth: {
-      user: process.env.GGE_EMAIL_USER,
-      pass: process.env.GGE_EMAIL_PASSWORD,
-    },
-  });
-}
+const FROM_EMAIL = 'info@golfgraeagle.com';
 
 export async function sendMail(opts: MailOptions): Promise<void> {
-  let to: string | { name: string; address: string }[];
+  const apiKey = process.env.GGE_RESEND_API_KEY;
+  if (!apiKey) throw new Error('[mailer] GGE_RESEND_API_KEY is not set');
+
+  // Normalise recipients to string array
+  let to: string[];
   if (Array.isArray(opts.to)) {
-    to = opts.to.map(r => ({ name: r.name, address: r.email }));
+    to = opts.to.map(r => `"${r.name}" <${r.email}>`);
   } else {
-    to = opts.toName ? `"${opts.toName}" <${opts.to}>` : opts.to;
+    to = [opts.toName ? `"${opts.toName}" <${opts.to}>` : opts.to];
   }
 
-  const transporter = createTransport();
-  const info = await transporter.sendMail({
-    from: `"${FROM_NAME}" <${FROM_EMAIL}>`,
-    to,
-    subject: opts.subject,
-    html: opts.html,
+  const res = await fetch('https://api.resend.com/emails', {
+    method: 'POST',
+    headers: {
+      'Authorization': `Bearer ${apiKey}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      from: `${FROM_NAME} <${FROM_EMAIL}>`,
+      to,
+      subject: opts.subject,
+      html: opts.html,
+    }),
   });
 
-  console.log(`[mailer] ✅ Sent via SMTP: ${opts.subject} → ${info.messageId}`);
+  if (!res.ok) {
+    const err = await res.text();
+    throw new Error(`[mailer] Resend error ${res.status}: ${err}`);
+  }
+
+  const data = await res.json() as { id: string };
+  console.log(`[mailer] ✅ Sent via Resend: ${opts.subject} → ${data.id}`);
 }
