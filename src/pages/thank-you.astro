@@ -1,0 +1,82 @@
+---
+import Base from '../layouts/Base.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+
+const schema = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://golfgraeagle.com/' },
+      { '@type': 'ListItem', position: 2, name: 'Request a Quote', item: 'https://golfgraeagle.com/request-a-quote/' },
+      { '@type': 'ListItem', position: 3, name: 'Thank You', item: 'https://golfgraeagle.com/thank-you/' },
+    ],
+  },
+];
+---
+<Base
+  title="Quote Request Received — GolfGraeagle.com"
+  description="Your Graeagle golf trip quote request was received. A trip specialist will be in touch within 24 hours."
+  canonical="https://golfgraeagle.com/thank-you/"
+  schema={schema}
+  noindex={true}
+  bodyClass="light-page"
+>
+  <Nav />
+
+  <main style="min-height:100vh;padding-top:88px;background:#f0ece3;display:flex;align-items:center;justify-content:center;padding-bottom:80px;">
+    <div style="max-width:560px;width:100%;margin:0 auto;padding:0 24px;text-align:center;">
+
+      <!-- Checkmark -->
+      <div style="width:88px;height:88px;border-radius:50%;background:rgba(45,122,58,0.1);border:2px solid rgba(45,122,58,0.35);display:flex;align-items:center;justify-content:center;margin:0 auto 32px;font-size:36px;">✓</div>
+
+      <!-- Heading -->
+      <h1 style="font-family:'Playfair Display',serif;font-size:36px;font-weight:500;color:#1a1208;margin:0 0 12px;line-height:1.2;">You're all set.</h1>
+      <p style="font-size:17px;color:rgba(26,18,8,0.65);margin:0 0 8px;line-height:1.5;">Your Graeagle golf trip request is in — a confirmation is heading to your inbox now.</p>
+      <p style="font-size:15px;color:rgba(26,18,8,0.45);margin:0 0 48px;">A trip specialist will be in touch within <strong style="color:rgba(26,18,8,0.65);">24 hours</strong> with your custom package.</p>
+
+      <!-- What happens next -->
+      <div style="background:#fff;border:1px solid rgba(168,140,90,0.2);border-radius:16px;padding:28px 32px;text-align:left;margin-bottom:40px;">
+        <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.14em;color:#a06c30;margin-bottom:20px;">What happens next</div>
+        <div style="display:flex;flex-direction:column;gap:18px;">
+          <div style="display:flex;gap:16px;align-items:flex-start;">
+            <div style="width:28px;height:28px;border-radius:50%;background:rgba(232,168,80,0.15);border:1px solid rgba(232,168,80,0.3);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:#a06c30;flex-shrink:0;">1</div>
+            <div>
+              <div style="font-size:14px;font-weight:600;color:#1a1208;margin-bottom:2px;">Mike reviews your request</div>
+              <div style="font-size:13px;color:rgba(26,18,8,0.5);">Your trip details go straight to our Graeagle specialist — 20+ years booking these courses.</div>
+            </div>
+          </div>
+          <div style="display:flex;gap:16px;align-items:flex-start;">
+            <div style="width:28px;height:28px;border-radius:50%;background:rgba(232,168,80,0.15);border:1px solid rgba(232,168,80,0.3);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:#a06c30;flex-shrink:0;">2</div>
+            <div>
+              <div style="font-size:14px;font-weight:600;color:#1a1208;margin-bottom:2px;">Custom package built for you</div>
+              <div style="font-size:13px;color:rgba(26,18,8,0.5);">Tee times, lodging, dining — matched to your dates, group size, and budget.</div>
+            </div>
+          </div>
+          <div style="display:flex;gap:16px;align-items:flex-start;">
+            <div style="width:28px;height:28px;border-radius:50%;background:rgba(232,168,80,0.15);border:1px solid rgba(232,168,80,0.3);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:#a06c30;flex-shrink:0;">3</div>
+            <div>
+              <div style="font-size:14px;font-weight:600;color:#1a1208;margin-bottom:2px;">You hear back within 24 hours</div>
+              <div style="font-size:13px;color:rgba(26,18,8,0.5);">Email or call — whichever you prefer. No automated responses, just a real person.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Phone CTA -->
+      <p style="font-size:14px;color:rgba(26,18,8,0.45);margin:0 0 12px;">Need to talk now?</p>
+      <a href="tel:+18885861157" style="display:inline-flex;align-items:center;gap:8px;font-size:18px;font-weight:700;color:#1a1208;text-decoration:none;margin-bottom:40px;">
+        📞 <span style="color:#e8a850;">(888) 586-1157</span>
+      </a>
+
+      <!-- Back to site -->
+      <div>
+        <a href="/" style="display:inline-block;padding:12px 28px;border:1px solid rgba(26,18,8,0.15);border-radius:8px;font-size:14px;color:rgba(26,18,8,0.6);text-decoration:none;">← Back to GolfGraeagle.com</a>
+      </div>
+
+    </div>
+  </main>
+
+  <Footer />
+</Base>

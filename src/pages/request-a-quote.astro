@@ -1002,10 +1002,8 @@ form.addEventListener('submit', async e => {
       method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data),
     });
     if (!res.ok) throw new Error(await res.text());
-    form.style.display = 'none';
-    $id('q-success').style.display = 'block';
 
-    // GA4 conversion event
+    // GA4 conversion event — must fire before redirect
     if (typeof gtag !== 'undefined') {
       gtag('event', 'quote_request', {
         event_category: 'lead',
@@ -1014,6 +1012,8 @@ form.addEventListener('submit', async e => {
         how_heard:      data.howHeard  || 'unknown',
       });
     }
+
+    window.location.href = '/thank-you/';
 
     // Basic fields
     $id('s-name').textContent  = data.firstName || 'there';

@@ -286,6 +286,11 @@
       "permanent": true
     },
     {
+      "source": "/thank-you",
+      "destination": "/thank-you/",
+      "permanent": true
+    },
+    {
       "source": "/stay-and-play",
       "destination": "/stay-and-play/",
       "permanent": true
