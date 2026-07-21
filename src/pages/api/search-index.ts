@@ -86,7 +86,7 @@ export const POST: APIRoute = async () => {
 
   // --- Static pages ---
   const staticPages = [
-    { objectID: 'page-home',          type: 'page', name: 'Home — Graeagle Golf Packages', url: '/',                   keywords: 'graeagle golf packages stay and play tee times' },
+    { objectID: 'page-home',          type: 'page', name: 'Home — Golf Graeagle Packages', url: '/',                   keywords: 'graeagle golf packages stay and play tee times' },
     { objectID: 'page-courses',       type: 'page', name: 'All 5 Golf Courses',             url: '/all-golf-courses/', keywords: 'graeagle golf courses compare all 5' },
     { objectID: 'page-lodging',       type: 'page', name: 'Golf Lodging in Graeagle',       url: '/lodging/',          keywords: 'graeagle golf lodging stay and play hotels' },
     { objectID: 'page-dining',        type: 'page', name: 'Dining in Graeagle',             url: '/dining/',           keywords: 'graeagle restaurants dining bars golf' },

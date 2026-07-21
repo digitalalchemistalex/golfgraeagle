@@ -80,7 +80,7 @@ function customerEmailHtml(b: any): string {
       Questions in the meantime? Reply to this email or call us at <strong>+1-888-586-1157</strong>.
     </p>
     <a href="${SITE_URL}" style="display:inline-block;background:#3a8a48;color:#ffffff;font-size:15px;font-weight:600;padding:14px 32px;border-radius:100px;text-decoration:none;">
-      View Graeagle Golf Packages →
+      View Golf Graeagle Packages →
     </a>
   </td></tr>
 

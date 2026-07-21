@@ -10,8 +10,22 @@ export interface MailOptions {
   html: string;
 }
 
-const FROM_NAME  = 'Graeagle Golf Packages';
+
 const FROM_EMAIL = 'info@golfgraeagle.com';
+const FROM_NAME  = 'Golf Graeagle Packages';
+const FROM_EMAIL = 'sean@golfthehighsierra.com';
+
+function createTransport() {
+  return nodemailer.createTransport({
+    host: 'smtp.gmail.com',
+    port: 587,
+    secure: false,
+    auth: {
+      user: process.env.GGE_EMAIL_USER,
+      pass: process.env.GGE_EMAIL_PASSWORD,
+    },
+  });
+}
 
 export async function sendMail(opts: MailOptions): Promise<void> {
   const apiKey = process.env.GGE_RESEND_API_KEY;
