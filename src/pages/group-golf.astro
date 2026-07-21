@@ -9,7 +9,7 @@ const { minPrice, maxPrice, tripCount } = await fetchTripStats();
 
 
 const title = "Golf Groups Graeagle, Reno & Lake Tahoe | Group Golf Packages";
-const description = `Graeagle golf groups from Reno (90 min) and Lake Tahoe (90 min) — 5 championship courses, stay-and-play packages from $299/golfer, 4 to 200+ players. Tee sheets, lodging, scoring handled. Free quote in 24 hours.`;
+const description = `Graeagle golf groups — 90 min from Reno, 90 min from Lake Tahoe. 5 championship courses, stay-and-play from $299/golfer, 4 to 200+ players. Quote in 24 hrs.`;
 
 const faqSchema = {
   "@context":"https://schema.org","@type":"FAQPage",
@@ -51,7 +51,11 @@ const serviceSchema = {
   "name": "Group Golf Trips in Graeagle California",
   "description": "Group golf trip planning for 4 to 200+ golfers in Graeagle, CA. Tee time blocks, stay and play golf packages, lodging coordination, and itineraries.",
   "provider": { "@type": "TravelAgency", "@id": "https://golfgraeagle.com/#organization" },
-  "areaServed": { "@type": "Place", "name": "Graeagle, California" },
+  "areaServed": [
+    { "@type": "Place", "name": "Graeagle, California" },
+    { "@type": "Place", "name": "Reno, Nevada" },
+    { "@type": "Place", "name": "Lake Tahoe, California" }
+  ],
   "serviceType": "Group Golf Trip Planning",
   "offers": { "@type": "AggregateOffer", "lowPrice": `${minPrice}`, "highPrice": `${maxPrice}`, "priceCurrency": "USD" }
 };
