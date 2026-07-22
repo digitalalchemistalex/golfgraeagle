@@ -54,7 +54,7 @@ interface CheckResult {
   error?: string;
 }
 
-async function runCheck(check: typeof CHECKS[0]): Promise<CheckResult> {
+async function runCheck(check: typeof CHECKS[0], attempt = 1): Promise<CheckResult> {
   const fullUrl = `${SITE}${check.url}`;
   try {
     const res = await fetch(fullUrl, {
@@ -92,6 +92,10 @@ async function runCheck(check: typeof CHECKS[0]): Promise<CheckResult> {
     return { name: check.name, url: fullUrl, ok: true, status: res.status };
 
   } catch (e: any) {
+    if (attempt < 2) {
+      await new Promise(r => setTimeout(r, 3000));
+      return runCheck(check, 2);
+    }
     return { name: check.name, url: fullUrl, ok: false, error: `Fetch failed: ${e.message}` };
   }
 }
