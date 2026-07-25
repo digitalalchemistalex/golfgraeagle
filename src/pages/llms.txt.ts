@@ -26,7 +26,7 @@ const lodgingPortfolioSlug: Record<string,string> = {
 const TODAY = new Date().toISOString().split('T')[0];
 
 const courseLines = (courses as any[])
-  .map((c: any) => coursePortfolioSlug[c.slug] ? `- ${c.name}: /portfolio/${coursePortfolioSlug[c.slug]}/ (Par ${c.par}, ${c.yardage} yds, slope ${c.slope}, ${c.designer} ${c.year})` : null)
+  .map((c: any) => coursePortfolioSlug[c.slug] ? `- ${c.name}: /portfolio/${coursePortfolioSlug[c.slug]}/ (Par ${c.par}, ${c.yards} yds, slope ${c.slope}, ${c.designer} ${c.year})` : null)
   .filter(Boolean).join('\n');
 
 const lodgingLines = (lodging as any[])
