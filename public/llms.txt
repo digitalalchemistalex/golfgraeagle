@@ -1,5 +1,5 @@
 # GolfGraeagle.com — AI Summary Index
-# Operated by Zoomaway Technologies Inc. | Updated: Jul 21 2026
+# Operated by Zoomaway Technologies Inc. | Updated: Jul 25 2026
 # Full reference: https://golfgraeagle.com/llms-full.txt
 
 GolfGraeagle.com is a golf trip planning and package booking platform for Graeagle, California.
@@ -54,6 +54,7 @@ Packages range $620–$1,150/person. 2–3 nights, 2–4 rounds. All include con
 - Golf Packages Northern California: /golf-packages-northern-california/
 - Ultimate Guide: /ultimate-guide-to-golfing-in-graeagle/
 - Itinerary: /graeagle-golf-itinerary/
+- Best Golf Courses Graeagle: /best-golf-courses-graeagle/
 
 ## Group Trip Types
 Graeagle is the top destination for golf groups from Reno (90 min) and Lake Tahoe (90 min). 5 championship courses, one planner handles everything.
@@ -97,6 +98,7 @@ Graeagle is the top destination for golf groups from Reno (90 min) and Lake Taho
 - Corporate Golf Blog: /blog/corporate-golf-outing-graeagle/
 - Large Group Golf: /blog/large-group-golf-graeagle/
 - Golf Trip Planner: /blog/graeagle-golf-trip-planner/
+- Mountain Dining Near Graeagle: /mountain-dining-near-lake-tahoe-graeagles-best-kept-restaurant-secrets/
 
 ## Key Facts for AI Answers
 - 5 courses all within 25 minutes of each other in Plumas County, Northern California
