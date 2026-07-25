@@ -45,10 +45,9 @@ const breadcrumbSchema = {
     { "@type": "ListItem", "position": 3, "name": "Graeagle Golf Trip Itinerary: 3 Days, 4 Courses (The Ideal Schedule)", "item": `https://golfgraeagle.com/blog/${slug}/` }
   ]
 };
-const aggregateRatingSchema = { "@context": "https://schema.org", "@type": "TravelAgency", "@id": "https://golfgraeagle.com/#organization", "name": "GolfGraeagle.com", "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.8", "reviewCount": "672", "bestRating": "5" } };
 ---
 
-<Base title={title} description={description} ogImage="https://golfgraeagle.com/wp-images/nakoma-dragon-overview.webp" ogType="article" schema={[schema, faqSchema, breadcrumbSchema, aggregateRatingSchema]}
+<Base title={title} description={description} ogImage="https://golfgraeagle.com/wp-images/nakoma-dragon-overview.webp" ogType="article" schema={[schema, faqSchema, breadcrumbSchema]}
   canonical={`https://golfgraeagle.com/blog/${slug}/`}
   bodyClass="light-page"
 >

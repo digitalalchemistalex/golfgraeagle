@@ -31,9 +31,6 @@ const breadcrumbSchema = {
 };
 const orgSchema = {
   "@context": "https://schema.org", "@graph": [
-    { "@type": ["TravelAgency","Organization"], "@id": "https://golfgraeagle.com/#organization",
-      "name": "GolfGraeagle.com", "url": "https://golfgraeagle.com",
-      "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.8", "reviewCount": "672", "bestRating": "5" } },
     { "@type": "WebPage", "url": "https://golfgraeagle.com/summer-golf-graeagle/", "name": title }
   ]
 };
@@ -82,7 +79,7 @@ const conditions = [
 ];
 ---
 <Base title={title} description={description} ogType="website"
-  schema={[orgSchema, faqSchema, breadcrumbSchema, howToSchema, serviceSchema]}
+  schema={[faqSchema, breadcrumbSchema, howToSchema, serviceSchema]}
   canonical="https://golfgraeagle.com/summer-golf-graeagle/"
   ogImage="https://golfgraeagle.com/wp-images/DJI_0949-Edit.webp"
   bodyClass="light-page"

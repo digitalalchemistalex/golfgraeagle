@@ -45,10 +45,9 @@ const breadcrumbSchema = {
     { "@type": "ListItem", "position": 3, "name": "The Graeagle Golf Bucket List: 4 Courses, 36-Hole Days, 3 Nights", "item": `https://golfgraeagle.com/blog/${slug}/` }
   ]
 };
-const aggregateRatingSchema = { "@context": "https://schema.org", "@type": "TravelAgency", "@id": "https://golfgraeagle.com/#organization", "name": "GolfGraeagle.com", "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.8", "reviewCount": "672", "bestRating": "5" } };
 ---
 
-<Base title={title} description={description} ogType="article" schema={[schema, faqSchema, breadcrumbSchema, aggregateRatingSchema]}
+<Base title={title} description={description} ogType="article" schema={[schema, faqSchema, breadcrumbSchema]}
   canonical={`https://golfgraeagle.com/blog/${slug}/`}
   ogImage="/wp-images/nakoma-flw-lodge-exterior.webp"
   bodyClass="light-page"

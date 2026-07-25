@@ -50,10 +50,9 @@ const coursesFit = [
   { name: 'Grizzly Ranch', slug: 'grizzly-ranch-golf-packages', slope: 140, yards: 7411, senior: '⭐⭐⭐ Challenging — best for competitive seniors', note: 'Significant elevation changes. Long from any tee. Rewarding for capable players, tough for those less familiar with mountain golf.' },
   { name: 'Nakoma Dragon', slug: 'nakoma-dragon-golf-packages', slope: 147, yards: 7015, senior: '⭐⭐⭐ Worth it for the experience', note: 'Most demanding, but 5 tee boxes make it more accessible than the slope suggests. The FLW clubhouse is reason enough to visit at any ability level.' },
 ];
-const aggregateRatingSchema = { "@context": "https://schema.org", "@type": "TravelAgency", "@id": "https://golfgraeagle.com/#organization", "name": "GolfGraeagle.com", "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.8", "reviewCount": "672", "bestRating": "5" } };
 ---
 
-<Base title={title} description={description} ogType="article" schema={[schema, faqSchema, breadcrumbSchema, aggregateRatingSchema]}
+<Base title={title} description={description} ogType="article" schema={[schema, faqSchema, breadcrumbSchema]}
   canonical={`https://golfgraeagle.com/blog/${slug}/`}
   ogImage="https://golfgraeagle.com/wp-images/graeagle-meadows-hero.webp"
   bodyClass="light-page"

@@ -6,13 +6,6 @@ import { courses } from '../data/content.js';
 import { fetchTripStats } from '../lib/tripStats';
 const { tripCount } = await fetchTripStats();
 
-const aggregateRatingSchema = {
-  "@context": "https://schema.org", "@type": "TravelAgency",
-  "@id": "https://golfgraeagle.com/#organization",
-  "name": "GolfGraeagle.com",
-  "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.8", "reviewCount": "672", "bestRating": "5" }
-};
-
 const aboutSchema = [
   {
     '@type': 'BreadcrumbList',
@@ -56,7 +49,7 @@ const aboutSchema = [
   title="About GolfGraeagle | Mike Eskuchen, Golf Expert"
   description="GolfGraeagle.com is led by Mike Eskuchen — 20+ years in Northern California golf, former course GM and director of sales. Expert stay-and-play and group golf packages. Golf the High Sierra partner."
   canonical="https://golfgraeagle.com/about-us/"
-  schema={[...aboutSchema, aggregateRatingSchema]}
+  schema={[...aboutSchema]}
 
   bodyClass="light-page"
 >

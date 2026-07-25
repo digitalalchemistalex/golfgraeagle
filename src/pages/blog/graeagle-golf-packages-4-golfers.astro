@@ -57,11 +57,10 @@ const itinerary = [
   { day: 'Day 3', time: 'Afternoon', activity: 'Tee time — Grizzly Ranch Golf Club', note: 'Par 72 · Slope 140 · Golf Digest Top 100' },
   { day: 'Day 4', time: 'Morning',   activity: 'Check out, drive home', note: 'Or add a 4th round at Plumas Pines before leaving' },
 ];
-const aggregateRatingSchema = { "@context": "https://schema.org", "@type": "TravelAgency", "@id": "https://golfgraeagle.com/#organization", "name": "GolfGraeagle.com", "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.8", "reviewCount": "672", "bestRating": "5" } };
 ---
 
 <Base title={title} description={description} ogType="article"
-  schema={[schema, faqSchema, breadcrumbSchema, aggregateRatingSchema]}
+  schema={[schema, faqSchema, breadcrumbSchema]}
   canonical={`https://golfgraeagle.com/blog/${slug}/`}
   ogImage="https://golfgraeagle.com/wp-images/whitehawk-hero.webp"
   bodyClass="light-page"

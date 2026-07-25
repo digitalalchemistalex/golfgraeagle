@@ -29,13 +29,7 @@ const breadcrumbSchema = {
     { "@type": "ListItem", "position": 3, "name": "Tee Times Graeagle", "item": "https://golfgraeagle.com/tee-times-graeagle/" }
   ]
 };
-const orgSchema = {
-  "@context": "https://schema.org", "@graph": [
-    { "@type": ["TravelAgency","Organization"], "@id": "https://golfgraeagle.com/#organization", "name": "GolfGraeagle.com", "url": "https://golfgraeagle.com",
-      "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.8", "reviewCount": "672", "bestRating": "5" } },
-    { "@type": "WebPage", "url": "https://golfgraeagle.com/tee-times-graeagle/", "name": title }
-  ]
-};
+
 const howToSchema = {
   "@context": "https://schema.org", "@type": "HowTo",
   "name": "How to Book Tee Times at Graeagle Golf Courses",
@@ -81,7 +75,7 @@ const whyPoints = [
 ];
 ---
 <Base title={title} description={description} ogType="website"
-  schema={[orgSchema, faqSchema, breadcrumbSchema, serviceSchema, howToSchema]}
+  schema={[faqSchema, breadcrumbSchema, serviceSchema, howToSchema]}
   canonical="https://golfgraeagle.com/tee-times-graeagle/"
   ogImage="https://golfgraeagle.com/wp-images/grizzly-ranch--1024x682.webp"
   bodyClass="light-page"

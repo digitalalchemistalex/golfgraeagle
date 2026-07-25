@@ -32,13 +32,6 @@ const diningSlugMap: Record<string,string> = {
   'longboards':          'longboards-bar-and-grill',
 };
 
-const aggregateRatingSchema = {
-  "@context": "https://schema.org", "@type": "TravelAgency",
-  "@id": "https://golfgraeagle.com/#organization",
-  "name": "GolfGraeagle.com",
-  "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.8", "reviewCount": "672", "bestRating": "5" }
-};
-
 const restaurantSchemas = dining.map(d => ({
   "@type": "Restaurant",
   "@id": `${siteConfig.url}/dining#${d.slug}`,
@@ -89,7 +82,7 @@ const diningFaq = {
 <Base
   title="Dining in Graeagle, CA | Best Restaurants Near Golf"
   description="Best restaurants near Graeagle's 5 golf courses — Sardine Lake, Grizzly Grill, Cuccia's #1 Tripadvisor, The Brewing Lair. Group dining reservations coordinated alongside tee times and stay-and-play packages."
-  schema={[...restaurantSchemas, diningBreadcrumb, diningFaq, aggregateRatingSchema]}
+  schema={[...restaurantSchemas, diningBreadcrumb, diningFaq]}
 
   bodyClass="light-page"
 >

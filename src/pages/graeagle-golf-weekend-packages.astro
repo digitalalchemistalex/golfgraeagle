@@ -32,8 +32,6 @@ const breadcrumbSchema = {"@context":"https://schema.org","@type":"BreadcrumbLis
 ]};
 
 const orgSchema = {"@context":"https://schema.org","@graph":[
-  {"@type":["TravelAgency","Organization"],"@id":"https://golfgraeagle.com/#organization","name":"GolfGraeagle.com","url":"https://golfgraeagle.com",
-    "aggregateRating":{"@type":"AggregateRating","ratingValue":"4.8","reviewCount":"672","bestRating":"5"}},
   {"@type":"WebPage","url":"https://golfgraeagle.com/graeagle-golf-weekend-packages/","name":title}
 ]};
 
@@ -78,7 +76,7 @@ const QUOTE_URL = '/request-a-quote/?groupType=weekend&ref=weekend-landing';
   title={title}
   description={description}
   ogType="website"
-  schema={[orgSchema, faqSchema, breadcrumbSchema, serviceSchema]}
+  schema={[faqSchema, breadcrumbSchema, serviceSchema]}
   canonical="https://golfgraeagle.com/graeagle-golf-weekend-packages/"
   ogImage="https://golfgraeagle.com/wp-images/graeagle-meadows-aerial.jpg"
   bodyClass="light-page"

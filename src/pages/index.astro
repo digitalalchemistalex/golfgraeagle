@@ -95,13 +95,7 @@ const golfSeasonEventSchema = {
   }
 };
 
-const aggregateRatingSchema = {
-  "@context": "https://schema.org", "@type": "TravelAgency",
-  "@id": "https://golfgraeagle.com/#organization",
-  "name": "GolfGraeagle.com",
-  "url": "https://golfgraeagle.com",
-  "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.8", "reviewCount": "672", "bestRating": "5" }
-};
+
 const howToSchema = {
   "@context": "https://schema.org", "@type": "HowTo",
   "name": "How to Plan a Graeagle Golf Trip",
@@ -186,7 +180,7 @@ const lodgingSlugMap: Record<string,string> = {'river-pines-resort':'river-pines
   title="Graeagle Golf Packages & Tee Times | GolfGraeagle.com"
   description="Graeagle golf packages from $299/golfer — Golf Digest Top 100, FLW clubhouse, 5 courses. Stay-and-play, guaranteed tee times, groups of 4–200. Expert booking since 2004."
   preloadImage={courses[0].hero}
-  schema={[serviceSchema, golfSeasonEventSchema, courseListSchema, homeFaqSchema, aggregateRatingSchema, howToSchema, breadcrumbSchema]}
+  schema={[serviceSchema, golfSeasonEventSchema, courseListSchema, homeFaqSchema, howToSchema, breadcrumbSchema]}
   bodyClass="light-page"
 >
 <Nav />

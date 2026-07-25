@@ -47,10 +47,9 @@ const breadcrumbSchema = {
     { "@type": "ListItem", "position": 3, "name": "Golf Near Lake Tahoe", "item": `https://golfgraeagle.com/blog/${slug}/` }
   ]
 };
-const aggregateRatingSchema = { "@context": "https://schema.org", "@type": "TravelAgency", "@id": "https://golfgraeagle.com/#organization", "name": "GolfGraeagle.com", "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.8", "reviewCount": "672", "bestRating": "5" } };
 ---
 
-<Base title={title} description={description} ogType="article" schema={[schema, faqSchema, breadcrumbSchema, aggregateRatingSchema]}
+<Base title={title} description={description} ogType="article" schema={[schema, faqSchema, breadcrumbSchema]}
   canonical={`https://golfgraeagle.com/blog/${slug}/`}
   ogImage="https://golfgraeagle.com/wp-images/grizzly-ranch-img0666.webp"
   bodyClass="light-page"

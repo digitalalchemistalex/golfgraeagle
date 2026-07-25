@@ -29,8 +29,6 @@ const breadcrumbSchema = {"@context":"https://schema.org","@type":"BreadcrumbLis
   {"@type":"ListItem","position":2,"name":"Group Golf","item":"https://golfgraeagle.com/group-golf/"}
 ]};
 const orgSchema = {"@context":"https://schema.org","@graph":[
-  {"@type":["TravelAgency","Organization"],"@id":"https://golfgraeagle.com/#organization","name":"GolfGraeagle.com","url":"https://golfgraeagle.com",
-    "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.8", "reviewCount": "672", "bestRating": "5" }},
   {"@type":"WebPage","url":"https://golfgraeagle.com/group-golf/","name":title}
 ]};
 const howToSchema = {
@@ -84,7 +82,7 @@ const logistics = [
 ];
 ---
 <Base title={title} description={description} ogType="website"
-  schema={[orgSchema, faqSchema, breadcrumbSchema, serviceSchema, howToSchema]}
+  schema={[faqSchema, breadcrumbSchema, serviceSchema, howToSchema]}
   canonical="https://golfgraeagle.com/group-golf/"
   ogImage="https://golfgraeagle.com/wp-images/2024-08-17-1.webp"
   bodyClass="light-page"

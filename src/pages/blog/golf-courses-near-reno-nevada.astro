@@ -57,10 +57,9 @@ const graeagle = [
   { name: 'Plumas Pines', badge: 'Top 5 Value CA', par: 72, yards: 6504, slope: 132, note: 'Feather River layout. Precision course. Longboards on-site.', slug: 'plumas-pines-golf-packages' },
   { name: 'Graeagle Meadows', badge: 'Since 1968', par: 72, yards: 6759, slope: 120, note: 'Most accessible. Mountain views. Central valley location.', slug: 'graeagle-meadows-golf-packages' },
 ];
-const aggregateRatingSchema = { "@context": "https://schema.org", "@type": "TravelAgency", "@id": "https://golfgraeagle.com/#organization", "name": "GolfGraeagle.com", "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.8", "reviewCount": "672", "bestRating": "5" } };
 ---
 
-<Base title={title} description={description} ogType="article" schema={[schema, faqSchema, breadcrumbSchema, aggregateRatingSchema]}
+<Base title={title} description={description} ogType="article" schema={[schema, faqSchema, breadcrumbSchema]}
   canonical={`https://golfgraeagle.com/blog/${slug}/`}
   ogImage="https://golfgraeagle.com/wp-images/grizzly-ranch-hero.webp"
   bodyClass="light-page"

@@ -52,13 +52,6 @@ const townhomeData = {
   portfolioSlug: 'the-townhomes-at-plumas-pines',
 };
 
-const aggregateRatingSchema = {
-  "@context": "https://schema.org", "@type": "TravelAgency",
-  "@id": "https://golfgraeagle.com/#organization",
-  "name": "GolfGraeagle.com",
-  "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.8", "reviewCount": "672", "bestRating": "5" }
-};
-
 const lodgingBreadcrumb = {
   "@type": "BreadcrumbList",
   "itemListElement": [
@@ -80,7 +73,7 @@ const lodgingFaq = {
 <Base
   title="Graeagle Golf Lodging | Hotels, Cabins & Stay & Play"
   description="Graeagle golf lodging: River Pines Resort, Inn at Nakoma, Chalet View Lodge, and Plumas Pines Townhomes. Stay-and-play packages with guaranteed tee times from $299/golfer. Free quote in 24 hours."
-  schema={[lodgingBreadcrumb, lodgingFaq, aggregateRatingSchema]}
+  schema={[lodgingBreadcrumb, lodgingFaq]}
   canonical="https://golfgraeagle.com/lodging/"
 
   bodyClass="light-page"

@@ -53,10 +53,9 @@ const months = [
   { name: 'October', status: '🏆 Excellent', conditions: 'Fall foliage at peak — aspens gold, mornings crisp, afternoons comfortable. Least crowded. Some courses may reduce hours mid-month. Verify hours with individual courses. Potentially the most beautiful month on the course.', book: true },
   { name: 'November', status: '⚠️ Closing', conditions: 'Most courses close by early November. Graeagle Meadows may stay open a few extra weeks in mild years. First snow typically arrives in November. Do not plan a full-valley trip in November without confirming all courses are open.', book: false },
 ];
-const aggregateRatingSchema = { "@context": "https://schema.org", "@type": "TravelAgency", "@id": "https://golfgraeagle.com/#organization", "name": "GolfGraeagle.com", "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.8", "reviewCount": "672", "bestRating": "5" } };
 ---
 
-<Base title={title} description={description} ogType="article" schema={[schema, faqSchema, breadcrumbSchema, aggregateRatingSchema]}
+<Base title={title} description={description} ogType="article" schema={[schema, faqSchema, breadcrumbSchema]}
   canonical={`https://golfgraeagle.com/blog/${slug}/`}
   ogImage="https://golfgraeagle.com/wp-images/graeagle-meadows-dji0536.jpg"
   bodyClass="light-page"

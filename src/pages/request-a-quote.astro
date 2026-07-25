@@ -20,12 +20,7 @@ const lodgingCards = [
   { ...lodging[2], best:'Most Unique',       icon:'🏛', desc:'Frank Lloyd Wright building · Steps from The Dragon · Spa & pool' },
   { ...lodging[3], best:'Large Groups',      icon:'🏘', desc:'2–4 bedroom units · Full kitchens · On the Plumas Pines course' },
 ];
-const aggregateRatingSchema = {
-  "@context": "https://schema.org", "@type": "TravelAgency",
-  "@id": "https://golfgraeagle.com/#organization",
-  "name": "GolfGraeagle.com",
-  "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.8", "reviewCount": "672", "bestRating": "5" }
-};
+
 
 const quoteSchema = [
   {
@@ -57,7 +52,7 @@ const quoteSchema = [
   title="Plan Your Graeagle Golf Trip — Free Custom Quote in 24 Hours"
   description="Free custom Graeagle golf quote in 24 hours. Mike Eskuchen builds a complete stay-and-play itinerary — tee times, lodging, and dining. Expert booking since 2004. Call 888-586-1157."
   canonical="https://golfgraeagle.com/request-a-quote"
-  schema={[...quoteSchema, aggregateRatingSchema]}
+  schema={quoteSchema}
 
   bodyClass="light-page"
 >

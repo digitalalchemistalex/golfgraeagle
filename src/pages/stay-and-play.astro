@@ -29,8 +29,6 @@ const breadcrumbSchema = {
   ]
 };
 const orgSchema = { "@context":"https://schema.org","@graph":[
-  { "@type":["TravelAgency","Organization"],"@id":"https://golfgraeagle.com/#organization","name":"GolfGraeagle.com","url":"https://golfgraeagle.com",
-    "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.8", "reviewCount": "672", "bestRating": "5" } },
   { "@type":"WebPage","url":"https://golfgraeagle.com/stay-and-play/","name":title }
 ]};
 const howToSchema = {
@@ -86,7 +84,7 @@ const includes = [
 ];
 ---
 <Base title={title} description={description} ogType="website"
-  schema={[orgSchema, faqSchema, breadcrumbSchema, serviceSchema, howToSchema]}
+  schema={[faqSchema, breadcrumbSchema, serviceSchema, howToSchema]}
   canonical="https://golfgraeagle.com/stay-and-play/"
   ogImage="https://golfgraeagle.com/wp-images/nakoma-inn-lobby-fireplace.jpg"
   bodyClass="light-page"
