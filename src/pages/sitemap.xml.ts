@@ -1,9 +1,14 @@
 export const prerender = true;
 
 import { courses, lodging, dining } from '../data/content.js';
+import { landingPages } from '../data/pages.js';
 
 const SITE  = 'https://golfgraeagle.com';
 const TODAY = new Date().toISOString().split('T')[0];
+
+// Auto-discover blog posts — add a file to /src/pages/blog/ and it appears automatically
+const blogFiles = import.meta.glob('/src/pages/blog/*.astro');
+const blogSlugs = Object.keys(blogFiles).map(p => p.replace('/src/pages/blog/', '').replace('.astro', ''));
 
 function url(loc: string, priority: string, changefreq: string) {
   // Always use trailing slash to match WP-indexed canonical URLs in GSC
@@ -43,62 +48,22 @@ const courseUrls   = courses.map((c:any) => coursePortfolioSlug[c.slug]).filter(
 const lodgingUrls  = lodging.map((l:any) => lodgingPortfolioSlug[l.slug]).filter(Boolean).map((s:string) => url(`/portfolio/${s}`,'0.8','monthly'));
 const diningUrls   = dining.map((d:any) => diningPortfolioSlug[d.slug]).filter(Boolean).map((s:string) => url(`/portfolio/${s}`,'0.7','monthly'));
 
-// Blog posts — manual until a blog content array exists
-const blogUrls = [
-  // Legacy WP root slugs — these pages exist but canonical should be /blog/ equivalents
-  // Keeping in sitemap at lower priority until 301s are confirmed in GSC
-  '/blog/graeagle-golf-courses-ranked',
-  '/blog/graeagle-golf-trip-itinerary-3-days',
-  '/blog/how-to-plan-graeagle-golf-trip',
-  '/blog/graeagle-vs-lake-tahoe-golf',
-  '/blog/best-time-to-golf-graeagle',
-  '/blog/bachelor-party-golf-graeagle',
-  '/blog/graeagle-golf-trip-cost',
-  '/blog/graeagle-golf-trip-planner',
-  '/blog/graeagle-golf-packages-4-golfers',
-  '/blog/large-group-golf-graeagle',
-  '/blog/corporate-golf-outing-graeagle',
-  '/blog/graeagle-golf-bucket-list',
-  '/blog/graeagle-golf-weekend',
-  '/blog/golf-near-lake-tahoe',
-  '/blog/golf-tournament-graeagle',
-  '/blog/when-does-golf-season-start-graeagle',
-  '/blog/frank-lloyd-wright-golf-clubhouse',
-  '/blog/golf-courses-near-reno-nevada',
-  '/blog/best-golf-courses-northern-california-mountains',
-  '/blog/senior-golf-trips-graeagle',
-].map(s => url(s,'0.7','monthly'));
+// Blog posts — auto-discovered from /src/pages/blog/*.astro
+const blogUrls = blogSlugs.map(s => url(`/blog/${s}`, '0.7', 'monthly'));
 
-// Legacy root-level pages (old WP URLs — kept for GSC continuity, lower priority)
-const legacyUrls = [
-  '/best-golf-courses-graeagle',
-  '/ultimate-guide-to-golfing-in-graeagle',
-  '/mountain-dining-near-lake-tahoe-graeagles-best-kept-restaurant-secrets',
-].map(s => url(s,'0.5','yearly'));
+// Landing pages — driven by src/data/pages.js
+const landingUrls = landingPages.map(p => url(p.slug, p.priority, p.changefreq));
 
 const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
-<!-- Core pages -->
+<!-- Homepage -->
 ${url('/','1.0','weekly')}
-${url('/request-a-quote','1.0','monthly')}
-${url('/golf-packages','0.9','monthly')}
-${url('/stay-and-play','0.9','monthly')}
-${url('/group-golf','0.9','monthly')}
-${url('/graeagle-golf-itinerary','0.9','monthly')}
-${url('/tee-times-graeagle','0.9','monthly')}
-${url('/all-golf-courses','0.9','monthly')}
-${url('/golf-trip-from-sacramento','0.9','monthly')}
-${url('/summer-golf-graeagle','0.9','monthly')}
-${url('/graeagle-golf-resort','0.9','monthly')}
-${url('/bachelor-party-golf-graeagle','0.9','monthly')}
-${url('/corporate-golf-outing-graeagle','0.9','monthly')}
-${url('/graeagle-golf-weekend-packages','0.9','monthly')}
-${url('/graeagle-golf-vacation','0.9','monthly')}
-${url('/stay-and-play-golf-california','0.9','monthly')}
-${url('/golf-packages-northern-california','0.9','monthly')}
-${url('/trips','0.8','weekly')}
-<!-- Individual trip package pages (12 real packages) -->
+
+<!-- Landing pages (${landingUrls.length} — driven by src/data/pages.js) -->
+${landingUrls.join('\n')}
+
+<!-- Trip pages -->
 ${url('/trips/graeagle-river-pines-golf-group','0.8','monthly')}
 ${url('/trips/graeagle-golf-trip','0.8','monthly')}
 ${url('/trips/graeagle-quick-hitter','0.8','monthly')}
@@ -111,33 +76,22 @@ ${url('/trips/graeagle-golf-trip-3n-3r-value','0.8','monthly')}
 ${url('/trips/bob-s-group','0.8','monthly')}
 ${url('/trips/graeagle-buckets-golf-trip','0.8','monthly')}
 ${url('/trips/plumas-pines-golf-group','0.8','monthly')}
-${url('/graeagle-vacation-rentals','0.8','monthly')}
-${url('/graeagle-golf-hotels','0.8','monthly')}
-${url('/lodging','0.8','monthly')}
-${url('/dining','0.8','monthly')}
-${url('/faq','0.7','monthly')}
-${url('/about-us','0.7','monthly')}
-${url('/about/mike-eskuchen','0.6','monthly')}
-${url('/blog','0.7','weekly')}
 
-<!-- Courses (${courseUrls.length}) -->
+<!-- Courses (${courseUrls.length} — driven by content.js) -->
 ${courseUrls.join('\n')}
 
-<!-- Lodging (${lodgingUrls.length}) -->
+<!-- Lodging (${lodgingUrls.length} — driven by content.js) -->
 ${lodgingUrls.join('\n')}
 
-<!-- Dining (${diningUrls.length}) -->
+<!-- Dining (${diningUrls.length} — driven by content.js) -->
 ${diningUrls.join('\n')}
 
-<!-- Blog (${blogUrls.length}) -->
+<!-- Blog (${blogUrls.length} — auto-discovered from /src/pages/blog/) -->
+${url('/blog','0.7','weekly')}
 ${blogUrls.join('\n')}
 
-<!-- Insider content + tools -->
+<!-- Tools -->
 ${url('/embed-graeagle-golf-trips','0.7','monthly')}
-${url('/graeagle-course-guide','0.8','monthly')}
-
-<!-- Legacy WP root URLs (${legacyUrls.length} — kept for GSC continuity, low priority) -->
-${legacyUrls.join('\n')}
 
 </urlset>`;
 
