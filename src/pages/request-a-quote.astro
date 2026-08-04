@@ -122,6 +122,27 @@ const quoteSchema = [
               <div class="qfld qfull"><label>Email <span class="req">*</span></label><input type="email" name="email" placeholder="you@example.com" required autocomplete="email"/></div>
               <div class="qfld qfull"><label>Phone <span class="req">*</span></label><input type="tel" name="phone" placeholder="(555) 555-5555" required autocomplete="tel"/></div>
               <div class="qfld qfull">
+                <label>Contact Preference</label>
+                <div class="q-contact-pref">
+                  <label class="q-cp-opt">
+                    <input type="radio" name="contactPreference" value="text" checked/>
+                    <span class="q-cp-inner"><span class="q-cp-icon">💬</span><span class="q-cp-txt">Text is fine</span></span>
+                  </label>
+                  <label class="q-cp-opt">
+                    <input type="radio" name="contactPreference" value="call"/>
+                    <span class="q-cp-inner"><span class="q-cp-icon">📞</span><span class="q-cp-txt">OK to call</span></span>
+                  </label>
+                  <label class="q-cp-opt">
+                    <input type="radio" name="contactPreference" value="both"/>
+                    <span class="q-cp-inner"><span class="q-cp-icon">📞💬</span><span class="q-cp-txt">Either is fine</span></span>
+                  </label>
+                  <label class="q-cp-opt">
+                    <input type="radio" name="contactPreference" value="email-only"/>
+                    <span class="q-cp-inner"><span class="q-cp-icon">✉️</span><span class="q-cp-txt">Email only</span></span>
+                  </label>
+                </div>
+              </div>
+              <div class="qfld qfull">
                 <label>How did you hear about us?</label>
                 <select name="howHeard">
                   <option value="">Select one…</option>
@@ -594,6 +615,13 @@ const quoteSchema = [
 .q-radio{display:flex;align-items:center;gap:7px;font-size:12px;color:rgba(26,18,8,0.55);cursor:pointer;padding:8px 13px;border-radius:10px;border:1px solid rgba(26,18,8,0.1);background:rgba(26,18,8,0.03);transition:all .2s;}
 .q-radio:has(input:checked){color:#7a4a00;border-color:#c8820a;background:#e8a850;font-weight:600;}
 .q-radio input[type="radio"]{accent-color:#e8a850;flex-shrink:0;}
+/* contact preference */
+.q-contact-pref{display:flex;gap:8px;flex-wrap:wrap;margin-top:6px;}
+.q-cp-opt{cursor:pointer;}
+.q-cp-opt input[type="radio"]{display:none;}
+.q-cp-inner{display:flex;align-items:center;gap:6px;padding:9px 14px;border-radius:10px;border:1px solid rgba(26,18,8,0.1);background:rgba(26,18,8,0.03);transition:all .2s;font-size:13px;color:rgba(26,18,8,0.6);}
+.q-cp-opt:has(input:checked) .q-cp-inner{color:#7a4a00;border-color:#c8820a;background:#e8a850;font-weight:600;}
+.q-cp-icon{font-size:15px;line-height:1;}
 /* tier */
 .q-tier-row{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:2px;}
 @media(max-width:480px){.q-tier-row{grid-template-columns:1fr;}}
