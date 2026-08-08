@@ -4,8 +4,8 @@ import type { APIRoute } from 'astro';
 import { sendMail } from '../../lib/mailer';
 
 // ─── Config ────────────────────────────────────────────────
-const SUPA_URL  = 'https://egplpluvbfsjrqzecnjf.supabase.co';
-const SUPA_KEY  = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVncGxwbHV2YmZzanJxemVjbmpmIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc2OTM4NDY4NSwiZXhwIjoyMDg0OTYwNjg1fQ.058gQsnZmklTIlfFQoxZ1WDgM-2e_tNThcRrnXDfvhA';
+const SUPA_URL  = 'https://bmkikkdieheyzsfmzrfm.supabase.co';
+const SUPA_KEY  = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJta2lra2RpZWhleXpzZm16cmZtIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc4NjE1NDEwOCwiZXhwIjoyMTAxNzMwMTA4fQ.BUkbbZWYUPVK2Y1-uV6cIhRsvpGUei70uLbkM5McAhQ';
 
 const DEV_EMAIL = { name: 'Dev', email: 'ifyougetlockedout@protonmail.com' };
 
