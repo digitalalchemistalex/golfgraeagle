@@ -98,6 +98,8 @@ function customerEmailHtml(b: any): string {
 
 function safe(v: any, fallback = '—'): string {
   if (v === undefined || v === null || v === '' || v === 'undefined' || v === 'null') return fallback;
+  if (v === true  || v === 'true')  return 'yes';
+  if (v === false || v === 'false') return 'no';
   return String(v);
 }
 
@@ -366,4 +368,5 @@ export const POST: APIRoute = async ({ request }) => {
     });
   }
 };
+
 
