@@ -12,7 +12,6 @@ const DEV_EMAIL = { name: 'Dev', email: 'ifyougetlockedout@protonmail.com' };
 const ALL_ADMIN_EMAILS = [
   { name: 'Mike Eskuchen',  email: 'mike.eskuchen@golfthehighsierra.com' },
   { name: 'Mike Milligan',  email: 'mike@zoomaway.com' },
-  { name: 'Mike Eskuchen',  email: 'MEskuchen@zoomaway.com' },
   { name: 'Sean',           email: 'sean@zoomaway.com' },
   { name: 'Dev (Alex)',     email: 'ifyougetlockedout@protonmail.com' },
 ];
@@ -97,6 +96,11 @@ function customerEmailHtml(b: any): string {
 </body></html>`;
 }
 
+function safe(v: any, fallback = '—'): string {
+  if (v === undefined || v === null || v === '' || v === 'undefined' || v === 'null') return fallback;
+  return String(v);
+}
+
 function row(label: string, value: string): string {
   return `<tr><td style="padding:8px 0;">
     <span style="color:#5a7c5f;font-size:13px;font-weight:600;display:inline-block;width:160px;">${label}:</span>
@@ -117,8 +121,8 @@ function adminEmailHtml(b: any, leadId: string): string {
     ['Party Size',      `${b.partySize} golfers`],
     ['Arrival',         b.arrivalDate],
     ['Departure',       b.departureDate],
-    ['Nights',          b.numNights || '—'],
-    ['Dates Flexible',  b.datesFlexible],
+    ['Nights',          safe(b.numNights)],
+    ['Dates Flexible',  safe(b.datesFlexible)],
     ['Total Rounds',    b.totalRounds],
     ['Courses',         courses],
     ['Lodging Type',    b.lodgingType || '—'],
@@ -126,10 +130,10 @@ function adminEmailHtml(b: any, leadId: string): string {
     ['Room Config',     b.roomConfig || '—'],
     ['Sleeping Config', b.sleepingConfig || '—'],
     ['Ideal Tee Times', b.idealTeeTimes || '—'],
-    ['Play on Arrival', b.playOnArrival],
-    ['Play on Depart',  b.playOnDeparture],
-    ['Transportation',  b.transportationNeeded],
-    ['Special Event',   b.specialFBEvent],
+    ['Play on Arrival', safe(b.playOnArrival)],
+    ['Play on Depart',  safe(b.playOnDeparture)],
+    ['Transportation',  safe(b.transportationNeeded)],
+    ['Special Event',   safe(b.specialFBEvent)],
     ['Event Detail',    b.fbEventWhen || '—'],
     ['Contact Pref',    b.contactPreference === 'text' ? '💬 Text only' : b.contactPreference === 'call' ? '📞 OK to call' : b.contactPreference === 'both' ? '📞💬 Call + Text' : b.contactPreference === 'email-only' ? '✉️ Email only' : '—'],
     ['How Heard',       b.howHeard || '—'],
@@ -362,3 +366,4 @@ export const POST: APIRoute = async ({ request }) => {
     });
   }
 };
+
