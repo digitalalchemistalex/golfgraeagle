@@ -3,7 +3,7 @@
 export const prerender = false;
 
 const CADDIE_URL = 'https://golfthehighsierra.com/trips-caddie/api/api-recaps.php';
-const SUPA_URL = 'https://egplpluvbfsjrqzecnjf.supabase.co/rest/v1/gg_config';
+const SUPA_URL = 'https://bmkikkdieheyzsfmzrfm.supabase.co/rest/v1/gg_config';
 const VERCEL_PROJECT = 'prj_PH8j2XqMfaWlqstkrlDWJeC2GsLl';
 const VERCEL_TEAM = 'team_DIp7IhTyWkStmeevzS9FPx20';
 
