@@ -56,20 +56,21 @@ ${courseLines}
 ## Lodging
 ${lodgingLines}
 
-## Real Graeagle Golf Trip Packages (verified pricing, actual groups)
+## Real Graeagle Golf Trip Packages (verified live Aug 28 2026)
 Packages range $620–$1,150/person. 2–3 nights, 2–4 rounds. All include confirmed tee times, lodging, and coordination.
-- Graeagle River Pines Golf Group: /trips/graeagle-river-pines-golf-group/ (24 golfers, 2N/3R, $620/pp)
-- Graeagle Golf Trip: /trips/graeagle-golf-trip/ (12 golfers, 2N/2R, $645/pp)
-- Graeagle Quick Hitter: /trips/graeagle-quick-hitter/ (8 golfers, 2N/3R, $675/pp)
-- River Pines + 3 Rounds: /trips/river-pines-3-rounds/ (16 golfers, 2N/3R, $675/pp)
-- Graeagle in the Fall: /trips/graeagle-in-the-fall/ (16 golfers, 3N/3R, $849/pp)
-- River Pines Golf Package: /trips/river-pines-golf-package/ (52 golfers, 2N/3R, $865/pp)
-- Graeagle Golf Trip 3N Premium: /trips/graeagle-golf-trip-3n-3r-premium/ (16 golfers, 3N/3R, $876/pp)
-- Far and Wide: /trips/far-and-wide/ (8 golfers, 3N/4R, $1,009/pp)
-- Graeagle Golf Trip 3N Value: /trips/graeagle-golf-trip-3n-3r-value/ (30 golfers, 3N/3R, $1,067/pp)
-- Bob's Group: /trips/bob-s-group/ (8 golfers, 3N/4R, $1,105/pp)
-- Graeagle Buckets Golf Trip: /trips/graeagle-buckets-golf-trip/ (24 golfers, 3N/4R, $1,120/pp)
-- Plumas Pines Golf Group: /trips/plumas-pines-golf-group/ (36 golfers, 3N/3R, $1,150/pp)
+- /trips/graeagle-golf-trip-whitehawk-ranch-2n-2025-september/ (24 golfers, 2N/3R, $620/pp)
+- /trips/graeagle-golf-trip-grizzly-ranch-2n-2025/ (12 golfers, 2N/2R, $645/pp)
+- /trips/graeagle-golf-trip-whitehawk-ranch-2n-2026/ (16 golfers, 2N/3R, $675/pp)
+- /trips/graeagle-golf-trip-whitehawk-ranch-2n-2025-june/ (8 golfers, 2N/3R, $675/pp)
+- /trips/graeagle-golf-trip-grizzly-ranch-golf-club-3n-2026/ (4 golfers, 3N/3R, $817/pp)
+- /trips/graeagle-golf-trip-the-dragon-3n-2026/ (16 golfers, 3N/3R, $849/pp)
+- /trips/graeagle-golf-trip-plumas-pines-2n-2025/ (52 golfers, 2N/3R, $865/pp)
+- /trips/graeagle-golf-trip-plumas-pines-3n-2026-june-1/ (16 golfers, 3N/3R, $876/pp)
+- /trips/graeagle-golf-trip-plumas-pines-3n-2026-august/ (8 golfers, 3N/4R, $1,009/pp)
+- /trips/graeagle-golf-trip-plumas-pines-3n-2026-june-2/ (30 golfers, 3N/3R, $1,067/pp)
+- /trips/graeagle-golf-trip-plumas-pines-3n-2026-july/ (8 golfers, 3N/4R, $1,105/pp)
+- /trips/graeagle-golf-trip-plumas-pines-3n-2025/ (24 golfers, 3N/4R, $1,120/pp)
+- /trips/graeagle-golf-trip-grizzly-ranch-3n-2024/ (36 golfers, 3N/3R, $1,150/pp)
 
 ## Pages (driven by src/data/pages.js)
 ${landingLines}
