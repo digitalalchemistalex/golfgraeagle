@@ -263,7 +263,7 @@ export const courses = [
     // Official photos from graeaglemeadows.com — drone photography 2025/2026
     hero: '/wp-images/graeagle-meadows-hero.webp',
     images: [
-      '/wp-images/graeagle-meadows-aerial.jpg',
+      '/wp-images/graeagle-meadows-gallery-003.webp',
       '/wp-images/graeagle-meadows-dsc5446.jpg',
       '/wp-images/graeagle-meadows-dji0536.jpg',
       '/wp-images/graeagle-meadows-dsc5356.jpg',
@@ -444,7 +444,7 @@ export const courses = [
       '/wp-images/nakoma-dragon-feather-river.webp',
       '/wp-images/nakoma-flw-outdoor-dining.jpg',
       '/wp-images/nakoma-recreation-dusk.jpg',
-      '/wp-images/nakoma-flw-lodge-exterior.jpg',
+      '/wp-images/nakoma-flw-lodge-exterior.webp',
     ],
     description: 'The only golf clubhouse in the world designed by Frank Lloyd Wright sits at the foot of a slope-147 course that debuted on Golf World\'s America\'s Top 75 list. Robin Nelson and Neil Haworth designed The Dragon in 1998 to use the Feather River canyon at full force — 7,015 yards with forced carries, canyon views, and no forgiveness. This is the bucket-list round of the Graeagle valley.',
     fomoLine: 'Only FLW golf clubhouse on earth — tee time slots are limited by design, not demand',
