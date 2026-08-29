@@ -813,8 +813,8 @@ const whyGraeagle = [
 .gp-table-note{font-size:12px;color:var(--gp-muted);margin:10px 0 0;font-style:italic}
 
 /* ─── Course cards ───────────────────────────── */
-.gp-courses{display:grid;grid-template-columns:repeat(5,1fr);gap:16px}
-.gp-course-card{border-radius:var(--gp-r);overflow:hidden;background:#fff;border:1px solid var(--gp-border);box-shadow:0 2px 10px rgba(0,0,0,.04);transition:all .35s;flex:0 0 220px}
+.gp-courses{display:flex;gap:20px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;padding-bottom:12px;scrollbar-width:none}.gp-courses::-webkit-scrollbar{display:none}
+.gp-course-card{border-radius:var(--gp-r);overflow:hidden;background:#fff;border:1px solid var(--gp-border);box-shadow:0 2px 10px rgba(0,0,0,.04);transition:all .35s;flex:0 0 300px;scroll-snap-align:start}
 .gp-course-card:hover{transform:translateY(-6px);box-shadow:0 24px 56px rgba(0,0,0,.11);border-color:rgba(232,168,80,.3)}
 .gp-course-img-wrap{position:relative;height:180px;overflow:hidden}
 .gp-course-img{width:100%;height:100%;object-fit:cover;transition:transform 7s ease}
@@ -957,7 +957,8 @@ const whyGraeagle = [
   .gp-aeo-answer{border-left:none;padding-left:0}
 }
 @media(max-width:640px){
-  .gp-courses{grid-template-columns:1fr 1fr}
+  .gp-courses{gap:14px}
+  .gp-course-card{flex:0 0 260px}
   .gp-included{grid-template-columns:1fr}
   .gp-why-grid{grid-template-columns:1fr}
   .gp-internal-grid{grid-template-columns:1fr 1fr}
@@ -965,6 +966,6 @@ const whyGraeagle = [
   .gp-travel-route{display:none}
 }
 @media(max-width:420px){
-  .gp-courses{grid-template-columns:1fr}
+  .gp-course-card{flex:0 0 82vw}
 }
 </style>
