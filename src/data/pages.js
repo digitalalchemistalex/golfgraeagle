@@ -3,6 +3,7 @@
 
 export const landingPages = [
   // Core booking
+  { slug: '/graeagle-golf-packages/', label: 'Graeagle Golf Packages', desc: 'Graeagle golf packages from $299/golfer — tee times at all 5 courses, lodging, full itinerary. Groups 2–200+. Free quote in 24 hours.', priority: '1.0', changefreq: 'weekly' },
   { slug: '/request-a-quote/',           label: 'Request a Quote',                    desc: 'Free custom quote in 24 hours — tee times, lodging, dining, full itinerary',  priority: '1.0', changefreq: 'monthly' },
   { slug: '/golf-packages/',             label: 'Golf Packages',                      desc: 'Stay-and-play golf packages from $299/golfer',                                  priority: '0.9', changefreq: 'monthly' },
   { slug: '/stay-and-play/',             label: 'Stay & Play Packages',               desc: 'Bundled tee times + lodging packages at all 5 courses',                         priority: '0.9', changefreq: 'monthly' },

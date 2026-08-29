@@ -1,0 +1,619 @@
+---
+import Base from '../layouts/Base.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import RelatedTrips from '../components/RelatedTrips.tsx';
+import { fetchTripStats } from '../lib/tripStats';
+const { minPrice, maxPrice, tripCount, trips: allTrips } = await fetchTripStats();
+
+const proofTrips = allTrips
+  .filter((t: any) => t.pricePerPerson && t.whyItWorked)
+  .sort((a: any, b: any) => a.pricePerPerson - b.pricePerPerson)
+  .slice(0, 3);
+
+const title = "Graeagle Golf Packages | Stay & Play from $299/Golfer | GolfGraeagle.com";
+const description = `Graeagle golf packages from $${minPrice}/golfer — tee times at all 5 championship courses, lodging, dining. Golf Digest Top 100, Frank Lloyd Wright clubhouse. Groups 2–200+. Free quote in 24 hours.`;
+const QUOTE_URL = '/request-a-quote/?ref=graeagle-golf-packages';
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What do Graeagle golf packages include?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Graeagle golf packages from GolfGraeagle include guaranteed tee times at your chosen courses, lodging matched to your group size, and a day-by-day itinerary. Dining reservations and dining recommendations are available on request. Packages start from $299 per golfer and are customized for groups of 2 to 200+."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How much does a Graeagle golf package cost per person?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": `Real completed Graeagle golf packages range from $${minPrice} to $${maxPrice} per person. Most 2-night, 3-course packages for groups of 8–24 golfers come in between $620 and $875 per person including lodging and tee times. Larger groups of 30+ typically get better per-person rates.`
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What golf courses are included in Graeagle golf packages?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "GolfGraeagle packages can include any combination of the five Graeagle championship courses: Grizzly Ranch Golf Club (Golf Digest Top 100), Whitehawk Ranch, Plumas Pines Golf Resort, Graeagle Meadows Golf Course, and Nakoma — The Dragon (only Frank Lloyd Wright-designed golf clubhouse in the world). All five courses are within 25 minutes of each other."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can GolfGraeagle book Grizzly Ranch tee times?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Grizzly Ranch is semi-private and not bookable directly by the public. GolfGraeagle has a direct relationship with the Grizzly Ranch pro shop and secures guaranteed tee times as part of every stay-and-play package. Semi-private tee times at Grizzly Ranch release 30 days out and fill within days."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How far in advance should I book a Graeagle golf package?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "For summer weekends (June–August), book 4–6 weeks ahead. Grizzly Ranch tee times release 30 days out and fill within days. Spring and fall can typically be arranged 2–3 weeks out. GolfGraeagle handles all tee time booking — submit a quote request and receive a full package proposal within 24 hours."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "When is the best time for a Graeagle golf package?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "September and October are the best months — peak course conditions, fall foliage, fewer crowds after Labor Day. June through August is peak season with the longest days. May is ideal for smaller groups who want uncrowded courses. Graeagle Meadows opens in April; all five courses are typically open by late May through October."
+      }
+    }
+  ]
+};
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://golfgraeagle.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Graeagle Golf Packages", "item": "https://golfgraeagle.com/graeagle-golf-packages/" }
+  ]
+};
+
+const serviceSchema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "Graeagle Golf Packages",
+  "description": "Custom stay-and-play golf packages in Graeagle, CA — tee times at all 5 championship courses, lodging, full itinerary. From $299/golfer. Groups of 2–200+.",
+  "provider": { "@type": "TravelAgency", "@id": "https://golfgraeagle.com/#organization" },
+  "areaServed": { "@type": "Place", "name": "Graeagle, California" },
+  "serviceType": "Golf Package",
+  "offers": {
+    "@type": "Offer",
+    "priceSpecification": {
+      "@type": "PriceSpecification",
+      "priceCurrency": "USD",
+      "minPrice": minPrice,
+      "maxPrice": maxPrice
+    }
+  }
+};
+
+const courses = [
+  { name: 'Grizzly Ranch', slug: 'grizzly-ranch-golf-packages', accolade: 'Golf Digest Top 100', img: '/wp-images/grizzly-ranch-hero.webp', alt: 'Grizzly Ranch Golf Club — Golf Digest Top 100 Graeagle CA', par: 72, yards: 7411, slope: 140, line: 'The anchor round. Semi-private — GolfGraeagle secures access. Book this first.', difficulty: 'Very Challenging', access: 'Package only' },
+  { name: 'Graeagle Meadows', slug: 'graeagle-meadows-golf-packages', accolade: 'Sierra Nevada Classic', img: '/wp-images/graeagle-meadows-aerial.jpg', alt: 'Graeagle Meadows Golf Course — aerial view, Graeagle CA', par: 72, yards: 6759, slope: 120, line: 'The opener. Most accessible course in the valley. All levels welcome.', difficulty: 'Moderate', access: 'Public' },
+  { name: 'Whitehawk Ranch', slug: 'whitehawk-ranch-golf-packages', accolade: 'Top 20 California', img: '/wp-images/whitehawk-hero.webp', alt: 'Whitehawk Ranch Golf Course Graeagle CA', par: 71, yards: 6983, slope: 132, line: 'Top 20 California. Meadow holes, forested hillsides, Sulphur Creek throughout.', difficulty: 'Challenging', access: 'Public' },
+  { name: 'Plumas Pines', slug: 'plumas-pines-golf-packages', accolade: 'Top 5 Best Value Sierra Nevada', img: '/wp-images/plumas-pines-hero.webp', alt: 'Plumas Pines Golf Resort Graeagle CA', par: 72, yards: 6504, slope: 132, line: 'Tight pines, small greens. On-course lodging available at the Townhomes.', difficulty: 'Challenging', access: 'Public' },
+  { name: 'Nakoma — The Dragon', slug: 'nakoma-dragon-golf-packages', accolade: 'Golf World Top 75', img: '/wp-images/nakoma-dragon-feather-river.webp', alt: 'Nakoma Dragon Golf Course — Frank Lloyd Wright clubhouse, Graeagle CA', par: 72, yards: 7015, slope: 147, line: 'The FLW clubhouse. Slope 147 — the hardest course in Graeagle. Save it for last.', difficulty: 'Hardest', access: 'Public' },
+];
+
+const packages = [
+  { nights: 2, rounds: 2, label: 'Quick Hit', tag: '', desc: 'Fri–Sun. Two championship rounds, one hotel night, out before noon Sunday. Ideal for groups with limited PTO.', for: 'Groups 4–16' },
+  { nights: 2, rounds: 3, label: 'Weekend Classic', tag: 'Most Popular', desc: 'The Graeagle standard. Friday arrival round, Saturday main event, Sunday morning send-off. 3 courses, one iconic weekend.', for: 'Groups 4–30' },
+  { nights: 3, rounds: 4, label: 'Full Graeagle', tag: 'Best Value/pp', desc: 'Four courses in three nights. Enough time to play every course that earned its reputation. The full Graeagle experience.', for: 'Groups 4–200+' },
+];
+
+const lodging = [
+  { name: 'River Pines Resort', slug: 'river-pines-resort-graeagle-ca', img: '/wp-images/river-pines-resort-hero.webp', alt: 'River Pines Resort Graeagle CA — golf group lodging', tag: 'Most Popular for Groups', desc: 'Family-owned 40+ years. Rooms, cottages, pool, hot tub. The Roadhouse on-site. 5 min to Graeagle Meadows.' },
+  { name: 'Townhomes at Plumas Pines', slug: 'the-townhomes-at-plumas-pines', img: '/wp-images/plumas-pines-hero.webp', alt: 'Townhomes at Plumas Pines — Graeagle golf lodging on course', tag: 'Steps from the 1st Tee', desc: '2–4 bedroom private units on the Plumas Pines course. Full kitchens. Best per-person value for groups of 6–24.' },
+  { name: 'Inn at Nakoma', slug: 'the-inn-at-nakoma-clio-ca', img: '/wp-images/nakoma-flw-lodge-exterior.webp', alt: 'Inn at Nakoma — Frank Lloyd Wright lodge golf resort Graeagle', tag: 'Most Unique Stay', desc: '42 rooms inside the Frank Lloyd Wright lodge. Walk to The Dragon first tee. Fifty44 Restaurant on-site.' },
+  { name: 'Chalet View Lodge', slug: 'chalet-view-lodge-graeagle-ca', img: '/wp-images/chalet-view-lodge-hero.webp', alt: 'Chalet View Lodge Graeagle CA — golf resort lodging', tag: 'Mountain Resort', desc: '10 forested acres. 9-hole executive course, spa, Eureka Peak Brewing on-site. Seasonal pool.' },
+];
+---
+
+<Base
+  title={title}
+  description={description}
+  ogType="website"
+  schema={[faqSchema, breadcrumbSchema, serviceSchema]}
+  canonical="https://golfgraeagle.com/graeagle-golf-packages/"
+  ogImage="https://golfgraeagle.com/wp-images/grizzly-ranch-hero.webp"
+  bodyClass="light-page"
+>
+  <Nav />
+
+  <!-- ═══ HERO ═══ -->
+  <section class="gp-hero">
+    <div class="gp-bg" style="background-image:url(/wp-images/grizzly-ranch-hero.webp)"></div>
+    <div class="gp-overlay"></div>
+    <div class="gp-hero-inner">
+      <p class="gp-eyebrow reveal-up">Graeagle Golf Packages · Sierra Nevada, CA · 5 Championship Courses</p>
+      <h1 class="gp-h1 reveal-up delay-1">Graeagle golf packages.<br/><em>All 5 courses, one quote.</em></h1>
+      <p class="gp-sub speakable reveal-up delay-2">Five championship courses within 25 minutes of each other — Golf Digest Top 100, Frank Lloyd Wright clubhouse, and 40% less than comparable Lake Tahoe packages. GolfGraeagle handles tee times, lodging, and every detail. You show up and play.</p>
+      <div class="gp-pills reveal-up delay-3">
+        <span>From <strong>${minPrice}</strong>/golfer</span>
+        <span>2–200+ golfers</span>
+        <span>5 championship courses</span>
+        <span>Free quote · 24hr response</span>
+      </div>
+      <div class="gp-ctas reveal-up delay-4">
+        <a href={QUOTE_URL} class="btn-green-glow gp-btn">Get a Custom Package Quote →</a>
+        <a href="/trips/" class="gp-ghost underline-draw">See real packages + pricing ↗</a>
+      </div>
+      <p class="gp-trust reveal-up delay-5">No commitment · Response within 24 hours · Operating since 2004</p>
+    </div>
+    <div class="gp-floats reveal-fade delay-5">
+      <div class="gp-float"><div class="gp-float-val">5</div><div class="gp-float-lbl">Courses</div></div>
+      <div class="gp-float"><div class="gp-float-val">25 min</div><div class="gp-float-lbl">Between courses</div></div>
+      <div class="gp-float"><div class="gp-float-val">4.8★</div><div class="gp-float-lbl">Avg Rating</div></div>
+    </div>
+  </section>
+
+  <!-- ═══ WHAT IS A GRAEAGLE GOLF PACKAGE ═══ -->
+  <section class="gp-section">
+    <div class="gp-container" style="max-width:860px">
+      <div class="gp-header reveal-up">
+        <span class="sec-label">What GolfGraeagle packages include</span>
+        <h2 class="gp-h2">One quote.<br/><em>Everything handled.</em></h2>
+      </div>
+      <div class="gp-included">
+        {[
+          { icon: '⛳', title: 'Guaranteed tee times', body: 'Direct pro shop relationships at all 5 courses — including semi-private Grizzly Ranch, which you cannot book yourself. Your times are locked before you leave home.' },
+          { icon: '🏘', title: 'Lodging matched to your group', body: 'From the Frank Lloyd Wright lodge steps from The Dragon first tee, to townhomes adjacent to Plumas Pines fairways. Matched to your group size and budget.' },
+          { icon: '📋', title: 'Day-by-day itinerary', body: 'Courses sequenced by difficulty and drive time. Harder courses later in the trip when your game is dialled. Dining recommendations woven in.' },
+          { icon: '⚡', title: 'Free quote in 24 hours', body: 'Tell us your dates, group size, and which courses interest you. Mike sends a full package proposal back within 24 hours.' },
+        ].map((item, i) => (
+          <div class={`gp-inc-card reveal-scale delay-${i+1}`}>
+            <div class="gp-inc-icon">{item.icon}</div>
+            <div class="gp-inc-title">{item.title}</div>
+            <p class="gp-inc-body">{item.body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ THE 5 COURSES ═══ -->
+  <section class="gp-section gp-alt">
+    <div class="gp-container">
+      <div class="gp-header reveal-up">
+        <span class="sec-label">5 courses · all within 25 minutes</span>
+        <h2 class="gp-h2">Every Graeagle course.<br/><em>One booking.</em></h2>
+        <p class="gp-subhead">Most golfers visiting Graeagle play 2–4 courses over a long weekend. GolfGraeagle sequences them by difficulty so your trip builds toward the best rounds.</p>
+      </div>
+
+      <!-- Course comparison table -->
+      <div class="gp-table-wrap reveal-up">
+        <table class="gp-table">
+          <thead>
+            <tr>
+              <th>Course</th>
+              <th>Par / Yards</th>
+              <th>Slope</th>
+              <th>Difficulty</th>
+              <th>Access</th>
+            </tr>
+          </thead>
+          <tbody>
+            {courses.map(c => (
+              <tr>
+                <td><a href={`/portfolio/${c.slug}/`} class="gp-course-link">{c.name}</a></td>
+                <td>{c.par} / {c.yards.toLocaleString()} yds</td>
+                <td>{c.slope}</td>
+                <td>{c.difficulty}</td>
+                <td><span class={`gp-access ${c.access === 'Package only' ? 'gp-access-pkg' : 'gp-access-pub'}`}>{c.access}</span></td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Course cards carousel -->
+      <div class="gal-carousel-wrap" data-carousel style="margin-top:48px">
+        <button class="gal-arrow gal-arrow-prev" aria-label="Previous">&#8249;</button>
+        <div class="gal-carousel gp-courses" id="carousel-gp-courses">
+          {courses.map((c, i) => (
+            <div class="gp-course-card">
+              <div class="gp-course-img-wrap">
+                <img src={c.img} alt={c.alt} loading={i===0 ? 'eager' : 'lazy'} class="gp-course-img"/>
+                <div class="gp-course-fade"></div>
+                <span class="gp-course-badge">{c.accolade}</span>
+                <div class="gp-course-stats">
+                  <span>Par {c.par}</span>
+                  <span>{c.yards.toLocaleString()} yds</span>
+                  <span>Slope {c.slope}</span>
+                </div>
+              </div>
+              <div class="gp-course-body">
+                <div class="gp-course-name">{c.name}</div>
+                <p class="gp-course-line">{c.line}</p>
+                <a href={`/portfolio/${c.slug}/`} class="gp-course-cta underline-draw">Course details + packages ↗</a>
+              </div>
+            </div>
+          ))}
+        </div>
+        <button class="gal-arrow gal-arrow-next" aria-label="Next">&#8250;</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ PACKAGE FORMATS ═══ -->
+  <section class="gp-section gp-dark">
+    <div class="gp-container">
+      <div class="gp-header reveal-up">
+        <span class="sec-label" style="color:#e8a850">Real Graeagle golf package formats</span>
+        <h2 class="gp-h2" style="color:#f5f0e8">Pick your format.<br/><em>We build the rest.</em></h2>
+      </div>
+      <div class="gp-pkgs">
+        {packages.map((p, i) => (
+          <div class={`gp-pkg-card reveal-scale delay-${i+1}${p.tag ? ' gp-pkg-hot' : ''}`}>
+            {p.tag && <div class="gp-hot-tag">{p.tag}</div>}
+            <div class="gp-pkg-nights">{p.nights} nights</div>
+            <div class="gp-pkg-label">{p.label}</div>
+            <div class="gp-pkg-rounds">{p.rounds} rounds</div>
+            <p class="gp-pkg-desc">{p.desc}</p>
+            <div class="gp-pkg-for">{p.for}</div>
+            <a href={QUOTE_URL} class="gp-pkg-link underline-draw">Build this package →</a>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ INLINE CTA ═══ -->
+  <section class="gp-cta-inline">
+    <div class="gp-container" style="text-align:center;max-width:620px">
+      <p class="gp-cta-inline-line reveal-up">Know your dates and group size? That's all Mike needs to start.</p>
+      <a href={QUOTE_URL} class="btn-green-glow gp-btn reveal-scale delay-1">Get a Custom Graeagle Package →</a>
+      <p class="gp-cta-inline-trust reveal-up delay-2">Free · No commitment · 24hr response · 4.8★</p>
+    </div>
+  </section>
+
+  <!-- ═══ LODGING ═══ -->
+  <section class="gp-section">
+    <div class="gp-container">
+      <div class="gp-header reveal-up">
+        <span class="sec-label">Graeagle golf lodging — all 4 properties</span>
+        <h2 class="gp-h2">Stay on the courses.<br/><em>Walk to the first tee.</em></h2>
+        <p class="gp-subhead">Every GolfGraeagle package includes lodging matched to your group. Two properties are literally adjacent to course fairways. All four are within 20 minutes of every course.</p>
+      </div>
+      <div class="gp-lodging">
+        {lodging.map((l, i) => (
+          <div class={`gp-lodge-card reveal-${i % 2 === 0 ? 'left' : 'right'} delay-${i+1}`}>
+            <div class="gp-lodge-img-wrap">
+              <img src={l.img} alt={l.alt} loading="lazy" class="gp-lodge-img"/>
+              <div class="gp-lodge-fade"></div>
+              <span class="gp-lodge-tag">{l.tag}</span>
+            </div>
+            <div class="gp-lodge-body">
+              <div class="gp-lodge-name">{l.name}</div>
+              <p class="gp-lodge-desc">{l.desc}</p>
+              <a href={`/portfolio/${l.slug}/`} class="gp-course-cta underline-draw">Property details ↗</a>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ REAL TRIPS PROOF ═══ -->
+  {proofTrips.length > 0 && (
+  <section class="gp-section gp-alt">
+    <div class="gp-container">
+      <div class="gp-header reveal-up">
+        <span class="sec-label">Real completed Graeagle golf packages</span>
+        <h2 class="gp-h2">These trips happened.<br/><em>Actual groups, actual pricing.</em></h2>
+        <p class="gp-subhead">Not estimates. These are packages Mike built, delivered, and that groups came back to book again.</p>
+      </div>
+      <div class="gp-proof-grid">
+        {proofTrips.map((t: any, i: number) => {
+          const courseNames = (t.courses || []).map((c: string) => c.replace(/ Golf (Club|Course|Resort)$/i,'').replace(/ Club$| Course$/,''));
+          return (
+            <div class={`gp-proof-card reveal-up delay-${i+1}`}>
+              <div class="gp-proof-top">
+                <span class="gp-proof-pax">{t.groupSize} golfers</span>
+                <span class="gp-proof-nights">{t.nights}N / {t.rounds}R</span>
+                <span class="gp-proof-price">${t.pricePerPerson}/pp</span>
+              </div>
+              <div class="gp-proof-courses">
+                {courseNames.slice(0,3).map((c: string, j: number) => (
+                  <span>{c}{j < Math.min(courseNames.length,3)-1 ? ' · ' : ''}</span>
+                ))}
+              </div>
+              <p class="gp-proof-why">"{t.whyItWorked}"</p>
+              <div class="gp-proof-mike">— <a href="/about/mike-eskuchen/" style="color:inherit;text-decoration:underline;text-underline-offset:3px;opacity:0.8;">Mike Eskuchen</a>, Golf Trip Specialist</div>
+            </div>
+          );
+        })}
+      </div>
+      <div style="text-align:center;margin-top:48px">
+        <a href="/trips/" class="gp-ghost-green underline-draw">Browse all {tripCount} real Graeagle packages + pricing →</a>
+      </div>
+    </div>
+  </section>
+  )}
+
+  <!-- ═══ WHY GRAEAGLE ═══ -->
+  <section class="gp-section gp-dark">
+    <div class="gp-container" style="max-width:900px">
+      <div class="gp-header reveal-up">
+        <span class="sec-label" style="color:#e8a850">Why Graeagle vs Lake Tahoe, Truckee, Reno</span>
+        <h2 class="gp-h2" style="color:#f5f0e8">Five courses.<br/><em>25 minutes apart.</em></h2>
+      </div>
+      <div class="gp-why-grid">
+        {[
+          { stat: '5 courses', label: 'within 25 minutes', body: 'No multi-hour commutes between rounds. Play Grizzly Ranch and Whitehawk Ranch on the same day without losing 3 hours to driving.' },
+          { stat: '40% less', label: 'than comparable Tahoe packages', body: 'Same Sierra Nevada elevation, same mountain air, same championship conditioning — at a fraction of the Truckee resort pricing.' },
+          { stat: 'Golf Digest Top 100', label: 'Grizzly Ranch, 2021', body: 'One of the only Golf Digest Top 100 courses in Northern California — and GolfGraeagle is the only booking service with direct group access.' },
+          { stat: 'Frank Lloyd Wright', label: 'the only FLW golf clubhouse', body: 'Nakoma Resort is the only golf course clubhouse in the world designed by Frank Lloyd Wright. A reason to make the trip in itself.' },
+          { stat: '4,000–5,400 ft', label: 'elevation advantage', body: 'Ball flies 8–10% farther at Graeagle elevation. That 160-yard par-3 plays like a 145. Budget for the extra distance before you arrive.' },
+          { stat: 'Since 2004', label: 'GolfGraeagle local expertise', body: 'Two decades booking Graeagle groups. Direct relationships with every pro shop — including semi-private Grizzly Ranch and Nakoma Dragon.' },
+        ].map((item, i) => (
+          <div class={`gp-why-card reveal-up delay-${i+1}`}>
+            <div class="gp-why-stat">{item.stat}</div>
+            <div class="gp-why-label">{item.label}</div>
+            <p class="gp-why-body">{item.body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ MIKE CTA ═══ -->
+  <section class="gp-section">
+    <div class="gp-container gp-mike-wrap">
+      <div class="gp-mike-text reveal-left">
+        <span class="sec-label">Your Graeagle golf specialist</span>
+        <h2 class="gp-h2" style="margin-top:10px">Tell Mike your dates.<br/><em>He builds the package.</em></h2>
+        <p class="gp-mike-body">Twenty years building Graeagle golf packages — from first-timers playing two courses to groups that have done all five and want a new combination. Send dates, group size, and which courses interest you. A full package proposal comes back within 24 hours. Free, no commitment.</p>
+        <ul class="gp-mike-list">
+          <li>✓ Tee times at all 5 courses — including semi-private Grizzly Ranch</li>
+          <li>✓ Lodging matched to your group size and budget</li>
+          <li>✓ Day-by-day itinerary with drive times and dining</li>
+          <li>✓ Free proposal within 24 hours</li>
+        </ul>
+        <a href={QUOTE_URL} class="btn-green-glow gp-btn" style="margin-top:28px;display:inline-block">Request a Package Quote →</a>
+        <p style="font-size:12px;color:rgba(28,18,8,0.4);margin-top:12px;">Free · No commitment · 24hr response</p>
+      </div>
+      <div class="gp-mike-img reveal-right delay-2">
+        <img src="/mike-eskuchen.jpg" alt="Mike Eskuchen — Graeagle Golf Package Specialist, 20+ years" loading="lazy"/>
+        <div class="gp-mike-badge">
+          <div class="gp-mike-name">Mike Eskuchen</div>
+          <div class="gp-mike-title">Golf Trip Specialist · 20+ years</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ FAQ ═══ -->
+  <section class="gp-section gp-alt">
+    <div class="gp-container" style="max-width:760px">
+      <div class="gp-header reveal-up">
+        <span class="sec-label">Graeagle golf packages — common questions</span>
+        <h2 class="gp-h2">Everything you need<br/><em>to know before booking</em></h2>
+      </div>
+      <div class="gp-faqs">
+        {faqSchema.mainEntity.map((q: any, i: number) => (
+          <details class={`gp-faq reveal-up delay-${i+1}`}>
+            <summary class="gp-faq-q">
+              {q.name}
+              <span class="gp-faq-icon">+</span>
+            </summary>
+            <p class="gp-faq-a">{q.acceptedAnswer.text}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ FINAL CTA ═══ -->
+  <section class="gp-cta-final gp-dark">
+    <div class="gp-cta-glow"></div>
+    <div class="gp-container" style="text-align:center;max-width:640px;position:relative;z-index:1">
+      <h2 class="gp-cta-h2 reveal-up">Ready to book your<br/><em>Graeagle golf package?</em></h2>
+      <p class="gp-cta-sub reveal-up delay-1">Dates, group size, which courses you want. Mike builds a full stay-and-play package — tee times at all 5 courses, lodging, day-by-day itinerary — and sends it back within 24 hours. Free, no commitment.</p>
+      <div class="reveal-scale delay-2">
+        <a href={QUOTE_URL} class="btn-green-glow gp-btn">Get a Custom Package Quote →</a>
+        <p style="margin-top:14px"><a href="/trips/" style="font-size:13px;color:rgba(245,240,232,.35);text-decoration:none;">Browse real completed packages + pricing →</a></p>
+        <p style="font-size:12px;color:rgba(245,240,232,.28);margin-top:14px">2–200+ golfers · All 5 courses · 24hr quote · 4.8★</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Internal links -->
+  <div style="max-width:860px;margin:0 auto;padding:32px clamp(20px,6%,80px) 0;display:flex;flex-wrap:wrap;gap:12px 24px;">
+    <a href="/stay-and-play/" style="font-size:14px;color:#1a7a40;text-decoration:underline;">Stay & play packages →</a>
+    <a href="/graeagle-golf-weekend-packages/" style="font-size:14px;color:#1a7a40;text-decoration:underline;">Golf weekend packages →</a>
+    <a href="/group-golf/" style="font-size:14px;color:#1a7a40;text-decoration:underline;">Group golf Graeagle →</a>
+    <a href="/tee-times-graeagle/" style="font-size:14px;color:#1a7a40;text-decoration:underline;">Book tee times →</a>
+    <a href="/all-golf-courses/" style="font-size:14px;color:#1a7a40;text-decoration:underline;">Compare all 5 courses →</a>
+    <a href="/lodging/" style="font-size:14px;color:#1a7a40;text-decoration:underline;">Graeagle golf lodging →</a>
+  </div>
+
+  <RelatedTrips client:load slug="packages" type="course" showAll={true} max={4} />
+  <Footer />
+</Base>
+
+<style>
+:root{--gp-gold:#e8a850;--gp-green:#1a7a40;--gp-dark:#0d1a0e;--gp-text:#1c1208;--gp-muted:rgba(28,18,8,0.52);--gp-border:rgba(28,18,8,0.08);--gp-r:20px}
+.gp-container{max-width:1140px;margin:0 auto;padding:0 clamp(20px,6%,80px)}
+.gp-section{padding:clamp(72px,9vw,120px) 0;background:var(--page-bg,#f0ece3)}
+.gp-dark{background:var(--gp-dark)!important}
+.gp-alt{background:#f8f5f0}
+.gp-header{text-align:center;margin-bottom:clamp(40px,5vw,68px)}
+.gp-h2{font-family:'Playfair Display',serif;font-size:clamp(28px,4vw,50px);font-weight:500;color:var(--gp-text);line-height:1.1;margin:8px 0 0}
+.gp-h2 em{font-style:italic;color:var(--gp-green)}
+.gp-subhead{font-size:16px;color:var(--gp-muted);line-height:1.7;margin:20px auto 0;max-width:680px}
+
+/* HERO */
+.gp-hero{position:relative;min-height:92vh;display:flex;align-items:flex-end;overflow:hidden}
+.gp-bg{position:absolute;inset:0;background-size:cover;background-position:center 35%;transform:scale(1.07);animation:gpZoom 10s ease forwards}
+@keyframes gpZoom{to{transform:scale(1)}}
+.gp-overlay{position:absolute;inset:0;background:linear-gradient(160deg,rgba(13,26,14,.05) 0%,rgba(13,26,14,.5) 40%,rgba(13,26,14,.97) 100%)}
+.gp-hero-inner{position:relative;z-index:2;padding:0 clamp(24px,8%,120px) clamp(60px,8vw,100px);max-width:860px}
+.gp-eyebrow{font-size:11px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:rgba(232,168,80,.82);margin:0 0 18px}
+.gp-h1{font-family:'Playfair Display',serif;font-size:clamp(42px,7vw,88px);font-weight:500;color:#f5f0e8;line-height:.98;margin:0 0 18px}
+.gp-h1 em{font-style:italic;color:var(--gp-gold)}
+.gp-sub{font-size:clamp(15px,2vw,20px);color:rgba(245,240,232,.62);line-height:1.6;margin:0 0 26px}
+.gp-pills{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:28px}
+.gp-pills span{font-size:12px;font-weight:600;color:rgba(245,240,232,.8);padding:6px 15px;background:rgba(255,255,255,.1);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.18);border-radius:100px}
+.gp-pills strong{color:var(--gp-gold)}
+.gp-ctas{display:flex;gap:20px;align-items:center;flex-wrap:wrap;margin-bottom:16px}
+.gp-btn{display:inline-block;padding:15px 36px;border-radius:100px;font-size:15px;font-weight:700;text-decoration:none}
+.gp-ghost{font-size:14px;font-weight:600;color:rgba(232,168,80,.9);text-decoration:none}
+.gp-ghost-green{font-size:15px;font-weight:600;color:var(--gp-green);text-decoration:none}
+.gp-trust{font-size:12px;color:rgba(245,240,232,.35);margin:0}
+.gp-floats{position:absolute;right:clamp(24px,5%,72px);bottom:clamp(56px,8vw,90px);display:flex;flex-direction:column;gap:10px;z-index:3}
+.gp-float{background:rgba(255,255,255,.1);backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,.2);border-radius:16px;padding:14px 22px;text-align:center;min-width:116px}
+.gp-float-val{font-family:'Playfair Display',serif;font-size:22px;color:var(--gp-gold);font-weight:400;line-height:1}
+.gp-float-lbl{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.14em;color:rgba(245,240,232,.45);margin-top:5px}
+
+/* INCLUDED */
+.gp-included{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(240px,45vw),1fr));gap:24px}
+.gp-inc-card{border-radius:var(--gp-r);padding:28px 24px;border:1px solid var(--gp-border);background:#fff;box-shadow:0 2px 12px rgba(0,0,0,.04);transition:all .35s}
+.gp-inc-card:hover{transform:translateY(-4px);box-shadow:0 16px 40px rgba(0,0,0,.08);border-color:rgba(232,168,80,.25)}
+.gp-inc-icon{font-size:32px;margin-bottom:12px}
+.gp-inc-title{font-size:15px;font-weight:700;color:var(--gp-text);margin-bottom:8px}
+.gp-inc-body{font-size:13px;color:var(--gp-muted);line-height:1.75;margin:0}
+
+/* TABLE */
+.gp-table-wrap{overflow-x:auto;border-radius:12px;border:1px solid var(--gp-border);box-shadow:0 2px 12px rgba(0,0,0,.04)}
+.gp-table{width:100%;border-collapse:collapse;background:#fff;font-size:14px}
+.gp-table thead th{background:#1a2e1a;color:#f5f0e8;padding:14px 20px;text-align:left;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;white-space:nowrap}
+.gp-table tbody td{padding:14px 20px;border-bottom:1px solid var(--gp-border);color:var(--gp-text);vertical-align:middle}
+.gp-table tbody tr:last-child td{border-bottom:none}
+.gp-table tbody tr:hover td{background:rgba(232,168,80,.04)}
+.gp-course-link{color:var(--gp-green);font-weight:600;text-decoration:none}
+.gp-course-link:hover{text-decoration:underline}
+.gp-access{font-size:11px;font-weight:700;padding:3px 10px;border-radius:100px;text-transform:uppercase;letter-spacing:.06em}
+.gp-access-pub{background:rgba(26,122,64,.1);color:#1a7a40}
+.gp-access-pkg{background:rgba(232,168,80,.15);color:#8a6008}
+
+/* COURSE CARDS */
+.gp-courses{display:grid;grid-template-columns:repeat(5,1fr);gap:16px}
+.gp-course-card{border-radius:var(--gp-r);overflow:hidden;background:#fff;border:1px solid var(--gp-border);box-shadow:0 2px 10px rgba(0,0,0,.04);transition:all .35s;flex:0 0 220px}
+.gp-course-card:hover{transform:translateY(-5px);box-shadow:0 20px 48px rgba(0,0,0,.1);border-color:rgba(232,168,80,.3)}
+.gp-course-img-wrap{position:relative;height:170px;overflow:hidden}
+.gp-course-img{width:100%;height:100%;object-fit:cover;transition:transform 6s ease}
+.gp-course-card:hover .gp-course-img{transform:scale(1.06)}
+.gp-course-fade{position:absolute;inset:0;background:linear-gradient(to top,rgba(13,26,14,.82) 0%,transparent 55%)}
+.gp-course-badge{position:absolute;top:10px;left:10px;font-size:8px;font-weight:800;text-transform:uppercase;letter-spacing:.1em;background:rgba(232,168,80,.92);color:#0d1a0e;padding:3px 8px;border-radius:100px}
+.gp-course-stats{position:absolute;bottom:10px;left:10px;display:flex;gap:6px}
+.gp-course-stats span{font-size:9px;font-weight:700;color:rgba(245,240,232,.75);background:rgba(0,0,0,.35);padding:2px 7px;border-radius:4px}
+.gp-course-body{padding:14px 16px 18px}
+.gp-course-name{font-family:'Playfair Display',serif;font-size:14px;color:var(--gp-text);margin-bottom:5px}
+.gp-course-line{font-size:12px;color:var(--gp-muted);line-height:1.6;margin:0 0 10px}
+.gp-course-cta{font-size:11px;font-weight:600;color:var(--gp-green);text-decoration:none}
+
+/* PACKAGES */
+.gp-pkgs{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;max-width:900px;margin:0 auto}
+.gp-pkg-card{border-radius:var(--gp-r);padding:36px 28px;border:1px solid rgba(245,240,232,.08);background:rgba(255,255,255,.06);position:relative;transition:all .35s}
+.gp-pkg-card:hover{transform:translateY(-5px);border-color:rgba(232,168,80,.25)}
+.gp-pkg-hot{border-color:rgba(232,168,80,.28)!important;background:rgba(232,168,80,.06)!important}
+.gp-hot-tag{position:absolute;top:-1px;left:50%;transform:translateX(-50%);background:var(--gp-gold);color:#1c1208;font-size:9px;font-weight:800;padding:4px 14px;border-radius:0 0 10px 10px;text-transform:uppercase;letter-spacing:.1em;white-space:nowrap}
+.gp-pkg-nights{font-size:11px;font-weight:700;color:rgba(232,168,80,.8);text-transform:uppercase;letter-spacing:.1em;margin-bottom:6px}
+.gp-pkg-label{font-family:'Playfair Display',serif;font-size:26px;color:#f5f0e8;font-weight:400;margin-bottom:4px}
+.gp-pkg-rounds{font-size:13px;font-weight:600;color:rgba(245,240,232,.6);margin-bottom:16px}
+.gp-pkg-desc{font-size:13px;color:rgba(245,240,232,.6);line-height:1.8;margin:0 0 14px}
+.gp-pkg-for{font-size:11px;font-weight:700;color:rgba(232,168,80,.7);text-transform:uppercase;letter-spacing:.08em;margin-bottom:18px}
+.gp-pkg-link{font-size:13px;font-weight:600;color:rgba(232,168,80,.9);text-decoration:none}
+
+/* INLINE CTA */
+.gp-cta-inline{padding:clamp(48px,6vw,72px) 0;background:rgba(26,122,64,.06);border-top:1px solid rgba(26,122,64,.1);border-bottom:1px solid rgba(26,122,64,.1)}
+.gp-cta-inline-line{font-size:18px;font-weight:600;color:var(--gp-text);margin:0 0 20px}
+.gp-cta-inline-trust{font-size:12px;color:var(--gp-muted);margin:14px 0 0}
+
+/* LODGING */
+.gp-lodging{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.gp-lodge-card{border-radius:var(--gp-r);overflow:hidden;border:1px solid var(--gp-border);background:#fff;box-shadow:0 2px 12px rgba(0,0,0,.04);transition:all .35s}
+.gp-lodge-card:hover{transform:translateY(-5px);box-shadow:0 20px 48px rgba(0,0,0,.1);border-color:rgba(232,168,80,.3)}
+.gp-lodge-img-wrap{position:relative;height:200px;overflow:hidden}
+.gp-lodge-img{width:100%;height:100%;object-fit:cover;transition:transform 6s ease}
+.gp-lodge-card:hover .gp-lodge-img{transform:scale(1.05)}
+.gp-lodge-fade{position:absolute;inset:0;background:linear-gradient(to top,rgba(13,26,14,.7) 0%,transparent 55%)}
+.gp-lodge-tag{position:absolute;top:12px;left:12px;font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:.1em;background:rgba(26,122,64,.9);color:#fff;padding:4px 10px;border-radius:100px}
+.gp-lodge-body{padding:20px 22px 24px}
+.gp-lodge-name{font-family:'Playfair Display',serif;font-size:17px;color:var(--gp-text);margin-bottom:8px}
+.gp-lodge-desc{font-size:13px;color:var(--gp-muted);line-height:1.7;margin:0 0 14px}
+
+/* PROOF */
+.gp-proof-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:48px}
+.gp-proof-card{background:rgba(255,255,255,.7);border:1px solid rgba(28,18,8,.08);border-radius:18px;padding:28px 24px;display:flex;flex-direction:column;gap:14px;box-shadow:0 4px 24px rgba(28,18,8,.06)}
+.gp-proof-top{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.gp-proof-pax{background:rgba(26,122,64,.1);color:#1a7a40;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;padding:4px 10px;border-radius:20px}
+.gp-proof-nights{font-size:13px;color:rgba(28,18,8,.5);font-weight:600}
+.gp-proof-price{margin-left:auto;font-family:'Playfair Display',serif;font-size:22px;color:#1c1208}
+.gp-proof-courses{font-size:13px;color:rgba(28,18,8,.6);line-height:1.5}
+.gp-proof-why{font-size:14px;color:rgba(28,18,8,.75);line-height:1.65;font-style:italic;flex:1}
+.gp-proof-mike{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:rgba(26,122,64,.7)}
+
+/* WHY GRID */
+.gp-why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.gp-why-card{padding:28px 24px;border-radius:16px;border:1px solid rgba(245,240,232,.08);background:rgba(255,255,255,.05);transition:all .35s}
+.gp-why-card:hover{border-color:rgba(232,168,80,.2);transform:translateY(-3px)}
+.gp-why-stat{font-family:'Playfair Display',serif;font-size:26px;color:var(--gp-gold);font-weight:400;margin-bottom:4px}
+.gp-why-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:rgba(245,240,232,.5);margin-bottom:12px}
+.gp-why-body{font-size:13px;color:rgba(245,240,232,.65);line-height:1.75;margin:0}
+
+/* MIKE */
+.gp-mike-wrap{display:grid;grid-template-columns:1fr 400px;gap:72px;align-items:center}
+.gp-mike-body{font-size:15px;color:var(--gp-muted);line-height:1.8;margin:16px 0 0}
+.gp-mike-list{list-style:none;padding:0;margin:20px 0 0;display:flex;flex-direction:column;gap:8px}
+.gp-mike-list li{font-size:14px;color:var(--gp-muted)}
+.gp-mike-img{position:relative;border-radius:22px;overflow:hidden;box-shadow:0 32px 80px rgba(0,0,0,.18)}
+.gp-mike-img img{width:100%;height:460px;object-fit:cover;object-position:top;display:block}
+.gp-mike-badge{position:absolute;bottom:20px;left:20px;right:20px;background:rgba(13,26,14,.88);backdrop-filter:blur(14px);border:1px solid rgba(232,168,80,.22);border-radius:14px;padding:14px 18px}
+.gp-mike-name{font-family:'Playfair Display',serif;font-size:18px;color:#f5f0e8;font-weight:400;margin-bottom:4px}
+.gp-mike-title{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:rgba(232,168,80,.8)}
+
+/* FAQ */
+.gp-faqs{display:flex;flex-direction:column}
+.gp-faq{border-bottom:1px solid var(--gp-border)}
+.gp-faq[open]{background:rgba(232,168,80,.03);border-radius:12px;border-color:rgba(232,168,80,.22)}
+.gp-faq-q{font-size:15px;font-weight:600;color:var(--gp-text);padding:20px 0;cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:16px}
+.gp-faq-q::-webkit-details-marker{display:none}
+.gp-faq[open] .gp-faq-q{color:var(--gp-green)}
+.gp-faq-icon{font-size:24px;color:var(--gp-gold);flex-shrink:0;transition:transform .3s}
+.gp-faq[open] .gp-faq-icon{transform:rotate(45deg)}
+.gp-faq-a{font-size:14px;color:var(--gp-muted);line-height:1.82;padding:0 0 20px;margin:0}
+
+/* FINAL CTA */
+.gp-cta-final{padding:clamp(80px,10vw,132px) 0;position:relative;overflow:hidden}
+.gp-cta-glow{position:absolute;width:720px;height:720px;border-radius:50%;background:radial-gradient(circle,rgba(26,122,64,.18) 0%,transparent 70%);top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none}
+.gp-cta-h2{font-family:'Playfair Display',serif;font-size:clamp(28px,5vw,54px);color:#f5f0e8;font-weight:500;line-height:1.15;margin:0 0 18px}
+.gp-cta-h2 em{color:var(--gp-gold);font-style:italic}
+.gp-cta-sub{font-size:16px;color:rgba(245,240,232,.76);line-height:1.75;margin:0 0 36px}
+
+/* MOBILE */
+@media(max-width:1000px){
+  .gp-courses{grid-template-columns:repeat(3,1fr)}
+  .gp-why-grid{grid-template-columns:1fr 1fr}
+  .gp-mike-wrap{grid-template-columns:1fr}
+  .gp-mike-img{display:none}
+}
+@media(max-width:860px){
+  .gp-hero{min-height:100svh}
+  .gp-floats{display:none}
+  .gp-pkgs{grid-template-columns:1fr}
+  .gp-proof-grid{grid-template-columns:1fr}
+  .gp-lodging{grid-template-columns:1fr}
+  .gp-section{padding:clamp(48px,8vw,72px) 0}
+}
+@media(max-width:640px){
+  .gp-courses{grid-template-columns:1fr 1fr}
+  .gp-included{grid-template-columns:1fr}
+  .gp-why-grid{grid-template-columns:1fr}
+}
+@media(max-width:420px){
+  .gp-courses{grid-template-columns:1fr}
+}
+</style>

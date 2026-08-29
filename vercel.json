@@ -181,7 +181,12 @@
       "permanent": true
     },
     {
-      "source": "/graeagle-golf-weekend-packages",
+      "source": "/graeagle-golf-packages",
+      "destination": "/graeagle-golf-packages/",
+      "permanent": true
+    },
+    {
+      "source": "/graeagle-golf-packages",
       "destination": "/graeagle-golf-weekend-packages/",
       "permanent": true
     },
