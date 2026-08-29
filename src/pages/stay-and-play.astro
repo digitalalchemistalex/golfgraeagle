@@ -8,8 +8,8 @@ import { fetchTripStats } from '../lib/tripStats';
 const { minPrice, maxPrice, tripCount } = await fetchTripStats();
 
 
-const title = "Graeagle Stay and Play Golf Packages | All 5 Courses";
-const description = `Graeagle stay-and-play packages — Golf Digest Top 100 (Grizzly), Golf World Top 75 (Nakoma), Top 20 CA (Whitehawk). Lodging + rounds + guaranteed tee times. Free quote.`;
+const title = "Graeagle Stay and Play Golf Packages | Tee Times + Lodging Bundled";
+const description = `Graeagle stay and play golf packages from $${minPrice}/golfer — tee times at all 5 courses bundled with lodging. Grizzly Ranch (Golf Digest Top 100), Nakoma Dragon (Frank Lloyd Wright). Groups 2–200+. Free quote in 24 hours.`;
 
 const faqSchema = {
   "@context": "https://schema.org", "@type": "FAQPage",
@@ -97,8 +97,8 @@ const includes = [
     <div class="sap-overlay"></div>
     <div class="sap-hero-inner">
       <p class="sap-eyebrow reveal-up">Graeagle Golf Vacation — California · Sierra Nevada</p>
-      <h1 class="sap-h1 reveal-up delay-1">Stay and Play<br/><em>Golf Packages</em></h1>
-      <p class="sap-sub speakable reveal-up delay-2">Graeagle stay and play golf packages — five championship courses, golf and lodging in one package, from $${minPrice}/golfer. Everything handled.</p>
+      <h1 class="sap-h1 reveal-up delay-1">Graeagle Stay and Play<br/><em>Golf Packages</em></h1>
+      <p class="sap-sub speakable reveal-up delay-2">Graeagle, California stay and play golf packages — five championship courses within 25 minutes of each other, tee times and lodging bundled from $${minPrice}/golfer. Golf Digest Top 100, Frank Lloyd Wright clubhouse. One quote, everything handled.</p>
       <div class="sap-pills reveal-up delay-3">
         <span>From <strong>${minPrice}</strong>/golfer</span>
         <span>5 courses · 25 min apart</span>
