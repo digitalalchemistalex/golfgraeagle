@@ -54,22 +54,41 @@ const blogUrls = blogSlugs.map(s => url(`/blog/${s}`, '0.7', 'monthly'));
 // Landing pages — driven by src/data/pages.js
 const landingUrls = landingPages.map(p => url(p.slug, p.priority, p.changefreq));
 
-// Trip pages — verified live against TripsCaddie API + site (Aug 28 2026)
-const tripSlugs = [
-  'graeagle-golf-trip-whitehawk-ranch-2n-2025-september',
-  'graeagle-golf-trip-grizzly-ranch-2n-2025',
-  'graeagle-golf-trip-whitehawk-ranch-2n-2026',
-  'graeagle-golf-trip-whitehawk-ranch-2n-2025-june',
-  'graeagle-golf-trip-grizzly-ranch-golf-club-3n-2026',
-  'graeagle-golf-trip-the-dragon-3n-2026',
-  'graeagle-golf-trip-plumas-pines-2n-2025',
-  'graeagle-golf-trip-plumas-pines-3n-2026-june-1',
-  'graeagle-golf-trip-plumas-pines-3n-2026-august',
-  'graeagle-golf-trip-plumas-pines-3n-2026-june-2',
-  'graeagle-golf-trip-plumas-pines-3n-2026-july',
-  'graeagle-golf-trip-plumas-pines-3n-2025',
-  'graeagle-golf-trip-grizzly-ranch-3n-2024',
-];
+// Trip pages — fetched live from TripsCaddie API at build time
+let tripSlugs: string[] = [];
+try {
+  const caddieRes = await fetch('https://golfthehighsierra.com/trips-caddie/api/api-recaps.php', {
+    headers: { 'User-Agent': 'Mozilla/5.0' },
+    signal: AbortSignal.timeout(8000),
+  });
+  const caddieData: any[] = await caddieRes.json();
+  tripSlugs = caddieData
+    .filter((t: any) => t.region?.toLowerCase() === 'graeagle' && t.slug)
+    .map((t: any) => String(t.slug));
+} catch {
+  // Fallback: last-known slugs if API unreachable at build time
+  tripSlugs = [
+    'graeagle-golf-trip-whitehawk-ranch-2n-2025-september',
+    'graeagle-golf-trip-grizzly-ranch-2n-2025',
+    'graeagle-golf-trip-whitehawk-ranch-2n-2026',
+    'graeagle-golf-trip-whitehawk-ranch-2n-2025-june',
+    'graeagle-golf-trip-red-hawk-golf-resort-hills-course-2n-2026',
+    'graeagle-golf-trip-gray-s-crossing-3n-2025',
+    'graeagle-golf-trip-grizzly-ranch-golf-club-3n-2026',
+    'graeagle-golf-trip-the-dragon-3n-2026',
+    'graeagle-golf-trip-plumas-pines-2n-2025',
+    'graeagle-golf-trip-plumas-pines-3n-2026-june-1',
+    'graeagle-golf-trip-grizzly-ranch-4n-2025',
+    'graeagle-golf-trip-plumas-pines-3n-2026-august',
+    'graeagle-golf-trip-plumas-pines-3n-2026-june-2',
+    'graeagle-golf-trip-plumas-pines-3n-2026-july',
+    'graeagle-golf-trip-plumas-pines-3n-2025',
+    'graeagle-golf-trip-grizzly-ranch-3n-2024',
+    'graeagle-golf-trip-incline-village-championship-course-5n-2025',
+    'graeagle-golf-trip-lakeridge-5n-2025-may',
+    'graeagle-golf-trip-lakeridge-5n-2025-june',
+  ];
+}
 const tripUrls = tripSlugs.map(s => url(`/trips/${s}`, '0.8', 'monthly'));
 
 const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
@@ -81,7 +100,7 @@ ${url('/','1.0','weekly')}
 <!-- Landing pages (${landingUrls.length} — driven by src/data/pages.js) -->
 ${landingUrls.join('\n')}
 
-<!-- Trip pages (${tripUrls.length} — verified live Aug 28 2026) -->
+<!-- Trip pages (${tripUrls.length} — live from TripsCaddie API) -->
 ${tripUrls.join('\n')}
 
 <!-- Courses (${courseUrls.length} — driven by content.js) -->

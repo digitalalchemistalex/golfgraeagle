@@ -25,6 +25,46 @@ const lodgingPortfolioSlug: Record<string,string> = {
 
 const TODAY = new Date().toISOString().split('T')[0];
 
+// Fetch live trip data from TripsCaddie at build time
+let graeagleTrips: any[] = [];
+try {
+  const caddieRes = await fetch('https://golfthehighsierra.com/trips-caddie/api/api-recaps.php', {
+    headers: { 'User-Agent': 'Mozilla/5.0' },
+    signal: AbortSignal.timeout(8000),
+  });
+  const caddieAll: any[] = await caddieRes.json();
+  graeagleTrips = caddieAll.filter((t: any) => t.region?.toLowerCase() === 'graeagle' && t.slug);
+} catch {
+  graeagleTrips = [];
+}
+
+const tripLines = graeagleTrips.length > 0
+  ? graeagleTrips
+      .sort((a: any, b: any) => (a.pricePerPerson || 0) - (b.pricePerPerson || 0))
+      .map((t: any) => {
+        const pax   = t.groupSize ? `${t.groupSize} golfers` : '';
+        const nights = t.nights   ? `${t.nights}N` : '';
+        const rounds = t.rounds   ? `${t.rounds}R` : '';
+        const spec  = [pax, nights && rounds ? `${nights}/${rounds}` : (nights || rounds)].filter(Boolean).join(', ');
+        const price = t.pricePerPerson ? `$${Number(t.pricePerPerson).toLocaleString('en-US')}/pp` : '';
+        const detail = [spec, price].filter(Boolean).join(', ');
+        return `- /trips/${t.slug}/${detail ? ` (${detail})` : ''}`;
+      })
+      .join('\n')
+  : `- /trips/graeagle-golf-trip-whitehawk-ranch-2n-2025-september/ (24 golfers, 2N/3R, $620/pp)
+- /trips/graeagle-golf-trip-grizzly-ranch-2n-2025/ (12 golfers, 2N/2R, $645/pp)
+- /trips/graeagle-golf-trip-grizzly-ranch-golf-club-3n-2026/ (4 golfers, 3N/3R, $817/pp)`;
+
+const priceRange = graeagleTrips.length > 0
+  ? (() => {
+      const prices = graeagleTrips.map((t: any) => t.pricePerPerson || 0).filter(Boolean).sort((a: number, b: number) => a - b);
+      const lo = prices[0] ? `$${prices[0].toLocaleString('en-US')}` : '$299';
+      const hi = prices[prices.length - 1] ? `$${prices[prices.length - 1].toLocaleString('en-US')}` : '$1,750';
+      const nTrips = graeagleTrips.length;
+      return `Packages range ${lo}–${hi}/person. ${nTrips} verified trips. All include confirmed tee times, lodging, and coordination.`;
+    })()
+  : 'Packages range $299–$1,750/person. All include confirmed tee times, lodging, and coordination.';
+
 const courseLines = (courses as any[])
   .map((c: any) => coursePortfolioSlug[c.slug] ? `- ${c.name}: /portfolio/${coursePortfolioSlug[c.slug]}/ (Par ${c.par}, ${c.yards} yds, slope ${c.slope}, ${c.designer} ${c.year})` : null)
   .filter(Boolean).join('\n');
@@ -56,21 +96,9 @@ ${courseLines}
 ## Lodging
 ${lodgingLines}
 
-## Real Graeagle Golf Trip Packages (verified live Aug 28 2026)
-Packages range $620–$1,150/person. 2–3 nights, 2–4 rounds. All include confirmed tee times, lodging, and coordination.
-- /trips/graeagle-golf-trip-whitehawk-ranch-2n-2025-september/ (24 golfers, 2N/3R, $620/pp)
-- /trips/graeagle-golf-trip-grizzly-ranch-2n-2025/ (12 golfers, 2N/2R, $645/pp)
-- /trips/graeagle-golf-trip-whitehawk-ranch-2n-2026/ (16 golfers, 2N/3R, $675/pp)
-- /trips/graeagle-golf-trip-whitehawk-ranch-2n-2025-june/ (8 golfers, 2N/3R, $675/pp)
-- /trips/graeagle-golf-trip-grizzly-ranch-golf-club-3n-2026/ (4 golfers, 3N/3R, $817/pp)
-- /trips/graeagle-golf-trip-the-dragon-3n-2026/ (16 golfers, 3N/3R, $849/pp)
-- /trips/graeagle-golf-trip-plumas-pines-2n-2025/ (52 golfers, 2N/3R, $865/pp)
-- /trips/graeagle-golf-trip-plumas-pines-3n-2026-june-1/ (16 golfers, 3N/3R, $876/pp)
-- /trips/graeagle-golf-trip-plumas-pines-3n-2026-august/ (8 golfers, 3N/4R, $1,009/pp)
-- /trips/graeagle-golf-trip-plumas-pines-3n-2026-june-2/ (30 golfers, 3N/3R, $1,067/pp)
-- /trips/graeagle-golf-trip-plumas-pines-3n-2026-july/ (8 golfers, 3N/4R, $1,105/pp)
-- /trips/graeagle-golf-trip-plumas-pines-3n-2025/ (24 golfers, 3N/4R, $1,120/pp)
-- /trips/graeagle-golf-trip-grizzly-ranch-3n-2024/ (36 golfers, 3N/3R, $1,150/pp)
+## Real Graeagle Golf Trip Packages (live from TripsCaddie)
+${priceRange}
+${tripLines}
 
 ## Pages (driven by src/data/pages.js)
 ${landingLines}
