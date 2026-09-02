@@ -21,6 +21,16 @@
       "permanent": true
     },
     {
+      "source": "/about",
+      "destination": "/about-us/",
+      "permanent": true
+    },
+    {
+      "source": "/about/",
+      "destination": "/about-us/",
+      "permanent": true
+    },
+    {
       "source": "/about/mike-eskuchen",
       "destination": "/about/mike-eskuchen/",
       "permanent": true

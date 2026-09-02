@@ -417,6 +417,17 @@ const buildSchema = () => {
         openingHours: 'May 1 to November 30',
         priceRange: item.tier || '$$–$$$',
         potentialAction: { '@type': 'ReserveAction', target: { '@type': 'EntryPoint', urlTemplate: `${siteConfig.url}/request-a-quote` } },
+        offers: {
+          '@type': 'Offer',
+          name: `Graeagle Golf Packages — ${item.name}`,
+          description: `Stay-and-play golf packages including guaranteed tee times at ${item.name}, lodging, and full itinerary from $299/golfer.`,
+          priceCurrency: 'USD',
+          price: '299',
+          priceSpecification: { '@type': 'UnitPriceSpecification', priceCurrency: 'USD', minPrice: 299, unitText: 'per golfer' },
+          url: `${siteConfig.url}/request-a-quote`,
+          availability: 'https://schema.org/InStock',
+          seller: { '@type': 'TravelAgency', name: 'GolfGraeagle.com', url: 'https://golfgraeagle.com' },
+        },
         aggregateRating: (() => {
           const googleRatings: Record<string, { rating: string; count: string }> = {
             'grizzly-ranch':    { rating: '4.8', count: '177' },
@@ -727,7 +738,7 @@ function cleanCourseName(name: string): string {
         </div>
       )}
 
-      <h1 class="ch-h1 speakable">{item.name} <span style="display:block;font-size:0.55em;font-weight:400;color:rgba(255,255,255,0.5);font-style:italic;margin-top:4px;">Golf Packages &amp; Tee Times — Graeagle, CA</span></h1>
+      <h1 class="ch-h1 speakable">{slug === 'nakoma-dragon-golf-packages' ? 'Nakoma Dragon' : item.name} <span style="display:block;font-size:0.55em;font-weight:400;color:rgba(255,255,255,0.5);font-style:italic;margin-top:4px;">Golf Packages &amp; Tee Times — Graeagle, CA</span></h1>
       <p class="ch-tagline page-intro">{item.tagline}</p>
 
       {item.fomoLine && (
