@@ -233,6 +233,8 @@ export const courses = [
       { q: 'How difficult is Grizzly Ranch?', a: 'With a slope of 140 and 7,411 yards from the back tees, it is the most demanding course in the Graeagle region. Elevation changes range from 4,800 to 5,400 feet across the course.' },
       { q: 'What facilities does Grizzly Ranch have?', a: 'Grizzly Ranch features a pro shop, 30-station natural turf practice range, putting green, chipping area, and bunker practice area. The Grizzly Grill is on-site for dining.' },
       { q: 'How far is Grizzly Ranch from Graeagle?', a: 'Grizzly Ranch is in Portola, CA — approximately 11 miles east of Graeagle, about 18 minutes via Hwy 70.' },
+      { q: 'Is Grizzly Ranch the same as Grey Eagle golf?', a: 'No. Grizzly Ranch Golf Club in Portola, CA is often confused with Grey Eagle Lodge in McCloud, CA — a completely different property 3 hours south. If you searched grey eagle golf or grey eagle golf course, you are likely looking for Grizzly Ranch — the semi-private championship course 11 miles east of Graeagle, ranked Golf Digest Top 100.' },
+      { q: 'Can you book tee times at Grizzly Ranch Golf Club?', a: 'Grizzly Ranch is semi-private — direct public tee time booking is limited and tee sheets fill quickly. GolfGraeagle secures guaranteed Grizzly Ranch tee times as part of stay-and-play packages. Request a quote at golfgraeagle.com/request-a-quote.' },
     ],
   },
   {
