@@ -390,7 +390,7 @@ const buildSchema = () => {
     }));
     return [
       {
-        '@type': 'GolfCourse',
+        '@type': ['GolfCourse', 'Service', 'Product'],
         '@id': `${pageUrl}#golfcourse`,
         name: `${item.name} Golf Course`,
         description: item.description,
@@ -439,9 +439,10 @@ const buildSchema = () => {
           const g = googleRatings[item.slug] || { rating: '4.7', count: '100' };
           return {
             '@type': 'AggregateRating',
-            ratingValue: g.rating,
-            reviewCount: g.count,
-            bestRating: '5',
+            ratingValue: parseFloat(g.rating),
+            ratingCount: parseInt(g.count, 10),
+            bestRating: 5,
+            worstRating: 1,
             description: `Based on ${g.count} verified Google reviews`,
           };
         })(),
@@ -544,8 +545,8 @@ const buildSchema = () => {
             const g = lodgingGoogleRatings[item.slug];
             return {
               '@type': 'AggregateRating',
-              ratingValue: g ? g.rating : (reviews.reduce((s: number, r: any) => s + r.stars, 0) / reviews.length).toFixed(1),
-              reviewCount: g ? g.count : reviews.length,
+              ratingValue: g ? parseFloat(g.rating) : parseFloat((reviews.reduce((s: number, r: any) => s + r.stars, 0) / reviews.length).toFixed(1)),
+              ratingCount: g ? parseInt(g.count, 10) : reviews.length,
               bestRating: 5,
               worstRating: 1,
               description: g ? `Based on ${g.count} verified Google reviews` : 'Group trip ratings from verified GolfGraeagle.com bookings',
@@ -588,10 +589,10 @@ const buildSchema = () => {
         ...(diningGoogleRatings[item.slug] && {
           aggregateRating: {
             '@type': 'AggregateRating',
-            ratingValue: diningGoogleRatings[item.slug].rating,
-            reviewCount: diningGoogleRatings[item.slug].count,
-            bestRating: '5',
-            worstRating: '1',
+            ratingValue: parseFloat(diningGoogleRatings[item.slug].rating),
+            ratingCount: parseInt(diningGoogleRatings[item.slug].count, 10),
+            bestRating: 5,
+            worstRating: 1,
           }
         }),
         address: { '@type': 'PostalAddress', streetAddress: item.location, addressRegion: 'CA', addressCountry: 'US', addressLocality: 'Graeagle' },
@@ -602,10 +603,10 @@ const buildSchema = () => {
         ...(item.googleRating && {
           aggregateRating: {
             '@type': 'AggregateRating',
-            ratingValue: item.googleRating,
-            reviewCount: item.googleReviewCount || '50',
-            bestRating: '5',
-            worstRating: '1',
+            ratingValue: parseFloat(item.googleRating),
+            ratingCount: parseInt(item.googleReviewCount || '50', 10),
+            bestRating: 5,
+            worstRating: 1,
             description: `Based on ${item.googleReviewCount || '50'} verified Google reviews`,
           },
         }),
