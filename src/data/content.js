@@ -448,7 +448,7 @@ export const courses = [
       '/wp-images/nakoma-recreation-dusk.jpg',
       '/wp-images/nakoma-flw-lodge-exterior.webp',
     ],
-    description: 'The only golf clubhouse in the world designed by Frank Lloyd Wright sits at the foot of a slope-147 course that debuted on Golf World\'s America\'s Top 75 list. Robin Nelson and Neil Haworth designed The Dragon in 1998 to use the Feather River canyon at full force — 7,015 yards with forced carries, canyon views, and no forgiveness. This is the bucket-list round of the Graeagle valley.',
+    description: 'The Dragon golf course at Nakoma is the only course in the world with a clubhouse designed by Frank Lloyd Wright — and one of the most technically demanding layouts in Northern California. Robin Nelson designed this dragon golf club experience in 1998 using the full force of the Feather River canyon: 7,015 yards, slope 147, Golf World America\'s Top 75. Forced carries, canyon views, no forgiveness. This is the bucket-list round of the Graeagle valley.',
     fomoLine: 'Only FLW golf clubhouse on earth — tee time slots are limited by design, not demand',
     signatureHoles: [
       { hole: 18, par: 5, name: 'The Dragon\'s Lair', description: 'The finishing hole returns to the Frank Lloyd Wright clubhouse in dramatic fashion — a long par-5 that winds through canyon terrain with the famous FLW roofline visible from the 150-yard marker. Every golfer who plays The Dragon remembers this approach.' },
