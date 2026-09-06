@@ -181,6 +181,8 @@ const wpTitles: Record<string, string> = {
   'graeagle-meadows-golf-course-restaurant':   'Graeagle Meadows Restaurant | Clubhouse Dining After Your Round',
 };
 const pageTitle = wpTitles[slug] || (item ? `${item.name} | GolfGraeagle.com` : `${slug} | GolfGraeagle.com`);
+const noindexSlugs = ['graeagle-mountain-frostee'];
+const pageNoindex = noindexSlugs.includes(slug);
 
 // ── Meta descriptions — v3: accolade → specifics → commercial intent → action ──
 const wpDescs: Record<string, string> = {
@@ -688,7 +690,7 @@ function cleanCourseName(name: string): string {
   return name.replace(/ Golf (Club|Course|Resort)$/,'');
 }
 ---
-<Base title={pageTitle} description={pageDesc} schema={pageSchema} canonical={pageUrl} ogImage={item?.hero || undefined} preloadImage={item?.hero || undefined} bodyClass="light-page">
+<Base title={pageTitle} description={pageDesc} schema={pageSchema} canonical={pageUrl} ogImage={item?.hero || undefined} preloadImage={item?.hero || undefined} bodyClass="light-page" noindex={pageNoindex}>
   <Nav />
 
   {item && type === 'course' && (
