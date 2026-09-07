@@ -153,7 +153,7 @@ const wpTitles: Record<string, string> = {
   // Courses
   'graeagle-meadows-golf-packages':            'Graeagle Meadows Golf Course | Golf Packages & Tee Times — Graeagle, CA',
   'whitehawk-ranch-golf-packages':             'Whitehawk Ranch Golf Packages | Top 20 California — Graeagle, CA',
-  'plumas-pines-golf-packages':                'Plumas Pines Golf Packages — Graeagle, CA',
+  'plumas-pines-golf-packages':                'Plumas Pines Golf Course | Golf Packages & Tee Times — Graeagle, CA',
   'grizzly-ranch-golf-packages':               'Grizzly Ranch Tee Times & Golf Packages — Graeagle, CA',
   'nakoma-dragon-golf-packages':               'The Dragon Golf Course at Nakoma | Frank Lloyd Wright Clubhouse — Graeagle, CA',
   // Lodging
@@ -181,7 +181,7 @@ const wpTitles: Record<string, string> = {
   'graeagle-meadows-golf-course-restaurant':   'Graeagle Meadows Restaurant | Clubhouse Dining After Your Round',
 };
 const pageTitle = wpTitles[slug] || (item ? `${item.name} | GolfGraeagle.com` : `${slug} | GolfGraeagle.com`);
-const noindexSlugs = ['graeagle-mountain-frostee'];
+const noindexSlugs = ['graeagle-mountain-frostee','sierra-smokeshow','eureka-peak-brewing-co'];
 const pageNoindex = noindexSlugs.includes(slug);
 
 // ── Meta descriptions — v3: accolade → specifics → commercial intent → action ──
@@ -189,7 +189,7 @@ const wpDescs: Record<string, string> = {
   // Courses — v4: conversion-first, ≤155 chars, hook answers the searcher's real question
   'graeagle-meadows-golf-packages':   'Graeagle Meadows golf course — slope 120, all skill levels, open since 1968. Walk from River Pines Resort. Stay-and-play tee times from $299/golfer.',
   'whitehawk-ranch-golf-packages':    'Top 20 Courses in CA — meadows, forest, Sulphur Creek in play. Guaranteed tee times + green fees from $299/golfer. Best scenic stay-and-play in Graeagle.',
-  'plumas-pines-golf-packages':       'Stay steps from the 1st tee — on-course townhomes at Plumas Pines. Top 5 Sierra Nevada value. Tight pines, small greens. Packages from $299/golfer.',
+  'plumas-pines-golf-packages':       'Plumas Pines golf course — Top 5 Sierra Nevada value, slope 132. On-course townhomes, Longboards on-site. Stay-and-play from $299/golfer.',
   'grizzly-ranch-golf-packages':      'Golf Digest Top 100 — 7,411 yds, slope 140. Semi-private tee times sell out 30 days out. GolfGraeagle locks in access + green fees from $299/golfer.',
   'nakoma-dragon-golf-packages':      'The Dragon at Nakoma — Golf World Top 75, slope 147. The only Frank Lloyd Wright golf clubhouse on earth. Tee times + green fees from $299/golfer.',
   // Lodging
@@ -209,8 +209,8 @@ const wpDescs: Record<string, string> = {
   'gumbas-ii-go':                     "Hand-tossed pizzas, subs, pasta — 5 min from Graeagle. Call ahead for groups of 4–20+. The pick-up meal every hungry golf group defaults to after 18 holes.",
   'sierra-smokeshow':                 'Hickory and applewood BBQ on CA-89 — ribs, brisket, no reservation needed. 2 min from Plumas Pines, open late. Fastest post-round meal in Graeagle.',
   'mohawk-tavern':                    "One of California's oldest bars — outdoor beer garden, live music weekends, pool tables. The post-round local every Graeagle golf group discovers on night one.",
-  'knotty-pine':                      'Craft beer, full bar, breakfast burritos, dog-friendly porch on CA-89. Locals\' fav, 2 min from Graeagle Meadows. A fixture on every Graeagle group golf trip.',
-  'the-knotty-pine-tavern':           'Craft beer, full bar, breakfast burritos, dog-friendly porch on CA-89. Locals\' fav, 2 min from Graeagle Meadows. A fixture on every Graeagle group golf trip.',
+  'knotty-pine':                      'Craft beer, full bar, dog-friendly porch on CA-89 — 2 min from Graeagle Meadows. The bar every Graeagle golf group finds on night one.' fav, 2 min from Graeagle Meadows. A fixture on every Graeagle group golf trip.',
+  'the-knotty-pine-tavern':           'Craft beer, full bar, dog-friendly porch on CA-89 — 2 min from Graeagle Meadows. The bar every Graeagle golf group finds on night one.' fav, 2 min from Graeagle Meadows. A fixture on every Graeagle group golf trip.',
   'little-bite-deli':                 'Fresh sandwiches, wraps, salads on Hwy 89 — 5 min from Plumas Pines and Whitehawk Ranch. The go-to between-round lunch on every Graeagle golf trip.',
   'graeagle-mountain-frostee':        'Walk-up burgers, soft serve, fries at 28 Hwy 89 — 11am–6pm most days. 2 min from Graeagle Meadows. The post-round stop every golf group makes at least once.',
   'graeagle-restaurant':              'Family-owned since 1958, Box Factory Mill. Breakfast, lunch, homemade pies — fills fast before tee times. Classic first stop on every Graeagle golf day.',
