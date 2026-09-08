@@ -429,6 +429,9 @@ const buildSchema = () => {
           url: `${siteConfig.url}/request-a-quote`,
           availability: 'https://schema.org/InStock',
           seller: { '@type': 'TravelAgency', name: 'GolfGraeagle.com', url: 'https://golfgraeagle.com' },
+          hasMerchantReturnPolicy: { '@type': 'MerchantReturnPolicy', applicableCountry: 'US', returnPolicyCategory: 'https://schema.org/MerchantReturnNotPermitted' },
+          shippingDetails: { '@type': 'OfferShippingDetails', shippingDestination: { '@type': 'DefinedRegion', addressCountry: 'US' }, doesNotShip: true },
+          brand: { '@type': 'Brand', name: 'GolfGraeagle.com' },
         },
         aggregateRating: (() => {
           const googleRatings: Record<string, { rating: string; count: string }> = {
