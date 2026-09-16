@@ -72,21 +72,15 @@ try {
     'graeagle-golf-trip-grizzly-ranch-2n-2025',
     'graeagle-golf-trip-whitehawk-ranch-2n-2026',
     'graeagle-golf-trip-whitehawk-ranch-2n-2025-june',
-    'graeagle-golf-trip-red-hawk-golf-resort-hills-course-2n-2026',
-    'graeagle-golf-trip-gray-s-crossing-3n-2025',
     'graeagle-golf-trip-grizzly-ranch-golf-club-3n-2026',
     'graeagle-golf-trip-the-dragon-3n-2026',
     'graeagle-golf-trip-plumas-pines-2n-2025',
     'graeagle-golf-trip-plumas-pines-3n-2026-june-1',
-    'graeagle-golf-trip-grizzly-ranch-4n-2025',
     'graeagle-golf-trip-plumas-pines-3n-2026-august',
     'graeagle-golf-trip-plumas-pines-3n-2026-june-2',
     'graeagle-golf-trip-plumas-pines-3n-2026-july',
     'graeagle-golf-trip-plumas-pines-3n-2025',
     'graeagle-golf-trip-grizzly-ranch-3n-2024',
-    'graeagle-golf-trip-incline-village-championship-course-5n-2025',
-    'graeagle-golf-trip-lakeridge-5n-2025-may',
-    'graeagle-golf-trip-lakeridge-5n-2025-june',
   ];
 }
 const tripUrls = tripSlugs.map(s => url(`/trips/${s}`, '0.8', 'monthly'));
