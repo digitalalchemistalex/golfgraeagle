@@ -2119,6 +2119,49 @@ function cleanCourseName(name: string): string {
 
   <Testimonials client:load slug={item.slug} type="lodging" />
 
+    {/* ── CHALET VIEW LODGE — unique content ── */}
+    {slug === 'chalet-view-lodge-graeagle-ca' && (
+      <div style="margin:0 0 48px;padding:0 clamp(16px,5vw,48px);">
+        <h2 style="font-family:'Playfair Display',serif;font-size:clamp(20px,2.8vw,26px);font-weight:400;color:#1c1208;margin:0 0 8px;">
+          Chalet View Lodge — Rooms, Amenities &amp; Golf Access
+        </h2>
+        <p style="font-size:13px;color:rgba(28,18,8,0.4);margin:0 0 22px;">
+          72056 Highway 70, Portola, CA 96122 &#x2022; chaletviewlodge.com &#x2022; 52 rooms on 10 acres
+        </p>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:28px;" class="cv-grid">
+          {[
+            { icon: '🏌️', title: '9-Hole Executive Golf Course', body: 'The only Graeagle lodging with golf on-site. Use it for a warm-up before heading to Whitehawk Ranch or Graeagle Meadows, or to wind down after a full day on the championship courses. Included for resort guests.' },
+            { icon: '🍺', title: 'Eureka Peak Brewing + Kitchen+Bar', body: 'Two dining options on-site — Eureka Peak Brewing craft IPAs and stouts, and Kitchen+Bar for breakfast, lunch, and dinner with golf course views. No need to drive after your round.' },
+            { icon: '💆', title: 'Spa, Pool &amp; Hot Tub', body: 'Full-service spa, seasonal outdoor pool (May&#x2013;October), and hot tub on property. The only Graeagle lodging offering spa services. After a 36-hole day, this matters.' },
+            { icon: '🛏️', title: '52 Rooms — Lodge, Suites &amp; Cabins', body: 'Lodge rooms, terrace suites with forest views, and private cabins across 10 forested acres. All rooms include free WiFi, flat-screen TV, coffee maker, fridge. Pet-friendly. Free parking.' },
+          ].map(cv => (
+            <div style="padding:18px;background:rgba(28,18,8,0.02);border:1px solid rgba(28,18,8,0.07);border-radius:12px;">
+              <div style="font-size:18px;margin-bottom:8px;">{cv.icon}</div>
+              <h3 style="font-family:'Playfair Display',serif;font-size:15px;font-weight:400;color:#1c1208;margin:0 0 8px;">{cv.title}</h3>
+              <p style="font-size:12px;color:rgba(28,18,8,0.55);line-height:1.7;margin:0;" set:html={cv.body}></p>
+            </div>
+          ))}
+        </div>
+        <div style="background:rgba(26,122,64,0.04);border:1px solid rgba(26,122,64,0.12);border-radius:12px;padding:20px 24px;">
+          <h3 style="font-family:'Playfair Display',serif;font-size:16px;font-weight:400;color:#1c1208;margin:0 0 14px;">Drive times from Chalet View Lodge</h3>
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(150px,45vw),1fr));gap:8px;">
+            {[
+              { course: 'Graeagle Meadows', time: '5 min' },
+              { course: 'Whitehawk Ranch', time: '8 min' },
+              { course: 'Plumas Pines', time: '10 min' },
+              { course: 'Nakoma Dragon', time: '15 min' },
+              { course: 'Grizzly Ranch', time: '22 min' },
+            ].map(dr => (
+              <div style="display:flex;justify-content:space-between;padding:9px 12px;background:#fff;border-radius:8px;border:1px solid rgba(28,18,8,0.06);">
+                <span style="font-size:12px;color:#1c1208;font-weight:500;">{dr.course}</span>
+                <span style="font-size:12px;color:#1a7a40;font-weight:700;">{dr.time}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    )}
+
     </>
   );})()}
 
@@ -2306,48 +2349,6 @@ function cleanCourseName(name: string): string {
           </div>
         )}
 
-        {/* ── CHALET VIEW LODGE — amenities ── */}
-        {slug === 'chalet-view-lodge-graeagle-ca' && (
-          <div style="margin-bottom:48px;">
-            <h2 style="font-family:'Playfair Display',serif;font-size:clamp(20px,2.8vw,26px);font-weight:400;color:#1c1208;margin:0 0 8px;">
-              Chalet View Lodge — Rooms, Amenities &amp; Golf Access
-            </h2>
-            <p style="font-size:13px;color:rgba(28,18,8,0.4);margin:0 0 22px;">
-              72056 Highway 70, Portola, CA 96122 &#x2022; chaletviewlodge.com &#x2022; 52 rooms on 10 acres
-            </p>
-            <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:28px;" class="cv-grid">
-              {[
-                { icon: '🏌️', title: '9-Hole Executive Golf Course', body: 'The only Graeagle lodging with golf on-site. Use it for a warm-up before Whitehawk Ranch or Graeagle Meadows, or to wind down after a full day. Included for guests.' },
-                { icon: '🍺', title: 'Eureka Peak Brewing + Kitchen+Bar', body: 'Craft brewery on property. Kitchen+Bar serves breakfast, lunch, and dinner with golf course views and al fresco seating. No need to drive for food or a post-round beer.' },
-                { icon: '💆', title: 'Spa, Pool &amp; Hot Tub', body: 'Full-service spa, seasonal outdoor pool (May&#x2013;Oct), and hot tub. The only Graeagle lodging with spa services alongside golf packages.' },
-                { icon: '🛏️', title: '52 Rooms — Lodge, Suites &amp; Cabins', body: 'Lodge rooms, terrace suites with forest views, and private cabins. All include free WiFi, flat-screen TV, coffee maker, fridge. Pet-friendly. Free parking.' },
-              ].map(item2 => (
-                <div style="padding:18px;background:rgba(28,18,8,0.02);border:1px solid rgba(28,18,8,0.07);border-radius:12px;">
-                  <div style="font-size:18px;margin-bottom:8px;">{item2.icon}</div>
-                  <h3 style="font-family:'Playfair Display',serif;font-size:15px;font-weight:400;color:#1c1208;margin:0 0 8px;" set:html={item2.title}></h3>
-                  <p style="font-size:12px;color:rgba(28,18,8,0.55);line-height:1.7;margin:0;" set:html={item2.body}></p>
-                </div>
-              ))}
-            </div>
-            <div style="background:rgba(26,122,64,0.04);border:1px solid rgba(26,122,64,0.12);border-radius:12px;padding:20px 24px;">
-              <h3 style="font-family:'Playfair Display',serif;font-size:16px;font-weight:400;color:#1c1208;margin:0 0 14px;">Drive times from Chalet View Lodge</h3>
-              <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(150px,45vw),1fr));gap:8px;">
-                {[
-                  { course: 'Graeagle Meadows', time: '5 min' },
-                  { course: 'Whitehawk Ranch', time: '8 min' },
-                  { course: 'Plumas Pines', time: '10 min' },
-                  { course: 'Nakoma Dragon', time: '15 min' },
-                  { course: 'Grizzly Ranch', time: '22 min' },
-                ].map(d2 => (
-                  <div style="display:flex;justify-content:space-between;padding:9px 12px;background:#fff;border-radius:8px;border:1px solid rgba(28,18,8,0.06);">
-                    <span style="font-size:12px;color:#1c1208;font-weight:500;">{d2.course}</span>
-                    <span style="font-size:12px;color:#1a7a40;font-weight:700;">{d2.time}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        )}
 
         <!-- Nearby Courses interlinking -->
         {nearbyCoursesList.length > 0 && (
