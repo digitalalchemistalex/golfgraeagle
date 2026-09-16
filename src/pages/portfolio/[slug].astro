@@ -165,7 +165,7 @@ const wpTitles: Record<string, string> = {
   'grizzly-grill':                             'Grizzly Grill | Stone Hearth, Full Bar & Group Dinners — Graeagle, CA',
   'iron-door-restaurant':                      'Iron Door Restaurant | Graeagle Steakhouse Since 1961',
   'sardine-lake-resort':                       'Sardine Lake Resort | The Hardest Reservation in Graeagle',
-  'roadhouse-at-river-pines':                  'Roadhouse at River Pines | On-Site Dining — River Pines Resort',
+  'roadhouse-at-river-pines':                  'Roadhouse at River Pines | Open Daily 3&#x2013;9pm | Graeagle Golf Dining',
   'cuccias':                                   "Cuccia's Graeagle | #1 Restaurant — Book Before Your Tee Times",
   'the-brewing-lair':                          'The Brewing Lair | First-Night Tradition for Graeagle Golf Groups',
   'eureka-peak-brewing-co':                    'Eureka Peak Brewing | On-Site at Chalet View Lodge, Graeagle',
@@ -181,7 +181,7 @@ const wpTitles: Record<string, string> = {
   'graeagle-meadows-golf-course-restaurant':   'Graeagle Meadows Restaurant | Clubhouse Dining After Your Round',
 };
 const pageTitle = wpTitles[slug] || (item ? `${item.name} | GolfGraeagle.com` : `${slug} | GolfGraeagle.com`);
-const noindexSlugs = ['graeagle-mountain-frostee','sierra-smokeshow','eureka-peak-brewing-co'];
+const noindexSlugs = ['graeagle-mountain-frostee','sierra-smokeshow','eureka-peak-brewing-co','the-knotty-pine-tavern','knotty-pine'];
 const pageNoindex = noindexSlugs.includes(slug);
 
 // ── Meta descriptions — v3: accolade → specifics → commercial intent → action ──
@@ -201,7 +201,7 @@ const wpDescs: Record<string, string> = {
   'grizzly-grill':                    'Stone hearth, full bar, gourmet menu in Plumas National Forest — 5 min from Grizzly Ranch. The group dinner every Graeagle golf trip builds around.',
   'iron-door-restaurant':             'Prime steaks, seafood, full bar — family-owned since 1961 in Graeagle. The anchor group dinner on every golf trip. GolfGraeagle adds it to your package.',
   'sardine-lake-resort':              'Dinner only, two seatings nightly June–Oct below the Sierra Buttes. Book 4 weeks ahead. The one table every Graeagle golf group fights for — GolfGraeagle helps.',
-  'roadhouse-at-river-pines':         'Full menu: steaks, ribs, whisky flights — walk-in, group-ready, no car needed at River Pines Resort. Easiest group dinner on any Graeagle golf package.',
+  'roadhouse-at-river-pines':         'Open daily 3&#x2013;9pm. Steaks, ribs, whisky flights — walk from your cabin at River Pines Resort, 8296 Hwy 89, Graeagle. Group dinners for golf packages. No reservation required.',
   'cuccias':                          "#1 on Tripadvisor — family-owned Italian, dinner Tue–Sat 5–8:30pm. Tables fill fast. GolfGraeagle books group reservations with your tee times.",
   'the-brewing-lair':                 '15-acre Sierra forest brewery off Hwy 70 — outdoor seating, lawn games, 5 min from Graeagle. The first-night ritual every Graeagle golf group repeats.',
   'eureka-peak-brewing-co':           "Craft IPAs, stouts, saisons brewed on-site at Chalet View Lodge — steps from your room. Included in Graeagle stay-and-play golf packages via GolfGraeagle.",
