@@ -64,7 +64,7 @@ try {
   const caddieData: any[] = await caddieRes.json();
   // Non-GGE course slugs that TripsCaddie may include for region=graeagle
   const GGE_BLOCKED_COURSES = [
-    'red-hawk', 'gray-s-crossing', 'incline-village', 'lakeridge',
+    'red-hawk', 'gray-s-crossing', 'incline-village', 'lakeridge', 'grizzly-ranch-4n',
   ];
   tripSlugs = caddieData
     .filter((t: any) => {
