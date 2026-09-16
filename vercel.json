@@ -71,6 +71,26 @@
       "permanent": true
     },
     {
+      "source": "/blog/best-time-to-play-golf-graeagle",
+      "destination": "/blog/best-time-to-golf-graeagle/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/best-time-to-play-golf-graeagle/",
+      "destination": "/blog/best-time-to-golf-graeagle/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/graeagle-vs-tahoe-golf",
+      "destination": "/blog/graeagle-vs-lake-tahoe-golf/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/graeagle-vs-tahoe-golf/",
+      "destination": "/blog/graeagle-vs-lake-tahoe-golf/",
+      "permanent": true
+    },
+    {
       "source": "/blog/corporate-golf-outing-graeagle",
       "destination": "/blog/corporate-golf-outing-graeagle/",
       "permanent": true
