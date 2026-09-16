@@ -62,8 +62,17 @@ try {
     signal: AbortSignal.timeout(8000),
   });
   const caddieData: any[] = await caddieRes.json();
+  // Non-GGE course slugs that TripsCaddie may include for region=graeagle
+  const GGE_BLOCKED_COURSES = [
+    'red-hawk', 'gray-s-crossing', 'incline-village', 'lakeridge',
+  ];
   tripSlugs = caddieData
-    .filter((t: any) => t.region?.toLowerCase() === 'graeagle' && t.slug)
+    .filter((t: any) => {
+      if (!t.region?.toLowerCase().includes('graeagle') || !t.slug) return false;
+      const slug = String(t.slug).toLowerCase();
+      // Exclude trips for courses not available through GGE
+      return !GGE_BLOCKED_COURSES.some(c => slug.includes(c));
+    })
     .map((t: any) => String(t.slug));
 } catch {
   // Fallback: last-known slugs if API unreachable at build time
