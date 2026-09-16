@@ -301,6 +301,59 @@ const QUOTE_URL = '/request-a-quote/?groupType=weekend&ref=weekend-landing';
     </div>
   </section>
 
+
+  <!-- ═══ WEEKEND LOGISTICS — unique content not on other pages ═══ -->
+  <section class="wk-section">
+    <div class="wk-container" style="max-width:860px">
+      <div class="wk-header reveal-up">
+        <span class="sec-label">Planning your Graeagle golf weekend</span>
+        <h2 class="wk-h2">What makes a Graeagle weekend<br/><em>different from a longer trip</em></h2>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:32px;margin-bottom:48px;" class="wk-logistics-grid">
+        <div>
+          <h3 style="font-family:'Playfair Display',serif;font-size:22px;font-weight:400;color:#1c1208;margin:0 0 14px;">Friday arrival</h3>
+          <p style="font-size:15px;color:rgba(28,18,8,0.55);line-height:1.8;margin:0 0 16px;">Most golfers drive in Friday afternoon from Sacramento (2.5 hrs), Reno (1 hr), or the Bay Area (3.5–4 hrs). A Friday afternoon round at Graeagle Meadows — the flattest and most forgiving course — is the standard opener. Tee times from 1pm give you enough light for 18 holes with no rush.</p>
+          <p style="font-size:15px;color:rgba(28,18,8,0.55);line-height:1.8;margin:0;">Check in to River Pines Resort or the Townhomes at Plumas Pines Friday evening. The Roadhouse at River Pines and the Grizzly Grill both handle walk-ins on Fridays without a reservation.</p>
+        </div>
+        <div>
+          <h3 style="font-family:'Playfair Display',serif;font-size:22px;font-weight:400;color:#1c1208;margin:0 0 14px;">Saturday: the main round</h3>
+          <p style="font-size:15px;color:rgba(28,18,8,0.55);line-height:1.8;margin:0 0 16px;">Saturday is for Grizzly Ranch or Nakoma Dragon — the courses that require advance booking and fill fastest on weekends. GolfGraeagle secures these tee times as part of the package, often 4–6 weeks ahead in summer. Saturday evening is the natural group dinner night — Sardine Lake Resort or the Iron Door for groups wanting something memorable.</p>
+          <p style="font-size:15px;color:rgba(28,18,8,0.55);line-height:1.8;margin:0;">Drive time between courses: Graeagle Meadows to Grizzly Ranch is 18 minutes. No shuttles needed.</p>
+        </div>
+        <div>
+          <h3 style="font-family:'Playfair Display',serif;font-size:22px;font-weight:400;color:#1c1208;margin:0 0 14px;">Sunday: the send-off round</h3>
+          <p style="font-size:15px;color:rgba(28,18,8,0.55);line-height:1.8;margin:0 0 16px;">Sunday morning tee times from 7–9am let you finish 18 holes, check out, and be home by mid-afternoon. Whitehawk Ranch, Plumas Pines, and Graeagle Meadows all offer Sunday morning single tee times. Nakoma Dragon works as a Sunday finale for groups wanting to end on the most scenic course.</p>
+          <p style="font-size:15px;color:rgba(28,18,8,0.55);line-height:1.8;margin:0;">Most groups skip lunch Sunday and grab food at the turn to make it home at a reasonable time.</p>
+        </div>
+        <div>
+          <h3 style="font-family:'Playfair Display',serif;font-size:22px;font-weight:400;color:#1c1208;margin:0 0 14px;">Who a Graeagle weekend is for</h3>
+          <p style="font-size:15px;color:rgba(28,18,8,0.55);line-height:1.8;margin:0 0 16px;">The annual guys trip. The work group that wants something better than their usual muni outing. First-timers to Graeagle who want to see what the valley has to offer before committing to a longer stay. Groups of 4–20 golfers work best for a weekend format — large enough to feel like an event, small enough to move.</p>
+          <p style="font-size:15px;color:rgba(28,18,8,0.55);line-height:1.8;margin:0;">Groups larger than 20 typically need 3 nights to play all the courses they want without feeling rushed. See <a href="/group-golf/" style="color:#1a7a40;">group golf packages</a> for larger outings.</p>
+        </div>
+      </div>
+
+      <!-- Booking window callout -->
+      <div style="background:rgba(26,122,64,0.06);border:1px solid rgba(26,122,64,0.15);border-radius:16px;padding:28px 32px;">
+        <h3 style="font-family:'Playfair Display',serif;font-size:20px;font-weight:400;color:#1c1208;margin:0 0 16px;">When to book a Graeagle golf weekend</h3>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(180px,45vw),1fr));gap:16px;">
+          {[
+            { month: 'May–June', note: 'Book 3–4 weeks out. Courses freshly open. Cooler mornings. Best tee time availability.' },
+            { month: 'July–August', note: 'Book 6–8 weeks out. Peak season. Grizzly Ranch and Nakoma fill first. Best weather.' },
+            { month: 'September–October', note: 'Book 2–3 weeks out. Fall colors. Fewer crowds. Best course conditions. Locals' favourite window.' },
+          ].map(w => (
+            <div style="padding:16px;background:#fff;border-radius:10px;border:1px solid rgba(28,18,8,0.07);">
+              <div style="font-size:13px;font-weight:700;color:#1a7a40;margin-bottom:6px;">{w.month}</div>
+              <div style="font-size:12px;color:rgba(28,18,8,0.5);line-height:1.6;">{w.note}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <style>.wk-logistics-grid{} @media(max-width:640px){.wk-logistics-grid{grid-template-columns:1fr!important}}</style>
+
   <!-- ═══ FAQ ═══ -->
   <section class="wk-section">
     <div class="wk-container" style="max-width:760px">
