@@ -59,10 +59,10 @@ const serviceSchema = {
 };
 
 const groupTypes = [
-  { icon:'🍺', title:'Golf Buddies Trip',     size:'4–16',    color:'#1a7a40', desc:'Annual guys trip, bachelor parties, friend group weekends. 3 nights, 3–4 courses, one legendary dinner.' },
-  { icon:'🏆', title:'Tournament & Outing',   size:'20–100',  color:'#b45309', desc:'Charity events, club championships, competitive outings. Scrambles, net/gross, shotgun starts arranged.' },
-  { icon:'💼', title:'Corporate Retreat',     size:'12–60',   color:'#1d4ed8', desc:'Client entertainment, team building, company offsites. We handle logistics — you handle relationships.' },
-  { icon:'🎓', title:'Alumni & Club Groups',  size:'16–200+', color:'#7c3aed', desc:'College alumni golf days, club championships, association outings. Multi-course itineraries.' },
+  { icon:'🍺', title:'Golf Buddies Trip',     size:'4–16',    color:'#1a7a40', desc:'Annual guys trip, bachelor parties, friend group weekends. 3 nights, 3–4 courses, one legendary dinner.', href:'/bachelor-party-golf-graeagle/' },
+  { icon:'🏆', title:'Tournament & Outing',   size:'20–100',  color:'#b45309', desc:'Charity events, club championships, competitive outings. Scrambles, net/gross, shotgun starts arranged.',   href:'/graeagle-golf-weekend-packages/' },
+  { icon:'💼', title:'Corporate Retreat',     size:'12–60',   color:'#1d4ed8', desc:'Client entertainment, team building, company offsites. We handle logistics — you handle relationships.',       href:'/corporate-golf-outing-graeagle/' },
+  { icon:'🎓', title:'Alumni & Club Groups',  size:'16–200+', color:'#7c3aed', desc:'College alumni golf days, club championships, association outings. Multi-course itineraries.',                 href:'/request-a-quote/' },
 ];
 
 // Real pricing by group size — TripsCaddie data
@@ -129,13 +129,14 @@ const logistics = [
       </div>
       <div class="gg-types">
         {groupTypes.map((g, i) => (
-          <div class={`gg-type glow-card reveal-${i<2?'left':'right'} delay-${(i%3)+1}`} style={`--accent:${g.color}`}>
+          <a href={g.href} class={`gg-type glow-card reveal-${i<2?'left':'right'} delay-${(i%3)+1}`} style={`--accent:${g.color};text-decoration:none;display:block;`}>
             <div class="gg-type-top"></div>
             <div class="gg-type-icon">{g.icon}</div>
             <div class="gg-type-size">{g.size} golfers</div>
             <h3 class="gg-type-title">{g.title}</h3>
             <p class="gg-type-body">{g.desc}</p>
-          </div>
+            <div style="font-size:12px;font-weight:700;color:var(--accent,#1a7a40);margin-top:14px;letter-spacing:.04em;">Plan this trip →</div>
+          </a>
         ))}
       </div>
     </div>
