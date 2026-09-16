@@ -356,6 +356,46 @@
       "permanent": true
     },
     {
+      "source": "/portfolio/grizzly-ranch-golf-club",
+      "destination": "/portfolio/grizzly-ranch-golf-packages/",
+      "permanent": true
+    },
+    {
+      "source": "/portfolio/grizzly-ranch-golf-club/",
+      "destination": "/portfolio/grizzly-ranch-golf-packages/",
+      "permanent": true
+    },
+    {
+      "source": "/portfolio/plumas-pines-golf-resort",
+      "destination": "/portfolio/plumas-pines-golf-packages/",
+      "permanent": true
+    },
+    {
+      "source": "/portfolio/plumas-pines-golf-resort/",
+      "destination": "/portfolio/plumas-pines-golf-packages/",
+      "permanent": true
+    },
+    {
+      "source": "/portfolio/whitehawk-ranch-golf-course",
+      "destination": "/portfolio/whitehawk-ranch-golf-packages/",
+      "permanent": true
+    },
+    {
+      "source": "/portfolio/whitehawk-ranch-golf-course/",
+      "destination": "/portfolio/whitehawk-ranch-golf-packages/",
+      "permanent": true
+    },
+    {
+      "source": "/graeagle-golf-resort",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/graeagle-golf-resort/",
+      "destination": "/",
+      "permanent": true
+    },
+    {
       "source": "/portfolio/nakoma-dragon-golf-packages",
       "destination": "/portfolio/nakoma-dragon-golf-packages/",
       "permanent": true
