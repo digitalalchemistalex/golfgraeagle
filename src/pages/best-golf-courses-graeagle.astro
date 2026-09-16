@@ -376,6 +376,89 @@ ogType="article"
       </div>
     </div>
 
+    <!-- Green Fee Table -->
+    <h2 style="font-family:'Playfair Display',serif;font-size:clamp(22px,3vw,32px);font-weight:400;color:#1a2e1a;margin:48px 0 8px;">Graeagle Golf Course Green Fees</h2>
+    <p style="font-size:14px;color:rgba(28,46,26,0.35);margin-bottom:0;">Approximate rates &#x2014; book through GolfGraeagle for group pricing and package rates.</p>
+    <div style="overflow-x:auto;margin:16px 0 48px;">
+      <table class="course-table" style="background:#fff;border:1px solid rgba(28,46,26,0.07);border-radius:12px;overflow:hidden;">
+        <thead style="background:rgba(28,46,26,0.03);">
+          <tr>
+            <th>Course</th>
+            <th>Weekday Walk</th>
+            <th>Weekend Walk</th>
+            <th>With Cart</th>
+            <th>Twilight</th>
+            <th>Access</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="name">Graeagle Meadows</td>
+            <td>$55&#x2013;75</td>
+            <td>$75&#x2013;95</td>
+            <td>+$18/person</td>
+            <td>$45&#x2013;55</td>
+            <td style="color:#1a7a40;font-weight:600;">Public</td>
+          </tr>
+          <tr>
+            <td class="name">Whitehawk Ranch</td>
+            <td>$75&#x2013;95</td>
+            <td>$95&#x2013;115</td>
+            <td>Included</td>
+            <td>$55&#x2013;65</td>
+            <td style="color:#1a7a40;font-weight:600;">Public</td>
+          </tr>
+          <tr>
+            <td class="name">Plumas Pines</td>
+            <td>$60&#x2013;80</td>
+            <td>$80&#x2013;100</td>
+            <td>Included</td>
+            <td>$45&#x2013;55</td>
+            <td style="color:#1a7a40;font-weight:600;">Public</td>
+          </tr>
+          <tr>
+            <td class="name">Grizzly Ranch</td>
+            <td>$120&#x2013;160</td>
+            <td>$150&#x2013;185</td>
+            <td>Included</td>
+            <td>$85&#x2013;110</td>
+            <td style="color:#e8a850;font-weight:600;">Semi-private</td>
+          </tr>
+          <tr>
+            <td class="name">Nakoma Dragon</td>
+            <td>$110&#x2013;145</td>
+            <td>$130&#x2013;165</td>
+            <td>Included</td>
+            <td>$80&#x2013;100</td>
+            <td style="color:#e8a850;font-weight:600;">Semi-private</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="font-size:13px;color:rgba(28,46,26,0.3);margin:-36px 0 48px;">Green fees vary by season and availability. GolfGraeagle packages include negotiated group rates&#x2014;often 15&#x2013;20% below rack rate. Grizzly Ranch and Nakoma Dragon are semi-private; public access is easiest through a package.</p>
+
+    <!-- Which course should I play decision tool -->
+    <h2 style="font-family:'Playfair Display',serif;font-size:clamp(22px,3vw,32px);font-weight:400;color:#1a2e1a;margin:0 0 24px;">Which Graeagle Golf Course Should You Play?</h2>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:48px;" class="bgc-course-grid">
+      {[
+        { label: "If you want the most prestigious round", course: "Grizzly Ranch", reason: "Golf Digest Top 100. The course that gives you something to talk about for years. Book this one first&#x2014;it fills fastest.", slug: "grizzly-ranch-golf-packages" },
+        { label: "If you want the most unique experience", course: "Nakoma Dragon", reason: "Frank Lloyd Wright clubhouse. Hardest course in the valley. The story no other golf destination can tell.", slug: "nakoma-dragon-golf-packages" },
+        { label: "If you want best value", course: "Plumas Pines", reason: "Top 5 Best Value in the Sierra Nevada. Challenging layout, tight pines, small greens&#x2014;half the price of Grizzly Ranch.", slug: "plumas-pines-golf-packages" },
+        { label: "If you have a mixed-handicap group", course: "Graeagle Meadows", reason: "Slope 120. Open fairways, friendly pace of play, no one gets left behind. The right opener for any group.", slug: "graeagle-meadows-golf-packages" },
+        { label: "If you want scenic views with challenge", course: "Whitehawk Ranch", reason: "Top 20 California. Meadow holes with mountain backdrops, forested hillside holes. The most visually varied layout in the valley.", slug: "whitehawk-ranch-golf-packages" },
+        { label: "If you want to play all 5", course: "3 nights minimum", reason: "All five courses are within 25 minutes. A 3-night stay gets you 4&#x2013;5 rounds without rushing. GolfGraeagle sequences them by difficulty.", slug: "graeagle-golf-itinerary" },
+      ].map(item => (
+        <a href={`/portfolio/${item.slug}/`}
+          style="display:block;padding:18px 20px;background:#fff;border:1px solid rgba(28,46,26,0.07);border-radius:14px;text-decoration:none;transition:border-color 0.2s;"
+          onmouseover="this.style.borderColor='rgba(232,168,80,0.4)'" onmouseout="this.style.borderColor='rgba(28,46,26,0.07)'">
+          <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:rgba(28,46,26,0.3);margin-bottom:6px;">{item.label}</div>
+          <div style="font-size:16px;font-weight:600;color:#1a2e1a;margin-bottom:6px;">{item.course}</div>
+          <div style="font-size:13px;color:rgba(28,46,26,0.5);line-height:1.6;">{item.reason}</div>
+        </a>
+      ))}
+    </div>
+
+
     <!-- CTA -->
     <div style="margin-top:64px;padding:40px;background:rgba(232,168,80,0.04);border:1px solid rgba(232,168,80,0.12);border-radius:20px;text-align:center;">
       <h2 style="font-family:'Playfair Display',serif;font-size:clamp(22px,3vw,30px);font-weight:400;color:#1a2e1a;margin:0 0 12px;">Ready to Book Your Graeagle Golf Trip?</h2>
