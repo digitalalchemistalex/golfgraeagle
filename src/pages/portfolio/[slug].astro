@@ -1625,6 +1625,72 @@ function cleanCourseName(name: string): string {
         );
       })()}
 
+
+      {/* ── NAKOMA DRAGON — scorecard + what to expect ── */}
+      {slug === 'nakoma-dragon-golf-packages' && (
+        <div style="margin-bottom:56px;">
+          <h2 style="font-family:'Playfair Display',serif;font-size:clamp(20px,2.8vw,28px);font-weight:400;color:#1c1208;margin:0 0 8px;">
+            The Dragon at Nakoma — Course Overview
+          </h2>
+          <p style="font-size:14px;color:rgba(28,18,8,0.4);margin:0 0 24px;">
+            Robin Nelson &amp; Neil Haworth design &#x2022; Opened 1998 &#x2022; 348 Bear Run Rd, Clio, CA 96106 &#x2022; (530) 322-3333
+          </p>
+
+          {/* Scorecard */}
+          <div style="overflow-x:auto;margin-bottom:32px;">
+            <table style="width:100%;border-collapse:collapse;background:#fff;border:1px solid rgba(28,18,8,0.07);border-radius:12px;overflow:hidden;font-size:13px;">
+              <thead>
+                <tr style="background:rgba(28,18,8,0.03);">
+                  <th style="text-align:left;padding:10px 14px;font-weight:700;color:#1c1208;">Tee</th>
+                  <th style="padding:10px 14px;font-weight:700;color:#1c1208;">Yards</th>
+                  <th style="padding:10px 14px;font-weight:700;color:#1c1208;">Par</th>
+                  <th style="padding:10px 14px;font-weight:700;color:#1c1208;">Rating</th>
+                  <th style="padding:10px 14px;font-weight:700;color:#1c1208;">Slope</th>
+                </tr>
+              </thead>
+              <tbody>
+                {[
+                  { tee: 'Black (Back)', yards: '7,015', par: '72', rating: '73.4', slope: '147' },
+                  { tee: 'Blue', yards: '6,469', par: '72', rating: '70.8', slope: '139' },
+                  { tee: 'White', yards: '5,987', par: '72', rating: '68.4', slope: '130' },
+                  { tee: 'Gold', yards: '5,344', par: '72', rating: '65.4', slope: '120' },
+                  { tee: 'Red (Forward)', yards: '4,775', par: '72', rating: '63.2', slope: '113' },
+                ].map((row, i) => (
+                  <tr style={`border-top:1px solid rgba(28,18,8,0.06);background:${i % 2 === 0 ? 'transparent' : 'rgba(28,18,8,0.015)'};`}>
+                    <td style="padding:10px 14px;font-weight:600;color:#1c1208;">{row.tee}</td>
+                    <td style="padding:10px 14px;text-align:center;color:rgba(28,18,8,0.6);">{row.yards}</td>
+                    <td style="padding:10px 14px;text-align:center;color:rgba(28,18,8,0.6);">{row.par}</td>
+                    <td style="padding:10px 14px;text-align:center;color:rgba(28,18,8,0.6);">{row.rating}</td>
+                    <td style="padding:10px 14px;text-align:center;font-weight:700;color:#c0392b;">{row.slope}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <p style="font-size:12px;color:rgba(28,18,8,0.3);margin:-20px 0 32px;">All ratings USGA-certified. Slope 113 = standard difficulty. Dress code: collared shirts required, no denim.</p>
+
+          {/* What to expect grid */}
+          <h2 style="font-family:'Playfair Display',serif;font-size:clamp(18px,2.4vw,24px);font-weight:400;color:#1c1208;margin:0 0 20px;">
+            What to Expect at the Dragon Golf Course
+          </h2>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:32px;" class="nak-expect-grid">
+            {[
+              { icon: '🏛️', title: 'The Frank Lloyd Wright Clubhouse', body: 'The only golf clubhouse in the world designed by Frank Lloyd Wright. The Nakoma Lodge was designed by Wright in 1924 — the version at Nakoma Resort is the only one ever built. The Fifty44 Restaurant and bar are inside. Plan to spend time here before and after your round.' },
+              { icon: '⛳', title: 'Slope 147 — what it means on the course', body: 'Slope 147 is the most demanding rating in the Graeagle valley. Forced carries over canyon terrain, no bail-out on the par-3s, and fairway positions that punish the wrong side. Play the White tees (slope 130) if you are a 15+ handicapper. The slope drops significantly and the round is far more enjoyable.' },
+              { icon: '🌊', title: 'Feather River Canyon terrain', body: 'The Dragon is perched above the wild Feather River in Plumas County. Several holes play over or alongside the canyon — the views are genuine, not manufactured. Hole 7 is a par-3 over a chasm with the river visible below. Hole 18 returns to the FLW clubhouse through canyon terrain.' },
+              { icon: '🕐', title: 'Booking tee times at Nakoma Dragon', body: 'Nakoma Dragon is a public resort course — tee times are available directly at nakomaresort.com or by calling (530) 322-3333. Summer weekends fill 3&#x2013;4 weeks out. GolfGraeagle secures guaranteed tee times as part of stay-and-play packages, often alongside Grizzly Ranch or Whitehawk Ranch in the same trip.' },
+            ].map(item => (
+              <div style="padding:20px;background:rgba(28,18,8,0.02);border:1px solid rgba(28,18,8,0.07);border-radius:12px;">
+                <div style="font-size:20px;margin-bottom:10px;">{item.icon}</div>
+                <h3 style="font-family:'Playfair Display',serif;font-size:16px;font-weight:400;color:#1c1208;margin:0 0 10px;">{item.title}</h3>
+                <p style="font-size:13px;color:rgba(28,18,8,0.55);line-height:1.75;margin:0;">{item.body}</p>
+              </div>
+            ))}
+          </div>
+          <style>{`@media(max-width:600px){.nak-expect-grid{grid-template-columns:1fr!important}}`}</style>
+        </div>
+      )}
+
       <!-- FAQ Section — AEO optimized, answers in DOM (not collapsed) -->
       <div class="reveal" style="margin-bottom:56px;">
         <h2 style="font-family:'Playfair Display',serif;font-size:24px;color:var(--text-primary);margin:0 0 28px;">Frequently Asked Questions</h2>
