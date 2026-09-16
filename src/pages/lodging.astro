@@ -385,7 +385,7 @@ const lodgingFaq = {
         </p>
       </div>
     </div>
-    <style>{`.ldg-compare-grid{} @media(max-width:640px){.ldg-compare-grid{grid-template-columns:1fr!important}}`}</style>
+
   </div>
 </section>
 
@@ -394,6 +394,9 @@ const lodgingFaq = {
 </Base>
 
 <style is:global>
+/* compare grid */
+.ldg-compare-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
+@media(max-width:640px){.ldg-compare-grid{grid-template-columns:1fr!important}}
 /* hero */
 .ldg-hero{position:relative;height:80vh;min-height:520px;max-height:780px;overflow:hidden;display:flex;flex-direction:column;justify-content:flex-end;}
 .ldg-hero-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 40%;animation:ldgZoom 16s ease-in-out infinite alternate;}
