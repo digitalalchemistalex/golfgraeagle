@@ -584,6 +584,33 @@ const lodgingSlugMap: Record<string,string> = {'river-pines-resort':'river-pines
   </div>
 </section>
 
+<!-- ══════ TRIP TYPE LINKS ══════ -->
+<section style="background:#f2ede6;padding:clamp(48px,7vw,72px) clamp(24px,6vw,48px);border-top:1px solid rgba(28,18,8,0.07);">
+  <div style="max-width:1100px;margin:0 auto;">
+    <p style="font-size:11px;color:var(--gold,#a06c30);letter-spacing:0.16em;text-transform:uppercase;margin:0 0 10px;text-align:center;">Plan by trip type</p>
+    <h2 style="font-family:'Playfair Display',serif;font-size:clamp(22px,3vw,36px);font-weight:500;color:#1a2e1a;text-align:center;margin:0 0 36px;line-height:1.2;">What kind of golf trip are you planning?</h2>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;" class="trip-type-strip">
+      {[
+        { href:'/bachelor-party-golf-graeagle/',   icon:'🍺', label:'Bachelor Party Golf',  sub:'8–20 golfers · Courses + lodging + après sorted' },
+        { href:'/corporate-golf-outing-graeagle/', icon:'💼', label:'Corporate Golf Outing', sub:'12–200 golfers · Single invoice · Tournament formats' },
+        { href:'/graeagle-golf-weekend-packages/',  icon:'⛳', label:'Golf Weekend Package',  sub:'2–3 nights · 2–3 rounds · From $299/golfer' },
+      ].map(t => (
+        <a href={t.href} style="display:flex;align-items:center;gap:16px;background:#fff;border:1px solid rgba(28,18,8,0.08);border-radius:16px;padding:20px 24px;text-decoration:none;transition:all 0.2s;"
+          onmouseover="this.style.borderColor='rgba(26,122,64,0.35)';this.style.transform='translateY(-2px)';this.style.boxShadow='0 8px 24px rgba(0,0,0,0.08)'"
+          onmouseout="this.style.borderColor='rgba(28,18,8,0.08)';this.style.transform='translateY(0)';this.style.boxShadow='none'">
+          <div style="font-size:28px;flex-shrink:0;">{t.icon}</div>
+          <div>
+            <div style="font-size:15px;font-weight:700;color:#1a2e1a;margin-bottom:4px;">{t.label}</div>
+            <div style="font-size:12px;color:rgba(28,18,8,0.48);line-height:1.5;">{t.sub}</div>
+          </div>
+          <div style="margin-left:auto;font-size:16px;color:#1a7a40;flex-shrink:0;">→</div>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>
+<style>@media(max-width:700px){.trip-type-strip{grid-template-columns:1fr!important}}</style>
+
 <!-- ══════ CTA STRIP ══════ -->
 <section id="hp-cta" style="position:relative;padding:clamp(80px,12vw,120px) clamp(24px,6vw,48px);overflow:hidden;">
   <div style="position:absolute;inset:0;">
