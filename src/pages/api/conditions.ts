@@ -2,139 +2,112 @@ export const prerender = false;
 
 import type { APIRoute } from 'astro';
 
-const API_KEY = import.meta.env.GGE_GOOGLE_MAPS_API_KEY || 'AIzaSyDI1hLFH83qpZDjxj93OYJvGghRAmtHF8U';
 const LAT = 39.7662;
 const LNG = -120.6185;
 
-// Cache: serve same data for 30 min to avoid hammering APIs
-let cache: { data: any; ts: number } | null = null;
+// Cache 30 min — free Open-Meteo API, no key needed
+let cache: { data: unknown; ts: number } | null = null;
 const CACHE_MS = 30 * 60 * 1000;
+
+const WMO: Record<number, string> = {
+  0:'Clear sky',1:'Mainly clear',2:'Partly cloudy',3:'Overcast',
+  45:'Foggy',48:'Icy fog',51:'Light drizzle',53:'Drizzle',55:'Heavy drizzle',
+  61:'Light rain',63:'Rain',65:'Heavy rain',71:'Light snow',73:'Snow',75:'Heavy snow',
+  80:'Rain showers',81:'Showers',82:'Heavy showers',95:'Thunderstorm',
+  96:'Thunderstorm with hail',99:'Thunderstorm with heavy hail',
+};
+
+function aqCategory(aqi: number): string {
+  if (aqi <= 50) return 'Good';
+  if (aqi <= 100) return 'Moderate';
+  if (aqi <= 150) return 'Unhealthy for Sensitive Groups';
+  if (aqi <= 200) return 'Unhealthy';
+  return 'Very Unhealthy';
+}
 
 export const GET: APIRoute = async () => {
   const now = Date.now();
   if (cache && now - cache.ts < CACHE_MS) {
     return new Response(JSON.stringify(cache.data), {
-      headers: { 'Content-Type': 'application/json', 'Cache-Control': 'public, max-age=1800' }
+      headers: { 'Content-Type': 'application/json', 'Cache-Control': 'public, max-age=1800' },
     });
   }
 
   try {
-    const [weatherRes, aqRes, pollenRes] = await Promise.all([
-      // Weather hourly forecast — 48 hours
-      fetch(`https://weather.googleapis.com/v1/forecast/hours:lookup?key=${API_KEY}&location.latitude=${LAT}&location.longitude=${LNG}&hours=48`),
-      // Air quality
-      fetch(`https://airquality.googleapis.com/v1/currentConditions:lookup?key=${API_KEY}`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ location: { latitude: LAT, longitude: LNG } }),
-      }),
-      // Pollen 3 days
-      fetch(`https://pollen.googleapis.com/v1/forecast:lookup?key=${API_KEY}&location.latitude=${LAT}&location.longitude=${LNG}&days=3`),
+    const [weatherRes, aqRes] = await Promise.all([
+      fetch(`https://api.open-meteo.com/v1/forecast?latitude=${LAT}&longitude=${LNG}&hourly=temperature_2m,apparent_temperature,weathercode,windspeed_10m,precipitation,uv_index,cloudcover,relativehumidity_2m,is_day&daily=temperature_2m_max,temperature_2m_min,weathercode,uv_index_max,windspeed_10m_max&timezone=America%2FLos_Angeles&forecast_days=5`),
+      fetch(`https://air-quality-api.open-meteo.com/v1/air-quality?latitude=${LAT}&longitude=${LNG}&hourly=us_aqi,pm2_5&timezone=America%2FLos_Angeles&forecast_days=1`),
     ]);
 
-    const [weatherData, aqData, pollenData] = await Promise.all([
-      weatherRes.json(),
-      aqRes.json(),
-      pollenRes.json(),
-    ]);
+    const [weather, aq] = await Promise.all([weatherRes.json(), aqRes.json()]);
 
-    // Process weather into daily summaries
-    const dailyMap: Record<string, any[]> = {};
-    for (const fh of weatherData.forecastHours || []) {
-      const dt = fh.displayDateTime || {};
-      const day = `${dt.year}-${String(dt.month).padStart(2,'0')}-${String(dt.day).padStart(2,'0')}`;
-      if (!dailyMap[day]) dailyMap[day] = [];
-      dailyMap[day].push({
-        hour: dt.hours,
-        condition: fh.weatherCondition?.description?.text || '',
-        condition_type: fh.weatherCondition?.type || '',
-        icon: fh.weatherCondition?.iconBaseUri || '',
-        temp_c: fh.temperature?.degrees,
-        feels_c: fh.feelsLikeTemperature?.degrees,
-        humidity: fh.relativeHumidity,
-        uv: fh.uvIndex || 0,
-        cloud_pct: fh.cloudCover || 0,
-        wind_kph: fh.wind?.speed?.value || 0,
-        wind_dir: fh.wind?.direction?.cardinal || '',
-        is_daytime: fh.isDaytime,
-      });
-    }
+    const h = weather.hourly;
+    const d = weather.daily;
+    const timeToC = (t: number) => Math.round(t * 10) / 10;
+    const toF = (c: number) => Math.round(c * 1.8 + 32);
 
-    const days = Object.entries(dailyMap).slice(0, 5).map(([date, hours]) => {
-      const temps = hours.map(h => h.temp_c).filter(t => t != null);
-      const daytimeHours = hours.filter(h => h.is_daytime);
-      const peakUV = Math.max(...hours.map(h => h.uv || 0));
-      const maxWind = Math.max(...hours.map(h => h.wind_kph || 0));
-      const avgCloud = hours.reduce((s, h) => s + (h.cloud_pct || 0), 0) / hours.length;
-      const conditions = [...new Set(hours.map(h => h.condition).filter(Boolean))];
-      const icons = [...new Set(hours.map(h => h.icon).filter(Boolean))];
+    // Build daily summaries
+    const days = (d.time as string[]).map((date: string, i: number) => {
+      const hi_c = timeToC(d.temperature_2m_max[i]);
+      const lo_c = timeToC(d.temperature_2m_min[i]);
+      const code = d.weathercode[i] as number;
+      // Hourly hours belonging to this date
+      const prefix = date + 'T';
+      const hourIdxs = (h.time as string[]).map((t: string, j: number) => t.startsWith(prefix) ? j : -1).filter((j: number) => j >= 0);
+      const hours = hourIdxs.map((j: number) => ({
+        hour: parseInt((h.time[j] as string).slice(11, 13)),
+        temp_c: timeToC(h.temperature_2m[j]),
+        temp_f: toF(h.temperature_2m[j]),
+        feels_f: toF(h.apparent_temperature[j]),
+        condition: WMO[h.weathercode[j]] || 'Unknown',
+        wind_mph: Math.round(h.windspeed_10m[j] * 0.621),
+        uv: h.uv_index[j] || 0,
+        cloud_pct: h.cloudcover[j] || 0,
+        humidity: h.relativehumidity_2m[j] || 0,
+        precip_mm: h.precipitation[j] || 0,
+        is_daytime: (h.is_day[j] as number) === 1,
+      }));
       return {
         date,
-        lo_c: temps.length ? Math.round(Math.min(...temps) * 10) / 10 : null,
-        hi_c: temps.length ? Math.round(Math.max(...temps) * 10) / 10 : null,
-        lo_f: temps.length ? Math.round(Math.min(...temps) * 1.8 + 32) : null,
-        hi_f: temps.length ? Math.round(Math.max(...temps) * 1.8 + 32) : null,
-        uv_max: peakUV,
-        wind_mph: Math.round(maxWind * 0.621),
-        cloud_pct: Math.round(avgCloud),
-        condition: conditions[0] || '',
-        icon: icons[0] || '',
-        hours: hours.map(h => ({
-          hour: h.hour,
-          temp_c: h.temp_c,
-          temp_f: h.temp_c != null ? Math.round(h.temp_c * 1.8 + 32) : null,
-          condition: h.condition,
-          icon: h.icon,
-          wind_mph: Math.round((h.wind_kph || 0) * 0.621),
-          uv: h.uv,
-          cloud_pct: h.cloud_pct,
-          is_daytime: h.is_daytime,
-        })),
+        lo_c, hi_c,
+        lo_f: toF(lo_c),
+        hi_f: toF(hi_c),
+        temp: toF(hi_c), // health-check field
+        uv_max: d.uv_index_max[i] || 0,
+        wind_mph: Math.round(d.windspeed_10m_max[i] * 0.621),
+        condition: WMO[code] || 'Unknown',
+        hours,
       };
     });
 
-    // Air quality
-    const aqIdx = aqData.indexes?.[0] || {};
-    const aq = {
-      aqi: aqIdx.aqi,
-      display: aqIdx.aqiDisplay,
-      category: aqIdx.category,
-      pollutant: aqIdx.dominantPollutant,
-      color: aqIdx.color,
+    // Air quality (first valid AQI reading)
+    const aqiValues = (aq.hourly?.us_aqi as (number|null)[]) || [];
+    const aqi = aqiValues.find((v: number | null) => v != null) ?? 0;
+    const air_quality = {
+      aqi,
+      display: String(aqi),
+      category: aqCategory(aqi),
     };
 
-    // Pollen
-    const pollen = (pollenData.dailyInfo || []).slice(0, 3).map((day: any) => {
-      const dt = day.date || {};
-      return {
-        date: `2026-${String(dt.month).padStart(2,'0')}-${String(dt.day).padStart(2,'0')}`,
-        types: Object.fromEntries(
-          (day.pollenTypeInfo || []).map((t: any) => [
-            t.displayName,
-            { category: t.indexInfo?.category || '?', value: t.indexInfo?.value || 0 }
-          ])
-        ),
-      };
-    });
-
-    // Golf condition score (0–100) based on weather
+    // Golf score
     const today = days[0];
     let golfScore = 100;
     if (today) {
-      if ((today.hi_c || 25) > 35) golfScore -= 20; // too hot
-      if ((today.hi_c || 25) < 10) golfScore -= 30; // too cold
-      if ((today.cloud_pct || 0) > 80) golfScore -= 15;
-      if ((today.wind_mph || 0) > 20) golfScore -= 20;
-      if ((today.uv_max || 0) > 10) golfScore -= 10;
+      if (today.hi_c > 35) golfScore -= 20;
+      if (today.hi_c < 10) golfScore -= 30;
+      if (today.cloud_pct > 80) golfScore -= 15;
+      if (today.wind_mph > 20) golfScore -= 20;
+      if (today.uv_max > 10) golfScore -= 10;
       golfScore = Math.max(0, Math.min(100, golfScore));
     }
 
     const result = {
       updated: new Date().toISOString(),
       location: 'Graeagle, CA',
+      temp: today?.hi_f ?? null, // top-level convenience + health-check field
       days,
-      air_quality: aq,
-      pollen,
+      air_quality,
+      pollen: [],
       golf_score: golfScore,
       golf_conditions: golfScore >= 80 ? 'Excellent' : golfScore >= 60 ? 'Good' : golfScore >= 40 ? 'Fair' : 'Poor',
     };
@@ -142,13 +115,14 @@ export const GET: APIRoute = async () => {
     cache = { data: result, ts: now };
 
     return new Response(JSON.stringify(result), {
-      headers: { 'Content-Type': 'application/json', 'Cache-Control': 'public, max-age=1800' }
+      headers: { 'Content-Type': 'application/json', 'Cache-Control': 'public, max-age=1800' },
     });
 
-  } catch (err: any) {
-    return new Response(JSON.stringify({ error: err.message }), {
+  } catch (err: unknown) {
+    const msg = err instanceof Error ? err.message : String(err);
+    return new Response(JSON.stringify({ error: msg }), {
       status: 500,
-      headers: { 'Content-Type': 'application/json' }
+      headers: { 'Content-Type': 'application/json' },
     });
   }
 };
