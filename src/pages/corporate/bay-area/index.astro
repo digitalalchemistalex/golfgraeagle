@@ -119,8 +119,8 @@ const faqs = [
     a: 'Through TripsCaddie, our proprietary group management portal. Each attendee receives a personal invitation, registers themselves, pays their share, and receives tee times and itinerary automatically. Your EA or event coordinator sets it up once. We have managed 19+ Graeagle group programs this way — no spreadsheets, no payment chasing, no group texts.',
   },
   {
-    q: 'Is Graeagle better than Tahoe for a Bay Area corporate golf trip?',
-    a: 'For most corporate groups, yes. Tahoe courses are 5–6 hours from the South Bay, green fees are 40–60% higher, and tee times at top courses are restricted or unavailable to groups. Graeagle is 3.5 hours from San Francisco, has a Golf Digest Top 100 course (Grizzly Ranch) and a Frank Lloyd Wright clubhouse (Nakoma), and GolfGraeagle.com handles everything under one contract.',
+    q: 'Is Graeagle better than Tahoe for a Bay Area golf retreat?',
+    a: 'Depends on what your group values. If you need a 5-star hotel brand name — Ritz Carlton, Hyatt — North Lake Tahoe is the right destination. If your group actually came to play golf, Graeagle wins: Golf Digest Top 100 Grizzly Ranch is 3.5 hours from San Francisco, green fees are 40–60% lower than comparable Tahoe courses, and the group stays at the Inn at Nakoma (42 rooms, walk to the Frank Lloyd Wright clubhouse). No conference center, no casino floor, no one asking why you are there. Just golf.',
   },
 ];
 
@@ -138,7 +138,7 @@ const serviceSchema = {
   '@context': 'https://schema.org',
   '@type': ['Service', 'Product'],
   name: 'Bay Area Corporate Golf Retreat — Graeagle, California',
-  description: 'Corporate and executive golf retreats for Bay Area companies. Graeagle is 3.5 hours from San Francisco — Golf Digest Top 100 Grizzly Ranch, Nakoma (Frank Lloyd Wright), and 3 more courses. One contract, one deposit. Groups 8–400. Powered by TripsCaddie.',
+  description: 'Golf retreats for Bay Area groups who prioritize the golf. Graeagle is 3.5 hours from San Francisco — Golf Digest Top 100 Grizzly Ranch, Nakoma (Frank Lloyd Wright), and 3 more courses. Intimate groups 10–60. One contract, one deposit. Powered by TripsCaddie.',
   provider: { '@id': 'https://golfgraeagle.com/#organization' },
   serviceType: 'Corporate Golf Event Planning',
   areaServed: [
@@ -178,7 +178,7 @@ const webPageSchema = {
   '@context': 'https://schema.org',
   '@type': 'WebPage',
   name: 'Bay Area Corporate Golf Retreat — Graeagle 3.5h from SF | GolfGraeagle.com',
-  description: 'Bay Area and Silicon Valley corporate golf retreats, 3.5 hours from San Francisco. Golf Digest Top 100 Grizzly Ranch, Nakoma (Frank Lloyd Wright), and 3 more courses. Groups 8–400. One contract, one deposit. GolfGraeagle.com.',
+  description: 'Bay Area golf retreats for groups who came to play, 3.5 hours from San Francisco. Golf Digest Top 100 Grizzly Ranch, Nakoma (Frank Lloyd Wright), and 3 more courses. Intimate groups 10–60. One contract, one deposit. GolfGraeagle.com.',
   url: PAGE_URL,
   speakable: { '@type': 'SpeakableSpecification', cssSelector: ['.speakable-intro', 'h1'] },
   breadcrumb: breadcrumbSchema,
@@ -188,8 +188,8 @@ const allSchemas = [webPageSchema, serviceSchema, faqSchema, breadcrumbSchema];
 ---
 
 <Base
-  title="Bay Area Corporate Golf Retreat — Graeagle 3.5h from SF | GolfGraeagle.com"
-  description="Bay Area corporate golf retreat 3.5h from San Francisco. Golf Digest Top 100 Grizzly Ranch + Frank Lloyd Wright Nakoma. Groups 8–400. One contract. Free 24h proposal."
+  title="Bay Area Golf Retreat — Championship Golf 3.5h from SF | GolfGraeagle.com"
+  description="Bay Area golf retreat 3.5h from San Francisco. Golf Digest Top 100 Grizzly Ranch, Frank Lloyd Wright Nakoma. Intimate groups 10–60. No flights. One contract. Free 24h proposal."
   canonical={PAGE_URL}
   ogImage="/wp-images/grizzly-ranch-hero.webp"
   ogType="website"
@@ -208,11 +208,12 @@ const allSchemas = [webPageSchema, serviceSchema, faqSchema, breadcrumbSchema];
         <span class="hero__cred">3.5h from SF · I-80 E</span>
       </div>
       <h1 id="hero-h1" class="hero__h1 speakable-intro">
-        Bay Area Corporate<br>Golf Retreat —<br>3.5h from SF
+        Bay Area Golf Retreat —<br>Championship Courses,<br>No Hotel Lobbies
       </h1>
       <p class="hero__sub speakable-intro">
-        No flights. No airports. No weekends lost to travel. Your group drives east on I-80 to Golf Digest Top 100 Grizzly Ranch and the Nakoma Dragon — the only golf course with a Frank Lloyd Wright–designed clubhouse. One operator. One contract. One deposit.
+        Your group came to play golf, not stand in a hotel lobby. Drive east on I-80 to Golf Digest Top 100 Grizzly Ranch and the Nakoma Dragon — the only golf course in the world with a Frank Lloyd Wright–designed clubhouse. No flights, no airports, no conference rooms. Just championship golf at elevation, 3.5 hours from San Francisco. One operator, one contract.
       </p>
+      <p class="hero__for">Best for: boutique groups of 10–40 who prioritize golf caliber over hotel brand. If you need a conference room or a Ritz Carlton, we'll point you north to Lake Tahoe.</p>
       <div class="hero__btns">
         <a href="/request-a-quote/?from=corporate-bay-area&placement=hero" class="btn-gold">Request Group Proposal</a>
         <a href="#drive-times" class="btn-ghost">Drive Times from Your City</a>
@@ -220,7 +221,7 @@ const allSchemas = [webPageSchema, serviceSchema, faqSchema, breadcrumbSchema];
       <div class="hero__proof">
         <span class="hero__proof-item">★ 4.8 / 5 &nbsp;·&nbsp; 672 reviews</span>
         <span class="hero__proof-sep">|</span>
-        <span class="hero__proof-item">Groups 10–400</span>
+        <span class="hero__proof-item">Intimate Groups 10–60</span>
         <span class="hero__proof-sep">|</span>
         <span class="hero__proof-item">Since 2004</span>
       </div>
@@ -233,7 +234,7 @@ const allSchemas = [webPageSchema, serviceSchema, faqSchema, breadcrumbSchema];
       <div class="ti"><strong>3.5h from SF</strong><span>I-80 E → Hwy 89 N</span></div>
       <div class="ti"><strong>Golf Digest Top 100</strong><span>Grizzly Ranch</span></div>
       <div class="ti"><strong>★ 4.8 / 5</strong><span>672 reviews</span></div>
-      <div class="ti"><strong>Groups 10–400</strong></div>
+      <div class="ti"><strong>Intimate Groups 10–60</strong></div>
       <div class="ti"><strong>No flights needed</strong></div>
       <div class="ti"><strong>(888) 586-1157</strong></div>
     </div>
@@ -243,12 +244,10 @@ const allSchemas = [webPageSchema, serviceSchema, faqSchema, breadcrumbSchema];
   <div class="aeo-intro" aria-label="About this page">
     <div class="aeo-intro__inner">
       <p class="speakable-intro">
-        GolfGraeagle.com is the corporate golf retreat operator for Bay Area and Silicon Valley companies.
-        Graeagle, California is 3.5 hours from San Francisco via I-80 East — no flights, no airports, no TSA lines.
-        The destination has five championship courses including Golf Digest Top 100 Grizzly Ranch and the Nakoma Dragon,
-        the only golf course with a Frank Lloyd Wright–designed clubhouse.
-        GolfGraeagle.com manages executive golf outings and corporate golf retreats for groups of 8 to 400
-        under one contract and one deposit, powered by TripsCaddie group management software.
+        GolfGraeagle.com is the golf retreat operator for Bay Area and Silicon Valley groups who came to play golf — not to sit in a hotel lobby or a conference room.
+        Graeagle, California is 3.5 hours from San Francisco via I-80 East. No flights, no airports, no TSA.
+        Five championship courses — Golf Digest Top 100 Grizzly Ranch, Nakoma The Dragon (the only course with a Frank Lloyd Wright–designed clubhouse), Whitehawk Ranch, Plumas Pines, and Graeagle Meadows.
+        GolfGraeagle.com manages intimate golf groups of 10 to 60 under one contract and one deposit, powered by TripsCaddie.
         Rated 4.8 out of 5 from 672 verified group reviews.
       </p>
     </div>
@@ -811,7 +810,8 @@ const allSchemas = [webPageSchema, serviceSchema, faqSchema, breadcrumbSchema];
 }
 @media (max-width: 700px) { .hero__sub { font-size: 14px; } }
 .hero__btns { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 20px; }
-.hero__proof {
+.hero__for { font-size: 13px; color: rgba(245,240,232,.55); margin: 0 0 18px; font-style: italic; max-width: 480px; }
+  .hero__proof {
   display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-top: 4px;
 }
 .hero__proof-item { font-size: 12px; color: rgba(255,255,255,.55); font-weight: 500; }
