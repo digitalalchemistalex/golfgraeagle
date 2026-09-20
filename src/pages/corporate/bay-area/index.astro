@@ -983,7 +983,7 @@ const allSchemas = [webPageSchema, serviceSchema, faqSchema, breadcrumbSchema];
 .network-section .eyebrow { color: rgba(184,130,10,.7); }
 .network-section .section-title { color: #f5f0e8; }
 .network-section .section-body { color: rgba(245,240,232,.65); max-width: 700px; }
-.network-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 20px; }
+.network-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
 .net-card {
   display: flex; flex-direction: column; gap: 0;
   background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.08);
@@ -1047,6 +1047,8 @@ const allSchemas = [webPageSchema, serviceSchema, faqSchema, breadcrumbSchema];
   display: block; font-size: 12px; font-weight: 700; color: rgba(184,130,10,.9);
   padding: 12px 18px 16px; margin-top: 4px;
 }
+  @media (max-width: 900px) { .network-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 520px) { .network-grid { grid-template-columns: 1fr; } }
 
 /* AEO intro — visible and indexable, feeds AI overviews */
 .aeo-intro { background: #f5f0e8; border-bottom: 1px solid #d8ccb0; }
