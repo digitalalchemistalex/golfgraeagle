@@ -7,11 +7,66 @@ import Footer from '../../../components/Footer.astro';
 const PAGE_URL = 'https://golfgraeagle.com/corporate/bay-area/';
 
 const courses = [
-  { slug: 'grizzly-ranch',    name: 'Grizzly Ranch Golf Club',   par: 72, yds: '7,411', slope: 140, accolade: 'Golf Digest Top 100 — closest to the Bay Area', portfolioSlug: 'grizzly-ranch-golf-packages',    badge: 'TOP 100' },
-  { slug: 'nakoma-dragon',    name: 'Nakoma — The Dragon',       par: 72, yds: '7,015', slope: 147, accolade: 'Frank Lloyd Wright clubhouse · Golf World Top 75', portfolioSlug: 'nakoma-dragon-golf-packages',    badge: 'FLW CLUBHOUSE' },
-  { slug: 'whitehawk-ranch',  name: 'Whitehawk Ranch',           par: 71, yds: '6,983', slope: 132, accolade: 'Top 20 California', portfolioSlug: 'whitehawk-ranch-golf-packages',  badge: 'TOP 20 CA' },
-  { slug: 'plumas-pines',     name: 'Plumas Pines Golf Resort',  par: 72, yds: '6,504', slope: 132, accolade: 'Top 5 Best Value Sierra Nevada', portfolioSlug: 'plumas-pines-golf-packages',     badge: 'BEST VALUE' },
-  { slug: 'graeagle-meadows', name: 'Graeagle Meadows',          par: 72, yds: '6,759', slope: 120, accolade: 'Est. 1968 · All Skill Levels', portfolioSlug: 'graeagle-meadows-golf-packages', badge: 'ALL LEVELS' },
+  {
+    slug: 'grizzly-ranch',
+    name: 'Grizzly Ranch Golf Club',
+    par: 72, yds: '7,411', slope: 140,
+    accolade: 'Golf Digest Top 100 — closest to the Bay Area',
+    portfolioSlug: 'grizzly-ranch-golf-packages',
+    badge: 'TOP 100',
+    photo: '/wp-images/grizzly-ranch-.webp',
+    why: 'The anchor course for every Bay Area group. Not on GolfNow. Not on Tee Off. Only bookable through us.',
+    detail: 'Bob Cupp design · 4,800 ft elevation · 7,411 yds from tips · 11 mi east of Graeagle',
+    note: 'Most Bay Area groups play this Friday — first full day, peak energy.',
+  },
+  {
+    slug: 'nakoma-dragon',
+    name: 'Nakoma — The Dragon',
+    par: 72, yds: '7,015', slope: 147,
+    accolade: 'Frank Lloyd Wright clubhouse · Golf World Top 75',
+    portfolioSlug: 'nakoma-dragon-golf-packages',
+    badge: 'FLW CLUBHOUSE',
+    photo: '/wp-images/nakoma-dragon-18-hole.jpg',
+    why: 'The only Frank Lloyd Wright–designed golf clubhouse in existence. Saturday night dinner at Fifty44 is the highlight of the trip.',
+    detail: 'Robin Nelson & Neil Haworth design · Slope 147 · Fifty44 Restaurant on-site · 42-room inn + spa',
+    note: 'Pairs with lodging at the Inn at Nakoma — 5-min walk from clubhouse.',
+  },
+  {
+    slug: 'whitehawk-ranch',
+    name: 'Whitehawk Ranch',
+    par: 71, yds: '6,983', slope: 132,
+    accolade: 'Top 20 Golf Courses in California',
+    portfolioSlug: 'whitehawk-ranch-golf-packages',
+    badge: 'TOP 20 CA',
+    photo: '/wp-images/whitehawk-popup-home.webp',
+    why: 'Championship layout through old-growth Sierra pines. Perfect Sunday closer — dramatic and memorable, finished by noon.',
+    detail: 'Dick Bailey design · 1996 · Sierra Nevada forest setting · Clio CA',
+    note: 'Sunday tee times allow departure by 1pm — Bay Area by 5pm.',
+  },
+  {
+    slug: 'plumas-pines',
+    name: 'Plumas Pines Golf Resort',
+    par: 72, yds: '6,504', slope: 132,
+    accolade: 'Top 5 Best Value — Sierra Nevada',
+    portfolioSlug: 'plumas-pines-golf-packages',
+    badge: 'BEST VALUE',
+    photo: '/wp-images/plumas-pines-hero.webp',
+    why: 'Best value in the region. Ideal for mixed-handicap corporate groups — challenging enough for low-handicappers, welcoming for casual players.',
+    detail: 'Homer Flint design · 1980 · Adjacent to Townhomes at Plumas Pines · Feather River views',
+    note: 'Group-friendly layout — 4-hour round times typical.',
+  },
+  {
+    slug: 'graeagle-meadows',
+    name: 'Graeagle Meadows',
+    par: 72, yds: '6,759', slope: 120,
+    accolade: 'Est. 1968 · All Skill Levels · Village Course',
+    portfolioSlug: 'graeagle-meadows-golf-packages',
+    badge: 'ALL LEVELS',
+    photo: '/wp-images/graeagle-meadows-hero.webp',
+    why: 'The village course — walkable, relaxed, great for arrival-day warm-up rounds or mixed groups where some players are newer to the game.',
+    detail: 'Ellis Van Gorder design · 1968 · Walking-friendly · Adjacent to Graeagle village shops & dining',
+    note: 'Common choice for Thursday evening arrival round.',
+  },
 ];
 
 const cities = [
@@ -245,28 +300,81 @@ const allSchemas = [webPageSchema, serviceSchema, faqSchema, breadcrumbSchema];
       <p class="eyebrow">5 Championship Courses</p>
       <h2 id="courses-h2" class="section-title">The Closest Golf Digest Top 100<br>to San Francisco</h2>
       <p class="section-body">
-        Grizzly Ranch is not bookable on GolfNow, Tee Off, or any tee-time
-        aggregator. GolfGraeagle.com holds a direct operator relationship —
-        priority group access is one of the main reasons Bay Area planners use us.
+        Grizzly Ranch is not on GolfNow or Tee Off — GolfGraeagle.com holds a direct
+        operator relationship. That priority group access is the main reason Bay Area
+        planners use us over booking individually.
       </p>
-      <div class="course-grid">
-        {courses.map(c => (
-          <a href={`/portfolio/${c.portfolioSlug}/`} class="course-card" aria-label={`${c.name} — ${c.accolade}`}>
-            <div class={`course-card__photo course-card__photo--${c.slug}`}>
-              <span class="course-card__badge">{c.badge}</span>
-              <h3 class="course-card__name">{c.name}</h3>
-            </div>
-            <div class="course-card__body">
-              <div class="course-card__stats">
-                <span>Par {c.par}</span><span>{c.yds} yds</span><span>Slope {c.slope}</span>
+    </div>
+    <div class="course-carousel-wrap">
+      <div class="course-carousel" id="courseCarousel">
+        {courses.map((c, i) => (
+          <article class="cc" aria-label={c.name}>
+            <a href={`/portfolio/${c.portfolioSlug}/`} class="cc__photo-link" tabindex="-1" aria-hidden="true">
+              <div class="cc__photo" style={`background-image:url('${c.photo}')`}>
+                <span class="cc__badge">{c.badge}</span>
               </div>
-              <p class="course-card__accolade">{c.accolade}</p>
+            </a>
+            <div class="cc__body">
+              <div class="cc__meta">
+                <span class="cc__num">0{i+1}</span>
+                <div class="cc__stats">
+                  <span>Par {c.par}</span><span>{c.yds} yds</span><span>Slope {c.slope}</span>
+                </div>
+              </div>
+              <h3 class="cc__name"><a href={`/portfolio/${c.portfolioSlug}/`}>{c.name}</a></h3>
+              <p class="cc__accolade">{c.accolade}</p>
+              <p class="cc__why">{c.why}</p>
+              <p class="cc__detail">{c.detail}</p>
+              <p class="cc__note"><span class="cc__note-icon">→</span> {c.note}</p>
+              <a href={`/portfolio/${c.portfolioSlug}/`} class="cc__cta">Course Details</a>
             </div>
-          </a>
+          </article>
         ))}
       </div>
+      <div class="cc__nav" aria-label="Course navigation">
+        <button class="cc__prev" id="ccPrev" aria-label="Previous course">‹</button>
+        <div class="cc__dots" id="ccDots">
+          {courses.map((_, i) => (
+            <button class={`cc__dot${i===0?' cc__dot--active':''}`} data-idx={i} aria-label={`Course ${i+1}`}></button>
+          ))}
+        </div>
+        <button class="cc__next" id="ccNext" aria-label="Next course">›</button>
+      </div>
+    </div>
+    <div class="courses-section__cta">
+      <a href="/request-a-quote/?from=corporate-bay-area&placement=courses" class="btn-gold">Get All 5 Courses in One Quote</a>
     </div>
   </section>
+
+  <script>
+  (function(){
+    const carousel = document.getElementById('courseCarousel');
+    const dots = document.querySelectorAll('.cc__dot');
+    const prev = document.getElementById('ccPrev');
+    const next = document.getElementById('ccNext');
+    if(!carousel) return;
+    let cur = 0;
+    const total = dots.length;
+    function go(n){
+      cur = (n + total) % total;
+      const card = carousel.querySelectorAll('.cc')[cur];
+      if(card) card.scrollIntoView({behavior:'smooth', block:'nearest', inline:'center'});
+      dots.forEach((d,i)=>d.classList.toggle('cc__dot--active', i===cur));
+    }
+    prev && prev.addEventListener('click',()=>go(cur-1));
+    next && next.addEventListener('click',()=>go(cur+1));
+    dots.forEach((d,i)=>d.addEventListener('click',()=>go(i)));
+    const obs = new IntersectionObserver(entries=>{
+      entries.forEach(e=>{
+        if(e.isIntersecting){
+          const idx = Array.from(carousel.querySelectorAll('.cc')).indexOf(e.target);
+          if(idx>=0){cur=idx;dots.forEach((d,i)=>d.classList.toggle('cc__dot--active',i===cur));}
+        }
+      });
+    },{root:carousel,threshold:0.6});
+    carousel.querySelectorAll('.cc').forEach(c=>obs.observe(c));
+  })();
+  </script>
 
   <!-- SAMPLE ITINERARY -->
   <section class="itin-section" aria-labelledby="itin-h2">
@@ -442,23 +550,79 @@ const allSchemas = [webPageSchema, serviceSchema, faqSchema, breadcrumbSchema];
 .check { color: #1a6020; font-weight: 700; }
 .vs-note { font-size: 11px; color: #909878; }
 
-/* courses */
-.course-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 18px; }
-.course-card { display: block; text-decoration: none; border-radius: 8px; overflow: hidden; background: #fff; border: 1px solid #d8ccb0; box-shadow: 0 2px 10px rgba(0,0,0,.06); transition: box-shadow .15s, transform .15s; }
-.course-card:hover { box-shadow: 0 6px 24px rgba(0,0,0,.14); transform: translateY(-2px); }
-.course-card__photo { height: 130px; position: relative; display: flex; flex-direction: column; justify-content: space-between; padding: 10px 12px 12px; }
-.course-card__photo::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(0,0,0,.1) 0%, rgba(0,0,0,.72) 100%); }
-.course-card__photo--grizzly-ranch    { background: linear-gradient(140deg, #0a1a05 0%, #1a3a10 50%, #0d2008 100%); }
-.course-card__photo--nakoma-dragon    { background: linear-gradient(140deg, #1a0f05 0%, #3a2008 50%, #1a0d05 100%); }
-.course-card__photo--whitehawk-ranch  { background: linear-gradient(140deg, #081508 0%, #183018 50%, #081208 100%); }
-.course-card__photo--plumas-pines     { background: linear-gradient(140deg, #101808 0%, #203010 50%, #101508 100%); }
-.course-card__photo--graeagle-meadows { background: linear-gradient(140deg, #081010 0%, #102520 50%, #061010 100%); }
-.course-card__badge { position: relative; z-index: 1; align-self: flex-start; font-size: 9px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: #b8820a; background: rgba(0,0,0,.45); padding: 3px 8px; border-radius: 2px; }
-.course-card__name { position: relative; z-index: 1; font-size: 14px; font-weight: 700; color: #fff; line-height: 1.25; text-shadow: 0 1px 6px rgba(0,0,0,.6); margin: 0; }
-.course-card__body { padding: 12px 14px; }
-.course-card__stats { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 5px; }
-.course-card__stats span { font-size: 11px; color: #8a7060; font-weight: 500; }
-.course-card__accolade { font-size: 11px; color: #b8820a; font-weight: 600; }
+/* courses carousel */
+.course-carousel-wrap { position: relative; }
+.course-carousel {
+  display: flex; gap: 0; overflow-x: auto; scroll-snap-type: x mandatory;
+  scrollbar-width: none; -webkit-overflow-scrolling: touch;
+}
+.course-carousel::-webkit-scrollbar { display: none; }
+.cc {
+  flex: 0 0 100%; scroll-snap-align: start;
+  display: grid; grid-template-columns: 1fr 1fr;
+  min-height: 420px;
+}
+@media (max-width: 700px) { .cc { grid-template-columns: 1fr; min-height: auto; } }
+.cc__photo-link { display: block; }
+.cc__photo {
+  height: 100%; min-height: 320px;
+  background-size: cover; background-position: center;
+  position: relative;
+}
+.cc__photo::after {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(135deg, rgba(0,0,0,.15) 0%, rgba(0,0,0,.55) 100%);
+}
+@media (max-width: 700px) { .cc__photo { min-height: 220px; } }
+.cc__badge {
+  position: absolute; top: 16px; left: 16px; z-index: 1;
+  font-size: 9px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase;
+  color: #b8820a; background: rgba(0,0,0,.55); padding: 4px 10px; border-radius: 2px;
+  backdrop-filter: blur(4px);
+}
+.cc__body {
+  background: #fff; padding: 32px 36px;
+  display: flex; flex-direction: column; justify-content: center;
+  border-right: 1px solid #e2d8c4;
+}
+@media (max-width: 700px) { .cc__body { padding: 24px 20px; border-right: none; border-top: 1px solid #e2d8c4; } }
+.cc__meta { display: flex; align-items: center; gap: 16px; margin-bottom: 10px; }
+.cc__num { font-family: 'Cormorant Garamond', Georgia, serif; font-size: 40px; font-weight: 700; color: rgba(184,130,10,.2); line-height: 1; }
+.cc__stats { display: flex; flex-direction: column; gap: 2px; }
+.cc__stats span { font-size: 11px; color: #8a7060; font-weight: 500; }
+.cc__name { font-family: 'Cormorant Garamond', Georgia, serif; font-size: 26px; font-weight: 700; color: #0f180f; line-height: 1.15; margin-bottom: 4px; }
+.cc__name a { color: inherit; text-decoration: none; }
+.cc__name a:hover { color: #1a6020; }
+.cc__accolade { font-size: 11px; color: #b8820a; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; margin-bottom: 14px; }
+.cc__why { font-size: 14px; color: #2c3018; line-height: 1.65; font-weight: 500; margin-bottom: 8px; }
+.cc__detail { font-size: 12px; color: #8a7060; line-height: 1.55; margin-bottom: 10px; }
+.cc__note { font-size: 12px; color: #1a6020; font-weight: 600; margin-bottom: 18px; }
+.cc__note-icon { opacity: .6; }
+.cc__cta {
+  display: inline-block; padding: 9px 20px;
+  border: 1.5px solid #1a2e1a; color: #1a2e1a;
+  font-size: 12px; font-weight: 700; border-radius: 3px;
+  text-decoration: none; letter-spacing: .04em;
+  transition: background .15s, color .15s; align-self: flex-start;
+}
+.cc__cta:hover { background: #1a2e1a; color: #fff; }
+.cc__nav { display: flex; align-items: center; justify-content: center; gap: 16px; padding: 18px 0 8px; }
+.cc__prev, .cc__next {
+  width: 36px; height: 36px; border-radius: 50%;
+  border: 1.5px solid #d8ccb0; background: #fff;
+  color: #1a2e1a; font-size: 20px; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: border-color .15s, background .15s;
+}
+.cc__prev:hover, .cc__next:hover { border-color: #1a2e1a; background: #1a2e1a; color: #fff; }
+.cc__dots { display: flex; gap: 6px; }
+.cc__dot {
+  width: 8px; height: 8px; border-radius: 50%;
+  border: none; background: #d8ccb0; cursor: pointer; padding: 0;
+  transition: background .15s, transform .15s;
+}
+.cc__dot--active { background: #b8820a; transform: scale(1.3); }
+.courses-section__cta { text-align: center; padding: 24px 20px 0; }
 
 /* itinerary */
 .itin-section { background: #f9f6f0; border-top: 1px solid #e2d8c4; }
