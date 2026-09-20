@@ -10,62 +10,82 @@ const courses = [
   {
     slug: 'grizzly-ranch',
     name: 'Grizzly Ranch Golf Club',
-    par: 72, yds: '7,411', slope: 140,
-    accolade: 'Golf Digest Top 100 — closest to the Bay Area',
+    par: 72, yds: '7,411', slope: 140, rating: '74.9',
+    location: 'Portola, CA · 11 mi east of Graeagle',
+    accolade: 'Golf Digest Top 100 Greatest Public Courses',
     portfolioSlug: 'grizzly-ranch-golf-packages',
-    badge: 'TOP 100',
+    badge: 'GOLF DIGEST TOP 100',
     photo: '/wp-images/grizzly-ranch-.webp',
-    why: 'The anchor course for every Bay Area group. Not on GolfNow. Not on Tee Off. Only bookable through us.',
-    detail: 'Bob Cupp design · 4,800 ft elevation · 7,411 yds from tips · 11 mi east of Graeagle',
-    note: 'Most Bay Area groups play this Friday — first full day, peak energy.',
+    designer: 'Bob Cupp · 2005',
+    elevation: '4,800 ft',
+    why: 'The anchor course for every Bay Area group. Not on GolfNow, Tee Off, or any tee-time aggregator — GolfGraeagle.com holds the direct operator relationship. This is the main reason Bay Area companies book through us.',
+    tags: ['Private Operator Access', 'Championship Tees', 'Mountain Elevation', 'Caddie Available', 'Clubhouse Dining'],
+    note: 'Most Bay Area groups tee off here Friday morning — first full day, peak energy.',
+    altitude_bonus: '+10–15 yards carry at elevation',
   },
   {
     slug: 'nakoma-dragon',
     name: 'Nakoma — The Dragon',
-    par: 72, yds: '7,015', slope: 147,
-    accolade: 'Frank Lloyd Wright clubhouse · Golf World Top 75',
+    par: 72, yds: '7,015', slope: 147, rating: '73.4',
+    location: 'Clio, CA · 6 mi north of Graeagle',
+    accolade: 'Golf World Top 75 · Frank Lloyd Wright Clubhouse',
     portfolioSlug: 'nakoma-dragon-golf-packages',
     badge: 'FLW CLUBHOUSE',
     photo: '/wp-images/nakoma-dragon-18-hole.jpg',
-    why: 'The only Frank Lloyd Wright–designed golf clubhouse in existence. Saturday night dinner at Fifty44 is the highlight of the trip.',
-    detail: 'Robin Nelson & Neil Haworth design · Slope 147 · Fifty44 Restaurant on-site · 42-room inn + spa',
-    note: 'Pairs with lodging at the Inn at Nakoma — 5-min walk from clubhouse.',
+    designer: 'Robin Nelson & Neil Haworth · 1998',
+    elevation: '4,400 ft',
+    why: 'The only golf course with a Frank Lloyd Wright–designed clubhouse. The Dragon ranks among the toughest layouts in the region (Slope 147). Saturday evening dinner at Fifty44 Restaurant inside the FLW lodge is the most-mentioned memory from every trip.',
+    tags: ['Frank Lloyd Wright Clubhouse', 'On-Site Inn (42 rooms)', 'Spa & Pool', 'Fifty44 Restaurant', 'Walkable From Lodge'],
+    note: 'Stay at Inn at Nakoma — walk to first tee in 5 minutes.',
+    altitude_bonus: 'Feather River canyon views on back nine',
   },
   {
     slug: 'whitehawk-ranch',
     name: 'Whitehawk Ranch',
-    par: 71, yds: '6,983', slope: 132,
-    accolade: 'Top 20 Golf Courses in California',
+    par: 71, yds: '6,983', slope: 132, rating: '72.3',
+    location: 'Clio, CA · 5 mi north of Graeagle',
+    accolade: 'Top 20 Golf Courses in California (1998)',
     portfolioSlug: 'whitehawk-ranch-golf-packages',
     badge: 'TOP 20 CA',
     photo: '/wp-images/whitehawk-popup-home.webp',
-    why: 'Championship layout through old-growth Sierra pines. Perfect Sunday closer — dramatic and memorable, finished by noon.',
-    detail: 'Dick Bailey design · 1996 · Sierra Nevada forest setting · Clio CA',
-    note: 'Sunday tee times allow departure by 1pm — Bay Area by 5pm.',
+    designer: 'Dick Bailey · 1996',
+    elevation: '4,200 ft',
+    why: 'Old-growth Sierra pine forest surrounds every hole — the layout weaves through granite outcroppings and mountain meadows. The perfect Sunday closer: dramatic, memorable, and finishable by noon so the group makes the Bay Area by 5pm.',
+    tags: ['Old-Growth Pines', 'Mountain Meadows', 'Semi-Private', 'Championship Layout', 'Sunday-Friendly Start'],
+    note: 'Sunday early tee = depart by 1pm, Bay Area by 5pm.',
+    altitude_bonus: 'Panoramic Sierra Nevada views from elevated fairways',
   },
   {
     slug: 'plumas-pines',
     name: 'Plumas Pines Golf Resort',
-    par: 72, yds: '6,504', slope: 132,
+    par: 72, yds: '6,504', slope: 132, rating: '71.3',
+    location: 'Graeagle, CA · adjacent to Townhomes',
     accolade: 'Top 5 Best Value — Sierra Nevada',
     portfolioSlug: 'plumas-pines-golf-packages',
     badge: 'BEST VALUE',
     photo: '/wp-images/plumas-pines-hero.webp',
-    why: 'Best value in the region. Ideal for mixed-handicap corporate groups — challenging enough for low-handicappers, welcoming for casual players.',
-    detail: 'Homer Flint design · 1980 · Adjacent to Townhomes at Plumas Pines · Feather River views',
-    note: 'Group-friendly layout — 4-hour round times typical.',
+    designer: 'Homer Flint · 1980',
+    elevation: '4,300 ft',
+    why: 'Best value in Graeagle. Ideal for mixed-handicap groups — the layout challenges low-handicappers while remaining welcoming to occasional players. Feather River runs along several holes. Stays at Townhomes at Plumas Pines include walking access.',
+    tags: ['Best Value', 'Feather River Frontage', 'Mixed Handicap Friendly', 'Walk to Townhomes', '4-hr Round Times'],
+    note: 'Adjacent to the Townhomes — no car needed between lodge and first tee.',
+    altitude_bonus: 'Feather River canyon setting throughout the round',
   },
   {
     slug: 'graeagle-meadows',
     name: 'Graeagle Meadows',
-    par: 72, yds: '6,759', slope: 120,
-    accolade: 'Est. 1968 · All Skill Levels · Village Course',
+    par: 72, yds: '6,759', slope: 120, rating: '70.7',
+    location: 'Graeagle, CA · village center',
+    accolade: 'Est. 1968 · All Skill Levels · Village Setting',
     portfolioSlug: 'graeagle-meadows-golf-packages',
-    badge: 'ALL LEVELS',
+    badge: 'EST. 1968',
     photo: '/wp-images/graeagle-meadows-hero.webp',
-    why: 'The village course — walkable, relaxed, great for arrival-day warm-up rounds or mixed groups where some players are newer to the game.',
-    detail: 'Ellis Van Gorder design · 1968 · Walking-friendly · Adjacent to Graeagle village shops & dining',
-    note: 'Common choice for Thursday evening arrival round.',
+    designer: 'Ellis Van Gorder · 1968',
+    elevation: '4,300 ft',
+    why: 'The original Graeagle course — walkable, relaxed, and adjacent to the village. Used by Bay Area groups for Thursday arrival rounds when the flight-free drive is a big draw. Great for mixed groups where some players are casual; excellent warm-up before the heavier layouts.',
+    tags: ['Walkable', 'Village Location', 'All Skill Levels', 'Arrival Day Play', 'Est. 1968'],
+    note: 'Best for Thursday evening or Saturday if the group wants a lighter day.',
+    altitude_bonus: 'Village access — walk to dining and shops after your round',
   },
 ];
 
@@ -318,15 +338,26 @@ const allSchemas = [webPageSchema, serviceSchema, faqSchema, breadcrumbSchema];
               <div class="cc__meta">
                 <span class="cc__num">0{i+1}</span>
                 <div class="cc__stats">
-                  <span>Par {c.par}</span><span>{c.yds} yds</span><span>Slope {c.slope}</span>
+                  <span>Par {c.par}</span><span>{c.yds} yds</span><span>Slope {c.slope}</span><span>Rating {c.rating}</span>
                 </div>
               </div>
               <h3 class="cc__name"><a href={`/portfolio/${c.portfolioSlug}/`}>{c.name}</a></h3>
+              <p class="cc__location">{c.location}</p>
               <p class="cc__accolade">{c.accolade}</p>
+              <div class="cc__specs">
+                <span><strong>Designer:</strong> {c.designer}</span>
+                <span><strong>Elevation:</strong> {c.elevation}</span>
+              </div>
               <p class="cc__why">{c.why}</p>
-              <p class="cc__detail">{c.detail}</p>
+              <div class="cc__tags">
+                {c.tags.map(t => <span class="cc__tag">{t}</span>)}
+              </div>
+              <p class="cc__altitude">{c.altitude_bonus}</p>
               <p class="cc__note"><span class="cc__note-icon">→</span> {c.note}</p>
-              <a href={`/portfolio/${c.portfolioSlug}/`} class="cc__cta">Course Details</a>
+              <div class="cc__actions">
+                <a href={`/portfolio/${c.portfolioSlug}/`} class="cc__cta">Course Details →</a>
+                <a href={`/request-a-quote/?from=corporate-bay-area&placement=course-${c.slug}&course=${c.slug}`} class="cc__quote-link">Request Tee Times</a>
+              </div>
             </div>
           </article>
         ))}
@@ -437,6 +468,97 @@ const allSchemas = [webPageSchema, serviceSchema, faqSchema, breadcrumbSchema];
       </div>
       <div style="margin-top:28px">
         <a href="/request-a-quote/?from=corporate-bay-area&placement=caddie" class="btn-gold">Request Bay Area Group Proposal</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- REGION -->
+  <section class="region-section" aria-labelledby="region-h2">
+    <div class="region-section__inner">
+      <p class="eyebrow">The Destination</p>
+      <h2 id="region-h2" class="section-title">Graeagle & Plumas County —<br>The Sierra Nevada Golf Region</h2>
+      <p class="section-body">
+        Graeagle sits in a glaciated valley at 4,300 ft in Plumas County, California.
+        The Feather River runs through the village. Pine forests surround every course.
+        This is not a resort corridor — it is a working mountain community with five championship golf courses within 12 miles of each other.
+      </p>
+      <div class="region-grid">
+        <div class="rg-card">
+          <div class="rg-card__icon">⛰</div>
+          <strong>4,300–4,800 ft Elevation</strong>
+          <p>Every driver goes 10–15 yards farther. The altitude makes average players feel like scratch golfers — one of the most consistent group feedback points we hear.</p>
+        </div>
+        <div class="rg-card">
+          <div class="rg-card__icon">🌲</div>
+          <strong>Plumas County, Northern Sierra Nevada</strong>
+          <p>Old-growth pine and fir forests, granite outcroppings, and the Feather River canyon. Zero resort congestion — no casinos, no crowds, no rideshare surge pricing.</p>
+        </div>
+        <div class="rg-card">
+          <div class="rg-card__icon">🏌️</div>
+          <strong>5 Courses in 12 Miles</strong>
+          <p>Grizzly Ranch (Top 100), Nakoma Dragon, Whitehawk Ranch, Plumas Pines, and Graeagle Meadows — all within a 12-mile radius. Multi-round programs need zero driving between courses.</p>
+        </div>
+        <div class="rg-card">
+          <div class="rg-card__icon">🍽</div>
+          <strong>Fifty44 Restaurant + Village Dining</strong>
+          <p>Frank Lloyd Wright lodge restaurant for group dinners. Graeagle village has breweries, cafes, and casual dining steps from the courses. No corporate event venue fees.</p>
+        </div>
+        <div class="rg-card">
+          <div class="rg-card__icon">🏨</div>
+          <strong>Lodging On or Adjacent to Every Course</strong>
+          <p>Inn at Nakoma (42 rooms, 5-min walk to tee), Townhomes at Plumas Pines (2-4 BR), River Pines Resort, Chalet View Lodge. Every lodging option is inside the golf corridor.</p>
+        </div>
+        <div class="rg-card">
+          <div class="rg-card__icon">📅</div>
+          <strong>Season: May–October</strong>
+          <p>Peak corporate season is June–September. Shoulder months (May, October) offer lower green fees, smaller crowds, and cooler playing temperatures — ideal for executive groups who want exclusivity.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CROSS-SELL / INTERNAL LINKS -->
+  <section class="xsell-section" aria-labelledby="xsell-h2">
+    <div class="xsell-section__inner">
+      <p class="eyebrow">Also From GolfGraeagle.com</p>
+      <h2 id="xsell-h2" class="section-title">Extend the Trip.<br>Upgrade the Experience.</h2>
+      <div class="xsell-grid">
+        <a href="/corporate/?from=corporate-bay-area&placement=xsell" class="xsell-card xsell-card--featured">
+          <div class="xsell-card__label">Hub Page</div>
+          <h3 class="xsell-card__title">Corporate Golf Graeagle — Full Hub</h3>
+          <p class="xsell-card__body">All 5 courses, all lodging options, full schema, complete corporate retreat planning guide. The master page for event coordinators building the full picture.</p>
+          <span class="xsell-card__cta">View Corporate Hub →</span>
+        </a>
+        <a href="/portfolio/grizzly-ranch-golf-packages/?from=corporate-bay-area&placement=xsell" class="xsell-card">
+          <div class="xsell-card__label">Golf Digest Top 100</div>
+          <h3 class="xsell-card__title">Grizzly Ranch Golf Packages</h3>
+          <p class="xsell-card__body">Full course details, gallery, sample packages, and group tee time request for the closest Golf Digest Top 100 to the Bay Area.</p>
+          <span class="xsell-card__cta">Grizzly Ranch Details →</span>
+        </a>
+        <a href="/portfolio/nakoma-dragon-golf-packages/?from=corporate-bay-area&placement=xsell" class="xsell-card">
+          <div class="xsell-card__label">Frank Lloyd Wright</div>
+          <h3 class="xsell-card__title">Nakoma Dragon Packages</h3>
+          <p class="xsell-card__body">Course details, FLW clubhouse gallery, Inn at Nakoma lodging, Fifty44 dinner packages. The most-talked-about course in the region.</p>
+          <span class="xsell-card__cta">Nakoma Details →</span>
+        </a>
+        <a href="/portfolio/the-inn-at-nakoma-clio-ca/?from=corporate-bay-area&placement=xsell" class="xsell-card">
+          <div class="xsell-card__label">On-Course Lodging</div>
+          <h3 class="xsell-card__title">Inn at Nakoma — Corporate Lodging</h3>
+          <p class="xsell-card__body">42 rooms inside the Frank Lloyd Wright property. Walk to first tee in 5 minutes. The top lodging choice for Bay Area groups doing the Nakoma Dragon.</p>
+          <span class="xsell-card__cta">Inn at Nakoma Details →</span>
+        </a>
+        <a href="/portfolio/the-townhomes-at-plumas-pines/?from=corporate-bay-area&placement=xsell" class="xsell-card">
+          <div class="xsell-card__label">Group Accommodation</div>
+          <h3 class="xsell-card__title">Townhomes at Plumas Pines</h3>
+          <p class="xsell-card__body">2-4 bedroom vacation rentals adjacent to Plumas Pines Golf Resort. Full kitchens, pools, and tennis. Best for groups wanting one shared property.</p>
+          <span class="xsell-card__cta">Townhomes Details →</span>
+        </a>
+        <a href="/request-a-quote/?from=corporate-bay-area&placement=xsell-quote" class="xsell-card xsell-card--cta">
+          <div class="xsell-card__label">Free · 24h Turnaround</div>
+          <h3 class="xsell-card__title">Custom Bay Area Group Proposal</h3>
+          <p class="xsell-card__body">Tell us your dates, group size, and which courses you want. We'll send a full itinerary with confirmed tee times within 24 hours.</p>
+          <span class="xsell-card__cta">Request Proposal →</span>
+        </a>
       </div>
     </div>
   </section>
@@ -656,4 +778,50 @@ const allSchemas = [webPageSchema, serviceSchema, faqSchema, breadcrumbSchema];
 .final-cta__phone { margin-top: 14px; font-size: 13px; color: rgba(245,240,232,.45); }
 .final-cta__phone a { color: rgba(184,130,10,.8); text-decoration: none; }
 .final-cta__phone a:hover { color: #b8820a; }
+
+/* course card enrichments */
+.cc__location { font-size: 11px; color: #8a7060; margin-bottom: 4px; }
+.cc__specs { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 12px; }
+.cc__specs span { font-size: 11px; color: #606848; }
+.cc__specs strong { color: #1a2e1a; }
+.cc__tags { display: flex; gap: 6px; flex-wrap: wrap; margin: 10px 0 10px; }
+.cc__tag {
+  font-size: 10px; font-weight: 700; letter-spacing: .05em; text-transform: uppercase;
+  padding: 3px 9px; border-radius: 20px;
+  background: #f0f5ec; color: #1a4a1a; border: 1px solid #c8dac0;
+}
+.cc__altitude { font-size: 11px; color: #8a6a20; font-style: italic; margin-bottom: 8px; }
+.cc__actions { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; margin-top: 4px; }
+.cc__quote-link { font-size: 12px; font-weight: 700; color: #b8820a; text-decoration: none; border-bottom: 1px solid rgba(184,130,10,.3); transition: border-color .15s; }
+.cc__quote-link:hover { border-color: #b8820a; }
+
+/* region section */
+.region-section { background: #f9f6f0; border-top: 1px solid #e2d8c4; }
+.region-section__inner { max-width: 1100px; margin: 0 auto; padding: 64px 40px; }
+@media (max-width: 700px) { .region-section__inner { padding: 48px 20px; } }
+.region-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 18px; }
+.rg-card { background: #fff; border: 1px solid #d8ccb0; border-radius: 6px; padding: 22px; }
+.rg-card__icon { font-size: 22px; margin-bottom: 8px; }
+.rg-card strong { display: block; font-size: 14px; font-weight: 700; color: #0f180f; margin-bottom: 6px; }
+.rg-card p { font-size: 13px; color: #505838; line-height: 1.65; margin: 0; }
+
+/* cross-sell section */
+.xsell-section { border-top: 1px solid #e2d8c4; }
+.xsell-section__inner { max-width: 1100px; margin: 0 auto; padding: 64px 40px; }
+@media (max-width: 700px) { .xsell-section__inner { padding: 48px 20px; } }
+.xsell-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 16px; }
+.xsell-card {
+  display: flex; flex-direction: column; gap: 6px;
+  border: 1px solid #d8ccb0; border-radius: 6px; padding: 22px;
+  text-decoration: none; background: #fff;
+  transition: box-shadow .15s, transform .15s, border-color .15s;
+}
+.xsell-card:hover { box-shadow: 0 6px 20px rgba(0,0,0,.1); transform: translateY(-2px); border-color: #1a2e1a; }
+.xsell-card--featured { border-color: #1a2e1a; background: #f5f9f4; }
+.xsell-card--cta { border-color: #b8820a; background: #fdf8ef; }
+.xsell-card__label { font-size: 10px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: #8a6a20; }
+.xsell-card__title { font-size: 15px; font-weight: 700; color: #0f180f; line-height: 1.3; }
+.xsell-card__body { font-size: 12px; color: #606848; line-height: 1.65; flex: 1; }
+.xsell-card__cta { font-size: 12px; font-weight: 700; color: #1a2e1a; margin-top: 4px; }
+.xsell-card--cta .xsell-card__cta { color: #b8820a; }
 </style>
