@@ -225,12 +225,39 @@ function adminEmailHtml(b: any, leadId: string): string {
 }
 
 // ─── Send email ───────────────────────────────────────────
-async function sendEmail(subject: string, html: string, to: import('../../lib/mailer').Recipient[] | string, toName?: string): Promise<void> {
-  if (typeof to === 'string') {
-    await sendMail({ to, toName: toName || '', subject, html });
-  } else {
-    await sendMail({ to, subject, html });
+async function sendEmail(subject: string, html: string, to: import('../../lib/mailer').Recipient[] | string, toName?: string): Promise<string | null> {
+  try {
+    let result;
+    if (typeof to === 'string') {
+      result = await sendMail({ to, toName: toName || '', subject, html });
+    } else {
+      result = await sendMail({ to, subject, html });
+    }
+    return result.id;
+  } catch {
+    return null;
   }
+}
+
+async function logEmail(toEmail: string, subject: string, leadId: string, resendId: string | null) {
+  try {
+    await fetch(`${SUPA_URL}/rest/v1/email_log`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'apikey': SUPA_KEY,
+        'Authorization': `Bearer ${SUPA_KEY}`,
+        'Prefer': 'return=minimal',
+      },
+      body: JSON.stringify({
+        to_email: toEmail,
+        subject,
+        status: 'sent',
+        lead_id: leadId !== 'unknown' ? leadId : null,
+        gmail_message_id: resendId,
+      }),
+    });
+  } catch { /* non-critical */ }
 }
 
 // ─── Main Handler ──────────────────────────────────────────
@@ -346,16 +373,14 @@ export const POST: APIRoute = async ({ request }) => {
     const customerSubject = `Your Graeagle Golf Trip Request — We'll be in touch within 24 hours`;
     const customerTo     = TEST_MODE ? DEV_EMAIL.email : body.email;
     const customerToName = TEST_MODE ? DEV_EMAIL.name  : `${body.firstName} ${body.lastName}`;
-    try {
-      await sendEmail(TEST_MODE ? `[TEST] ${customerSubject}` : customerSubject, customerEmailHtml(body), customerTo, customerToName);
-    } catch(e: any) { console.error('[email] Customer error:', e.message); }
+    const customerResendId = await sendEmail(TEST_MODE ? `[TEST] ${customerSubject}` : customerSubject, customerEmailHtml(body), customerTo, customerToName);
+    if (!TEST_MODE) await logEmail(body.email, customerSubject, leadId, customerResendId);
 
     // 3. Send admin notifications (awaited)
     const adminSubject = `${TEST_MODE ? '[TEST] ' : ''}New GGE Lead: ${body.firstName} ${body.lastName} -- ${body.partySize} golfers, ${body.arrivalDate}`;
     const adminHtml = adminEmailHtml(body, leadId);
-    try {
-      await sendEmail(adminSubject, adminHtml, ADMIN_EMAILS);
-    } catch(e: any) { console.error('[email] Admin error:', e.message); }
+    const adminResendId = await sendEmail(adminSubject, adminHtml, ADMIN_EMAILS);
+    if (!TEST_MODE) await logEmail(ALL_ADMIN_EMAILS[0].email, adminSubject, leadId, adminResendId);
 
     return new Response(JSON.stringify({ success: true, id: leadId }), {
       status: 200, headers: { 'Content-Type': 'application/json' }

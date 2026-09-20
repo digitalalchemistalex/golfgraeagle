@@ -10,10 +10,14 @@ export interface MailOptions {
   html: string;
 }
 
+export interface MailResult {
+  id: string;
+}
+
 const FROM_EMAIL = 'info@golfgraeagle.com';
 const FROM_NAME  = 'Golf Graeagle Packages';
 
-export async function sendMail(opts: MailOptions): Promise<void> {
+export async function sendMail(opts: MailOptions): Promise<MailResult> {
   const apiKey = process.env.GGE_RESEND_API_KEY;
   if (!apiKey) throw new Error('[mailer] GGE_RESEND_API_KEY is not set');
 
@@ -46,4 +50,5 @@ export async function sendMail(opts: MailOptions): Promise<void> {
 
   const data = await res.json() as { id: string };
   console.log(`[mailer] ✅ Sent via Resend: ${opts.subject} → ${data.id}`);
+  return { id: data.id };
 }
