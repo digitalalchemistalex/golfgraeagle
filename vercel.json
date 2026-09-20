@@ -1224,6 +1224,11 @@
       "source": "/trips/plumas-pines-golf-group",
       "destination": "/trips/plumas-pines-golf-group/",
       "permanent": true
+    },
+    {
+      "source": "/corporate",
+      "destination": "/corporate/",
+      "permanent": true
     }
   ],
   "crons": [
