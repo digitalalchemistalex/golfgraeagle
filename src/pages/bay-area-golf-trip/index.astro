@@ -9,67 +9,85 @@ const PAGE_URL = 'https://golfgraeagle.com/bay-area-golf-trip/';
 // Real TripsCaddie trips we've run — links to /trips/[slug]/
 const pastTrips = [
   {
-    slug: 'graeagle-golf-trip-grizzly-ranch-3n-2024',
-    label: 'Grizzly Ranch',
-    nights: '3 nights',
-    year: '2024',
-    desc: 'Golf Digest Top 100 anchor. 12 players, Thu arrival, Fri–Sun play.',
+    slug: `graeagle-golf-trip-grizzly-ranch-3n-2024`,
+    label: `Grizzly Ranch`,
+    nights: `3 nights`,
+    year: `2024`,
+    photo: `/wp-images/grizzly-ranch-.webp`,
+    badge: `GOLF DIGEST TOP 100`,
+    desc: `12 players. Golf Digest Top 100 anchor course both days. Thu arrival, play Fri–Sun. One contract covered everything.`,
   },
   {
-    slug: 'graeagle-golf-trip-grizzly-ranch-2n-2025',
-    label: 'Grizzly Ranch',
-    nights: '2 nights',
-    year: '2025',
-    desc: '8 players, Fri–Sun. Grizzly Ranch both days. One contract, done.',
+    slug: `graeagle-golf-trip-grizzly-ranch-2n-2025`,
+    label: `Grizzly Ranch`,
+    nights: `2 nights`,
+    year: `2025`,
+    photo: `/wp-images/grizzly-ranch-.webp`,
+    badge: `GOLF DIGEST TOP 100`,
+    desc: `8 players. Fri–Sun format. Grizzly Ranch Friday and Saturday. Fastest-booking trip of the season.`,
   },
   {
-    slug: 'graeagle-golf-trip-grizzly-ranch-golf-club-3n-2026',
-    label: 'Grizzly Ranch',
-    nights: '3 nights',
-    year: '2026',
-    desc: 'Top 100 + Dragon combo. 3 nights at Inn at Nakoma. Sold out by April.',
+    slug: `graeagle-golf-trip-grizzly-ranch-golf-club-3n-2026`,
+    label: `Grizzly Ranch + Nakoma`,
+    nights: `3 nights`,
+    year: `2026`,
+    photo: `/wp-images/grizzly-ranch-.webp`,
+    badge: `TOP 100 + FLW COMBO`,
+    desc: `Top 100 Friday. Dragon Saturday. Whitehawk Sunday. 3 nights at Inn at Nakoma. Sold out by April.`,
   },
   {
-    slug: 'graeagle-golf-trip-the-dragon-3n-2026',
-    label: 'Nakoma — The Dragon',
-    nights: '3 nights',
-    year: '2026',
-    desc: 'Frank Lloyd Wright property. Stay-and-play at the Inn. Fifty44 dinner Sat night.',
+    slug: `graeagle-golf-trip-the-dragon-3n-2026`,
+    label: `Nakoma — The Dragon`,
+    nights: `3 nights`,
+    year: `2026`,
+    photo: `/wp-images/nakoma-dragon-18-hole.jpg`,
+    badge: `FRANK LLOYD WRIGHT`,
+    desc: `Stay-and-play at the Inn. Walk to first tee in 5 minutes. Fifty44 dinner inside the FLW lodge Saturday. Slope 147.`,
   },
   {
-    slug: 'graeagle-golf-trip-whitehawk-ranch-2n-2025-june',
-    label: 'Whitehawk Ranch',
-    nights: '2 nights',
-    year: 'Jun 2025',
-    desc: 'Top 20 CA. 16 players, 2 foursomes per day, great pace. Back by Sunday 5pm.',
+    slug: `graeagle-golf-trip-whitehawk-ranch-2n-2025-june`,
+    label: `Whitehawk Ranch`,
+    nights: `2 nights`,
+    year: `Jun 2025`,
+    photo: `/wp-images/whitehawk-popup-home.webp`,
+    badge: `TOP 20 CALIFORNIA`,
+    desc: `16 players, 2 foursomes per tee time. Great pace. Top 20 California course. Every group adds this one to the rotation.`,
   },
   {
-    slug: 'graeagle-golf-trip-whitehawk-ranch-2n-2025-september',
-    label: 'Whitehawk Ranch',
-    nights: '2 nights',
-    year: 'Sep 2025',
-    desc: 'September shoulder season. Courses emptier, temperatures perfect, rates lower.',
+    slug: `graeagle-golf-trip-whitehawk-ranch-2n-2025-september`,
+    label: `Whitehawk Ranch`,
+    nights: `2 nights`,
+    year: `Sep 2025`,
+    photo: `/wp-images/whitehawk-popup-home.webp`,
+    badge: `SHOULDER SEASON`,
+    desc: `September sweet spot. Courses emptier, temperatures perfect, green fees 15–20% lower than July peak.`,
   },
   {
-    slug: 'graeagle-golf-trip-whitehawk-ranch-2n-2026',
-    label: 'Whitehawk Ranch',
-    nights: '2 nights',
-    year: '2026',
-    desc: 'Annual crew trip. Same group, third year running, new courses every time.',
+    slug: `graeagle-golf-trip-whitehawk-ranch-2n-2026`,
+    label: `Whitehawk Ranch`,
+    nights: `2 nights`,
+    year: `2026`,
+    photo: `/wp-images/whitehawk-popup-home.webp`,
+    badge: `ANNUAL CREW TRIP`,
+    desc: `Same 12-man group, third year in a row. Different courses each trip. This one voted best of the three.`,
   },
   {
-    slug: 'graeagle-golf-trip-plumas-pines-3n-2026-august',
-    label: 'Plumas Pines',
-    nights: '3 nights',
-    year: 'Aug 2026',
-    desc: 'Mixed-handicap group. Walked from Townhomes to first tee. No car needed.',
+    slug: `graeagle-golf-trip-plumas-pines-3n-2026-august`,
+    label: `Plumas Pines`,
+    nights: `3 nights`,
+    year: `Aug 2026`,
+    photo: `/wp-images/plumas-pines-hero.webp`,
+    badge: `BEST VALUE`,
+    desc: `Mixed-handicap group of 10. Stayed at Townhomes — walked to the first tee. Feather River along several holes.`,
   },
   {
-    slug: 'graeagle-golf-trip-plumas-pines-3n-2026-july',
-    label: 'Plumas Pines',
-    nights: '3 nights',
-    year: 'Jul 2026',
-    desc: 'Peak July. Booked February — if you want July, you plan early.',
+    slug: `graeagle-golf-trip-plumas-pines-3n-2026-july`,
+    label: `Plumas Pines`,
+    nights: `3 nights`,
+    year: `Jul 2026`,
+    photo: `/wp-images/plumas-pines-hero.webp`,
+    badge: `PEAK SEASON`,
+    desc: `Peak July. Booked in February. If you want a July weekend in Graeagle, you plan early or you wait a year.`,
   },
 ];
 
@@ -345,20 +363,30 @@ const allSchemas = [
       <div class="past-grid">
         {pastTrips.map(t => (
           <a href={`/trips/${t.slug}/`} class="past-card">
-            <div class="past-card__top">
-              <span class="past-card__course">{t.label}</span>
-              <span class="past-card__meta">{t.nights} · {t.year}</span>
+            <div class="past-photo" style={`background-image:url('${t.photo}')`}>
+              <span class="past-badge">{t.badge}</span>
+              <div class="past-overlay">
+                <div class="past-label">{t.label}</div>
+                <div class="past-meta">{t.nights} · {t.year}</div>
+              </div>
             </div>
-            <p class="past-card__desc">{t.desc}</p>
-            <span class="past-card__link">View trip →</span>
+            <div class="past-body">
+              <p class="past-desc">{t.desc}</p>
+              <span class="past-link">View full trip →</span>
+            </div>
           </a>
         ))}
         <a href="/request-a-quote/?from=bay-area-golf-trip&placement=past-trips" class="past-card past-card--cta">
-          <div class="past-card__top">
-            <span class="past-card__course">Your trip here</span>
+          <div class="past-photo past-photo--cta">
+            <div class="past-cta-inner">
+              <div class="past-cta-eyebrow">FREE · 24H TURNAROUND</div>
+              <div class="past-cta-title">Your trip here</div>
+            </div>
           </div>
-          <p class="past-card__desc">Tell us your dates and group size. Confirmed itinerary in 24 hours.</p>
-          <span class="past-card__link btn-gold" style="display:inline-block;margin-top:8px">Plan my trip →</span>
+          <div class="past-body">
+            <p class="past-desc">Tell us your dates and group size. Confirmed tee times, lodging, and dinner reservations in 24 hours.</p>
+            <span class="past-link past-link--gold">Plan my trip →</span>
+          </div>
         </a>
       </div>
     </div>
@@ -829,16 +857,26 @@ const allSchemas = [
 .past-section { background: #f9f6f0; border-top: 1px solid var(--border); }
 .past-inner { max-width:1100px; margin:0 auto; padding:64px 40px; }
 @media (max-width:700px) { .past-inner { padding:48px 20px; } }
-.past-grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(240px, 1fr)); gap:14px; margin-top:28px; }
-.past-card { display:flex; flex-direction:column; gap:6px; background:#fff; border:1px solid var(--border); border-radius:6px; padding:18px; text-decoration:none; transition:box-shadow .15s, border-color .15s; }
-.past-card:hover { box-shadow:0 4px 16px rgba(0,0,0,.08); border-color: var(--green-dark); }
-.past-card--cta { border-color: var(--gold); background:#fdf8ef; }
-.past-card__top { display:flex; justify-content:space-between; align-items:flex-start; gap:8px; }
-.past-card__course { font-size:13px; font-weight:700; color: var(--ink); }
-.past-card__meta { font-size:11px; color: var(--muted); white-space:nowrap; }
-.past-card__desc { font-size:12px; color: var(--muted); line-height:1.6; flex:1; margin:0; }
-.past-card__link { font-size:12px; font-weight:700; color: var(--gold); text-decoration:none; }
-.past-card:hover .past-card__link { color: var(--green-mid); }
+.past-grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(260px, 1fr)); gap:16px; margin-top:28px; }
+.past-card { display:flex; flex-direction:column; background:#fff; border:1px solid var(--border); border-radius:8px; text-decoration:none; overflow:hidden; transition:box-shadow .2s, transform .2s, border-color .2s; }
+.past-card:hover { box-shadow:0 8px 28px rgba(0,0,0,.13); transform:translateY(-3px); border-color:var(--green-dark); }
+.past-photo { height:160px; background-size:cover; background-position:center; position:relative; display:flex; flex-direction:column; justify-content:space-between; padding:10px 12px 12px; }
+.past-photo::after { content:''; position:absolute; inset:0; background:linear-gradient(to bottom, rgba(0,0,0,.15) 0%, rgba(0,0,0,.62) 100%); }
+.past-badge { position:relative; z-index:1; align-self:flex-start; font-size:8px; font-weight:800; letter-spacing:.1em; text-transform:uppercase; color:var(--gold); background:rgba(0,0,0,.55); padding:3px 8px; border-radius:2px; backdrop-filter:blur(4px); }
+.past-overlay { position:relative; z-index:1; }
+.past-label { font-family:var(--serif); font-size:18px; font-weight:700; color:#fff; line-height:1.15; text-shadow:0 1px 6px rgba(0,0,0,.5); }
+.past-meta { font-size:11px; color:rgba(255,255,255,.7); font-weight:600; margin-top:2px; }
+.past-photo--cta { background:linear-gradient(135deg, #1a2e1a 0%, #0a1a0a 100%); height:160px; }
+.past-cta-inner { position:relative; z-index:1; margin-top:auto; }
+.past-cta-eyebrow { font-size:9px; font-weight:800; letter-spacing:.1em; text-transform:uppercase; color:rgba(184,130,10,.8); margin-bottom:6px; }
+.past-cta-title { font-family:var(--serif); font-size:22px; font-weight:700; color:#f5f0e8; }
+.past-card--cta { border-color:var(--gold); }
+.past-card--cta:hover { border-color:var(--gold); box-shadow:0 8px 28px rgba(184,130,10,.2); }
+.past-body { padding:14px 16px 16px; display:flex; flex-direction:column; gap:8px; flex:1; }
+.past-desc { font-size:13px; color:var(--muted); line-height:1.62; margin:0; flex:1; }
+.past-link { font-size:12px; font-weight:700; color:var(--gold); }
+.past-card:hover .past-link { color:var(--green-mid); }
+.past-link--gold { color:var(--gold); }
 
 /* ────────── TRIPSCADDIE ────────── */
 .caddie-section { background: linear-gradient(155deg, #0a1a0a 0%, #1a2e1a 45%, #142210 100%); }
