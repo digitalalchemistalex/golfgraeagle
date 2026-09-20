@@ -1,0 +1,1028 @@
+---
+export const prerender = true;
+import Base from '../../layouts/Base.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+
+const PAGE_URL = 'https://golfgraeagle.com/bay-area-golf-trip/';
+
+// Real TripsCaddie trips we've run — links to /trips/[slug]/
+const pastTrips = [
+  {
+    slug: 'graeagle-golf-trip-grizzly-ranch-3n-2024',
+    label: 'Grizzly Ranch',
+    nights: '3 nights',
+    year: '2024',
+    desc: 'Golf Digest Top 100 anchor. 12 players, Thu arrival, Fri–Sun play.',
+  },
+  {
+    slug: 'graeagle-golf-trip-grizzly-ranch-2n-2025',
+    label: 'Grizzly Ranch',
+    nights: '2 nights',
+    year: '2025',
+    desc: '8 players, Fri–Sun. Grizzly Ranch both days. One contract, done.',
+  },
+  {
+    slug: 'graeagle-golf-trip-grizzly-ranch-golf-club-3n-2026',
+    label: 'Grizzly Ranch',
+    nights: '3 nights',
+    year: '2026',
+    desc: 'Top 100 + Dragon combo. 3 nights at Inn at Nakoma. Sold out by April.',
+  },
+  {
+    slug: 'graeagle-golf-trip-the-dragon-3n-2026',
+    label: 'Nakoma — The Dragon',
+    nights: '3 nights',
+    year: '2026',
+    desc: 'Frank Lloyd Wright property. Stay-and-play at the Inn. Fifty44 dinner Sat night.',
+  },
+  {
+    slug: 'graeagle-golf-trip-whitehawk-ranch-2n-2025-june',
+    label: 'Whitehawk Ranch',
+    nights: '2 nights',
+    year: 'Jun 2025',
+    desc: 'Top 20 CA. 16 players, 2 foursomes per day, great pace. Back by Sunday 5pm.',
+  },
+  {
+    slug: 'graeagle-golf-trip-whitehawk-ranch-2n-2025-september',
+    label: 'Whitehawk Ranch',
+    nights: '2 nights',
+    year: 'Sep 2025',
+    desc: 'September shoulder season. Courses emptier, temperatures perfect, rates lower.',
+  },
+  {
+    slug: 'graeagle-golf-trip-whitehawk-ranch-2n-2026',
+    label: 'Whitehawk Ranch',
+    nights: '2 nights',
+    year: '2026',
+    desc: 'Annual crew trip. Same group, third year running, new courses every time.',
+  },
+  {
+    slug: 'graeagle-golf-trip-plumas-pines-3n-2026-august',
+    label: 'Plumas Pines',
+    nights: '3 nights',
+    year: 'Aug 2026',
+    desc: 'Mixed-handicap group. Walked from Townhomes to first tee. No car needed.',
+  },
+  {
+    slug: 'graeagle-golf-trip-plumas-pines-3n-2026-july',
+    label: 'Plumas Pines',
+    nights: '3 nights',
+    year: 'Jul 2026',
+    desc: 'Peak July. Booked February — if you want July, you plan early.',
+  },
+];
+
+const courses = [
+  {
+    slug: 'grizzly-ranch',
+    name: 'Grizzly Ranch Golf Club',
+    badge: 'GOLF DIGEST TOP 100',
+    par: 72, yds: '7,411', slope: 140, rating: '74.9',
+    photo: '/wp-images/grizzly-ranch-.webp',
+    designer: 'Bob Cupp · 2005 · Portola, CA',
+    why: 'Golf Digest Top 100 Greatest Public Courses. Not on GolfNow. Not on Tee Off. You need a direct operator relationship to get a group on. We have it. Bob Cupp routed this through Sierra granite and old-growth pine at 4,800 ft — your drives carry 10–15 yards farther than sea level and every hole is a photo.',
+    note: 'Most groups book Grizzly Ranch for Friday — first full day, legs fresh.',
+    portfolioSlug: 'grizzly-ranch-golf-packages',
+    tags: ['Golf Digest Top 100', 'No GolfNow Access', 'Operator-Only Tee Times', '4,800 ft Elevation'],
+  },
+  {
+    slug: 'nakoma-dragon',
+    name: 'Nakoma — The Dragon',
+    badge: 'FRANK LLOYD WRIGHT',
+    par: 72, yds: '7,015', slope: 147, rating: '73.4',
+    photo: '/wp-images/nakoma-dragon-18-hole.jpg',
+    designer: 'Robin Nelson & Neil Haworth · 1998 · Clio, CA',
+    why: 'Slope 147. The only golf course in the world with a Frank Lloyd Wright–designed clubhouse. The course is memorable. Dinner at Fifty44 Restaurant inside the FLW lodge on Saturday night is the moment every group talks about afterwards — not the birdie on 14, not the drive on 7, the Fifty44 dinner.',
+    note: 'Stay at Inn at Nakoma — 5-minute walk to first tee.',
+    portfolioSlug: 'nakoma-dragon-golf-packages',
+    tags: ['Frank Lloyd Wright Clubhouse', 'Slope 147', 'Fifty44 Restaurant', 'Inn at Nakoma Stay'],
+  },
+  {
+    slug: 'whitehawk-ranch',
+    name: 'Whitehawk Ranch',
+    badge: 'TOP 20 CALIFORNIA',
+    par: 71, yds: '6,983', slope: 132, rating: '72.3',
+    photo: '/wp-images/whitehawk-popup-home.webp',
+    designer: 'Dick Bailey · 1996 · Clio, CA',
+    why: 'Top 20 Golf Courses in California. Old-growth Sierra pine on every hole, granite outcroppings, mountain meadow transitions. Sunday closer — early tee, done by noon, back in the Bay Area by 5pm. Every group that plays it adds it to the rotation.',
+    note: '7am Sunday tee = home by 5pm. Zero Sunday chaos.',
+    portfolioSlug: 'whitehawk-ranch-golf-packages',
+    tags: ['Top 20 California', 'Old-Growth Pine', 'Fast Rounds', 'Back by 5pm'],
+  },
+  {
+    slug: 'plumas-pines',
+    name: 'Plumas Pines Golf Resort',
+    badge: 'BEST VALUE',
+    par: 72, yds: '6,504', slope: 132, rating: '71.3',
+    photo: '/wp-images/plumas-pines-hero.webp',
+    designer: 'Homer Flint · 1980 · Adjacent to Graeagle',
+    why: 'Most accessible course in the region and still a legitimate round. The Feather River runs alongside several holes. If anyone in your group is coming back from injury or hasn't played in six months, Plumas Pines is where they find their game. Groups staying at the Townhomes walk to the first tee.',
+    note: 'Walk from Townhomes at Plumas Pines — no shuttle.',
+    portfolioSlug: 'plumas-pines-golf-packages',
+    tags: ['Best Value Sierra Nevada', 'Feather River Holes', 'Walk from Townhomes', 'Mixed Handicaps'],
+  },
+  {
+    slug: 'graeagle-meadows',
+    name: 'Graeagle Meadows',
+    badge: 'EST. 1968',
+    par: 72, yds: '6,759', slope: 120, rating: '70.7',
+    photo: '/wp-images/graeagle-meadows-hero.webp',
+    designer: 'Ellis Van Gorder · 1968 · Village Center',
+    why: 'The original Graeagle course. Right in the village, walkable, relaxed. Best played Thursday when the group wants to shake off the drive and get loose before the serious courses start Friday. Also good as a fourth round for the guys who can\'t stop at three.',
+    note: 'Thursday arrival round. Village dinner right after.',
+    portfolioSlug: 'graeagle-meadows-golf-packages',
+    tags: ['Village Location', 'Arrival Day Play', 'Walkable', 'Est. 1968'],
+  },
+];
+
+const faqs = [
+  {
+    q: 'What is the best Bay Area golf trip for a group of friends?',
+    a: 'For a group of 8–20 serious golfers driving from the Bay Area, Graeagle, California is the best option. You get Golf Digest Top 100 Grizzly Ranch, the Nakoma Dragon with its Frank Lloyd Wright clubhouse, and three other championship courses — all within 12 miles of each other. The drive is 3.5 hours on I-80 East. No flights, no coordinating multiple vendors, no group texts about payments. One contract covers tee times, lodging, and dinner reservations. Confirmed before anyone leaves the Bay Area.',
+  },
+  {
+    q: 'How do I plan a golf trip from the Bay Area?',
+    a: 'Tell us your dates, group size, and which courses interest your group. We send a full itinerary — with confirmed tee times, lodging options, and dinner suggestions — within 24 hours. Everyone in your group receives an individual invitation through TripsCaddie, our group coordination platform. Each person registers and pays their own share directly. Whoever organized the trip sets it up once and is done. One contract, one deposit for the group.',
+  },
+  {
+    q: 'Can we get a tee time at Grizzly Ranch Golf Club from the Bay Area?',
+    a: 'Yes. Grizzly Ranch is not available through GolfNow, Tee Off, or any public booking site. The course prioritizes direct relationships with operators. GolfGraeagle.com holds that relationship and can secure priority tee times for groups that book through us. This is one of the core reasons Bay Area groups book with us rather than trying to coordinate Grizzly Ranch independently.',
+  },
+  {
+    q: 'How far is Graeagle from San Francisco?',
+    a: 'Graeagle is approximately 3.5 hours from San Francisco via I-80 East toward Sacramento, then Highway 89 North at Truckee. The drive is straightforward — no mountain passes, no two-lane roads. Most Bay Area groups depart Thursday evening after work or Friday morning before 7am to arrive in time for a 10am tee time.',
+  },
+  {
+    q: 'Is Graeagle better than Lake Tahoe for a guys golf trip?',
+    a: 'If the trip is primarily about the golf, Graeagle is the better choice. You get a Golf Digest Top 100 course and a Frank Lloyd Wright clubhouse at a fraction of the green fee you would pay in Tahoe. The courses are concentrated within 12 miles. There is no casino floor between you and the first tee in the morning. Tahoe has the Ritz Carlton and Hyatt if brand-name lodging is the priority — Graeagle is for groups where the tee sheet is the priority.',
+  },
+  {
+    q: 'What is TripsCaddie and how does it work for a group golf trip?',
+    a: 'TripsCaddie is our proprietary group management platform — we built it specifically for golf group coordination. When you book with GolfGraeagle.com, every person in your group receives a personal invitation. They register themselves, pay their own share directly, and receive their tee times and itinerary automatically. There is no one chasing payments, no spreadsheet, no group text asking who has paid. The trip organizer sets it up once. We have run 19+ Graeagle group programs through TripsCaddie. It is included with every booking.',
+  },
+  {
+    q: 'What is the best time of year for a Bay Area golf trip to Graeagle?',
+    a: 'June through September is peak season — all five courses open, warm days, clear skies. July and August book early, especially for Grizzly Ranch. May and October are the best-kept secrets: courses are emptier, green fees run 15–20% lower, and the temperatures are ideal for golf without summer heat. Season runs May through October depending on snowpack year to year.',
+  },
+  {
+    q: 'How many golfers do you need for a Graeagle group golf trip?',
+    a: 'We work with groups of 8 to 20 for the classic Bay Area golf weekend format. Smaller groups (4–7) can also book through us, especially for 2-night programs. Larger groups (20–40) require advance planning across multiple lodging properties and staggered tee times — we have managed those too. Graeagle at its best is an intimate trip: one or two foursomes, everyone knows each other, pace of play stays fast.',
+  },
+];
+
+const allSchemas = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    name: 'Bay Area Golf Trip — Graeagle 3.5h from SF | GolfGraeagle.com',
+    description: 'Golf trips from the Bay Area to Graeagle. Golf Digest Top 100 Grizzly Ranch, Frank Lloyd Wright Nakoma Dragon. Groups 8–20. No flights. One contract. Free itinerary in 24h.',
+    url: PAGE_URL,
+    speakable: { '@type': 'SpeakableSpecification', cssSelector: ['.speakable-intro', 'h1'] },
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': ['Service', 'Product'],
+    name: 'Bay Area Golf Trip — Graeagle, California',
+    description: 'Golf trips from the Bay Area to Graeagle, California. One contract covers tee times, lodging, and dining. Powered by TripsCaddie. Groups 8–20. 3.5h from SF. Free itinerary in 24h.',
+    provider: { '@id': 'https://golfgraeagle.com/#organization' },
+    aggregateRating: { '@type': 'AggregateRating', ratingValue: 4.8, bestRating: 5, worstRating: 1, ratingCount: 672 },
+    url: PAGE_URL,
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqs.map(f => ({
+      '@type': 'Question', name: f.q,
+      acceptedAnswer: { '@type': 'Answer', text: f.a },
+    })),
+  },
+];
+---
+
+<Base
+  title="Bay Area Golf Trip — Graeagle 3.5h from SF | GolfGraeagle.com"
+  description="Golf trips from the Bay Area to Graeagle. Golf Digest Top 100 Grizzly Ranch, Frank Lloyd Wright Nakoma. Groups 8–20. No flights. One contract. Free itinerary in 24h."
+  canonical={PAGE_URL}
+  ogImage="/wp-images/grizzly-ranch-.webp"
+  ogType="website"
+  schema={allSchemas}
+>
+  <Nav />
+
+  <!-- ═══════════════════════════════════════════
+       HERO
+  ═══════════════════════════════════════════ -->
+  <section class="hero" aria-labelledby="hero-h1">
+    <div class="hero__inner">
+      <div class="hero__cred-row">
+        <span class="hero__cred">Golf Digest Top 100</span>
+        <span class="sep">·</span>
+        <span class="hero__cred">Frank Lloyd Wright Clubhouse</span>
+        <span class="sep">·</span>
+        <span class="hero__cred">3.5h from SF on I-80</span>
+      </div>
+      <h1 id="hero-h1" class="hero__h1 speakable-intro">
+        The Bay Area<br>Golf Trip —<br>Graeagle, 3.5h Away
+      </h1>
+      <p class="hero__sub speakable-intro">
+        Drive east on I-80. We handle the rest — Golf Digest Top 100 tee times, lodging,
+        and Saturday dinner at the Frank Lloyd Wright lodge.
+        Your crew shows up, plays great golf, and argues about handicaps on the drive home.
+        That's the whole plan. One contract.
+      </p>
+      <div class="hero__btns">
+        <a href="/request-a-quote/?from=bay-area-golf-trip&type=weekend&placement=hero" class="btn-gold">Get a Free Itinerary → 24h</a>
+        <a href="#past-trips" class="btn-ghost">See Trips We've Run</a>
+      </div>
+      <div class="hero__proof">
+        <span>★ 4.8 / 5 &nbsp;·&nbsp; 672 reviews</span>
+        <span class="sep">|</span>
+        <span>Groups 8–20</span>
+        <span class="sep">|</span>
+        <span>19+ Graeagle Trips via TripsCaddie</span>
+        <span class="sep">|</span>
+        <span>Since 2004</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRUST BAR -->
+  <div class="trust-bar">
+    <div class="trust-bar__scroll">
+      <span class="ti"><strong>3.5h from SF</strong> I-80 E → Hwy 89 N</span>
+      <span class="ti-sep">·</span>
+      <span class="ti"><strong>Golf Digest Top 100</strong> Grizzly Ranch</span>
+      <span class="ti-sep">·</span>
+      <span class="ti"><strong>Frank Lloyd Wright</strong> Nakoma Clubhouse</span>
+      <span class="ti-sep">·</span>
+      <span class="ti"><strong>★ 4.8 / 672 reviews</strong></span>
+      <span class="ti-sep">·</span>
+      <span class="ti"><strong>1 Contract · 1 Deposit</strong></span>
+      <span class="ti-sep">·</span>
+      <span class="ti"><strong>(888) 586-1157</strong></span>
+    </div>
+  </div>
+
+  <!-- AEO INTRO -->
+  <div class="aeo-intro">
+    <div class="aeo-intro__inner">
+      <p class="speakable-intro">
+        GolfGraeagle.com plans golf trips from the San Francisco Bay Area to Graeagle, California.
+        The drive is 3.5 hours via I-80 East — no flights, no airports.
+        Graeagle has five championship courses including Golf Digest Top 100 Grizzly Ranch
+        and the Nakoma Dragon, the only golf course with a Frank Lloyd Wright–designed clubhouse.
+        All tee times, lodging, and dining are booked under one contract through our proprietary
+        TripsCaddie platform. Groups of 8 to 20. Rated 4.8 out of 5 from 672 verified group reviews.
+        Free itinerary within 24 hours. Call (888) 586-1157.
+      </p>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       THE CASE FOR GRAEAGLE — human, direct
+  ═══════════════════════════════════════════ -->
+  <section class="case-section">
+    <div class="case-inner">
+      <div class="case-text">
+        <p class="eyebrow">Why Graeagle</p>
+        <h2 class="section-title">You drove 3.5 hours.<br>Every minute should be golf.</h2>
+        <p>
+          Most Bay Area golf trips mean standing around waiting for someone to book on GolfNow,
+          arguing about Venmo, and hoping the resort tee sheet has something open.
+          Graeagle doesn't work that way — we book it as a program.
+          One contract, one deposit, tee times confirmed before anyone leaves home.
+        </p>
+        <p>
+          The Golf Digest Top 100 course — Grizzly Ranch — isn't on any booking site.
+          You need a direct operator relationship. We have it.
+          The Frank Lloyd Wright clubhouse at Nakoma isn't some novelty —
+          it's a genuinely great building that makes Saturday dinner feel like an event.
+          Five courses in 12 miles means your group spends the weekend playing, not driving.
+        </p>
+        <p>
+          We've been running Graeagle group trips since 2004.
+          The guys on your trip will be back next year.
+        </p>
+        <div class="case-cta">
+          <a href="/request-a-quote/?from=bay-area-golf-trip&placement=case" class="btn-gold">Build My Trip →</a>
+        </div>
+      </div>
+      <div class="case-stats">
+        <div class="cstat">
+          <div class="cstat__n">3.5h</div>
+          <div class="cstat__l">I-80 E from San Francisco<br><span>No flights. No TSA. No lost bags.</span></div>
+        </div>
+        <div class="cstat">
+          <div class="cstat__n">5</div>
+          <div class="cstat__l">Championship courses<br><span>In a 12-mile corridor</span></div>
+        </div>
+        <div class="cstat">
+          <div class="cstat__n">1</div>
+          <div class="cstat__l">Contract covers everything<br><span>Tee times, lodging, dinner</span></div>
+        </div>
+        <div class="cstat">
+          <div class="cstat__n">19+</div>
+          <div class="cstat__l">Group trips run<br><span>Through TripsCaddie</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       PAST TRIPS — real TripsCaddie trips
+  ═══════════════════════════════════════════ -->
+  <section class="past-section" id="past-trips" aria-labelledby="past-h2">
+    <div class="past-inner">
+      <p class="eyebrow">Trips We've Run</p>
+      <h2 id="past-h2" class="section-title">Real trips. Real groups.<br>Here's what they looked like.</h2>
+      <p class="section-body">
+        Every trip below ran through TripsCaddie — our proprietary group coordination platform.
+        Each person in the group paid their own share directly. The organizer set it up once.
+        Tee times were confirmed before anyone booked travel.
+        Click any trip to see the full itinerary.
+      </p>
+      <div class="past-grid">
+        {pastTrips.map(t => (
+          <a href={`/trips/${t.slug}/`} class="past-card">
+            <div class="past-card__top">
+              <span class="past-card__course">{t.label}</span>
+              <span class="past-card__meta">{t.nights} · {t.year}</span>
+            </div>
+            <p class="past-card__desc">{t.desc}</p>
+            <span class="past-card__link">View trip →</span>
+          </a>
+        ))}
+        <a href="/request-a-quote/?from=bay-area-golf-trip&placement=past-trips" class="past-card past-card--cta">
+          <div class="past-card__top">
+            <span class="past-card__course">Your trip here</span>
+          </div>
+          <p class="past-card__desc">Tell us your dates and group size. Confirmed itinerary in 24 hours.</p>
+          <span class="past-card__link btn-gold" style="display:inline-block;margin-top:8px">Plan my trip →</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       TRIPSCADDIE — proprietary, one-shot booking
+  ═══════════════════════════════════════════ -->
+  <section class="caddie-section" aria-labelledby="caddie-h2">
+    <div class="caddie-inner">
+      <div class="caddie-text">
+        <p class="eyebrow eyebrow--light">Proprietary Platform</p>
+        <h2 id="caddie-h2" class="section-title section-title--light">One contract. Everyone pays themselves. Nobody chases anyone.</h2>
+        <p class="body-light">
+          TripsCaddie is our own software — built for golf group coordination, not adapted from something else.
+          When you book a trip through GolfGraeagle.com, here is what happens:
+        </p>
+        <ol class="caddie-steps">
+          <li>
+            <strong>You tell us the dates and group size.</strong>
+            We send a confirmed itinerary with tee times, lodging options, and a cost breakdown within 24 hours.
+          </li>
+          <li>
+            <strong>You share an invitation link with your group.</strong>
+            Each person registers themselves, sees the full trip details, and pays their own share directly.
+            No Venmo chasing. No spreadsheet. No follow-up texts.
+          </li>
+          <li>
+            <strong>Tee times are confirmed before anyone books travel.</strong>
+            Everything is locked before a single person puts the dates in their calendar.
+          </li>
+          <li>
+            <strong>Everyone gets their itinerary automatically.</strong>
+            Tee times, lodging confirmation, dinner time at Fifty44 — it all lands in their inbox.
+            The organizer's job is done.
+          </li>
+        </ol>
+        <a href="/request-a-quote/?from=bay-area-golf-trip&type=weekend&placement=caddie" class="btn-gold">Start Building My Trip</a>
+      </div>
+      <div class="caddie-proof-panel">
+        <div class="cp-item">
+          <div class="cp-n">19+</div>
+          <div class="cp-l">Graeagle group trips run through TripsCaddie</div>
+        </div>
+        <div class="cp-item">
+          <div class="cp-n">1</div>
+          <div class="cp-l">Contract covers tee times, lodging, dinner</div>
+        </div>
+        <div class="cp-item">
+          <div class="cp-n">1</div>
+          <div class="cp-l">Deposit secures the whole program</div>
+        </div>
+        <div class="cp-item">
+          <div class="cp-n">24h</div>
+          <div class="cp-l">From your email to confirmed itinerary</div>
+        </div>
+        <div class="cp-item">
+          <div class="cp-n">4.8★</div>
+          <div class="cp-l">Average group experience rating · 672 reviews</div>
+        </div>
+        <div class="cp-item cp-item--quote">
+          <p>"Set it up Thursday. By Sunday everyone had paid. First time that's ever happened."</p>
+          <span>— Group organizer, 12 players, Aug 2026</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       COURSES
+  ═══════════════════════════════════════════ -->
+  <section class="courses-section" aria-labelledby="courses-h2">
+    <div class="courses-header">
+      <p class="eyebrow">5 Courses · 12 Miles</p>
+      <h2 id="courses-h2" class="section-title">The courses your group will<br>still be talking about Monday morning.</h2>
+    </div>
+    <div class="course-carousel-wrap" id="courseCarousel">
+      <div class="course-carousel" role="list">
+        {courses.map((c, i) => (
+          <div class="cc" role="listitem" data-index={i}>
+            <div class="cc__photo" style={`background-image:url('${c.photo}')`}>
+              <span class="cc__badge">{c.badge}</span>
+            </div>
+            <div class="cc__body">
+              <div class="cc__meta">
+                <span class="cc__num">0{i + 1}</span>
+                <div>
+                  <div class="cc__stats">Par {c.par} · {c.yds} yds · Slope {c.slope} · Rating {c.rating}</div>
+                  <div class="cc__designer">{c.designer}</div>
+                </div>
+              </div>
+              <h3 class="cc__name">
+                <a href={`/portfolio/${c.portfolioSlug}/`}>{c.name}</a>
+              </h3>
+              <p class="cc__why">{c.why}</p>
+              <div class="cc__tags">
+                {c.tags.map(t => <span class="cc__tag">{t}</span>)}
+              </div>
+              <p class="cc__note">📍 {c.note}</p>
+              <div class="cc__actions">
+                <a href={`/portfolio/${c.portfolioSlug}/?from=bay-area-golf-trip&placement=courses`} class="btn-outline">Course Details →</a>
+                <a href={`/request-a-quote/?course=${c.slug}&from=bay-area-golf-trip&placement=courses`} class="cc__add">Add to My Trip</a>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+      <div class="cc__nav">
+        <button class="cc__prev" id="ccPrev" aria-label="Previous">‹</button>
+        <div class="cc__dots" id="ccDots">
+          {courses.map((_, i) => (
+            <button class={`cc__dot${i === 0 ? ' active' : ''}`} data-dot={i} aria-label={`Course ${i + 1}`}></button>
+          ))}
+        </div>
+        <button class="cc__next" id="ccNext" aria-label="Next">›</button>
+      </div>
+    </div>
+    <div class="courses-cta">
+      <a href="/request-a-quote/?from=bay-area-golf-trip&placement=courses-cta" class="btn-gold">Tell Us Which Courses You Want</a>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       SAMPLE ITINERARY
+  ═══════════════════════════════════════════ -->
+  <section class="itin-section" aria-labelledby="itin-h2">
+    <div class="itin-inner">
+      <p class="eyebrow">Sample Weekend</p>
+      <h2 id="itin-h2" class="section-title">Thu–Sun · The classic format<br>most Bay Area groups run</h2>
+      <div class="itin-grid">
+        <div class="itin-day">
+          <div class="itin-label">Thu</div>
+          <div>
+            <strong>Drive up. Optional arrival round at Graeagle Meadows.</strong>
+            <p>Leave the Bay Area after work. In Graeagle by 7–8pm. Optional 5pm arrival round at the village course if you left early. Village dinner, early sleep. Tomorrow is Grizzly Ranch.</p>
+          </div>
+        </div>
+        <div class="itin-day">
+          <div class="itin-label">Fri</div>
+          <div>
+            <strong>Grizzly Ranch — Golf Digest Top 100.</strong>
+            <p>10am tee time. 7,411 yards at 4,800 ft. Drives go 12 yards farther than sea level. Someone in your group will shoot their best round of the year. Post-round lunch at the clubhouse. Someone is already asking about coming back next year.</p>
+          </div>
+        </div>
+        <div class="itin-day">
+          <div class="itin-label">Sat</div>
+          <div>
+            <strong>Nakoma Dragon. Fifty44 Dinner at the Frank Lloyd Wright Lodge.</strong>
+            <p>Slope 147. The course everyone researched before booking. Saturday evening dinner at Fifty44 Restaurant — inside the actual Frank Lloyd Wright building, on the terrace above the Feather River canyon. This is the dinner everyone is still talking about the following weekend.</p>
+          </div>
+        </div>
+        <div class="itin-day">
+          <div class="itin-label">Sun</div>
+          <div>
+            <strong>Whitehawk Ranch. Back in the Bay Area by 5pm.</strong>
+            <p>7am tee time. Top 20 California course. Finished by noon, on the road by 12:30. Back in the Bay Area by 4:30–5pm. The group chat that started planning this trip in January is already planning next year by Sunday evening.</p>
+          </div>
+        </div>
+      </div>
+      <div style="text-align:center;margin-top:28px">
+        <a href="/request-a-quote/?from=bay-area-golf-trip&placement=itinerary" class="btn-gold">Get My Custom Itinerary</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       DRIVE TIMES
+  ═══════════════════════════════════════════ -->
+  <section class="drive-section" id="drive-times" aria-labelledby="drive-h2">
+    <div class="drive-inner">
+      <p class="eyebrow">Drive Times from Bay Area</p>
+      <h2 id="drive-h2" class="section-title">No flights. No airports.<br>Everyone meets at the first tee.</h2>
+      <div class="drive-grid">
+        {[
+          { city: 'San Francisco', time: '3.5h', via: 'I-80 E → Hwy 89 N', note: 'Leave FiDi at 6am, tee off at 10am.' },
+          { city: 'Oakland', time: '3.5h', via: 'I-80 E → Hwy 89 N', note: 'Bay Bridge to Graeagle without stopping.' },
+          { city: 'San Jose', time: '3.5h', via: 'I-680 N → I-80 E → Hwy 89 N', note: 'South Bay joins at I-680 and catches I-80.' },
+          { city: 'Palo Alto', time: '3.75h', via: 'US-101 N → I-80 E → Hwy 89 N', note: 'Peninsula crew.' },
+          { city: 'Sacramento', time: '2h', via: 'I-80 E → Hwy 89 N', note: 'Closest market — day trip is possible.' },
+        ].map(d => (
+          <div class="drive-card">
+            <div class="dc-city">{d.city}</div>
+            <div class="dc-time">{d.time}</div>
+            <div class="dc-via">{d.via}</div>
+            <div class="dc-note">{d.note}</div>
+          </div>
+        ))}
+      </div>
+      <p class="drive-note">Thursday evening departures skip Friday Bay Area traffic entirely — most groups leave at 6–7pm and are in Graeagle by 10pm.</p>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       VS ALTERNATIVES — honest comparison
+  ═══════════════════════════════════════════ -->
+  <section class="vs-section" aria-labelledby="vs-h2">
+    <div class="vs-inner">
+      <p class="eyebrow">Honest Comparison</p>
+      <h2 id="vs-h2" class="section-title">Graeagle vs. Lake Tahoe<br>for a guys golf trip from the Bay Area</h2>
+      <p class="section-body">
+        Same drive time. Completely different trip. Here's what actually differs.
+      </p>
+      <div class="vs-wrap">
+        <table class="vs-table">
+          <thead>
+            <tr>
+              <th>Factor</th>
+              <th>Graeagle</th>
+              <th>North Lake Tahoe</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="winner">
+              <td>Drive from SF</td>
+              <td><span class="ck">✓</span> 3.5h I-80 E</td>
+              <td>3.5–4h (South Bay: 5h+)</td>
+            </tr>
+            <tr class="winner">
+              <td>Green fees</td>
+              <td><span class="ck">✓</span> $80–$180 / round</td>
+              <td>$130–$350 / round</td>
+            </tr>
+            <tr>
+              <td>Top-tier golf</td>
+              <td><span class="ck">✓</span> Golf Digest Top 100, FLW</td>
+              <td>Edgewood, Old Greenwood</td>
+            </tr>
+            <tr class="winner">
+              <td>Courses in one area</td>
+              <td><span class="ck">✓</span> 5 in 12 miles</td>
+              <td>Spread 10–30 miles apart</td>
+            </tr>
+            <tr class="winner">
+              <td>Crowd level</td>
+              <td><span class="ck">✓</span> Quiet. No casino foot traffic.</td>
+              <td>Summer tourist volume</td>
+            </tr>
+            <tr>
+              <td>Hotel brands</td>
+              <td>Boutique — Inn at Nakoma, river lodges</td>
+              <td><span class="ck">✓</span> Ritz Carlton, Hyatt</td>
+            </tr>
+            <tr class="winner">
+              <td>One-operator logistics</td>
+              <td><span class="ck">✓</span> One contract, all 5 courses</td>
+              <td>Multiple vendors</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="vs-note">If the trip is primarily about the hotel brand, go to Tahoe. If the trip is primarily about the golf, Graeagle is the right call.</p>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       FAQ
+  ═══════════════════════════════════════════ -->
+  <section class="faq-section" aria-labelledby="faq-h2">
+    <div class="faq-inner">
+      <h2 id="faq-h2" class="section-title">Questions Bay Area groups ask<br>before booking</h2>
+      <dl class="faq-list">
+        {faqs.map((f, i) => (
+          <div class="faq-item" id={`faq-${i}`}>
+            <dt class="faq-q">{f.q}</dt>
+            <dd class="faq-a">{f.a}</dd>
+          </div>
+        ))}
+      </dl>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       CROSS-BRAND NETWORK
+  ═══════════════════════════════════════════ -->
+  <section class="network-section" aria-labelledby="net-h2">
+    <div class="net-inner">
+      <p class="eyebrow eyebrow--light">Four Destinations · One Operator</p>
+      <h2 id="net-h2" class="section-title section-title--light">This year Graeagle.<br>Next year, rotate the destination.</h2>
+      <p style="color:rgba(245,240,232,.65);max-width:640px;margin-bottom:36px;font-size:15px;line-height:1.7">
+        Same platform, same point of contact, same one-contract model across four completely different golf regions.
+        You never start over with a new vendor when you want a new destination.
+      </p>
+      <div class="network-grid">
+
+        <a href="https://golfgraeagle.com/?from=bay-area-golf-trip&placement=network" class="net-card net-card--gge">
+          <div class="nc-top"><span class="nc-pill nc-pill--gge">YOU ARE HERE</span><span class="nc-drive">3.5h · I-80 E</span></div>
+          <div class="nc-brand">GolfGraeagle.com</div>
+          <h3 class="nc-dest">Graeagle<span class="nc-state">, CA</span></h3>
+          <p class="nc-tagline">Sierra Nevada · Mountain Golf · No Flights</p>
+          <div class="nc-stats">
+            <div class="ns"><div class="ns-n">5</div><div class="ns-l">Courses</div></div>
+            <div class="ns"><div class="ns-n">4</div><div class="ns-l">Lodges</div></div>
+            <div class="ns"><div class="ns-n">Top 100</div><div class="ns-l">Golf Digest</div></div>
+          </div>
+          <ul class="nc-list">
+            <li>Golf Digest Top 100 — Grizzly Ranch</li>
+            <li>Frank Lloyd Wright clubhouse — Nakoma</li>
+            <li>4,800 ft elevation · +15 yds carry</li>
+            <li>Operator access · Not on GolfNow</li>
+          </ul>
+          <div class="nc-best">Best for: <strong>Golf-first buddy trips. 8–20 players. Thu–Sun.</strong></div>
+          <span class="nc-cta">Explore Graeagle →</span>
+        </a>
+
+        <a href="https://montereygolftours.com/?from=bay-area-golf-trip&placement=network" class="net-card net-card--mgts">
+          <div class="nc-top"><span class="nc-pill nc-pill--mgts">IAGTO OPERATOR</span><span class="nc-drive">2h · Hwy 1</span></div>
+          <div class="nc-brand">MontereyGolfTours.com</div>
+          <h3 class="nc-dest">Monterey<span class="nc-state">, CA</span></h3>
+          <p class="nc-tagline">Pacific Coast · Pebble Beach · Ocean Views</p>
+          <div class="nc-stats">
+            <div class="ns"><div class="ns-n">14</div><div class="ns-l">Courses</div></div>
+            <div class="ns"><div class="ns-n">14</div><div class="ns-l">Hotels</div></div>
+            <div class="ns"><div class="ns-n">IAGTO</div><div class="ns-l">Authorized</div></div>
+          </div>
+          <ul class="nc-list">
+            <li>Pebble Beach Golf Links® — IAGTO access</li>
+            <li>Spyglass Hill™ · Del Monte™ · Poppy Hills</li>
+            <li>Lodge at Pebble Beach™ on-course lodging</li>
+            <li>Year-round play · Oceanfront holes</li>
+          </ul>
+          <div class="nc-best">Best for: <strong>The Pebble Beach bucket-list trip.</strong></div>
+          <span class="nc-cta">Explore Monterey →</span>
+        </a>
+
+        <a href="https://golfthehighsierra.com/?from=bay-area-golf-trip&placement=network" class="net-card net-card--gths">
+          <div class="nc-top"><span class="nc-pill nc-pill--gths">20+ YEARS</span><span class="nc-drive">3.5h · I-80 E</span></div>
+          <div class="nc-brand">GolfTheHighSierra.com</div>
+          <h3 class="nc-dest">Reno–Tahoe<span class="nc-state">, NV/CA</span></h3>
+          <p class="nc-tagline">26 Courses · Casino Hotels · 5 Regions</p>
+          <div class="nc-stats">
+            <div class="ns"><div class="ns-n">26</div><div class="ns-l">Courses</div></div>
+            <div class="ns"><div class="ns-n">23</div><div class="ns-l">Hotels</div></div>
+            <div class="ns"><div class="ns-n">5</div><div class="ns-l">Regions</div></div>
+          </div>
+          <ul class="nc-list">
+            <li>Edgewood Tahoe — US Open course</li>
+            <li>Old Greenwood — Tom Fazio design</li>
+            <li>Peppermill · Silver Legacy casino hotels</li>
+            <li>Groups 8–400 · Since 2004</li>
+          </ul>
+          <div class="nc-best">Best for: <strong>Larger groups, casino hotels, 5-region variety.</strong></div>
+          <span class="nc-cta">Explore Reno–Tahoe →</span>
+        </a>
+
+        <a href="https://mesquitestgeorgegolftours.com/?from=bay-area-golf-trip&placement=network" class="net-card net-card--msg">
+          <div class="nc-top"><span class="nc-pill nc-pill--msg">DESERT CANYON</span><span class="nc-drive">1h flight</span></div>
+          <div class="nc-brand">MesquiteStGeorgeGolfTours.com</div>
+          <h3 class="nc-dest">Las Vegas<span class="nc-state"> / Mesquite, NV</span></h3>
+          <p class="nc-tagline">Desert Golf · Vegas Access · Year-Round</p>
+          <div class="nc-stats">
+            <div class="ns"><div class="ns-n">23</div><div class="ns-l">Courses</div></div>
+            <div class="ns"><div class="ns-n">23</div><div class="ns-l">Hotels</div></div>
+            <div class="ns"><div class="ns-n">Top 100</div><div class="ns-l">Wolf Creek</div></div>
+          </div>
+          <ul class="nc-list">
+            <li>Wolf Creek — Golf Digest Top 100</li>
+            <li>Black Desert Resort — LPGA Tour 2025</li>
+            <li>MGM Mansion rental (8 BR, sleeps 12)</li>
+            <li>Year-round · 300+ days of sun</li>
+          </ul>
+          <div class="nc-best">Best for: <strong>Desert golf + Vegas. Winter play when Graeagle closes.</strong></div>
+          <span class="nc-cta">Explore Las Vegas →</span>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       FINAL CTA
+  ═══════════════════════════════════════════ -->
+  <section class="final-cta" aria-labelledby="fcta-h2">
+    <div class="fcta-inner">
+      <h2 id="fcta-h2" class="fcta-title">Your crew is overdue<br>for a real golf trip.</h2>
+      <p class="fcta-sub">
+        Tell us your dates, group size, and which courses you're interested in.
+        Confirmed itinerary — tee times, lodging, dinner — in 24 hours.
+        Nothing to coordinate on your end after that.
+      </p>
+      <a href="/request-a-quote/?from=bay-area-golf-trip&type=weekend&placement=footer-cta" class="btn-gold btn-gold--lg">Get a Free Itinerary</a>
+      <p class="fcta-phone">Or call us: <a href="tel:+18885861157">(888) 586-1157</a></p>
+    </div>
+  </section>
+
+  <Footer />
+</Base>
+
+<style>
+/* ────────── TOKENS ────────── */
+:root {
+  --ink: #0f1a0f;
+  --green-dark: #1a2e1a;
+  --green-mid: #1a6020;
+  --gold: #b8820a;
+  --cream: #f5f0e8;
+  --cream2: #f0ece3;
+  --border: #d8ccb0;
+  --muted: #606848;
+  --serif: 'Cormorant Garamond', Georgia, serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --ink: #f0ece3; --cream: #1a2010; --cream2: #141a10; --border: #2a3a1a; --muted: #a0a888;
+  }
+}
+:root[data-theme="dark"] {
+  --ink: #f0ece3; --cream: #1a2010; --cream2: #141a10; --border: #2a3a1a; --muted: #a0a888;
+}
+
+/* ────────── UTILS ────────── */
+.eyebrow { font-size: 11px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: #8a6a20; margin-bottom: 10px; display: block; }
+.eyebrow--light { color: rgba(184,130,10,.75); }
+.section-title { font-family: var(--serif); font-size: clamp(26px, 3.5vw, 38px); font-weight: 600; color: var(--ink); line-height: 1.15; margin-bottom: 14px; text-wrap: balance; }
+.section-title--light { color: rgba(245,240,232,.95); }
+.section-body { font-size: 15px; color: var(--muted); line-height: 1.72; max-width: 640px; margin-bottom: 32px; }
+.btn-gold { display: inline-block; padding: 13px 28px; background: var(--gold); color: #fff; font-size: 14px; font-weight: 700; border-radius: 3px; text-decoration: none; letter-spacing: .03em; transition: background .15s; }
+.btn-gold:hover { background: #9a6c08; }
+.btn-gold--lg { padding: 15px 40px; font-size: 15px; }
+.btn-ghost { display: inline-block; padding: 12px 22px; background: rgba(255,255,255,.1); color: #fff; font-size: 14px; font-weight: 600; border-radius: 3px; text-decoration: none; border: 1px solid rgba(255,255,255,.3); transition: background .15s; }
+.btn-ghost:hover { background: rgba(255,255,255,.18); }
+.btn-outline { display: inline-block; padding: 9px 20px; border: 1.5px solid var(--green-dark); color: var(--green-dark); font-size: 12px; font-weight: 700; border-radius: 3px; text-decoration: none; letter-spacing: .04em; transition: background .15s, color .15s; }
+.btn-outline:hover { background: var(--green-dark); color: #fff; }
+.sep { color: rgba(255,255,255,.25); font-size: 11px; }
+.body-light { font-size: 15px; color: rgba(245,240,232,.7); line-height: 1.72; max-width: 580px; margin-bottom: 20px; }
+
+/* ────────── HERO ────────── */
+.hero { min-height: 520px; display: flex; align-items: center; background: linear-gradient(155deg, #0a1a0a 0%, #1a2e1a 38%, #2a4a1a 62%, #0a1a0a 100%); position: relative; overflow: hidden; }
+.hero::after { content:''; position:absolute; inset:0; background: linear-gradient(to right, rgba(0,0,0,.45) 0%, transparent 65%); }
+.hero__inner { position:relative; z-index:1; padding: 80px 40px; max-width: 640px; margin-left: max(40px, calc(50vw - 560px)); }
+@media (max-width:700px) { .hero { min-height:100svh; align-items:flex-end; } .hero__inner { padding: 32px 20px 48px; margin-left:0; max-width:100%; } }
+.hero__cred-row { display:flex; flex-wrap:wrap; gap:6px; align-items:center; margin-bottom:16px; }
+.hero__cred { font-size:10px; font-weight:800; letter-spacing:.12em; text-transform:uppercase; color:var(--gold); background:rgba(184,130,10,.12); border:1px solid rgba(184,130,10,.3); padding:3px 8px; border-radius:2px; }
+@media (max-width:700px) { .sep { display:none; } }
+.hero__h1 { font-family:var(--serif); font-size:clamp(34px,5vw,56px); font-weight:700; color:#fff; line-height:1.08; text-shadow:0 2px 24px rgba(0,0,0,.5); margin-bottom:16px; }
+.hero__sub { font-size:15px; color:rgba(255,255,255,.82); line-height:1.68; margin-bottom:28px; text-shadow:0 1px 8px rgba(0,0,0,.3); }
+@media (max-width:700px) { .hero__sub { font-size:14px; } }
+.hero__btns { display:flex; gap:12px; flex-wrap:wrap; margin-bottom:20px; }
+.hero__proof { display:flex; align-items:center; gap:10px; flex-wrap:wrap; font-size:12px; color:rgba(255,255,255,.5); }
+
+/* ────────── TRUST BAR ────────── */
+.trust-bar { background: var(--cream2); border-bottom: 1px solid var(--border); overflow-x:auto; scrollbar-width:none; }
+.trust-bar::-webkit-scrollbar { display:none; }
+.trust-bar__scroll { display:flex; align-items:center; min-width:max-content; padding:10px 24px; gap:14px; font-size:13px; }
+.ti { white-space:nowrap; color: var(--muted); }
+.ti strong { color: var(--ink); }
+.ti-sep { color: var(--border); font-size:16px; }
+
+/* ────────── AEO INTRO ────────── */
+.aeo-intro { background: var(--cream2); border-bottom: 1px solid var(--border); }
+.aeo-intro__inner { max-width:900px; margin:0 auto; padding:16px 40px; }
+@media (max-width:700px) { .aeo-intro__inner { padding:12px 20px; } }
+.aeo-intro p { font-size:13px; color: var(--muted); line-height:1.75; margin:0; }
+
+/* ────────── CASE SECTION ────────── */
+.case-section { background: var(--cream); border-top: 1px solid var(--border); }
+.case-inner { max-width:1100px; margin:0 auto; padding:64px 40px; display:grid; grid-template-columns:1fr 340px; gap:60px; align-items:start; }
+@media (max-width:860px) { .case-inner { grid-template-columns:1fr; gap:32px; } }
+@media (max-width:700px) { .case-inner { padding:48px 20px; } }
+.case-text p { font-size:15px; color: var(--muted); line-height:1.75; margin-bottom:14px; }
+.case-cta { margin-top:24px; }
+.case-stats { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+.cstat { background: #fff; border: 1px solid var(--border); border-radius:6px; padding:20px; }
+.cstat__n { font-family:var(--serif); font-size:40px; font-weight:700; color:var(--gold); line-height:1; margin-bottom:4px; }
+.cstat__l { font-size:13px; color: var(--ink); font-weight:600; line-height:1.4; }
+.cstat__l span { font-size:11px; color: var(--muted); font-weight:400; display:block; margin-top:2px; }
+
+/* ────────── PAST TRIPS ────────── */
+.past-section { background: #f9f6f0; border-top: 1px solid var(--border); }
+.past-inner { max-width:1100px; margin:0 auto; padding:64px 40px; }
+@media (max-width:700px) { .past-inner { padding:48px 20px; } }
+.past-grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(240px, 1fr)); gap:14px; margin-top:28px; }
+.past-card { display:flex; flex-direction:column; gap:6px; background:#fff; border:1px solid var(--border); border-radius:6px; padding:18px; text-decoration:none; transition:box-shadow .15s, border-color .15s; }
+.past-card:hover { box-shadow:0 4px 16px rgba(0,0,0,.08); border-color: var(--green-dark); }
+.past-card--cta { border-color: var(--gold); background:#fdf8ef; }
+.past-card__top { display:flex; justify-content:space-between; align-items:flex-start; gap:8px; }
+.past-card__course { font-size:13px; font-weight:700; color: var(--ink); }
+.past-card__meta { font-size:11px; color: var(--muted); white-space:nowrap; }
+.past-card__desc { font-size:12px; color: var(--muted); line-height:1.6; flex:1; margin:0; }
+.past-card__link { font-size:12px; font-weight:700; color: var(--gold); text-decoration:none; }
+.past-card:hover .past-card__link { color: var(--green-mid); }
+
+/* ────────── TRIPSCADDIE ────────── */
+.caddie-section { background: linear-gradient(155deg, #0a1a0a 0%, #1a2e1a 45%, #142210 100%); }
+.caddie-inner { max-width:1100px; margin:0 auto; padding:72px 40px; display:grid; grid-template-columns:1fr 360px; gap:60px; align-items:start; }
+@media (max-width:860px) { .caddie-inner { grid-template-columns:1fr; gap:36px; } }
+@media (max-width:700px) { .caddie-inner { padding:52px 20px; } }
+.caddie-steps { margin:16px 0 24px; padding:0; list-style:none; counter-reset:step; display:flex; flex-direction:column; gap:14px; }
+.caddie-steps li { counter-increment:step; display:flex; gap:14px; font-size:14px; color:rgba(245,240,232,.7); line-height:1.65; padding:14px 16px; background:rgba(255,255,255,.05); border-radius:4px; border-left:3px solid rgba(184,130,10,.4); }
+.caddie-steps li::before { content:counter(step); font-family:var(--serif); font-size:22px; font-weight:700; color:var(--gold); min-width:24px; line-height:1; }
+.caddie-steps li strong { color:rgba(245,240,232,.9); display:block; margin-bottom:3px; }
+.caddie-proof-panel { display:flex; flex-direction:column; gap:12px; }
+.cp-item { background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.1); border-radius:6px; padding:16px; }
+.cp-n { font-family:var(--serif); font-size:34px; font-weight:700; color:var(--gold); line-height:1; margin-bottom:4px; }
+.cp-l { font-size:12px; color:rgba(245,240,232,.55); line-height:1.45; }
+.cp-item--quote { background:rgba(184,130,10,.08); border-color:rgba(184,130,10,.2); }
+.cp-item--quote p { font-size:13px; color:rgba(245,240,232,.75); font-style:italic; margin:0 0 6px; line-height:1.55; }
+.cp-item--quote span { font-size:11px; color:rgba(245,240,232,.4); }
+
+/* ────────── COURSES CAROUSEL ────────── */
+.courses-section { border-top: 1px solid var(--border); }
+.courses-header { max-width:1100px; margin:0 auto; padding:60px 40px 24px; }
+@media (max-width:700px) { .courses-header { padding:48px 20px 16px; } }
+.course-carousel-wrap { position:relative; }
+.course-carousel { display:flex; overflow-x:auto; scroll-snap-type:x mandatory; scrollbar-width:none; }
+.course-carousel::-webkit-scrollbar { display:none; }
+.cc { flex:0 0 100%; scroll-snap-align:start; display:grid; grid-template-columns:1fr 1fr; min-height:400px; }
+@media (max-width:700px) { .cc { grid-template-columns:1fr; } }
+.cc__photo { min-height:300px; background-size:cover; background-position:center; position:relative; }
+@media (max-width:700px) { .cc__photo { min-height:200px; } }
+.cc__photo::after { content:''; position:absolute; inset:0; background:linear-gradient(135deg, rgba(0,0,0,.1) 0%, rgba(0,0,0,.5) 100%); }
+.cc__badge { position:absolute; top:16px; left:16px; z-index:1; font-size:9px; font-weight:800; letter-spacing:.12em; text-transform:uppercase; color:var(--gold); background:rgba(0,0,0,.55); padding:4px 10px; border-radius:2px; }
+.cc__body { background: var(--cream); padding:32px 36px; display:flex; flex-direction:column; justify-content:center; border-right:1px solid var(--border); }
+@media (max-width:700px) { .cc__body { padding:22px 20px; border-right:none; border-top:1px solid var(--border); } }
+.cc__meta { display:flex; align-items:flex-start; gap:14px; margin-bottom:10px; }
+.cc__num { font-family:var(--serif); font-size:42px; font-weight:700; color:rgba(184,130,10,.2); line-height:1; flex-shrink:0; }
+.cc__stats { font-size:11px; color: var(--muted); font-weight:500; }
+.cc__designer { font-size:10px; color: var(--muted); margin-top:2px; }
+.cc__name { font-family:var(--serif); font-size:26px; font-weight:700; color: var(--ink); line-height:1.15; margin-bottom:12px; }
+.cc__name a { color:inherit; text-decoration:none; }
+.cc__name a:hover { color: var(--green-mid); }
+.cc__why { font-size:14px; color:#2c3018; line-height:1.68; font-weight:500; margin-bottom:12px; }
+.cc__tags { display:flex; gap:6px; flex-wrap:wrap; margin-bottom:10px; }
+.cc__tag { font-size:10px; font-weight:700; letter-spacing:.05em; text-transform:uppercase; padding:3px 9px; border-radius:20px; background:#f0f5ec; color:#1a4a1a; border:1px solid #c8dac0; }
+.cc__note { font-size:12px; color: var(--green-mid); font-weight:600; margin-bottom:16px; }
+.cc__actions { display:flex; align-items:center; gap:16px; flex-wrap:wrap; }
+.cc__add { font-size:12px; font-weight:700; color:var(--gold); text-decoration:none; border-bottom:1px solid rgba(184,130,10,.3); }
+.cc__add:hover { border-color:var(--gold); }
+.cc__nav { display:flex; align-items:center; justify-content:center; gap:16px; padding:16px 0 8px; }
+.cc__prev, .cc__next { width:36px; height:36px; border-radius:50%; border:1.5px solid var(--border); background:#fff; color: var(--ink); font-size:20px; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:border-color .15s, background .15s; }
+.cc__prev:hover, .cc__next:hover { border-color: var(--green-dark); background: var(--green-dark); color:#fff; }
+.cc__dots { display:flex; gap:6px; }
+.cc__dot { width:8px; height:8px; border-radius:50%; border:none; background: var(--border); cursor:pointer; padding:0; transition:background .15s, transform .15s; }
+.cc__dot.active { background:var(--gold); transform:scale(1.3); }
+.courses-cta { text-align:center; padding:20px 20px 60px; }
+
+/* ────────── ITINERARY ────────── */
+.itin-section { background: #f9f6f0; border-top: 1px solid var(--border); }
+.itin-inner { max-width:1100px; margin:0 auto; padding:64px 40px; }
+@media (max-width:700px) { .itin-inner { padding:48px 20px; } }
+.itin-grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(220px,1fr)); gap:14px; margin-top:28px; }
+.itin-day { background:#fff; border:1px solid var(--border); border-radius:6px; padding:18px; display:flex; gap:14px; }
+.itin-label { font-family:var(--serif); font-size:24px; font-weight:700; color:var(--gold); flex-shrink:0; line-height:1; padding-top:2px; }
+.itin-day strong { display:block; font-size:13px; font-weight:700; color: var(--ink); margin-bottom:5px; }
+.itin-day p { font-size:12px; color: var(--muted); line-height:1.6; margin:0; }
+
+/* ────────── DRIVE TIMES ────────── */
+.drive-section { border-top: 1px solid var(--border); }
+.drive-inner { max-width:1100px; margin:0 auto; padding:64px 40px; }
+@media (max-width:700px) { .drive-inner { padding:48px 20px; } }
+.drive-grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(180px,1fr)); gap:12px; margin:24px 0 14px; }
+.drive-card { background:var(--cream); border:1px solid var(--border); border-radius:6px; padding:16px; }
+.dc-city { font-size:14px; font-weight:700; color: var(--ink); margin-bottom:4px; }
+.dc-time { font-family:var(--serif); font-size:30px; font-weight:700; color:var(--gold); line-height:1; margin-bottom:6px; }
+.dc-via { font-size:11px; color:#8a6a20; margin-bottom:4px; }
+.dc-note { font-size:11px; color: var(--muted); line-height:1.5; }
+.drive-note { font-size:12px; color:#909878; }
+
+/* ────────── VS SECTION ────────── */
+.vs-section { background: var(--cream2); border-top: 1px solid var(--border); }
+.vs-inner { max-width:1100px; margin:0 auto; padding:64px 40px; }
+@media (max-width:700px) { .vs-inner { padding:48px 20px; } }
+.vs-wrap { overflow-x:auto; margin-bottom:12px; }
+.vs-table { width:100%; border-collapse:collapse; font-size:13px; min-width:500px; }
+.vs-table th { text-align:left; padding:10px 14px; border-bottom:2px solid var(--border); font-size:11px; font-weight:700; color:#8a6a20; text-transform:uppercase; letter-spacing:.04em; }
+.vs-table td { padding:11px 14px; border-bottom:1px solid var(--border); color: var(--muted); vertical-align:top; }
+.winner td { background:#f0f5ec; color: var(--ink); font-weight:500; }
+.winner td:first-child { border-left:3px solid var(--green-dark); }
+.ck { color:#1a6020; font-weight:700; }
+.vs-note { font-size:12px; color:#909878; font-style:italic; }
+
+/* ────────── FAQ ────────── */
+.faq-section { border-top: 1px solid var(--border); }
+.faq-inner { max-width:800px; margin:0 auto; padding:64px 40px; }
+@media (max-width:700px) { .faq-inner { padding:48px 20px; } }
+.faq-list { margin:24px 0 0; }
+.faq-item { border-bottom:1px solid var(--border); padding:18px 0; }
+.faq-item:last-child { border-bottom:none; }
+.faq-q { font-size:14px; font-weight:700; color: var(--ink); margin-bottom:8px; }
+.faq-a { font-size:13px; color: var(--muted); line-height:1.72; margin:0; }
+
+/* ────────── NETWORK ────────── */
+.network-section { background:#0f180f; border-top:1px solid #1a2e1a; }
+.net-inner { max-width:1100px; margin:0 auto; padding:72px 40px; }
+@media (max-width:700px) { .net-inner { padding:52px 20px; } }
+.network-grid { display:grid; grid-template-columns:repeat(4, 1fr); gap:14px; }
+@media (max-width:900px) { .network-grid { grid-template-columns:repeat(2, 1fr); } }
+@media (max-width:520px) { .network-grid { grid-template-columns:1fr; } }
+.net-card { display:flex; flex-direction:column; text-decoration:none; background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.08); border-radius:10px; overflow:hidden; transition:background .15s, border-color .15s; }
+.net-card:hover { background:rgba(255,255,255,.07); border-color:rgba(184,130,10,.4); }
+.net-card--gge  { border-top:3px solid #b8820a; background:rgba(184,130,10,.06); border-color:rgba(184,130,10,.4); }
+.net-card--mgts { border-top:3px solid #2a7ab8; border-color:rgba(42,122,184,.2); }
+.net-card--gths { border-top:3px solid #4a8a3a; border-color:rgba(74,138,58,.2); }
+.net-card--msg  { border-top:3px solid #b85a2a; border-color:rgba(184,90,42,.2); }
+.net-card--gge:hover  { background:rgba(184,130,10,.1); border-color:rgba(184,130,10,.6); }
+.net-card--mgts:hover { background:rgba(42,122,184,.07); border-color:rgba(42,122,184,.4); }
+.net-card--gths:hover { background:rgba(74,138,58,.07); border-color:rgba(74,138,58,.4); }
+.net-card--msg:hover  { background:rgba(184,90,42,.07); border-color:rgba(184,90,42,.4); }
+.nc-top { display:flex; justify-content:space-between; align-items:center; padding:14px 18px 0; margin-bottom:10px; }
+.nc-pill { font-size:8px; font-weight:800; letter-spacing:.12em; text-transform:uppercase; padding:3px 8px; border-radius:2px; }
+.nc-pill--gge  { background:rgba(184,130,10,.2); color:#b8820a; }
+.nc-pill--mgts { background:rgba(42,122,184,.2); color:#6ab0e8; }
+.nc-pill--gths { background:rgba(74,138,58,.2); color:#80c870; }
+.nc-pill--msg  { background:rgba(184,90,42,.2); color:#e8906a; }
+.nc-drive { font-size:10px; font-weight:700; color:rgba(245,240,232,.4); }
+.nc-brand { font-size:9px; font-weight:800; letter-spacing:.1em; text-transform:uppercase; color:rgba(245,240,232,.4); padding:0 18px; margin-bottom:2px; }
+.nc-dest { font-family:var(--serif); font-size:26px; font-weight:700; color:#f5f0e8; line-height:1.1; margin:0; padding:0 18px; }
+.nc-state { font-size:18px; font-weight:400; color:rgba(245,240,232,.5); }
+.nc-tagline { font-size:10px; color:rgba(245,240,232,.38); font-weight:600; letter-spacing:.06em; text-transform:uppercase; padding:0 18px; margin:6px 0 12px; }
+.nc-stats { display:grid; grid-template-columns:repeat(3,1fr); border-top:1px solid rgba(255,255,255,.07); border-bottom:1px solid rgba(255,255,255,.07); margin-bottom:14px; }
+.ns { display:flex; flex-direction:column; align-items:center; padding:10px 4px; }
+.ns + .ns { border-left:1px solid rgba(255,255,255,.07); }
+.ns-n { font-size:18px; font-weight:800; color:#b8820a; line-height:1.1; }
+.ns-l { font-size:9px; color:rgba(245,240,232,.38); text-transform:uppercase; letter-spacing:.06em; margin-top:1px; }
+.nc-list { list-style:none; margin:0; padding:0 18px; flex:1; display:flex; flex-direction:column; gap:5px; }
+.nc-list li { font-size:11.5px; color:rgba(245,240,232,.58); padding-left:14px; position:relative; line-height:1.4; }
+.nc-list li::before { content:'✓'; position:absolute; left:0; color:#b8820a; font-size:10px; top:1px; }
+.nc-best { font-size:11px; color:rgba(245,240,232,.38); line-height:1.5; padding:12px 18px 0; border-top:1px solid rgba(255,255,255,.06); margin-top:10px; }
+.nc-best strong { color:rgba(245,240,232,.65); font-weight:600; }
+.nc-cta { display:block; font-size:12px; font-weight:700; color:rgba(184,130,10,.9); padding:12px 18px 16px; }
+
+/* ────────── FINAL CTA ────────── */
+.final-cta { background: var(--green-dark); text-align:center; border-top:1px solid #142214; }
+.fcta-inner { max-width:640px; margin:0 auto; padding:72px 40px; }
+@media (max-width:700px) { .fcta-inner { padding:52px 20px; } }
+.fcta-title { font-family:var(--serif); font-size:clamp(28px,4vw,44px); font-weight:700; color:#fff; margin-bottom:14px; text-wrap:balance; }
+.fcta-sub { font-size:15px; color:rgba(245,240,232,.68); line-height:1.72; margin-bottom:28px; }
+.fcta-phone { margin-top:14px; font-size:13px; color:rgba(245,240,232,.4); }
+.fcta-phone a { color:rgba(184,130,10,.8); text-decoration:none; }
+.fcta-phone a:hover { color:#b8820a; }
+</style>
+
+<script>
+const wrap = document.getElementById('courseCarousel');
+if (wrap) {
+  const track = wrap.querySelector('.course-carousel');
+  const dots = wrap.querySelectorAll('.cc__dot');
+  const total = dots.length;
+  let cur = 0;
+
+  function go(i) {
+    cur = (i + total) % total;
+    track.scrollTo({ left: cur * track.offsetWidth, behavior: 'smooth' });
+    dots.forEach((d, idx) => d.classList.toggle('active', idx === cur));
+  }
+
+  document.getElementById('ccPrev')?.addEventListener('click', () => go(cur - 1));
+  document.getElementById('ccNext')?.addEventListener('click', () => go(cur + 1));
+  dots.forEach((d, i) => d.addEventListener('click', () => go(i)));
+
+  let sx = 0;
+  track.addEventListener('pointerdown', e => { sx = e.clientX; });
+  track.addEventListener('pointerup', e => {
+    const dx = e.clientX - sx;
+    if (Math.abs(dx) > 40) go(cur + (dx < 0 ? 1 : -1));
+  });
+
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        const i = +e.target.dataset.index;
+        if (!isNaN(i)) { cur = i; dots.forEach((d, idx) => d.classList.toggle('active', idx === i)); }
+      }
+    });
+  }, { root: track, threshold: 0.6 });
+  wrap.querySelectorAll('.cc').forEach(el => obs.observe(el));
+}
+</script>

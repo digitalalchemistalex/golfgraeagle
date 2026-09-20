@@ -1231,11 +1231,6 @@
       "permanent": true
     },
     {
-      "source": "/corporate/bay-area",
-      "destination": "/corporate/bay-area/",
-      "permanent": true
-    },
-    {
       "source": "/bachelor-party-golf/bay-area",
       "destination": "/bachelor-party-golf/bay-area/",
       "permanent": true
@@ -1243,6 +1238,16 @@
     {
       "source": "/bachelor-party-golf",
       "destination": "/bachelor-party-golf/",
+      "permanent": true
+    },
+    {
+      "source": "/corporate/bay-area",
+      "destination": "/bay-area-golf-trip/",
+      "permanent": true
+    },
+    {
+      "source": "/corporate/bay-area/",
+      "destination": "/bay-area-golf-trip/",
       "permanent": true
     }
   ],
