@@ -386,15 +386,19 @@ const allSchemas = [webPageSchema, serviceSchema, faqSchema, breadcrumbSchema];
     if(!carousel) return;
     let cur = 0;
     const total = dots.length;
+
     function go(n){
       cur = (n + total) % total;
       const card = carousel.querySelectorAll('.cc')[cur];
       if(card) card.scrollIntoView({behavior:'smooth', block:'nearest', inline:'center'});
       dots.forEach((d,i)=>d.classList.toggle('cc__dot--active', i===cur));
     }
+
     prev && prev.addEventListener('click',()=>go(cur-1));
     next && next.addEventListener('click',()=>go(cur+1));
     dots.forEach((d,i)=>d.addEventListener('click',()=>go(i)));
+
+    // IntersectionObserver keeps dots in sync with scroll position (touch + mouse drag)
     const obs = new IntersectionObserver(entries=>{
       entries.forEach(e=>{
         if(e.isIntersecting){
@@ -404,6 +408,40 @@ const allSchemas = [webPageSchema, serviceSchema, faqSchema, breadcrumbSchema];
       });
     },{root:carousel,threshold:0.6});
     carousel.querySelectorAll('.cc').forEach(c=>obs.observe(c));
+
+    // Mouse drag support — click-drag like touch scroll
+    let isDragging = false, startX = 0, scrollLeft = 0, hasDragged = false;
+    carousel.style.cursor = 'grab';
+
+    carousel.addEventListener('mousedown', e=>{
+      isDragging = true; hasDragged = false;
+      startX = e.pageX - carousel.offsetLeft;
+      scrollLeft = carousel.scrollLeft;
+      carousel.style.cursor = 'grabbing';
+      carousel.style.userSelect = 'none';
+    });
+
+    carousel.addEventListener('mousemove', e=>{
+      if(!isDragging) return;
+      e.preventDefault();
+      const x = e.pageX - carousel.offsetLeft;
+      const walk = (x - startX) * 1.5;
+      if(Math.abs(walk) > 5) hasDragged = true;
+      carousel.scrollLeft = scrollLeft - walk;
+    });
+
+    const endDrag = ()=>{
+      isDragging = false;
+      carousel.style.cursor = 'grab';
+      carousel.style.userSelect = '';
+    };
+    carousel.addEventListener('mouseup', endDrag);
+    carousel.addEventListener('mouseleave', endDrag);
+
+    // Prevent link clicks firing when user dragged
+    carousel.addEventListener('click', e=>{
+      if(hasDragged){ e.preventDefault(); hasDragged = false; }
+    }, true);
   })();
   </script>
 
