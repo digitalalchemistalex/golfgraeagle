@@ -503,7 +503,7 @@ const buildSchema = () => {
             { '@type': 'Question', name: `What is the slope rating at ${item.name}?`, acceptedAnswer: { '@type': 'Answer', text: `${item.name} has a slope rating of ${item.slope} and a course rating of ${item.rating}, playing ${item.yards?.toLocaleString()} yards from the back tees at par ${item.par}.` } },
             { '@type': 'Question', name: `Who designed ${item.name}?`, acceptedAnswer: { '@type': 'Answer', text: `${item.name} was designed by ${item.designer} and opened in ${item.year}.` } },
           ],
-,
+      },
       {
         '@type': 'WebPage',
         '@id': `${pageUrl}#webpage`,
