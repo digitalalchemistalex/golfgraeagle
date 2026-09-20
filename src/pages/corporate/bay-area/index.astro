@@ -177,8 +177,8 @@ const faqSchema = {
 const webPageSchema = {
   '@context': 'https://schema.org',
   '@type': 'WebPage',
-  name: 'Bay Area Corporate Golf Retreat — Graeagle, CA (3.5h from SF)',
-  description: 'Corporate golf retreats for Bay Area companies, 3.5 hours from San Francisco. Golf Digest Top 100 Grizzly Ranch + Frank Lloyd Wright Nakoma. Groups 8–400. GolfGraeagle.com.',
+  name: 'Bay Area Corporate Golf Retreat — Graeagle 3.5h from SF | GolfGraeagle.com',
+  description: 'Bay Area and Silicon Valley corporate golf retreats, 3.5 hours from San Francisco. Golf Digest Top 100 Grizzly Ranch, Nakoma (Frank Lloyd Wright), and 3 more courses. Groups 8–400. One contract, one deposit. GolfGraeagle.com.',
   url: PAGE_URL,
   speakable: { '@type': 'SpeakableSpecification', cssSelector: ['.speakable-intro', 'h1'] },
   breadcrumb: breadcrumbSchema,
@@ -188,8 +188,8 @@ const allSchemas = [webPageSchema, serviceSchema, faqSchema, breadcrumbSchema];
 ---
 
 <Base
-  title="Bay Area Corporate Golf Retreat — Graeagle, CA 3.5h from SF | GolfGraeagle.com"
-  description="Corporate golf retreats for Bay Area companies. Graeagle is 3.5 hours from San Francisco — Golf Digest Top 100 Grizzly Ranch, Nakoma (Frank Lloyd Wright clubhouse), and 3 more courses. Groups 8–400. One contract. Free proposal."
+  title="Bay Area Corporate Golf Retreat — Graeagle 3.5h from SF | GolfGraeagle.com"
+  description="Bay Area corporate golf retreat 3.5h from San Francisco. Golf Digest Top 100 Grizzly Ranch + Frank Lloyd Wright Nakoma. Groups 8–400. One contract. Free 24h proposal."
   canonical={PAGE_URL}
   ogImage="/wp-images/grizzly-ranch-hero.webp"
   ogType="website"
@@ -200,14 +200,14 @@ const allSchemas = [webPageSchema, serviceSchema, faqSchema, breadcrumbSchema];
   <!-- HERO -->
   <section class="hero" aria-labelledby="hero-h1">
     <div class="hero__inner">
-      <p class="eyebrow-light">Bay Area Corporate Golf · 3.5 Hours from San Francisco</p>
+      <p class="eyebrow-light">Bay Area &amp; Silicon Valley Corporate Golf · 3.5h from San Francisco</p>
       <h1 id="hero-h1" class="hero__h1 speakable-intro">
-        Corporate Golf Retreat<br>3.5 Hours from<br>San Francisco
+        Bay Area Corporate<br>Golf Retreat —<br>3.5h from SF
       </h1>
       <p class="hero__sub speakable-intro">
-        Golf Digest Top 100. Frank Lloyd Wright clubhouse. No flights.
-        No airports. Your Bay Area group drives east on I-80 and plays
-        the best course within a day's reach — under one contract.
+        Golf Digest Top 100 Grizzly Ranch. The only Frank Lloyd Wright golf clubhouse in existence.
+        Your group drives east on I-80 — no flights, no airports, no weekend lost to travel.
+        One operator handles everything. One contract. One deposit. You play.
       </p>
       <div class="hero__btns">
         <a href="/request-a-quote/?from=corporate-bay-area&placement=hero" class="btn-gold">Request Group Proposal</a>
@@ -225,6 +225,21 @@ const allSchemas = [webPageSchema, serviceSchema, faqSchema, breadcrumbSchema];
       <div class="ti"><strong>Groups 8–400</strong></div>
       <div class="ti"><strong>No flights needed</strong></div>
       <div class="ti"><strong>(888) 586-1157</strong></div>
+    </div>
+  </div>
+
+  <!-- AEO SPEAKABLE INTRO — visible on page, targeted for AI Overview extraction -->
+  <div class="aeo-intro" aria-label="About this page">
+    <div class="aeo-intro__inner">
+      <p class="speakable-intro">
+        GolfGraeagle.com is the corporate golf retreat operator for Bay Area and Silicon Valley companies.
+        Graeagle, California is 3.5 hours from San Francisco via I-80 East — no flights, no airports, no TSA lines.
+        The destination has five championship courses including Golf Digest Top 100 Grizzly Ranch and the Nakoma Dragon,
+        the only golf course with a Frank Lloyd Wright–designed clubhouse.
+        GolfGraeagle.com manages executive golf outings and corporate golf retreats for groups of 8 to 400
+        under one contract and one deposit, powered by TripsCaddie group management software.
+        Rated 4.8 out of 5 from 672 verified group reviews.
+      </p>
     </div>
   </div>
 
@@ -259,7 +274,7 @@ const allSchemas = [webPageSchema, serviceSchema, faqSchema, breadcrumbSchema];
   <section class="vs-section" aria-labelledby="vs-h2">
     <div class="vs-section__inner">
       <p class="eyebrow">Why Graeagle vs. Alternatives</p>
-      <h2 id="vs-h2" class="section-title">The Bay Area Golf Retreat<br>Comparison Your CFO Wants</h2>
+      <h2 id="vs-h2" class="section-title">Why Serious Golfers Choose<br>Graeagle Over Tahoe or Pebble</h2>
       <div class="vs-table-wrap">
         <table class="vs-table">
           <thead>
@@ -491,12 +506,13 @@ const allSchemas = [webPageSchema, serviceSchema, faqSchema, breadcrumbSchema];
   <section class="caddie-section" aria-labelledby="caddie-h2">
     <div class="caddie-section__inner">
       <p class="eyebrow eyebrow--light">Group Management</p>
-      <h2 id="caddie-h2" class="section-title section-title--light">No Spreadsheets. No Venmo Requests.<br>No Group Texts.</h2>
+      <h2 id="caddie-h2" class="section-title section-title--light">Your Group Shows Up to Play.<br>We Handle Everything Else.</h2>
       <p class="section-body section-body--light">
-        Bay Area companies run on systems. TripsCaddie is ours. Each attendee
-        self-registers, pays their share, and receives their tee time automatically.
-        Your EA sets it up once. We have managed 19+ Graeagle group programs
-        this way — no other operator in the region has this.
+        TripsCaddie is our proprietary group management platform. Attendees self-register,
+        pay their share, and receive tee times automatically. Your event coordinator
+        sets it up once and is done. Every tee time is confirmed before anyone boards their car
+        in the Bay Area. We have managed 19+ Graeagle group programs — zero other regional
+        operators run this level of logistics.
       </p>
       <div class="caddie-proof">
         <div class="cp-item"><span class="cp-n">19+</span><span class="cp-l">Managed Graeagle Group Programs</span></div>
@@ -619,8 +635,8 @@ const allSchemas = [webPageSchema, serviceSchema, faqSchema, breadcrumbSchema];
   <!-- FINAL CTA -->
   <section class="final-cta" aria-labelledby="cta-h2">
     <div class="final-cta__inner">
-      <h2 id="cta-h2" class="final-cta__title">Plan Your Bay Area Group's Next Retreat</h2>
-      <p class="final-cta__sub">Tell us your dates, group size, and home city. We'll build a custom itinerary with confirmed tee times within 24 hours.</p>
+      <h2 id="cta-h2" class="final-cta__title">Your Bay Area Group Deserves a Real Golf Trip</h2>
+      <p class="final-cta__sub">Tell us your dates, group size, and which courses interest you. We'll send a confirmed itinerary within 24 hours — tee times, lodging, dining. Nothing to coordinate on your end.</p>
       <a href="/request-a-quote/?from=corporate-bay-area&placement=footer-cta" class="btn-gold btn-gold--lg">Request a Free Proposal</a>
       <p class="final-cta__phone">Or call <a href="tel:+18885861157">(888) 586-1157</a> — we answer.</p>
     </div>
@@ -816,6 +832,12 @@ const allSchemas = [webPageSchema, serviceSchema, faqSchema, breadcrumbSchema];
 .final-cta__phone { margin-top: 14px; font-size: 13px; color: rgba(245,240,232,.45); }
 .final-cta__phone a { color: rgba(184,130,10,.8); text-decoration: none; }
 .final-cta__phone a:hover { color: #b8820a; }
+
+/* AEO intro — visible and indexable, feeds AI overviews */
+.aeo-intro { background: #f5f0e8; border-bottom: 1px solid #d8ccb0; }
+.aeo-intro__inner { max-width: 900px; margin: 0 auto; padding: 18px 40px; }
+@media (max-width: 700px) { .aeo-intro__inner { padding: 14px 20px; } }
+.aeo-intro p { font-size: 13px; color: #606848; line-height: 1.75; margin: 0; }
 
 /* course card enrichments */
 .cc__location { font-size: 11px; color: #8a7060; margin-bottom: 4px; }
