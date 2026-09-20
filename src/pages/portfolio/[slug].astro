@@ -503,6 +503,16 @@ const buildSchema = () => {
             { '@type': 'Question', name: `What is the slope rating at ${item.name}?`, acceptedAnswer: { '@type': 'Answer', text: `${item.name} has a slope rating of ${item.slope} and a course rating of ${item.rating}, playing ${item.yards?.toLocaleString()} yards from the back tees at par ${item.par}.` } },
             { '@type': 'Question', name: `Who designed ${item.name}?`, acceptedAnswer: { '@type': 'Answer', text: `${item.name} was designed by ${item.designer} and opened in ${item.year}.` } },
           ],
+,
+      {
+        '@type': 'WebPage',
+        '@id': `${pageUrl}#webpage`,
+        'name': `${item.name} — Graeagle Golf Packages`,
+        'url': pageUrl,
+        'speakable': {
+          '@type': 'SpeakableSpecification',
+          'cssSelector': ['.speakable', 'h1', '.speakable aeo-answer'],
+        },
       },
     ];
   }
@@ -577,6 +587,17 @@ const buildSchema = () => {
             { '@type': 'Question', name: `Does ${item.name} offer stay and play golf packages?`, acceptedAnswer: { '@type': 'Answer', text: `GolfGraeagle.com offers stay-and-play packages at ${item.name} available for groups of all sizes. Packages include lodging, tee times, and full trip coordination. Request a free quote at golfgraeagle.com/request-a-quote.` } },
           ],
       },
+,
+      {
+        '@type': 'WebPage',
+        '@id': `${pageUrl}#webpage`,
+        'name': `${item.name} — Graeagle Golf Packages`,
+        'url': pageUrl,
+        'speakable': {
+          '@type': 'SpeakableSpecification',
+          'cssSelector': ['.speakable', 'h1', '.speakable aeo-answer'],
+        },
+      },
     ];
   }
 
@@ -624,6 +645,17 @@ const buildSchema = () => {
           { '@type': 'Question', name: `Where is ${item.name} located?`, acceptedAnswer: { '@type': 'Answer', text: `${item.name} is located at ${item.location || 'near Graeagle, California'}, approximately 5 minutes from the main Graeagle golf courses.` } },
           { '@type': 'Question', name: `What hours is ${item.name} open?`, acceptedAnswer: { '@type': 'Answer', text: item.hours ? `${item.name} is open: ${item.hours}. Hours may vary seasonally — call ahead to confirm.` : `${item.name} operates seasonally in Graeagle. Call ahead or check their website for current hours.` } },
         ],
+      },
+,
+      {
+        '@type': 'WebPage',
+        '@id': `${pageUrl}#webpage`,
+        'name': `${item.name} — Graeagle Golf Packages`,
+        'url': pageUrl,
+        'speakable': {
+          '@type': 'SpeakableSpecification',
+          'cssSelector': ['.speakable', 'h1', '.speakable aeo-answer'],
+        },
       },
     ];
   }

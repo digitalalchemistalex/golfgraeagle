@@ -174,13 +174,26 @@ const homeFaqSchema = {
 const courseAccolades = {'graeagle-meadows':'The Valley Classic','whitehawk-ranch':'Top 20 California','plumas-pines':'Top 5 Best Value','grizzly-ranch':'Golf Digest Top 100','nakoma-dragon':'Golf World Top 75'};
 const courseMustPlay = {'whitehawk-ranch':true,'grizzly-ranch':true,'nakoma-dragon':true};
 const lodgingMeta = {'townhomes-at-plumas-pines':{badge:'Great for Large Groups',detail:'Full kitchens · On the course · 2–4 BR units'},'river-pines-resort':{badge:'Great for Groups',detail:'On-site dining · Pool & hot tub · 40+ years family-owned'},'chalet-view-lodge':{badge:'Great Amenities',detail:'Spa · Brewery on-site · 9-hole exec course'},'inn-at-nakoma':{badge:'Most Unique',detail:'Frank Lloyd Wright lodge · Walk to The Dragon'}};
+const webPageSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  '@id': 'https://golfgraeagle.com/#webpage',
+  'name': 'Graeagle Golf Packages — 5 Courses, Custom Itineraries, Tee Times + Lodging',
+  'url': 'https://golfgraeagle.com/',
+  'description': 'Graeagle golf trip specialists since 2004. Stay-and-play packages from $299/golfer across 5 Sierra Nevada courses. Groups of 4–200.',
+  'speakable': {
+    '@type': 'SpeakableSpecification',
+    'cssSelector': ['.speakable', 'h1'],
+  },
+};
+
 const lodgingSlugMap: Record<string,string> = {'river-pines-resort':'river-pines-resort-graeagle-ca','chalet-view-lodge':'chalet-view-lodge-graeagle-ca','inn-at-nakoma':'the-inn-at-nakoma-clio-ca','townhomes-at-plumas-pines':'the-townhomes-at-plumas-pines'};
 ---
 <Base
   title="Graeagle Golf Packages — Tee Times, Stay & Play | GolfGraeagle.com"
   description="Graeagle golf packages from $299/golfer — stay &amp; play, guaranteed tee times at all 5 Sierra Nevada courses. Groups of 4–200. Local experts since 2004. Free quote in 24 hours."
   preloadImage={courses[0].hero}
-  schema={[serviceSchema, golfSeasonEventSchema, courseListSchema, homeFaqSchema, howToSchema, breadcrumbSchema]}
+  schema={[webPageSchema, serviceSchema, golfSeasonEventSchema, courseListSchema, homeFaqSchema, howToSchema, breadcrumbSchema]}
   bodyClass="light-page"
 >
 <Nav />
