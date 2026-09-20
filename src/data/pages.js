@@ -15,6 +15,7 @@ export const landingPages = [
   { slug: '/corporate-golf-outing-graeagle/', label: 'Corporate Golf Outings',       desc: 'Corporate golf outings in Graeagle — group tee times, catering, lodging for 10–200+',        priority: '0.9', changefreq: 'monthly' },
   { slug: '/corporate/', label: 'Corporate Golf Graeagle', desc: 'Executive and corporate golf retreat operator for Graeagle, CA. Golf Digest Top 100 Grizzly Ranch, Nakoma (Frank Lloyd Wright), and 3 more courses. Groups 8–400. One contract. 3.5h from Bay Area.', priority: '0.9', changefreq: 'monthly' },
   { slug: '/corporate/bay-area/', label: 'Bay Area Corporate Golf Graeagle', desc: 'Corporate golf retreats for Bay Area companies. Graeagle is 3.5 hours from San Francisco — Golf Digest Top 100 Grizzly Ranch, Nakoma (Frank Lloyd Wright), and 3 more courses. Groups 8–400. One contract. Powered by TripsCaddie.', priority: '0.8', changefreq: 'monthly' },
+  { slug: '/bay-area-golf-trip/', label: 'Bay Area Golf Trip — Graeagle', desc: 'Golf trips from the Bay Area to Graeagle, CA — 3.5h from SF on I-80. Golf Digest Top 100 Grizzly Ranch, Frank Lloyd Wright Nakoma Dragon. Buddy trips and annual guys golf trips. Groups 8–20. One contract via TripsCaddie. Free itinerary in 24h.', priority: '0.9', changefreq: 'monthly' },
   { slug: '/graeagle-golf-weekend-packages/', label: 'Weekend Golf Packages',        desc: 'Weekend golf packages in Graeagle — 2 nights, 2–3 rounds from $299/golfer',                   priority: '0.9', changefreq: 'monthly' },
 
   // Destination / hub pages
