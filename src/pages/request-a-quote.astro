@@ -706,19 +706,57 @@ form.addEventListener('focusin', () => { if (!formStartedAt) formStartedAt = Dat
   const nights = p.get('nights') || '';
   const rounds = p.get('rounds') || '';
   const lodgingRaw = p.get('lodging') || '';
-  const coursesRaw = p.get('courses') || ''
+  const coursesRaw = p.get('courses') || '';
   const vibe = p.get('vibe') || '';
   const budget = p.get('budget') || '';
   const groupType = p.get('groupType') || '';
+  const pageType = p.get('type') || '';   // bachelor | corporate | weekend
+  const fromPage = p.get('from') || '';   // e.g. bachelor-bay-area
+  const placement = p.get('placement') || '';
 
-  // Pre-fill groupType select from URL param
-  if (groupType) {
-    const gtSelect = $id('group-type-select');
-    if (gtSelect) gtSelect.value = groupType;
+  // ── Context banner: show what trip type we're building ──
+  const bannerMap = {
+    'bachelor':  { emoji: '🏌️', title: 'Building your bachelor party golf itinerary', sub: "Tell us your group size and dates — we'll send a custom 3-night lineup within 24 hours." },
+    'corporate': { emoji: '📋', title: 'Building your corporate golf retreat proposal', sub: "Tell us your group size and dates — we'll send a custom package with tee times, lodging, and pricing." },
+    'weekend':   { emoji: '⛳', title: 'Building your weekend golf trip itinerary', sub: "Tell us your group size and dates — we'll put together a custom Graeagle package." },
+  };
+  const banner = bannerMap[pageType];
+  if (banner) {
+    const form = document.getElementById('qf');
+    const el = document.createElement('div');
+    el.style.cssText = 'background:rgba(184,130,10,.08);border:1px solid rgba(184,130,10,.3);border-radius:8px;padding:14px 18px;margin-bottom:20px;display:flex;gap:12px;align-items:flex-start;';
+    el.innerHTML = \`<span style="font-size:22px;line-height:1">\${banner.emoji}</span><div><div style="font-size:14px;font-weight:700;color:#1a2e1a;margin-bottom:2px">\${banner.title}</div><div style="font-size:12px;color:#505838;line-height:1.5">\${banner.sub}</div></div>\`;
+    form.insertBefore(el, form.firstChild);
   }
 
+  // ── Map type= param to groupType select value ──
+  const typeToGroupType = { 'bachelor': 'bachelor-party', 'corporate': 'corporate', 'weekend': 'weekend-buddies' };
+  const resolvedGroupType = groupType || (pageType ? typeToGroupType[pageType] : '');
+
+  // Pre-fill groupType select
+  if (resolvedGroupType) {
+    const gtSelect = $id('group-type-select');
+    if (gtSelect) gtSelect.value = resolvedGroupType;
+  }
+
+  // ── Pre-select "Is this a special occasion?" for bachelor ──
+  if (pageType === 'bachelor') {
+    // No bachelor radio in specialFBEvent — leave as-is, the group type already signals it
+  }
+
+  // ── Pre-fill special requests placeholder for corporate ──
+  if (pageType === 'corporate') {
+    const sr = document.querySelector('[name="specialRequests"]');
+    if (sr && !sr.value) sr.placeholder = 'Company name, preferred tee times, corporate invoice needed, dietary requirements, AV/event space…';
+  }
+
+  // Store from/placement for submission
+  window._gge_fromPage   = fromPage;
+  window._gge_placement  = placement;
+  window._gge_pageType   = pageType;
+
   const isTripRef = ref === 'trips-caddie' || ref === 'trips-page';
-  if (!isTripRef && !tripName && !partySize && !groupType) return; // nothing to do
+  if (!isTripRef && !tripName && !partySize && !resolvedGroupType && !pageType && !fromPage) return; // nothing to do
 
   // Group size
   if (partySize) {
@@ -1013,11 +1051,13 @@ form.addEventListener('submit', async e => {
   data.destination  = 'graeagle';
   data.source       = 'golfgraeagle.com';
   data.submittedAt  = new Date().toISOString();
-  data.groupType    = new URLSearchParams(window.location.search).get('groupType') || null;
   const _usp = new URLSearchParams(window.location.search);
+  data.groupType    = _usp.get('groupType') || (window._gge_pageType ? {'bachelor':'bachelor-party','corporate':'corporate','weekend':'weekend-buddies'}[window._gge_pageType] : null);
   data.utmSource   = _usp.get('utm_source')   || null;
   data.utmMedium   = _usp.get('utm_medium')   || null;
   data.utmCampaign = _usp.get('utm_campaign') || null;
+  data.utmContent  = window._gge_fromPage || _usp.get('from') || null;
+  data.desiredRegion = 'graeagle';
   data.formTimeSec = formStartedAt ? Math.round((Date.now() - formStartedAt) / 1000) : null;
   if (data.totalRounds === 'other' && data.totalRoundsCustom) data.totalRounds = data.totalRoundsCustom;
 
