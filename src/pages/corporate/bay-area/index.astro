@@ -1,0 +1,495 @@
+---
+export const prerender = true;
+import Base from '../../../layouts/Base.astro';
+import Nav from '../../../components/Nav.astro';
+import Footer from '../../../components/Footer.astro';
+
+const PAGE_URL = 'https://golfgraeagle.com/corporate/bay-area/';
+
+const courses = [
+  { slug: 'grizzly-ranch',    name: 'Grizzly Ranch Golf Club',   par: 72, yds: '7,411', slope: 140, accolade: 'Golf Digest Top 100 — closest to the Bay Area', portfolioSlug: 'grizzly-ranch-golf-packages',    badge: 'TOP 100' },
+  { slug: 'nakoma-dragon',    name: 'Nakoma — The Dragon',       par: 72, yds: '7,015', slope: 147, accolade: 'Frank Lloyd Wright clubhouse · Golf World Top 75', portfolioSlug: 'nakoma-dragon-golf-packages',    badge: 'FLW CLUBHOUSE' },
+  { slug: 'whitehawk-ranch',  name: 'Whitehawk Ranch',           par: 71, yds: '6,983', slope: 132, accolade: 'Top 20 California', portfolioSlug: 'whitehawk-ranch-golf-packages',  badge: 'TOP 20 CA' },
+  { slug: 'plumas-pines',     name: 'Plumas Pines Golf Resort',  par: 72, yds: '6,504', slope: 132, accolade: 'Top 5 Best Value Sierra Nevada', portfolioSlug: 'plumas-pines-golf-packages',     badge: 'BEST VALUE' },
+  { slug: 'graeagle-meadows', name: 'Graeagle Meadows',          par: 72, yds: '6,759', slope: 120, accolade: 'Est. 1968 · All Skill Levels', portfolioSlug: 'graeagle-meadows-golf-packages', badge: 'ALL LEVELS' },
+];
+
+const cities = [
+  { name: 'San Francisco', drive: '3.5h', via: 'I-80 E → Hwy 89 N', note: 'Leave FiDi at 6am, tee off at 10am' },
+  { name: 'San Jose',      drive: '3.5h', via: 'I-680 N → I-80 E → Hwy 89 N', note: 'South Bay corridor — same drive time as SF' },
+  { name: 'Oakland',       drive: '3.5h', via: 'I-80 E → Hwy 89 N', note: 'Bay Bridge → straight shot east' },
+  { name: 'Palo Alto',     drive: '3.75h', via: 'US-101 N → I-80 E → Hwy 89 N', note: 'Stanford / Sand Hill Road companies' },
+  { name: 'Sacramento',    drive: '2h',   via: 'I-80 E → Hwy 89 N', note: 'Closest major market — day-trip possible' },
+];
+
+const faqs = [
+  {
+    q: 'How far is Graeagle from San Francisco for a corporate golf retreat?',
+    a: 'Graeagle is approximately 3.5 hours from San Francisco via I-80 East to Highway 89 North. No flights, no airports, no TSA. Your group drives up together Thursday evening or Friday morning, plays two rounds over the weekend, and returns Sunday. It is the closest Golf Digest Top 100 course to the Bay Area.',
+  },
+  {
+    q: 'What makes Graeagle the best corporate golf destination for Bay Area companies?',
+    a: 'Graeagle has five championship courses including Golf Digest Top 100 Grizzly Ranch and the Nakoma Dragon — whose clubhouse was designed by Frank Lloyd Wright. Green fees are 40–60% lower than comparable Tahoe courses, there is no city traffic, and the altitude (4,400 ft) gives every golfer an extra 10–15 yards of carry. One operator handles everything under one contract.',
+  },
+  {
+    q: 'Can we book Grizzly Ranch for a private corporate group from the Bay Area?',
+    a: 'Yes. Grizzly Ranch is not accessible through standard online booking channels. GolfGraeagle.com holds a direct operator relationship and can secure priority tee times for corporate groups. This is one of the main reasons Bay Area companies use us — Grizzly Ranch cannot be booked on GolfNow or Tee Off.',
+  },
+  {
+    q: 'What is the typical itinerary for a Bay Area corporate golf trip to Graeagle?',
+    a: 'Most Bay Area groups arrive Thursday evening and stay at The Inn at Nakoma or Townhomes at Plumas Pines. Friday: Grizzly Ranch (Golf Digest Top 100). Saturday: Nakoma — The Dragon, dinner at Fifty44 Restaurant. Sunday: Whitehawk Ranch, depart by 3pm, back in the Bay Area by 7pm. Custom itineraries available for 2-night or 4-night programs.',
+  },
+  {
+    q: 'How does GolfGraeagle.com manage a corporate group from the Bay Area?',
+    a: 'Through TripsCaddie, our proprietary group management portal. Each attendee receives a personal invitation, registers themselves, pays their share, and receives tee times and itinerary automatically. Your EA or event coordinator sets it up once. We have managed 19+ Graeagle group programs this way — no spreadsheets, no payment chasing, no group texts.',
+  },
+  {
+    q: 'Is Graeagle better than Tahoe for a Bay Area corporate golf trip?',
+    a: 'For most corporate groups, yes. Tahoe courses are 5–6 hours from the South Bay, green fees are 40–60% higher, and tee times at top courses are restricted or unavailable to groups. Graeagle is 3.5 hours from San Francisco, has a Golf Digest Top 100 course (Grizzly Ranch) and a Frank Lloyd Wright clubhouse (Nakoma), and GolfGraeagle.com handles everything under one contract.',
+  },
+];
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://golfgraeagle.com/' },
+    { '@type': 'ListItem', position: 2, name: 'Corporate Golf Graeagle', item: 'https://golfgraeagle.com/corporate/' },
+    { '@type': 'ListItem', position: 3, name: 'Bay Area Corporate Golf', item: PAGE_URL },
+  ],
+};
+
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': ['Service', 'Product'],
+  name: 'Bay Area Corporate Golf Retreat — Graeagle, California',
+  description: 'Corporate and executive golf retreats for Bay Area companies. Graeagle is 3.5 hours from San Francisco — Golf Digest Top 100 Grizzly Ranch, Nakoma (Frank Lloyd Wright), and 3 more courses. One contract, one deposit. Groups 8–400. Powered by TripsCaddie.',
+  provider: { '@id': 'https://golfgraeagle.com/#organization' },
+  serviceType: 'Corporate Golf Event Planning',
+  areaServed: [
+    { '@type': 'City', name: 'San Francisco', containedInPlace: { '@type': 'State', name: 'California' } },
+    { '@type': 'City', name: 'San Jose',      containedInPlace: { '@type': 'State', name: 'California' } },
+    { '@type': 'City', name: 'Oakland',       containedInPlace: { '@type': 'State', name: 'California' } },
+    { '@type': 'City', name: 'Palo Alto',     containedInPlace: { '@type': 'State', name: 'California' } },
+    { '@type': 'Place', name: 'San Francisco Bay Area, California' },
+    { '@type': 'Place', name: 'Silicon Valley, California' },
+  ],
+  url: PAGE_URL,
+  brand: { '@type': 'Brand', name: 'GolfGraeagle.com' },
+  aggregateRating: {
+    '@type': 'AggregateRating',
+    ratingValue: 4.8, bestRating: 5, worstRating: 1, ratingCount: 672,
+  },
+  offers: {
+    '@type': 'Offer',
+    name: 'Bay Area Corporate Golf Retreat — Custom Quote',
+    priceCurrency: 'USD',
+    availability: 'https://schema.org/InStock',
+    url: 'https://golfgraeagle.com/request-a-quote/',
+  },
+};
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map(f => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+
+const webPageSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  name: 'Bay Area Corporate Golf Retreat — Graeagle, CA (3.5h from SF)',
+  description: 'Corporate golf retreats for Bay Area companies, 3.5 hours from San Francisco. Golf Digest Top 100 Grizzly Ranch + Frank Lloyd Wright Nakoma. Groups 8–400. GolfGraeagle.com.',
+  url: PAGE_URL,
+  speakable: { '@type': 'SpeakableSpecification', cssSelector: ['.speakable-intro', 'h1'] },
+  breadcrumb: breadcrumbSchema,
+};
+
+const allSchemas = [webPageSchema, serviceSchema, faqSchema, breadcrumbSchema];
+---
+
+<Base
+  title="Bay Area Corporate Golf Retreat — Graeagle, CA 3.5h from SF | GolfGraeagle.com"
+  description="Corporate golf retreats for Bay Area companies. Graeagle is 3.5 hours from San Francisco — Golf Digest Top 100 Grizzly Ranch, Nakoma (Frank Lloyd Wright clubhouse), and 3 more courses. Groups 8–400. One contract. Free proposal."
+  canonical={PAGE_URL}
+  ogImage="/wp-images/grizzly-ranch-hero.webp"
+  ogType="website"
+  schema={allSchemas}
+>
+  <Nav />
+
+  <!-- HERO -->
+  <section class="hero" aria-labelledby="hero-h1">
+    <div class="hero__inner">
+      <p class="eyebrow-light">Bay Area Corporate Golf · 3.5 Hours from San Francisco</p>
+      <h1 id="hero-h1" class="hero__h1 speakable-intro">
+        Corporate Golf Retreat<br>3.5 Hours from<br>San Francisco
+      </h1>
+      <p class="hero__sub speakable-intro">
+        Golf Digest Top 100. Frank Lloyd Wright clubhouse. No flights.
+        No airports. Your Bay Area group drives east on I-80 and plays
+        the best course within a day's reach — under one contract.
+      </p>
+      <div class="hero__btns">
+        <a href="/request-a-quote/?from=corporate-bay-area&placement=hero" class="btn-gold">Request Group Proposal</a>
+        <a href="#drive-times" class="btn-ghost">Drive Times from Your City</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRUST BAR -->
+  <div class="trust-bar">
+    <div class="trust-bar__inner">
+      <div class="ti"><strong>3.5h from SF</strong><span>I-80 E → Hwy 89 N</span></div>
+      <div class="ti"><strong>Golf Digest Top 100</strong><span>Grizzly Ranch</span></div>
+      <div class="ti"><strong>★ 4.8 / 5</strong><span>672 reviews</span></div>
+      <div class="ti"><strong>Groups 8–400</strong></div>
+      <div class="ti"><strong>No flights needed</strong></div>
+      <div class="ti"><strong>(888) 586-1157</strong></div>
+    </div>
+  </div>
+
+  <!-- DRIVE TIMES -->
+  <section class="drive-section" id="drive-times" aria-labelledby="drive-h2">
+    <div class="drive-section__inner">
+      <p class="eyebrow">Drive Times</p>
+      <h2 id="drive-h2" class="section-title">No Flights. No Airports.<br>Just Drive East.</h2>
+      <p class="section-body">
+        Graeagle sits in Plumas County at 4,400 ft elevation — a straight shot
+        east on I-80, then north on Highway 89. Most Bay Area groups leave Thursday
+        evening or early Friday and tee off by 10am.
+      </p>
+      <div class="drive-grid">
+        {cities.map(c => (
+          <div class="drive-card">
+            <div class="drive-card__city">{c.name}</div>
+            <div class="drive-card__time">{c.drive}</div>
+            <div class="drive-card__via">{c.via}</div>
+            <div class="drive-card__note">{c.note}</div>
+          </div>
+        ))}
+      </div>
+      <p class="drive-note">
+        All drive times are approximate via Google Maps in normal traffic conditions.
+        Thursday evening departures avoid Friday morning Bay Area congestion entirely.
+      </p>
+    </div>
+  </section>
+
+  <!-- VS ALTERNATIVES -->
+  <section class="vs-section" aria-labelledby="vs-h2">
+    <div class="vs-section__inner">
+      <p class="eyebrow">Why Graeagle vs. Alternatives</p>
+      <h2 id="vs-h2" class="section-title">The Bay Area Golf Retreat<br>Comparison Your CFO Wants</h2>
+      <div class="vs-table-wrap">
+        <table class="vs-table">
+          <thead>
+            <tr>
+              <th>Destination</th>
+              <th>Drive from SF</th>
+              <th>Top Course</th>
+              <th>Green Fee (top course)</th>
+              <th>One Operator?</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="vs-row--winner">
+              <td><strong>Graeagle</strong></td>
+              <td>3.5h</td>
+              <td>Grizzly Ranch (Golf Digest Top 100)</td>
+              <td>$120–$180</td>
+              <td><span class="check">✓ GolfGraeagle.com</span></td>
+            </tr>
+            <tr>
+              <td>Monterey / Pebble Beach</td>
+              <td>2h</td>
+              <td>Pebble Beach Golf Links®</td>
+              <td>$595–$625</td>
+              <td>Fragmented</td>
+            </tr>
+            <tr>
+              <td>North Lake Tahoe / Truckee</td>
+              <td>3.5h</td>
+              <td>Old Greenwood (Tom Fazio)</td>
+              <td>$200–$275</td>
+              <td>Fragmented</td>
+            </tr>
+            <tr>
+              <td>South Lake Tahoe</td>
+              <td>4–5h from South Bay</td>
+              <td>Edgewood Tahoe</td>
+              <td>$265–$350</td>
+              <td>Fragmented</td>
+            </tr>
+            <tr>
+              <td>Napa / Sonoma</td>
+              <td>1.5h</td>
+              <td>No championship course</td>
+              <td>—</td>
+              <td>—</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="vs-note">Green fees are approximate public/group rates for illustrative comparison. Graeagle rates vary by course and season.</p>
+    </div>
+  </section>
+
+  <!-- COURSES -->
+  <section class="courses-section" id="courses" aria-labelledby="courses-h2">
+    <div class="courses-section__inner">
+      <p class="eyebrow">5 Championship Courses</p>
+      <h2 id="courses-h2" class="section-title">The Closest Golf Digest Top 100<br>to San Francisco</h2>
+      <p class="section-body">
+        Grizzly Ranch is not bookable on GolfNow, Tee Off, or any tee-time
+        aggregator. GolfGraeagle.com holds a direct operator relationship —
+        priority group access is one of the main reasons Bay Area planners use us.
+      </p>
+      <div class="course-grid">
+        {courses.map(c => (
+          <a href={`/portfolio/${c.portfolioSlug}/`} class="course-card" aria-label={`${c.name} — ${c.accolade}`}>
+            <div class={`course-card__photo course-card__photo--${c.slug}`}>
+              <span class="course-card__badge">{c.badge}</span>
+              <h3 class="course-card__name">{c.name}</h3>
+            </div>
+            <div class="course-card__body">
+              <div class="course-card__stats">
+                <span>Par {c.par}</span><span>{c.yds} yds</span><span>Slope {c.slope}</span>
+              </div>
+              <p class="course-card__accolade">{c.accolade}</p>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- SAMPLE ITINERARY -->
+  <section class="itin-section" aria-labelledby="itin-h2">
+    <div class="itin-section__inner">
+      <p class="eyebrow">Sample Program</p>
+      <h2 id="itin-h2" class="section-title">3-Night Bay Area Executive Golf Itinerary</h2>
+      <p class="section-body">Most Bay Area companies do Thursday–Sunday. No flights booked, no Monday absences.</p>
+      <div class="itin-grid">
+        <div class="itin-day">
+          <div class="itin-day__label">Thu</div>
+          <div class="itin-day__content">
+            <strong>Depart after work</strong>
+            <span>3.5h drive from SF. Arrive Graeagle by 9pm. Check into Inn at Nakoma. Dinner at Fifty44.</span>
+          </div>
+        </div>
+        <div class="itin-day">
+          <div class="itin-day__label">Fri</div>
+          <div class="itin-day__content">
+            <strong>Grizzly Ranch</strong>
+            <span>Golf Digest Top 100. 10am shotgun. Lunch at the clubhouse. Afternoon free. Dinner in Graeagle village.</span>
+          </div>
+        </div>
+        <div class="itin-day">
+          <div class="itin-day__label">Sat</div>
+          <div class="itin-day__content">
+            <strong>Nakoma — The Dragon</strong>
+            <span>8am tee time on the Frank Lloyd Wright course. Spa afternoon. Group dinner at Fifty44.</span>
+          </div>
+        </div>
+        <div class="itin-day">
+          <div class="itin-day__label">Sun</div>
+          <div class="itin-day__content">
+            <strong>Whitehawk Ranch + depart</strong>
+            <span>Top 20 California course. 7am shotgun. Finish by noon. Back in the Bay Area by 4pm.</span>
+          </div>
+        </div>
+      </div>
+      <div class="itin-cta">
+        <a href="/request-a-quote/?from=corporate-bay-area&placement=itinerary" class="btn-gold">Get a Custom Itinerary</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRIPSCADDIE -->
+  <section class="caddie-section" aria-labelledby="caddie-h2">
+    <div class="caddie-section__inner">
+      <p class="eyebrow eyebrow--light">Group Management</p>
+      <h2 id="caddie-h2" class="section-title section-title--light">No Spreadsheets. No Venmo Requests.<br>No Group Texts.</h2>
+      <p class="section-body section-body--light">
+        Bay Area companies run on systems. TripsCaddie is ours. Each attendee
+        self-registers, pays their share, and receives their tee time automatically.
+        Your EA sets it up once. We have managed 19+ Graeagle group programs
+        this way — no other operator in the region has this.
+      </p>
+      <div class="caddie-proof">
+        <div class="cp-item"><span class="cp-n">19+</span><span class="cp-l">Managed Graeagle Group Programs</span></div>
+        <div class="cp-item"><span class="cp-n">4.8★</span><span class="cp-l">Group Experience Rating</span></div>
+        <div class="cp-item"><span class="cp-n">1</span><span class="cp-l">Contract · 1 Deposit · All Courses + Lodging</span></div>
+        <div class="cp-item"><span class="cp-n">24h</span><span class="cp-l">Quote turnaround</span></div>
+      </div>
+      <div style="margin-top:28px">
+        <a href="/request-a-quote/?from=corporate-bay-area&placement=caddie" class="btn-gold">Request Bay Area Group Proposal</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="faq-section" aria-labelledby="faq-h2">
+    <div class="faq-section__inner">
+      <h2 id="faq-h2" class="section-title">Bay Area Corporate Golf FAQs</h2>
+      <dl class="faq-list">
+        {faqs.map((f, i) => (
+          <div class="faq-item" id={`faq-${i}`}>
+            <dt class="faq-q">{f.q}</dt>
+            <dd class="faq-a">{f.a}</dd>
+          </div>
+        ))}
+      </dl>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <section class="final-cta" aria-labelledby="cta-h2">
+    <div class="final-cta__inner">
+      <h2 id="cta-h2" class="final-cta__title">Plan Your Bay Area Group's Next Retreat</h2>
+      <p class="final-cta__sub">Tell us your dates, group size, and home city. We'll build a custom itinerary with confirmed tee times within 24 hours.</p>
+      <a href="/request-a-quote/?from=corporate-bay-area&placement=footer-cta" class="btn-gold btn-gold--lg">Request a Free Proposal</a>
+      <p class="final-cta__phone">Or call <a href="tel:+18885861157">(888) 586-1157</a> — we answer.</p>
+    </div>
+  </section>
+
+  <Footer />
+</Base>
+
+<style>
+.hero {
+  min-height: 520px;
+  display: flex;
+  align-items: center;
+  background: linear-gradient(155deg, #0a1a0a 0%, #1a2e1a 38%, #2a4a1a 62%, #152514 80%, #060c06 100%);
+  position: relative; overflow: hidden;
+}
+.hero::after {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(to right, rgba(0,0,0,.45) 0%, rgba(0,0,0,.1) 55%, transparent 100%);
+}
+.hero__inner {
+  position: relative; z-index: 1;
+  padding: 80px 40px;
+  max-width: 640px;
+  margin-left: max(40px, calc(50vw - 560px));
+}
+@media (max-width: 700px) { .hero__inner { padding: 60px 20px; margin-left: 0; max-width: 100%; } }
+.eyebrow-light { font-size: 11px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: rgba(184,130,10,.8); margin-bottom: 14px; }
+.hero__h1 {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(36px, 5vw, 56px);
+  font-weight: 700; color: #fff; line-height: 1.08;
+  text-shadow: 0 2px 24px rgba(0,0,0,.5); margin-bottom: 18px;
+}
+.hero__sub { font-size: 15px; color: rgba(255,255,255,.85); line-height: 1.65; margin-bottom: 28px; text-shadow: 0 1px 8px rgba(0,0,0,.3); max-width: 520px; }
+.hero__btns { display: flex; gap: 12px; flex-wrap: wrap; }
+.btn-gold { display: inline-block; padding: 13px 30px; background: #b8820a; color: #fff; font-size: 14px; font-weight: 700; border-radius: 3px; text-decoration: none; letter-spacing: .03em; transition: background .15s; }
+.btn-gold:hover { background: #9a6c08; }
+.btn-gold--lg { padding: 15px 40px; font-size: 15px; }
+.btn-ghost { display: inline-block; padding: 12px 24px; background: rgba(255,255,255,.1); color: #fff; font-size: 14px; font-weight: 600; border-radius: 3px; text-decoration: none; border: 1px solid rgba(255,255,255,.3); backdrop-filter: blur(4px); transition: background .15s; }
+.btn-ghost:hover { background: rgba(255,255,255,.18); }
+
+.trust-bar { background: #f5f0e8; border-bottom: 1px solid #d8ccb0; overflow-x: auto; scrollbar-width: none; }
+.trust-bar::-webkit-scrollbar { display: none; }
+.trust-bar__inner { display: flex; align-items: stretch; min-width: max-content; }
+.ti { padding: 12px 22px; display: flex; align-items: center; gap: 7px; border-right: 1px solid #d8ccb0; white-space: nowrap; font-size: 13px; }
+.ti:last-child { border-right: none; }
+.ti strong { color: #1a2e1a; font-weight: 700; }
+.ti span { color: #8a6a20; font-size: 11px; }
+
+.drive-section__inner,
+.vs-section__inner,
+.courses-section__inner,
+.itin-section__inner,
+.caddie-section__inner,
+.faq-section__inner,
+.final-cta__inner { max-width: 1100px; margin: 0 auto; padding: 64px 40px; }
+@media (max-width: 700px) {
+  .drive-section__inner,.vs-section__inner,.courses-section__inner,
+  .itin-section__inner,.caddie-section__inner,.faq-section__inner,.final-cta__inner { padding: 48px 20px; }
+}
+
+.eyebrow { font-size: 11px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: #8a6a20; margin-bottom: 10px; }
+.eyebrow--light { color: rgba(184,130,10,.75); }
+.section-title { font-family: 'Cormorant Garamond', Georgia, serif; font-size: clamp(26px, 3.5vw, 38px); font-weight: 600; color: #0f180f; line-height: 1.15; margin-bottom: 14px; }
+.section-title--light { color: rgba(245,240,232,.95); }
+.section-body { font-size: 15px; color: #404830; line-height: 1.72; max-width: 640px; margin-bottom: 40px; }
+.section-body--light { color: rgba(245,240,232,.75); }
+
+/* drive grid */
+.drive-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 14px; margin-bottom: 16px; }
+.drive-card { background: #fff; border: 1px solid #d8ccb0; border-radius: 6px; padding: 16px; }
+.drive-card__city { font-size: 14px; font-weight: 700; color: #0f180f; margin-bottom: 4px; }
+.drive-card__time { font-family: 'Cormorant Garamond', Georgia, serif; font-size: 28px; font-weight: 700; color: #b8820a; line-height: 1; margin-bottom: 6px; }
+.drive-card__via { font-size: 11px; color: #8a6a20; margin-bottom: 5px; }
+.drive-card__note { font-size: 11px; color: #808868; line-height: 1.5; }
+.drive-note { font-size: 12px; color: #909878; }
+
+/* vs table */
+.vs-section { background: #f9f6f0; border-top: 1px solid #e2d8c4; }
+.vs-table-wrap { overflow-x: auto; margin-bottom: 10px; }
+.vs-table { width: 100%; border-collapse: collapse; font-size: 13px; min-width: 600px; }
+.vs-table th { text-align: left; padding: 10px 14px; border-bottom: 2px solid #d8ccb0; font-size: 11px; font-weight: 700; color: #8a6a20; text-transform: uppercase; letter-spacing: .04em; }
+.vs-table td { padding: 11px 14px; border-bottom: 1px solid #e8dfc8; color: #505838; vertical-align: top; }
+.vs-row--winner td { background: #f0f5ec; color: #0f180f; font-weight: 500; }
+.vs-row--winner td:first-child { border-left: 3px solid #1a2e1a; }
+.check { color: #1a6020; font-weight: 700; }
+.vs-note { font-size: 11px; color: #909878; }
+
+/* courses */
+.course-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 18px; }
+.course-card { display: block; text-decoration: none; border-radius: 8px; overflow: hidden; background: #fff; border: 1px solid #d8ccb0; box-shadow: 0 2px 10px rgba(0,0,0,.06); transition: box-shadow .15s, transform .15s; }
+.course-card:hover { box-shadow: 0 6px 24px rgba(0,0,0,.14); transform: translateY(-2px); }
+.course-card__photo { height: 130px; position: relative; display: flex; flex-direction: column; justify-content: space-between; padding: 10px 12px 12px; }
+.course-card__photo::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(0,0,0,.1) 0%, rgba(0,0,0,.72) 100%); }
+.course-card__photo--grizzly-ranch    { background: linear-gradient(140deg, #0a1a05 0%, #1a3a10 50%, #0d2008 100%); }
+.course-card__photo--nakoma-dragon    { background: linear-gradient(140deg, #1a0f05 0%, #3a2008 50%, #1a0d05 100%); }
+.course-card__photo--whitehawk-ranch  { background: linear-gradient(140deg, #081508 0%, #183018 50%, #081208 100%); }
+.course-card__photo--plumas-pines     { background: linear-gradient(140deg, #101808 0%, #203010 50%, #101508 100%); }
+.course-card__photo--graeagle-meadows { background: linear-gradient(140deg, #081010 0%, #102520 50%, #061010 100%); }
+.course-card__badge { position: relative; z-index: 1; align-self: flex-start; font-size: 9px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: #b8820a; background: rgba(0,0,0,.45); padding: 3px 8px; border-radius: 2px; }
+.course-card__name { position: relative; z-index: 1; font-size: 14px; font-weight: 700; color: #fff; line-height: 1.25; text-shadow: 0 1px 6px rgba(0,0,0,.6); margin: 0; }
+.course-card__body { padding: 12px 14px; }
+.course-card__stats { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 5px; }
+.course-card__stats span { font-size: 11px; color: #8a7060; font-weight: 500; }
+.course-card__accolade { font-size: 11px; color: #b8820a; font-weight: 600; }
+
+/* itinerary */
+.itin-section { background: #f9f6f0; border-top: 1px solid #e2d8c4; }
+.itin-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 14px; margin-bottom: 28px; }
+.itin-day { background: #fff; border: 1px solid #d8ccb0; border-radius: 6px; padding: 18px; display: flex; gap: 14px; }
+.itin-day__label { font-family: 'Cormorant Garamond', Georgia, serif; font-size: 24px; font-weight: 700; color: #b8820a; flex-shrink: 0; line-height: 1; padding-top: 2px; }
+.itin-day__content { display: flex; flex-direction: column; gap: 5px; }
+.itin-day__content strong { font-size: 13px; font-weight: 700; color: #0f180f; }
+.itin-day__content span { font-size: 12px; color: #606848; line-height: 1.55; }
+.itin-cta { text-align: center; }
+
+/* caddie */
+.caddie-section { background: linear-gradient(155deg, #0a1a0a 0%, #1a2e1a 45%, #142210 100%); }
+.caddie-proof { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 14px; }
+.cp-item { background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.1); border-radius: 6px; padding: 18px; text-align: center; display: flex; flex-direction: column; gap: 6px; }
+.cp-n { font-family: 'Cormorant Garamond', Georgia, serif; font-size: 32px; font-weight: 700; color: #b8820a; }
+.cp-l { font-size: 12px; color: rgba(245,240,232,.55); line-height: 1.4; }
+
+/* faq */
+.faq-section { background: #f5f0e8; border-top: 1px solid #d8ccb0; }
+.faq-list { margin: 0; }
+.faq-item { border-bottom: 1px solid #d8ccb0; padding: 18px 0; }
+.faq-item:last-child { border-bottom: none; }
+.faq-q { font-size: 14px; font-weight: 700; color: #0f180f; margin-bottom: 8px; }
+.faq-a { font-size: 13px; color: #505838; line-height: 1.7; margin: 0; }
+
+/* final cta */
+.final-cta { background: #1a2e1a; text-align: center; border-top: 1px solid #142214; }
+.final-cta__title { font-family: 'Cormorant Garamond', Georgia, serif; font-size: clamp(28px, 4vw, 44px); font-weight: 700; color: #fff; margin-bottom: 14px; }
+.final-cta__sub { font-size: 15px; color: rgba(245,240,232,.7); line-height: 1.7; max-width: 540px; margin: 0 auto 28px; }
+.final-cta__phone { margin-top: 14px; font-size: 13px; color: rgba(245,240,232,.45); }
+.final-cta__phone a { color: rgba(184,130,10,.8); text-decoration: none; }
+.final-cta__phone a:hover { color: #b8820a; }
+</style>

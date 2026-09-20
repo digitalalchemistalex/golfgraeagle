@@ -1229,6 +1229,11 @@
       "source": "/corporate",
       "destination": "/corporate/",
       "permanent": true
+    },
+    {
+      "source": "/corporate/bay-area",
+      "destination": "/corporate/bay-area/",
+      "permanent": true
     }
   ],
   "crons": [
