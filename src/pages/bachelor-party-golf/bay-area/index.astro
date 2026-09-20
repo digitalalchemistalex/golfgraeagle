@@ -1,0 +1,762 @@
+---
+export const prerender = true;
+import Base from '../../../layouts/Base.astro';
+
+const title = "Golf Bachelor Party from Bay Area — Graeagle 3.5h from SF";
+const description = "Golf bachelor party 3.5h from San Francisco. Golf Digest Top 100 Grizzly Ranch, Nakoma Dragon, 3 more courses. Cabins, BBQ, no flights. Groups 8–30. Free 24h itinerary.";
+
+const courses = [
+  {
+    slug: 'grizzly-ranch',
+    name: 'Grizzly Ranch Golf Club',
+    par: 72, yds: '7,411', slope: 140, rating: '74.9',
+    location: 'Portola, CA · 11 mi east of Graeagle',
+    badge: 'GOLF DIGEST TOP 100',
+    photo: '/wp-images/grizzly-ranch-.webp',
+    designer: 'Bob Cupp · 2005',
+    elevation: '4,800 ft',
+    vibe: 'The anchor round. Championship conditions, mountain air, +10–15 yards carry at elevation. Every guy will remember this one.',
+    tags: ['Championship Tees', 'Caddie Available', 'Mountain Elevation', 'Private Operator Access', 'Clubhouse Bar'],
+    difficulty: 'Hard — bring your A-game',
+  },
+  {
+    slug: 'nakoma-golf-packages',
+    name: 'Nakoma — The Dragon',
+    par: 72, yds: '7,015', slope: 147, rating: '73.4',
+    location: 'Clio, CA · adjacent to Graeagle',
+    badge: 'FRANK LLOYD WRIGHT CLUBHOUSE',
+    photo: '/wp-images/nakoma-flw-lodge-exterior.jpg',
+    designer: 'Robin Nelson · 1998',
+    elevation: '4,300 ft',
+    vibe: 'The most dramatic course in California. Slope 147. The Frank Lloyd Wright clubhouse is the best post-round bar you\'ve ever been in.',
+    tags: ['Most Dramatic Layout', 'FLW Clubhouse Bar', 'On-site Restaurant', 'Mountain Setting', 'Hardest in Graeagle'],
+    difficulty: 'Hardest — slope 147, par 72',
+  },
+  {
+    slug: 'whitehawk-ranch-golf-packages',
+    name: 'Whitehawk Ranch Golf Club',
+    par: 71, yds: '6,983', slope: 132, rating: '72.3',
+    location: 'Clio, CA · 5 mi from Graeagle',
+    badge: 'TOP 20 IN CALIFORNIA',
+    photo: '/wp-images/whitehawk-popup-home.webp',
+    designer: 'Dick Bailey · 1996',
+    elevation: '4,400 ft',
+    vibe: 'Carved through meadows and pines. The most scenic round in the region — guys who don\'t usually care about views care here.',
+    tags: ['Scenic Layout', 'Mountain Meadows', 'Best Value Round', 'Private Course Feel', 'Easy Walking'],
+    difficulty: 'Medium — slope 132',
+  },
+  {
+    slug: 'plumas-pines-golf-packages',
+    name: 'Plumas Pines Golf Resort',
+    par: 72, yds: '6,504', slope: 132, rating: '71.3',
+    location: 'Graeagle, CA · walkable from townhomes',
+    badge: 'WALKABLE FROM LODGING',
+    photo: '/wp-images/plumas-pines-hero.webp',
+    designer: 'Homer Flint · 1980',
+    elevation: '4,400 ft',
+    vibe: 'The morning warmup round or the afternoon scramble. Walking distance from the Townhomes at Plumas Pines — tee time at 7am, beer by 1pm.',
+    tags: ['Walk from Lodging', 'Morning Tee Times', 'Scramble Format Friendly', 'Resort Course', 'Beginner Friendly'],
+    difficulty: 'Medium — slope 132',
+  },
+  {
+    slug: 'graeagle-meadows-golf-packages',
+    name: 'Graeagle Meadows Golf Course',
+    par: 72, yds: '6,759', slope: 120, rating: '70.7',
+    location: 'Graeagle, CA · center of town',
+    badge: 'EVERYONE PLAYS WELL HERE',
+    photo: '/wp-images/graeagle-meadows-hero.webp',
+    designer: 'Ellis Van Gorder · 1968',
+    elevation: '4,400 ft',
+    vibe: 'The round where the 20-handicap finally has his day. Low slope, wide fairways, cold beer cart. Great for multi-skill-level groups.',
+    tags: ['All Skill Levels', 'Beer Cart', 'Wide Fairways', 'Town Center Location', 'Low Slope'],
+    difficulty: 'Easy — slope 120',
+  },
+];
+
+const packages = [
+  {
+    name: '2-Night Weekend Quickie',
+    nights: 2, rounds: 2, players: '8–16',
+    days: 'Fri eve → Sun noon',
+    courses: ['Grizzly Ranch', 'Nakoma Dragon'],
+    lodging: 'Cabins at River Pines Resort',
+    includes: ['2 rounds championship golf', '2 nights cabin lodging', 'Friday night BBQ setup', 'Saturday night bar crawl route', 'Group tee times + starter bags'],
+    vibe: 'The classic — arrive Friday, golf Sat & Sun, home Sunday.',
+    badge: 'MOST POPULAR',
+  },
+  {
+    name: '3-Night Full Rip',
+    nights: 3, rounds: 3, players: '8–30',
+    days: 'Thu eve → Sun noon',
+    courses: ['Grizzly Ranch', 'Nakoma Dragon', 'Whitehawk Ranch'],
+    lodging: 'Townhomes at Plumas Pines',
+    includes: ['3 rounds championship golf', '3 nights private townhome', 'Thursday arrival BBQ', 'Saturday golf cart bar crawl', 'Scoring app + leaderboard', 'One operator handles everything'],
+    vibe: 'Three days, three courses, one house. The full bachelor party experience.',
+    badge: 'BEST VALUE',
+  },
+  {
+    name: '4-Night Legends Trip',
+    nights: 4, rounds: 4, players: '12–24',
+    days: 'Wed → Sun',
+    courses: ['Grizzly Ranch', 'Nakoma Dragon', 'Whitehawk Ranch', 'Plumas Pines'],
+    lodging: 'Townhomes + Inn at Nakoma',
+    includes: ['4 rounds at 4 courses', '4 nights split lodging', 'Private welcome dinner', 'Scoring app + skins game setup', 'Trophy + winner\'s plaque', 'Caddie for Grizzly Ranch round'],
+    vibe: 'The trip the guys will talk about for 10 years.',
+    badge: 'ULTIMATE',
+  },
+];
+
+const faqs = [
+  {
+    q: 'How far is Graeagle from San Francisco for a golf bachelor party?',
+    a: 'Graeagle is 3.5 hours from San Francisco via I-80 East to Highway 89 North — no flights, no TSA, no lost weekend. Most groups leave Friday afternoon and tee off by 9am Saturday. Perfect for a 2-night or 3-night bachelor party.',
+  },
+  {
+    q: 'What is the best golf course for a bachelor party in the Bay Area?',
+    a: 'Grizzly Ranch Golf Club in Graeagle is the top pick — Golf Digest Top 100 Greatest Public Courses, championship conditions at 4,800 ft elevation (the ball flies 10–15 yards farther), and a proper clubhouse bar for post-round drinks. Most bachelor groups pair it with the Nakoma Dragon for a 2-course, 2-day bachelor itinerary.',
+  },
+  {
+    q: 'How many guys can come on a golf bachelor party trip to Graeagle?',
+    a: 'We handle groups of 8 to 30 guys. Smaller groups (8–14) typically book cabins at River Pines Resort. Larger groups (14–30) book the Townhomes at Plumas Pines, which sleep up to 30 across multiple 2–4 BR units with shared pool and BBQ access.',
+  },
+  {
+    q: 'Can beginners come on a golf bachelor party — what if guys have different skill levels?',
+    a: 'Yes. Graeagle has courses for every level — Graeagle Meadows (slope 120, wide fairways, great for 20+ handicaps) through Grizzly Ranch (slope 140, Golf Digest Top 100, challenges single-digits). We build the schedule so everyone plays the right round. Scramble formats on the easier courses keep it fun.',
+  },
+  {
+    q: 'What lodging works for a bachelor golf group?',
+    a: 'Two options: Townhomes at Plumas Pines (2–4 BR private units with full kitchen, pool, and BBQ — walkable to Plumas Pines Golf Resort) or River Pines Resort cabins (family-owned, full bar and Roadhouse restaurant on-site). We book everything under one contract — no splitting bills with 15 guys.',
+  },
+  {
+    q: 'Do you handle the whole trip or do we have to coordinate everything ourselves?',
+    a: 'We handle everything: tee times, lodging, group registration portal (each guy pays their share directly), scoring app, and any extras like Friday BBQ catering or a golf cart bar crawl setup. One call, one contract, one deposit from the best man. You show up and golf.',
+  },
+  {
+    q: 'How far in advance should we book a golf bachelor party in Graeagle?',
+    a: 'Grizzly Ranch and Nakoma Dragon do not appear on GolfNow or public booking sites — access is through operators only. Weekends May through October fill fast. 60–90 days out is ideal. Summer Saturdays (July–August) need 90+ days.',
+  },
+];
+
+const schema = [
+  {
+    "@context": "https://schema.org",
+    "@type": ["WebPage", "FAQPage"],
+    "name": title,
+    "description": description,
+    "url": "https://golfgraeagle.com/bachelor-party-golf/bay-area/",
+    "speakable": { "@type": "SpeakableSpecification", "cssSelector": [".speakable-intro"] },
+    "breadcrumb": {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://golfgraeagle.com/" },
+        { "@type": "ListItem", "position": 2, "name": "Bachelor Party Golf", "item": "https://golfgraeagle.com/bachelor-party-golf/" },
+        { "@type": "ListItem", "position": 3, "name": "Bay Area", "item": "https://golfgraeagle.com/bachelor-party-golf/bay-area/" },
+      ]
+    },
+    "mainEntity": faqs.map(f => ({
+      "@type": "Question",
+      "name": f.q,
+      "acceptedAnswer": { "@type": "Answer", "text": f.a }
+    }))
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": "Golf Bachelor Party Packages — Bay Area to Graeagle",
+    "provider": {
+      "@type": "TravelAgency",
+      "name": "GolfGraeagle.com",
+      "telephone": "+18885861157",
+      "url": "https://golfgraeagle.com"
+    },
+    "areaServed": ["San Francisco", "San Jose", "Oakland", "Palo Alto", "Silicon Valley", "Bay Area"],
+    "description": "Golf bachelor party packages for Bay Area groups. 3.5h from San Francisco. Golf Digest Top 100 Grizzly Ranch + 4 more courses. Cabins, townhomes, scoring app. Groups 8–30. One contract.",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.8",
+      "bestRating": "5",
+      "worstRating": "1",
+      "ratingCount": 672
+    }
+  }
+];
+---
+
+<Base
+  title={title}
+  description={description}
+  ogImage="/wp-images/grizzly-ranch-hero.webp"
+  schema={schema}
+>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --gold: #b8820a;
+  --gold-light: #e8a850;
+  --dark: #0a1208;
+  --forest: #1a2e1a;
+  --cream: #f5f0e8;
+  --cream-dim: rgba(245,240,232,.7);
+  --green-mid: #2a5a1a;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Inter', system-ui, sans-serif; background: #f0ece3; color: #1c1208; }
+
+/* ── HERO ── */
+.hero {
+  min-height: 100svh; display: flex; align-items: flex-end;
+  position: relative; overflow: hidden;
+  background: linear-gradient(160deg, #060d04 0%, #0f1e0a 35%, #1a3010 60%, #0a1508 85%, #030803 100%);
+}
+.hero__bg-img {
+  position: absolute; inset: 0; z-index: 0;
+  background: url('/wp-images/grizzly-ranch-hero.webp') center/cover no-repeat;
+  opacity: .28;
+}
+.hero::after {
+  content: ''; position: absolute; inset: 0; z-index: 1;
+  background: linear-gradient(to top, rgba(6,13,4,.92) 0%, rgba(6,13,4,.6) 50%, rgba(6,13,4,.2) 100%);
+}
+.hero__inner {
+  position: relative; z-index: 2;
+  padding: 0 40px 56px;
+  max-width: 780px;
+  width: 100%;
+}
+@media (max-width: 700px) { .hero__inner { padding: 0 20px 44px; } }
+
+.hero__pill {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(184,130,10,.15); border: 1px solid rgba(184,130,10,.35);
+  border-radius: 30px; padding: 5px 14px; margin-bottom: 20px;
+}
+.hero__pill-dot { width: 6px; height: 6px; background: #b8820a; border-radius: 50%; animation: pulse 2s infinite; }
+@keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.5;transform:scale(1.3)} }
+.hero__pill-text { font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: #b8820a; }
+
+.hero__h1 {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(38px, 6.5vw, 72px);
+  font-weight: 700; color: #fff; line-height: 1.0;
+  text-shadow: 0 2px 30px rgba(0,0,0,.6); margin-bottom: 16px;
+}
+.hero__h1 em { color: #e8a850; font-style: normal; }
+
+.hero__sub {
+  font-size: clamp(15px, 2vw, 17px); color: rgba(255,255,255,.8);
+  line-height: 1.65; margin-bottom: 32px; max-width: 580px;
+}
+.hero__btns { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 32px; }
+
+.btn-gold {
+  display: inline-block; padding: 14px 32px; background: #b8820a; color: #fff;
+  font-size: 14px; font-weight: 700; border-radius: 3px; text-decoration: none;
+  letter-spacing: .03em; transition: background .15s;
+}
+.btn-gold:hover { background: #9a6c08; }
+.btn-ghost {
+  display: inline-block; padding: 13px 24px; background: rgba(255,255,255,.08);
+  color: #fff; font-size: 14px; font-weight: 600; border-radius: 3px;
+  text-decoration: none; border: 1px solid rgba(255,255,255,.25);
+  backdrop-filter: blur(4px); transition: background .15s;
+}
+.btn-ghost:hover { background: rgba(255,255,255,.15); }
+
+.hero__stats {
+  display: flex; gap: 0; border: 1px solid rgba(255,255,255,.12);
+  border-radius: 8px; overflow: hidden; max-width: 480px;
+}
+.hero__stat {
+  flex: 1; padding: 12px 16px; text-align: center;
+  border-right: 1px solid rgba(255,255,255,.1);
+  background: rgba(0,0,0,.3); backdrop-filter: blur(8px);
+}
+.hero__stat:last-child { border-right: none; }
+.hero__stat-n { font-size: 22px; font-weight: 800; color: #b8820a; line-height: 1; }
+.hero__stat-l { font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: .1em; color: rgba(255,255,255,.45); margin-top: 3px; }
+@media (max-width: 500px) { .hero__stat-n { font-size: 18px; } .hero__stats { max-width: 100%; } }
+
+/* ── AEO INTRO ── */
+.aeo-intro { background: #f5f0e8; border-bottom: 1px solid #d8ccb0; }
+.aeo-intro__inner { max-width: 900px; margin: 0 auto; padding: 16px 40px; }
+@media (max-width: 700px) { .aeo-intro__inner { padding: 14px 20px; } }
+.aeo-intro p { font-size: 13px; color: #505838; line-height: 1.7; }
+
+/* ── SHARED SECTION ── */
+.section-inner { max-width: 1120px; margin: 0 auto; padding: 72px 40px; }
+@media (max-width: 700px) { .section-inner { padding: 52px 20px; } }
+.eyebrow { font-size: 10px; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; color: var(--gold); margin-bottom: 10px; }
+.section-title { font-family: 'Cormorant Garamond', Georgia, serif; font-size: clamp(26px, 3.5vw, 40px); font-weight: 700; line-height: 1.15; margin-bottom: 14px; color: #0f180f; }
+.section-body { font-size: 15px; color: #505838; line-height: 1.75; max-width: 680px; margin-bottom: 32px; }
+
+/* ── WHY GRAEAGLE ── */
+.why-section { background: #fff; border-top: 1px solid #e0d8c8; }
+.why-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 24px; }
+.why-card { background: #f5f0e8; border-radius: 8px; padding: 24px; border: 1px solid #e0d8c8; }
+.why-card__icon { font-size: 28px; margin-bottom: 12px; }
+.why-card__title { font-size: 14px; font-weight: 700; color: #0f180f; margin-bottom: 6px; }
+.why-card__body { font-size: 13px; color: #505838; line-height: 1.6; }
+
+/* ── COURSES CAROUSEL ── */
+.courses-section { background: #f0ece3; border-top: 1px solid #d8ccb0; }
+.course-carousel {
+  display: flex; gap: 20px; overflow-x: auto; scroll-snap-type: x mandatory;
+  scrollbar-width: none; padding-bottom: 16px; cursor: grab;
+}
+.course-carousel::-webkit-scrollbar { display: none; }
+.cc {
+  flex: 0 0 320px; scroll-snap-align: start; background: #fff;
+  border-radius: 10px; overflow: hidden; border: 1px solid #e0d8c8;
+  display: flex; flex-direction: column;
+}
+@media (max-width: 700px) { .cc { flex: 0 0 85vw; } }
+.cc__photo {
+  height: 180px; background-size: cover; background-position: center;
+  position: relative; flex-shrink: 0;
+}
+.cc__badge {
+  position: absolute; top: 12px; left: 12px;
+  font-size: 8px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase;
+  background: #b8820a; color: #fff; padding: 3px 8px; border-radius: 2px;
+}
+.cc__diff {
+  position: absolute; bottom: 10px; right: 10px;
+  font-size: 9px; font-weight: 700; background: rgba(0,0,0,.65); color: #fff;
+  padding: 3px 8px; border-radius: 12px; letter-spacing: .04em;
+}
+.cc__body { padding: 18px; flex: 1; display: flex; flex-direction: column; gap: 6px; }
+.cc__num { font-size: 11px; font-weight: 800; color: rgba(184,130,10,.5); }
+.cc__name { font-family: 'Cormorant Garamond', Georgia, serif; font-size: 20px; font-weight: 700; color: #0f180f; line-height: 1.2; }
+.cc__name a { text-decoration: none; color: inherit; }
+.cc__name a:hover { color: #b8820a; }
+.cc__location { font-size: 11px; color: #8a7a60; }
+.cc__vibe { font-size: 13px; color: #505838; line-height: 1.6; flex: 1; }
+.cc__tags { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 4px; }
+.cc__tag { font-size: 10px; font-weight: 600; background: #f0ece3; color: #505838; padding: 2px 8px; border-radius: 10px; border: 1px solid #d8ccb0; }
+.cc__cta {
+  display: block; text-align: center; padding: 10px;
+  background: #f5f0e8; color: #b8820a; font-size: 12px; font-weight: 700;
+  text-decoration: none; border-top: 1px solid #e0d8c8; margin-top: 8px;
+  transition: background .15s;
+}
+.cc__cta:hover { background: #e8e0d0; }
+
+/* carousel nav dots */
+.carousel-dots { display: flex; gap: 6px; justify-content: center; margin-top: 16px; }
+.cdot { width: 6px; height: 6px; border-radius: 50%; background: #d0c8b0; transition: background .2s, transform .2s; cursor: pointer; border: none; }
+.cdot.active { background: #b8820a; transform: scale(1.4); }
+
+/* ── PACKAGES ── */
+.packages-section { background: #fff; border-top: 1px solid #e0d8c8; }
+.pkg-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 24px; }
+.pkg-card {
+  border-radius: 10px; border: 1px solid #e0d8c8; overflow: hidden;
+  display: flex; flex-direction: column;
+}
+.pkg-card--best { border-color: #b8820a; box-shadow: 0 0 0 2px rgba(184,130,10,.15); }
+.pkg-card__header { padding: 20px 22px 16px; background: #f5f0e8; border-bottom: 1px solid #e0d8c8; }
+.pkg-badge {
+  font-size: 8px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase;
+  background: #b8820a; color: #fff; padding: 3px 8px; border-radius: 2px;
+  display: inline-block; margin-bottom: 8px;
+}
+.pkg-name { font-family: 'Cormorant Garamond', Georgia, serif; font-size: 22px; font-weight: 700; color: #0f180f; }
+.pkg-meta { display: flex; gap: 14px; margin-top: 8px; flex-wrap: wrap; }
+.pkg-meta span { font-size: 11px; color: #8a7a60; font-weight: 600; }
+.pkg-meta strong { color: #0f180f; }
+.pkg-body { padding: 18px 22px; flex: 1; }
+.pkg-courses { font-size: 12px; font-weight: 700; color: #1a6020; margin-bottom: 10px; }
+.pkg-includes { list-style: none; display: flex; flex-direction: column; gap: 5px; }
+.pkg-includes li { font-size: 12.5px; color: #505838; padding-left: 16px; position: relative; line-height: 1.4; }
+.pkg-includes li::before { content: '✓'; position: absolute; left: 0; color: #b8820a; font-size: 11px; }
+.pkg-vibe { font-size: 12px; color: #8a7a60; font-style: italic; margin-top: 10px; line-height: 1.5; border-top: 1px solid #e8e0d0; padding-top: 10px; }
+.pkg-cta { display: block; text-align: center; padding: 14px; background: #b8820a; color: #fff; font-size: 13px; font-weight: 700; text-decoration: none; transition: background .15s; }
+.pkg-cta:hover { background: #9a6c08; }
+.pkg-card--best .pkg-cta { background: #b8820a; }
+
+/* ── ITINERARY SAMPLE ── */
+.itinerary-section { background: var(--forest); border-top: 1px solid #1a3a1a; }
+.itinerary-section .section-title { color: #f5f0e8; }
+.itinerary-section .section-body { color: rgba(245,240,232,.65); }
+.itinerary-section .eyebrow { color: rgba(184,130,10,.8); }
+.itin-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 16px; }
+.itin-day { background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.1); border-radius: 8px; padding: 20px; }
+.itin-day__label { font-size: 9px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; color: #b8820a; margin-bottom: 8px; }
+.itin-day__title { font-family: 'Cormorant Garamond', Georgia, serif; font-size: 18px; font-weight: 700; color: #f5f0e8; margin-bottom: 10px; }
+.itin-day__items { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+.itin-day__items li { font-size: 12px; color: rgba(245,240,232,.6); padding-left: 14px; position: relative; line-height: 1.4; }
+.itin-day__items li::before { content: '→'; position: absolute; left: 0; color: #b8820a; font-size: 10px; top: 1px; }
+
+/* ── LODGING ── */
+.lodging-section { background: #f0ece3; border-top: 1px solid #d8ccb0; }
+.lodge-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
+.lodge-card { background: #fff; border-radius: 10px; border: 1px solid #e0d8c8; overflow: hidden; }
+.lodge-card__photo { height: 160px; background-size: cover; background-position: center; }
+.lodge-card__body { padding: 18px; }
+.lodge-card__name { font-size: 15px; font-weight: 700; color: #0f180f; margin-bottom: 4px; }
+.lodge-card__tag { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .1em; color: #b8820a; margin-bottom: 8px; }
+.lodge-card__features { list-style: none; display: flex; flex-direction: column; gap: 4px; }
+.lodge-card__features li { font-size: 12px; color: #505838; padding-left: 14px; position: relative; }
+.lodge-card__features li::before { content: '✓'; position: absolute; left: 0; color: #b8820a; font-size: 10px; }
+
+/* ── FAQ ── */
+.faq-section { background: #fff; border-top: 1px solid #e0d8c8; }
+.faq-list { display: flex; flex-direction: column; gap: 0; }
+.faq-item { border-bottom: 1px solid #e0d8c8; padding: 18px 0; }
+.faq-item:last-child { border-bottom: none; }
+.faq-q { font-size: 14px; font-weight: 700; color: #0f180f; margin-bottom: 8px; }
+.faq-a { font-size: 13px; color: #505838; line-height: 1.7; }
+
+/* ── FINAL CTA ── */
+.final-cta { background: #0a1208; text-align: center; }
+.final-cta__inner { max-width: 640px; margin: 0 auto; padding: 80px 20px; }
+.final-cta__title { font-family: 'Cormorant Garamond', Georgia, serif; font-size: clamp(30px, 5vw, 48px); font-weight: 700; color: #fff; margin-bottom: 14px; }
+.final-cta__sub { font-size: 15px; color: rgba(245,240,232,.65); line-height: 1.75; margin-bottom: 32px; }
+.final-cta__phone { margin-top: 20px; font-size: 13px; color: rgba(245,240,232,.4); }
+.final-cta__phone a { color: rgba(184,130,10,.8); text-decoration: none; }
+</style>
+
+<!-- HERO -->
+<section class="hero" aria-labelledby="hero-h1">
+  <div class="hero__bg-img" role="presentation"></div>
+  <div class="hero__inner">
+    <div class="hero__pill">
+      <span class="hero__pill-dot"></span>
+      <span class="hero__pill-text">Golf Bachelor Party · 3.5h from San Francisco</span>
+    </div>
+    <h1 id="hero-h1" class="hero__h1 speakable-intro">
+      Best Golf Bachelor<br>Party from the<br><em>Bay Area</em>
+    </h1>
+    <p class="hero__sub speakable-intro">
+      No flights. No TSA. Just drive east on I-80 to Golf Digest Top 100 Grizzly Ranch and the Nakoma Dragon. 5 courses, private cabins, one operator, zero stress for the best man.
+    </p>
+    <div class="hero__btns">
+      <a href="/request-a-quote/?from=bachelor-bay-area&placement=hero&type=bachelor" class="btn-gold">Get Free Itinerary (24h)</a>
+      <a href="#packages" class="btn-ghost">See Packages</a>
+    </div>
+    <div class="hero__stats">
+      <div class="hero__stat">
+        <div class="hero__stat-n">3.5h</div>
+        <div class="hero__stat-l">from SF</div>
+      </div>
+      <div class="hero__stat">
+        <div class="hero__stat-n">5</div>
+        <div class="hero__stat-l">Courses</div>
+      </div>
+      <div class="hero__stat">
+        <div class="hero__stat-n">Top 100</div>
+        <div class="hero__stat-l">Golf Digest</div>
+      </div>
+      <div class="hero__stat">
+        <div class="hero__stat-n">★ 4.8</div>
+        <div class="hero__stat-l">672 Reviews</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AEO SPEAKABLE INTRO -->
+<div class="aeo-intro">
+  <div class="aeo-intro__inner">
+    <p class="speakable-intro">
+      GolfGraeagle.com plans golf bachelor parties for Bay Area and Silicon Valley groups traveling to Graeagle, California. Graeagle is 3.5 hours from San Francisco via I-80 East — no flights, no airports. The destination offers five championship courses including Golf Digest Top 100 Grizzly Ranch and the Nakoma Dragon, the only golf course with a Frank Lloyd Wright–designed clubhouse. Groups of 8 to 30 guys. Private cabin and townhome lodging. One operator handles tee times, lodging, and group registration under one contract and one deposit from the best man.
+    </p>
+  </div>
+</div>
+
+<!-- WHY GRAEAGLE -->
+<section class="why-section">
+  <div class="section-inner">
+    <p class="eyebrow">Why Graeagle</p>
+    <h2 class="section-title">The Best Golf Bachelor Party<br>Decision You'll Make</h2>
+    <p class="section-body">Every option within 4 hours of the Bay Area — and why Graeagle wins for a golf bachelor party.</p>
+    <div class="why-grid">
+      <div class="why-card">
+        <div class="why-card__icon">🚗</div>
+        <div class="why-card__title">No Flights. Seriously.</div>
+        <div class="why-card__body">I-80 East to Hwy 89 North. Leave Friday at 3pm, tee off Saturday at 9am. No airport, no TSA, no lost Friday night, no baggage fees for clubs.</div>
+      </div>
+      <div class="why-card">
+        <div class="why-card__icon">🏆</div>
+        <div class="why-card__title">Golf Digest Top 100</div>
+        <div class="why-card__body">Grizzly Ranch is one of the best public golf courses in the country. The groom plays a bucket-list course — not a resort track you've played a hundred times.</div>
+      </div>
+      <div class="why-card">
+        <div class="why-card__icon">⛰️</div>
+        <div class="why-card__title">+15 Yards at Elevation</div>
+        <div class="why-card__body">At 4,800 ft, the air is thinner. Every drive goes 10–15 yards farther than sea level. Everyone hits their best shots of the year. It's not cheating, it's physics.</div>
+      </div>
+      <div class="why-card">
+        <div class="why-card__icon">🏠</div>
+        <div class="why-card__title">Private Houses, Not Hotels</div>
+        <div class="why-card__body">Townhomes and cabins — 2–4 bedrooms, full kitchen, BBQ, pool. The whole group stays in one place. No fighting over hotel rooms. BBQ Saturday night, no cover charge.</div>
+      </div>
+      <div class="why-card">
+        <div class="why-card__icon">📋</div>
+        <div class="why-card__title">One Call to the Best Man</div>
+        <div class="why-card__body">We handle every detail: tee times, lodging, group payment portal (each guy pays his share), scoring app, and extras. The best man makes one call. That's it.</div>
+      </div>
+      <div class="why-card">
+        <div class="why-card__icon">🍺</div>
+        <div class="why-card__title">Post-Round is Perfect</div>
+        <div class="why-card__body">The Nakoma Dragon's Frank Lloyd Wright clubhouse bar. Eureka Peak Brewing at Chalet View. The Roadhouse at River Pines. Graeagle has the best post-round scene outside Pebble.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COURSES -->
+<section class="courses-section">
+  <div class="section-inner">
+    <p class="eyebrow">The Courses</p>
+    <h2 class="section-title">5 Courses. Pick Your Weekend.</h2>
+    <p class="section-body">Most bachelor groups play 2–3 rounds over a 3-night trip. Here's every course — honest notes on vibe and difficulty.</p>
+    <div class="course-carousel" id="bpCarousel">
+      {courses.map((c, i) => (
+        <article class="cc">
+          <div class="cc__photo" style={`background-image:url('${c.photo}')`}>
+            <span class="cc__badge">{c.badge}</span>
+            <span class="cc__diff">{c.difficulty}</span>
+          </div>
+          <div class="cc__body">
+            <span class="cc__num">0{i+1}</span>
+            <h3 class="cc__name">
+              <a href={`/portfolio/${c.slug}/`}>{c.name}</a>
+            </h3>
+            <p class="cc__location">{c.location} · {c.elevation}</p>
+            <p class="cc__vibe">{c.vibe}</p>
+            <div class="cc__tags">
+              {c.tags.map(t => <span class="cc__tag">{t}</span>)}
+            </div>
+            <a href={`/portfolio/${c.slug}/`} class="cc__cta">Course Details →</a>
+          </div>
+        </article>
+      ))}
+    </div>
+    <div class="carousel-dots" id="bpDots">
+      {courses.map((_, i) => <button class={`cdot${i===0?' active':''}`} aria-label={`Course ${i+1}`}></button>)}
+    </div>
+  </div>
+</section>
+
+<!-- PACKAGES -->
+<section class="packages-section" id="packages">
+  <div class="section-inner">
+    <p class="eyebrow">Bachelor Party Packages</p>
+    <h2 class="section-title">Pick Your Trip. We Handle the Rest.</h2>
+    <p class="section-body">Three sizes. All include one contract, one deposit from the best man, individual payment portal for each guy, and GolfGraeagle's 20+ year operator access to tee times that aren't on GolfNow.</p>
+    <div class="pkg-grid">
+      {packages.map((p) => (
+        <div class={`pkg-card${p.badge==='BEST VALUE'?' pkg-card--best':''}`}>
+          <div class="pkg-card__header">
+            <span class="pkg-badge">{p.badge}</span>
+            <div class="pkg-name">{p.name}</div>
+            <div class="pkg-meta">
+              <span><strong>{p.nights}</strong> nights</span>
+              <span><strong>{p.rounds}</strong> rounds</span>
+              <span><strong>{p.players}</strong> guys</span>
+              <span>{p.days}</span>
+            </div>
+          </div>
+          <div class="pkg-body">
+            <div class="pkg-courses">⛳ {p.courses.join(' → ')}</div>
+            <ul class="pkg-includes">
+              {p.includes.map(item => <li>{item}</li>)}
+            </ul>
+            <p class="pkg-vibe">{p.vibe}</p>
+          </div>
+          <a href={`/request-a-quote/?from=bachelor-bay-area&placement=package&pkg=${p.nights}n&type=bachelor`} class="pkg-cta">
+            Get This Itinerary + Pricing →
+          </a>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- SAMPLE ITINERARY -->
+<section class="itinerary-section">
+  <div class="section-inner">
+    <p class="eyebrow">Sample 3-Night Itinerary</p>
+    <h2 class="section-title" style="color:#f5f0e8">Thursday → Sunday: The Full Rip</h2>
+    <p class="section-body">This is how a typical 3-night bay area golf bachelor party runs. Customize anything — we build around your group.</p>
+    <div class="itin-grid">
+      <div class="itin-day">
+        <div class="itin-day__label">Thursday</div>
+        <div class="itin-day__title">Arrival Night</div>
+        <ul class="itin-day__items">
+          <li>Leave Bay Area 3–5pm (miss the traffic)</li>
+          <li>Arrive Graeagle ~6:30–8pm</li>
+          <li>Check into townhomes or cabins</li>
+          <li>BBQ, drinks, card games</li>
+          <li>TripsCaddie app — leaderboard live</li>
+          <li>Early bedtime — 7am tee time tomorrow</li>
+        </ul>
+      </div>
+      <div class="itin-day">
+        <div class="itin-day__label">Friday</div>
+        <div class="itin-day__title">The Anchor Round</div>
+        <ul class="itin-day__items">
+          <li>7am tee time — Grizzly Ranch Golf Club</li>
+          <li>Golf Digest Top 100 · slope 140</li>
+          <li>Post-round lunch at Grizzly clubhouse</li>
+          <li>Optional: afternoon 9 at Graeagle Meadows</li>
+          <li>Group dinner at Nakoma Dragon restaurant</li>
+          <li>Eureka Peak Brewing for nightcap</li>
+        </ul>
+      </div>
+      <div class="itin-day">
+        <div class="itin-day__label">Saturday</div>
+        <div class="itin-day__title">The Groom's Pick</div>
+        <ul class="itin-day__items">
+          <li>8am tee time — Nakoma Dragon (slope 147)</li>
+          <li>Post-round: Frank Lloyd Wright clubhouse bar</li>
+          <li>Golf cart bar crawl through Graeagle</li>
+          <li>BBQ back at the house</li>
+          <li>Skins game payout + tournament trophy</li>
+          <li>Late night: stars, fire pit, no cover charge</li>
+        </ul>
+      </div>
+      <div class="itin-day">
+        <div class="itin-day__label">Sunday</div>
+        <div class="itin-day__title">Bonus Round</div>
+        <ul class="itin-day__items">
+          <li>Optional 7am round — Whitehawk Ranch</li>
+          <li>Or sleep in, check out by noon</li>
+          <li>Breakfast at Bear's Den Graeagle</li>
+          <li>Drive home — back in Bay Area by 4pm</li>
+          <li>Full weekend, zero flights</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LODGING -->
+<section class="lodging-section">
+  <div class="section-inner">
+    <p class="eyebrow">Group Lodging</p>
+    <h2 class="section-title">Private Houses. Not Hotels.</h2>
+    <p class="section-body">Bachelor parties need a base — somewhere everyone can be loud, cook breakfast, and debrief the round. These are the two best options for groups.</p>
+    <div class="lodge-grid">
+      <div class="lodge-card">
+        <div class="lodge-card__photo" style="background-image:url('/wp-images/plumas-pines-hero.webp')"></div>
+        <div class="lodge-card__body">
+          <div class="lodge-card__tag">Best for 12–30 guys</div>
+          <div class="lodge-card__name">Townhomes at Plumas Pines</div>
+          <ul class="lodge-card__features">
+            <li>2–4 BR private units, sleep 6–10 each</li>
+            <li>Full kitchens, BBQ grills, pool access</li>
+            <li>Walkable to Plumas Pines Golf Resort</li>
+            <li>Book multiple units — whole complex feel</li>
+            <li>No hotel lobby, no noise complaints</li>
+          </ul>
+        </div>
+      </div>
+      <div class="lodge-card">
+        <div class="lodge-card__photo" style="background-image:url('/wp-images/graeagle-meadows-hero.webp')"></div>
+        <div class="lodge-card__body">
+          <div class="lodge-card__tag">Best for 8–16 guys</div>
+          <div class="lodge-card__name">River Pines Resort Cabins</div>
+          <ul class="lodge-card__features">
+            <li>Private cabins + suites, family-owned 40+ yrs</li>
+            <li>On-site Roadhouse restaurant + full bar</li>
+            <li>Pool, hot tub, fire pits</li>
+            <li>Walkable to Graeagle Meadows Golf Course</li>
+            <li>Best option for smaller bachelor groups</li>
+          </ul>
+        </div>
+      </div>
+      <div class="lodge-card">
+        <div class="lodge-card__photo" style="background-image:url('/wp-images/nakoma-flw-lodge-exterior.jpg')"></div>
+        <div class="lodge-card__body">
+          <div class="lodge-card__tag">Best for 8–12 guys (splurge)</div>
+          <div class="lodge-card__name">Inn at Nakoma</div>
+          <ul class="lodge-card__features">
+            <li>42 rooms, Frette linens, spa, pool</li>
+            <li>Adjacent to Nakoma Dragon golf course</li>
+            <li>Fifty44 restaurant + Middle Fork Bistro on-site</li>
+            <li>Frank Lloyd Wright–designed lodge</li>
+            <li>The groom's night in a real room</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq-section">
+  <div class="section-inner">
+    <p class="eyebrow">FAQ</p>
+    <h2 class="section-title">Golf Bachelor Party Questions</h2>
+    <div class="faq-list">
+      {faqs.map(f => (
+        <div class="faq-item">
+          <p class="faq-q">{f.q}</p>
+          <p class="faq-a">{f.a}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final-cta">
+  <div class="final-cta__inner">
+    <h2 class="final-cta__title">Send the Best Man a Free Itinerary</h2>
+    <p class="final-cta__sub">
+      Tell us the groom's name, group size, and preferred dates. We'll send a custom 3-night bachelor party golf itinerary with course lineup, lodging, and pricing within 24 hours. No obligation.
+    </p>
+    <a href="/request-a-quote/?from=bachelor-bay-area&placement=final-cta&type=bachelor" class="btn-gold" style="font-size:15px;padding:16px 40px">
+      Get Free Itinerary →
+    </a>
+    <p class="final-cta__phone">Or call <a href="tel:+18885861157">(888) 586-1157</a> — we pick up.</p>
+  </div>
+</section>
+
+<script>
+  // Carousel drag + dot sync
+  const carousel = document.getElementById('bpCarousel');
+  const dots = Array.from(document.querySelectorAll('#bpDots .cdot'));
+  if (carousel) {
+    let isDragging = false, startX = 0, scrollLeft = 0, hasDragged = false;
+    carousel.addEventListener('mousedown', e => {
+      isDragging = true; hasDragged = false;
+      startX = e.pageX - carousel.offsetLeft;
+      scrollLeft = carousel.scrollLeft;
+      carousel.style.cursor = 'grabbing';
+    });
+    carousel.addEventListener('mousemove', e => {
+      if (!isDragging) return; e.preventDefault();
+      const x = e.pageX - carousel.offsetLeft;
+      const walk = (x - startX) * 1.5;
+      if (Math.abs(walk) > 5) hasDragged = true;
+      carousel.scrollLeft = scrollLeft - walk;
+    });
+    const endDrag = () => { isDragging = false; carousel.style.cursor = 'grab'; };
+    carousel.addEventListener('mouseup', endDrag);
+    carousel.addEventListener('mouseleave', endDrag);
+    carousel.addEventListener('click', e => { if (hasDragged) { e.preventDefault(); hasDragged = false; } }, true);
+
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const idx = Array.from(carousel.children).indexOf(entry.target);
+          dots.forEach((d, i) => d.classList.toggle('active', i === idx));
+        }
+      });
+    }, { root: carousel, threshold: 0.6 });
+    Array.from(carousel.children).forEach(c => io.observe(c));
+    dots.forEach((d, i) => d.addEventListener('click', () => {
+      carousel.children[i]?.scrollIntoView({ behavior: 'smooth', inline: 'start', block: 'nearest' });
+    }));
+  }
+</script>
+
+</Base>

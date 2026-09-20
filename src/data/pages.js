@@ -42,4 +42,5 @@ export const landingPages = [
   { slug: '/best-golf-courses-graeagle/', label: 'Best Golf Courses Graeagle',       desc: 'Complete guide to the best golf courses in Graeagle, California',              priority: '0.5', changefreq: 'yearly'  },
   { slug: '/ultimate-guide-to-golfing-in-graeagle/', label: 'Ultimate Guide to Golfing in Graeagle', desc: 'Everything you need to know about golfing in Graeagle CA',    priority: '0.5', changefreq: 'yearly'  },
   { slug: '/mountain-dining-near-lake-tahoe-graeagles-best-kept-restaurant-secrets/', label: 'Mountain Dining Near Graeagle', desc: 'Best restaurants near Graeagle and Lake Tahoe golf courses', priority: '0.5', changefreq: 'yearly'  },
+    { slug: '/bachelor-party-golf/bay-area/', label: 'Golf Bachelor Party Bay Area Graeagle', desc: 'Golf bachelor party 3.5h from San Francisco. Golf Digest Top 100 Grizzly Ranch, Nakoma Dragon, 3 more courses. Private cabins. Groups 8-30. One contract, one deposit from the best man.', priority: '0.8', changefreq: 'monthly' },
 ];
