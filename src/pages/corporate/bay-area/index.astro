@@ -632,6 +632,75 @@ const allSchemas = [webPageSchema, serviceSchema, faqSchema, breadcrumbSchema];
     </div>
   </section>
 
+  <!-- CROSS-BRAND NETWORK -->
+  <section class="network-section" aria-labelledby="network-h2">
+    <div class="network-section__inner">
+      <p class="eyebrow">One Contract · Four Destinations · Every Major Golf Region</p>
+      <h2 id="network-h2" class="section-title">Your Group Can Play Any of These.<br>One Contract Covers All.</h2>
+      <p class="section-body">
+        GolfGraeagle.com is part of a four-brand operator network spanning California's top golf destinations.
+        Multi-year corporate programs can rotate across regions — Graeagle one year, Monterey the next,
+        Reno–Tahoe the year after — under the same operator, the same TripsCaddie platform,
+        and a single point of contact. No rebidding. No new vendor onboarding.
+        Your EA books through one relationship across all four.
+      </p>
+      <div class="network-grid">
+        <a href="https://golfgraeagle.com/corporate/?from=corporate-bay-area&placement=network" class="net-card net-card--active">
+          <div class="net-card__brand">GolfGraeagle.com</div>
+          <h3 class="net-card__dest">Graeagle, CA</h3>
+          <p class="net-card__dist">3.5h from San Francisco · I-80 E</p>
+          <p class="net-card__body">Golf Digest Top 100 Grizzly Ranch + Frank Lloyd Wright Nakoma. The closest championship destination to the Bay Area. 5 courses. Mountain setting. No flights.</p>
+          <ul class="net-card__features">
+            <li>Golf Digest Top 100 (Grizzly Ranch)</li>
+            <li>Frank Lloyd Wright Clubhouse (Nakoma)</li>
+            <li>4,300–4,800 ft · +10–15 yds carry</li>
+            <li>Groups 8–400 · May–October</li>
+          </ul>
+          <span class="net-card__cta net-card__cta--active">You're here — Corporate Hub →</span>
+        </a>
+        <a href="https://montereygolftours.com/?from=gge-corporate-bay-area&placement=network" class="net-card">
+          <div class="net-card__brand">MontereyGolfTours.com</div>
+          <h3 class="net-card__dest">Monterey Peninsula, CA</h3>
+          <p class="net-card__dist">2h from San Francisco · Hwy 1 or US-101</p>
+          <p class="net-card__body">Pebble Beach Golf Links®, Spyglass Hill™, Del Monte™. IAGTO-authorized operator. The iconic California coastal golf experience — 14 courses, 14 hotels, groups 2–400.</p>
+          <ul class="net-card__features">
+            <li>Pebble Beach Golf Links® (IAGTO access)</li>
+            <li>Spyglass Hill™ · Del Monte™ · Poppy Hills</li>
+            <li>Lodge at Pebble Beach™ lodging</li>
+            <li>Year-round play · Ocean views</li>
+          </ul>
+          <span class="net-card__cta">Explore Monterey →</span>
+        </a>
+        <a href="https://golfthehighsierra.com/corporate-golf-events/?from=gge-corporate-bay-area&placement=network" class="net-card">
+          <div class="net-card__brand">GolfTheHighSierra.com</div>
+          <h3 class="net-card__dest">Reno–Tahoe, NV/CA</h3>
+          <p class="net-card__dist">3.5h from San Francisco · I-80 E</p>
+          <p class="net-card__body">Edgewood Tahoe, Old Greenwood (Tom Fazio), Coyote Moon. 26 courses across Reno, North Tahoe, South Tahoe, Carson Valley, and Graeagle. Casino hotel blocks available.</p>
+          <ul class="net-card__features">
+            <li>Edgewood Tahoe (US Open host)</li>
+            <li>Old Greenwood — Tom Fazio design</li>
+            <li>Casino hotel corporate blocks</li>
+            <li>Groups 8–400 · 20+ years operator</li>
+          </ul>
+          <span class="net-card__cta">Explore Reno–Tahoe →</span>
+        </a>
+        <a href="https://mesquitestgeorgegolftours.com/?from=gge-corporate-bay-area&placement=network" class="net-card">
+          <div class="net-card__brand">MesquiteStGeorgeGolfTours.com</div>
+          <h3 class="net-card__dest">Las Vegas / Mesquite, NV</h3>
+          <p class="net-card__dist">1h flight from SFO · or 8h drive</p>
+          <p class="net-card__body">Wolf Creek, Conestoga, CasaBlanca, Black Desert Resort. Desert canyon golf with Las Vegas amenities. Best for groups that want the Vegas experience alongside championship courses.</p>
+          <ul class="net-card__features">
+            <li>Wolf Creek — Golf Digest Top 100</li>
+            <li>Black Desert Resort (LPGA host 2025)</li>
+            <li>MGM Mansion private group rental</li>
+            <li>Year-round · Groups 8–400</li>
+          </ul>
+          <span class="net-card__cta">Explore Las Vegas / Mesquite →</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
   <!-- FINAL CTA -->
   <section class="final-cta" aria-labelledby="cta-h2">
     <div class="final-cta__inner">
@@ -832,6 +901,32 @@ const allSchemas = [webPageSchema, serviceSchema, faqSchema, breadcrumbSchema];
 .final-cta__phone { margin-top: 14px; font-size: 13px; color: rgba(245,240,232,.45); }
 .final-cta__phone a { color: rgba(184,130,10,.8); text-decoration: none; }
 .final-cta__phone a:hover { color: #b8820a; }
+
+/* cross-brand network */
+.network-section { background: #0f180f; border-top: 1px solid #1a2e1a; }
+.network-section__inner { max-width: 1100px; margin: 0 auto; padding: 72px 40px; }
+@media (max-width: 700px) { .network-section__inner { padding: 52px 20px; } }
+.network-section .eyebrow { color: rgba(184,130,10,.7); }
+.network-section .section-title { color: #f5f0e8; }
+.network-section .section-body { color: rgba(245,240,232,.65); max-width: 700px; }
+.network-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 16px; }
+.net-card {
+  display: flex; flex-direction: column; gap: 8px;
+  background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.1);
+  border-radius: 8px; padding: 24px; text-decoration: none;
+  transition: background .15s, border-color .15s;
+}
+.net-card:hover { background: rgba(255,255,255,.08); border-color: rgba(184,130,10,.5); }
+.net-card--active { border-color: #b8820a; background: rgba(184,130,10,.08); }
+.net-card__brand { font-size: 9px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; color: #b8820a; }
+.net-card__dest { font-family: 'Cormorant Garamond', Georgia, serif; font-size: 20px; font-weight: 700; color: #f5f0e8; line-height: 1.2; margin: 0; }
+.net-card__dist { font-size: 11px; color: rgba(184,130,10,.7); font-weight: 600; }
+.net-card__body { font-size: 12px; color: rgba(245,240,232,.55); line-height: 1.6; flex: 1; }
+.net-card__features { list-style: none; margin: 4px 0 0; padding: 0; display: flex; flex-direction: column; gap: 4px; }
+.net-card__features li { font-size: 11px; color: rgba(245,240,232,.5); padding-left: 12px; position: relative; }
+.net-card__features li::before { content: '✓'; position: absolute; left: 0; color: #b8820a; font-size: 9px; top: 1px; }
+.net-card__cta { font-size: 11px; font-weight: 700; color: rgba(184,130,10,.8); margin-top: 6px; }
+.net-card__cta--active { color: #b8820a; }
 
 /* AEO intro — visible and indexable, feeds AI overviews */
 .aeo-intro { background: #f5f0e8; border-bottom: 1px solid #d8ccb0; }
