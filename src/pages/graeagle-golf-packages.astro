@@ -158,7 +158,7 @@ const serviceSchema = {
     "@type": "OfferCatalog",
     "name": "Graeagle Golf Packages",
     "itemListElement": [
-      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "2-Night, 2-Round Graeagle Golf Package" }, "priceCurrency": "USD", "priceSpecification": { "@type": "PriceSpecification", "minPrice": minPrice } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "2-Night, 2-Round Graeagle Golf Package" }, "priceCurrency": "USD","availability":"https://schema.org/InStock","hasMerchantReturnPolicy":{"@type":"MerchantReturnPolicy","applicableCountry":"US","returnPolicyCategory":"https://schema.org/MerchantReturnNotPermitted"},"shippingDetails":{"@type":"OfferShippingDetails","shippingRate":{"@type":"MonetaryAmount","value":"0","currency":"USD"},"shippingDestination":{"@type":"DefinedRegion","addressCountry":"US"},"deliveryTime":{"@type":"ShippingDeliveryTime","handlingTime":{"@type":"QuantitativeValue","minValue":0,"maxValue":0,"unitCode":"DAY"}}}, "priceSpecification": { "@type": "PriceSpecification", "minPrice": minPrice } },
       { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "2-Night, 3-Round Graeagle Golf Package" }, "priceCurrency": "USD" },
       { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "3-Night, 4-Round Graeagle Golf Package" }, "priceCurrency": "USD", "priceSpecification": { "@type": "PriceSpecification", "maxPrice": maxPrice } }
     ]
