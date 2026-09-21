@@ -845,18 +845,7 @@ function cleanCourseName(name: string): string {
           ))}
         </div>
       </div>
-      {placeIds[item.slug] && (
-        <div class="dt-map-wrap">
-          <iframe
-            title={`${item.name} location map`}
-            loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade"
-            src={`https://www.google.com/maps/embed/v1/place?key=AIzaSyDI1hLFH83qpZDjxj93OYJvGghRAmtHF8U&q=place_id:${placeIds[item.slug]}&zoom=14&maptype=satellite`}
-            class="dt-map"
-            allowfullscreen
-          ></iframe>
-        </div>
-      )}
+
     </div>
   </section>
 )}
