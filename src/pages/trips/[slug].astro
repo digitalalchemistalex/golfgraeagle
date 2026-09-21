@@ -174,11 +174,25 @@ const tripSchema = trip ? {
     "@id": "https://golfgraeagle.com/#organization",
     "name": "GolfGraeagle.com"
   },
+  "image": `https://golfgraeagle.com${heroImg}`,
   "offers": {
     "@type": "Offer",
     "price": trip.pricePerPerson,
     "priceCurrency": "USD",
-    "description": `Per person, ${trip.nights} nights, ${trip.rounds} rounds`
+    "description": `Per person, ${trip.nights} nights, ${trip.rounds} rounds`,
+    "availability": "https://schema.org/InStock",
+    "url": canonical,
+    "hasMerchantReturnPolicy": {
+      "@type": "MerchantReturnPolicy",
+      "applicableCountry": "US",
+      "returnPolicyCategory": "https://schema.org/MerchantReturnNotPermitted"
+    },
+    "shippingDetails": {
+      "@type": "OfferShippingDetails",
+      "shippingRate": { "@type": "MonetaryAmount", "value": "0", "currency": "USD" },
+      "shippingDestination": { "@type": "DefinedRegion", "addressCountry": "US" },
+      "deliveryTime": { "@type": "ShippingDeliveryTime", "handlingTime": { "@type": "QuantitativeValue", "minValue": 0, "maxValue": 0, "unitCode": "DAY" } }
+    }
   }
 } : {
   "@context": "https://schema.org",
@@ -192,11 +206,25 @@ const tripSchema = trip ? {
     "@id": "https://golfgraeagle.com/#organization",
     "name": "GolfGraeagle.com"
   },
+  "image": `https://golfgraeagle.com${heroImg}`,
   "offers": recap?.price_per_person ? {
     "@type": "Offer",
     "price": recap.price_per_person,
     "priceCurrency": "USD",
-    "description": `Per person, ${recap?.nights} nights, ${recap?.rounds} rounds`
+    "description": `Per person, ${recap?.nights} nights, ${recap?.rounds} rounds`,
+    "availability": "https://schema.org/InStock",
+    "url": canonical,
+    "hasMerchantReturnPolicy": {
+      "@type": "MerchantReturnPolicy",
+      "applicableCountry": "US",
+      "returnPolicyCategory": "https://schema.org/MerchantReturnNotPermitted"
+    },
+    "shippingDetails": {
+      "@type": "OfferShippingDetails",
+      "shippingRate": { "@type": "MonetaryAmount", "value": "0", "currency": "USD" },
+      "shippingDestination": { "@type": "DefinedRegion", "addressCountry": "US" },
+      "deliveryTime": { "@type": "ShippingDeliveryTime", "handlingTime": { "@type": "QuantitativeValue", "minValue": 0, "maxValue": 0, "unitCode": "DAY" } }
+    }
   } : undefined
 };
 
