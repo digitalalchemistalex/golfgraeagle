@@ -51,14 +51,14 @@ const tripLines = graeagleTrips.length > 0
         return `- /trips/${t.slug}/${detail ? ` (${detail})` : ''}`;
       })
       .join('\n')
-  : `- /trips/graeagle-golf-trip-whitehawk-ranch-2n-2025-september/ (24 golfers, 2N/3R, $620/pp)
-- /trips/graeagle-golf-trip-grizzly-ranch-2n-2025/ (12 golfers, 2N/2R, $645/pp)
-- /trips/graeagle-golf-trip-grizzly-ranch-golf-club-3n-2026/ (4 golfers, 3N/3R, $817/pp)`;
+  : `- /trips/graeagle-golf-trip-whitehawk-ranch-2n-2025-september/ (24 golfers, 2N/3R, From $620/pp)
+- /trips/graeagle-golf-trip-grizzly-ranch-2n-2025/ (12 golfers, 2N/2R, From $645/pp)
+- /trips/graeagle-golf-trip-grizzly-ranch-golf-club-3n-2026/ (4 golfers, 3N/3R, From $817/pp)`;
 
 const priceRange = graeagleTrips.length > 0
   ? (() => {
       const prices = graeagleTrips.map((t: any) => t.pricePerPerson || 0).filter(Boolean).sort((a: number, b: number) => a - b);
-      const lo = prices[0] ? `$${prices[0].toLocaleString('en-US')}` : '$299';
+      const lo = prices[0] ? `$${prices[0].toLocaleString('en-US')}` : 'From $299';
       const hi = prices[prices.length - 1] ? `$${prices[prices.length - 1].toLocaleString('en-US')}` : '$1,750';
       const nTrips = graeagleTrips.length;
       return `Packages range ${lo}–${hi}/person. ${nTrips} verified trips. All include confirmed tee times, lodging, and coordination.`;

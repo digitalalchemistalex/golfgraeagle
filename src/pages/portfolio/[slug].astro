@@ -809,7 +809,7 @@ function cleanCourseName(name: string): string {
         ['Altitude', courseElevations[item.slug] ? `${courseElevations[item.slug].ft.toLocaleString()} ft` : (item.altitude || 'Sierra Nevada')],
         ['Open', 'May – November'],
         ['Location', item.address?.split(',')[1]?.trim() || 'Graeagle, CA'],
-        ['Packages from', '$299/person'],
+        ['Packages from', 'From $299/person'],
       ].map(([k, v]) => (
         <div class="ch-infobar-item">
           <span class="ch-infobar-label">{k}</span>
@@ -2101,7 +2101,7 @@ function cleanCourseName(name: string): string {
 
         <!-- ── DESKTOP: package anchor bar ──────────────── -->
         <div class="lod-package-bar">
-          {[['From','$299 per golfer'],['Includes','Lodging + tee times'],['Response','Within 24 hours'],['Cancellation','72-hour policy']].map(([k,v]) => (
+          {[['From','From $299 per golfer'],['Includes','Lodging + tee times'],['Response','Within 24 hours'],['Cancellation','72-hour policy']].map(([k,v]) => (
             <div style="text-align:center;">
               <div style="font-size:11px;color:rgba(28,18,8,0.35);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:4px;">{k}</div>
               <div style="font-size:15px;font-weight:700;color:var(--text-primary);">{v}</div>
