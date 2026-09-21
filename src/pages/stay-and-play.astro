@@ -15,7 +15,7 @@ const faqSchema = {
   "@context": "https://schema.org", "@type": "FAQPage",
   "mainEntity": [
     { "@type": "Question", "name": "What is included in a Graeagle stay and play golf package?", "acceptedAnswer": { "@type": "Answer", "text": "A GolfGraeagle stay-and-play package includes guaranteed tee times, lodging coordination, and a full day-by-day itinerary. Dining reservations can be added. Packages from ${minPrice} per golfer." } },
-    { "@type": "Question", "name": "How much does a Graeagle stay and play package cost?", "acceptedAnswer": { "@type": "Answer", "text": "Real completed stay-and-play packages range from $620 to $1,705 per person. A typical 2-night, 3-course package for 12–24 golfers runs $620–From $875 per person including lodging and tee times." } },
+    { "@type": "Question", "name": "How much does a Graeagle stay and play package cost?", "acceptedAnswer": { "@type": "Answer", "text": "Real completed stay-and-play packages range from $620 to $1,705 per person. A typical 2-night, 3-course package for 12–24 golfers runs From $620–From $875 per person including lodging and tee times." } },
     { "@type": "Question", "name": "How many courses can I play?", "acceptedAnswer": { "@type": "Answer", "text": "Any combination of the 5 Graeagle courses. Most 2-night packages cover 2–3 courses; 3-night covers 3–4. All 5 courses in one valley means no wasted driving time." } },
     { "@type": "Question", "name": "Which lodging is best for a stay and play golf trip?", "acceptedAnswer": { "@type": "Answer", "text": "River Pines Resort is most popular for golf groups — flexible rooms, pool, The Roadhouse on-site. Townhomes at Plumas Pines offer multi-bedroom units steps from the first tee. Inn at Nakoma puts you inside the Frank Lloyd Wright resort with The Dragon at your door." } },
     { "@type": "Question", "name": "Can GolfGraeagle book large group stay and play packages?", "acceptedAnswer": { "@type": "Answer", "text": "Yes — groups of 4 to 200+ golfers served. Large groups use consecutive tee time blocks. GolfGraeagle coordinates all courses and lodging." } }
@@ -57,10 +57,10 @@ const serviceSchema = {
 };
 
 const packages = [
-  { name:'Weekend Starter',    priceRange:'$620–From $645/pp', nights:'2', rounds:'2–3', pax:'8–24', hot:false,
+  { name:'Weekend Starter',    priceRange:'From $620–From $645/pp', nights:'2', rounds:'2–3', pax:'8–24', hot:false,
     desc:'The valley intro. Whitehawk + Graeagle Meadows + Plumas Pines.',
     includes:['Tee times at 3 courses','2 nights lodging at River Pines or Townhomes','Day-by-day itinerary','Dining suggestions included'] },
-  { name:'3-Night Sweet Spot', priceRange:'$645–From $875/pp', nights:'3', rounds:'3–4', pax:'4–24', hot:true,
+  { name:'3-Night Sweet Spot', priceRange:'From $645–From $875/pp', nights:'3', rounds:'3–4', pax:'4–24', hot:true,
     desc:'Most popular format. Grizzly Ranch as the anchor round.',
     includes:['Tee times at 3–4 courses','3 nights lodging (River Pines or Chalet View)','Full itinerary + dining reservations','Quote in 24 hours'] },
   { name:'Dragon Run',         priceRange:'$876–$1,120/pp',nights:'3',rounds:'3–4',pax:'16–24',hot:false,
