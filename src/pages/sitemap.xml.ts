@@ -92,7 +92,34 @@ try {
     'graeagle-golf-trip-grizzly-ranch-3n-2024',
   ];
 }
-const tripUrls = tripSlugs.map(s => url(`/trips/${s}`, '0.8', 'monthly'));
+
+// Supabase trip_recaps — fetch published recaps and add unique slugs to sitemap
+const SUPA_URL = import.meta.env.GGE_SUPABASE_URL || import.meta.env.SUPABASE_URL || 'https://bmkikkdieheyzsfmzrfm.supabase.co';
+const SUPA_KEY = import.meta.env.GGE_SUPABASE_SERVICE_KEY || import.meta.env.SUPABASE_SERVICE_KEY || '';
+let recapSlugs: string[] = [];
+try {
+  const supaRes = await fetch(
+    `${SUPA_URL}/rest/v1/trip_recaps?select=slug&published=eq.true`,
+    {
+      headers: { 'apikey': SUPA_KEY, 'Authorization': `Bearer ${SUPA_KEY}` },
+      signal: AbortSignal.timeout(8000),
+    }
+  );
+  if (supaRes.ok) {
+    const rows: any[] = await supaRes.json();
+    const caddieSlugSet = new Set(tripSlugs);
+    recapSlugs = rows
+      .filter((r: any) => r.slug && !caddieSlugSet.has(r.slug))
+      .map((r: any) => String(r.slug));
+  }
+} catch {
+  recapSlugs = [];
+}
+
+const tripUrls = [
+  ...tripSlugs.map(s => url(`/trips/${s}`, '0.8', 'monthly')),
+  ...recapSlugs.map(s => url(`/trips/${s}`, '0.8', 'monthly')),
+];
 
 const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
@@ -103,7 +130,7 @@ ${url('/','1.0','weekly')}
 <!-- Landing pages (${landingUrls.length} — driven by src/data/pages.js) -->
 ${landingUrls.join('\n')}
 
-<!-- Trip pages (${tripUrls.length} — live from TripsCaddie API) -->
+<!-- Trip pages (${tripSlugs.length} TripsCaddie + ${recapSlugs.length} Supabase recaps) -->
 ${tripUrls.join('\n')}
 
 <!-- Courses (${courseUrls.length} — driven by content.js) -->
