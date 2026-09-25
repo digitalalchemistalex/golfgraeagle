@@ -1647,6 +1647,167 @@ function cleanCourseName(name: string): string {
       })()}
 
 
+      {/* ── GRIZZLY RANCH — scorecard + green fees + what to expect ── */}
+      {slug === 'grizzly-ranch-golf-packages' && (
+        <div style="margin-bottom:56px;">
+          <h2 style="font-family:'Playfair Display',serif;font-size:clamp(20px,2.8vw,28px);font-weight:400;color:#1c1208;margin:0 0 8px;">
+            Grizzly Ranch Golf Club — Course Overview
+          </h2>
+          <p style="font-size:14px;color:rgba(28,18,8,0.4);margin:0 0 24px;">
+            Bob Cupp design &#x2022; Opened 2005 &#x2022; 4199 CA-70, Portola, CA 96122 &#x2022; (530) 832-4200
+          </p>
+
+          {/* Tee Box Scorecard */}
+          <div style="overflow-x:auto;margin-bottom:32px;">
+            <table style="width:100%;border-collapse:collapse;background:#fff;border:1px solid rgba(28,18,8,0.07);border-radius:12px;overflow:hidden;font-size:13px;">
+              <thead>
+                <tr style="background:rgba(28,18,8,0.03);">
+                  <th style="text-align:left;padding:10px 14px;font-weight:700;color:#1c1208;">Tee</th>
+                  <th style="padding:10px 14px;font-weight:700;color:#1c1208;">Yards</th>
+                  <th style="padding:10px 14px;font-weight:700;color:#1c1208;">Par</th>
+                  <th style="padding:10px 14px;font-weight:700;color:#1c1208;">Rating</th>
+                  <th style="padding:10px 14px;font-weight:700;color:#1c1208;">Slope</th>
+                </tr>
+              </thead>
+              <tbody>
+                {[
+                  { tee: 'Black (Back)', yards: '7,411', par: '72', rating: '74.9', slope: '140' },
+                  { tee: 'Blue', yards: '6,893', par: '72', rating: '72.1', slope: '133' },
+                  { tee: 'White', yards: '6,309', par: '72', rating: '69.3', slope: '124' },
+                  { tee: 'Gold', yards: '5,691', par: '72', rating: '66.4', slope: '115' },
+                  { tee: 'Red (Forward)', yards: '4,992', par: '72', rating: '63.5', slope: '107' },
+                ].map((row, i) => (
+                  <tr style={`border-top:1px solid rgba(28,18,8,0.06);background:${i % 2 === 0 ? 'transparent' : 'rgba(28,18,8,0.015)'};`}>
+                    <td style="padding:10px 14px;font-weight:600;color:#1c1208;">{row.tee}</td>
+                    <td style="padding:10px 14px;text-align:center;color:rgba(28,18,8,0.6);">{row.yards}</td>
+                    <td style="padding:10px 14px;text-align:center;color:rgba(28,18,8,0.6);">{row.par}</td>
+                    <td style="padding:10px 14px;text-align:center;color:rgba(28,18,8,0.6);">{row.rating}</td>
+                    <td style="padding:10px 14px;text-align:center;font-weight:700;color:#c0392b;">{row.slope}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <p style="font-size:12px;color:rgba(28,18,8,0.3);margin:-20px 0 32px;">All ratings USGA-certified. Slope 113 = standard difficulty. Slope 140 from the tips is significantly above average — play the White or Gold tees if you are a 15+ handicapper.</p>
+
+          {/* Green Fees */}
+          <h2 style="font-family:'Playfair Display',serif;font-size:clamp(18px,2.4vw,24px);font-weight:400;color:#1c1208;margin:0 0 16px;">
+            Grizzly Ranch Golf Green Fees
+          </h2>
+          <div style="overflow-x:auto;margin-bottom:12px;">
+            <table style="width:100%;border-collapse:collapse;background:#fff;border:1px solid rgba(28,18,8,0.07);border-radius:12px;overflow:hidden;font-size:13px;">
+              <thead>
+                <tr style="background:rgba(28,18,8,0.03);">
+                  <th style="text-align:left;padding:10px 14px;font-weight:700;color:#1c1208;">Season / Day</th>
+                  <th style="padding:10px 14px;font-weight:700;color:#1c1208;">Green Fee Range</th>
+                  <th style="padding:10px 14px;font-weight:700;color:#1c1208;">Cart</th>
+                </tr>
+              </thead>
+              <tbody>
+                {[
+                  { period: 'Peak (Jun–Sep) · Weekend AM', range: '$139–$179', cart: 'Included' },
+                  { period: 'Peak (Jun–Sep) · Weekday / PM', range: '$109–$149', cart: 'Included' },
+                  { period: 'Shoulder (May & Oct)', range: '$89–$119', cart: 'Included' },
+                  { period: 'GolfGraeagle Package Rate', range: 'From $299/golfer (stay-and-play)', cart: 'Included' },
+                ].map((row, i) => (
+                  <tr style={`border-top:1px solid rgba(28,18,8,0.06);background:${i % 2 === 0 ? 'transparent' : 'rgba(28,18,8,0.015)'};`}>
+                    <td style="padding:10px 14px;font-weight:600;color:#1c1208;">{row.period}</td>
+                    <td style="padding:10px 14px;text-align:center;color:rgba(28,18,8,0.6);">{row.range}</td>
+                    <td style="padding:10px 14px;text-align:center;color:rgba(28,18,8,0.6);">{row.cart}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <p style="font-size:12px;color:rgba(28,18,8,0.3);margin:0 0 32px;">Green fees are approximate — rates vary by availability and advance booking window. GolfGraeagle packages lock in rates as part of a confirmed stay-and-play reservation.</p>
+
+          {/* What to Expect Grid */}
+          <h2 style="font-family:'Playfair Display',serif;font-size:clamp(18px,2.4vw,24px);font-weight:400;color:#1c1208;margin:0 0 20px;">
+            What to Expect at Grizzly Ranch Golf Club
+          </h2>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:32px;" class="nak-expect-grid">
+            {[
+              { icon: '🏆', title: 'Golf Digest Top 100 — what that means on the ground', body: 'Grizzly Ranch earned Golf Digest Top 100 Greatest Public Courses in 2021 — the only course in the Graeagle valley on that list. Bob Cupp shaped the routing through raw Sierra terrain without forcing artificial drama. Every elevation change, forced carry, and ridgeline view exists because the land demanded it. It plays like a course that belongs here.' },
+              { icon: '⛰️', title: 'Slope 140 — pick the right tees', body: 'Slope 140 from the tips means a 20-handicapper can expect to shoot about 27 strokes over their handicap here, not their normal 20. The White tees (slope 124, 6,309 yds) are the right call for most mid-handicappers. The Gold tees (slope 115, 5,691 yds) play friendlier and still show you the full course. Play the right tees — you will have a far better round.' },
+              { icon: '🌬️', title: 'Elevation adds distance — plan for it', body: 'The course sits at 4,800–5,400 feet above sea level. At that altitude, a golf ball carries 5–8% farther than at sea level. A stock 7-iron that goes 150 yards at home will carry 157–162 yards here. Club down consistently — most first-time visitors fly greens all day because they under-adjust. The greens also stimp at 10–11 in peak season.' },
+              { icon: '📅', title: 'Tee time availability — plan 30–60 days out', body: 'Grizzly Ranch is semi-private. Public tee times release on a rolling 30-day window and weekend mornings in June through September fill within days of opening. Groups that try to book 1–2 weeks out frequently find no availability. GolfGraeagle reserves tee times as part of confirmed packages, bypassing the public window. Book early — availability in late summer is tighter than it looks online.' },
+              { icon: '🏌️', title: 'Signature hole: No. 14 par-3', body: 'Hole 14 is the most talked-about hole at Grizzly Ranch. A forced carry over a deep ravine to a green cut into the hillside at 5,200 feet elevation. The views extend across the Sierra Nevada. Wind can vary by 3 clubs in either direction. There is no bail-out — short is in the ravine, long is a difficult chip back. Play enough club and aim for the center of the green.' },
+              { icon: '🍽️', title: 'On-site dining: Grizzly Grill', body: 'The Grizzly Grill is on property — exposed beam ceilings, a stone hearth, and a menu built around local game and Sierra produce. Full bar. Plan to have a drink on the deck after your round looking back over the course. It is 10 minutes from most Graeagle lodging and works well as a group dinner stop after afternoon rounds.' },
+            ].map(item => (
+              <div style="padding:20px;background:rgba(28,18,8,0.02);border:1px solid rgba(28,18,8,0.07);border-radius:12px;">
+                <div style="font-size:20px;margin-bottom:10px;">{item.icon}</div>
+                <h3 style="font-family:'Playfair Display',serif;font-size:16px;font-weight:400;color:#1c1208;margin:0 0 10px;">{item.title}</h3>
+                <p style="font-size:13px;color:rgba(28,18,8,0.55);line-height:1.75;margin:0;">{item.body}</p>
+              </div>
+            ))}
+          </div>
+
+          {/* Hole-by-Hole Scorecard */}
+          <h2 style="font-family:'Playfair Display',serif;font-size:clamp(18px,2.4vw,24px);font-weight:400;color:#1c1208;margin:0 0 16px;">
+            Grizzly Ranch Scorecard — All 18 Holes
+          </h2>
+          <div style="overflow-x:auto;margin-bottom:8px;">
+            <table style="width:100%;border-collapse:collapse;background:#fff;border:1px solid rgba(28,18,8,0.07);border-radius:12px;overflow:hidden;font-size:12px;">
+              <thead>
+                <tr style="background:rgba(28,18,8,0.05);">
+                  <th style="padding:8px 10px;font-weight:700;color:#1c1208;text-align:left;">Hole</th>
+                  <th style="padding:8px 10px;font-weight:700;color:#1c1208;">Par</th>
+                  <th style="padding:8px 10px;font-weight:700;color:#1c1208;">Black</th>
+                  <th style="padding:8px 10px;font-weight:700;color:#1c1208;">Blue</th>
+                  <th style="padding:8px 10px;font-weight:700;color:#1c1208;">White</th>
+                  <th style="padding:8px 10px;font-weight:700;color:#1c1208;">Gold</th>
+                  <th style="padding:8px 10px;font-weight:700;color:#1c1208;">HCP</th>
+                </tr>
+              </thead>
+              <tbody>
+                {[
+                  { hole:  1, par: 4, blk: 436, blu: 411, wht: 370, gld: 326, hcp: 9  },
+                  { hole:  2, par: 5, blk: 554, blu: 512, wht: 469, gld: 428, hcp: 15 },
+                  { hole:  3, par: 3, blk: 208, blu: 185, wht: 162, gld: 131, hcp: 11 },
+                  { hole:  4, par: 4, blk: 441, blu: 412, wht: 376, gld: 337, hcp: 3  },
+                  { hole:  5, par: 5, blk: 562, blu: 527, wht: 490, gld: 436, hcp: 13 },
+                  { hole:  6, par: 4, blk: 418, blu: 389, wht: 353, gld: 308, hcp: 7  },
+                  { hole:  7, par: 3, blk: 196, blu: 174, wht: 153, gld: 124, hcp: 17 },
+                  { hole:  8, par: 4, blk: 456, blu: 427, wht: 391, gld: 352, hcp: 1  },
+                  { hole:  9, par: 4, blk: 423, blu: 394, wht: 360, gld: 316, hcp: 5  },
+                  { hole: 10, par: 4, blk: 448, blu: 419, wht: 382, gld: 340, hcp: 2  },
+                  { hole: 11, par: 5, blk: 551, blu: 514, wht: 471, gld: 418, hcp: 14 },
+                  { hole: 12, par: 4, blk: 427, blu: 399, wht: 364, gld: 321, hcp: 8  },
+                  { hole: 13, par: 3, blk: 214, blu: 191, wht: 169, gld: 139, hcp: 16 },
+                  { hole: 14, par: 3, blk: 193, blu: 171, wht: 148, gld: 115, hcp: 18 },
+                  { hole: 15, par: 5, blk: 558, blu: 522, wht: 480, gld: 426, hcp: 12 },
+                  { hole: 16, par: 4, blk: 439, blu: 410, wht: 374, gld: 332, hcp: 4  },
+                  { hole: 17, par: 4, blk: 463, blu: 434, wht: 398, gld: 355, hcp: 6  },
+                  { hole: 18, par: 4, blk: 424, blu: 396, wht: 359, gld: 317, hcp: 10 },
+                ].map((row, i) => (
+                  <tr style={`border-top:1px solid rgba(28,18,8,0.06);background:${i % 2 === 0 ? 'transparent' : 'rgba(28,18,8,0.015)'};`}>
+                    <td style="padding:8px 10px;font-weight:700;color:#1c1208;">{row.hole}</td>
+                    <td style="padding:8px 10px;text-align:center;font-weight:600;color:rgba(28,18,8,0.7);">{row.par}</td>
+                    <td style="padding:8px 10px;text-align:center;color:rgba(28,18,8,0.55);">{row.blk}</td>
+                    <td style="padding:8px 10px;text-align:center;color:rgba(28,18,8,0.55);">{row.blu}</td>
+                    <td style="padding:8px 10px;text-align:center;color:rgba(28,18,8,0.55);">{row.wht}</td>
+                    <td style="padding:8px 10px;text-align:center;color:rgba(28,18,8,0.55);">{row.gld}</td>
+                    <td style="padding:8px 10px;text-align:center;color:rgba(28,18,8,0.35);font-size:11px;">{row.hcp}</td>
+                  </tr>
+                ))}
+                <tr style="border-top:2px solid rgba(28,18,8,0.1);background:rgba(28,18,8,0.03);">
+                  <td style="padding:8px 10px;font-weight:700;color:#1c1208;">Total</td>
+                  <td style="padding:8px 10px;text-align:center;font-weight:700;color:#1c1208;">72</td>
+                  <td style="padding:8px 10px;text-align:center;font-weight:700;color:#1c1208;">7,411</td>
+                  <td style="padding:8px 10px;text-align:center;font-weight:700;color:#1c1208;">6,893</td>
+                  <td style="padding:8px 10px;text-align:center;font-weight:700;color:#1c1208;">6,309</td>
+                  <td style="padding:8px 10px;text-align:center;font-weight:700;color:#1c1208;">5,691</td>
+                  <td style="padding:8px 10px;"></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p style="font-size:12px;color:rgba(28,18,8,0.3);margin:0 0 0;">Yardages from official scorecard — Black/Blue/White/Gold tees. HCP = handicap stroke index. Red (forward) tees: 4,992 yds.</p>
+
+        </div>
+      )}
+
+
       {/* ── NAKOMA DRAGON — scorecard + what to expect ── */}
       {slug === 'nakoma-dragon-golf-packages' && (
         <div style="margin-bottom:56px;">
