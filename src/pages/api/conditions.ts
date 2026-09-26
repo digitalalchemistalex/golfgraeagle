@@ -35,7 +35,7 @@ export const GET: APIRoute = async () => {
 
   try {
     const [weatherRes, aqRes] = await Promise.all([
-      fetch(`https://api.open-meteo.com/v1/forecast?latitude=${LAT}&longitude=${LNG}&hourly=temperature_2m,apparent_temperature,weathercode,windspeed_10m,precipitation,uv_index,cloudcover,relativehumidity_2m,is_day&daily=temperature_2m_max,temperature_2m_min,weathercode,uv_index_max,windspeed_10m_max&timezone=America%2FLos_Angeles&forecast_days=5`),
+      fetch(`https://api.open-meteo.com/v1/forecast?latitude=${LAT}&longitude=${LNG}&hourly=temperature_2m,apparent_temperature,weather_code,wind_speed_10m,precipitation,uv_index,cloud_cover,relative_humidity_2m,is_day&daily=temperature_2m_max,temperature_2m_min,weather_code,uv_index_max,wind_speed_10m_max&timezone=America%2FLos_Angeles&forecast_days=5`),
       fetch(`https://air-quality-api.open-meteo.com/v1/air-quality?latitude=${LAT}&longitude=${LNG}&hourly=us_aqi,pm2_5&timezone=America%2FLos_Angeles&forecast_days=1`),
     ]);
 
@@ -50,7 +50,7 @@ export const GET: APIRoute = async () => {
     const days = (d.time as string[]).map((date: string, i: number) => {
       const hi_c = timeToC(d.temperature_2m_max[i]);
       const lo_c = timeToC(d.temperature_2m_min[i]);
-      const code = d.weathercode[i] as number;
+      const code = d.weather_code[i] as number;
       // Hourly hours belonging to this date
       const prefix = date + 'T';
       const hourIdxs = (h.time as string[]).map((t: string, j: number) => t.startsWith(prefix) ? j : -1).filter((j: number) => j >= 0);
@@ -59,11 +59,11 @@ export const GET: APIRoute = async () => {
         temp_c: timeToC(h.temperature_2m[j]),
         temp_f: toF(h.temperature_2m[j]),
         feels_f: toF(h.apparent_temperature[j]),
-        condition: WMO[h.weathercode[j]] || 'Unknown',
-        wind_mph: Math.round(h.windspeed_10m[j] * 0.621),
+        condition: WMO[h.weather_code[j]] || 'Unknown',
+        wind_mph: Math.round(h.wind_speed_10m[j] * 0.621),
         uv: h.uv_index[j] || 0,
-        cloud_pct: h.cloudcover[j] || 0,
-        humidity: h.relativehumidity_2m[j] || 0,
+        cloud_pct: h.cloud_cover[j] || 0,
+        humidity: h.relative_humidity_2m[j] || 0,
         precip_mm: h.precipitation[j] || 0,
         is_daytime: (h.is_day[j] as number) === 1,
       }));
@@ -74,7 +74,7 @@ export const GET: APIRoute = async () => {
         hi_f: toF(hi_c),
         temp: toF(hi_c), // health-check field
         uv_max: d.uv_index_max[i] || 0,
-        wind_mph: Math.round(d.windspeed_10m_max[i] * 0.621),
+        wind_mph: Math.round(d.wind_speed_10m_max[i] * 0.621),
         condition: WMO[code] || 'Unknown',
         hours,
       };
